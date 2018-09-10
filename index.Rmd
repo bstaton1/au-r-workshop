@@ -1,0 +1,17 @@
+--- 
+title: "Introduction to R for Natural Resource Scientists"
+author: "Ben Staton"
+date: "with contributions made by Henry Hershey"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: bstaton1/au-r-workshop
+description: "This is a first course in R Programming for Natural Resource Scientists. It was developed and has been primarily instructed at Auburn University."
+---
+
+# Overview
+
+This is intended to be a first course in R programming. It is by no means comprehensive, but instead attempts to introduce the main topics needed to get a beginner up and running with applying R to their own work. There will be no prior knowledge assumed on the part of the student regarding R or programming. In the later chapters, e.g., Ch. 3 and 4, an understanding of statistics at the introductory undergraduate level would be helpful.
