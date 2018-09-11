@@ -135,10 +135,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="ch1.html"><a href="ch1.html#exercise-1b-bonus"><i class="fa fa-check"></i>EXERCISE 1B BONUS</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="ch2.html"><a href="ch2.html"><i class="fa fa-check"></i><b>2</b> Base R Plotting Basics</a></li>
-<li class="chapter" data-level="3" data-path="ch3.html"><a href="ch3.html"><i class="fa fa-check"></i><b>3</b> Basic Statistics</a></li>
-<li class="chapter" data-level="4" data-path="ch4.html"><a href="ch4.html"><i class="fa fa-check"></i><b>4</b> Simulation and Randomization</a></li>
-<li class="chapter" data-level="5" data-path="ch5.html"><a href="ch5.html"><i class="fa fa-check"></i><b>5</b> Large Data Manipulation</a></li>
+<li class="chapter" data-level="2" data-path="ch2.html"><a href="ch2.html"><i class="fa fa-check"></i><b>2</b> Base R Plotting Basics</a><ul>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#chapter-overview-1"><i class="fa fa-check"></i>Chapter Overview</a></li>
+<li class="chapter" data-level="2.1" data-path="ch2.html"><a href="ch2.html#r-plotting-lingo"><i class="fa fa-check"></i><b>2.1</b> R Plotting Lingo</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="lower-level-plotting-functions.html"><a href="lower-level-plotting-functions.html"><i class="fa fa-check"></i><b>3</b> Lower Level Plotting Functions</a></li>
+<li class="chapter" data-level="4" data-path="other-high-level-plotting-functions.html"><a href="other-high-level-plotting-functions.html"><i class="fa fa-check"></i><b>4</b> Other High Level Plotting Functions</a></li>
+<li class="chapter" data-level="5" data-path="ch3.html"><a href="ch3.html"><i class="fa fa-check"></i><b>5</b> Basic Statistics</a></li>
+<li class="chapter" data-level="6" data-path="ch4.html"><a href="ch4.html"><i class="fa fa-check"></i><b>6</b> Simulation and Randomization</a></li>
+<li class="chapter" data-level="7" data-path="ch5.html"><a href="ch5.html"><i class="fa fa-check"></i><b>7</b> Large Data Manipulation</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -335,7 +340,7 @@ m2 =<span class="st"> </span><span class="kw">rbind</span>(month, day, year, num
 <p>That looks weird, huh? A factor has levels, with each level being a subcategory of the factor. You can see the unique levels of your factor by running:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">levels</span>(df1<span class="op">$</span>pond)</code></pre></div>
 <pre><code>## [1] &quot;F11&quot; &quot;S11&quot; &quot;S28&quot; &quot;S30&quot; &quot;S8&quot;</code></pre>
-<p>Additionally, factor levels have an assigned order (even if the levels are totally nominal), which will become important in Chapter <a href="ch3.html#ch3">3</a> when you learn how to fit linear models to groups of data, in which one level is the “reference” group that all other groups are compared to.</p>
+<p>Additionally, factor levels have an assigned order (even if the levels are totally nominal), which will become important in Chapter <a href="ch3.html#ch3">5</a> when you learn how to fit linear models to groups of data, in which one level is the “reference” group that all other groups are compared to.</p>
 <p>If you’re running into errors about R expecting character vectors, it may be because they are actually stored as factors. When you make a data frame, you’ll often have the option to turn off the automatic factor coersion. For example:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data.frame</span>(month, day, year, number, pond, <span class="dt">stringsAsFactors =</span> F)
 <span class="kw">read.csv</span>(<span class="st">&quot;streams.csv&quot;</span>, <span class="dt">stringsAsFactors =</span> F)  <span class="co"># see below for details on read.csv</span></code></pre></div>
@@ -549,7 +554,7 @@ dat =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(dat[,<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>], <span class="dv">2</span>, <span class="dt">FUN =</span> var, <span class="dt">na.rm =</span> T)</code></pre></div>
 <pre><code>## stream_width         flow 
 ##     581.1693    1337.3853</code></pre>
-<p>The first argument is the data object you want to apply the function to. The second argument (the number <code>2</code>) specifies that you want to apply the function to columns, <code>1</code> would tell R to apply it to rows. The <code>FUN</code> argument specifies what function you wish to apply to each of the columns; here we are calculating the variance which takes the <code>na.rm = T</code> argument. This use of <code>apply</code> alone is very powerful and can help you get around having to write the dreaded <code>for</code> loop (introduced in Chapter <a href="ch4.html#ch4">4</a>).</p>
+<p>The first argument is the data object you want to apply the function to. The second argument (the number <code>2</code>) specifies that you want to apply the function to columns, <code>1</code> would tell R to apply it to rows. The <code>FUN</code> argument specifies what function you wish to apply to each of the columns; here we are calculating the variance which takes the <code>na.rm = T</code> argument. This use of <code>apply</code> alone is very powerful and can help you get around having to write the dreaded <code>for</code> loop (introduced in Chapter <a href="ch4.html#ch4">6</a>).</p>
 <p>There is a whole family of <code>apply</code> functions, the base <code>apply</code> is the most basic but a more sophisticated one is <code>tapply</code>, which applies a function based on some grouping variable (a factor). Calculate the mean stream width <strong>separated by state</strong>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tapply</span>(dat<span class="op">$</span>stream_width, dat<span class="op">$</span>state, mean)</code></pre></div>
 <pre><code>##   Alabama   Florida   Georgia Tennessee 
@@ -713,7 +718,7 @@ xs =<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span>
 </div>
 <div id="user-defined-functions" class="section level2">
 <h2><span class="header-section-number">1.15</span> User-Defined Functions</h2>
-<p>Sometimes you may want R to carry out a specific task, but there is no built-in function to do it. In this case, you can write your own functions. This one of the parts of R that makes it incredibly flexible, though you will only get a small taste of this topic here. We will be going into more detail in later Chapters, particularly in Chapter <a href="ch5.html#ch5">5</a>.</p>
+<p>Sometimes you may want R to carry out a specific task, but there is no built-in function to do it. In this case, you can write your own functions. This one of the parts of R that makes it incredibly flexible, though you will only get a small taste of this topic here. We will be going into more detail in later Chapters, particularly in Chapter <a href="ch5.html#ch5">7</a>.</p>
 <p>First, you must think of a name for your function (e.g., <code>myfun</code>). Then, you specify that you want the object <code>myfun</code> to be a function by using using the <code>function</code> function (I know). Then, in parentheses, you specify any arguments that you want to use within the function to carry out the specific task. Open and closed curly braces specify the start and end of you function body, i.e., the code that specifies how it uses the arguments to do its job.</p>
 <p>Here’s the general syntax for specifying your own function:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">myfun =<span class="st"> </span><span class="cf">function</span>(arg1) {

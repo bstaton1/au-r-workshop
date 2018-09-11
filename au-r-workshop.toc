@@ -31,6 +31,10 @@
 \contentsline {section}{EXERCISE 1B}{24}{section*.9}
 \contentsline {subsection}{EXERCISE 1B BONUS}{24}{section*.10}
 \contentsline {chapter}{\numberline {2}Base R Plotting Basics}{25}{chapter.2}
-\contentsline {chapter}{\numberline {3}Basic Statistics}{27}{chapter.3}
-\contentsline {chapter}{\numberline {4}Simulation and Randomization}{29}{chapter.4}
-\contentsline {chapter}{\numberline {5}Large Data Manipulation}{31}{chapter.5}
+\contentsline {section}{Chapter Overview}{25}{section*.11}
+\contentsline {section}{\numberline {2.1}R Plotting Lingo}{25}{section.2.1}
+\contentsline {chapter}{\numberline {3}Lower Level Plotting Functions}{29}{chapter.3}
+\contentsline {chapter}{\numberline {4}Other High Level Plotting Functions}{31}{chapter.4}
+\contentsline {chapter}{\numberline {5}Basic Statistics}{35}{chapter.5}
+\contentsline {chapter}{\numberline {6}Simulation and Randomization}{37}{chapter.6}
+\contentsline {chapter}{\numberline {7}Large Data Manipulation}{39}{chapter.7}

@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="ch3.html">
-<link rel="next" href="ch5.html">
+<link rel="prev" href="lower-level-plotting-functions.html">
+<link rel="next" href="ch3.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -164,8 +164,25 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="ch4" class="section level1">
-<h1><span class="header-section-number">Chapter 6</span> Simulation and Randomization</h1>
+<div id="other-high-level-plotting-functions" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Other High Level Plotting Functions</h1>
+<p>So now we know how to make scatter plots and line graphs, add information, and make it pretty. Now let’s explore other types of graphs we can make. Another very common graph is a bar graph. R has a <code>bargraph</code> function, and again, it has lots of arguments. I’ll just go over the basics to make two common variations: single bars and double bars. Let’s make up some data to plot:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat1 =<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>)
+<span class="kw">barplot</span>(dat1)</code></pre></div>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Pretty easy, huh? Notice that there are no group names on our bars (if our vector had names, there would be). We can add names by using the argument <code>names.arg</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">barplot</span>(dat1, <span class="dt">names.arg =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>))</code></pre></div>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Let’s add some more information by making this a double bar graph. We will make some more data and combine it with our old data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat2 =<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>)
+new.dat =<span class="st"> </span><span class="kw">rbind</span>(dat1, dat2)
+
+<span class="kw">barplot</span>(new.dat, <span class="dt">names.arg =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>))</code></pre></div>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>To add another group like this, R needs a matrix like we made above. The <strong>columns</strong> are bars that will be placed together. See how R made a stacked bar graph by default? I don’t like these, so let’s unstack them by specifying <code>beside = T</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">barplot</span>(new.dat, <span class="dt">beside =</span> T,<span class="dt">names.arg =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>))</code></pre></div>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Oftentimes, we want to add error bars to a bar graph like this. This is completely possible, but to avoid confusing you just now, I’ll add it as an “advanced topic” at the end, and we will get to it if we have time or if people are interested.</p>
 
 </div>
             </section>
@@ -173,8 +190,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           </div>
         </div>
       </div>
-<a href="ch3.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="ch5.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="lower-level-plotting-functions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ch3.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -204,7 +221,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-simulation.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/02-plotting-basics.Rmd",
 "text": "Edit"
 },
 "download": ["au-r-workshop.pdf", "au-r-workshop.epub"],
@@ -215,19 +232,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

@@ -1907,6 +1907,320 @@ to make sure you find the error.
 
 \chapter{Base R Plotting Basics}\label{ch2}
 
+\section*{Chapter Overview}\label{chapter-overview-1}
+\addcontentsline{toc}{section}{Chapter Overview}
+
+In this first chapter, you will get familiar with the basics of using R
+for making plots and figures. You will learn:
+
+\begin{itemize}
+\tightlist
+\item
+  the different types of plotting functions
+\item
+  \ldots{}
+\item
+  \ldots{}
+\item
+  \ldots{}
+\item
+  \ldots{}
+\item
+  \ldots{}
+\item
+  \ldots{}
+\end{itemize}
+
+R's base plotting package is incredibly versatile, and as you will see,
+it doesn't take much to get started making professional-looking graphs.
+Before we get started, I'll just mention that there are other R
+packages\footnote{a package is a bunch of code that somebody has written
+  and placed on the web for you to install, they are first introducted
+  in Chapter \ref{ch5}} for plotting (e.g. \texttt{ggplot2} and
+\texttt{lattice}), but they can be more complex than the base R plotting
+capabilities and look a bit different.
+
+If you did not attend the session corresponding to the Chapter \ref{ch1}
+material, you are recommended to walk through that chapter's contents
+because you will be using some of the commands and terminology presented
+previously.
+
+\section{R Plotting Lingo}\label{r-plotting-lingo}
+
+When it comes to plotting in R, there is some quick terminology you
+should know:
+
+\begin{itemize}
+\item
+  A \textbf{high-level plotting function} is one that is used to make a
+  new graph. Examples of higher level plotting functions are the general
+  \texttt{plot} and the \texttt{barplot} functions. When-a high level
+  plotting function is executed, the currently displayed plot (if any)
+  is written over.
+\item
+  A \textbf{low-level plotting function} is one that is used to modify a
+  plot that is already created. You must already have made a plot using
+  a higher level plotting function before you use lower level plotting
+  functions. Examples include \texttt{text}, \texttt{points}, and
+  \texttt{lines}. When a low-level plotting function is executed, the
+  output is simply added to an existing plot.
+\item
+  The \textbf{graphics device} is the area that a plot shows up. R
+  Studio has a built in graphics device in its interface (lower right by
+  default in the ``Plots'' tab), or you can create a new device. R will
+  plot on the active device, which is the most recently created device.
+  There can only be one active device at a time.
+\end{itemize}
+
+Here is an example of a basic R plot:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x =}\StringTok{ }\DecValTok{0}\OperatorTok{:}\DecValTok{10}
+\NormalTok{y =}\StringTok{ }\NormalTok{x}\OperatorTok{^}\DecValTok{2}
+\KeywordTok{plot}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ x, }\DataTypeTok{y =}\NormalTok{ y,}
+     \DataTypeTok{xlab =} \StringTok{"x-axis label goes here"}\NormalTok{,}
+     \DataTypeTok{ylab =} \StringTok{"y-axis label goes here"}\NormalTok{,}
+     \DataTypeTok{main =} \StringTok{"Main Plot Title Goes Here"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-69-1.pdf}
+
+There are a few components:
+
+\begin{itemize}
+\tightlist
+\item
+  The \textbf{plotting region}: all data information is displayed here.
+\item
+  The \textbf{margin}: where axis labels, tick marks, and main plot
+  titles are located
+\item
+  The \textbf{outer margin}: by default, there is no outer margin. You
+  can add one if you want to add text here or make more room around the
+  edges.
+\end{itemize}
+
+You can change just about everything there is about this plot to suit
+your tastes. Duplicate this plot, but make the x-axis, y-axis, and main
+titles other than the placeholders shown here:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x =}\StringTok{ }\DecValTok{0}\OperatorTok{:}\DecValTok{10}
+\NormalTok{y =}\StringTok{ }\NormalTok{x}\OperatorTok{^}\DecValTok{2}
+
+\KeywordTok{plot}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ x, }\DataTypeTok{y =}\NormalTok{ y,}
+     \DataTypeTok{xlab =} \StringTok{"x-axis label goes here"}\NormalTok{, }
+     \DataTypeTok{ylab =} \StringTok{"y-axis label goes here"}\NormalTok{,}
+     \DataTypeTok{main =} \StringTok{"Main Plot Title Goes Here"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Note that the first two arguments, \texttt{x} and \texttt{y}, specify
+the coordinates of the points (i.e., the first point is placed at
+coordinates \texttt{x{[}1{]}},\texttt{y{[}1{]}}). \texttt{plot} has
+\emph{tons} of arguments (or \emph{graphical parameters} as the help
+file calls them) that change how the plot looks. Note that when you want
+something displayed verbatim on the plotting device, you must wrap that
+code in \texttt{"\ "}, i.e., the arguments \texttt{xlab}, \texttt{ylab},
+and \texttt{main} all receive a character vector of length 1 as input.
+
+Here are just a handful of them to get you started:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pars =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"xlab"}\NormalTok{, }\StringTok{"ylab"}\NormalTok{, }\StringTok{"main"}\NormalTok{, }\StringTok{"cex"}\NormalTok{)}
+\NormalTok{usage =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"`xlab = X-AXIS`"}\NormalTok{, }\StringTok{"`ylab = Y-AXIS`"}\NormalTok{, }\StringTok{"`main= TITLE`"}\NormalTok{, }\StringTok{"`cex = 1.5`"}\NormalTok{)}
+\NormalTok{desc =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"changes the x-axis label text"}\NormalTok{,}
+         \StringTok{"changes the y-axis label text"}\NormalTok{,}
+         \StringTok{"changes the main title text"}\NormalTok{,}
+         \StringTok{"changes the size of symbols in the plotting region"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{xlab}: changes the x-axis label text. Any time you specify
+  text on the plot it must be in ``quotes''.
+\item
+  \texttt{ylab}: changes the y-axis label text.
+\item
+  \texttt{main}: changes the main title text.
+\item
+  \texttt{cex}: character expansion factor. Changes the size of symbols
+  in the plotting region. The default is 1, and you can specify any
+  positive number you want (even decimals) that will change the size
+  relative to 1 (e.g. \texttt{cex\ =\ 2} doubles the size). Note that
+  there are also \texttt{cex.main} and \texttt{cex.lab} arguments.
+\item
+  \texttt{pch}: plotting character. R has at least 20 built-in shapes
+  you can plot including the open circles shown above, closed circles,
+  diamonds (open and closed), and triangles (open and closed). Try
+  changing the plotting character using \texttt{pch\ =\ 20}.
+\item
+  \texttt{xlim}: a vector of length 2 that specifies the start and end
+  of the x-axis.
+\item
+  \texttt{ylim}: same as \texttt{xlim}, but for the y-axis.
+\item
+  \texttt{type}: \texttt{type\ =\ "l"} changes from a scatter plot to a
+  line graph. It connects the \texttt{x} and \texttt{y} coordinates
+  provided with lines.
+\item
+  \texttt{lty}: line type. R has 5 (specified using numbers 1:5)
+  built-in line types. \texttt{1} is solid, \texttt{2} is short dash,
+  \texttt{3} is dotted, \texttt{4} is dot-dash, \texttt{5} is long dash.
+\item
+  \texttt{lwd}: line width. Can be any positive number, I like
+  \texttt{lwd\ =\ 2} the best.
+\item
+  \texttt{col}: color of plotted objects. Try \texttt{col\ =\ "red"},
+  \texttt{col\ =\ "blue"}, \texttt{col\ =\ "green"} to try these out.
+  Type \texttt{colors()} to see all of the possible colors you can call
+  by name (there are \emph{lots}).
+\end{itemize}
+
+\chapter{Lower Level Plotting
+Functions}\label{lower-level-plotting-functions}
+
+Okay, now that we have a base plot designed to our liking, we might want
+to add some things to it to add information. Let's add some more points
+(as I add more information to the first original plot, I have to keep
+running the originial plot function then add the other lower level
+functions below). For your use, you only have to make the original plot
+once, then just add on to it:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{points}\NormalTok{(}\DataTypeTok{x =} \DecValTok{0}\OperatorTok{:}\DecValTok{10}\NormalTok{, }\DataTypeTok{y =} \DecValTok{10}\OperatorTok{:}\DecValTok{0}\NormalTok{, }\DataTypeTok{col =} \StringTok{"blue"}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{20}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-73-1.pdf}
+
+This is a lower level plotting function because it added something to a
+plot we already made. Note that the arguments listed in the previous
+bulleted section are not lower level functions, but arguments to the
+higher level function \texttt{plot}. Many of the arguments for higher
+level plotting functions also can be used in lower level functions (see
+how \texttt{col} and \texttt{pch} were used in \texttt{points}?). There
+is also \texttt{lines}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{lines}\NormalTok{(}\DataTypeTok{x =} \DecValTok{0}\OperatorTok{:}\DecValTok{10}\NormalTok{, }\DataTypeTok{y =} \DecValTok{0}\OperatorTok{:}\DecValTok{10}\NormalTok{, }\DataTypeTok{lty =} \DecValTok{2}\NormalTok{, }\DataTypeTok{col =} \StringTok{"grey"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}\DataTypeTok{x =} \DecValTok{0}\OperatorTok{:}\DecValTok{10}\NormalTok{, }\DataTypeTok{y =} \DecValTok{0}\OperatorTok{:}\DecValTok{10}\NormalTok{, }\DataTypeTok{xlab =} \StringTok{"x-axis label goes here"}\NormalTok{,}
+     \DataTypeTok{ylab =} \StringTok{"y-axis label goes here"}\NormalTok{, }\DataTypeTok{main =} \StringTok{"Main Plot Title Goes Here"}\NormalTok{)}
+\KeywordTok{points}\NormalTok{(}\DataTypeTok{x =} \DecValTok{0}\OperatorTok{:}\DecValTok{10}\NormalTok{, }\DataTypeTok{y =} \DecValTok{10}\OperatorTok{:}\DecValTok{0}\NormalTok{, }\DataTypeTok{col =} \StringTok{"blue"}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{20}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(}\DataTypeTok{x =} \DecValTok{0}\OperatorTok{:}\DecValTok{10}\NormalTok{, }\DataTypeTok{y =} \DecValTok{0}\OperatorTok{:}\DecValTok{10}\NormalTok{, }\DataTypeTok{lty =} \DecValTok{2}\NormalTok{, }\DataTypeTok{col =} \StringTok{"grey"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+This is the best way to make those connected-dot line-plots that you
+commonly see in the literature. If you accidently add a lower level
+object that you don't want, the only way to remove it is by re-running
+the higher level plotting function to start a new plot and adding only
+the objects you want (this took me an embarrassingly long time to figure
+out). You can also add text to the plotting region:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{text}\NormalTok{(}\DataTypeTok{x =} \DecValTok{5}\NormalTok{, }\DataTypeTok{y =} \DecValTok{8}\NormalTok{, }\StringTok{"This is Text"}\NormalTok{, }\DataTypeTok{cex =} \FloatTok{0.8}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}\DataTypeTok{x =} \DecValTok{0}\OperatorTok{:}\DecValTok{10}\NormalTok{, }\DataTypeTok{y =} \DecValTok{0}\OperatorTok{:}\DecValTok{10}\NormalTok{, }\DataTypeTok{xlab =} \StringTok{"x-axis label goes here"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"y-axis label goes here"}\NormalTok{,}
+      \DataTypeTok{main =} \StringTok{"Main Plot Title Goes Here"}\NormalTok{)}
+\KeywordTok{points}\NormalTok{(}\DataTypeTok{x =} \DecValTok{0}\OperatorTok{:}\DecValTok{10}\NormalTok{, }\DataTypeTok{y =} \DecValTok{10}\OperatorTok{:}\DecValTok{0}\NormalTok{, }\DataTypeTok{col =} \StringTok{"blue"}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{20}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(}\DataTypeTok{x =} \DecValTok{0}\OperatorTok{:}\DecValTok{10}\NormalTok{, }\DataTypeTok{y =} \DecValTok{0}\OperatorTok{:}\DecValTok{10}\NormalTok{, }\DataTypeTok{lty =} \DecValTok{2}\NormalTok{, }\DataTypeTok{col =} \StringTok{"grey"}\NormalTok{)}
+\KeywordTok{text}\NormalTok{(}\DataTypeTok{x =} \DecValTok{5}\NormalTok{, }\DataTypeTok{y =} \DecValTok{8}\NormalTok{, }\StringTok{"This is Text"}\NormalTok{, }\DataTypeTok{cex =} \FloatTok{0.8}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The text is centered on the coordinates you provide. You can also
+provide vectors of coordinates and text to write different things at
+once. The easiest way to add a straight line to a plot is with
+\texttt{abline}. By default it takes two arguments: \texttt{a} and
+\texttt{b} which are the intercept and slope, respectively. You can also
+do \texttt{abline(h\ =\ 5)} to draw a horizontal line at 5 or
+\texttt{abline(v\ =\ 5)} to draw a vertical line at \texttt{5}. This
+function makes it super easy to draw a line from the result of a linear
+regression (you'll just have to wait until next time when we talk stats
+to see this trick!).
+
+\chapter{Other High Level Plotting
+Functions}\label{other-high-level-plotting-functions}
+
+So now we know how to make scatter plots and line graphs, add
+information, and make it pretty. Now let's explore other types of graphs
+we can make. Another very common graph is a bar graph. R has a
+\texttt{bargraph} function, and again, it has lots of arguments. I'll
+just go over the basics to make two common variations: single bars and
+double bars. Let's make up some data to plot:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dat1 =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{6}\NormalTok{)}
+\KeywordTok{barplot}\NormalTok{(dat1)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-78-1.pdf}
+
+Pretty easy, huh? Notice that there are no group names on our bars (if
+our vector had names, there would be). We can add names by using the
+argument \texttt{names.arg}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{barplot}\NormalTok{(dat1, }\DataTypeTok{names.arg =} \KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"c"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-79-1.pdf}
+
+Let's add some more information by making this a double bar graph. We
+will make some more data and combine it with our old data:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dat2 =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{7}\NormalTok{)}
+\NormalTok{new.dat =}\StringTok{ }\KeywordTok{rbind}\NormalTok{(dat1, dat2)}
+
+\KeywordTok{barplot}\NormalTok{(new.dat, }\DataTypeTok{names.arg =} \KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"c"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-80-1.pdf}
+
+To add another group like this, R needs a matrix like we made above. The
+\textbf{columns} are bars that will be placed together. See how R made a
+stacked bar graph by default? I don't like these, so let's unstack them
+by specifying \texttt{beside\ =\ T}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{barplot}\NormalTok{(new.dat, }\DataTypeTok{beside =}\NormalTok{ T,}\DataTypeTok{names.arg =} \KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"c"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-81-1.pdf}
+
+Oftentimes, we want to add error bars to a bar graph like this. This is
+completely possible, but to avoid confusing you just now, I'll add it as
+an ``advanced topic'' at the end, and we will get to it if we have time
+or if people are interested.
+
 \chapter{Basic Statistics}\label{ch3}
 
 \chapter{Simulation and Randomization}\label{ch4}

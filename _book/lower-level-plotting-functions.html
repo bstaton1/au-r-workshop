@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="ch3.html">
-<link rel="next" href="ch5.html">
+<link rel="prev" href="ch2.html">
+<link rel="next" href="other-high-level-plotting-functions.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -164,17 +164,34 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="ch4" class="section level1">
-<h1><span class="header-section-number">Chapter 6</span> Simulation and Randomization</h1>
-
+<div id="lower-level-plotting-functions" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> Lower Level Plotting Functions</h1>
+<p>Now that you have a base plot designed to your liking, you might want to add some additional “layers” to it to represent more data or other kind of information like an additional label or text. Add some more points to your plot by putting this line right beneath your <code>plot(x,y)</code> code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># rev() reverses a vector: so the old x[1] is x[11] now</span>
+<span class="kw">points</span>(<span class="dt">x =</span> <span class="kw">rev</span>(x), <span class="dt">y =</span> y, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">pch =</span> <span class="dv">16</span>)</code></pre></div>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>This is a lower level plotting function because it added something to a plot we already made. Note that the arguments listed in the previous bulleted section are not lower level functions, but arguments to the higher level function <code>plot</code>. Many of the arguments for higher level plotting functions also can be used in lower level functions (see how <code>col</code> and <code>pch</code> were used in <code>points</code>?). There is also <code>lines</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lines</span>(<span class="dt">x =</span> <span class="dv">0</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">y =</span> <span class="dv">0</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">lty =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x =</span> <span class="dv">0</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">y =</span> <span class="dv">0</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">xlab =</span> <span class="st">&quot;x-axis label goes here&quot;</span>,
+     <span class="dt">ylab =</span> <span class="st">&quot;y-axis label goes here&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Main Plot Title Goes Here&quot;</span>)
+<span class="kw">points</span>(<span class="dt">x =</span> <span class="dv">0</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">y =</span> <span class="dv">10</span><span class="op">:</span><span class="dv">0</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">pch =</span> <span class="dv">20</span>)
+<span class="kw">lines</span>(<span class="dt">x =</span> <span class="dv">0</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">y =</span> <span class="dv">0</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">lty =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>)</code></pre></div>
+<p>This is the best way to make those connected-dot line-plots that you commonly see in the literature. If you accidently add a lower level object that you don’t want, the only way to remove it is by re-running the higher level plotting function to start a new plot and adding only the objects you want (this took me an embarrassingly long time to figure out). You can also add text to the plotting region:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">text</span>(<span class="dt">x =</span> <span class="dv">5</span>, <span class="dt">y =</span> <span class="dv">8</span>, <span class="st">&quot;This is Text&quot;</span>, <span class="dt">cex =</span> <span class="fl">0.8</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x =</span> <span class="dv">0</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">y =</span> <span class="dv">0</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">xlab =</span> <span class="st">&quot;x-axis label goes here&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;y-axis label goes here&quot;</span>,
+      <span class="dt">main =</span> <span class="st">&quot;Main Plot Title Goes Here&quot;</span>)
+<span class="kw">points</span>(<span class="dt">x =</span> <span class="dv">0</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">y =</span> <span class="dv">10</span><span class="op">:</span><span class="dv">0</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">pch =</span> <span class="dv">20</span>)
+<span class="kw">lines</span>(<span class="dt">x =</span> <span class="dv">0</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">y =</span> <span class="dv">0</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">lty =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>)
+<span class="kw">text</span>(<span class="dt">x =</span> <span class="dv">5</span>, <span class="dt">y =</span> <span class="dv">8</span>, <span class="st">&quot;This is Text&quot;</span>, <span class="dt">cex =</span> <span class="fl">0.8</span>)</code></pre></div>
+<p>The text is centered on the coordinates you provide. You can also provide vectors of coordinates and text to write different things at once. The easiest way to add a straight line to a plot is with <code>abline</code>. By default it takes two arguments: <code>a</code> and <code>b</code> which are the intercept and slope, respectively. You can also do <code>abline(h = 5)</code> to draw a horizontal line at 5 or <code>abline(v = 5)</code> to draw a vertical line at <code>5</code>. This function makes it super easy to draw a line from the result of a linear regression (you’ll just have to wait until next time when we talk stats to see this trick!).</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="ch3.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="ch5.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="ch2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="other-high-level-plotting-functions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -204,7 +221,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-simulation.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/02-plotting-basics.Rmd",
 "text": "Edit"
 },
 "download": ["au-r-workshop.pdf", "au-r-workshop.epub"],
@@ -215,19 +232,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

@@ -59,11 +59,11 @@ You can use your objects together to make a new object:
 z = y - x
 ```
 
-## Saving Your Code: Scripts
+## Saving Your Code: Scripts {#scripts}
 
 If you closed R at this moment, your work would be lost. Running code in the console like you have just done **does not save a record of your work**. To save R code, you must use what is called a **script**, which is a plain-text file with the extension `.R`. To create a new script file, go to _File > New File > R Script_, or use the keyboard shortcut **CTRL + SHIFT + N**. A new pane will open called the **source** pane - this is where you will edit your code and save your progress. R Scripts are a key feature of reproducible research with R, given that if they are well-written they can present a complete roadmap of your statistical analysis and workflow.
 
-## The Working Directory
+## The Working Directory {#working-dir}
 
 You will want to save your hard work. A key part of doing saving your work is thinking about **where** you save it. In R, a key concept is the **working directory**. This is the location (i.e., folder) on your computer where your current R session will "talk to" by default. The working directory is where R will read files from and write files to by default, and is where all of your data should be stored for your analysis in R. Because you'll likely be visiting it often, it should probably be somewhere that is easy to remember and not too deeply buried in your computer's file system. 
 
@@ -201,7 +201,7 @@ It is important to know what kind of object type you are using, since R treats t
 class(day); class(pond); class(m1); class(df1)
 ```
 
-## Factors
+## Factors {#factors}
 
 At this point, it is worthwhile to introduce an additional data class: factors. Notice the class of the `pond` variable in `df1`:
 
