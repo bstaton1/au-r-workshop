@@ -248,7 +248,7 @@ You could do the same calculation to each element (e.g., divide each element by 
 dm/2
 ```
 
-## Data Queries/Subsets/Retrievals {sub}
+## Data Queries/Subsets/Retrievals {#sub}
 
 This perhaps the most important and versatile skills to know in R. So you have an object with data in it and you want to use it for analysis. But you don't want the whole dataset. You want to use just a few rows or just a few columns, or perhaps you need just a single element from a vector. This section is devoted to ways you can extract certain parts of a data object (the terms **query** and **subset** are often used interchangeably to describe this task). There are three main methods:
 
