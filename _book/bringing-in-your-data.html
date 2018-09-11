@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Introduction to R for Natural Resource Scientists</title>
+  <meta name="description" content="This is a first course in R Programming for Natural Resource Scientists. It was developed and has been primarily instructed at Auburn University.">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Introduction to R for Natural Resource Scientists" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a first course in R Programming for Natural Resource Scientists. It was developed and has been primarily instructed at Auburn University." />
+  <meta name="github-repo" content="bstaton1/au-r-workshop" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Introduction to R for Natural Resource Scientists" />
+  
+  <meta name="twitter:description" content="This is a first course in R Programming for Natural Resource Scientists. It was developed and has been primarily instructed at Auburn University." />
+  
+
+<meta name="author" content="Ben Staton">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="ch1.html">
+<link rel="next" href="logic-if-else-and-ifelse.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a></li>
+<li class="chapter" data-level="1" data-path="ch1.html"><a href="ch1.html"><i class="fa fa-check"></i><b>1</b> Introduction to the R Environment</a><ul>
+<li class="chapter" data-level="" data-path="ch1.html"><a href="ch1.html#session-overview"><i class="fa fa-check"></i>Session Overview</a></li>
+<li class="chapter" data-level="1.1" data-path="ch1.html"><a href="ch1.html#getting-started-install-r-and-rstudio"><i class="fa fa-check"></i><b>1.1</b> Getting Started: Install R and RStudio</a></li>
+<li class="chapter" data-level="1.2" data-path="ch1.html"><a href="ch1.html#the-r-studio-interface"><i class="fa fa-check"></i><b>1.2</b> The R Studio Interface</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="ch1.html"><a href="ch1.html#write-some-simple-code"><i class="fa fa-check"></i><b>1.2.1</b> Write Some Simple Code</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="ch1.html"><a href="ch1.html#saving-your-code-scripts"><i class="fa fa-check"></i><b>1.3</b> Saving Your Code: Scripts</a></li>
+<li class="chapter" data-level="1.4" data-path="ch1.html"><a href="ch1.html#the-working-directory"><i class="fa fa-check"></i><b>1.4</b> The Working Directory</a></li>
+<li class="chapter" data-level="1.5" data-path="ch1.html"><a href="ch1.html#r-object-types"><i class="fa fa-check"></i><b>1.5</b> R Object Types</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="ch1.html"><a href="ch1.html#functions"><i class="fa fa-check"></i><b>1.5.1</b> Functions</a></li>
+<li class="chapter" data-level="1.5.2" data-path="ch1.html"><a href="ch1.html#vectors"><i class="fa fa-check"></i><b>1.5.2</b> Vectors</a></li>
+<li class="chapter" data-level="1.5.3" data-path="ch1.html"><a href="ch1.html#matrices"><i class="fa fa-check"></i><b>1.5.3</b> Matrices</a></li>
+<li class="chapter" data-level="1.5.4" data-path="ch1.html"><a href="ch1.html#data-frames"><i class="fa fa-check"></i><b>1.5.4</b> Data Frames</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="ch1.html"><a href="ch1.html#vector-math"><i class="fa fa-check"></i><b>1.6</b> Vector Math</a></li>
+<li class="chapter" data-level="1.7" data-path="ch1.html"><a href="ch1.html#data-queriessubsetsretrievals"><i class="fa fa-check"></i><b>1.7</b> Data Queries/Subsets/Retrievals</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="bringing-in-your-data.html"><a href="bringing-in-your-data.html"><i class="fa fa-check"></i><b>2</b> Bringing in Your Data</a></li>
+<li class="chapter" data-level="3" data-path="logic-if-else-and-ifelse.html"><a href="logic-if-else-and-ifelse.html"><i class="fa fa-check"></i><b>3</b> Logic, <code>if</code>, <code>else</code>, and <code>ifelse</code></a></li>
+<li class="chapter" data-level="4" data-path="logical-subsetting.html"><a href="logical-subsetting.html"><i class="fa fa-check"></i><b>4</b> Logical Subsetting</a></li>
+<li class="chapter" data-level="5" data-path="writing-output-files.html"><a href="writing-output-files.html"><i class="fa fa-check"></i><b>5</b> Writing Output Files</a></li>
+<li class="chapter" data-level="6" data-path="basic-user-defined-functions.html"><a href="basic-user-defined-functions.html"><i class="fa fa-check"></i><b>6</b> Basic User-Defined Functions</a></li>
+<li class="chapter" data-level="7" data-path="thats-all-for-now.html"><a href="thats-all-for-now.html"><i class="fa fa-check"></i><b>7</b> That’s All! (for now)</a></li>
+<li class="chapter" data-level="8" data-path="ch2.html"><a href="ch2.html"><i class="fa fa-check"></i><b>8</b> Base R Plotting Basics</a></li>
+<li class="chapter" data-level="9" data-path="ch3.html"><a href="ch3.html"><i class="fa fa-check"></i><b>9</b> Basic Statistics</a></li>
+<li class="chapter" data-level="10" data-path="ch4.html"><a href="ch4.html"><i class="fa fa-check"></i><b>10</b> Simulation and Randomization</a></li>
+<li class="chapter" data-level="11" data-path="ch5.html"><a href="ch5.html"><i class="fa fa-check"></i><b>11</b> Large Data Manipulation</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to R for Natural Resource Scientists</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="bringing-in-your-data" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Bringing in Your Data</h1>
+<p>It is rare that we will enter our data by hand as we did in Exercise 1. Often, we have a dataset that we wish to analyze or manipulate. R has several ways to bring in data and in this workshop, we will be using the most common and flexible approach: reading in .csv files. CSV files are data files that separate columns with commas. If your data are in an Excel spreadsheet, save your Excel file as a CSV file (File &gt; Save As &gt; Save as Type&gt; CSV (Comma Delimited)). Excel will give lots of dialog boxes asking if you are sure you want to save it as a CSV (you do) and if you wish to save it. A few things to note:</p>
+<ul>
+<li><p>No cells can contain the “#VALUE!” or “NUM” result that often happens when the result of an Excel function is invalid. If one of these is found in a column, R will treat that <em>entire</em> column as a factor (because it contains characters), which causes problems when you do not want that column to be a factor (remember a factor is a grouping variable, like treatment, location, or species).</p></li>
+<li><p>If a cell in the first row with text contains a space between two words, R will insert a <code>&quot;.&quot;</code> between the words.</p></li>
+<li><p>R can deal with missing values by turning them into <code>NA</code>. However, everywhere you want R to have an <code>NA</code>, those cells must contain the same information in the CSV file. These can be completely empty cells, or you could put a <code>&quot;.&quot;</code> into every cell that you want R to treat as an <code>NA</code>. If you use “<code>.</code>” to signify <code>NA</code> in your CSV file, include <code>na.strings = &quot;.&quot;</code> as an argument to the <code>read.csv()</code> function described below. Of course, you can also simply type “NA” in the CSV file wherever NA’s occur.</p></li>
+<li><p>If your data have column names (i.e., characters) in the first row, R will bring those in as column names by default.</p></li>
+<li><p>R brings in CSV files in as data frames by default.</p></li>
+</ul>
+<p>The website I’m using won’t let me upload CSV files, so we will have to convert Excel workbooks (.xlsx) to CSV files. Once that is done, to bring (read) in a CSV file we use the function <code>read.csv()</code>. <code>read.csv()</code> has several arguments (look at the help file for details), but only one is really necessary: the file name (or location). Let’s convert and read in the provided dataset “streams.xlsx” (there are no problems with this dataset, so don’t worry):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;streams.csv&quot;</span>)</code></pre></div>
+<p>If the data set is in your working directory, all you need to provide is the file name (remember case, quotes, and .csv at the end!). If the file is <em>not</em> in your working directory, you must type (or copy/paste) the <em>full</em> file path. Note that R requires the use of <code>/</code> and not <code>\</code> in file paths. For example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;C:/Users/Ben/Desktop/Auburn R Workshops/Session 1/Session 1 MarkDown/Session-1-data.csv&quot;</span>)</code></pre></div>
+<p>If you did not get any errors, then the data are in the object you named and that object is a data frame. If you get errors (e.g., <code>...No such file or directory</code>) then make sure you have spelled everything correctly, used the right case and symbols, and have included a “.csv” at the end of the file name. Don’t worry, this is probably one of the most common errors I get in R.</p>
+<p>There is a neat trick to simplify this. Running <code>read.csv(file.choose())</code> pulls up a window that allows you to interactively choose the file you want. (running <code>file.choose</code> returns the file path of the file you select, so it is really just the same as typing in the file path, but easier). I don’t use this for complex analyses, because when I come back to that script later, I want to make sure I’m using the right data file. Typing the file name instead of using <code>file.choose</code>helps me with this.</p>
+<p>Let’s look at the data. We could just run the object, but it will show the whole thing, which may be undesirable if the dataset is large. To view the first six rows, run <code>head(dat)</code> or the last six rows with <code>tail(dat)</code>.</p>
+<p>Okay, now we will use some basic functions to explore our data before any analysis. The <code>summary</code> function is very useful, and it can be used on a large variety of different objects.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(dat)</code></pre></div>
+<p>We can now see the spread of our numeric data and see the different levels of our factor (<code>state</code>) as well as how many data points belong to each category. Note that we have one <code>NA</code> in our <code>flow</code> variable.</p>
+<p>To count the number of elements in a variable (or any vector), we use the <code>length</code> function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(dat<span class="op">$</span>stream_width)</code></pre></div>
+<p>Note that R counts missing values as elements as well:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(dat<span class="op">$</span>flow)</code></pre></div>
+<p>To get the dimensions of an object with more than one dimension (i.e., a data frame, matrix, or array) we can use the <code>dim</code> function. This returns a vector of length 2: the first number is the number of rows and the second is the number of columns. If you only want one of these, use the <code>nrow</code> or <code>ncol</code> functions (but remember, only for objects with more than one dimension; vectors don’t have rows or columns!).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(dat)</code></pre></div>
+<p>Let’s calculate the mean of all of our flow data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(dat<span class="op">$</span>flow)</code></pre></div>
+<p>It returned an <code>NA</code> because there is an <code>NA</code> in this variable. There is a way to tell R to ignore this <code>NA</code>. Include the argument <code>na.rm = TRUE</code> in the <code>mean</code> function (separate arguments are always separated by commas). This is a <strong>logical</strong> argument, meaning that it asks a question. Do you want to remove <code>NAs</code> before calculating the mean? <code>TRUE</code> means yes and <code>FALSE</code> means no. These can be abbreviated as <code>T</code> or <code>F</code>. Lots of R’s functions have the <code>na.rm</code> argument (e.g. <code>mean</code>, <code>sd</code>, <code>var</code>, <code>min</code>, <code>max</code>, <code>sum</code>, etc.).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(dat<span class="op">$</span>flow, <span class="dt">na.rm =</span> T)</code></pre></div>
+<p>What if we want to do something to more than one variable at a time? The best way to do this (as with lots of things in R, there are many) is by using the <code>apply</code> function. This applies the same function to a subset of data. Note that we must specify the <code>na.rm</code> argument to the <code>var</code> function within the <code>apply</code> function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(dat[,<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>], <span class="dv">2</span>, <span class="dt">FUN =</span> var, <span class="dt">na.rm =</span> T)</code></pre></div>
+<p>The first argument is the data we want to apply the function to. The second argument (the number <code>2</code>) specifies that we want to apply the function to columns, <code>1</code> would tell R to apply it to rows. The <code>FUN</code> argument specifies what function we wish to apply; here we are calculating the variance. There is a whole family of <code>apply</code> functions, the base <code>apply</code> is the most basic but a more sophisticated one is <code>tapply</code>, which applies a function based on some grouping variable. Let’s calculate the mean stream width for every state:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tapply</span>(dat<span class="op">$</span>stream_width, dat<span class="op">$</span>state, mean)</code></pre></div>
+<p>The first argument is the data you want to apply the <code>mean</code> function to, the second is the grouping variable, and the third is what function you wish to apply.</p>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="ch1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="logic-if-else-and-ifelse.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/01-intro-to-R.Rmd",
+"text": "Edit"
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

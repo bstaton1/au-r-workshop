@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Introduction to R for Natural Resource Scientists</title>
+  <meta name="description" content="This is a first course in R Programming for Natural Resource Scientists. It was developed and has been primarily instructed at Auburn University.">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Introduction to R for Natural Resource Scientists" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a first course in R Programming for Natural Resource Scientists. It was developed and has been primarily instructed at Auburn University." />
+  <meta name="github-repo" content="bstaton1/au-r-workshop" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Introduction to R for Natural Resource Scientists" />
+  
+  <meta name="twitter:description" content="This is a first course in R Programming for Natural Resource Scientists. It was developed and has been primarily instructed at Auburn University." />
+  
+
+<meta name="author" content="Ben Staton">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="index.html">
+<link rel="next" href="bringing-in-your-data.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a></li>
+<li class="chapter" data-level="1" data-path="ch1.html"><a href="ch1.html"><i class="fa fa-check"></i><b>1</b> Introduction to the R Environment</a><ul>
+<li class="chapter" data-level="" data-path="ch1.html"><a href="ch1.html#session-overview"><i class="fa fa-check"></i>Session Overview</a></li>
+<li class="chapter" data-level="1.1" data-path="ch1.html"><a href="ch1.html#getting-started-install-r-and-rstudio"><i class="fa fa-check"></i><b>1.1</b> Getting Started: Install R and RStudio</a></li>
+<li class="chapter" data-level="1.2" data-path="ch1.html"><a href="ch1.html#the-r-studio-interface"><i class="fa fa-check"></i><b>1.2</b> The R Studio Interface</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="ch1.html"><a href="ch1.html#write-some-simple-code"><i class="fa fa-check"></i><b>1.2.1</b> Write Some Simple Code</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="ch1.html"><a href="ch1.html#saving-your-code-scripts"><i class="fa fa-check"></i><b>1.3</b> Saving Your Code: Scripts</a></li>
+<li class="chapter" data-level="1.4" data-path="ch1.html"><a href="ch1.html#the-working-directory"><i class="fa fa-check"></i><b>1.4</b> The Working Directory</a></li>
+<li class="chapter" data-level="1.5" data-path="ch1.html"><a href="ch1.html#r-object-types"><i class="fa fa-check"></i><b>1.5</b> R Object Types</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="ch1.html"><a href="ch1.html#functions"><i class="fa fa-check"></i><b>1.5.1</b> Functions</a></li>
+<li class="chapter" data-level="1.5.2" data-path="ch1.html"><a href="ch1.html#vectors"><i class="fa fa-check"></i><b>1.5.2</b> Vectors</a></li>
+<li class="chapter" data-level="1.5.3" data-path="ch1.html"><a href="ch1.html#matrices"><i class="fa fa-check"></i><b>1.5.3</b> Matrices</a></li>
+<li class="chapter" data-level="1.5.4" data-path="ch1.html"><a href="ch1.html#data-frames"><i class="fa fa-check"></i><b>1.5.4</b> Data Frames</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="ch1.html"><a href="ch1.html#vector-math"><i class="fa fa-check"></i><b>1.6</b> Vector Math</a></li>
+<li class="chapter" data-level="1.7" data-path="ch1.html"><a href="ch1.html#data-queriessubsetsretrievals"><i class="fa fa-check"></i><b>1.7</b> Data Queries/Subsets/Retrievals</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="bringing-in-your-data.html"><a href="bringing-in-your-data.html"><i class="fa fa-check"></i><b>2</b> Bringing in Your Data</a></li>
+<li class="chapter" data-level="3" data-path="logic-if-else-and-ifelse.html"><a href="logic-if-else-and-ifelse.html"><i class="fa fa-check"></i><b>3</b> Logic, <code>if</code>, <code>else</code>, and <code>ifelse</code></a></li>
+<li class="chapter" data-level="4" data-path="logical-subsetting.html"><a href="logical-subsetting.html"><i class="fa fa-check"></i><b>4</b> Logical Subsetting</a></li>
+<li class="chapter" data-level="5" data-path="writing-output-files.html"><a href="writing-output-files.html"><i class="fa fa-check"></i><b>5</b> Writing Output Files</a></li>
+<li class="chapter" data-level="6" data-path="basic-user-defined-functions.html"><a href="basic-user-defined-functions.html"><i class="fa fa-check"></i><b>6</b> Basic User-Defined Functions</a></li>
+<li class="chapter" data-level="7" data-path="thats-all-for-now.html"><a href="thats-all-for-now.html"><i class="fa fa-check"></i><b>7</b> That’s All! (for now)</a></li>
+<li class="chapter" data-level="8" data-path="ch2.html"><a href="ch2.html"><i class="fa fa-check"></i><b>8</b> Base R Plotting Basics</a></li>
+<li class="chapter" data-level="9" data-path="ch3.html"><a href="ch3.html"><i class="fa fa-check"></i><b>9</b> Basic Statistics</a></li>
+<li class="chapter" data-level="10" data-path="ch4.html"><a href="ch4.html"><i class="fa fa-check"></i><b>10</b> Simulation and Randomization</a></li>
+<li class="chapter" data-level="11" data-path="ch5.html"><a href="ch5.html"><i class="fa fa-check"></i><b>11</b> Large Data Manipulation</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to R for Natural Resource Scientists</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="ch1" class="section level1">
+<h1><span class="header-section-number">Chapter 1</span> Introduction to the R Environment</h1>
+<hr />
+<div id="session-overview" class="section level2 unnumbered">
+<h2>Session Overview</h2>
+<p>In this first session, we will get familiar with the basics of using R. We will cover:</p>
+<ul>
+<li>the use of R as a basic calculator</li>
+<li>object types</li>
+<li>data classes</li>
+<li>data structures</li>
+<li>how to read in data</li>
+<li>how to write out data</li>
+<li>how to write your own functions</li>
+</ul>
+</div>
+<div id="getting-started-install-r-and-rstudio" class="section level2">
+<h2><span class="header-section-number">1.1</span> Getting Started: Install R and RStudio</h2>
+<p>First off, you will need to get R and RStudio<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> onto your computer. Please see <strong>Appendix A</strong> for details on installing these programs on your operating system.</p>
+</div>
+<div id="the-r-studio-interface" class="section level2">
+<h2><span class="header-section-number">1.2</span> The R Studio Interface</h2>
+<p>Once you open up R Studio for the first time, you will see three panes: the left hand side is the <strong>console</strong> where results from executed commands are printed, and the two panes on the right are for additional information to help you code more efficiently - don’t worry too much about what these are at the moment. For now, focus your attention on the console.</p>
+<div id="write-some-simple-code" class="section level3">
+<h3><span class="header-section-number">1.2.1</span> Write Some Simple Code</h3>
+<p>To start off, we will just use R as a calculator. Type these commands (not the lines with <code>##</code>, those are output<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>) one at a time and hit <strong>CTRL + ENTER</strong> to run it. The spaces don’t matter at all, they are used here for clairity and for styling.<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">12</span><span class="op">/</span><span class="dv">4</span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<p>Notice that when you run each line, it prints the command and the output to the console.</p>
+<p>R is an <strong>object oriented language</strong>, which means that you fill objects with data do things with them. Make an object called <code>x</code> that stores the result of the calculation <code>3 + 3</code> (type this and run using <strong>CTRL + ENTER</strong>):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x =<span class="st"> </span><span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span></code></pre></div>
+<p>Notice that running this line did not return a value as before. This is because in that line you are <strong>assigning</strong> a value to the object <code>x</code>. You can view the contents of <code>x</code> by typing its name alone and running just that:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x</code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<p>When used this way, the <code>=</code> sign denotes assignment of the value on the right-hand side to an object with the name on the left-hand side. The <code>&lt;-</code> serves this same purpose, but in this context the two are interchangable:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">5</span></code></pre></div>
+<p>You can highlight smaller sections of a line to run as well. For example after creating <code>y</code> above, press the <strong>up arrow</strong>, highlight just the <code>y</code>, and press <strong>CTRL + ENTER</strong>. From this point forward, the verb “run” means execute some code using <strong>CTRL + ENTER</strong>.</p>
+<p>You can use your objects together to make a new object:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">z =<span class="st"> </span>y <span class="op">-</span><span class="st"> </span>x</code></pre></div>
+</div>
+</div>
+<div id="saving-your-code-scripts" class="section level2">
+<h2><span class="header-section-number">1.3</span> Saving Your Code: Scripts</h2>
+<p>If we closed R at this moment, our work would be lost. Running code in the console like we have just done <strong>does not save a record of your work</strong>. To save R code, we use what is called a <strong>script</strong>, which is a plain-text file with the extension <code>.R</code>. To create a new script file, go to <em>File &gt; New File &gt; R Script</em>, or use the keyboard shortcut <strong>CTRL + SHIFT + N</strong>. A new pane will open called the <strong>source</strong> pane - this is where you will edit your code and save your progress. R Scripts are a key feature of reproducible research with R, given that if they are well-written they can present a complete roadmap of your statistical analysis and workflow.</p>
+</div>
+<div id="the-working-directory" class="section level2">
+<h2><span class="header-section-number">1.4</span> The Working Directory</h2>
+<p>You will want to save your hard work. A key part of doing saving your work is thinking about <strong>where</strong> you save it. In R, a key concept is the <strong>working directory</strong>. This is the location (i.e., folder) on your computer where your current R session will “talk to” by default. The working directory is where R will read files from and write files to by default, and is where all of your data should be stored for your analysis in R. Because you’ll likely be visiting it often, it should probably be somewhere that is easy to remember and not too deeply buried in your computer’s file system.</p>
+<p>Save your script somewhere like <code>C:/Users/YOU/Documents/R-Workshop/Chapter1</code> on your computer. To set the working directory to this location, you have three options:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Go to Session &gt; Set Working Directory &gt; Source File Location</strong>. This will set the working directory to the location of the file that is currently open in your source pane.</p></li>
+<li><p><strong>Go to Session &gt; Set Working Directory &gt; Choose Directory</strong>. This will open an interactive file selection window to allow you to navigate to the desired directory.</p></li>
+<li><p><strong>Use code</strong>. In the console, you can type <code>setwd(&quot;C:/Users/YOU/Documents/R-Workshop/Chapter1&quot;)</code>. If at any point you want to know where your current working directory is set to, you can either look at the top of the console pane, which shows the full path or by running <code>getwd()</code> in the console.</p></li>
+</ol>
+<p><strong>The main benefits of using a working directory are</strong>:</p>
+<ul>
+<li>files are read from and written to a consistent and predictable place everytime</li>
+<li>everything for your analysis is organized into one place</li>
+<li>you don’t have to continously type file paths to your work. If <code>file.txt</code> is a file in your current working directory, you can reference it your R session using <code>&quot;file.txt&quot;</code> rather than with <code>&quot;C:/Users/YOU/Documents/R-Workshop/Chapter1/file.txt&quot;</code> each time.</li>
+</ul>
+</div>
+<div id="r-object-types" class="section level2">
+<h2><span class="header-section-number">1.5</span> R Object Types</h2>
+<p>R has a variety of object types that you will need to become familiar with.</p>
+<div id="functions" class="section level3">
+<h3><span class="header-section-number">1.5.1</span> Functions</h3>
+<p>Much of your work in R will involve functions. A function is called using the syntax:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fun</span>(<span class="dt">arg1 =</span> value1, <span class="dt">arg2 =</span> value2)</code></pre></div>
+<p>Here, <code>fun</code> is the <strong>function name</strong> and <code>arg1</code> and <code>arg2</code> are called <strong>arguments</strong>. Functions take input in the form of the arguments, do some task with them, then return some output. The parentheses are a sure sign that <code>fun</code> is a function.</p>
+<p>We have passed the function two arguments by name: all functions are arguments, all arguments have names, and there is always a default order to the arguments. If you memorize the order of functions you use frequently, you don’t have to specify the argument name:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fun</span>(value1, value2)</code></pre></div>
+<p>would give the same result as the command above.</p>
+<p>Here’s a real example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(<span class="dt">x =</span> z)</code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<p>The function is <code>print</code>, the argument is <code>x</code>, and the value we have supplied the argument is the object <code>z</code>. The task that <code>print</code> does with our object is to print its value to the console.</p>
+<p>R has lots of built-in information to help you learn how to use a function. Let’s look at the help file for the mean function. Run <code>?mean</code> in the console: a window on the right-hand side of the R Studio interface should open. The help file tells you what goes into a function and what comes out. For more complex functions it also tells you what all of the options (i.e., arguments) can do. Help files can be a bit intimidating to interpret at first, but they are all organized the same and once you learn their layout you will know where to go to find the information you’re looking for.</p>
+</div>
+<div id="vectors" class="section level3">
+<h3><span class="header-section-number">1.5.2</span> Vectors</h3>
+<p>Vectors are one of the most common data structures. A vector is a set of numbers going in only one dimension. Each position in a vector is termed an <strong>element</strong>, and the number of elements is termed the <strong>length</strong> of the vector. Here are some ways to make some vectors with different elements, all of length five with patterns:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># this is a comment. R will ignore all text on a line after a #</span>
+<span class="co"># the ; means run everything after it on a new line</span>
+
+<span class="co"># count up by 1</span>
+month =<span class="st"> </span><span class="dv">2</span><span class="op">:</span><span class="dv">6</span>; month</code></pre></div>
+<pre><code>## [1] 2 3 4 5 6</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># count up by 2</span>
+day =<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">1</span>, <span class="dt">to =</span> <span class="dv">9</span>, <span class="dt">by =</span> <span class="dv">2</span>); day</code></pre></div>
+<pre><code>## [1] 1 3 5 7 9</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># repeat the same number (repeat 2018 5 times)</span>
+year =<span class="st"> </span><span class="kw">rep</span>(<span class="dv">2018</span>, <span class="dv">5</span>); year</code></pre></div>
+<pre><code>## [1] 2018 2018 2018 2018 2018</code></pre>
+<p>If you wish to know how many elements are in a vector, use <code>length</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(year)</code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<p>You can also create a vector “by-hand” using the <code>c</code> function<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># a numeric vector</span>
+number =<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">10</span>, <span class="dv">15</span>); number</code></pre></div>
+<pre><code>## [1]  4  7  8 10 15</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># a character vector</span>
+pond =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;F11&quot;</span>, <span class="st">&quot;S28&quot;</span>, <span class="st">&quot;S30&quot;</span>, <span class="st">&quot;S8&quot;</span>, <span class="st">&#39;S11&#39;</span>); pond</code></pre></div>
+<pre><code>## [1] &quot;F11&quot; &quot;S28&quot; &quot;S30&quot; &quot;S8&quot;  &quot;S11&quot;</code></pre>
+<p>Note the difference between the numeric and character vectors. The the terms “numeric” and “character”&quot; represent <strong>data classes</strong>, which specify the type of data the vector is holding:</p>
+<ul>
+<li>A <strong>numeric vector</strong> stores numbers. You can do math with numeric vectors</li>
+<li>A <strong>character vector</strong> stores what are essentially letters. You can’t do math with letters. A character vector is easy to spot because the elements will be wrapped with quotes<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a>.</li>
+</ul>
+<p>A vector can only hold one data class at a time:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="st">&quot;a&quot;</span>); v</code></pre></div>
+<pre><code>## [1] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;a&quot;</code></pre>
+<p>Notice how all the elements now have quotes around them. The numbers have been <strong>coerced</strong> to characters<a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a>. If we attempted to calculate the sum of our vector:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(v)</code></pre></div>
+<pre><code>## Error in sum(v): invalid &#39;type&#39; (character) of argument</code></pre>
+<p>we would find that it is impossible in its current form.</p>
+</div>
+<div id="matrices" class="section level3">
+<h3><span class="header-section-number">1.5.3</span> Matrices</h3>
+<p>Matrices act just like vectors, but they are in two dimensions, i.e., they have both rows and columns. One easy way to make a matrix is by combining vectors you have already made:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># combine vectors by column (each vector will become a column)</span>
+m1 =<span class="st"> </span><span class="kw">cbind</span>(month, day, year, number); m1</code></pre></div>
+<pre><code>##      month day year number
+## [1,]     2   1 2018      4
+## [2,]     3   3 2018      7
+## [3,]     4   5 2018      8
+## [4,]     5   7 2018     10
+## [5,]     6   9 2018     15</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># combine vectors by row (each vector will become a row)</span>
+m2 =<span class="st"> </span><span class="kw">rbind</span>(month, day, year, number); m2</code></pre></div>
+<pre><code>##        [,1] [,2] [,3] [,4] [,5]
+## month     2    3    4    5    6
+## day       1    3    5    7    9
+## year   2018 2018 2018 2018 2018
+## number    4    7    8   10   15</code></pre>
+<p>Just like vectors, matrices can hold only one data class (note the coersion of numbers to characters):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cbind</span>(m1, pond)</code></pre></div>
+<pre><code>##      month day year   number pond 
+## [1,] &quot;2&quot;   &quot;1&quot; &quot;2018&quot; &quot;4&quot;    &quot;F11&quot;
+## [2,] &quot;3&quot;   &quot;3&quot; &quot;2018&quot; &quot;7&quot;    &quot;S28&quot;
+## [3,] &quot;4&quot;   &quot;5&quot; &quot;2018&quot; &quot;8&quot;    &quot;S30&quot;
+## [4,] &quot;5&quot;   &quot;7&quot; &quot;2018&quot; &quot;10&quot;   &quot;S8&quot; 
+## [5,] &quot;6&quot;   &quot;9&quot; &quot;2018&quot; &quot;15&quot;   &quot;S11&quot;</code></pre>
+</div>
+<div id="data-frames" class="section level3">
+<h3><span class="header-section-number">1.5.4</span> Data Frames</h3>
+<p>Most of the data sets we work will will require storing different data classes in different columns, which would rule out the use of a matrix. This is where <strong>data frames</strong> come in:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df1 =<span class="st"> </span><span class="kw">data.frame</span>(month, day, year, number, pond); df1</code></pre></div>
+<pre><code>##   month day year number pond
+## 1     2   1 2018      4  F11
+## 2     3   3 2018      7  S28
+## 3     4   5 2018      8  S30
+## 4     5   7 2018     10   S8
+## 5     6   9 2018     15  S11</code></pre>
+<p>Notice the lack of quotation marks which indicates that all variables (i.e., columns) are stored as their original data class.</p>
+<p>It is important to know what kind of object type you are using, since R treats them differently. For example, some functions can only use a certain object type. The same holds true for data classes (numeric vs. character vs. factor).You can quickly determine what kind of object you are dealing with by using the <code>class</code> function. Simply run <code>class(object.name)</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(day); <span class="kw">class</span>(pond); <span class="kw">class</span>(m1); <span class="kw">class</span>(df1)</code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<pre><code>## [1] &quot;matrix&quot;</code></pre>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+</div>
+</div>
+<div id="vector-math" class="section level2">
+<h2><span class="header-section-number">1.6</span> Vector Math</h2>
+<p>R does vectorized calculations. This means that if supplied with two numeric vectors of equal length and a mathematical operator, R will perform the calculation on each pair of elements: For example, if we wanted to add the two vectors vector <code>day</code> and <code>month</code>, then we would just run:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dm =<span class="st"> </span>day <span class="op">+</span><span class="st"> </span>month; dm</code></pre></div>
+<pre><code>## [1]  3  6  9 12 15</code></pre>
+<p>We could do the same calculation (e.g., divide by 2) to each element as follows:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dm<span class="op">/</span><span class="dv">2</span></code></pre></div>
+<pre><code>## [1] 1.5 3.0 4.5 6.0 7.5</code></pre>
+</div>
+<div id="data-queriessubsetsretrievals" class="section level2">
+<h2><span class="header-section-number">1.7</span> Data Queries/Subsets/Retrievals</h2>
+<p>This is one of the most important and versatile skills to know in R. So we have an object with data in it and we want to use it for analysis. But we don’t want the whole dataset, we just want one column. How do we pull out that one column? Another term for pulling out only data we want is <em>query</em>. Well it turns out there are two main ways to query data.</p>
+<p><strong>1. Indexing</strong>. This method allows you to pull out specific columns/rows by their location in an object. However, you must know exactly where in the object the desired data are. To index, you specify the object, then what rows, then what columns. The syntax is: <code>object[row, column]</code>. For example, let’s pull out the first row of the data frame <code>df1</code> using indexing:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df1[<span class="dv">1</span>,]</code></pre></div>
+<p>This works on matrices as well. Here are some examples:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m1[<span class="dv">1</span>, <span class="dv">2</span>]          <span class="co"># pulls out the element in the first row, second column from m1</span>
+m1[, <span class="dv">2</span>]           <span class="co"># pulls out the whole second column (every row) from m1</span>
+m2[, <span class="dv">2</span><span class="op">:</span><span class="dv">4</span>]         <span class="co"># pulls out columns 2, 3, and 4 from m2</span>
+m1[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>), ]  <span class="co"># pulls out the 1st, 2nd, and 4th, rows, with every column from m1</span></code></pre></div>
+<p>Vectors are done the same way, except you only provide one number because there is only one dimension. For example: <code>num[3]</code> pulls out the 3<sup>rd</sup> element of the vector <code>num</code>.</p>
+<p><strong>2. By name</strong> – This method allows you to pull out a specific column of data based on what the column name is. Of course, the column must have a name first. The name method uses the <code>$</code> operator:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df1<span class="op">$</span>num</code></pre></div>
+<p>You can combine these two methods:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df1<span class="op">$</span>num[<span class="dv">3</span>]
+
+<span class="co"># or</span>
+df1[, <span class="st">&quot;years&quot;</span>]</code></pre></div>
+<p>The by name (<code>$</code>) method is useful because it can be used to add columns to a data frame:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df1<span class="op">$</span>num3 =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">2</span>)
+df1</code></pre></div>
+<p>Both are very useful, and we will be making frequent use of these methods for the rest of the workshop. The <code>$</code> operator only works on data frames, not matrices. I’ll mention briefly that there is another way to query data: logically. We will cover this in the next section. Now go and try your hand at applying these skills in <strong>EXERCISE 1</strong>.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>While it is possible to run R on it’s own, it rather clunky and you are strongly advised to use RStudio given its compactness, neat features, code tools (like syntax and parentheses highlighting). This workshop will assume you are using RStudio<a href="ch1.html#fnref1">↩</a></p></li>
+<li id="fn2"><p>The formatting used here includes <code>##</code> on output to denote code and output separately. You won’t see the <code>##</code> show up in your console.<a href="ch1.html#fnref2">↩</a></p></li>
+<li id="fn3"><p>To learn more about standard R code styling, check out Hadley Wickham’s <a href="http://adv-r.had.co.nz/Style.html">great chapter</a> about it.<a href="ch1.html#fnref3">↩</a></p></li>
+<li id="fn4"><p>The <code>c</code> stands for <strong>concatenate</strong>, which basically means combine many smaller objects into one larger object<a href="ch1.html#fnref4">↩</a></p></li>
+<li id="fn5"><p><code>&quot; &quot;</code> or <code>' '</code> both work as long as you use the same on the front and end of the element<a href="ch1.html#fnref5">↩</a></p></li>
+<li id="fn6"><p>The coersion works this way because numbers can be expressed as characters, but a letter cannot be unambiguously be expressed as a number.<a href="ch1.html#fnref6">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="bringing-in-your-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/01-intro-to-R.Rmd",
+"text": "Edit"
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
