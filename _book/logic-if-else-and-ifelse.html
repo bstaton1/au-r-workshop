@@ -31,7 +31,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="bringing-in-your-data.html">
+<link rel="prev" href="ch1.html">
 <link rel="next" href="logical-subsetting.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -119,17 +119,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="1.6" data-path="ch1.html"><a href="ch1.html#vector-math"><i class="fa fa-check"></i><b>1.6</b> Vector Math</a></li>
 <li class="chapter" data-level="1.7" data-path="ch1.html"><a href="ch1.html#data-queriessubsetsretrievals"><i class="fa fa-check"></i><b>1.7</b> Data Queries/Subsets/Retrievals</a></li>
+<li class="chapter" data-level="" data-path="ch1.html"><a href="ch1.html#exercise-1a"><i class="fa fa-check"></i>EXERCISE 1A</a></li>
+<li class="chapter" data-level="1.8" data-path="ch1.html"><a href="ch1.html#read-external-data-files"><i class="fa fa-check"></i><b>1.8</b> Read External Data Files</a></li>
+<li class="chapter" data-level="1.9" data-path="ch1.html"><a href="ch1.html#explore-the-data-set"><i class="fa fa-check"></i><b>1.9</b> Explore the Data Set</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="bringing-in-your-data.html"><a href="bringing-in-your-data.html"><i class="fa fa-check"></i><b>2</b> Bringing in Your Data</a></li>
-<li class="chapter" data-level="3" data-path="logic-if-else-and-ifelse.html"><a href="logic-if-else-and-ifelse.html"><i class="fa fa-check"></i><b>3</b> Logic, <code>if</code>, <code>else</code>, and <code>ifelse</code></a></li>
-<li class="chapter" data-level="4" data-path="logical-subsetting.html"><a href="logical-subsetting.html"><i class="fa fa-check"></i><b>4</b> Logical Subsetting</a></li>
-<li class="chapter" data-level="5" data-path="writing-output-files.html"><a href="writing-output-files.html"><i class="fa fa-check"></i><b>5</b> Writing Output Files</a></li>
-<li class="chapter" data-level="6" data-path="basic-user-defined-functions.html"><a href="basic-user-defined-functions.html"><i class="fa fa-check"></i><b>6</b> Basic User-Defined Functions</a></li>
-<li class="chapter" data-level="7" data-path="thats-all-for-now.html"><a href="thats-all-for-now.html"><i class="fa fa-check"></i><b>7</b> That’s All! (for now)</a></li>
-<li class="chapter" data-level="8" data-path="ch2.html"><a href="ch2.html"><i class="fa fa-check"></i><b>8</b> Base R Plotting Basics</a></li>
-<li class="chapter" data-level="9" data-path="ch3.html"><a href="ch3.html"><i class="fa fa-check"></i><b>9</b> Basic Statistics</a></li>
-<li class="chapter" data-level="10" data-path="ch4.html"><a href="ch4.html"><i class="fa fa-check"></i><b>10</b> Simulation and Randomization</a></li>
-<li class="chapter" data-level="11" data-path="ch5.html"><a href="ch5.html"><i class="fa fa-check"></i><b>11</b> Large Data Manipulation</a></li>
+<li class="chapter" data-level="2" data-path="logic-if-else-and-ifelse.html"><a href="logic-if-else-and-ifelse.html"><i class="fa fa-check"></i><b>2</b> Logic, <code>if</code>, <code>else</code>, and <code>ifelse</code></a></li>
+<li class="chapter" data-level="3" data-path="logical-subsetting.html"><a href="logical-subsetting.html"><i class="fa fa-check"></i><b>3</b> Logical Subsetting</a></li>
+<li class="chapter" data-level="4" data-path="writing-output-files.html"><a href="writing-output-files.html"><i class="fa fa-check"></i><b>4</b> Writing Output Files</a></li>
+<li class="chapter" data-level="5" data-path="basic-user-defined-functions.html"><a href="basic-user-defined-functions.html"><i class="fa fa-check"></i><b>5</b> Basic User-Defined Functions</a></li>
+<li class="chapter" data-level="6" data-path="thats-all-for-now.html"><a href="thats-all-for-now.html"><i class="fa fa-check"></i><b>6</b> That’s All! (for now)</a></li>
+<li class="chapter" data-level="7" data-path="ch2.html"><a href="ch2.html"><i class="fa fa-check"></i><b>7</b> Base R Plotting Basics</a></li>
+<li class="chapter" data-level="8" data-path="ch3.html"><a href="ch3.html"><i class="fa fa-check"></i><b>8</b> Basic Statistics</a></li>
+<li class="chapter" data-level="9" data-path="ch4.html"><a href="ch4.html"><i class="fa fa-check"></i><b>9</b> Simulation and Randomization</a></li>
+<li class="chapter" data-level="10" data-path="ch5.html"><a href="ch5.html"><i class="fa fa-check"></i><b>10</b> Large Data Manipulation</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -151,7 +153,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="logic-if-else-and-ifelse" class="section level1">
-<h1><span class="header-section-number">Chapter 3</span> Logic, <code>if</code>, <code>else</code>, and <code>ifelse</code></h1>
+<h1><span class="header-section-number">Chapter 2</span> Logic, <code>if</code>, <code>else</code>, and <code>ifelse</code></h1>
 <p>R is a very logical language, both in a literal a figurative sense. When we say “logical”, as alluded to before, we are really talking about a question. You will also see these referred to as <strong>conditionals</strong>. Which values in a vector meet some condition (greater than some number, are equal to some number, have the same characters, etc.)? Let’s start with some very basic R logic (note that reassigning a value to <code>num</code> will write over what it was before, be careful with this):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">num =<span class="st"> </span><span class="dv">5</span>   <span class="co"># assign a value to the object num</span>
 num <span class="op">&lt;</span><span class="st"> </span><span class="dv">5</span>   <span class="co"># ask if it is less than 5</span></code></pre></div>
@@ -199,7 +201,7 @@ num <span class="op">&lt;</span><span class="st"> </span><span class="dv">5</spa
           </div>
         </div>
       </div>
-<a href="bringing-in-your-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ch1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="logical-subsetting.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
@@ -233,7 +235,7 @@ gitbook.start({
 "link": "https://github.com/rstudio/bookdown-demo/edit/master/01-intro-to-R.Rmd",
 "text": "Edit"
 },
-"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"download": ["au-r-workshop.pdf", "au-r-workshop.epub"],
 "toc": {
 "collapse": "subsection"
 }
