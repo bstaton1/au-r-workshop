@@ -196,8 +196,9 @@ You will learn:
   how to write your own functions
 \end{itemize}
 
-\section{Getting Started: Install R and
-RStudio}\label{getting-started-install-r-and-rstudio}
+\section*{Before You Begin: Install R and
+RStudio}\label{before-you-begin-install-r-and-rstudio}
+\addcontentsline{toc}{section}{Before You Begin: Install R and RStudio}
 
 First off, you will need to get R and RStudio\footnote{While it is
   possible to run R on it's own, it rather clunky and you are strongly
@@ -302,7 +303,7 @@ You can use your objects together to make a new object:
 \end{Highlighting}
 \end{Shaded}
 
-\section{Saving Your Code: Scripts}\label{saving-your-code-scripts}
+\section{Saving Your Code: Scripts}\label{scripts}
 
 If you closed R at this moment, your work would be lost. Running code in
 the console like you have just done \textbf{does not save a record of
@@ -316,7 +317,7 @@ your progress. R Scripts are a key feature of reproducible research with
 R, given that if they are well-written they can present a complete
 roadmap of your statistical analysis and workflow.
 
-\section{The Working Directory}\label{the-working-directory}
+\section{The Working Directory}\label{working-dir}
 
 You will want to save your hard work. A key part of doing saving your
 work is thinking about \textbf{where} you save it. In R, a key concept
@@ -1910,45 +1911,70 @@ to make sure you find the error.
 \section*{Chapter Overview}\label{chapter-overview-1}
 \addcontentsline{toc}{section}{Chapter Overview}
 
-In this first chapter, you will get familiar with the basics of using R
-for making plots and figures. You will learn:
+In this chapter, you will get familiar with the basics of using R for
+making plots and figures. You will learn:
 
 \begin{itemize}
 \tightlist
 \item
   the different types of plotting functions
 \item
-  \ldots{}
+  the basics of how to make:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    scatterplots
+  \item
+    line
+  \item
+    bar
+  \item
+    box-and-whisker plots
+  \item
+    histograms
+  \end{itemize}
 \item
-  \ldots{}
+  the basics of how to change plot features like the text displayed, the
+  size of points, and the type of points
 \item
-  \ldots{}
+  the basics of multi-panel plotting
 \item
-  \ldots{}
+  the basics of the \texttt{par} function
 \item
-  \ldots{}
-\item
-  \ldots{}
+  how to save your plot to an external file
 \end{itemize}
 
 R's base plotting package is incredibly versatile, and as you will see,
 it doesn't take much to get started making professional-looking graphs.
 Before we get started, I'll just mention that there are other R
-packages\footnote{a package is a bunch of code that somebody has written
-  and placed on the web for you to install, they are first introducted
-  in Chapter \ref{ch5}} for plotting (e.g. \texttt{ggplot2} and
-\texttt{lattice}), but they can be more complex than the base R plotting
-capabilities and look a bit different.
+packages\footnote{An \textbf{R package} is a bunch of code that somebody
+  has written and placed on the web for you to install, their use is
+  first introduced in Chapter \ref{ch5}} for plotting (e.g.
+\texttt{ggplot2} and \texttt{lattice}), but they can be more complex
+than the base R plotting capabilities and look a bit different.
 
-If you did not attend the session corresponding to the Chapter \ref{ch1}
-material, you are recommended to walk through that chapter's contents
+\textbf{IMPORTANT NOTE}: If you did not attend the session corresponding
+to the Chapter \ref{ch1} material, you are recommended to walk through
+those chapters' contents before proceeding to this material. This is
 because you will be using some of the commands and terminology presented
-previously.
+previously. If you are confused about a topic, you can use \textbf{CTRL
++ F} to find previous cases where that topic has been discussed in this
+document.
+
+\section*{Before You Begin}\label{before-you-begin}
+\addcontentsline{toc}{section}{Before You Begin}
+
+You should create a new directory and R script for your work in this
+Chapter. Create a new R script called \texttt{Ch2.R} and save it in the
+directory \texttt{C:/Users/YOU/Documents/R-Workshop/Chapter2}. Set your
+working directory to that location. Revisit the Sections \ref{scripts}
+and \ref{working-dir} for more details on these steps.
 
 \section{R Plotting Lingo}\label{r-plotting-lingo}
 
-When it comes to plotting in R, there is some quick terminology you
-should know:
+Learning some terminology will help you get used to the base R graphics
+system:
 
 \begin{itemize}
 \item
@@ -1974,18 +2000,7 @@ should know:
 
 Here is an example of a basic R plot:
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{x =}\StringTok{ }\DecValTok{0}\OperatorTok{:}\DecValTok{10}
-\NormalTok{y =}\StringTok{ }\NormalTok{x}\OperatorTok{^}\DecValTok{2}
-\KeywordTok{plot}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ x, }\DataTypeTok{y =}\NormalTok{ y,}
-     \DataTypeTok{xlab =} \StringTok{"x-axis label goes here"}\NormalTok{,}
-     \DataTypeTok{ylab =} \StringTok{"y-axis label goes here"}\NormalTok{,}
-     \DataTypeTok{main =} \StringTok{"Main Plot Title Goes Here"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-69-1.pdf}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-70-1} \end{center}
 
 There are a few components:
 
@@ -2022,206 +2037,744 @@ Note that the first two arguments, \texttt{x} and \texttt{y}, specify
 the coordinates of the points (i.e., the first point is placed at
 coordinates \texttt{x{[}1{]}},\texttt{y{[}1{]}}). \texttt{plot} has
 \emph{tons} of arguments (or \emph{graphical parameters} as the help
-file calls them) that change how the plot looks. Note that when you want
-something displayed verbatim on the plotting device, you must wrap that
-code in \texttt{"\ "}, i.e., the arguments \texttt{xlab}, \texttt{ylab},
-and \texttt{main} all receive a character vector of length 1 as input.
+file found using \texttt{?plot} or \texttt{?par} calls them) that change
+how the plot looks. Note that when you want something displayed verbatim
+on the plotting device, you must wrap that code in \texttt{"\ "}, i.e.,
+the arguments \texttt{xlab}, \texttt{ylab}, and \texttt{main} all
+receive a character vector of length 1 as input.
 
 Here are just a handful of them to get you started:
 
+\begin{table}
+
+\caption{\label{tab:plot-arg-table}Several of the key arguments to high- and low-level plotting functions}
+\centering
+\begin{tabular}[t]{l|l|l}
+\hline
+Arg. & Usage & Description\\
+\hline
+`xlab` & `xlab = "X-AXIS"` & changes the x-axis label text\\
+\hline
+`ylab` & `ylab = "Y-AXIS"` & changes the y-axis label text\\
+\hline
+`main` & `main = "TITLE"` & changes the main title text\\
+\hline
+`cex` & `cex = 1.5` & changes the size of symbols in the plotting region\textasciicircum{}[`cex` is a multiplier: `cex = 1.5` says make the points 1.5 times as large as they would be by default.]\\
+\hline
+`pch` & `pch = 17` & changes the symbol type\textasciicircum{}[There are approximately 20 different `pch` settings: `pch = 1` is empty circles, `pch = 16` is filled circles, etc.]\\
+\hline
+`xlim` & `xlim = range(x)` & changes the endpoints (limits) of the x-axis\textasciicircum{}[`xlim` and `ylim` both require a numeric vector of length 2 where neither of the elements may be an `NA`.]\\
+\hline
+`ylim` & `ylim = c(0,1)` & same as `xlim`, but for the y-axis\\
+\hline
+`type` & `type = "l"` & changes the way points are connected by lines\textasciicircum{}[The default is points only, `type = "l"` is for lines only, `type = "o"` is for points connected with lines, and `type = "b"` is for points and lines but with a small amount of separation between them.]\\
+\hline
+`lty` & `lty = 2` & changes the line type\textasciicircum{}[`lty = 1` is solid, `lty = 2` is dashed, `lty = 3` is dotted, etc. You can also specific it like `lty = "solid"`, `lty = "dotted"`, or `lty = "dotdash"`.]\\
+\hline
+`lwd` & `lwd = 2` & changes the line width\textasciicircum{}[works just like `cex`: `lwd = 3` codes for a line that is 3 times as thick as it would normally be]\\
+\hline
+`col` & `col = "blue"` & changes the color of plotted objects\textasciicircum{}[there is a whole host of colors you can pass R by name, run `colors()` to see for yourself]\\
+\hline
+\end{tabular}
+\end{table}
+
+You are advised to try at least some of these arguments out for yourself
+with your \texttt{plot(x,\ y)} code from above - notice how every time
+you run \texttt{plot}, a whole new plot is created, not just the thing
+you changed. There are definitely other options: check out
+\texttt{?plot} or \texttt{?par} for more details.
+
+\section{Lower Level Plotting
+Functions}\label{lower-level-plotting-functions}
+
+Now that you have a base plot designed to your liking, you might want to
+add some additional ``layers'' to it to represent more data or other
+kind of information like an additional label or text. Add some more
+points to your plot by putting this line right beneath your
+\texttt{plot(x,y)} code and run just the \texttt{points()} line (make
+sure your device is showing a plot first):
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{pars =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"xlab"}\NormalTok{, }\StringTok{"ylab"}\NormalTok{, }\StringTok{"main"}\NormalTok{, }\StringTok{"cex"}\NormalTok{)}
-\NormalTok{usage =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"`xlab = X-AXIS`"}\NormalTok{, }\StringTok{"`ylab = Y-AXIS`"}\NormalTok{, }\StringTok{"`main= TITLE`"}\NormalTok{, }\StringTok{"`cex = 1.5`"}\NormalTok{)}
-\NormalTok{desc =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"changes the x-axis label text"}\NormalTok{,}
-         \StringTok{"changes the y-axis label text"}\NormalTok{,}
-         \StringTok{"changes the main title text"}\NormalTok{,}
-         \StringTok{"changes the size of symbols in the plotting region"}\NormalTok{)}
+\CommentTok{# rev() reverses a vector: so the old x[1] is x[11] now}
+\KeywordTok{points}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{rev}\NormalTok{(x), }\DataTypeTok{y =}\NormalTok{ y, }\DataTypeTok{col =} \StringTok{"blue"}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{16}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-73-1} \end{center}
+
+Here, \texttt{points} acted like a low-level plotting function because
+it added points to a plot you already made. Many of the arguments shown
+in Table \ref{tab:plot-arg-table} can be used in both high-level and
+low-level plotting functions (notice how \texttt{col} and \texttt{pch}
+were used in \texttt{points}). Just like \texttt{points}, there is also
+\texttt{lines}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{lines}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ x, }\DataTypeTok{y =}\NormalTok{ x, }\DataTypeTok{lty =} \DecValTok{2}\NormalTok{, }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-75-1} \end{center}
+
+You can also add text to the plotting region:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{text}\NormalTok{(}\DataTypeTok{x =} \DecValTok{5}\NormalTok{, }\DataTypeTok{y =} \DecValTok{80}\NormalTok{, }\StringTok{"This is Text"}\NormalTok{, }\DataTypeTok{cex =} \FloatTok{1.5}\NormalTok{, }\DataTypeTok{col =} \StringTok{"grey"}\NormalTok{, }\DataTypeTok{font =} \DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-77-1} \end{center}
+
+The text is centered on the coordinates you provide. You can also
+provide vectors of coordinates and text to write different things at
+once.
+
+The easiest way to add a straight line to a plot is with
+\texttt{abline}. By default it takes two arguments: \texttt{a} and
+\texttt{b} which are the intercept and slope, respectively, e.g.,
+\texttt{abline(c(0,1))} will draw a 1:1 line. You can also do
+\texttt{abline(h\ =\ 5)} to draw a horizontal line at 5 or
+\texttt{abline(v\ =\ 5)} to draw a vertical line at \texttt{5}.
+
+You can see that the text is centered on the coordinates
+\texttt{x\ =\ 5} and \texttt{y\ =\ 80} using \texttt{abline}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{h =} \DecValTok{80}\NormalTok{, }\DataTypeTok{col =} \StringTok{"grey"}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v =} \DecValTok{5}\NormalTok{, }\DataTypeTok{col =} \StringTok{"grey"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-79-1} \end{center}
+
+If you accidentally add a plot element that you don't want using a
+low-level plotting function, the only way to remove it is by re-running
+the high-level plotting function to start a new plot and adding only the
+objects you want. Try removing the ``This is Text'' text and the
+straight lines you drew with \texttt{abline} from the plot displayed in
+your device.
+
+\section{Other High-Level Plotting
+Functions}\label{other-high-level-plotting-functions}
+
+You have just seen the basics of making two dimensional scatter plots
+and line plots. You will now explore other types of graphs you can make.
+
+\subsection{The Bar Graph}\label{the-bar-graph}
+
+Another very common graph is a bar graph. R has a \texttt{bargraph}
+function, and again, it has lots of arguments. Here you will just make
+two common variations: single bars per group and multiple bars per
+group. Let's make up some data to plot:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x1 =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{6}\NormalTok{)}
+\KeywordTok{barplot}\NormalTok{(x1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-80-1} \end{center}
+
+Notice that there are no group names on our bars (if our vector had
+names, there would be). You can add names by using the argument
+\texttt{names.arg}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{barplot}\NormalTok{(x1, }\DataTypeTok{names.arg =} \KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"c"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Add some more information by including two bars per group. Make some
+more data and combine it with the old data:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x2 =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{7}\NormalTok{)}
+\NormalTok{x3 =}\StringTok{ }\KeywordTok{rbind}\NormalTok{(x1, x2)}
+
+\KeywordTok{barplot}\NormalTok{(x3, }\DataTypeTok{names.arg =} \KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"c"}\NormalTok{), }\DataTypeTok{beside =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-82-1} \end{center}
+
+To add multiple bars per group, R needs a matrix like you just made. The
+\textbf{columns} store the heights of the bars that will be placed
+together in a group. Including the \texttt{beside\ =\ T} argument tells
+R to plot all groups as different bars as opposed to using a stacked bar
+graph.
+
+Oftentimes, we want to add error bars to a bar graph like this. To avoid
+digressing too much here, creating error bars is covered as a bonus
+topic.
+
+\section{Box-and-Whisker Plots}\label{box-and-whisker-plots}
+
+Box-and-whisker plots are a great way to visualize the spread of your
+data. All you need to make a box-and-whisker plot is a grouping variable
+(a factor, revisit Section \ref{factors} if you don't remember what
+these are) and some continuous (i.e., numeric) data for each level of
+the factor. Download the \texttt{creel.csv} data set from the GitHub
+repository
+\url{https://github.com/bstaton1/au-r-workshop-data/tree/master}, place
+it in the same directory as your R script \texttt{Ch2.R} (which is the
+one you should be working on right now).
+
+Read the data in and print a summary:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dat =}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"creel.csv"}\NormalTok{)}
+\KeywordTok{summary}\NormalTok{(dat)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            fishery        hours       
+##  Harvest       :100   Min.   :-1.150  
+##  Non.Tournament:100   1st Qu.: 9.936  
+##  Tournament    :100   Median :20.758  
+##                       Mean   :26.050  
+##                       3rd Qu.:43.896  
+##                       Max.   :62.649
+\end{verbatim}
+
+This data set contains some simulated (i.e., fake) continuous and
+categorical data that represent 300 anglers who were creel
+surveyed\footnote{A creel survey is a sampling program where fishers are
+  asked questions about their fishing behavior in order to estimate
+  effort and harvest.}. In the data set, there are three categories
+(levels to the factor \texttt{fishery}) and the continuous variable is
+how many hours each angler fished this year. If you supply the generic
+\texttt{plot} function with a continuous response (\texttt{y}) variable
+and a categorical predictor (\texttt{x}) variable, it will automatically
+know that you want to make a box-and-whisker plot:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ dat}\OperatorTok{$}\NormalTok{fishery, }\DataTypeTok{y =}\NormalTok{ dat}\OperatorTok{$}\NormalTok{hours)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-85-1} \end{center}
+
+In the box-and-whisker plot above, the heavy line is the median, the
+ends of the boxes are the 25\textsuperscript{th} and
+75\textsuperscript{th} percentiles and the ``whiskers'' are the
+2.5\textsuperscript{th} and 97.5\textsuperscript{th} percentiles. Any
+points that are outliers (i.e., fall outside of the whiskers) will be
+shown as points\footnote{Outliers can be turned off using the
+  \texttt{outline\ =\ F} argument to the \texttt{plot} function}.
+
+It is worth introducing a shorthand syntax of typing the same command:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(hours }\OperatorTok{~}\StringTok{ }\NormalTok{fishery, }\DataTypeTok{data =}\NormalTok{ dat)}
+\end{Highlighting}
+\end{Shaded}
+
+Instead of saying \texttt{plot(x\ =\ x.var,\ y\ =\ y.var)}, this
+expression says \texttt{plot(y.var\ \textasciitilde{}\ x.var)}. The
+\texttt{\textasciitilde{}} reads ``as a function of''. By specifying the
+\texttt{data} argument, you no longer need to indicate where the
+variables \texttt{hours} and \texttt{fishery} are found. Many R
+functions have a \texttt{data} argument that works this same way. It is
+sometimes preferable to plot variables with this syntax because it is
+often less code and is also the format of R's statistical
+equations\footnote{Which allows you to easily copy and paste the code
+  between the model and plot functions, see Chapter \ref{ch3}}.
+
+\section{Histograms}\label{histograms}
+
+Another way to show the distribution of a variable is with histograms.
+These figures show the relative frequencies of observations in different
+discrete bins. Let's make a histogram of hours the surveyed tournament
+anglers fished this year:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(dat}\OperatorTok{$}\NormalTok{hours[dat}\OperatorTok{$}\NormalTok{fishery }\OperatorTok{==}\StringTok{ "Tournament"}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-87-1} \end{center}
+
+Notice the subset that extracts hours fished for tournament anglers only
+before plotting.
+
+\texttt{hist} automatically selects the number of bins based on the
+range and resolution of the data. You can specify how many evenly-sized
+bins you want to plot:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# extract the hours for tournament anglers}
+\NormalTok{t_hrs =}\StringTok{ }\NormalTok{dat}\OperatorTok{$}\NormalTok{hours[dat}\OperatorTok{$}\NormalTok{fishery }\OperatorTok{==}\StringTok{ "Tournament"}\NormalTok{]}
+
+\CommentTok{# create the bin endpoints}
+\NormalTok{nbins =}\StringTok{ }\DecValTok{20}
+\NormalTok{breaks =}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DataTypeTok{from =} \KeywordTok{min}\NormalTok{(t_hrs), }\DataTypeTok{to =} \KeywordTok{max}\NormalTok{(t_hrs), }\DataTypeTok{length =}\NormalTok{ nbins }\OperatorTok{+}\StringTok{ }\DecValTok{1}\NormalTok{)}
+\KeywordTok{hist}\NormalTok{(t_hrs, }\DataTypeTok{breaks =}\NormalTok{ breaks, }\DataTypeTok{main =} \StringTok{"Tournament"}\NormalTok{, }\DataTypeTok{col =} \StringTok{"grey"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-88-1} \end{center}
+
+\section{\texorpdfstring{The \texttt{par}
+Function}{The par Function}}\label{the-par-function}
+
+If it bothers you that the axes are ``floating'', you can fix this using
+this command:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{xaxs =} \StringTok{"i"}\NormalTok{, }\DataTypeTok{yaxs =} \StringTok{"i"}\NormalTok{)}
+\KeywordTok{hist}\NormalTok{(t_hrs, }\DataTypeTok{breaks =}\NormalTok{ breaks, }\DataTypeTok{main =} \StringTok{"Tournament"}\NormalTok{, }\DataTypeTok{col =} \StringTok{"grey"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-89-1} \end{center}
+
+Here, you changed the graphical parameters of the graphics device by
+using the \texttt{par} argument. Once you change the settings in
+\texttt{par}, they will remain that way until you start a new device.
+
+The \texttt{par} function is central to fine-tuning your graphics. Here,
+the \texttt{xaxs\ =\ "i"} and \texttt{yaxs\ =\ "i"} arguments
+essentially removed the buffer between the data and the axes.
+\texttt{par} has options to change the size of the margins, add outer
+margins, change colors, etc. Some of the graphical parameters that can
+be passed to high- and low-level plotting functions (like those in Table
+\ref{tab:plot-arg-table}) can also be passed \texttt{par}. Check out the
+help file (\texttt{?par}) to see everything it can do. If you want to
+start over with fresh \texttt{par} settings, start a new device.
+
+\section{New Temporary Devices}\label{new-temporary-devices}
+
+If you are using RStudio, then likely all of the plots you have made
+thus far have shown up in the lower right-hand corner or your RStudio
+window. You have been using RStudio's built-in plotting device. If you
+wish to open a new plotting device (maybe to put it on a separate
+monitor), you can use the following commands, depending on your
+operating system:
 
 \begin{itemize}
 \tightlist
 \item
-  \texttt{xlab}: changes the x-axis label text. Any time you specify
-  text on the plot it must be in ``quotes''.
+  \textbf{Windows Users} -- just run \texttt{windows()} to open up a new
+  plotting device. It will become the active device.
 \item
-  \texttt{ylab}: changes the y-axis label text.
+  \textbf{Mac Users} -- similarly, you can run \texttt{quartz()} to open
+  a new device.
 \item
-  \texttt{main}: changes the main title text.
-\item
-  \texttt{cex}: character expansion factor. Changes the size of symbols
-  in the plotting region. The default is 1, and you can specify any
-  positive number you want (even decimals) that will change the size
-  relative to 1 (e.g. \texttt{cex\ =\ 2} doubles the size). Note that
-  there are also \texttt{cex.main} and \texttt{cex.lab} arguments.
-\item
-  \texttt{pch}: plotting character. R has at least 20 built-in shapes
-  you can plot including the open circles shown above, closed circles,
-  diamonds (open and closed), and triangles (open and closed). Try
-  changing the plotting character using \texttt{pch\ =\ 20}.
-\item
-  \texttt{xlim}: a vector of length 2 that specifies the start and end
-  of the x-axis.
-\item
-  \texttt{ylim}: same as \texttt{xlim}, but for the y-axis.
-\item
-  \texttt{type}: \texttt{type\ =\ "l"} changes from a scatter plot to a
-  line graph. It connects the \texttt{x} and \texttt{y} coordinates
-  provided with lines.
-\item
-  \texttt{lty}: line type. R has 5 (specified using numbers 1:5)
-  built-in line types. \texttt{1} is solid, \texttt{2} is short dash,
-  \texttt{3} is dotted, \texttt{4} is dot-dash, \texttt{5} is long dash.
-\item
-  \texttt{lwd}: line width. Can be any positive number, I like
-  \texttt{lwd\ =\ 2} the best.
-\item
-  \texttt{col}: color of plotted objects. Try \texttt{col\ =\ "red"},
-  \texttt{col\ =\ "blue"}, \texttt{col\ =\ "green"} to try these out.
-  Type \texttt{colors()} to see all of the possible colors you can call
-  by name (there are \emph{lots}).
+  \textbf{Linux Users} -- similarly, just run \texttt{x11()}.
 \end{itemize}
 
-\chapter{Lower Level Plotting
-Functions}\label{lower-level-plotting-functions}
+\section{Multi-panel Plots}\label{multi-panel-plots}
 
-Okay, now that we have a base plot designed to our liking, we might want
-to add some things to it to add information. Let's add some more points
-(as I add more information to the first original plot, I have to keep
-running the originial plot function then add the other lower level
-functions below). For your use, you only have to make the original plot
-once, then just add on to it:
+Sometimes you want to display more than one plot at a time. You can make
+a multi-panel plot which allows for multiple plotting regions to show up
+simultaneously within the same plotting device. First, you need to
+change the layout of the plotting region. The easiest way to set up the
+device for multi-panel plotting is by using the \texttt{mfrow} argument
+in the \texttt{par} function.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{points}\NormalTok{(}\DataTypeTok{x =} \DecValTok{0}\OperatorTok{:}\DecValTok{10}\NormalTok{, }\DataTypeTok{y =} \DecValTok{10}\OperatorTok{:}\DecValTok{0}\NormalTok{, }\DataTypeTok{col =} \StringTok{"blue"}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{20}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-73-1.pdf}
-
-This is a lower level plotting function because it added something to a
-plot we already made. Note that the arguments listed in the previous
-bulleted section are not lower level functions, but arguments to the
-higher level function \texttt{plot}. Many of the arguments for higher
-level plotting functions also can be used in lower level functions (see
-how \texttt{col} and \texttt{pch} were used in \texttt{points}?). There
-is also \texttt{lines}:
+Below, the code says ``set up change the graphical parameters so that
+there is 1 row and 3 columns of plotting regions within the device''.
+Every time you make a new plot, it will go in the next available
+plotting region. Make 3 histograms, each that represents a different
+sector of the fishery:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{lines}\NormalTok{(}\DataTypeTok{x =} \DecValTok{0}\OperatorTok{:}\DecValTok{10}\NormalTok{, }\DataTypeTok{y =} \DecValTok{0}\OperatorTok{:}\DecValTok{10}\NormalTok{, }\DataTypeTok{lty =} \DecValTok{2}\NormalTok{, }\DataTypeTok{col =} \StringTok{"grey"}\NormalTok{)}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{))}
+\KeywordTok{hist}\NormalTok{(dat}\OperatorTok{$}\NormalTok{hours[dat}\OperatorTok{$}\NormalTok{fishery }\OperatorTok{==}\StringTok{ "Tournament"}\NormalTok{], }\DataTypeTok{main =} \StringTok{"Tourn"}\NormalTok{)}
+\KeywordTok{hist}\NormalTok{(dat}\OperatorTok{$}\NormalTok{hours[dat}\OperatorTok{$}\NormalTok{fishery }\OperatorTok{==}\StringTok{ "Non.Tournament"}\NormalTok{], }\DataTypeTok{main =} \StringTok{"Non.Tourn"}\NormalTok{)}
+\KeywordTok{hist}\NormalTok{(dat}\OperatorTok{$}\NormalTok{hours[dat}\OperatorTok{$}\NormalTok{fishery }\OperatorTok{==}\StringTok{ "Harvest"}\NormalTok{], }\DataTypeTok{main =} \StringTok{"Harvest"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-90-1} \end{center}
+
+There are other ways to make multi-panel plots, however, they are beyond
+the scope of this beginner's workshop. See \texttt{?layout} for details.
+With this function you can change the size of certain plots and make
+them have different shapes (i.e., some squares, some rectangles, etc.),
+but it takes some pretty involved (though not impossible, by any means)
+specification of how you want the device to be split up into regions.
+
+\section{Legends}\label{legends}
+
+Oftentimes you will want to add a legend to our plots to help people
+interpret what it is showing. You can add legends to R plots using the
+low-level plotting function \texttt{legend}. Add a legend to the bar
+plot you made earlier with two groups. First, re-make the plot by
+running the high-level \texttt{barplot} function, but change the colors
+of the bars to be shades of blue and red. Once you have the plot made,
+add the legend:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{plot}\NormalTok{(}\DataTypeTok{x =} \DecValTok{0}\OperatorTok{:}\DecValTok{10}\NormalTok{, }\DataTypeTok{y =} \DecValTok{0}\OperatorTok{:}\DecValTok{10}\NormalTok{, }\DataTypeTok{xlab =} \StringTok{"x-axis label goes here"}\NormalTok{,}
-     \DataTypeTok{ylab =} \StringTok{"y-axis label goes here"}\NormalTok{, }\DataTypeTok{main =} \StringTok{"Main Plot Title Goes Here"}\NormalTok{)}
-\KeywordTok{points}\NormalTok{(}\DataTypeTok{x =} \DecValTok{0}\OperatorTok{:}\DecValTok{10}\NormalTok{, }\DataTypeTok{y =} \DecValTok{10}\OperatorTok{:}\DecValTok{0}\NormalTok{, }\DataTypeTok{col =} \StringTok{"blue"}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{20}\NormalTok{)}
-\KeywordTok{lines}\NormalTok{(}\DataTypeTok{x =} \DecValTok{0}\OperatorTok{:}\DecValTok{10}\NormalTok{, }\DataTypeTok{y =} \DecValTok{0}\OperatorTok{:}\DecValTok{10}\NormalTok{, }\DataTypeTok{lty =} \DecValTok{2}\NormalTok{, }\DataTypeTok{col =} \StringTok{"grey"}\NormalTok{)}
+\KeywordTok{barplot}\NormalTok{(x3, }\DataTypeTok{beside =}\NormalTok{ T,}\DataTypeTok{names.arg =} \KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"c"}\NormalTok{), }\DataTypeTok{col =} \KeywordTok{c}\NormalTok{(}\StringTok{"skyblue2"}\NormalTok{, }\StringTok{"tomato2"}\NormalTok{))}
+\KeywordTok{legend}\NormalTok{(}\StringTok{"topleft"}\NormalTok{, }\DataTypeTok{legend =} \KeywordTok{c}\NormalTok{(}\StringTok{"Group 1"}\NormalTok{, }\StringTok{"Group 2"}\NormalTok{), }\DataTypeTok{fill =} \KeywordTok{c}\NormalTok{(}\StringTok{"skyblue2"}\NormalTok{, }\StringTok{"tomato2"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
-This is the best way to make those connected-dot line-plots that you
-commonly see in the literature. If you accidently add a lower level
-object that you don't want, the only way to remove it is by re-running
-the higher level plotting function to start a new plot and adding only
-the objects you want (this took me an embarrassingly long time to figure
-out). You can also add text to the plotting region:
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-91-1} \end{center}
+
+The box can be removed using the \texttt{bty\ =\ "n"} argument and the
+size can be changed using \texttt{cex}. The position can be specified
+either with words (like above) or by using x-y coordinates.
+
+Here is a more complex example:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{text}\NormalTok{(}\DataTypeTok{x =} \DecValTok{5}\NormalTok{, }\DataTypeTok{y =} \DecValTok{8}\NormalTok{, }\StringTok{"This is Text"}\NormalTok{, }\DataTypeTok{cex =} \FloatTok{0.8}\NormalTok{)}
+\CommentTok{# 1) extract and sort the hours for two fisheries from fewest hours}
+\NormalTok{t_hrs =}\StringTok{ }\KeywordTok{sort}\NormalTok{(dat}\OperatorTok{$}\NormalTok{hours[dat}\OperatorTok{$}\NormalTok{fishery }\OperatorTok{==}\StringTok{ "Tournament"}\NormalTok{])}
+\NormalTok{n_hrs =}\StringTok{ }\KeywordTok{sort}\NormalTok{(dat}\OperatorTok{$}\NormalTok{hours[dat}\OperatorTok{$}\NormalTok{fishery }\OperatorTok{==}\StringTok{ "Non.Tournament"}\NormalTok{])}
+
+\CommentTok{# 2) make the plot: plot for t_hrs only, but ensure xlim covers both groups}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))  }\CommentTok{# set the margins: 4 lines of margin space on bottom and left, 1 on top and right}
+\KeywordTok{plot}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ t_hrs, }\DataTypeTok{y =} \DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(t_hrs),}
+     \DataTypeTok{type =} \StringTok{"o"}\NormalTok{, }\DataTypeTok{lty =} \DecValTok{2}\NormalTok{, }\DataTypeTok{xlim =} \KeywordTok{range}\NormalTok{(}\KeywordTok{c}\NormalTok{(t_hrs, n_hrs)),}
+     \DataTypeTok{xlab =} \StringTok{"Hours Fished/Year"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"Rank within Fishery Samples"}\NormalTok{,}
+     \DataTypeTok{las =} \DecValTok{1}\NormalTok{)  }\CommentTok{# las = 1 says "turn the y-axis tick labels to be horizontal"}
+
+\CommentTok{# 3) add info for the other fishery}
+\KeywordTok{points}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ n_hrs, }\DataTypeTok{y =} \DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(n_hrs), }\DataTypeTok{type =} \StringTok{"o"}\NormalTok{, }\DataTypeTok{lty =} \DecValTok{1}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{16}\NormalTok{)}
+
+\CommentTok{# 4) add the legend}
+\KeywordTok{legend}\NormalTok{(}\StringTok{"topleft"}\NormalTok{, }\DataTypeTok{legend =} \KeywordTok{c}\NormalTok{(}\StringTok{"Tournament"}\NormalTok{, }\StringTok{"Non-Tournament"}\NormalTok{), }
+       \DataTypeTok{lty =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{), }\DataTypeTok{pch =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{16}\NormalTok{), }\DataTypeTok{bty =} \StringTok{"n"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-92-1} \end{center}
+
+Notice that you need to be careful about the order of how you specify
+which \texttt{lty} and \texttt{pch} settings match up with the elements
+of the \texttt{legend} argument. In the \texttt{plot\ code}, you
+specified that the \texttt{lty\ =\ 2} but didn't specify what
+\texttt{pch} should be (it defaults to \texttt{1}). So when you put the
+``Tournament'' group first the the \texttt{legend} argument vector, you
+must be sure to use the corresponding plotting codes. The first element
+of the \texttt{lty} argument matches up with the first element of
+\texttt{legend}, and so on. There are a few other plotting tricks used:
+changing the margins using \texttt{par(mar)} and the rotation of y-axis
+tick mark labels using \texttt{las\ =\ 1}.
+
+\section{Exporting Plots}\label{exporting-plots}
+
+There are two main ways to save plots. First is a quick-and-dirty method
+that saves the plots, but they are not high-resolution. The second
+method produces cleaner-looking high-resolution plots.
+
+\section{First Method (Click Save)}\label{first-method-click-save}
+
+\begin{itemize}
+\item
+  If your plot is in the RStudio built-in graphics device: Right above
+  the plot, click \emph{Export \textgreater{} Save as Image}. Change the
+  name, dimensions and file type.
+\item
+  If your plot is in a plotting device window (opened with
+  \texttt{windows()} or \texttt{quartz()}: Simply go to \emph{File
+  \textgreater{} Save}.
+\end{itemize}
+
+All plots will be saved in the working directory by default. You can
+also just copy the plot to your clipboard (File \textgreater{} Copy to
+the clipboard \textgreater{} bitmap) and paste it where you want.
+
+\section{Second Method (Use a function to dump in a new
+file)}\label{second-method-use-a-function-to-dump-in-a-new-file}
+
+If you are producing plots for a final report or publication, you want
+the output to be as clean-looking as possible. You can save
+high-resolution plots through R by using the following steps:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{plot}\NormalTok{(}\DataTypeTok{x =} \DecValTok{0}\OperatorTok{:}\DecValTok{10}\NormalTok{, }\DataTypeTok{y =} \DecValTok{0}\OperatorTok{:}\DecValTok{10}\NormalTok{, }\DataTypeTok{xlab =} \StringTok{"x-axis label goes here"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"y-axis label goes here"}\NormalTok{,}
-      \DataTypeTok{main =} \StringTok{"Main Plot Title Goes Here"}\NormalTok{)}
-\KeywordTok{points}\NormalTok{(}\DataTypeTok{x =} \DecValTok{0}\OperatorTok{:}\DecValTok{10}\NormalTok{, }\DataTypeTok{y =} \DecValTok{10}\OperatorTok{:}\DecValTok{0}\NormalTok{, }\DataTypeTok{col =} \StringTok{"blue"}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{20}\NormalTok{)}
-\KeywordTok{lines}\NormalTok{(}\DataTypeTok{x =} \DecValTok{0}\OperatorTok{:}\DecValTok{10}\NormalTok{, }\DataTypeTok{y =} \DecValTok{0}\OperatorTok{:}\DecValTok{10}\NormalTok{, }\DataTypeTok{lty =} \DecValTok{2}\NormalTok{, }\DataTypeTok{col =} \StringTok{"grey"}\NormalTok{)}
-\KeywordTok{text}\NormalTok{(}\DataTypeTok{x =} \DecValTok{5}\NormalTok{, }\DataTypeTok{y =} \DecValTok{8}\NormalTok{, }\StringTok{"This is Text"}\NormalTok{, }\DataTypeTok{cex =} \FloatTok{0.8}\NormalTok{)}
+\CommentTok{# step 1: Make a pixels per inch object}
+\NormalTok{ppi =}\StringTok{ }\DecValTok{600}
+
+\CommentTok{# step 2: Call the figure file creation function}
+\KeywordTok{png}\NormalTok{(}\StringTok{"TestFigure.png"}\NormalTok{, }\DataTypeTok{h =} \DecValTok{8} \OperatorTok{*}\StringTok{ }\NormalTok{ppi, }\DataTypeTok{w =} \DecValTok{8} \OperatorTok{*}\StringTok{ }\NormalTok{ppi, }\DataTypeTok{res =}\NormalTok{ ppi)}
+
+\CommentTok{# step 3: Run the plot }
+\CommentTok{# put all of your plotting code here (without windows())}
+
+\CommentTok{# step 4: Close the device}
+\KeywordTok{dev.off}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
-The text is centered on the coordinates you provide. You can also
-provide vectors of coordinates and text to write different things at
-once. The easiest way to add a straight line to a plot is with
-\texttt{abline}. By default it takes two arguments: \texttt{a} and
-\texttt{b} which are the intercept and slope, respectively. You can also
-do \texttt{abline(h\ =\ 5)} to draw a horizontal line at 5 or
-\texttt{abline(v\ =\ 5)} to draw a vertical line at \texttt{5}. This
-function makes it super easy to draw a line from the result of a linear
-regression (you'll just have to wait until next time when we talk stats
-to see this trick!).
+A plot will be saved in your working directory containing the plot made
+by the code in step 3 above. The \texttt{ppi} object is pixels-per-inch.
+When you specify \texttt{h\ =\ 8\ *\ ppi}, you are saying ``make a plot
+with height equal to 8 inches''. There are similar functions to make
+PDFs, tiff files, jpegs, etc.
 
-\chapter{Other High Level Plotting
-Functions}\label{other-high-level-plotting-functions}
+\section{Bonus Topic: Error Bars}\label{bonus-topic-error-bars}
 
-So now we know how to make scatter plots and line graphs, add
-information, and make it pretty. Now let's explore other types of graphs
-we can make. Another very common graph is a bar graph. R has a
-\texttt{bargraph} function, and again, it has lots of arguments. I'll
-just go over the basics to make two common variations: single bars and
-double bars. Let's make up some data to plot:
+Rarely do we ever present estimates without some measure of uncertainty.
+The most common way for visualizing the uncertainty in an estimate is by
+using error bars. Error bars can be added to a plot using the
+\texttt{arrows} function. For \texttt{arrows}, you need:
+
+\begin{itemize}
+\tightlist
+\item
+  Vectors of the \texttt{x} and \texttt{y} coordinates of the lower
+  bound of the error bar
+\item
+  Vectors of the \texttt{x} and \texttt{y} coordinates of the upper
+  bound of the error bar
+\end{itemize}
+
+The syntax for \texttt{arrows} is as follows:
+\texttt{arrows(x0,\ y0,\ x1,\ y1,\ ...)}, where \texttt{x0} and
+\texttt{y0} are the coordinates you are drawing ``from'' (e.g., lower
+limits) and the \texttt{x1} and \texttt{y1} are the coordinates you are
+drawing ``to'' (e.g., upper limits). The \texttt{...} represents other
+arguments to change how the error bars look. Let's use a simple example.
+Calculate the mean and standard deviations of the different fishery
+sectors (remember how \texttt{tapply} works?):
+
+Create error bars on the following graph:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{dat1 =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{6}\NormalTok{)}
-\KeywordTok{barplot}\NormalTok{(dat1)}
+\NormalTok{x_bar =}\StringTok{ }\KeywordTok{tapply}\NormalTok{(dat}\OperatorTok{$}\NormalTok{hours, dat}\OperatorTok{$}\NormalTok{fishery, mean)}
+\KeywordTok{barplot}\NormalTok{(x_bar)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-78-1.pdf}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-94-1} \end{center}
 
-Pretty easy, huh? Notice that there are no group names on our bars (if
-our vector had names, there would be). We can add names by using the
-argument \texttt{names.arg}:
+where the error bars represent 95\% confidence intervals on the mean.
+You can create a 95\% confidence interval using this basic formula:
+
+\[ \bar{x} \pm 1.96 * SE(\bar{x}) \]
+
+where
+
+\[\bar{x}=\frac{1}{n}\sum_i^n{x_i}\]
+
+and
+
+\[SE(\bar{x})=\sqrt{\frac{\sum_i^n{(x_i - \bar{x})^2}}{n - 1}}\]
+
+Begin by creating a function to calculate the standard error
+(\(SE(\bar{x})\)):
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{barplot}\NormalTok{(dat1, }\DataTypeTok{names.arg =} \KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"c"}\NormalTok{))}
+\NormalTok{calc_se =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x) \{}
+  \KeywordTok{sqrt}\NormalTok{(}\KeywordTok{sum}\NormalTok{((x }\OperatorTok{-}\StringTok{ }\KeywordTok{mean}\NormalTok{(x))}\OperatorTok{^}\DecValTok{2}\NormalTok{)}\OperatorTok{/}\NormalTok{(}\KeywordTok{length}\NormalTok{(x) }\OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{))}
+\NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-79-1.pdf}
-
-Let's add some more information by making this a double bar graph. We
-will make some more data and combine it with our old data:
+Then calculate the standard errors for each fishery type:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{dat2 =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{7}\NormalTok{)}
-\NormalTok{new.dat =}\StringTok{ }\KeywordTok{rbind}\NormalTok{(dat1, dat2)}
-
-\KeywordTok{barplot}\NormalTok{(new.dat, }\DataTypeTok{names.arg =} \KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"c"}\NormalTok{))}
+\NormalTok{se =}\StringTok{ }\KeywordTok{tapply}\NormalTok{(dat}\OperatorTok{$}\NormalTok{hours, dat}\OperatorTok{$}\NormalTok{fishery, calc_se)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-80-1.pdf}
-
-To add another group like this, R needs a matrix like we made above. The
-\textbf{columns} are bars that will be placed together. See how R made a
-stacked bar graph by default? I don't like these, so let's unstack them
-by specifying \texttt{beside\ =\ T}:
+Then calculate the lower and upper limits of your bars:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{barplot}\NormalTok{(new.dat, }\DataTypeTok{beside =}\NormalTok{ T,}\DataTypeTok{names.arg =} \KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"c"}\NormalTok{))}
+\NormalTok{lwr =}\StringTok{ }\NormalTok{x_bar }\OperatorTok{-}\StringTok{ }\FloatTok{1.96} \OperatorTok{*}\StringTok{ }\NormalTok{se}
+\NormalTok{upr =}\StringTok{ }\NormalTok{x_bar }\OperatorTok{+}\StringTok{ }\FloatTok{1.96} \OperatorTok{*}\StringTok{ }\NormalTok{se}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-81-1.pdf}
+Then draw them on using the arrows function:
 
-Oftentimes, we want to add error bars to a bar graph like this. This is
-completely possible, but to avoid confusing you just now, I'll add it as
-an ``advanced topic'' at the end, and we will get to it if we have time
-or if people are interested.
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mp =}\StringTok{ }\KeywordTok{barplot}\NormalTok{(x_bar, }\DataTypeTok{ylim =} \KeywordTok{range}\NormalTok{(}\KeywordTok{c}\NormalTok{(lwr, upr)))}
+\KeywordTok{arrows}\NormalTok{(}\DataTypeTok{x0 =}\NormalTok{ mp, }\DataTypeTok{y0 =}\NormalTok{ lwr, }\DataTypeTok{x1 =}\NormalTok{ mp, }\DataTypeTok{y1 =}\NormalTok{ upr, }\DataTypeTok{length =} \FloatTok{0.1}\NormalTok{, }\DataTypeTok{angle =} \DecValTok{90}\NormalTok{, }\DataTypeTok{code =} \DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-98-1} \end{center}
+
+Notice four things:
+
+\begin{itemize}
+\item
+  The use of \texttt{mp} to specify the \texttt{x} coordinate. If you do
+  \texttt{mp\ =\ barplot(...)}, \texttt{mp} will contain the \texttt{x}
+  coordinates of the midpoint of each bar.
+\item
+  \texttt{x0} and \texttt{x1} are the same: you wish to have vertical
+  bars, so these must be the same while \texttt{y1} and \texttt{y2}
+  differ.
+\item
+  The use of \texttt{ylim\ =\ range(c(lwr,\ upr))}: you want the y-axis
+  to show the full range of all the error bars.
+\item
+  The three arguments at the end of \texttt{arrows}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{length\ =\ 0.1}: the length of the arrow heads, fiddle with
+    this until you like it.
+  \item
+    \texttt{angle\ =\ 90}: the angle of the arrow heads, you want 90
+    here for the error bars.
+  \item
+    \texttt{code\ =\ 3}: indicates that arrow heads should be drawn on
+    both ends of the arrow.
+  \end{itemize}
+\end{itemize}
+
+\section*{EXERCISE 2}\label{exercise-2}
+\addcontentsline{toc}{section}{EXERCISE 2}
+
+For this exercise, you will be making a few of plots and changing how
+they look to suit your taste. You will use a real dataset this time from
+a sockeye salmon (\emph{Oncorhynchus nerka}) population from the
+Columbia/Snake River system. This population spawns in Redfish Lake in
+Idaho, which feeds into the Salmon River which is a tributary of the
+Snake River. In order to reach the lake, the sockeye salmon must
+successfully pass through a total eight dams that have fish passage
+mechanisms in place. The Redfish Lake population is one of the most
+endangered sockeye populations in the U.S. and travels farther (1,448
+km), higher (1,996 m), and is the southernmost population of all sockeye
+populations in the world (Kline and Flagg 2014). Given this uniqueness,
+a captive breeding program was initiated in 1991 to preserve the genes
+from this population. These data came from both hatchery-raised and wild
+fish and include average female spawner weight (g), fecundity (number of
+eggs), egg size (eggs/g), and \% survival to the eyed-egg stage.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Create a new R script called \texttt{Ex2.R} and save it in the
+  \texttt{Chapter2} directory. Download the \texttt{sockeye.csv} data
+  set from GitHub and read it into R. Produce a basic summary of the
+  data and take note of the data classes, missing values (\texttt{NA}),
+  and the relative ranges for each variable.
+\item
+  Make a histogram of fish weights for only hatchery-origin fish. Set
+  \texttt{breaks\ =\ 10} so you can see the distribution more clearly.
+\item
+  Make a scatter plot of the fecundity of females as a function of their
+  body weight for wild fish only. Use whichever plotting character
+  (\texttt{pch}) and color (\texttt{col}) you wish. Change the main
+  title and axes labels to reflect what they mean. Change the x-axis
+  limits to be 600 to 3000 and the y-axis limits to be 0 to 3500.
+  (\emph{Hint: The \texttt{NAs} will not cause a problem. R will only
+  use points where there is data for both \texttt{x} and \texttt{y} and
+  ignore otherwise}).
+\item
+  Add points that do the same thing but for hatchery fish. Use a
+  different plotting character and a different color.
+\item
+  Add a legend to the plot to differentiate between the two types of
+  fish.
+\item
+  Make a multi-panel plot in a new window with box-and-whisker plots
+  that compare (1) spawner weight, (2) fecundity, and (3) egg size
+  between hatchery and wild fish. (\emph{Hint: each comparison will be
+  on its own panel}). Change the titles of each plot to reflect what you
+  are comparing.
+\item
+  Save the plot as a .png file in your working directory with a file
+  name of your choosing.
+\end{enumerate}
+
+\subsection{EXERCISE 2 BONUS}\label{exercise-2-bonus}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Make a bar plot comparing the mean survival to eyed-egg stage for each
+  type of fish (hatchery and wild). Add error bars that represent +/-
+  2SE of each mean.
+\item
+  Change the names of each bar, the main plot title, and the y-axis
+  title.
+\end{enumerate}
+
+\textbf{Reference for data} Kline, P.A. and T.A. Flagg. 2014. Putting
+the red back in Redfish Lake, 20 years of progress toward saving the
+Pacific Northwest's most endangered salmon population.
+\textbf{Fisheries}. \emph{39(11)}: 488-500.
 
 \chapter{Basic Statistics}\label{ch3}
+
+\section*{Chapter Overview}\label{chapter-overview-2}
+\addcontentsline{toc}{section}{Chapter Overview}
+
+In this chapter, you will get familiar with the basics of using R for
+statisitical analysis.
+
+\begin{itemize}
+\tightlist
+\item
+  the different parts of basic statistical models
+\item
+  how to fit and interpret the output from various linear models:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    simple linear regression models
+  \item
+    multiple regression models
+  \item
+    higher order polynomial regression models
+  \item
+    T-tests (also ANOVA)
+  \item
+    ANCOVA models
+  \item
+    Interactions
+  \end{itemize}
+\item
+  very basic model selection
+\item
+  Bonus topic: fitting non-linear regression models using nls()
+\item
+  Bonus topic: fitting custom maximum-likelihood models using
+  \texttt{optim}
+\end{itemize}
+
+R's built-in statistical modeling framework is pretty intuitive and
+comprehensive.
+
+\textbf{IMPORTANT NOTE}: If you did not attend the session corresponding
+to the Chapter \ref{ch1} material or Chapter \ref{ch2}, you are
+recommended to walk through those chapters' contents before proceeding
+to this material. This is because you will be using some of the commands
+and terminology presented previously. If you are confused about a topic,
+you can use \textbf{CTRL + F} to find previous cases where that topic
+has been discussed in this document.
+
+\section*{Before You Begin}\label{before-you-begin-1}
+\addcontentsline{toc}{section}{Before You Begin}
+
+You should create a new directory and R script for your work in this
+Chapter. Create a new R script called \texttt{Ch3.R} and save it in the
+directory \texttt{C:/Users/YOU/Documents/R-Workshop/Chapter3}. Set your
+working directory to that location. Revisit the Sections \ref{scripts}
+and \ref{working-dir} for more details on these steps.
 
 \chapter{Simulation and Randomization}\label{ch4}
 

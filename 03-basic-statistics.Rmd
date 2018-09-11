@@ -1,2 +1,30 @@
 # Basic Statistics {#ch3}
 
+```{r, include = F}
+rm(list = ls(all = T))
+knitr::opts_chunk$set(fig.align = "center")
+```
+
+## Chapter Overview{-}
+
+In this chapter, you will get familiar with the basics of using R for statisitical analysis.
+
+*  the different parts of basic statistical models
+*  how to fit and interpret the output from various linear models:
+    - simple linear regression models
+    - multiple regression models
+    - higher order polynomial regression models
+    - T-tests (also ANOVA)
+    - ANCOVA models
+    - Interactions
+*  very basic model selection
+*  Bonus topic: fitting non-linear regression models using nls()
+*  Bonus topic: fitting custom maximum-likelihood models using `optim`
+
+R's built-in statistical modeling framework is pretty intuitive and comprehensive. 
+
+**IMPORTANT NOTE**: If you did not attend the session corresponding to the Chapter \@ref(ch1) material or Chapter \@ref(ch2), you are recommended to walk through those chapters' contents before proceeding to this material. This is because you will be using some of the commands and terminology presented previously. If you are confused about a topic, you can use **CTRL + F** to find previous cases where that topic has been discussed in this document. 
+
+## Before You Begin {-}
+
+You should create a new directory and R script for your work in this Chapter. Create a new R script called `Ch3.R` and save it in the directory `C:/Users/YOU/Documents/R-Workshop/Chapter3`. Set your working directory to that location. Revisit the Sections \@ref(scripts) and \@ref(working-dir) for more details on these steps. 

@@ -14,7 +14,7 @@ In this first chapter, you will get familiar with the basics of using R. You wil
 *  how to write out data
 *  how to write your own functions
 
-## Getting Started: Install R and RStudio
+## Before You Begin: Install R and RStudio {-}
 
 First off, you will need to get R and RStudio^[While it is possible to run R on it's own, it rather clunky and you are strongly advised to use RStudio given its compactness, neat features, code tools (like syntax and parentheses highlighting). This workshop will assume you are using RStudio] onto your computer. Please see **Appendix A** for details on installing these programs on your operating system.
 
