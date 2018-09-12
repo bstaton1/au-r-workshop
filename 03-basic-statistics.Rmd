@@ -67,11 +67,16 @@ To fit a regression model using `lm`, but `x` and `y` must be continous (numeric
 fit1 = lm(fecund ~ weight, data = dat)
 ```
 
-If you run just the `fit1` object, you will see the model you ran along with the coefficient estimates of the intercept ($\beta_0$) and the slope ($\beta_1):
+If you run just the `fit1` object, you will see the model you ran along with the coefficient estimates of the intercept ($\beta_0$) and the slope ($\beta_1$):
 
 ```{r}
 fit1
 ```
+
+If $x_{i1}$ is `weight`, then the coefficients are interpretted as:
+
+*  $\beta_0$: the y-intercept (mean `fecund` at zero `weight`)
+*  $\beta_1$: the slope (change in `fecund` for one unit change in `weight`)
 
 For more information about the model fit, you can use the `summary` function:
 
@@ -90,15 +95,15 @@ abline(fit1)
 
 It fits, but not very well. It seems there are two groups: one with data points mostly above the line and one with data points mostly below the line. You'll now run a new model to get at this.
 
-## ANOVA: Categorical predictors
+## ANOVA: Categorical predictors {#anova}
 
-ANOVA models attempts to determine if the mean of different groups are different. You can fit them in the same basic `lm` framework. Notice that:
+ANOVA models attempt to determine if the means of different groups are different. You can fit them in the same basic `lm` framework. But first, notice that:
 
 ```{r}
 class(dat$type); levels(dat$type)
 ```
 
-tells you the `type` variable is a factor. It has levels of `"hatch"` and `"wild"` which indicate the origin of the adult spawning fish sampled each year. If you pass `lm` a predictor variable with a factor class, the R will automatically fit it as an ANOVA model. See Section \@ref(factors) for more details on factors. Factors have an explicit ordering of the levels. By default, this ordering happens alphabetically: if your factor has levels `"a"`, `"b"`, and `"c"`, they will be assigned the order of `1`, `2` and `3`, respectively. You can always see how R is ordering your factor:
+tells you the `type` variable is a factor. It has levels of `"hatch"` and `"wild"` which indicate the origin of the adult spawning fish sampled each year. If you pass `lm` a predictor variable with a factor class, the R will automatically fit it as an ANOVA model. See Section \@ref(factors) for more details on factors. Factors have an explicit ordering of the levels. By default, this ordering happens alphabetically: if your factor has levels `"a"`, `"b"`, and `"c"`, they will be assigned the order of `1`, `2` and `3`, respectively. You can always see how R is ordering your factor by doing something similar to this:
 
 ```{r}
 pairs = cbind(
@@ -109,7 +114,7 @@ pairs = cbind(
 head(pairs); tail(pairs)
 ```
 
-The functions `as.character` and `as.numeric` are coersion functions: they attempt to change the way something is interpretted. Notice that the level `"hatch"` is assigned the order `1` because it comes before `"wild"` alphebetically. The first level is termed the **reference level** because it is the group that all other levels are compared to when fitting a model. You can change the reference level using `dat$type_relevel = relevel(dat$type, ref = "wild")`.
+The functions `as.character` and `as.numeric` are coersion functions: they attempt to change the way something is interpretted. Notice that the level `"hatch"` is assigned the order `1` because it comes before `"wild"` alphebetically. The first level is termed the **reference level** because it is the group that all other levels are compared to when fitting a model. You can change the reference level using `dat$type_rlvl = relevel(dat$type, ref = "wild")`.
 
 You are now ready to fit the ANOVA model, which will measure the size of the difference in the mean `fecund` between different levels of the factor `type`: 
 
@@ -123,7 +128,7 @@ $$y_i=\beta_0 + \beta_1 x_{i1} + \varepsilon_i$$
 and assume that $x_{i1} = 0$ if observation $i$ is from `"hatch"` fish and $x_{i1} = 1$ if observation $i$ is from `"wild"` fish. In that case:
 
 *  $\beta_0$ (the intercept) is interpretted as the mean `fecund` for the `"hatch"` level and
-*  $\beta_1$ interpretted as the difference in mean `fecund` between the `"wild"` level and the `"hatch"` level. 
+*  $\beta_1$ is interpretted as the difference in mean `fecund` between the `"wild"` level and the `"hatch"` level. 
 
 So when you run `coef(fit2)` to extract the coefficient estimates and get:
 
@@ -131,7 +136,7 @@ So when you run `coef(fit2)` to extract the coefficient estimates and get:
 coef(fit2)
 ```
 
-you see that the mean fecundity of hatchery fish is about `r round(coef(fit2)[1], 0)` g and that the average wild fish is about `r round(coef(fit2)[2], 0)` g heavier than the average hatchery fish across all years. The fact that the p-value associated with the `typewild` coefficient when you run `summary(fit2)` is less than 0.05 indicates that there is statistical evidence that the difference in means is not zero.
+you see that the mean fecundity of hatchery fish is about `r round(coef(fit2)[1], 0)` eggs and that the average wild fish has about `r round(coef(fit2)[2], 0)` more eggs than the average hatchery fish across all years. The fact that the p-value associated with the `typewild` coefficient when you run `summary(fit2)` is less than 0.05 indicates that there is statistical evidence that the difference in means is not zero.
 
 ## ANCOVA: Continuous and categorical predictors
 
@@ -139,7 +144,7 @@ Now that you have seen that hatchery and wild fish tend to separate along the fe
 
 $$y_i=\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \varepsilon_i$$
 
-The coefficients are interpretted as:
+If $x_{i1}$ is `type` coded with 0's and 1's as in \@ref(anova) and $x_{i2}$ is `weight`, then the coefficients are interpretted as:
 
 *  $\beta_0$: the y-intercept of the `"hatch"` level (the reference level)
 *  $\beta_1$: the difference in y-intercept between the `"wild"` level and the `"hatch"` level. 
@@ -152,7 +157,7 @@ fit3 = lm(fecund ~ type + weight, data = dat)
 summary(fit3)$coef
 ```
 
-And you can plot the fit. Study these lines to make sure you know what each is doing. Use what you know about the meanings of the three coefficients to decipher the two `abline` commands.
+And you can plot the fit. Study this code to make sure you know what each is doing. Use what you know about the meanings of the three coefficients to decipher the two `abline` commands. Remember that `abline` takes takes two arguments: `a` is the intercept and `b` is the slope.
 
 ```{r}
 plot(fecund ~ weight, data = dat, col = "grey",
@@ -165,11 +170,11 @@ legend("bottom", legend = c("Hatchery", "Wild"), pch = c(1,16), lty = c(2,1),
 
 ## Interactions
 
-Above, you have included an additional predictor variable (and parameter) in your model to help explain variation in the `fecund` variable. However, you have assumed that the effect of weight on fecundity is common between hatchery and wild fish (note the parallel lines in the figure above). You may have reason to believe that the effect of weight depends on the origin of the fish, e.g., wild fish may tend to accumulate more eggs than hatchery fish for the same increase in weight. Cases where the magnitude of the effect depends on the value of another predictor variable are known as "interactions". You can run the interactive ANCOVA model like this:
+Above, you have included an additional predictor variable (and parameter) in your model to help explain variation in the `fecund` variable. However, you have assumed that the effect of weight on fecundity is common between hatchery and wild fish (note the parallel lines in the figure above). You may have reason to believe that the effect of weight depends on the origin of the fish, e.g., wild fish may tend to accumulate more eggs than hatchery fish for the same increase in weight. Cases where the magnitude of the effect depends on the value of another predictor variable are known as "interactions". You can write the interactive ANCOVA model like this:
 
 $$y_i=\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \beta_3 x_{i1} x_{i2} + \varepsilon_i$$
 
-The coefficients are interpretted as:
+If $x_{i1}$ is `type` coded with 0's and 1's as in \@ref(anova) and $x_{i2}$ is `weight`, then the coefficients are interpretted as:
 
 *  $\beta_0$: the y-intercept of the `"hatch"` level (the reference level)
 *  $\beta_1$: the difference in y-intercept between the `"wild"` level and the `"hatch"` level. 
