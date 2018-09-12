@@ -196,10 +196,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1><span class="header-section-number">Chapter 3</span> Basic Statistics</h1>
 <div id="chapter-overview-2" class="section level2 unnumbered">
 <h2>Chapter Overview</h2>
-<p>In this chapter, you will get familiar with the basics of using R for statisitical analysis.</p>
+<p>In this chapter, you will get familiar with the basics of using R for the purpose it was designed: statisitical analysis. You will learn how to:</p>
 <ul>
-<li>the different parts of basic statistical models</li>
-<li>how to fit and interpret the output from various linear models:
+<li>how to fit and interpret the output from various general linear models:
 <ul>
 <li>simple linear regression models</li>
 <li>multiple regression models</li>
@@ -210,11 +209,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li>very basic model selection</li>
 <li>basic GLMs: the logistic regression model</li>
-<li>Bonus topic: fitting non-linear regression models using nls()</li>
+<li>Bonus topic: fitting non-linear regression models using <code>nls</code></li>
 <li>Bonus topic: fitting custom maximum-likelihood models using <code>optim</code></li>
 </ul>
-<p>R’s built-in statistical modeling framework is pretty intuitive and comprehensive. R has gained lots of popularity as a statistics software and is commonly used both in academia and governmental resource agencies. I think this popularity is a result of its power, flexibility, intuitiveness, and price (free!). For many students, this chapter may be the one that is most immediately useful.</p>
-<p><strong>IMPORTANT NOTE</strong>: If you did not attend the session corresponding to the Chapter <a href="ch1.html#ch1">1</a> material or Chapter <a href="ch2.html#ch2">2</a>, you are recommended to walk through those chapters’ contents before proceeding to this material. This is because you will be using some of the commands and terminology presented previously. If you are confused about a topic, you can use <strong>CTRL + F</strong> to find previous cases where that topic has been discussed in this document.</p>
+<p>R’s built-in statistical modeling framework is pretty intuitive and comprehensive. R has gained popularity as a statistics software and is commonly used both in academia and governmental resource agencies. This popularity is likely a result of its power, flexibility, intuitive nature, and price (free!). For many students, this chapter may be the one that is most immediately useful.</p>
+<p><strong>IMPORTANT NOTE</strong>: If you did not attend the sessions corresponding to Chapters <a href="ch1.html#ch1">1</a> or <a href="ch2.html#ch2">2</a>, you are recommended to walk through the material found in those chapters before proceeding to this material. Also note that if you are confused about a topic, you can use <strong>CTRL + F</strong> to find previous cases where that topic has been discussed in this document.</p>
 </div>
 <div id="before-you-begin-1" class="section level2 unnumbered">
 <h2>Before You Begin</h2>
@@ -225,13 +224,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>This is a family of models that allows you to determine the relationship (if any) between some continuous response variable (<span class="math inline">\(y\)</span>) and some predictor variable(s) (<span class="math inline">\(x_n\)</span>) and is often written:</p>
 <p><span class="math display">\[y_i=\beta_0 + \beta_1 x_{i1} + ... + \beta_j x_{ij}+ ... + \beta_n x_{in} + \varepsilon_i; \varepsilon_i \sim N(0,\sigma)\]</span></p>
 <p>The predictor variable(s) can be either categorical (i.e., grouping variables used in ANOVA, t-test, etc.), continuous (regression), or a combination of categorical and continuous (ANCOVA). The main focus is to estimate the coefficients (<span class="math inline">\(\beta\)</span>), and in some cases it is to determine if they are “significantly” different from the value given by some null hypothesis.</p>
-<p>The model makes several assumptions about the residuals<a href="#fn21" class="footnoteRef" id="fnref21"><sup>21</sup></a> to obtain estimates of the coefficients. For reliable inference, the residuals must:</p>
+<p>The model makes several assumptions about the residuals<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> to obtain estimates of the coefficients. For reliable inference, the residuals must:</p>
 <ul>
 <li>Be independent</li>
 <li>Be normally-distributed</li>
 <li>Have constant variance across range of the x-axis</li>
 </ul>
-<p>In R, the general linear model is fitted using the <code>lm</code> function. Here’s the basic syntax is <code>lm(y ~ x, data = dat)</code><a href="#fn22" class="footnoteRef" id="fnref22"><sup>22</sup></a>; it says: “fit a model with <code>y</code> as the response variable and <code>x</code> as the sole predictor variable, look for the variables <code>x</code> and <code>y</code> in a data frame called <code>dat</code>, and store the results in a new object called <code>fit</code>”.</p>
+<p>In R, the general linear model is fitted using the <code>lm</code> function. Here’s the basic syntax is <code>lm(y ~ x, data = dat)</code><a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>; it says: “fit a model with <code>y</code> as the response variable and <code>x</code> as the sole predictor variable, look for the variables <code>x</code> and <code>y</code> in a data frame called <code>dat</code>, and store the results in a new object called <code>fit</code>”.</p>
 </div>
 <div id="simple-linear-regression" class="section level2">
 <h2><span class="header-section-number">3.2</span> Simple Linear Regression</h2>
@@ -282,7 +281,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>You can easily see the model fit by using the <code>abline</code> function. Make a new plot and add the fitted regression line:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(fecund <span class="op">~</span><span class="st"> </span>weight, <span class="dt">data =</span> dat, <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">cex =</span> <span class="fl">1.5</span>)
 <span class="kw">abline</span>(fit1)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-105-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>It fits, but not very well. It seems there are two groups: one with data points mostly above the line and one with data points mostly below the line. You’ll now run a new model to get at this.</p>
 </div>
 <div id="anova-categorical-predictors" class="section level2">
@@ -350,7 +349,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="kw">abline</span>(<span class="kw">sum</span>(<span class="kw">coef</span>(fit3)[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)]), <span class="kw">coef</span>(fit3)[<span class="dv">3</span>])
 <span class="kw">legend</span>(<span class="st">&quot;bottom&quot;</span>, <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;Hatchery&quot;</span>, <span class="st">&quot;Wild&quot;</span>), <span class="dt">pch =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">16</span>), <span class="dt">lty =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>),
        <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>, <span class="dt">pt.cex =</span> <span class="fl">1.5</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">horiz =</span> T)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-111-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="interactions" class="section level2">
 <h2><span class="header-section-number">3.5</span> Interactions</h2>
@@ -376,7 +375,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="kw">abline</span>(<span class="kw">sum</span>(<span class="kw">coef</span>(fit4)[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)]), <span class="kw">sum</span>(<span class="kw">coef</span>(fit4)[<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">4</span>)]))
 <span class="kw">legend</span>(<span class="st">&quot;bottom&quot;</span>, <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;Hatchery&quot;</span>, <span class="st">&quot;Wild&quot;</span>), <span class="dt">pch =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">16</span>), <span class="dt">lty =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>),
        <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>, <span class="dt">pt.cex =</span> <span class="fl">1.5</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">horiz =</span> T)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-113-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Based on the coefficients table:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(fit4)<span class="op">$</span>coef</code></pre></div>
 <pre><code>##                     Estimate Std. Error    t value     Pr(&gt;|t|)
@@ -388,7 +387,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="model-selection-aic" class="section level2">
 <h2><span class="header-section-number">3.6</span> Model Selection: AIC</h2>
-<p>You have now fitted four different models, each that makes different claims about how you can predict the fecundity of a given sockeye salmon at Redfish Lake. If you are interested in determining <em>which</em> of these models you should use for prediction, you need to use <strong>model selection</strong>. Model selection attempts to find the model that is likely to have the smallest out-of-sample prediction error (i.e., future predictions will be close to what actually happens). One model selection metric is the AIC<a href="#fn23" class="footnoteRef" id="fnref23"><sup>23</sup></a>. Lower AIC values mean the model should have better predictive performance. Compare the four models you fitted with AIC:</p>
+<p>You have now fitted four different models, each that makes different claims about how you can predict the fecundity of a given sockeye salmon at Redfish Lake. If you are interested in determining <em>which</em> of these models you should use for prediction, you need to use <strong>model selection</strong>. Model selection attempts to find the model that is likely to have the smallest out-of-sample prediction error (i.e., future predictions will be close to what actually happens). One model selection metric is the AIC<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a>. Lower AIC values mean the model should have better predictive performance. Compare the four models you fitted with AIC:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">AIC</span>(fit1, fit2, fit3, fit4)</code></pre></div>
 <pre><code>##      df      AIC
 ## fit1  3 568.9166
@@ -399,7 +398,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="an-example-glm-logistic-regression" class="section level2">
 <h2><span class="header-section-number">3.7</span> An Example GLM: Logistic Regression</h2>
-<p>The models you fitted above were called “general linear models”. They all made the assumption that the residuals (<span class="math inline">\(\varepsilon_i\)</span>) are normally-distributed. Often times data and analyses do not follow this assumption. For these cases you often move to the broader family of statistical models known as “generalized linear models”<a href="#fn24" class="footnoteRef" id="fnref24"><sup>24</sup></a>.</p>
+<p>The models you fitted above were called “general linear models”. They all made the assumption that the residuals (<span class="math inline">\(\varepsilon_i\)</span>) are normally-distributed. Often times data and analyses do not follow this assumption. For these cases you often move to the broader family of statistical models known as “generalized linear models”<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>.</p>
 <p>One example is in the case of <strong>binary</strong> data. Binary data have two outcomes, e.g., success/failure, lived/died, male/female, spawned/gravid, happy/sad, etc. If you wish to predict how the probability of one outcome over the other changes depending on some other variable, then you need to use the <strong>logistic regression model</strong>, which is written as:</p>
 <p><span class="math display">\[logit(p_i)=\beta_0 + \beta_1 x_{i1} + ... + \beta_j x_{ij}+ ... + \beta_n x_{in}; y_i \sim Bernoulli(p_i)\]</span></p>
 <p>Where <span class="math inline">\(p_i\)</span> is the probability that observation <span class="math inline">\(y_i\)</span> was a success (<span class="math inline">\(y_i = 1\)</span>). The <span class="math inline">\(logit(p_i)\)</span> is the <strong>link function</strong> that links the linear parameter scale to the data scale. It constrains the value of <span class="math inline">\(p_i\)</span> to be between 0 and 1 regardless of the values of the <span class="math inline">\(\beta\)</span> coefficients. The logit link function does this:</p>
@@ -441,7 +440,7 @@ p =<span class="st"> </span><span class="kw">expit</span>(<span class="kw">coef<
 
 <span class="co"># plot the relationship</span>
 <span class="kw">plot</span>(p <span class="op">~</span><span class="st"> </span>wt_seq, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">las =</span> <span class="dv">1</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-120-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-22-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Fit another model comparing the success rates between hatchery and wild fish:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit2 =<span class="st"> </span><span class="kw">glm</span>(binary <span class="op">~</span><span class="st"> </span>type, <span class="dt">data =</span> dat, <span class="dt">family =</span> binomial)
 <span class="kw">summary</span>(fit2)<span class="op">$</span>coef</code></pre></div>
@@ -474,9 +473,9 @@ p_wild =<span class="st"> </span><span class="kw">predict</span>(
 <span class="kw">lines</span>(p_hatch <span class="op">~</span><span class="st"> </span>wt_seq, <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">lty =</span> <span class="dv">2</span>)
 <span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;Hatchery&quot;</span>, <span class="st">&quot;Wild&quot;</span>),
        <span class="dt">lty =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>), <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-124-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-26-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Look for an interaction (all the code is the same except use <code>glm(binary ~ type * weight)</code> instead of <code>glm(binary ~ type + weight)</code> and change everything to <code>fit4</code> instead of <code>fit3</code>).</p>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-125-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-27-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>You may have noticed that you just did the same analysis with <code>binary</code> as the response instead of <code>fecund</code>. Perform an AIC analysis to determine which model is likely to be best for prediction:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">AIC</span>(fit1, fit2, fit3, fit4)</code></pre></div>
 <pre><code>##      df      AIC
@@ -493,11 +492,11 @@ p_wild =<span class="st"> </span><span class="kw">predict</span>(
 </div>
 <div class="footnotes">
 <hr />
-<ol start="21">
-<li id="fn21"><p>The residuals (<span class="math inline">\(\varepsilon_i\)</span>) are the difference between the data point <span class="math inline">\(y_i\)</span> and the model prediction <span class="math inline">\(\hat{y}_i\)</span>: <span class="math inline">\(\varepsilon_i=y_i-\hat{y}_i\)</span><a href="ch3.html#fnref21">↩</a></p></li>
-<li id="fn22"><p>This should look familar from Section <a href="ch2.html#box-whisker">2.4</a><a href="ch3.html#fnref22">↩</a></p></li>
-<li id="fn23"><p>Akaike’s Information Criterion. <strong>GIVE A CITATION HERE</strong><a href="ch3.html#fnref23">↩</a></p></li>
-<li id="fn24"><p>General linear models are a member of this family<a href="ch3.html#fnref24">↩</a></p></li>
+<ol start="1">
+<li id="fn1"><p>The residuals (<span class="math inline">\(\varepsilon_i\)</span>) are the difference between the data point <span class="math inline">\(y_i\)</span> and the model prediction <span class="math inline">\(\hat{y}_i\)</span>: <span class="math inline">\(\varepsilon_i=y_i-\hat{y}_i\)</span><a href="ch3.html#fnref1">↩</a></p></li>
+<li id="fn2"><p>This should look familar from Section <a href="ch2.html#box-whisker">2.4</a><a href="ch3.html#fnref2">↩</a></p></li>
+<li id="fn3"><p>Akaike’s Information Criterion. <strong>GIVE A CITATION HERE</strong><a href="ch3.html#fnref3">↩</a></p></li>
+<li id="fn4"><p>General linear models are a member of this family<a href="ch3.html#fnref4">↩</a></p></li>
 </ol>
 </div>
             </section>
