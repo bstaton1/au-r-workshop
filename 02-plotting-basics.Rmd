@@ -196,7 +196,7 @@ To add multiple bars per group, R needs a matrix like you just made.  The **colu
 
 Oftentimes, we want to add error bars to a bar graph like this. To avoid digressing too much here, creating error bars is covered as a bonus topic.
 
-## Box-and-Whisker Plots
+## Box-and-Whisker Plots {#box-whisker}
 
 Box-and-whisker plots are a great way to visualize the spread of your data. All you need to make a box-and-whisker plot is a grouping variable (a factor, revisit Section \@ref(factors) if you don't remember what these are) and some continuous (i.e., numeric) data for each level of the factor. Download the `creel.csv` data set from the GitHub repository <https://github.com/bstaton1/au-r-workshop-data/tree/master>, place it in the same directory as your R script `Ch2.R` (which is the one you should be working on right now).
 
@@ -325,7 +325,7 @@ Notice that you need to be careful about the order of how you specify which `lty
 
 There are two main ways to save plots.  First is a quick-and-dirty method that saves the plots, but they are not high-resolution. The second method produces cleaner-looking high-resolution plots.
 
-## First Method (Click Save)
+### First Method (Click Save)
 
 *  If your plot is in the RStudio built-in graphics device: Right above the plot, click _Export > Save as Image_.  Change the name, dimensions and file type.
 
@@ -333,7 +333,7 @@ There are two main ways to save plots.  First is a quick-and-dirty method that s
 
 All plots will be saved in the working directory by default. You can also just copy the plot to your clipboard (File > Copy to the clipboard > bitmap) and paste it where you want.
 
-## Second Method (Use a function to dump in a new file)
+### Second Method (Use a function to dump in a new file)
 
 If you are producing plots for a final report or publication, you want the output to be as clean-looking as possible. You can save high-resolution plots through R by using the following steps:
 

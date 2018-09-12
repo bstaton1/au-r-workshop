@@ -18,13 +18,351 @@ In this chapter, you will get familiar with the basics of using R for statisitic
     - ANCOVA models
     - Interactions
 *  very basic model selection
+*  basic GLMs: the logistic regression model
 *  Bonus topic: fitting non-linear regression models using nls()
 *  Bonus topic: fitting custom maximum-likelihood models using `optim`
 
-R's built-in statistical modeling framework is pretty intuitive and comprehensive. 
+R's built-in statistical modeling framework is pretty intuitive and comprehensive. R has gained lots of popularity as a statistics software and is commonly used both in academia and governmental resource agencies.  I think this popularity is a result of its power, flexibility, intuitiveness, and price (free!). For many students, this chapter may be the one that is most immediately useful. 
 
 **IMPORTANT NOTE**: If you did not attend the session corresponding to the Chapter \@ref(ch1) material or Chapter \@ref(ch2), you are recommended to walk through those chapters' contents before proceeding to this material. This is because you will be using some of the commands and terminology presented previously. If you are confused about a topic, you can use **CTRL + F** to find previous cases where that topic has been discussed in this document. 
 
 ## Before You Begin {-}
 
 You should create a new directory and R script for your work in this Chapter. Create a new R script called `Ch3.R` and save it in the directory `C:/Users/YOU/Documents/R-Workshop/Chapter3`. Set your working directory to that location. Revisit the Sections \@ref(scripts) and \@ref(working-dir) for more details on these steps. 
+
+## Review: The General Linear Model
+
+This is a family of models that allows you to determine the relationship (if any) between some continuous response variable ($y$) and some predictor variable(s) ($x_n$) and is often written:
+
+$$y_i=\beta_0 + \beta_1 x_{i1} + ... + \beta_j x_{ij}+ ... + \beta_n x_{in} + \varepsilon_i; \varepsilon_i \sim N(0,\sigma)$$
+
+The predictor variable(s) can be either categorical (i.e., grouping variables used in ANOVA, t-test, etc.), continuous (regression), or a combination of categorical and continuous (ANCOVA). The main focus is to estimate the coefficients ($\beta$), and in some cases it is to determine if they are "significantly" different from the value given by some null hypothesis.
+
+The model makes several assumptions about the residuals^[The residuals ($\varepsilon_i$) are the difference between the data point $y_i$ and the model prediction $\hat{y}_i$: $\varepsilon_i=y_i-\hat{y}_i$] to obtain estimates of the coefficients. For reliable inference, the residuals must:
+
+  * Be independent
+  * Be normally-distributed
+  * Have constant variance across range of the x-axis
+
+In R, the general linear model is fitted using the `lm` function. Here's the basic syntax is `lm(y ~ x, data = dat)`^[This should look familar from Section \@ref(box-whisker)]; it says: "fit a model with `y` as the response variable and `x` as the sole predictor variable, look for the variables `x` and `y` in a data frame called `dat`, and store the results in a new object called `fit`". 
+
+## Simple Linear Regression
+
+Download the data set `sockeye.csv` from GitHub and place it in your working directory. This is the same data set you used in Exercise 2, see that section for more details on the different variables.
+
+Read these data into R:
+
+```{r, eval = F}
+dat = read.csv("sockeye.csv")
+head(dat)
+```
+
+```{r, echo = F}
+dat = read.csv("Data/sockeye.csv")
+head(dat)
+```
+
+To fit a regression model using `lm`, but `x` and `y` must be continous (numeric) variables. In the data set `dat`, two such variables are the `weight` and `fecund`. Fit a regression model where you link the average fecundity of an individual to the average weight of an individual by treating years as replicate data points. Ignore for now that the fish come from two sources: hatchery and wild origin. 
+
+```{r}
+fit1 = lm(fecund ~ weight, data = dat)
+```
+
+If you run just the `fit1` object, you will see the model you ran along with the coefficient estimates of the intercept ($\beta_0$) and the slope ($\beta_1):
+
+```{r}
+fit1
+```
+
+For more information about the model fit, you can use the `summary` function:
+
+```{r}
+summary(fit1)
+```
+
+Again the coefficient estimates are shown, but now you see the uncertainty on the parameter estimates (standard errors), the test statistic, and the p-value testing the null hypothesis that each coefficient has a zero value. Here you can see that the p-value does not support rejection of the null hypothesis that the slope is zero. You can see the residual standard error (variability of data around the line and the estimate of $\sigma$), the $R^2$ value (the proportion of variation in `fecund` explained by variation in `weight`), and the p-value of the overall model.
+
+You can easily see the model fit by using the `abline` function. Make a new plot and add the fitted regression line:
+
+```{r}
+plot(fecund ~ weight, data = dat, col = "grey", pch = 16, cex = 1.5)
+abline(fit1)
+```
+
+It fits, but not very well. It seems there are two groups: one with data points mostly above the line and one with data points mostly below the line. You'll now run a new model to get at this.
+
+## ANOVA: Categorical predictors
+
+ANOVA models attempts to determine if the mean of different groups are different. You can fit them in the same basic `lm` framework. Notice that:
+
+```{r}
+class(dat$type); levels(dat$type)
+```
+
+tells you the `type` variable is a factor. It has levels of `"hatch"` and `"wild"` which indicate the origin of the adult spawning fish sampled each year. If you pass `lm` a predictor variable with a factor class, the R will automatically fit it as an ANOVA model. See Section \@ref(factors) for more details on factors. Factors have an explicit ordering of the levels. By default, this ordering happens alphabetically: if your factor has levels `"a"`, `"b"`, and `"c"`, they will be assigned the order of `1`, `2` and `3`, respectively. You can always see how R is ordering your factor:
+
+```{r}
+pairs = cbind(
+  as.character(dat$type),
+  as.numeric(dat$type)
+)
+
+head(pairs); tail(pairs)
+```
+
+The functions `as.character` and `as.numeric` are coersion functions: they attempt to change the way something is interpretted. Notice that the level `"hatch"` is assigned the order `1` because it comes before `"wild"` alphebetically. The first level is termed the **reference level** because it is the group that all other levels are compared to when fitting a model. You can change the reference level using `dat$type_relevel = relevel(dat$type, ref = "wild")`.
+
+You are now ready to fit the ANOVA model, which will measure the size of the difference in the mean `fecund` between different levels of the factor `type`: 
+
+```{r}
+fit2 = lm(fecund ~ type, data = dat)
+```
+
+Think of this model as being written as:
+
+$$y_i=\beta_0 + \beta_1 x_{i1} + \varepsilon_i$$
+and assume that $x_{i1} = 0$ if observation $i$ is from `"hatch"` fish and $x_{i1} = 1$ if observation $i$ is from `"wild"` fish. In that case:
+
+*  $\beta_0$ (the intercept) is interpretted as the mean `fecund` for the `"hatch"` level and
+*  $\beta_1$ interpretted as the difference in mean `fecund` between the `"wild"` level and the `"hatch"` level. 
+
+So when you run `coef(fit2)` to extract the coefficient estimates and get:
+
+```{r, echo = F}
+coef(fit2)
+```
+
+you see that the mean fecundity of hatchery fish is about `r round(coef(fit2)[1], 0)` g and that the average wild fish is about `r round(coef(fit2)[2], 0)` g heavier than the average hatchery fish across all years. The fact that the p-value associated with the `typewild` coefficient when you run `summary(fit2)` is less than 0.05 indicates that there is statistical evidence that the difference in means is not zero.
+
+## ANCOVA: Continuous and categorical predictors
+
+Now that you have seen that hatchery and wild fish tend to separate along the fecundity axis (as evidenced by the ANOVA results above), you would like to include this in your original regression model. You will fit two lines within the same model: one for hatchery fish and one for wild fish. This model is called an ANCOVA model and looks like this:
+
+$$y_i=\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \varepsilon_i$$
+
+The coefficients are interpretted as:
+
+*  $\beta_0$: the y-intercept of the `"hatch"` level (the reference level)
+*  $\beta_1$: the difference in y-intercept between the `"wild"` level and the `"hatch"` level. 
+*  $\beta_2$: the slope of both lines (this model assumes the lines have common slopes, i.e., that the lines are parallel)
+
+You can fit this model and extract the coefficents table from the summary:
+
+```{r}
+fit3 = lm(fecund ~ type + weight, data = dat)
+summary(fit3)$coef
+```
+
+And you can plot the fit. Study these lines to make sure you know what each is doing. Use what you know about the meanings of the three coefficients to decipher the two `abline` commands.
+
+```{r}
+plot(fecund ~ weight, data = dat, col = "grey",
+     pch = ifelse(dat$type == "hatch", 1, 16), cex = 1.5)
+abline(coef(fit3)[c(1,3)], lty = 2)
+abline(sum(coef(fit3)[c(1,2)]), coef(fit3)[3])
+legend("bottom", legend = c("Hatchery", "Wild"), pch = c(1,16), lty = c(2,1),
+       col = "grey", pt.cex = 1.5, bty = "n", horiz = T)
+```
+
+## Interactions
+
+Above, you have included an additional predictor variable (and parameter) in your model to help explain variation in the `fecund` variable. However, you have assumed that the effect of weight on fecundity is common between hatchery and wild fish (note the parallel lines in the figure above). You may have reason to believe that the effect of weight depends on the origin of the fish, e.g., wild fish may tend to accumulate more eggs than hatchery fish for the same increase in weight. Cases where the magnitude of the effect depends on the value of another predictor variable are known as "interactions". You can run the interactive ANCOVA model like this:
+
+$$y_i=\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \beta_3 x_{i1} x_{i2} + \varepsilon_i$$
+
+The coefficients are interpretted as:
+
+*  $\beta_0$: the y-intercept of the `"hatch"` level (the reference level)
+*  $\beta_1$: the difference in y-intercept between the `"wild"` level and the `"hatch"` level. 
+*  $\beta_2$: the slope of the `"hatch"` level
+*  $\beta_3$: the difference in slope between the `"wild"` level and the `"hatch"` level.
+
+You can fit this model:
+
+```{r}
+fit4 = lm(fecund ~ type + weight + type:weight, data = dat)
+
+# or
+# fit4 = lm(fecund ~ type * weight, data = dat)
+```
+
+The first option above is more clear in its statement, but both do the same thing. 
+
+You can plot the fit. Study these lines to make sure you know what each is doing. Use what you know about the meanings of the four coefficients to decipher the two `abline` commands.
+
+```{r}
+plot(fecund ~ weight, data = dat, col = "grey",
+     pch = ifelse(dat$type == "hatch", 1, 16), cex = 1.5)
+abline(coef(fit4)[c(1,3)], lty = 2)
+abline(sum(coef(fit4)[c(1,2)]), sum(coef(fit4)[c(3,4)]))
+legend("bottom", legend = c("Hatchery", "Wild"), pch = c(1,16), lty = c(2,1),
+       col = "grey", pt.cex = 1.5, bty = "n", horiz = T)
+```
+
+Based on the coefficients table:
+
+```{r}
+summary(fit4)$coef
+```
+
+It seems that fish of the different origins have approximately the same intercept, but that their slopes are quite different. 
+
+## Model Selection: AIC
+
+You have now fitted four different models, each that makes different claims about how you can predict the fecundity of a given sockeye salmon at Redfish Lake. If you are interested in determining _which_ of these models you should use for prediction, you need to use **model selection**. Model selection attempts to find the model that is likely to have the smallest out-of-sample prediction error (i.e., future predictions will be close to what actually happens). One model selection metric is the AIC^[Akaike's Information Criterion. **GIVE A CITATION HERE**]. Lower AIC values mean the model should have better predictive performance. Compare the four models you fitted with AIC:
+
+```{r}
+AIC(fit1, fit2, fit3, fit4)
+```
+
+In general, AIC values that are different by more than 2 units are interpretted as having importantly different predictive performance. Based on this very quick-and-dirty analysis, it seems that in predicting future fecundity, you would want to use the interactive ANCOVA model.
+
+## An Example GLM: Logistic Regression
+
+The models you fitted above were called "general linear models". They all made the assumption that the residuals ($\varepsilon_i$) are normally-distributed. Often times data and analyses do not follow this assumption. For these cases you often move to the broader family of statistical models known as "generalized linear models"^[General linear models are a member of this family].
+
+One example is in the case of **binary** data. Binary data have two outcomes, e.g., success/failure, lived/died, male/female, spawned/gravid, happy/sad, etc. If you wish to predict how the probability of one outcome over the other changes depending on some other variable, then you need to use the **logistic regression model**, which is written as:
+
+$$logit(p_i)=\beta_0 + \beta_1 x_{i1} + ... + \beta_j x_{ij}+ ... + \beta_n x_{in}; y_i \sim Bernoulli(p_i)$$
+
+Where $p_i$ is the probability that observation $y_i$ was a success ($y_i = 1$). The $logit(p_i)$ is the **link function** that links the linear parameter scale to the data scale. It constrains the value of $p_i$ to be between 0 and 1 regardless of the values of the $\beta$ coefficients. The logit link function does this:
+
+$$logit(p_i) = log\left(\frac{p_i}{1-p_i}\right)$$
+
+which is the natural logarithm of the **odds**, a measure of how likely the event is to happen relative to it not happening. Make an R function to calculate the logit transformation:
+
+```{r}
+logit = function(p) {
+  log(p/(1 - p))
+}
+```
+
+If you have the result of `logit(p[i])` (which is given by the $\beta$ coefficients and the $x_ij$ data) and need to get `p[i]`, you can apply the inverse logit function:
+
+$$expit(lp_i)=\frac{e^{lp_i}}{1 + e^{lp_i}}$$
+
+Make a function for the inverse logit transformation:
+
+```{r}
+expit = function(lp) {  # lp stands for logit(p)
+  exp(lp)/(1 + exp(lp))
+}
+```
+
+Because of the logit link function, the coefficients have different interpretations than in the previous models you've fitted in this chapter: they are expressed in terms of log odds.
+
+Fit a logistic regression model to the sockeye salmon data. None of the variables of interest are binary, but you can create one. Look at the variable `dat$survival`. This is the average % survival of all eggs laid that make it to the "eye-egg" stage. Create a new variable `binary` which takes on a 0 if `dat$survival` is less than 70% and a 1 otherwise:
+
+```{r}
+dat$binary = ifelse(dat$survival < 70, 0, 1)
+```
+
+This will be your response variable and your model will predict the probability that it is a 1. 
+
+A basic model would have just `weight` as the predictor variable:
+
+```{r}
+fit1 = glm(binary ~ weight, data = dat, family = binomial)
+summary(fit1)$coef
+```
+
+The coefficients are interpretted as:
+
+*  $\beta_0$: the log odds of success for a fish with zero weight (which is not all that important). $e^{\beta_0}$ is the odds of success for fish with zero weight, and $expit(e^{\beta_0})$ is the probability of success forr fish with zero weight. Remember "success" is defined as having at least 70% egg survival to the stage of interest.
+
+*  $\beta_1$: the additive effect of fish weight on the log odds of success. $e^{\beta_1}$ is interpretted as the ratio of the odds at two consective weights (e.g., 1500 and 1501). Claims about $e^{\beta_1}$ are made as "for every one gram increase in weight, success became $e^{\beta_1}$ times as likely to happen".
+
+* You can predict the probability of success any weight using $expit(\beta_0 + \beta_1 weight)$
+
+You can plot the fitted model:
+
+```{r}
+# create a sequence of weights to predict at
+wt_seq = seq(min(dat$weight, na.rm = T),
+             max(dat$weight, na.rm = t),
+             length = 100)
+
+# extract the coefficients and get p
+p = expit(coef(fit1)[1] + coef(fit1)[2] * wt_seq)
+
+# plot the relationship
+plot(p ~ wt_seq, type = "l", lwd = 3, ylim = c(0,1), las = 1)
+```
+
+Fit another model comparing the success rates between hatchery and wild fish:
+
+```{r}
+fit2 = glm(binary ~ type, data = dat, family = binomial)
+summary(fit2)$coef
+```
+
+An easier way to obtain the predicted probability is by using the `predict` function:
+
+```{r}
+predict(fit2,
+        newdata = data.frame(type = c("hatch", "wild")),
+        type = "response")
+```
+
+This plugs in the two possible values of the predictor variable and asks for the fitted probabilities.
+
+Incorporate the origin type into your original model:
+
+```{r}
+fit3 = glm(binary ~ type + weight, data = dat)
+```
+
+and obtain/plot the fitted probabilities for each group:
+
+```{r}
+p_hatch = predict(
+  fit3, newdata = data.frame(type = "hatch", weight = wt_seq),
+  type = "response"
+)
+p_wild = predict(
+  fit3, newdata = data.frame(type = "wild", weight = wt_seq),
+  type = "response"
+)
+
+plot(p_wild ~ wt_seq, type = "l", lwd = 3, lty = 1,
+     ylim = c(0,1), las =1,
+     xlab = "Weight (g)", ylab = "Pr(>70% Egg Survival)"
+     )
+lines(p_hatch ~ wt_seq, lwd = 3, lty = 2)
+legend("topright", legend = c("Hatchery", "Wild"),
+       lty = c(2,1), lwd = 3, bty = "n")
+```
+
+Look for an interaction (all the code is the same except use `glm(binary ~ type * weight)` instead of `glm(binary ~ type + weight)` and change everything to `fit4` instead of `fit3`). 
+
+```{r, echo = F}
+fit4 = glm(binary ~ type + weight, data = dat, family = binomial)
+p_hatch = predict(
+  fit4, newdata = data.frame(type = "hatch", weight = wt_seq),
+  type = "response"
+)
+p_wild = predict(
+  fit4, newdata = data.frame(type = "wild", weight = wt_seq),
+  type = "response"
+)
+
+plot(p_wild ~ wt_seq, type = "l", lwd = 3, lty = 1,
+     ylim = c(0,1), las =1,
+     xlab = "Weight (g)", ylab = "Pr(>70% Egg Survival)"
+     )
+lines(p_hatch ~ wt_seq, lwd = 3, lty = 2)
+legend("topright", legend = c("Hatchery", "Wild"),
+       lty = c(2,1), lwd = 3, bty = "n")
+```
+
+You may have noticed that you just did the same analysis with `binary` as the response instead of `fecund`. Perform an AIC analysis to determine which model is likely to be best for prediction:
+
+```{r}
+AIC(fit1, fit2, fit3, fit4)
+```
+
+Oddly enough, the two best models are the simplest one and the most complex one, with `fit1` being the best, but not by a large margin.
+
+## Probability Distributions
+
+
