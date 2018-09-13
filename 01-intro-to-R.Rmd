@@ -6,21 +6,31 @@
 
 In this first chapter, you will get familiar with the basics of using R. You will learn:
 
-*  the use of R as a basic calculator
+*  how to use R as a basic calculator
 *  some basic object types
 *  some basic data classes
 *  some basic data structures
 *  how to read in data
+*  how to produce basic data summaries
 *  how to write out data
 *  how to write your own functions
 
 ## Before You Begin: Install R and RStudio {-}
 
-First off, you will need to get R and RStudio^[While it is possible to run R on it's own, it rather clunky and you are strongly advised to use RStudio given its compactness, neat features, code tools (like syntax and parentheses highlighting). This workshop will assume you are using RStudio] onto your computer. Please see **Appendix A** for details on installing these programs on your operating system.
+First off, you will need to get R and RStudio^[While it is possible to run R on it's own, it rather clunky and you are strongly advised to use RStudio given its compactness, neat features, code tools (like syntax and parentheses highlighting). This workshop will assume you are using RStudio] onto your computer. Go [here](https://cran.rstudio.com/) to get R and [here](https://www.rstudio.com/products/rstudio/download/) to get RStudio Desktop. Download the appropriate installation file for your operating system and run that file. All default settings should be fine. 
 
 ## The R Studio Interface
 
-Once you open up R Studio for the first time, you will see three panes: the left hand side is the **console** where results from executed commands are printed, and the two panes on the right are for additional information to help you code more efficiently - don't worry too much about what these are at the moment. For now, focus your attention on the console.
+Once you open up RStudio for the first time, you will see three panes: the left hand side is the **console** where results from executed commands are printed, and the two panes on the right are for additional information to help you code more efficiently - don't worry too much about what these are at the moment. For now, focus your attention on the console.
+
+As a matter of personal preference, you are recommended to configure a few settings. Go to _Tools > Global Options_, and in the section listed "General":
+
+*  Make sure “Restore .RData into workspace at startup” is _unchecked_
+*  Make sure “Save workspace to .RData on exit” is set to _Never_
+*  Make sure “Always save history (even when not saving .RData)” is _unchecked_
+
+These settings will prevent you from getting a bunch of useless files and dialog boxes everytime you open and close R.
+
 
 ### Write Some Simple Code
 
@@ -58,6 +68,17 @@ You can use your objects together to make a new object:
 ```{r}
 z = y - x
 ```
+
+**Here are some things to note about object names:**
+
+*  Object names can contain any of the following:
+    - letters
+    - numbers
+    - the `.` or `_` symbols
+*  Object names must start with a letter, not a number or symbol and cannot contain spaces
+*  As a general rule, avoid naming your objects things that already have names in R, e.g., `data`, `mean`, `sum`, `sd`, etc.
+*  Capitalization matters: `A` and `a` are two different objects
+
 
 ## Saving Your Code: Scripts {#scripts}
 
@@ -221,9 +242,9 @@ That looks weird, huh? A factor has levels, with each level being a subcategory 
 levels(df1$pond)
 ```
 
-Additionally, factor levels have an assigned order (even if the levels are totally nominal), which will become important in Chapter \@ref(ch3) when you learn how to fit linear models to groups of data, in which one level is the "reference" group that all other groups are compared to. 
+Additionally, factor levels have an assigned order (even if the levels are totally nominal), which will become important in Chapter \@ref(ch3) when you learn how to fit linear models to groups of data, in which one level is the "reference" group that all other groups are compared to (see Section \@ref(anova) for more details). 
 
-If you're running into errors about R expecting character vectors, it may be because they are actually stored as factors. When you make a data frame, you'll often have the option to turn off the automatic factor coersion. For example:
+If you run into errors about R expecting character vectors, it may be because they are actually stored as factors. When you make a data frame, you'll often have the option to turn off the automatic factor coersion. For example:
 
 ```{r, eval = F}
 data.frame(month, day, year, number, pond, stringsAsFactors = F)
@@ -248,9 +269,9 @@ You could do the same calculation to each element (e.g., divide each element by 
 dm/2
 ```
 
-## Data Queries/Subsets/Retrievals {#sub}
+## Data Subsets/Queries {#sub}
 
-This perhaps the most important and versatile skills to know in R. So you have an object with data in it and you want to use it for analysis. But you don't want the whole dataset. You want to use just a few rows or just a few columns, or perhaps you need just a single element from a vector. This section is devoted to ways you can extract certain parts of a data object (the terms **query** and **subset** are often used interchangeably to describe this task). There are three main methods:
+This perhaps the most important and versatile skills to know in R. So you have an object with data in it and you want to use it for analysis. But you don't want the whole dataset: just a few rows or just a few columns, or perhaps you need just a single element from a vector. This section is devoted to ways you can extract certain parts of a data object (the terms **query** and **subset** are often used interchangeably to describe this task). There are three main methods:
 
 1.  **By Index** -- This method allows you to pull out specific rows/columns by their location in an object. However, you must know exactly where in the object the desired data are. An **index** is a location of a element in a data object, like the element position or the position of a specific row or column. To subset by index, you specify the object, then what rows, then what columns. The syntax for subsetting a vector by index is `vector[element]` and for a matrix it is `matrix[row,column]`. Here are some examples
 
@@ -300,7 +321,7 @@ df1$dm = df1$day + df1$month; df1
 
 ## EXERCISE 1A {-}
 
-Take a break to apply what you've learned so far. In this exercise, you'll be using what you learned about creating objects and the differences between different data classes. You will be entering this data frame into R by hand and doing some basic data subsets.
+Take a break to apply what you've learned so far to enter this data frame into R by hand and do some basic data subsets.
 
 ```{r, echo = F, results = "asis"}
 Lake = c("Big", "Small", "Square", "Circle")
@@ -311,20 +332,13 @@ Fish = c(643, 203, 109, 15)
 pander::pandoc.table(data.frame(Lake, Area, Time, Fish))
 ```
 
-1.	Create a new file called `Ex_1A.R`. Set the working directory to the folder containing `Ex_1A.R`.
-
+1.	Create a new file in your working directory called `Ex_1A.R`.
 2.	Enter these data into vectors. Call the vectors whatever you would like. Should you enter the data as vectors by rows, or by columns? (_Hint: remember the properties of vectors_).
-
 3.	Combine your vectors into a data frame. Why should you use a data frame instead of a matrix?
-
 4.	Subset all of the data from Small Lake.
-
 5.	Subset the area for all of the lakes.
-
 6.	Subset the number of fish for Big and Square lakes.
-
 7.	You realize that you sampled 209 fish at Square Lake, not 109. Fix the mistake. There are two ways to do this, can you think of them both? Which do you think is better?
-
 8.	Save your script. Close R and re-open your script to see that it was saved.
 
 ## Read External Data Files {#read}

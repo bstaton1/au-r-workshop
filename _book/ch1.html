@@ -119,7 +119,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="ch1.html"><a href="ch1.html#factors"><i class="fa fa-check"></i><b>1.5</b> Factors</a></li>
 <li class="chapter" data-level="1.6" data-path="ch1.html"><a href="ch1.html#vector-math"><i class="fa fa-check"></i><b>1.6</b> Vector Math</a></li>
-<li class="chapter" data-level="1.7" data-path="ch1.html"><a href="ch1.html#sub"><i class="fa fa-check"></i><b>1.7</b> Data Queries/Subsets/Retrievals</a></li>
+<li class="chapter" data-level="1.7" data-path="ch1.html"><a href="ch1.html#sub"><i class="fa fa-check"></i><b>1.7</b> Data Subsets/Queries</a></li>
 <li class="chapter" data-level="" data-path="ch1.html"><a href="ch1.html#exercise-1a"><i class="fa fa-check"></i>EXERCISE 1A</a></li>
 <li class="chapter" data-level="1.8" data-path="ch1.html"><a href="ch1.html#read"><i class="fa fa-check"></i><b>1.8</b> Read External Data Files</a></li>
 <li class="chapter" data-level="1.9" data-path="ch1.html"><a href="ch1.html#explore-the-data-set"><i class="fa fa-check"></i><b>1.9</b> Explore the Data Set</a></li>
@@ -201,22 +201,30 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2>Chapter Overview</h2>
 <p>In this first chapter, you will get familiar with the basics of using R. You will learn:</p>
 <ul>
-<li>the use of R as a basic calculator</li>
+<li>how to use R as a basic calculator</li>
 <li>some basic object types</li>
 <li>some basic data classes</li>
 <li>some basic data structures</li>
 <li>how to read in data</li>
+<li>how to produce basic data summaries</li>
 <li>how to write out data</li>
 <li>how to write your own functions</li>
 </ul>
 </div>
 <div id="before-you-begin-install-r-and-rstudio" class="section level2 unnumbered">
 <h2>Before You Begin: Install R and RStudio</h2>
-<p>First off, you will need to get R and RStudio<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> onto your computer. Please see <strong>Appendix A</strong> for details on installing these programs on your operating system.</p>
+<p>First off, you will need to get R and RStudio<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> onto your computer. Go <a href="https://cran.rstudio.com/">here</a> to get R and <a href="https://www.rstudio.com/products/rstudio/download/">here</a> to get RStudio Desktop. Download the appropriate installation file for your operating system and run that file. All default settings should be fine.</p>
 </div>
 <div id="the-r-studio-interface" class="section level2">
 <h2><span class="header-section-number">1.1</span> The R Studio Interface</h2>
-<p>Once you open up R Studio for the first time, you will see three panes: the left hand side is the <strong>console</strong> where results from executed commands are printed, and the two panes on the right are for additional information to help you code more efficiently - don’t worry too much about what these are at the moment. For now, focus your attention on the console.</p>
+<p>Once you open up RStudio for the first time, you will see three panes: the left hand side is the <strong>console</strong> where results from executed commands are printed, and the two panes on the right are for additional information to help you code more efficiently - don’t worry too much about what these are at the moment. For now, focus your attention on the console.</p>
+<p>As a matter of personal preference, you are recommended to configure a few settings. Go to <em>Tools &gt; Global Options</em>, and in the section listed “General”:</p>
+<ul>
+<li>Make sure “Restore .RData into workspace at startup” is <em>unchecked</em></li>
+<li>Make sure “Save workspace to .RData on exit” is set to <em>Never</em></li>
+<li>Make sure “Always save history (even when not saving .RData)” is <em>unchecked</em></li>
+</ul>
+<p>These settings will prevent you from getting a bunch of useless files and dialog boxes everytime you open and close R.</p>
 <div id="write-some-simple-code" class="section level3">
 <h3><span class="header-section-number">1.1.1</span> Write Some Simple Code</h3>
 <p>To start off, you will just use R as a calculator. Type these commands (not the lines with <code>##</code>, those are output<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>) one at a time and hit <strong>CTRL + ENTER</strong> to run it. The spaces don’t matter at all, they are used here for clairity and for styling.<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a></p>
@@ -235,6 +243,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>You can highlight smaller sections of a line to run as well. For example after creating <code>y</code> above, press the <strong>up arrow</strong> to see the line you just ran, highlight just the <code>y</code>, and press <strong>CTRL + ENTER</strong>. From this point forward, the verb “run” means execute some code using <strong>CTRL + ENTER</strong>.</p>
 <p>You can use your objects together to make a new object:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">z =<span class="st"> </span>y <span class="op">-</span><span class="st"> </span>x</code></pre></div>
+<p><strong>Here are some things to note about object names:</strong></p>
+<ul>
+<li>Object names can contain any of the following:
+<ul>
+<li>letters</li>
+<li>numbers</li>
+<li>the <code>.</code> or <code>_</code> symbols</li>
+</ul></li>
+<li>Object names must start with a letter, not a number or symbol and cannot contain spaces</li>
+<li>As a general rule, avoid naming your objects things that already have names in R, e.g., <code>data</code>, <code>mean</code>, <code>sum</code>, <code>sd</code>, etc.</li>
+<li>Capitalization matters: <code>A</code> and <code>a</code> are two different objects</li>
+</ul>
 </div>
 </div>
 <div id="scripts" class="section level2">
@@ -370,8 +390,8 @@ m2 =<span class="st"> </span><span class="kw">rbind</span>(month, day, year, num
 <p>That looks weird, huh? A factor has levels, with each level being a subcategory of the factor. You can see the unique levels of your factor by running:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">levels</span>(df1<span class="op">$</span>pond)</code></pre></div>
 <pre><code>## [1] &quot;F11&quot; &quot;S11&quot; &quot;S28&quot; &quot;S30&quot; &quot;S8&quot;</code></pre>
-<p>Additionally, factor levels have an assigned order (even if the levels are totally nominal), which will become important in Chapter <a href="ch3.html#ch3">3</a> when you learn how to fit linear models to groups of data, in which one level is the “reference” group that all other groups are compared to.</p>
-<p>If you’re running into errors about R expecting character vectors, it may be because they are actually stored as factors. When you make a data frame, you’ll often have the option to turn off the automatic factor coersion. For example:</p>
+<p>Additionally, factor levels have an assigned order (even if the levels are totally nominal), which will become important in Chapter <a href="ch3.html#ch3">3</a> when you learn how to fit linear models to groups of data, in which one level is the “reference” group that all other groups are compared to (see Section <a href="ch3.html#anova">3.3</a> for more details).</p>
+<p>If you run into errors about R expecting character vectors, it may be because they are actually stored as factors. When you make a data frame, you’ll often have the option to turn off the automatic factor coersion. For example:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data.frame</span>(month, day, year, number, pond, <span class="dt">stringsAsFactors =</span> F)
 <span class="kw">read.csv</span>(<span class="st">&quot;streams.csv&quot;</span>, <span class="dt">stringsAsFactors =</span> F)  <span class="co"># see below for details on read.csv</span></code></pre></div>
 <p>will result in character vectors remaining that way as opposed to being coerced to factors. This can be preferable if you are doing many string manipulations, as character vectors are often easier to work with than factors.</p>
@@ -387,8 +407,8 @@ m2 =<span class="st"> </span><span class="kw">rbind</span>(month, day, year, num
 <pre><code>## [1] 1.5 3.0 4.5 6.0 7.5</code></pre>
 </div>
 <div id="sub" class="section level2">
-<h2><span class="header-section-number">1.7</span> Data Queries/Subsets/Retrievals</h2>
-<p>This perhaps the most important and versatile skills to know in R. So you have an object with data in it and you want to use it for analysis. But you don’t want the whole dataset. You want to use just a few rows or just a few columns, or perhaps you need just a single element from a vector. This section is devoted to ways you can extract certain parts of a data object (the terms <strong>query</strong> and <strong>subset</strong> are often used interchangeably to describe this task). There are three main methods:</p>
+<h2><span class="header-section-number">1.7</span> Data Subsets/Queries</h2>
+<p>This perhaps the most important and versatile skills to know in R. So you have an object with data in it and you want to use it for analysis. But you don’t want the whole dataset: just a few rows or just a few columns, or perhaps you need just a single element from a vector. This section is devoted to ways you can extract certain parts of a data object (the terms <strong>query</strong> and <strong>subset</strong> are often used interchangeably to describe this task). There are three main methods:</p>
 <ol style="list-style-type: decimal">
 <li><strong>By Index</strong> – This method allows you to pull out specific rows/columns by their location in an object. However, you must know exactly where in the object the desired data are. An <strong>index</strong> is a location of a element in a data object, like the element position or the position of a specific row or column. To subset by index, you specify the object, then what rows, then what columns. The syntax for subsetting a vector by index is <code>vector[element]</code> and for a matrix it is <code>matrix[row,column]</code>. Here are some examples</li>
 </ol>
@@ -453,7 +473,7 @@ df1[,<span class="st">&quot;year&quot;</span>]</code></pre></div>
 </div>
 <div id="exercise-1a" class="section level2 unnumbered">
 <h2>EXERCISE 1A</h2>
-<p>Take a break to apply what you’ve learned so far. In this exercise, you’ll be using what you learned about creating objects and the differences between different data classes. You will be entering this data frame into R by hand and doing some basic data subsets.</p>
+<p>Take a break to apply what you’ve learned so far to enter this data frame into R by hand and do some basic data subsets.</p>
 <table style="width:42%;">
 <colgroup>
 <col width="12%" />
@@ -497,14 +517,14 @@ df1[,<span class="st">&quot;year&quot;</span>]</code></pre></div>
 </tbody>
 </table>
 <ol style="list-style-type: decimal">
-<li><p>Create a new file called <code>Ex_1A.R</code>. Set the working directory to the folder containing <code>Ex_1A.R</code>.</p></li>
-<li><p>Enter these data into vectors. Call the vectors whatever you would like. Should you enter the data as vectors by rows, or by columns? (<em>Hint: remember the properties of vectors</em>).</p></li>
-<li><p>Combine your vectors into a data frame. Why should you use a data frame instead of a matrix?</p></li>
-<li><p>Subset all of the data from Small Lake.</p></li>
-<li><p>Subset the area for all of the lakes.</p></li>
-<li><p>Subset the number of fish for Big and Square lakes.</p></li>
-<li><p>You realize that you sampled 209 fish at Square Lake, not 109. Fix the mistake. There are two ways to do this, can you think of them both? Which do you think is better?</p></li>
-<li><p>Save your script. Close R and re-open your script to see that it was saved.</p></li>
+<li>Create a new file in your working directory called <code>Ex_1A.R</code>.</li>
+<li>Enter these data into vectors. Call the vectors whatever you would like. Should you enter the data as vectors by rows, or by columns? (<em>Hint: remember the properties of vectors</em>).</li>
+<li>Combine your vectors into a data frame. Why should you use a data frame instead of a matrix?</li>
+<li>Subset all of the data from Small Lake.</li>
+<li>Subset the area for all of the lakes.</li>
+<li>Subset the number of fish for Big and Square lakes.</li>
+<li>You realize that you sampled 209 fish at Square Lake, not 109. Fix the mistake. There are two ways to do this, can you think of them both? Which do you think is better?</li>
+<li>Save your script. Close R and re-open your script to see that it was saved.</li>
 </ol>
 </div>
 <div id="read" class="section level2">
