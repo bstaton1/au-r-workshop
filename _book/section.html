@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="ch1.html">
+<link rel="prev" href="ch3.html">
+<link rel="next" href="ch4.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -162,18 +162,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#chapter-overview-2"><i class="fa fa-check"></i>Chapter Overview</a></li>
 <li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#before-you-begin-1"><i class="fa fa-check"></i>Before You Begin</a></li>
 <li class="chapter" data-level="3.1" data-path="ch3.html"><a href="ch3.html#review-the-general-linear-model"><i class="fa fa-check"></i><b>3.1</b> Review: The General Linear Model</a></li>
-<li class="chapter" data-level="3.2" data-path="ch3.html"><a href="ch3.html#regression"><i class="fa fa-check"></i><b>3.2</b> Simple Linear Regression</a></li>
+<li class="chapter" data-level="3.2" data-path="ch3.html"><a href="ch3.html#simple-linear-regression"><i class="fa fa-check"></i><b>3.2</b> Simple Linear Regression</a></li>
 <li class="chapter" data-level="3.3" data-path="ch3.html"><a href="ch3.html#anova"><i class="fa fa-check"></i><b>3.3</b> ANOVA: Categorical predictors</a></li>
 <li class="chapter" data-level="3.4" data-path="ch3.html"><a href="ch3.html#ancova-continuous-and-categorical-predictors"><i class="fa fa-check"></i><b>3.4</b> ANCOVA: Continuous and categorical predictors</a></li>
 <li class="chapter" data-level="3.5" data-path="ch3.html"><a href="ch3.html#interactions"><i class="fa fa-check"></i><b>3.5</b> Interactions</a></li>
 <li class="chapter" data-level="3.6" data-path="ch3.html"><a href="ch3.html#model-selection-aic"><i class="fa fa-check"></i><b>3.6</b> Model Selection: AIC</a></li>
-<li class="chapter" data-level="3.7" data-path="ch3.html"><a href="ch3.html#logis-regression"><i class="fa fa-check"></i><b>3.7</b> An Example GLM: Logistic Regression</a></li>
+<li class="chapter" data-level="3.7" data-path="ch3.html"><a href="ch3.html#an-example-glm-logistic-regression"><i class="fa fa-check"></i><b>3.7</b> An Example GLM: Logistic Regression</a></li>
 <li class="chapter" data-level="3.8" data-path="ch3.html"><a href="ch3.html#probability-distributions"><i class="fa fa-check"></i><b>3.8</b> Probability Distributions</a></li>
-<li class="chapter" data-level="3.9" data-path="ch3.html"><a href="ch3.html#bonus-topic-non-linear-regression"><i class="fa fa-check"></i><b>3.9</b> Bonus Topic: Non-linear Regression</a></li>
-<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#exercise-3"><i class="fa fa-check"></i>EXERCISE 3</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="ch4.html"><a href="ch4.html"><i class="fa fa-check"></i><b>4</b> Simulation and Randomization</a></li>
-<li class="chapter" data-level="5" data-path="ch5.html"><a href="ch5.html"><i class="fa fa-check"></i><b>5</b> Large Data Manipulation</a></li>
+<li class="chapter" data-level="4" data-path="section.html"><a href="section.html"><i class="fa fa-check"></i><b>4</b> </a><ul>
+<li class="chapter" data-level="" data-path="section.html"><a href="section.html#exercise-3"><i class="fa fa-check"></i>EXERCISE 3</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="ch4.html"><a href="ch4.html"><i class="fa fa-check"></i><b>5</b> Simulation and Randomization</a></li>
+<li class="chapter" data-level="6" data-path="ch5.html"><a href="ch5.html"><i class="fa fa-check"></i><b>6</b> Large Data Manipulation</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -194,23 +195,29 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Introduction to R for Natural Resource Scientists</h1>
-<h4 class="author"><em>Ben Staton</em></h4>
-<h4 class="date"><em>with contributions from Henry Hershey</em></h4>
-</div>
-<div id="overview" class="section level1 unnumbered">
-<h1>Overview</h1>
-<p>This is intended to be a first course in R programming. It is by no means comprehensive, but instead attempts to introduce the main topics needed to get a beginner up and running with applying R to their own work. There will be no prior knowledge assumed on the part of the student regarding R or programming. In the later chapters, e.g., Chapters <a href="ch3.html#ch3">3</a> and <a href="ch4.html#ch4">4</a>, an understanding of statistics at the introductory undergraduate level would be helpful.</p>
+<div id="section" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> </h1>
+<div id="exercise-3" class="section level2 unnumbered">
+<h2>EXERCISE 3</h2>
+<ol style="list-style-type: decimal">
+<li>Make the same graphic as in Figure <a href="ch3.html#fig:norm-plots">3.1</a> with at least one of the other distributions listed in Table <a href="ch3.html#tab:dist-table">3.1</a> (other than the multinomial - being a multivariate distribution, it wouldn’t work well with this code). Try thinking of a variable from your work that meets the uses of each distribution in Table <a href="ch3.html#tab:dist-table">3.1</a> (or one that’s not listed). If you run into trouble, check out the help file for that distribution<a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a>.</li>
+</ol>
 
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="6">
+<li id="fn6"><p>Executing <code>?rnorm</code> or any other of the <code>-norm</code> functions will take you to a page with info on all four function types for that distribution<a href="section.html#fnref6">↩</a></p></li>
+</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="ch1.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="ch3.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ch4.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -240,7 +247,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/index.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/03-basic-statistics.Rmd",
 "text": "Edit"
 },
 "download": ["au-r-workshop.pdf", "au-r-workshop.epub"],

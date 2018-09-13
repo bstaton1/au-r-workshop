@@ -45,7 +45,7 @@ The model makes several assumptions about the residuals^[The residuals ($\vareps
 
 In R, the general linear model is fitted using the `lm` function. Here's the basic syntax is `lm(y ~ x, data = dat)`^[This should look familar from Section \@ref(box-whisker)]; it says: "fit a model with `y` as the response variable and `x` as the sole predictor variable, look for the variables `x` and `y` in a data frame called `dat`, and store the results in a new object called `fit`". 
 
-## Simple Linear Regression
+## Simple Linear Regression {#regression}
 
 Download the data set `sockeye.csv` from GitHub and place it in your working directory. This is the same data set you used in Exercise 2, see that section for more details on the different variables.
 
@@ -76,7 +76,7 @@ fit1
 If $x_{i1}$ is `weight`, then the coefficients are interpretted as:
 
 *  $\beta_0$: the y-intercept (mean `fecund` at zero `weight`)
-*  $\beta_1$: the slope (change in `fecund` for one unit change in `weight`)
+*  $\beta_1$: the slope (change in `fecund` for one unit increase in `weight`)
 
 For more information about the model fit, you can use the `summary` function:
 
@@ -144,7 +144,7 @@ Now that you have seen that hatchery and wild fish tend to separate along the fe
 
 $$y_i=\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \varepsilon_i$$
 
-If $x_{i1}$ is `type` coded with 0's and 1's as in \@ref(anova) and $x_{i2}$ is `weight`, then the coefficients are interpretted as:
+If $x_{i1}$ is `type` coded with 0's and 1's as in Section \@ref(anova) and $x_{i2}$ is `weight`, then the coefficients are interpretted as:
 
 *  $\beta_0$: the y-intercept of the `"hatch"` level (the reference level)
 *  $\beta_1$: the difference in y-intercept between the `"wild"` level and the `"hatch"` level. 
@@ -174,7 +174,7 @@ Above, you have included an additional predictor variable (and parameter) in you
 
 $$y_i=\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \beta_3 x_{i1} x_{i2} + \varepsilon_i$$
 
-If $x_{i1}$ is `type` coded with 0's and 1's as in \@ref(anova) and $x_{i2}$ is `weight`, then the coefficients are interpretted as:
+If $x_{i1}$ is `type` coded with 0's and 1's as in Section \@ref(anova) and $x_{i2}$ is `weight`, then the coefficients are interpretted as:
 
 *  $\beta_0$: the y-intercept of the `"hatch"` level (the reference level)
 *  $\beta_1$: the difference in y-intercept between the `"wild"` level and the `"hatch"` level. 
@@ -221,7 +221,7 @@ AIC(fit1, fit2, fit3, fit4)
 
 In general, AIC values that are different by more than 2 units are interpretted as having importantly different predictive performance. Based on this very quick-and-dirty analysis, it seems that in predicting future fecundity, you would want to use the interactive ANCOVA model.
 
-## An Example GLM: Logistic Regression
+## An Example GLM: Logistic Regression {#logis-regression}
 
 The models you fitted above were called "general linear models". They all made the assumption that the residuals ($\varepsilon_i$) are normally-distributed. Often times data and analyses do not follow this assumption. For these cases you often move to the broader family of statistical models known as "generalized linear models"^[General linear models are a member of this family].
 
@@ -241,11 +241,11 @@ logit = function(p) {
 }
 ```
 
-If you have the result of `logit(p[i])` (which is given by the $\beta$ coefficients and the $x_ij$ data) and need to get `p[i]`, you can apply the inverse logit function:
+If you have the result of `logit(p[i])` (which is given by the $\beta$ coefficients and the $x_{ij}$ data) and need to get `p[i]`, you can apply the inverse logit function:
 
 $$expit(lp_i)=\frac{e^{lp_i}}{1 + e^{lp_i}}$$
 
-Make a function for the inverse logit transformation:
+where $lp_i = logit(p_i)$. Make a function for the inverse logit transformation:
 
 ```{r}
 expit = function(lp) {  # lp stands for logit(p)
@@ -261,7 +261,7 @@ Fit a logistic regression model to the sockeye salmon data. None of the variable
 dat$binary = ifelse(dat$survival < 70, 0, 1)
 ```
 
-This will be your response variable and your model will predict the probability that it is a 1. 
+This will be your response variable and your model will estimate how the probability of `binary` being a `1` changes (or doesn't) depending on the value of other variables.
 
 A basic model would have just `weight` as the predictor variable:
 
@@ -272,7 +272,7 @@ summary(fit1)$coef
 
 The coefficients are interpretted as:
 
-*  $\beta_0$: the log odds of success for a fish with zero weight (which is not all that important). $e^{\beta_0}$ is the odds of success for fish with zero weight, and $expit(e^{\beta_0})$ is the probability of success forr fish with zero weight. Remember "success" is defined as having at least 70% egg survival to the stage of interest.
+*  $\beta_0$: the log odds of success for a fish with zero weight (which is not all that important). $e^{\beta_0}$ is the odds of success for fish with zero weight, and $expit(e^{\beta_0})$ is the probability of success for fish with zero weight. Remember "success" is defined as having at least 70% egg survival to the stage of interest.
 
 *  $\beta_1$: the additive effect of fish weight on the log odds of success. $e^{\beta_1}$ is interpretted as the ratio of the odds at two consective weights (e.g., 1500 and 1501). Claims about $e^{\beta_1}$ are made as "for every one gram increase in weight, success became $e^{\beta_1}$ times as likely to happen".
 
@@ -369,4 +369,139 @@ Oddly enough, the two best models are the simplest one and the most complex one,
 
 ## Probability Distributions
 
+A probability distribution is a way of representing the probability of an event or value of a parameter and they are central to statistical theory. Some of the most commonly used distributions are summarized in Table \@ref(tab:dist-table) below, along with the suffixes of the functions in R that correspond to each distribution^[For an excellent and ecologically-focused description of probability distributions, checkout Ben Bolker's book, _Ecological Models and Data in R_. There is a free proof version online: <https://ms.mcmaster.ca/~bolker/emdbook/book.pdf>]. 
 
+```{r dist-table, results = "asis", echo = F}
+
+tab = data.frame(
+  type = c("Continuous", "", "", "", "Discrete", "", ""),
+  dist = c("Normal", "Lognormal", "Uniform", "Beta", "Binomial", "Multinomial", "Poisson"),
+  desc = c("Models the relative frequency of outcomes that are symmetric around a mean, can be negative",
+           "Models the relative frequency of outcomes that are normally-distributed on the log-scale",
+           "Models values that are between two endpoints and that all occur with the same frequency",
+           "Models values that are between 0 and 1",
+           "Models the number of successes from a given number of trials when there are only two possible outcomes and all trials have the same probability of success",
+           "The same as the binomial distribution, but when there are more than two possible outcomes",
+           "Used for count data in cases where the variance and mean are roughly equal"),
+  suffix = c("`-norm`", "`-lnorm`", "`-unif`", "`-beta`", "`-binom`", "`-multinom`", "`-pois`")
+)
+
+colnames(tab) = c("Type", "Distribution", "Common Uses", "R Suffix")
+
+knitr::kable(tab, align = "lll", caption = "A brief description of probability distributions commonly used in ecological problems, including the function suffix in R.")
+
+```
+
+In R, there are four different ways to use each of this distribution functions (each as a separate prefix):
+
+* **The probability density (or mass) function** (`d-`): the height of the probability distribution function at some given value of the random variable. 
+
+* **The cumulative density function** (`p-`): the sum of the probability densities for all random variables below some value.
+
+*  **The quantile function** (`-q`): what value of the random variable do p% fall below?
+
+*  **The random deviates function** (`-r`): generates random variables from the distribution in proportion to their probability density. 
+
+Suppose that $x$ represents the length of individual age 6 largemouth bass in your private fishing pond. Assume that $x \sim N(\mu=500, \sigma=50)$ ($x$ is a normal random variable with mean equal to 500 and standard deviation equal to 50). Here is the usage of each of the distribution functions and a plot illustrating them:
+
+
+```{r norm-plots, fig.height = 6.5, fig.width = 6.5, fig.cap="The four `-norm` functions with input (x-axis) and output (y-axis) displayed."}
+# parameters
+mu = 500; sig = 50
+
+# a sequence of possible random variables (fish lengths)
+lengths = seq(200, 700, length = 100)
+
+# a sequence of possible cumulative probabilities
+cprobs = seq(0, 1, length = 100)
+
+densty = dnorm(x = lengths, mean = mu, sd = sig)  # takes specific lengths
+cuprob = pnorm(q = lengths, mean = mu, sd = sig)  # takes specific lengths
+quants = qnorm(p = cprobs, mean = mu, sd = sig)   # takes specific probabilities
+random = rnorm(n = 1e4, mean = mu, sd = sig)      # takes a number of random deviates to make
+
+# set up plotting region: see ?par for more details
+# notice the tricks to clean up the plot
+par(
+  mfrow = c(2,2),    # set up 2x2 regions
+  mar = c(3,3,3,1),  # set narrower margins
+  xaxs = "i",        # remove "x-buffer"
+  yaxs = "i",        # remove "y-buffer"
+  mgp = c(2,0.4,0),  # bring in axis titles ([1]) and tick labels ([2])
+  tcl = -0.25        # shorten tick marks
+)
+
+plot(densty ~ lengths, type = "l", lwd = 3, main = "dnorm()",
+     xlab = "Fish Length (mm)", ylab = "Density", las = 1,
+     yaxt = "n") # turns off y-axis
+axis(side = 2, at = c(0.002, 0.006), labels = c(0.002, 0.006), las = 2)
+plot(cuprob ~ lengths, type = "l", lwd = 3, main = "pnorm()",
+     xlab = "Fish Length (mm)", ylab = "Cumulative Probability", las = 1)
+plot(quants ~ cprobs, type = "l", lwd = 3, main = "qnorm()",
+     xlab = "P", ylab = "P Quantile Length (mm)", las = 1)
+hist(random, breaks = 100, col = "grey", main = "rnorm()",
+     xlab = "Fish Length (mm)", ylab = "Frequency", las = 1)
+box() # add borders to the histogram
+```
+
+Notice that `pnorm` and `qnorm` are inverses of one another: if you put the output of one into the output of the other, you get the original input back:
+
+```{r}
+qnorm(pnorm(0))
+```
+
+`pnorm(0)` asks R to find the probability that $x$ is less than zero for the standard normal distribution ($N(0,1)$ - this is the default if you don't specify `mean` and `sig`). `qnorm(pnorm(0))` asks R to find the value of $x$ that `pnorm(0)` * 100% of the possible values fall below. If the nesting is confusing, this line is the same as:
+
+```{r, eval = F}
+p = pnorm(0)
+qnorm(p)
+```
+
+## Bonus Topic: Non-linear Regression
+
+You fitted linear and logistic regression models in Sections \@ref(regression) and \@ref(logis-regression), however, R allows you to fit non-linear regression models as well.
+
+First, aquire the `feeding.csv` data set from the  [GitHub repo](https://www.github.com/bstaton1/au-r-workshop-data) and place it in your working directory. Read the data into R: 
+
+```{r, echo = F}
+dat = read.csv("Data/feeding.csv")
+summary(dat)
+```
+
+```{r, eval = F}
+dat = read.csv("feeding.csv"); summary(dat)
+```
+
+These are hypothetical data from an experiment in which you were interested in quantifying the functional feeding response^[A functional response is the number of prey consumed by a predator at various prey densities] of a fish predator on zooplankton in an aquarium. You experimentally manipulated the prey density (`dat$prey`) and counted how many prey items were consumed (`dat$cons`).
+
+Plot the data:
+
+```{r}
+plot(cons ~ prey, data = dat)
+```
+
+You can see a distinct non-linearity to the relationship. The Holling Type II functional response^[This function rises quickly at low prey densities, but saturates at high densities] has this functional form:
+
+$$y_i=\frac{ax_i}{1+ahx_i}$$
+where $x_i$ is `prey` and $y_i$ is `cons`. 
+
+You can fit this model in R using the `nls` function, behaves very similarly to the `lm` function. 
+
+```{r}
+fit = nls(cons ~ (a * prey)/(1 + a * h * prey), data = dat,
+          start = c(a = 3, h = 0.1))
+```
+
+You can obtain similar output as from `lm` using the `summary`, `coef`, and `predict`. Draw the fitted line over top of the data:
+
+```{r}
+prey_seq = seq(min(dat$prey), max(dat$prey), length = 100)
+cons_seq = predict(fit, newdata = data.frame(prey = prey_seq))
+
+plot(cons ~ prey, data = dat, cex = 1.5, pch = 16, col = "grey")
+lines(cons_seq ~ prey_seq, lwd = 3)
+```
+
+## EXERCISE 3 {-}
+
+1.  Make the same graphic as in Figure \@ref(fig:norm-plots) with at least one of the other distributions listed in Table \@ref(tab:dist-table) (other than the multinomial - being a multivariate distribution, it wouldn't work well with this code). Try thinking of a variable from your work that meets the uses of each distribution in Table \@ref(tab:dist-table) (or one that's not listed). If you run into trouble, check out the help file for that distribution^[Executing `?rnorm` or any other of the `-norm` functions will take you to a page with info on all four function types for that distribution]. 

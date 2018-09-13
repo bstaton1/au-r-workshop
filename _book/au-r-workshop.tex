@@ -2214,7 +2214,7 @@ Oftentimes, we want to add error bars to a bar graph like this. To avoid
 digressing too much here, creating error bars is covered as a bonus
 topic.
 
-\section{Box-and-Whisker Plots}\label{box-and-whisker-plots}
+\section{Box-and-Whisker Plots}\label{box-whisker}
 
 Box-and-whisker plots are a great way to visualize the spread of your
 data. All you need to make a box-and-whisker plot is a grouping variable
@@ -2723,14 +2723,14 @@ Pacific Northwest's most endangered salmon population.
 \addcontentsline{toc}{section}{Chapter Overview}
 
 In this chapter, you will get familiar with the basics of using R for
-statisitical analysis.
+the purpose it was designed: statisitical analysis. You will learn how
+to:
 
 \begin{itemize}
 \tightlist
 \item
-  the different parts of basic statistical models
-\item
-  how to fit and interpret the output from various linear models:
+  how to fit and interpret the output from various general linear
+  models:
 
   \begin{itemize}
   \tightlist
@@ -2750,22 +2750,27 @@ statisitical analysis.
 \item
   very basic model selection
 \item
-  Bonus topic: fitting non-linear regression models using nls()
+  basic GLMs: the logistic regression model
+\item
+  Bonus topic: fitting non-linear regression models using \texttt{nls}
 \item
   Bonus topic: fitting custom maximum-likelihood models using
   \texttt{optim}
 \end{itemize}
 
 R's built-in statistical modeling framework is pretty intuitive and
-comprehensive.
+comprehensive. R has gained popularity as a statistics software and is
+commonly used both in academia and governmental resource agencies. This
+popularity is likely a result of its power, flexibility, intuitive
+nature, and price (free!). For many students, this chapter may be the
+one that is most immediately useful.
 
-\textbf{IMPORTANT NOTE}: If you did not attend the session corresponding
-to the Chapter \ref{ch1} material or Chapter \ref{ch2}, you are
-recommended to walk through those chapters' contents before proceeding
-to this material. This is because you will be using some of the commands
-and terminology presented previously. If you are confused about a topic,
-you can use \textbf{CTRL + F} to find previous cases where that topic
-has been discussed in this document.
+\textbf{IMPORTANT NOTE}: If you did not attend the sessions
+corresponding to Chapters \ref{ch1} or \ref{ch2}, you are recommended to
+walk through the material found in those chapters before proceeding to
+this material. Also note that if you are confused about a topic, you can
+use \textbf{CTRL + F} to find previous cases where that topic has been
+discussed in this document.
 
 \section*{Before You Begin}\label{before-you-begin-1}
 \addcontentsline{toc}{section}{Before You Begin}
@@ -2773,8 +2778,941 @@ has been discussed in this document.
 You should create a new directory and R script for your work in this
 Chapter. Create a new R script called \texttt{Ch3.R} and save it in the
 directory \texttt{C:/Users/YOU/Documents/R-Workshop/Chapter3}. Set your
-working directory to that location. Revisit the Sections \ref{scripts}
-and \ref{working-dir} for more details on these steps.
+working directory to that location. Revisit the material in Sections
+\ref{scripts} and \ref{working-dir} for more details on these steps.
+
+\section{Review: The General Linear
+Model}\label{review-the-general-linear-model}
+
+This is a family of models that allows you to determine the relationship
+(if any) between some continuous response variable (\(y\)) and some
+predictor variable(s) (\(x_n\)) and is often written as:
+
+\[y_i=\beta_0 + \beta_1 x_{i1} + ... + \beta_j x_{ij}+ ... + \beta_n x_{in} + \varepsilon_i; \varepsilon_i \sim N(0,\sigma)\]
+
+The predictor variable(s) can be either categorical (i.e., grouping
+variables used in ANOVA, t-test, etc.), continuous (regression), or a
+combination of categorical and continuous (ANCOVA). The main focus is to
+estimate the coefficients (\(\beta\)), and in some cases it is to
+determine if they are ``significantly'' different from the value given
+by some null hypothesis.
+
+The model makes several assumptions about the residuals\footnote{The
+  residuals (\(\varepsilon_i\)) are the difference between the data
+  point \(y_i\) and the model prediction \(\hat{y}_i\):
+  \(\varepsilon_i=y_i-\hat{y}_i\)} to obtain estimates of the
+coefficients. For reliable inference, the residuals must:
+
+\begin{itemize}
+\tightlist
+\item
+  Be independent
+\item
+  Be normally-distributed
+\item
+  Have constant variance across range of the x-axis
+\end{itemize}
+
+In R, the general linear model is fitted using the \texttt{lm} function.
+Here's the basic syntax is
+\texttt{lm(y\ \textasciitilde{}\ x,\ data\ =\ dat)}\footnote{This should
+  look familar from Section \ref{box-whisker}}; it says: ``fit a model
+with \texttt{y} as the response variable and \texttt{x} as the sole
+predictor variable, look for the variables \texttt{x} and \texttt{y} in
+a data frame called \texttt{dat}, and store the results in a new object
+called \texttt{fit}''.
+
+\section{Simple Linear Regression}\label{regression}
+
+Download the data set \texttt{sockeye.csv} from GitHub and place it in
+your working directory. This is the same data set you used in Exercise
+2, see that section for more details on the different variables.
+
+Read these data into R:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dat =}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"sockeye.csv"}\NormalTok{)}
+\KeywordTok{head}\NormalTok{(dat)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   year  type weight fecund egg_size survival
+## 1 1991 hatch     NA     NA       NA       NA
+## 2 1992 hatch     NA     NA       NA       NA
+## 3 1993 hatch   1801   2182    12.25    46.58
+## 4 1994 hatch   1681   2134     7.92    50.98
+## 5 1995 hatch   2630   1576    21.61    68.06
+## 6 1996 hatch   2165   2171     8.74    63.43
+\end{verbatim}
+
+To fit a regression model using \texttt{lm}, but \texttt{x} and
+\texttt{y} must be continous (numeric) variables. In the data set
+\texttt{dat}, two such variables are the \texttt{weight} and
+\texttt{fecund}. Fit a regression model where you link the average
+fecundity of an individual to the average weight of an individual by
+treating years as replicate data points. Ignore for now that the fish
+come from two sources: hatchery and wild origin.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fit1 =}\StringTok{ }\KeywordTok{lm}\NormalTok{(fecund }\OperatorTok{~}\StringTok{ }\NormalTok{weight, }\DataTypeTok{data =}\NormalTok{ dat)}
+\end{Highlighting}
+\end{Shaded}
+
+If you run just the \texttt{fit1} object, you will see the model you ran
+along with the coefficient estimates of the intercept (\(\beta_0\)) and
+the slope (\(\beta_1\)):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fit1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = fecund ~ weight, data = dat)
+## 
+## Coefficients:
+## (Intercept)       weight  
+##   1874.6496       0.2104
+\end{verbatim}
+
+If \(x_{i1}\) is \texttt{weight}, then the coefficients are interpretted
+as:
+
+\begin{itemize}
+\tightlist
+\item
+  \(\beta_0\): the y-intercept (mean \texttt{fecund} at zero
+  \texttt{weight})
+\item
+  \(\beta_1\): the slope (change in \texttt{fecund} for one unit
+  increase in \texttt{weight})
+\end{itemize}
+
+For more information about the model fit, you can use the
+\texttt{summary} function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(fit1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = fecund ~ weight, data = dat)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -873.67 -389.28  -71.65  482.96 1041.24 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 1874.6496   269.4369   6.958 4.33e-08 ***
+## weight         0.2104     0.1803   1.167    0.251    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 500.6 on 35 degrees of freedom
+##   (7 observations deleted due to missingness)
+## Multiple R-squared:  0.03745,    Adjusted R-squared:  0.009945 
+## F-statistic: 1.362 on 1 and 35 DF,  p-value: 0.2511
+\end{verbatim}
+
+Again the coefficient estimates are shown, but now you see the
+uncertainty on the parameter estimates (standard errors), the test
+statistic, and the p-value testing the null hypothesis that each
+coefficient has a zero value. Here you can see that the p-value does not
+support rejection of the null hypothesis that the slope is zero. You can
+see the residual standard error (variability of data around the line and
+the estimate of \(\sigma\)), the \(R^2\) value (the proportion of
+variation in \texttt{fecund} explained by variation in \texttt{weight}),
+and the p-value of the overall model.
+
+You can easily see the model fit by using the \texttt{abline} function.
+Make a new plot and add the fitted regression line:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(fecund }\OperatorTok{~}\StringTok{ }\NormalTok{weight, }\DataTypeTok{data =}\NormalTok{ dat, }\DataTypeTok{col =} \StringTok{"grey"}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{16}\NormalTok{, }\DataTypeTok{cex =} \FloatTok{1.5}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(fit1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-105-1} \end{center}
+
+It fits, but not very well. It seems there are two groups: one with data
+points mostly above the line and one with data points mostly below the
+line. You'll now run a new model to get at this.
+
+\section{ANOVA: Categorical predictors}\label{anova}
+
+ANOVA models attempt to determine if the means of different groups are
+different. You can fit them in the same basic \texttt{lm} framework. But
+first, notice that:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(dat}\OperatorTok{$}\NormalTok{type); }\KeywordTok{levels}\NormalTok{(dat}\OperatorTok{$}\NormalTok{type)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "factor"
+\end{verbatim}
+
+\begin{verbatim}
+## [1] "hatch" "wild"
+\end{verbatim}
+
+tells you the \texttt{type} variable is a factor. It has levels of
+\texttt{"hatch"} and \texttt{"wild"} which indicate the origin of the
+adult spawning fish sampled each year. If you pass \texttt{lm} a
+predictor variable with a factor class, the R will automatically fit it
+as an ANOVA model. See Section \ref{factors} for more details on
+factors. Factors have an explicit ordering of the levels. By default,
+this ordering happens alphabetically: if your factor has levels
+\texttt{"a"}, \texttt{"b"}, and \texttt{"c"}, they will be assigned the
+order of \texttt{1}, \texttt{2} and \texttt{3}, respectively. You can
+always see how R is ordering your factor by doing something similar to
+this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pairs =}\StringTok{ }\KeywordTok{cbind}\NormalTok{(}
+  \KeywordTok{as.character}\NormalTok{(dat}\OperatorTok{$}\NormalTok{type),}
+  \KeywordTok{as.numeric}\NormalTok{(dat}\OperatorTok{$}\NormalTok{type)}
+\NormalTok{)}
+
+\KeywordTok{head}\NormalTok{(pairs); }\KeywordTok{tail}\NormalTok{(pairs)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1]    [,2]
+## [1,] "hatch" "1" 
+## [2,] "hatch" "1" 
+## [3,] "hatch" "1" 
+## [4,] "hatch" "1" 
+## [5,] "hatch" "1" 
+## [6,] "hatch" "1"
+\end{verbatim}
+
+\begin{verbatim}
+##       [,1]   [,2]
+## [39,] "wild" "2" 
+## [40,] "wild" "2" 
+## [41,] "wild" "2" 
+## [42,] "wild" "2" 
+## [43,] "wild" "2" 
+## [44,] "wild" "2"
+\end{verbatim}
+
+The functions \texttt{as.character} and \texttt{as.numeric} are coersion
+functions: they attempt to change the way something is interpretted.
+Notice that the level \texttt{"hatch"} is assigned the order \texttt{1}
+because it comes before \texttt{"wild"} alphebetically. The first level
+is termed the \textbf{reference level} because it is the group that all
+other levels are compared to when fitting a model. You can change the
+reference level using
+\texttt{dat\$type\_rlvl\ =\ relevel(dat\$type,\ ref\ =\ "wild")}.
+
+You are now ready to fit the ANOVA model, which will measure the size of
+the difference in the mean \texttt{fecund} between different levels of
+the factor \texttt{type}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fit2 =}\StringTok{ }\KeywordTok{lm}\NormalTok{(fecund }\OperatorTok{~}\StringTok{ }\NormalTok{type, }\DataTypeTok{data =}\NormalTok{ dat)}
+\end{Highlighting}
+\end{Shaded}
+
+Think of this model as being written as:
+
+\[y_i=\beta_0 + \beta_1 x_{i1} + \varepsilon_i\] and assume that
+\(x_{i1} = 0\) if observation \(i\) is from \texttt{"hatch"} fish and
+\(x_{i1} = 1\) if observation \(i\) is from \texttt{"wild"} fish. In
+that case:
+
+\begin{itemize}
+\tightlist
+\item
+  \(\beta_0\) (the intercept) is interpretted as the mean
+  \texttt{fecund} for the \texttt{"hatch"} level and
+\item
+  \(\beta_1\) is interpretted as the difference in mean \texttt{fecund}
+  between the \texttt{"wild"} level and the \texttt{"hatch"} level.
+\end{itemize}
+
+So when you run \texttt{coef(fit2)} to extract the coefficient estimates
+and get:
+
+\begin{verbatim}
+## (Intercept)    typewild 
+##   1846.2500    713.3971
+\end{verbatim}
+
+you see that the mean fecundity of hatchery fish is about 1846 eggs and
+that the average wild fish has about 713 more eggs than the average
+hatchery fish across all years. The fact that the p-value associated
+with the \texttt{typewild} coefficient when you run
+\texttt{summary(fit2)} is less than 0.05 indicates that there is
+statistical evidence that the difference in means is not zero.
+
+\section{ANCOVA: Continuous and categorical
+predictors}\label{ancova-continuous-and-categorical-predictors}
+
+Now that you have seen that hatchery and wild fish tend to separate
+along the fecundity axis (as evidenced by the ANOVA results above), you
+would like to include this in your original regression model. You will
+fit two lines within the same model: one for hatchery fish and one for
+wild fish. This model is called an ANCOVA model and looks like this:
+
+\[y_i=\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \varepsilon_i\]
+
+If \(x_{i1}\) is \texttt{type} coded with 0's and 1's as in Section
+\ref{anova} and \(x_{i2}\) is \texttt{weight}, then the coefficients are
+interpretted as:
+
+\begin{itemize}
+\tightlist
+\item
+  \(\beta_0\): the y-intercept of the \texttt{"hatch"} level (the
+  reference level)
+\item
+  \(\beta_1\): the difference in y-intercept between the \texttt{"wild"}
+  level and the \texttt{"hatch"} level.
+\item
+  \(\beta_2\): the slope of both lines (this model assumes the lines
+  have common slopes, i.e., that the lines are parallel)
+\end{itemize}
+
+You can fit this model and extract the coefficents table from the
+summary:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fit3 =}\StringTok{ }\KeywordTok{lm}\NormalTok{(fecund }\OperatorTok{~}\StringTok{ }\NormalTok{type }\OperatorTok{+}\StringTok{ }\NormalTok{weight, }\DataTypeTok{data =}\NormalTok{ dat)}
+\KeywordTok{summary}\NormalTok{(fit3)}\OperatorTok{$}\NormalTok{coef}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                 Estimate  Std. Error  t value     Pr(>|t|)
+## (Intercept) 1039.6417645 175.0992184 5.937444 1.038268e-06
+## typewild     866.9909998  96.2473387 9.007948 1.578239e-10
+## weight         0.5173716   0.1051039 4.922477 2.164460e-05
+\end{verbatim}
+
+And you can plot the fit. Study this code to make sure you know what
+each is doing. Use what you know about the meanings of the three
+coefficients to decipher the two \texttt{abline} commands. Remember that
+\texttt{abline} takes takes two arguments: \texttt{a} is the intercept
+and \texttt{b} is the slope.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(fecund }\OperatorTok{~}\StringTok{ }\NormalTok{weight, }\DataTypeTok{data =}\NormalTok{ dat, }\DataTypeTok{col =} \StringTok{"grey"}\NormalTok{,}
+     \DataTypeTok{pch =} \KeywordTok{ifelse}\NormalTok{(dat}\OperatorTok{$}\NormalTok{type }\OperatorTok{==}\StringTok{ "hatch"}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{16}\NormalTok{), }\DataTypeTok{cex =} \FloatTok{1.5}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\KeywordTok{coef}\NormalTok{(fit3)[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{)], }\DataTypeTok{lty =} \DecValTok{2}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\KeywordTok{sum}\NormalTok{(}\KeywordTok{coef}\NormalTok{(fit3)[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{)]), }\KeywordTok{coef}\NormalTok{(fit3)[}\DecValTok{3}\NormalTok{])}
+\KeywordTok{legend}\NormalTok{(}\StringTok{"bottom"}\NormalTok{, }\DataTypeTok{legend =} \KeywordTok{c}\NormalTok{(}\StringTok{"Hatchery"}\NormalTok{, }\StringTok{"Wild"}\NormalTok{), }\DataTypeTok{pch =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{16}\NormalTok{), }\DataTypeTok{lty =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{),}
+       \DataTypeTok{col =} \StringTok{"grey"}\NormalTok{, }\DataTypeTok{pt.cex =} \FloatTok{1.5}\NormalTok{, }\DataTypeTok{bty =} \StringTok{"n"}\NormalTok{, }\DataTypeTok{horiz =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-111-1} \end{center}
+
+\section{Interactions}\label{interactions}
+
+Above, you have included an additional predictor variable (and
+parameter) in your model to help explain variation in the
+\texttt{fecund} variable. However, you have assumed that the effect of
+weight on fecundity is common between hatchery and wild fish (note the
+parallel lines in the figure above). You may have reason to believe that
+the effect of weight depends on the origin of the fish, e.g., wild fish
+may tend to accumulate more eggs than hatchery fish for the same
+increase in weight. Cases where the magnitude of the effect depends on
+the value of another predictor variable are known as ``interactions''.
+You can write the interactive ANCOVA model like this:
+
+\[y_i=\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \beta_3 x_{i1} x_{i2} + \varepsilon_i\]
+
+If \(x_{i1}\) is \texttt{type} coded with 0's and 1's as in Section
+\ref{anova} and \(x_{i2}\) is \texttt{weight}, then the coefficients are
+interpretted as:
+
+\begin{itemize}
+\tightlist
+\item
+  \(\beta_0\): the y-intercept of the \texttt{"hatch"} level (the
+  reference level)
+\item
+  \(\beta_1\): the difference in y-intercept between the \texttt{"wild"}
+  level and the \texttt{"hatch"} level.
+\item
+  \(\beta_2\): the slope of the \texttt{"hatch"} level
+\item
+  \(\beta_3\): the difference in slope between the \texttt{"wild"} level
+  and the \texttt{"hatch"} level.
+\end{itemize}
+
+You can fit this model:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fit4 =}\StringTok{ }\KeywordTok{lm}\NormalTok{(fecund }\OperatorTok{~}\StringTok{ }\NormalTok{type }\OperatorTok{+}\StringTok{ }\NormalTok{weight }\OperatorTok{+}\StringTok{ }\NormalTok{type}\OperatorTok{:}\NormalTok{weight, }\DataTypeTok{data =}\NormalTok{ dat)}
+
+\CommentTok{# or}
+\CommentTok{# fit4 = lm(fecund ~ type * weight, data = dat)}
+\end{Highlighting}
+\end{Shaded}
+
+The first option above is more clear in its statement, but both do the
+same thing.
+
+You can plot the fit. Study these lines to make sure you know what each
+is doing. Use what you know about the meanings of the four coefficients
+to decipher the two \texttt{abline} commands.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(fecund }\OperatorTok{~}\StringTok{ }\NormalTok{weight, }\DataTypeTok{data =}\NormalTok{ dat, }\DataTypeTok{col =} \StringTok{"grey"}\NormalTok{,}
+     \DataTypeTok{pch =} \KeywordTok{ifelse}\NormalTok{(dat}\OperatorTok{$}\NormalTok{type }\OperatorTok{==}\StringTok{ "hatch"}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{16}\NormalTok{), }\DataTypeTok{cex =} \FloatTok{1.5}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\KeywordTok{coef}\NormalTok{(fit4)[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{)], }\DataTypeTok{lty =} \DecValTok{2}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\KeywordTok{sum}\NormalTok{(}\KeywordTok{coef}\NormalTok{(fit4)[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{)]), }\KeywordTok{sum}\NormalTok{(}\KeywordTok{coef}\NormalTok{(fit4)[}\KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{)]))}
+\KeywordTok{legend}\NormalTok{(}\StringTok{"bottom"}\NormalTok{, }\DataTypeTok{legend =} \KeywordTok{c}\NormalTok{(}\StringTok{"Hatchery"}\NormalTok{, }\StringTok{"Wild"}\NormalTok{), }\DataTypeTok{pch =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{16}\NormalTok{), }\DataTypeTok{lty =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{),}
+       \DataTypeTok{col =} \StringTok{"grey"}\NormalTok{, }\DataTypeTok{pt.cex =} \FloatTok{1.5}\NormalTok{, }\DataTypeTok{bty =} \StringTok{"n"}\NormalTok{, }\DataTypeTok{horiz =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-113-1} \end{center}
+
+Based on the coefficients table:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(fit4)}\OperatorTok{$}\NormalTok{coef}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                     Estimate Std. Error    t value     Pr(>|t|)
+## (Intercept)     1175.7190847 174.545223  6.7358995 1.125255e-07
+## typewild         -42.8721082 398.980751 -0.1074541 9.150794e-01
+## weight             0.4300894   0.105592  4.0731253 2.732580e-04
+## typewild:weight    0.7003389   0.299104  2.3414560 2.539681e-02
+\end{verbatim}
+
+It seems that fish of the different origins have approximately the same
+intercept, but that their slopes are quite different.
+
+\section{Model Selection: AIC}\label{model-selection-aic}
+
+You have now fitted four different models, each that makes different
+claims about how you can predict the fecundity of a given sockeye salmon
+at Redfish Lake. If you are interested in determining \emph{which} of
+these models you should use for prediction, you need to use
+\textbf{model selection}. Model selection attempts to find the model
+that is likely to have the smallest out-of-sample prediction error
+(i.e., future predictions will be close to what actually happens). One
+model selection metric is the AIC\footnote{Akaike's Information
+  Criterion. \textbf{GIVE A CITATION HERE}}. Lower AIC values mean the
+model should have better predictive performance. Compare the four models
+you fitted with AIC:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{AIC}\NormalTok{(fit1, fit2, fit3, fit4)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      df      AIC
+## fit1  3 568.9166
+## fit2  3 543.6914
+## fit3  4 525.7834
+## fit4  5 522.0968
+\end{verbatim}
+
+In general, AIC values that are different by more than 2 units are
+interpretted as having importantly different predictive performance.
+Based on this very quick-and-dirty analysis, it seems that in predicting
+future fecundity, you would want to use the interactive ANCOVA model.
+
+\section{An Example GLM: Logistic Regression}\label{logis-regression}
+
+The models you fitted above were called ``general linear models''. They
+all made the assumption that the residuals (\(\varepsilon_i\)) are
+normally-distributed. Often times data and analyses do not follow this
+assumption. For these cases you often move to the broader family of
+statistical models known as ``generalized linear models''\footnote{General
+  linear models are a member of this family}.
+
+One example is in the case of \textbf{binary} data. Binary data have two
+outcomes, e.g., success/failure, lived/died, male/female,
+spawned/gravid, happy/sad, etc. If you wish to predict how the
+probability of one outcome over the other changes depending on some
+other variable, then you need to use the \textbf{logistic regression
+model}, which is written as:
+
+\[logit(p_i)=\beta_0 + \beta_1 x_{i1} + ... + \beta_j x_{ij}+ ... + \beta_n x_{in}; y_i \sim Bernoulli(p_i)\]
+
+Where \(p_i\) is the probability that observation \(y_i\) was a success
+(\(y_i = 1\)). The \(logit(p_i)\) is the \textbf{link function} that
+links the linear parameter scale to the data scale. It constrains the
+value of \(p_i\) to be between 0 and 1 regardless of the values of the
+\(\beta\) coefficients. The logit link function does this:
+
+\[logit(p_i) = log\left(\frac{p_i}{1-p_i}\right)\]
+
+which is the natural logarithm of the \textbf{odds}, a measure of how
+likely the event is to happen relative to it not happening. Make an R
+function to calculate the logit transformation:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{logit =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(p) \{}
+  \KeywordTok{log}\NormalTok{(p}\OperatorTok{/}\NormalTok{(}\DecValTok{1} \OperatorTok{-}\StringTok{ }\NormalTok{p))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+If you have the result of \texttt{logit(p{[}i{]})} (which is given by
+the \(\beta\) coefficients and the \(x_{ij}\) data) and need to get
+\texttt{p{[}i{]}}, you can apply the inverse logit function:
+
+\[expit(lp_i)=\frac{e^{lp_i}}{1 + e^{lp_i}}\]
+
+where \(lp_i = logit(p_i)\). Make a function for the inverse logit
+transformation:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{expit =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(lp) \{  }\CommentTok{# lp stands for logit(p)}
+  \KeywordTok{exp}\NormalTok{(lp)}\OperatorTok{/}\NormalTok{(}\DecValTok{1} \OperatorTok{+}\StringTok{ }\KeywordTok{exp}\NormalTok{(lp))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Because of the logit link function, the coefficients have different
+interpretations than in the previous models you've fitted in this
+chapter: they are expressed in terms of log odds.
+
+Fit a logistic regression model to the sockeye salmon data. None of the
+variables of interest are binary, but you can create one. Look at the
+variable \texttt{dat\$survival}. This is the average \% survival of all
+eggs laid that make it to the ``eye-egg'' stage. Create a new variable
+\texttt{binary} which takes on a 0 if \texttt{dat\$survival} is less
+than 70\% and a 1 otherwise:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dat}\OperatorTok{$}\NormalTok{binary =}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(dat}\OperatorTok{$}\NormalTok{survival }\OperatorTok{<}\StringTok{ }\DecValTok{70}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+This will be your response variable and your model will estimate how the
+probability of \texttt{binary} being a \texttt{1} changes (or doesn't)
+depending on the value of other variables.
+
+A basic model would have just \texttt{weight} as the predictor variable:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fit1 =}\StringTok{ }\KeywordTok{glm}\NormalTok{(binary }\OperatorTok{~}\StringTok{ }\NormalTok{weight, }\DataTypeTok{data =}\NormalTok{ dat, }\DataTypeTok{family =}\NormalTok{ binomial)}
+\KeywordTok{summary}\NormalTok{(fit1)}\OperatorTok{$}\NormalTok{coef}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                 Estimate Std. Error   z value   Pr(>|z|)
+## (Intercept)  4.363441330 1.76943946  2.466002 0.01366306
+## weight      -0.002819271 0.00125243 -2.251040 0.02438303
+\end{verbatim}
+
+The coefficients are interpretted as:
+
+\begin{itemize}
+\item
+  \(\beta_0\): the log odds of success for a fish with zero weight
+  (which is not all that important). \(e^{\beta_0}\) is the odds of
+  success for fish with zero weight, and \(expit(e^{\beta_0})\) is the
+  probability of success for fish with zero weight. Remember ``success''
+  is defined as having at least 70\% egg survival to the stage of
+  interest.
+\item
+  \(\beta_1\): the additive effect of fish weight on the log odds of
+  success. \(e^{\beta_1}\) is interpretted as the ratio of the odds at
+  two consective weights (e.g., 1500 and 1501). Claims about
+  \(e^{\beta_1}\) are made as ``for every one gram increase in weight,
+  success became \(e^{\beta_1}\) times as likely to happen''.
+\item
+  You can predict the probability of success any weight using
+  \(expit(\beta_0 + \beta_1 weight)\)
+\end{itemize}
+
+You can plot the fitted model:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# create a sequence of weights to predict at}
+\NormalTok{wt_seq =}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\KeywordTok{min}\NormalTok{(dat}\OperatorTok{$}\NormalTok{weight, }\DataTypeTok{na.rm =}\NormalTok{ T),}
+             \KeywordTok{max}\NormalTok{(dat}\OperatorTok{$}\NormalTok{weight, }\DataTypeTok{na.rm =}\NormalTok{ t),}
+             \DataTypeTok{length =} \DecValTok{100}\NormalTok{)}
+
+\CommentTok{# extract the coefficients and get p}
+\NormalTok{p =}\StringTok{ }\KeywordTok{expit}\NormalTok{(}\KeywordTok{coef}\NormalTok{(fit1)[}\DecValTok{1}\NormalTok{] }\OperatorTok{+}\StringTok{ }\KeywordTok{coef}\NormalTok{(fit1)[}\DecValTok{2}\NormalTok{] }\OperatorTok{*}\StringTok{ }\NormalTok{wt_seq)}
+
+\CommentTok{# plot the relationship}
+\KeywordTok{plot}\NormalTok{(p }\OperatorTok{~}\StringTok{ }\NormalTok{wt_seq, }\DataTypeTok{type =} \StringTok{"l"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{, }\DataTypeTok{ylim =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{), }\DataTypeTok{las =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-120-1} \end{center}
+
+Fit another model comparing the success rates between hatchery and wild
+fish:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fit2 =}\StringTok{ }\KeywordTok{glm}\NormalTok{(binary }\OperatorTok{~}\StringTok{ }\NormalTok{type, }\DataTypeTok{data =}\NormalTok{ dat, }\DataTypeTok{family =}\NormalTok{ binomial)}
+\KeywordTok{summary}\NormalTok{(fit2)}\OperatorTok{$}\NormalTok{coef}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##               Estimate Std. Error    z value  Pr(>|z|)
+## (Intercept) -0.2006707  0.4494666 -0.4464641 0.6552620
+## typewild     1.3793257  0.7272845  1.8965421 0.0578884
+\end{verbatim}
+
+An easier way to obtain the predicted probability is by using the
+\texttt{predict} function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{predict}\NormalTok{(fit2,}
+        \DataTypeTok{newdata =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{type =} \KeywordTok{c}\NormalTok{(}\StringTok{"hatch"}\NormalTok{, }\StringTok{"wild"}\NormalTok{)),}
+        \DataTypeTok{type =} \StringTok{"response"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         1         2 
+## 0.4500000 0.7647059
+\end{verbatim}
+
+This plugs in the two possible values of the predictor variable and asks
+for the fitted probabilities.
+
+Incorporate the origin type into your original model:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fit3 =}\StringTok{ }\KeywordTok{glm}\NormalTok{(binary }\OperatorTok{~}\StringTok{ }\NormalTok{type }\OperatorTok{+}\StringTok{ }\NormalTok{weight, }\DataTypeTok{data =}\NormalTok{ dat)}
+\end{Highlighting}
+\end{Shaded}
+
+and obtain/plot the fitted probabilities for each group:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p_hatch =}\StringTok{ }\KeywordTok{predict}\NormalTok{(}
+\NormalTok{  fit3, }\DataTypeTok{newdata =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{type =} \StringTok{"hatch"}\NormalTok{, }\DataTypeTok{weight =}\NormalTok{ wt_seq),}
+  \DataTypeTok{type =} \StringTok{"response"}
+\NormalTok{)}
+\NormalTok{p_wild =}\StringTok{ }\KeywordTok{predict}\NormalTok{(}
+\NormalTok{  fit3, }\DataTypeTok{newdata =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{type =} \StringTok{"wild"}\NormalTok{, }\DataTypeTok{weight =}\NormalTok{ wt_seq),}
+  \DataTypeTok{type =} \StringTok{"response"}
+\NormalTok{)}
+
+\KeywordTok{plot}\NormalTok{(p_wild }\OperatorTok{~}\StringTok{ }\NormalTok{wt_seq, }\DataTypeTok{type =} \StringTok{"l"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{, }\DataTypeTok{lty =} \DecValTok{1}\NormalTok{,}
+     \DataTypeTok{ylim =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{), }\DataTypeTok{las =}\DecValTok{1}\NormalTok{,}
+     \DataTypeTok{xlab =} \StringTok{"Weight (g)"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"Pr(>70% Egg Survival)"}
+\NormalTok{     )}
+\KeywordTok{lines}\NormalTok{(p_hatch }\OperatorTok{~}\StringTok{ }\NormalTok{wt_seq, }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{, }\DataTypeTok{lty =} \DecValTok{2}\NormalTok{)}
+\KeywordTok{legend}\NormalTok{(}\StringTok{"topright"}\NormalTok{, }\DataTypeTok{legend =} \KeywordTok{c}\NormalTok{(}\StringTok{"Hatchery"}\NormalTok{, }\StringTok{"Wild"}\NormalTok{),}
+       \DataTypeTok{lty =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{), }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{, }\DataTypeTok{bty =} \StringTok{"n"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-124-1} \end{center}
+
+Look for an interaction (all the code is the same except use
+\texttt{glm(binary\ \textasciitilde{}\ type\ *\ weight)} instead of
+\texttt{glm(binary\ \textasciitilde{}\ type\ +\ weight)} and change
+everything to \texttt{fit4} instead of \texttt{fit3}).
+
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-125-1} \end{center}
+
+You may have noticed that you just did the same analysis with
+\texttt{binary} as the response instead of \texttt{fecund}. Perform an
+AIC analysis to determine which model is likely to be best for
+prediction:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{AIC}\NormalTok{(fit1, fit2, fit3, fit4)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      df      AIC
+## fit1  2 45.40720
+## fit2  2 50.07577
+## fit3  4 50.42090
+## fit4  3 46.00622
+\end{verbatim}
+
+Oddly enough, the two best models are the simplest one and the most
+complex one, with \texttt{fit1} being the best, but not by a large
+margin.
+
+\section{Probability Distributions}\label{probability-distributions}
+
+A probability distribution is a way of representing the probability of
+an event or value of a parameter and they are central to statistical
+theory. Some of the most commonly used distributions are summarized in
+Table \ref{tab:dist-table} below, along with the suffixes of the
+functions in R that correspond to each distribution\footnote{For an
+  excellent and ecologically-focused description of probability
+  distributions, checkout Ben Bolker's book, \emph{Ecological Models and
+  Data in R}. There is a free proof version online:
+  \url{https://ms.mcmaster.ca/~bolker/emdbook/book.pdf}}.
+
+\begin{table}
+
+\caption{\label{tab:dist-table}A brief description of probability distributions commonly used in ecological problems, including the function suffix in R.}
+\centering
+\begin{tabular}[t]{lll|lll|lll|lll}
+\hline
+Type & Distribution & Common Uses & R Suffix\\
+\hline
+Continuous & Normal & Models the relative frequency of outcomes that are symmetric around a mean, can be negative & `-norm`\\
+\hline
+ & Lognormal & Models the relative frequency of outcomes that are normally-distributed on the log-scale & `-lnorm`\\
+\hline
+ & Uniform & Models values that are between two endpoints and that all occur with the same frequency & `-unif`\\
+\hline
+ & Beta & Models values that are between 0 and 1 & `-beta`\\
+\hline
+Discrete & Binomial & Models the number of successes from a given number of trials when there are only two possible outcomes and all trials have the same probability of success & `-binom`\\
+\hline
+ & Multinomial & The same as the binomial distribution, but when there are more than two possible outcomes & `-multinom`\\
+\hline
+ & Poisson & Used for count data in cases where the variance and mean are roughly equal & `-pois`\\
+\hline
+\end{tabular}
+\end{table}
+
+In R, there are four different ways to use each of this distribution
+functions (each as a separate prefix):
+
+\begin{itemize}
+\item
+  \textbf{The probability density (or mass) function} (\texttt{d-}): the
+  height of the probability distribution function at some given value of
+  the random variable.
+\item
+  \textbf{The cumulative density function} (\texttt{p-}): the sum of the
+  probability densities for all random variables below some value.
+\item
+  \textbf{The quantile function} (\texttt{-q}): what value of the random
+  variable do p\% fall below?
+\item
+  \textbf{The random deviates function} (\texttt{-r}): generates random
+  variables from the distribution in proportion to their probability
+  density.
+\end{itemize}
+
+Suppose that \(x\) represents the length of individual age 6 largemouth
+bass in your private fishing pond. Assume that
+\(x \sim N(\mu=500, \sigma=50)\) (\(x\) is a normal random variable with
+mean equal to 500 and standard deviation equal to 50). Here is the usage
+of each of the distribution functions and a plot illustrating them:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# parameters}
+\NormalTok{mu =}\StringTok{ }\DecValTok{500}\NormalTok{; sig =}\StringTok{ }\DecValTok{50}
+
+\CommentTok{# a sequence of possible random variables (fish lengths)}
+\NormalTok{lengths =}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DecValTok{200}\NormalTok{, }\DecValTok{700}\NormalTok{, }\DataTypeTok{length =} \DecValTok{100}\NormalTok{)}
+
+\CommentTok{# a sequence of possible cumulative probabilities}
+\NormalTok{cprobs =}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DataTypeTok{length =} \DecValTok{100}\NormalTok{)}
+
+\NormalTok{densty =}\StringTok{ }\KeywordTok{dnorm}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ lengths, }\DataTypeTok{mean =}\NormalTok{ mu, }\DataTypeTok{sd =}\NormalTok{ sig)  }\CommentTok{# takes specific lengths}
+\NormalTok{cuprob =}\StringTok{ }\KeywordTok{pnorm}\NormalTok{(}\DataTypeTok{q =}\NormalTok{ lengths, }\DataTypeTok{mean =}\NormalTok{ mu, }\DataTypeTok{sd =}\NormalTok{ sig)  }\CommentTok{# takes specific lengths}
+\NormalTok{quants =}\StringTok{ }\KeywordTok{qnorm}\NormalTok{(}\DataTypeTok{p =}\NormalTok{ cprobs, }\DataTypeTok{mean =}\NormalTok{ mu, }\DataTypeTok{sd =}\NormalTok{ sig)   }\CommentTok{# takes specific probabilities}
+\NormalTok{random =}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{n =} \FloatTok{1e4}\NormalTok{, }\DataTypeTok{mean =}\NormalTok{ mu, }\DataTypeTok{sd =}\NormalTok{ sig)      }\CommentTok{# takes a number of random deviates to make}
+
+\CommentTok{# set up plotting region: see ?par for more details}
+\CommentTok{# notice the tricks to clean up the plot}
+\KeywordTok{par}\NormalTok{(}
+  \DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{),    }\CommentTok{# set up 2x2 regions}
+  \DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{),  }\CommentTok{# set narrower margins}
+  \DataTypeTok{xaxs =} \StringTok{"i"}\NormalTok{,        }\CommentTok{# remove "x-buffer"}
+  \DataTypeTok{yaxs =} \StringTok{"i"}\NormalTok{,        }\CommentTok{# remove "y-buffer"}
+  \DataTypeTok{mgp =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\FloatTok{0.4}\NormalTok{,}\DecValTok{0}\NormalTok{),  }\CommentTok{# bring in axis titles ([1]) and tick labels ([2])}
+  \DataTypeTok{tcl =} \OperatorTok{-}\FloatTok{0.25}        \CommentTok{# shorten tick marks}
+\NormalTok{)}
+
+\KeywordTok{plot}\NormalTok{(densty }\OperatorTok{~}\StringTok{ }\NormalTok{lengths, }\DataTypeTok{type =} \StringTok{"l"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{, }\DataTypeTok{main =} \StringTok{"dnorm()"}\NormalTok{,}
+     \DataTypeTok{xlab =} \StringTok{"Fish Length (mm)"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"Density"}\NormalTok{, }\DataTypeTok{las =} \DecValTok{1}\NormalTok{,}
+     \DataTypeTok{yaxt =} \StringTok{"n"}\NormalTok{) }\CommentTok{# turns off y-axis}
+\KeywordTok{axis}\NormalTok{(}\DataTypeTok{side =} \DecValTok{2}\NormalTok{, }\DataTypeTok{at =} \KeywordTok{c}\NormalTok{(}\FloatTok{0.002}\NormalTok{, }\FloatTok{0.006}\NormalTok{), }\DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\FloatTok{0.002}\NormalTok{, }\FloatTok{0.006}\NormalTok{), }\DataTypeTok{las =} \DecValTok{2}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(cuprob }\OperatorTok{~}\StringTok{ }\NormalTok{lengths, }\DataTypeTok{type =} \StringTok{"l"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{, }\DataTypeTok{main =} \StringTok{"pnorm()"}\NormalTok{,}
+     \DataTypeTok{xlab =} \StringTok{"Fish Length (mm)"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"Cumulative Probability"}\NormalTok{, }\DataTypeTok{las =} \DecValTok{1}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(quants }\OperatorTok{~}\StringTok{ }\NormalTok{cprobs, }\DataTypeTok{type =} \StringTok{"l"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{, }\DataTypeTok{main =} \StringTok{"qnorm()"}\NormalTok{,}
+     \DataTypeTok{xlab =} \StringTok{"P"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"P Quantile Length (mm)"}\NormalTok{, }\DataTypeTok{las =} \DecValTok{1}\NormalTok{)}
+\KeywordTok{hist}\NormalTok{(random, }\DataTypeTok{breaks =} \DecValTok{100}\NormalTok{, }\DataTypeTok{col =} \StringTok{"grey"}\NormalTok{, }\DataTypeTok{main =} \StringTok{"rnorm()"}\NormalTok{,}
+     \DataTypeTok{xlab =} \StringTok{"Fish Length (mm)"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"Frequency"}\NormalTok{, }\DataTypeTok{las =} \DecValTok{1}\NormalTok{)}
+\KeywordTok{box}\NormalTok{() }\CommentTok{# add borders to the histogram}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics{au-r-workshop_files/figure-latex/norm-plots-1} 
+
+}
+
+\caption{The four `-norm` functions with input (x-axis) and output (y-axis) displayed.}\label{fig:norm-plots}
+\end{figure}
+
+Notice that \texttt{pnorm} and \texttt{qnorm} are inverses of one
+another: if you put the output of one into the output of the other, you
+get the original input back:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{qnorm}\NormalTok{(}\KeywordTok{pnorm}\NormalTok{(}\DecValTok{0}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+\texttt{pnorm(0)} asks R to find the probability that \(x\) is less than
+zero for the standard normal distribution (\(N(0,1)\) - this is the
+default if you don't specify \texttt{mean} and \texttt{sig}).
+\texttt{qnorm(pnorm(0))} asks R to find the value of \(x\) that
+\texttt{pnorm(0)} * 100\% of the possible values fall below. If the
+nesting is confusing, this line is the same as:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p =}\StringTok{ }\KeywordTok{pnorm}\NormalTok{(}\DecValTok{0}\NormalTok{)}
+\KeywordTok{qnorm}\NormalTok{(p)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Bonus Topic: Non-linear
+Regression}\label{bonus-topic-non-linear-regression}
+
+You fitted linear and logistic regression models in Sections
+\ref{regression} and \ref{logis-regression}, however, R allows you to
+fit non-linear regression models as well.
+
+First, aquire the \texttt{feeding.csv} data set from the
+\href{https://www.github.com/bstaton1/au-r-workshop-data}{GitHub repo}
+and place it in your working directory. Read the data into R:
+
+\begin{verbatim}
+##       prey            cons      
+##  Min.   : 1.00   Min.   : 1.00  
+##  1st Qu.:11.25   1st Qu.: 8.00  
+##  Median :26.00   Median :11.00  
+##  Mean   :25.08   Mean   : 9.92  
+##  3rd Qu.:37.75   3rd Qu.:13.00  
+##  Max.   :49.00   Max.   :15.00
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dat =}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"feeding.csv"}\NormalTok{); }\KeywordTok{summary}\NormalTok{(dat)}
+\end{Highlighting}
+\end{Shaded}
+
+These are hypothetical data from an experiment in which you were
+interested in quantifying the functional feeding response\footnote{A
+  functional response is the number of prey consumed by a predator at
+  various prey densities} of a fish predator on zooplankton in an
+aquarium. You experimentally manipulated the prey density
+(\texttt{dat\$prey}) and counted how many prey items were consumed
+(\texttt{dat\$cons}).
+
+Plot the data:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(cons }\OperatorTok{~}\StringTok{ }\NormalTok{prey, }\DataTypeTok{data =}\NormalTok{ dat)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-131-1} \end{center}
+
+You can see a distinct non-linearity to the relationship. The Holling
+Type II functional response\footnote{This function rises quickly at low
+  prey densities, but saturates at high densities} has this functional
+form:
+
+\[y_i=\frac{ax_i}{1+ahx_i}\] where \(x_i\) is \texttt{prey} and \(y_i\)
+is \texttt{cons}.
+
+You can fit this model in R using the \texttt{nls} function, behaves
+very similarly to the \texttt{lm} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fit =}\StringTok{ }\KeywordTok{nls}\NormalTok{(cons }\OperatorTok{~}\StringTok{ }\NormalTok{(a }\OperatorTok{*}\StringTok{ }\NormalTok{prey)}\OperatorTok{/}\NormalTok{(}\DecValTok{1} \OperatorTok{+}\StringTok{ }\NormalTok{a }\OperatorTok{*}\StringTok{ }\NormalTok{h }\OperatorTok{*}\StringTok{ }\NormalTok{prey), }\DataTypeTok{data =}\NormalTok{ dat,}
+          \DataTypeTok{start =} \KeywordTok{c}\NormalTok{(}\DataTypeTok{a =} \DecValTok{3}\NormalTok{, }\DataTypeTok{h =} \FloatTok{0.1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+You can obtain similar output as from \texttt{lm} using the
+\texttt{summary}, \texttt{coef}, and \texttt{predict}. Draw the fitted
+line over top of the data:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{prey_seq =}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\KeywordTok{min}\NormalTok{(dat}\OperatorTok{$}\NormalTok{prey), }\KeywordTok{max}\NormalTok{(dat}\OperatorTok{$}\NormalTok{prey), }\DataTypeTok{length =} \DecValTok{100}\NormalTok{)}
+\NormalTok{cons_seq =}\StringTok{ }\KeywordTok{predict}\NormalTok{(fit, }\DataTypeTok{newdata =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{prey =}\NormalTok{ prey_seq))}
+
+\KeywordTok{plot}\NormalTok{(cons }\OperatorTok{~}\StringTok{ }\NormalTok{prey, }\DataTypeTok{data =}\NormalTok{ dat, }\DataTypeTok{cex =} \FloatTok{1.5}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{16}\NormalTok{, }\DataTypeTok{col =} \StringTok{"grey"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(cons_seq }\OperatorTok{~}\StringTok{ }\NormalTok{prey_seq, }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-133-1} \end{center}
+
+\section*{EXERCISE 3}\label{exercise-3}
+\addcontentsline{toc}{section}{EXERCISE 3}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Make the same graphic as in Figure \ref{fig:norm-plots} with at least
+  one of the other distributions listed in Table \ref{tab:dist-table}
+  (other than the multinomial - being a multivariate distribution, it
+  wouldn't work well with this code). Try thinking of a variable from
+  your work that meets the uses of each distribution in Table
+  \ref{tab:dist-table} (or one that's not listed). If you run into
+  trouble, check out the help file for that distribution\footnote{Executing
+    \texttt{?rnorm} or any other of the \texttt{-norm} functions will
+    take you to a page with info on all four function types for that
+    distribution}.
+\end{enumerate}
 
 \chapter{Simulation and Randomization}\label{ch4}
 
