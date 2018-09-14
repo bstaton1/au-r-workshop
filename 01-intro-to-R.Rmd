@@ -343,7 +343,7 @@ pander::pandoc.table(data.frame(Lake, Area, Time, Fish))
 
 ## Read External Data Files {#read}
 
-It is rare that you will enter data by hand as you did in Exercise 1A. Often, you have a dataset that you wish to analyze or manipulate. R has several ways to read information from data files and in this workshop, we will be using a common and simple method: reading in `.csv` files. `.csv` files are data files that separate columns with commas^[Note that if your computer is configured for a Spanish-speaking country, Microsoft Excel might convert decimals to commas. This can really mess with reading in data - I would suggest changing the language of Excel if you find this to be the case.]. If your data are in a Microsoft Excel spreadsheet, you can save your spreadsheet file as a CSV file (_File > Save As > Save as Type> CSV (Comma Delimited)_). Several dialog boxes will open asking if you are sure you want to save it as a `.csv` file. 
+It is rare that you will enter data by hand as you did in Exercise 1A. Often, you have a dataset that you wish to analyze or manipulate that is stored in a spreadsheet. R has several ways to read information from data files and in this workshop, we will be using a common and simple method: reading in `.csv` files. `.csv` files are data files that separate columns with commas^[Note that if your computer is configured for a Spanish-speaking country, Microsoft Excel might convert decimals to commas. This can really mess with reading in data - I would suggest changing the language of Excel if you find this to be the case.]. If your data are in a Microsoft Excel spreadsheet, you can save your spreadsheet file as a `.csv` file (_File > Save As > Save as Type> CSV (Comma Delimited)_). Several dialog boxes will open asking if you are sure you want to save it as a `.csv` file. 
 
 The syntax for reading in a `.csv` file is:
 
@@ -351,13 +351,13 @@ The syntax for reading in a `.csv` file is:
 dat = read.csv("FileName.csv")
 ```
 
-The data files for this workshop are found in the GitHub repository: <https://github.com/bstaton1/au-r-workshop-data/tree/master>. Navigate to this repository, find the file called `streams.csv`, download that file^[To download a single file from GitHub, click on the file, then click "Raw" in the toolbar on the topright, then right-click anywhere in the document and click "Save As...". You can also download a zip folder with all of the `.csv` files, go to "Clone or Download"], and place it in your working directory for this session. This document assumes your working directory is `C:/Users/YOU/Documents/R-Workshop/Chapter1`, though the one you are actually using may be slightly different. We can read the contents of `streams.csv` into R using this code (ensure your working directory is set first):
+The data files for this workshop are found in the GitHub repository: <https://github.com/bstaton1/au-r-workshop-data/tree/master>. Navigate to this repository, find the file called `streams.csv`, download that file^[To download a single file from GitHub, click on the file, then click "Raw" in the toolbar on the topright, then right-click anywhere in the document and click "Save As...". You can also download a zip folder with all of the `.csv` files, go to "Clone or Download"], and place it in your working directory for this session. This document assumes your working directory is `C:/Users/YOU/Documents/R-Workshop/Chapter1`, though the one you are actually using may be slightly different (the `YOU` should at least be changed for your computer). We can read the contents of `streams.csv` into R using this code (ensure your working directory is set first):
 
 ```{r, eval = F}
 dat = read.csv("streams.csv")
 ```
 
-**If the data set is in your working directory, all you need to provide is the file name.** If you do not get an error, congratulations! However, if you get an error that looks like this:
+**If `streams.csv` is in your working directory, all you need to provide is the file name.** If you do not get an error, congratulations! However, if you get an error that looks like this:
 
 ```{r, echo = F, error = T}
 dat = read.csv("streams.csv")
@@ -369,33 +369,34 @@ then fear not. This has must be among the most common errors encoutered by R use
 
 2.  Check what files are in your working directory: run `dir()`. This will return a vector with the names of the files located in your working directory. Is the file you told R was there truly in there? Is your working directory set to where you thought it was?
 
-3.  If the file is not in your working directory, and you wish to keep it that way, you must point R to where that file is. Pretend for a moment that we put the data file in `/R-Workshop/DataHere`. Here are two examples that would both read in the file in this case:
+3.  If the file is not in your working directory, and you wish to keep it that way, you must point R to where that file is. Pretend for a moment that you put `streams.csv` in `/R-Workshop/DataHere`. Here are two examples that would both read in the file in this case:
 
 ```{r, eval = F}
-dat = read.csv("C:/Users/YOU/Documents/R-Workshop/Data/streams.csv")
-dat = read.csv("../Data/streams")
+dat = read.csv("C:/Users/YOU/Documents/R-Workshop/DataHere/streams.csv")
+dat = read.csv("../DataHere/streams")
 ```
 
-The first line is the full file path to the file in question. The second line uses a **relative path**: the `../` says "look one folder up from the working directory for a folder called `Data` then find a file called `streams.csv` in it."
+The first line is the full file path to the file in question. The second line uses a **relative path**: the `../` says "look one folder up from the working directory for a folder called `DataHere` then find a file called `streams.csv` in it."
 
-If you did not get any errors, then the data are in the object you named (`dat` here) and that object is a data frame. Do not proceed until you are able to `read.csv` to run successfully.
+If you did not get any errors, then the data are in the object you named (`dat`) and that object is a data frame. Do not proceed until you are able to get `read.csv` to run successfully.
 
 **A few things to note about reading in `.csv` files**: 
 
-*  If even a single character is found in a numeric column in `FileName.csv`, the _entire column_ will be coerced to a character/factor data class after it is read in (i.e., no more math with data on that column until you remove the character). A common error is to have a `#VALUE!` record left over from an invalid Excel function result. You must remove all of these occurences in order to use that column as numeric. Characters include anything other than a number ([0-9]) and a period when used as a decimal. None of these characters: `!@#$%^&*()_-+=[a-z];[A-Z]` should never be found in a column you wish to do math with (e.g., take the mean of that column). 
-
-*  If a record (i.e., cell) is truly missing and you wish R to treat it that way (i.e., as an `NA`), you have three options:
-    - Hard code an `NA` into that cell in Excel
-    - Leave that cell completely empty
-    - Enter in some other character (e.g., `"."`) alone in all cells that are meant to be coded as `NA` in R and use the `na.strings = "."` argument of `read.csv`.
-    
 *  If a cell in the first row with text contains a space between two words, R will insert a `"."` between the words.
 
-*  If your data have column names (i.e., characters) in the first row, R will bring those in as column names by default.  
+*  R will assume the first row are column headers by default.
 
 *  R brings in CSV files in as data frames by default.
 
-*  If at some point you did "Clear Contents" in Microsoft Excel to delete rows or columns from your `.csv` file, these deleted rows/columns will be read in as all `NA`s, which can be annoying. To remove this problem, open the `.csv` file in Excel, then highlight and **delete** the rows/columns and save the file. Read it back into R again using `read.csv`.
+*  If a record (i.e., cell) is truly missing and you want R to treat it that way (i.e., as an `NA`), you have three options:
+    - Hard code an `NA` into that cell in Excel
+    - Leave that cell completely empty
+    - Enter in some other character (e.g., `"."`) alone in all cells that are meant to be coded as `NA` in R and use the `na.strings = "."` argument of `read.csv`.
+
+*  If at some point you did "Clear Contents" in Microsoft Excel to delete rows or columns from your `.csv` file, these "deleted" rows/columns will be read in as all `NA`s, which can be annoying. To remove this problem, open the `.csv` file in Excel, then highlight and **delete** the rows/columns in question and save the file. Read it back into R again using `read.csv`.
+
+*  If even a single character is found in a numeric column in `FileName.csv`, the _entire column_ will be coerced to a character/factor data class after it is read in (i.e., no more math with data on that column until you remove the character). A common error is to have a `#VALUE!` record left over from an invalid Excel function result. You must remove all of these occurences in order to use that column as numeric. Characters include anything other than a number ([0-9]) and a period when used as a decimal. None of these characters: `!?[]\/@#$%^&*()<>_-+=[a-z];[A-Z]` should never be found in a column you wish to do math with (e.g., take the mean of that column). **This is an incredibly common problem!**
+
 
 ## Explore the Data Set
 
