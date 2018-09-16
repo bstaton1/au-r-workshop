@@ -127,7 +127,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.11" data-path="ch1.html"><a href="ch1.html#logsub"><i class="fa fa-check"></i><b>1.11</b> Logical Subsetting</a></li>
 <li class="chapter" data-level="1.12" data-path="ch1.html"><a href="ch1.html#if-else-and-ifelse"><i class="fa fa-check"></i><b>1.12</b> if, else, and ifelse</a></li>
 <li class="chapter" data-level="1.13" data-path="ch1.html"><a href="ch1.html#writing-output-files"><i class="fa fa-check"></i><b>1.13</b> Writing Output Files</a><ul>
-<li class="chapter" data-level="1.13.1" data-path="ch1.html"><a href="ch1.html#csv-files"><i class="fa fa-check"></i><b>1.13.1</b> .csv Files</a></li>
+<li class="chapter" data-level="1.13.1" data-path="ch1.html"><a href="ch1.html#csv-files"><i class="fa fa-check"></i><b>1.13.1</b> <code>.csv</code> Files</a></li>
 <li class="chapter" data-level="1.13.2" data-path="ch1.html"><a href="ch1.html#saving-r-objects"><i class="fa fa-check"></i><b>1.13.2</b> Saving R Objects</a></li>
 </ul></li>
 <li class="chapter" data-level="1.14" data-path="ch1.html"><a href="ch1.html#user-defined-functions"><i class="fa fa-check"></i><b>1.14</b> User-Defined Functions</a></li>
@@ -542,31 +542,31 @@ df1[,<span class="st">&quot;year&quot;</span>]</code></pre></div>
 <ol style="list-style-type: decimal">
 <li><p>The exact case and spelling matters, as well as do the quotes and <code>.csv</code> at the end. Ensure the file name is typed correctly.</p></li>
 <li><p>Check what files are in your working directory: run <code>dir()</code>. This will return a vector with the names of the files located in your working directory. Is the file you told R was there truly in there? Is your working directory set to where you thought it was?</p></li>
-<li><p>If the file is not in your working directory, and you wish to keep it that way, you must point R to where that file is. Pretend for a moment that we put the data file in <code>/R-Workshop/DataHere</code>. Here are two examples that would both read in the file in this case:</p></li>
+<li><p>If the file is not in your working directory, and you wish to keep it that way, you must point R to where that file is. Pretend for a moment that you put <code>streams.csv</code> in <code>/R-Workshop/DataHere</code>. Here are two examples that would both read in the file in this case:</p></li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;C:/Users/YOU/Documents/R-Workshop/Data/streams.csv&quot;</span>)
-dat =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../Data/streams&quot;</span>)</code></pre></div>
-<p>The first line is the full file path to the file in question. The second line uses a <strong>relative path</strong>: the <code>../</code> says “look one folder up from the working directory for a folder called <code>Data</code> then find a file called <code>streams.csv</code> in it.”</p>
-<p>If you did not get any errors, then the data are in the object you named (<code>dat</code> here) and that object is a data frame. Do not proceed until you are able to <code>read.csv</code> to run successfully.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;C:/Users/YOU/Documents/R-Workshop/DataHere/streams.csv&quot;</span>)
+dat =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../DataHere/streams&quot;</span>)</code></pre></div>
+<p>The first line is the full file path to the file in question. The second line uses a <strong>relative path</strong>: the <code>../</code> says “look one folder up from the working directory for a folder called <code>DataHere</code> then find a file called <code>streams.csv</code> in it.”</p>
+<p>If you did not get any errors, then the data are in the object you named (<code>dat</code>) and that object is a data frame. Do not proceed until you are able to get <code>read.csv</code> to run successfully.</p>
 <p><strong>A few things to note about reading in <code>.csv</code> files</strong>:</p>
 <ul>
-<li><p>If even a single character is found in a numeric column in <code>FileName.csv</code>, the <em>entire column</em> will be coerced to a character/factor data class after it is read in (i.e., no more math with data on that column until you remove the character). A common error is to have a <code>#VALUE!</code> record left over from an invalid Excel function result. You must remove all of these occurences in order to use that column as numeric. Characters include anything other than a number ([0-9]) and a period when used as a decimal. None of these characters: <code>!@#$%^&amp;*()_-+=[a-z];[A-Z]</code> should never be found in a column you wish to do math with (e.g., take the mean of that column).</p></li>
-<li>If a record (i.e., cell) is truly missing and you wish R to treat it that way (i.e., as an <code>NA</code>), you have three options:
+<li><p>R will assume the first row are column headers by default.</p></li>
+<li><p>If there is a space in one of the header cells, a <code>&quot;.&quot;</code> will be inserted. For example, <code>Total Length</code> would become <code>Total.Length</code>.</p></li>
+<li><p>R brings in <code>.csv</code> files in as data frames by default.</p></li>
+<li>If a record (i.e., cell) is truly missing and you want R to treat it that way (i.e., as an <code>NA</code>), you have three options:
 <ul>
 <li>Hard code an <code>NA</code> into that cell in Excel</li>
 <li>Leave that cell completely empty</li>
 <li>Enter in some other character (e.g., <code>&quot;.&quot;</code>) alone in all cells that are meant to be coded as <code>NA</code> in R and use the <code>na.strings = &quot;.&quot;</code> argument of <code>read.csv</code>.</li>
 </ul></li>
-<li><p>If a cell in the first row with text contains a space between two words, R will insert a <code>&quot;.&quot;</code> between the words.</p></li>
-<li><p>If your data have column names (i.e., characters) in the first row, R will bring those in as column names by default.</p></li>
-<li><p>R brings in CSV files in as data frames by default.</p></li>
-<li><p>If at some point you did “Clear Contents” in Microsoft Excel to delete rows or columns from your <code>.csv</code> file, these deleted rows/columns will be read in as all <code>NA</code>s, which can be annoying. To remove this problem, open the <code>.csv</code> file in Excel, then highlight and <strong>delete</strong> the rows/columns and save the file. Read it back into R again using <code>read.csv</code>.</p></li>
+<li><p>If at some point you did “Clear Contents” in Microsoft Excel to delete rows or columns from your <code>.csv</code> file, these “deleted” rows/columns will be read in as all <code>NAs</code>, which can be annoying. To remove this problem, open the <code>.csv</code> file in Excel, then highlight and <strong>delete</strong> the rows/columns in question and save the file. Read it back into R again using <code>read.csv</code>.</p></li>
+<li><p>If even a single character is found in a numeric column in <code>FileName.csv</code>, the <em>entire column</em> will be coerced to a character/factor data class after it is read in (i.e., no more math with data on that column until you remove the character). A common error is to have a <code>#VALUE!</code> record left over from an invalid Excel function result. You must remove all of these occurences in order to use that column as numeric. Characters include anything other than a number ([0-9]) and a period when used as a decimal. None of these characters: <code>!?[]\/@#$%^&amp;*()&lt;&gt;_-+=[a-z];[A-Z]</code> should never be found in a column you wish to do math with (e.g., take the mean of that column). <strong>This is an incredibly common problem!</strong></p></li>
 </ul>
 </div>
 <div id="explore-the-data-set" class="section level2">
 <h2><span class="header-section-number">1.9</span> Explore the Data Set</h2>
 <p>Have a look at the data. You could just run <code>dat</code> to view the contents of the object, but it will show the whole thing, which may be undesirable if the data set is large. To view the first handful of rows, run <code>head(dat)</code> or the last handful of rows with <code>tail(dat)</code>.</p>
-<p>You will now use some basic functions to explore the streams data before any analysis. The <code>summary</code> function is very useful for getting a coarse look at how R has interpretted the data frame:</p>
+<p>You will now use some basic functions to explore the simulated streams data before any analysis. The <code>summary</code> function is very useful for getting a coarse look at how R has interpretted the data frame:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(dat)</code></pre></div>
 <pre><code>##        state    stream_width        flow       
 ##  Alabama  :5   Min.   :17.65   Min.   : 28.75  
@@ -576,7 +576,7 @@ dat =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">
 ##                3rd Qu.:79.34   3rd Qu.:120.55  
 ##                Max.   :94.65   Max.   :149.54  
 ##                                NA&#39;s   :1</code></pre>
-<p>You can see the spread of the numeric data and see the different levels of the factor (<code>state</code>) as well as how many data points belong to each category. Note that there is one <code>NA</code> in the variable called <code>flow</code>.</p>
+<p>You can see the spread of the numeric data and see the different levels of the factor (<code>state</code>) as well as how many records belong to each level. Note that there is one <code>NA</code> in the variable called <code>flow</code>.</p>
 <p>To count the number of elements in a variable (or any vector), remember the <code>length</code> function:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(dat<span class="op">$</span>stream_width)</code></pre></div>
 <pre><code>## [1] 20</code></pre>
@@ -591,16 +591,19 @@ dat =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">
 <p>You can extract the names of the variables (i.e., columns) in the data frame using <code>colnames</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">colnames</span>(dat)</code></pre></div>
 <pre><code>## [1] &quot;state&quot;        &quot;stream_width&quot; &quot;flow&quot;</code></pre>
-<p>Calculate the mean of all of the flow records:</p>
+<p>Calculate the mean of all the <code>stream_width</code> records:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(dat<span class="op">$</span>stream_width)</code></pre></div>
+<pre><code>## [1] 60.8845</code></pre>
+<p>Calculate the mean of all of the <code>flow</code> records:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(dat<span class="op">$</span>flow)</code></pre></div>
 <pre><code>## [1] NA</code></pre>
-<p>It returned an <code>NA</code> because there is an <code>NA</code> in the data for this variable. There is a way to tell R to ignore this <code>NA</code>. Include the argument <code>na.rm = TRUE</code> in the <code>mean</code> function (separate arguments are always separated by commas). This is a <strong>logical</strong> argument, meaning that it asks a question. It says “do you want to remove <code>NAs</code> before calculating the mean?” <code>TRUE</code> means “yes” and <code>FALSE</code> means “no.” These can be abbreviated as <code>T</code> or <code>F</code>. Many of R’s functions have the <code>na.rm</code> argument (e.g. <code>mean</code>, <code>sd</code>, <code>var</code>, <code>min</code>, <code>max</code>, <code>sum</code>, etc. - most anything that collapses a vector into one number).</p>
+<p>It returned an <code>NA</code> because there is an <code>NA</code> in the data for this variable. There is a way to tell R to ignore this <code>NA</code>: include the argument <code>na.rm = TRUE</code> in the <code>mean</code> function (separate arguments are always separated by commas). This is a <strong>logical</strong> argument, meaning that it asks a question. It says “do you want to remove <code>NAs</code> before calculating the mean?” <code>TRUE</code> means “yes” and <code>FALSE</code> means “no.” <code>TRUE</code> and <code>FALSE</code> can be abbreviated as <code>T</code> and <code>F</code>, respectively. Many of R’s functions have the <code>na.rm</code> argument (e.g. <code>mean</code>, <code>sd</code>, <code>var</code>, <code>min</code>, <code>max</code>, <code>sum</code>, etc. - most anything that collapses a vector into one number).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(dat<span class="op">$</span>flow, <span class="dt">na.rm =</span> T)</code></pre></div>
 <pre><code>## [1] 91.49053</code></pre>
 <p>which is the same as (i.e., the definition of the mean with the <code>NA</code> removed):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(dat<span class="op">$</span>flow, <span class="dt">na.rm =</span> T)<span class="op">/</span>(<span class="kw">nrow</span>(dat) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)</code></pre></div>
 <pre><code>## [1] 91.49053</code></pre>
-<p>What if you need to do something to more than one variable at a time? One of the easiest ways to do this (though as with most things in R, there are many) is by using the <code>apply</code> function. This function applies the same summary function to individual subsets of a data object at a time then returns the individual summaries all at once:</p>
+<p>What if you need apply a function to more than one variable at a time? One of the easiest ways to do this (though as with most things in R, there are many) is by using the <code>apply</code> function. This function applies the same summary function to individual subsets of a data object at a time then returns the individual summaries all at once:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(dat[,<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>], <span class="dv">2</span>, <span class="dt">FUN =</span> var, <span class="dt">na.rm =</span> T)</code></pre></div>
 <pre><code>## stream_width         flow 
 ##     581.1693    1337.3853</code></pre>
@@ -610,6 +613,13 @@ dat =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">
 <pre><code>##   Alabama   Florida   Georgia Tennessee 
 ##    53.664    63.588    54.996    71.290</code></pre>
 <p>The first argument is the variable you want to apply the <code>mean</code> function to, the second is the grouping variable, and the third is what function you wish to apply. Try to commit this command to memory given this is a pretty common task.</p>
+<p>If you want a data frame as output, you can use the <code>aggregate</code> function to do the same thing:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">aggregate</span>(dat<span class="op">$</span>stream_width, <span class="dt">by =</span> <span class="kw">list</span>(<span class="dt">state =</span> dat<span class="op">$</span>state), mean)</code></pre></div>
+<pre><code>##       state      x
+## 1   Alabama 53.664
+## 2   Florida 63.588
+## 3   Georgia 54.996
+## 4 Tennessee 71.290</code></pre>
 </div>
 <div id="logicalboolean-operators" class="section level2">
 <h2><span class="header-section-number">1.10</span> Logical/Boolean Operators</h2>
@@ -661,7 +671,7 @@ dat<span class="op">$</span>stream_width <span class="op">&gt;</span><span class
 dat<span class="op">$</span>flow[dat<span class="op">$</span>stream_width <span class="op">&gt;</span><span class="st"> </span><span class="dv">60</span>]</code></pre></div>
 <pre><code>##  [1] 120.48 123.78  95.64  95.82 120.06 135.63 120.61 111.34 149.54 131.22</code></pre>
 <p>gives all of the <code>flow</code> values for which <code>stream_width</code> is greater than 60.</p>
-<p>To see all of the data from Alabama, you would run:</p>
+<p>To extract all of the data from Alabama, you would run:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat[dat<span class="op">$</span>state <span class="op">==</span><span class="st"> &quot;Alabama&quot;</span>,]</code></pre></div>
 <pre><code>##     state stream_width   flow
 ## 1 Alabama        81.68 120.48
@@ -676,7 +686,7 @@ dat<span class="op">$</span>flow[dat<span class="op">$</span>stream_width <span 
 <p>You can tell R to do something if the result of a question is <code>TRUE</code>. This is a typical if-then statement:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (x <span class="op">==</span><span class="st"> </span><span class="dv">5</span>) <span class="kw">print</span>(<span class="st">&quot;x is equal to 5&quot;</span>)</code></pre></div>
 <pre><code>## [1] &quot;x is equal to 5&quot;</code></pre>
-<p>This says “if <code>x</code> equals 5, then print the phrase ‘x is equal to 5’ to the console”. If the logical returns a <code>FALSE</code>, then this command does nothing:</p>
+<p>This says “if <code>x</code> equals 5, then print the phrase ‘x is equal to 5’ to the console”. If the logical returns a <code>FALSE</code>, then this command does nothing. To see this, change the <code>==</code> to a <code>!=</code> and re-run:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (x <span class="op">!=</span><span class="st"> </span><span class="dv">5</span>) <span class="kw">print</span>(<span class="st">&quot;x is equal to 5&quot;</span>)</code></pre></div>
 <p>We can tell R to do multiple things if the logical is <code>TRUE</code> by using curly braces:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (x <span class="op">==</span><span class="st"> </span><span class="dv">5</span>) {
@@ -686,7 +696,7 @@ dat<span class="op">$</span>flow[dat<span class="op">$</span>stream_width <span 
 <pre><code>## [1] &quot;x is equal to 5&quot;
 ## [1] &quot;you dummy, x is supposed to be 6&quot;</code></pre>
 <p>You can always use curly braces to extend code across multiple lines whereas it may have been intended to go on one line.</p>
-<p>What if you want R to do something if the logical is <code>FALSE</code>? Then you would use the <code>else</code> command:</p>
+<p>If you want R to do something if the logical is <code>FALSE</code>, you would use the <code>else</code> command:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (x <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>) <span class="kw">print</span>(<span class="st">&quot;x is greater than 5&quot;</span>) <span class="cf">else</span> <span class="kw">print</span>(<span class="st">&quot;x is not greater than 5&quot;</span>)</code></pre></div>
 <pre><code>## [1] &quot;x is not greater than 5&quot;</code></pre>
 <p>Or extend this same thing to multiple lines:</p>
@@ -695,7 +705,6 @@ dat<span class="op">$</span>flow[dat<span class="op">$</span>stream_width <span 
 } <span class="cf">else</span> {
   <span class="kw">print</span>(<span class="st">&quot;x is not greater than 5&quot;</span>)
 } </code></pre></div>
-<pre><code>## [1] &quot;x is not greater than 5&quot;</code></pre>
 <p>The <code>if</code> function is useful, but it can only ask one question at a time. If you supply it with a vector of length greater than 1, it will give a warning:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vector from -5 to 5, excluding zero</span>
 xs =<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">5</span><span class="op">:-</span><span class="dv">1</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)
@@ -705,12 +714,12 @@ xs =<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span>
 <pre><code>## Warning in if (xs &lt; 0) print(&quot;negative&quot;): the condition has length &gt; 1 and
 ## only the first element will be used</code></pre>
 <pre><code>## [1] &quot;negative&quot;</code></pre>
-<p>Warnings are different than errors in that something still happens, but it tells you that it might not be what you wanted, whereas an error stops R altogether. In short, this warning is telling you that you passed <code>if</code> a logical vector with more than 1 element, and that it can only use one element so it’s picking the first one. Because the first element of <code>xs</code> is -5, <code>xs &lt; 0</code> evaluated to <code>TRUE</code>, and we got a <code>&quot;negative&quot;</code> printed along with our warning.</p>
+<p>Warnings are different than errors in that something still happens, but it tells you that it might not be what you wanted, whereas an error stops R altogether. In short, this warning is telling you that you passed <code>if</code> a logical vector with more than 1 element, and that it can only use one element so it’s picking the first one. Because the first element of <code>xs</code> is -5, <code>xs &lt; 0</code> evaluated to <code>TRUE</code>, and you got a <code>&quot;negative&quot;</code> printed along with the warning.</p>
 <p>To ask multiple questions at once, we must use <code>ifelse</code>. This function is similar, but it combines the <code>if</code> and <code>else</code> syntax into one useful function function:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ifelse</span>(xs <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>, <span class="st">&quot;positive&quot;</span>, <span class="st">&quot;negative&quot;</span>)</code></pre></div>
 <pre><code>##  [1] &quot;negative&quot; &quot;negative&quot; &quot;negative&quot; &quot;negative&quot; &quot;negative&quot; &quot;positive&quot;
 ##  [7] &quot;positive&quot; &quot;positive&quot; &quot;positive&quot; &quot;positive&quot;</code></pre>
-<p>The syntax is <code>ifelse(condition, do_if_TRUE, do_if_FALSE)</code>. You can cbind the output with <code>xs</code> to verify it worked:</p>
+<p>The syntax is <code>ifelse(condition, do_if_TRUE, do_if_FALSE)</code>. You can <code>cbind</code> the output with <code>xs</code> to verify it worked:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cbind</span>(
   xs,
   <span class="kw">ifelse</span>(xs <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>, <span class="st">&quot;positive&quot;</span>, <span class="st">&quot;negative&quot;</span>)
@@ -726,7 +735,7 @@ xs =<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span>
 ##  [8,] &quot;3&quot;  &quot;positive&quot;
 ##  [9,] &quot;4&quot;  &quot;positive&quot;
 ## [10,] &quot;5&quot;  &quot;positive&quot;</code></pre>
-<p>Use <code>ifelse</code> to create a new variable in <code>dat</code> that indicateds whether stream is big or small depending <strong>whether stream with is greater or less than 50</strong>:</p>
+<p>Use <code>ifelse</code> to create a new variable in <code>dat</code> that indicates whether a stream is big or small depending <strong>whether the stream width is greater or less than 50</strong>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat<span class="op">$</span>size_cat =<span class="st"> </span><span class="kw">ifelse</span>(dat<span class="op">$</span>stream_width <span class="op">&gt;</span><span class="st"> </span><span class="dv">50</span>, <span class="st">&quot;big&quot;</span>, <span class="st">&quot;small&quot;</span>); <span class="kw">head</span>(dat)</code></pre></div>
 <pre><code>##     state stream_width   flow size_cat
 ## 1 Alabama        81.68 120.48      big
@@ -746,12 +755,12 @@ xs =<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span>
 ## 4 Alabama        31.63  46.55    small         small
 ## 5 Alabama        48.93  80.91    small        medium
 ## 6 Georgia        39.42  57.63    small         small</code></pre>
-<p>If the first condition is <code>TRUE</code>, then it will give that row a “small”. If not, it will start another <code>ifelse</code> to ask if the <code>stream_width</code> is greater than 40 <em>and</em> less than or equal to 70. If so, it will give it a “medium”, if not it will get a “big”. This is confusing at first. Not all nesting or embedding of functions are this complex, but this is a neat example. Without <code>ifelse</code>, you would have to use as many <code>if</code> statements as there are elements in <code>dat$stream_width</code>.</p>
+<p>If the first condition is <code>TRUE</code>, then it will give that row a “small”. If not, it will start another <code>ifelse</code> to ask if the <code>stream_width</code> is greater than 40 <em>and</em> less than or equal to 70. If so, it will give it a “medium”, if not it will get a “big”. Not all function nesting examples are this complex, but this is a neat example. Without <code>ifelse</code>, you would have to use as many <code>if</code> statements as there are elements in <code>dat$stream_width</code>.</p>
 </div>
 <div id="writing-output-files" class="section level2">
 <h2><span class="header-section-number">1.13</span> Writing Output Files</h2>
 <div id="csv-files" class="section level3">
-<h3><span class="header-section-number">1.13.1</span> .csv Files</h3>
+<h3><span class="header-section-number">1.13.1</span> <code>.csv</code> Files</h3>
 <p>Now that you have made some new variables in your data frame, you may want to save this work in the form of a new <code>.csv</code> file. To do this, you can use the <code>write.csv</code> function:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.csv</span>(dat, <span class="st">&quot;updated_streams.csv&quot;</span>, <span class="dt">row.names =</span> F)</code></pre></div>
 <p>The first argument is the data frame (or matrix) to write, the second is what you want to call it (don’t forget the <code>.csv</code>!), and <code>row.names = F</code> tells R to not include the row names (because they are just numbers in this case). R puts the file in your working directory unless you tell it otherwise. To put it somewhere else, type in the path with the new file name at the end.</p>

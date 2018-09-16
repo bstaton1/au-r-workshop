@@ -382,18 +382,18 @@ If you did not get any errors, then the data are in the object you named (`dat`)
 
 **A few things to note about reading in `.csv` files**: 
 
-*  If a cell in the first row with text contains a space between two words, R will insert a `"."` between the words.
-
 *  R will assume the first row are column headers by default.
 
-*  R brings in CSV files in as data frames by default.
+*  If there is a space in one of the header cells, a `"."` will be inserted. For example, `Total Length` would become `Total.Length`. 
+
+*  R brings in `.csv` files in as data frames by default.
 
 *  If a record (i.e., cell) is truly missing and you want R to treat it that way (i.e., as an `NA`), you have three options:
     - Hard code an `NA` into that cell in Excel
     - Leave that cell completely empty
     - Enter in some other character (e.g., `"."`) alone in all cells that are meant to be coded as `NA` in R and use the `na.strings = "."` argument of `read.csv`.
 
-*  If at some point you did "Clear Contents" in Microsoft Excel to delete rows or columns from your `.csv` file, these "deleted" rows/columns will be read in as all `NA`s, which can be annoying. To remove this problem, open the `.csv` file in Excel, then highlight and **delete** the rows/columns in question and save the file. Read it back into R again using `read.csv`.
+*  If at some point you did "Clear Contents" in Microsoft Excel to delete rows or columns from your `.csv` file, these "deleted" rows/columns will be read in as all `NAs`, which can be annoying. To remove this problem, open the `.csv` file in Excel, then highlight and **delete** the rows/columns in question and save the file. Read it back into R again using `read.csv`.
 
 *  If even a single character is found in a numeric column in `FileName.csv`, the _entire column_ will be coerced to a character/factor data class after it is read in (i.e., no more math with data on that column until you remove the character). A common error is to have a `#VALUE!` record left over from an invalid Excel function result. You must remove all of these occurences in order to use that column as numeric. Characters include anything other than a number ([0-9]) and a period when used as a decimal. None of these characters: `!?[]\/@#$%^&*()<>_-+=[a-z];[A-Z]` should never be found in a column you wish to do math with (e.g., take the mean of that column). **This is an incredibly common problem!**
 
@@ -406,13 +406,13 @@ dat = read.csv("Data/streams.csv")
 
 Have a look at the data. You could just run `dat` to view the contents of the object, but it will show the whole thing, which may be undesirable if the data set is large. To view the first handful of rows, run `head(dat)` or the last handful of rows with `tail(dat)`.
 
-You will now use some basic functions to explore the streams data before any analysis. The `summary` function is very useful for getting a coarse look at how R has interpretted the data frame: 
+You will now use some basic functions to explore the simulated streams data before any analysis. The `summary` function is very useful for getting a coarse look at how R has interpretted the data frame: 
 
 ```{r}
 summary(dat)
 ```
 
-You can see the spread of the numeric data and see the different levels of the factor (`state`) as well as how many data points belong to each category. Note that there is one `NA` in the variable called `flow`.
+You can see the spread of the numeric data and see the different levels of the factor (`state`) as well as how many records belong to each level. Note that there is one `NA` in the variable called `flow`.
 
 To count the number of elements in a variable (or any vector), remember the `length` function:
 
@@ -438,13 +438,19 @@ You can extract the names of the variables (i.e., columns) in the data frame usi
 colnames(dat)
 ```
 
-Calculate the mean of all of the flow records:
+Calculate the mean of all the `stream_width` records:
+
+```{r}
+mean(dat$stream_width)
+```
+
+Calculate the mean of all of the `flow` records:
 
 ```{r}
 mean(dat$flow)
 ```
 
-It returned an `NA` because there is an `NA` in the data for this variable. There is a way to tell R to ignore this `NA`. Include the argument `na.rm = TRUE` in the `mean` function (separate arguments are always separated by commas). This is a **logical** argument, meaning that it asks a question. It says "do you want to remove `NAs` before calculating the mean?" `TRUE` means "yes" and `FALSE` means "no." These can be abbreviated as `T` or `F`.  Many of R's functions have the `na.rm` argument (e.g. `mean`, `sd`, `var`, `min`, `max`, `sum`, etc. - most anything that collapses a vector into one number).  
+It returned an `NA` because there is an `NA` in the data for this variable. There is a way to tell R to ignore this `NA`: include the argument `na.rm = TRUE` in the `mean` function (separate arguments are always separated by commas). This is a **logical** argument, meaning that it asks a question. It says "do you want to remove `NAs` before calculating the mean?" `TRUE` means "yes" and `FALSE` means "no." `TRUE` and `FALSE` can be abbreviated as `T` and `F`, respectively. Many of R's functions have the `na.rm` argument (e.g. `mean`, `sd`, `var`, `min`, `max`, `sum`, etc. - most anything that collapses a vector into one number).  
 
 ```{r}
 mean(dat$flow, na.rm = T)
@@ -456,7 +462,7 @@ which is the same as (i.e., the definition of the mean with the `NA` removed):
 sum(dat$flow, na.rm = T)/(nrow(dat) - 1)
 ```
 
-What if you need to do something to more than one variable at a time? One of the easiest ways to do this (though as with most things in R, there are many) is by using the `apply` function. This function applies the same summary function to individual subsets of a data object at a time then returns the individual summaries all at once:
+What if you need apply a function to more than one variable at a time? One of the easiest ways to do this (though as with most things in R, there are many) is by using the `apply` function. This function applies the same summary function to individual subsets of a data object at a time then returns the individual summaries all at once:
 
 ```{r}
 apply(dat[,2:3], 2, FUN = var, na.rm = T)
@@ -471,6 +477,12 @@ tapply(dat$stream_width, dat$state, mean)
 ```
 
 The first argument is the variable you want to apply the `mean` function to, the second is the grouping variable, and the third is what function you wish to apply. Try to commit this command to memory given this is a pretty common task.
+
+If you want a data frame as output, you can use the `aggregate` function to do the same thing:
+
+```{r}
+aggregate(dat$stream_width, by = list(state = dat$state), mean)
+```
 
 ## Logical/Boolean Operators
 
@@ -544,7 +556,7 @@ dat$flow[dat$stream_width > 60]
 
 gives all of the `flow` values for which `stream_width` is greater than 60.
 
-To see all of the data from Alabama, you would run:
+To extract all of the data from Alabama, you would run:
 
 ```{r}
 dat[dat$state == "Alabama",]
@@ -560,7 +572,7 @@ You can tell R to do something if the result of a question is `TRUE`. This is a 
 if (x == 5) print("x is equal to 5")
 ```
 
-This says "if `x` equals 5, then print the phrase 'x is equal to 5' to the console". If the logical returns a `FALSE`, then this command does nothing:
+This says "if `x` equals 5, then print the phrase 'x is equal to 5' to the console". If the logical returns a `FALSE`, then this command does nothing. To see this, change the `==` to a `!=` and re-run:
 
 ```{r}
 if (x != 5) print("x is equal to 5")
@@ -577,7 +589,7 @@ if (x == 5) {
 
 You can always use curly braces to extend code across multiple lines whereas it may have been intended to go on one line.
  
-What if you want R to do something if the logical is `FALSE`? Then you would use the `else` command:
+If you want R to do something if the logical is `FALSE`, you would use the `else` command:
 
 ```{r}
 if (x > 5) print("x is greater than 5") else print("x is not greater than 5")
@@ -585,7 +597,7 @@ if (x > 5) print("x is greater than 5") else print("x is not greater than 5")
 
 Or extend this same thing to multiple lines:
 
-```{r}
+```{r, eval = F}
 if (x > 5) {
   print("x is greater than 5")
 } else {
@@ -595,7 +607,6 @@ if (x > 5) {
 
 The `if` function is useful, but it can only ask one question at a time. If you supply it with a vector of length greater than 1, it will give a warning:
 
-
 ```{r}
 # vector from -5 to 5, excluding zero
 xs = c(-5:-1, 1:5)
@@ -604,7 +615,7 @@ xs = c(-5:-1, 1:5)
 if (xs < 0) print("negative")
 ```
 
-Warnings are different than errors in that something still happens, but it tells you that it might not be what you wanted, whereas an error stops R altogether. In short, this warning is telling you that you passed `if` a logical vector with more than 1 element, and that it can only use one element so it's picking the first one. Because the first element of `xs` is -5, `xs < 0` evaluated to `TRUE`, and we got a `"negative"` printed along with our warning.
+Warnings are different than errors in that something still happens, but it tells you that it might not be what you wanted, whereas an error stops R altogether. In short, this warning is telling you that you passed `if` a logical vector with more than 1 element, and that it can only use one element so it's picking the first one. Because the first element of `xs` is -5, `xs < 0` evaluated to `TRUE`, and you got a `"negative"` printed along with the warning.
 
 To ask multiple questions at once, we must use `ifelse`. This function is similar, but it combines the `if` and `else` syntax into one useful function function:
 
@@ -612,7 +623,7 @@ To ask multiple questions at once, we must use `ifelse`. This function is simila
 ifelse(xs > 0, "positive", "negative")
 ```
 
-The syntax is `ifelse(condition, do_if_TRUE, do_if_FALSE)`. You can cbind the output with `xs` to verify it worked:
+The syntax is `ifelse(condition, do_if_TRUE, do_if_FALSE)`. You can `cbind` the output with `xs` to verify it worked:
 
 ```{r}
 cbind(
@@ -621,7 +632,7 @@ cbind(
 )
 ```
 
-Use `ifelse` to create a new variable in `dat` that indicateds whether stream is big or small depending **whether stream with is greater or less than 50**:
+Use `ifelse` to create a new variable in `dat` that indicates whether a stream is big or small depending **whether the stream width is greater or less than 50**:
 
 ```{r}
 dat$size_cat = ifelse(dat$stream_width > 50, "big", "small"); head(dat)
@@ -636,11 +647,11 @@ dat$size_cat_fine = ifelse(dat$stream_width <= 40, "small",
                            ifelse(dat$stream_width > 40 & dat$stream_width <= 70, "medium", "big")); head(dat)
 ```
 
-If the first condition is `TRUE`, then it will give that row a "small". If not, it will start another `ifelse` to ask if the `stream_width` is greater than 40 _and_ less than or equal to 70. If so, it will give it a "medium", if not it will get a "big". This is confusing at first. Not all nesting or embedding of functions are this complex, but this is a neat example.  Without `ifelse`, you would have to use as many `if` statements as there are elements in `dat$stream_width`.
+If the first condition is `TRUE`, then it will give that row a "small". If not, it will start another `ifelse` to ask if the `stream_width` is greater than 40 _and_ less than or equal to 70. If so, it will give it a "medium", if not it will get a "big". Not all function nesting examples are this complex, but this is a neat example.  Without `ifelse`, you would have to use as many `if` statements as there are elements in `dat$stream_width`.
 
 ## Writing Output Files
 
-### .csv Files
+### `.csv` Files
 Now that you have made some new variables in your data frame, you may want to save this work in the form of a new `.csv` file. To do this, you can use the `write.csv` function:
 
 ```{r, eval = F}
@@ -667,7 +678,7 @@ head(dat) # should show first 6 rows
 
 ## User-Defined Functions
 
-Sometimes you may want R to carry out a specific task, but there is no built-in function to do it. In this case, you can write your own functions. This one of the parts of R that makes it incredibly flexible, though you will only get a small taste of this topic here. We will be going into more detail in later Chapters, particularly in Chapter \@ref(ch5).
+Sometimes you may want R to carry out a specific task, but there is no built-in function to do it. In these cases, you can write your own functions. This one of the parts of R that makes it incredibly flexible, though you will only get a small taste of this topic here. We will be going into more detail in later Chapters, particularly in Chapter \@ref(ch5).
 
 First, you must think of a name for your function (e.g., `myfun`). Then, you specify that you want the object `myfun` to be a function by using using the `function` function (I know). Then, in parentheses, you specify any arguments that you want to use within the function to carry out the specific task. Open and closed curly braces specify the start and end of you function body, i.e., the code that specifies how it uses the arguments to do its job.
 
