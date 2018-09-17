@@ -17,7 +17,12 @@ In this first chapter, you will get familiar with the basics of using R. You wil
 
 ## Before You Begin: Install R and RStudio {-}
 
-First off, you will need to get R and RStudio^[While it is possible to run R on it's own, it rather clunky and you are strongly advised to use RStudio given its compactness, neat features, code tools (like syntax and parentheses highlighting). This workshop will assume you are using RStudio] onto your computer. Go [here](https://cran.rstudio.com/) to get R and [here](https://www.rstudio.com/products/rstudio/download/) to get RStudio Desktop. Download the appropriate installation file for your operating system and run that file. All default settings should be fine. 
+First off, you will need to get R and RStudio^[While it is possible to run R on it's own, it is clunky. You are strongly advised to use the RStudio IDE (integrated development environment) given its compactness, neat features, code tools (like syntax and parentheses highlighting). This workshop will assume you are using RStudio] onto your computer. Go to:
+
+*  <https://cran.rstudio.com/> to get R and
+*  <https://www.rstudio.com/products/rstudio/download/> to get RStudio Desktop.
+
+Download the appropriate installation file for your operating system and run that file. All default settings should be fine. 
 
 ## The R Studio Interface
 
@@ -662,7 +667,7 @@ The first argument is the data frame (or matrix) to write, the second is what yo
 
 ### Saving R Objects
 
-Another method is to save R objects directly to the working directory. You can save the new data frame using:
+If all you care about is the data frame `dat` as interpretted by R (not a share-able file like the `.csv` method), then you can save the object `dat` to your working directory (in its current state) then load it in to a future R session. You can save the new data frame using:
 
 ```{r, eval = F}
 save(dat, file = "updated_streams")
@@ -678,22 +683,22 @@ head(dat) # should show first 6 rows
 
 ## User-Defined Functions
 
-Sometimes you may want R to carry out a specific task, but there is no built-in function to do it. In these cases, you can write your own functions. This one of the parts of R that makes it incredibly flexible, though you will only get a small taste of this topic here. We will be going into more detail in later Chapters, particularly in Chapter \@ref(ch5).
+Sometimes you may want R to carry out a specific task, but there is no built-in function to do it. In these cases, you can write your own functions. Function writing makes R incredibly flexible, though you will only get a small taste of this topic here. We will be going into more detail in later Chapters, particularly in Chapter \@ref(ch4).
 
-First, you must think of a name for your function (e.g., `myfun`). Then, you specify that you want the object `myfun` to be a function by using using the `function` function (I know). Then, in parentheses, you specify any arguments that you want to use within the function to carry out the specific task. Open and closed curly braces specify the start and end of you function body, i.e., the code that specifies how it uses the arguments to do its job.
+First, you must think of a name for your function (e.g., `myfun`). Then, you specify that you want the object `myfun` to be a function by using using the `function` function (I know). Then, in parentheses, you specify any arguments that you want to use within the function to carry out the specific task. Open and closed curly braces specify the start and end of your function body, i.e., the code that specifies how it uses the arguments to do its job.
 
 Here's the general syntax for specifying your own function:
 
 ```{r}
 myfun = function(arg1) {
   # function body goes here
-  # use arg1 to do something
+    # use arg1 to do something
   
   # return something as last step
 }
 ```
 
-Write a general function to take any number `x` to any power `y`:
+As an example, write a general function to take any number `x` to any power `y`:
 
 ```{r}
 power = function(x, y){
@@ -702,7 +707,7 @@ power = function(x, y){
 
 ```
 
-After typing and running the function code (the function is an object that must be assigned), try using it:
+After typing and running the function code (`power` is an object that must be assigned), try using it:
 
 ```{r}
 power(x = 5, y = 3)
@@ -717,22 +722,18 @@ This is the equivalent of $(5^2)^2$.
 
 ## EXERCISE 1B {-}
 
-These data are from a hypothetical pond experiment where you added nutrients to some mesocosoms and counted the densities of 4 different zooplankton taxa. In this experiment, there were two ponds, two treatments per pond, and five replicates of each treatment. There is one error in the dataset "ponds.csv" (remember, found in this repository: <https://github.com/bstaton1/au-r-workshop-data/tree/master>). After you download the data and place it in the appropriate directory, make sure you open this file and fix it _before_ you bring it into R. Refer back to the information about reading in data (Section \@ref(read)) to make sure you find the error.
+In this exercise, you will be using what you learned in Chapter 1 to summarize data from a hypothetical pond experiment. 
+
+Pretend that you added nutrients to mesocosoms and counted the densities of 4 different zooplankton taxa. In this experiment, there were two ponds, two treatments per pond, and five replicates of each treatment. There is one error in the dataset "ponds.csv" (**found on GitHub, reminder**). After you download the data and place it in the appropriate directory, make sure you open this file and fix it _before_ you bring it into R. Refer back to the information about reading in data (Section \@ref(read)) to make sure you find the error.
 
 1.  Read in the data to R and assign it to an object.
-
 2.	Calculate some basic summary statistics of your data using the `summary` function.
-
 3.	Calculate the mean chlorophyll _a_ for each pond (_Hint: pond is a grouping variable_)
-
-6.	Calculate the mean number of _Chaoborus_ for each treatment in each pond using `tapply`. (_Hint: You can group by two variables with:_ `tapply(dat$var, list(dat$grp1, dat$grp2), fun)`.
-
-6.	Use the more general `apply` function to calculate the variance for each zooplankton taxa found only in pond S-28.
-
-7.	Create a new variable called `prod` in the data frame that represents the quantity of chlorophyll _a_ in each replicate. If the chlorophyll _a_ in the replicate is greater than 30 give it a "high", otherwise give it a "low". (_Hint: are you asking a question of a single number or multiple numbers? How should this change the strategy you use?_)
+4.	Calculate the mean number of _Chaoborus_ for each treatment in each pond using `tapply`. (_Hint: You can group by two variables with:_ `tapply(dat$var, list(dat$grp1, dat$grp2), fun)`.
+5.	Use the more general `apply` function to calculate the variance for each zooplankton taxa found only in pond S-28.
+6.	Create a new variable called `prod` in the data frame that represents the quantity of chlorophyll _a_ in each replicate. If the chlorophyll _a_ in the replicate is greater than 30 give it a "high", otherwise give it a "low". (_Hint: are you asking a question of a single number or multiple numbers? How should this change the strategy you use?_)
 
 ### EXERCISE 1B BONUS {-}
-1.	Create a new function called `product` that multiplies two numbers that you specify.
-
-2.	Modify your function to print a message to the console and return the value `if` it meets a condition and to print another message and not return the value if it doesn't.
-
+1.  Use `?table` to figure out how you can use `table` to count how many observations of high and low there were in each treatment (_Hint: `table` will have only two arguments.).
+2.	Create a new function called `product` that multiplies any two numbers you specify.
+3.	Modify your function to print a message to the console and return the value `if` it meets a condition and to print another message and not return the value if it doesn't.
