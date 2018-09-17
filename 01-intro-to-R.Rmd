@@ -34,12 +34,12 @@ As a matter of personal preference, you are recommended to configure a few setti
 *  Make sure “Save workspace to .RData on exit” is set to _Never_
 *  Make sure “Always save history (even when not saving .RData)” is _unchecked_
 
-These settings will prevent you from getting a bunch of useless files and dialog boxes everytime you open and close R.
+These settings will prevent you from getting a bunch of useless files and dialog boxes every time you open and close R.
 
 
 ### Write Some Simple Code
 
-To start off, you will just use R as a calculator. Type these commands (not the lines with `##`, those are output^[The formatting used here includes `##` on output to denote code and output separately. You won't see the `##` show up in your console.]) one at a time and hit **CTRL + ENTER** to run it. The spaces don't matter at all, they are used here for clairity and for styling.^[To learn more about standard R code styling, check out Hadley Wickham's [great chapter](http://adv-r.had.co.nz/Style.html) about it.]
+To start off, you will just use R as a calculator. Type these commands (not the lines with `##`, those are output^[The formatting used here includes `##` on output to denote code and output separately. You won't see the `##` show up in your console.]) one at a time and hit **CTRL + ENTER** to run it. The spaces don't matter at all, they are used here for clarity and for styling.^[To learn more about standard R code styling, check out Hadley Wickham's great chapter on it: <http://adv-r.had.co.nz/Style.html>.]
 
 ```{r Calculator}
 3 + 3
@@ -60,7 +60,7 @@ Notice that running this line did not return a value as before. This is because 
 x
 ```
 
-When used this way, the `=` sign denotes assignment of the value on the right-hand side to an object with the name on the left-hand side. The `<-` serves this same purpose so in this context the two are interchangable:
+When used this way, the `=` sign denotes assignment of the value on the right-hand side to an object with the name on the left-hand side. The `<-` serves this same purpose so in this context the two are interchangeable:
 
 ```{r}
 y <- 2 + 5
@@ -87,7 +87,7 @@ z = y - x
 
 ## Saving Your Code: Scripts {#scripts}
 
-If you closed R at this moment, your work would be lost. Running code in the console like you have just done **does not save a record of your work**. To save R code, you must use what is called a **script**, which is a plain-text file with the extension `.R`. To create a new script file, go to _File > New File > R Script_, or use the keyboard shortcut **CTRL + SHIFT + N**. A new pane will open called the **source** pane - this is where you will edit your code and save your progress. R Scripts are a key feature of reproducible research with R, given that if they are well-written they can present a complete roadmap of your statistical analysis and workflow.
+If you closed R at this moment, your work would be lost. Running code in the console like you have just done **does not save a record of your work**. To save R code, you must use what is called a **script**, which is a plain-text file with the extension `.R`. To create a new script file, go to _File > New File > R Script_, or use the keyboard shortcut **CTRL + SHIFT + N**. A new pane will open called the **source** pane - this is where you will edit your code and save your progress. R Scripts are a key feature of reproducible research with R, given that if they are well-written they can present a complete road map of your statistical analysis and workflow.
 
 ## The Working Directory {#working-dir}
 
@@ -103,9 +103,9 @@ Save your script somewhere like `C:/Users/YOU/Documents/R-Workshop/Chapter1` on 
 
 **The main benefits of using a working directory are**:
 
-*  Files are read from and written to a consistent and predictable place everytime
+*  Files are read from and written to a consistent and predictable place every time
 *  Everything for your analysis is organized into one place
-*  You don't have to continously type file paths to your work. If `file.txt` is a file in your current working directory, you can reference it your R session using `"file.txt"` rather than with `"C:/Users/YOU/Documents/R-Workshop/Chapter1/file.txt"` each time.
+*  You don't have to continuously type file paths to your work. If `file.txt` is a file in your current working directory, you can reference it your R session using `"file.txt"` rather than with `"C:/Users/YOU/Documents/R-Workshop/Chapter1/file.txt"` each time.
 
 ## R Object Types
 
@@ -185,7 +185,7 @@ A vector can only hold one data class at a time:
 v = c(1,2,3,"a"); v
 ```
 
-Notice how all the elements now have quotes around them. The numbers have been **coerced** to characters^[The coersion works this way because numbers can be expressed as characters, but a letter cannot be unambiguously be expressed as a number.]. If we attempted to calculate the sum of our vector:
+Notice how all the elements now have quotes around them. The numbers have been **coerced** to characters^[The coercion works this way because numbers can be expressed as characters, but a letter cannot be unambiguously be expressed as a number.]. If we attempted to calculate the sum of our vector:
 
 ```{r, error=T}
 sum(v)
@@ -205,7 +205,7 @@ m1 = cbind(month, day, year, number); m1
 m2 = rbind(month, day, year, number); m2
 ```
 
-Just like vectors, matrices can hold only one data class (note the coersion of numbers to characters):
+Just like vectors, matrices can hold only one data class (note the coercion of numbers to characters):
 
 ```{r}
 cbind(m1, pond)
@@ -249,7 +249,7 @@ levels(df1$pond)
 
 Additionally, factor levels have an assigned order (even if the levels are totally nominal), which will become important in Chapter \@ref(ch3) when you learn how to fit linear models to groups of data, in which one level is the "reference" group that all other groups are compared to (see Section \@ref(anova) for more details). 
 
-If you run into errors about R expecting character vectors, it may be because they are actually stored as factors. When you make a data frame, you'll often have the option to turn off the automatic factor coersion. For example:
+If you run into errors about R expecting character vectors, it may be because they are actually stored as factors. When you make a data frame, you'll often have the option to turn off the automatic factor coercion. For example:
 
 ```{r, eval = F}
 data.frame(month, day, year, number, pond, stringsAsFactors = F)
@@ -276,7 +276,7 @@ dm/2
 
 ## Data Subsets/Queries {#sub}
 
-This perhaps the most important and versatile skills to know in R. So you have an object with data in it and you want to use it for analysis. But you don't want the whole dataset: just a few rows or just a few columns, or perhaps you need just a single element from a vector. This section is devoted to ways you can extract certain parts of a data object (the terms **query** and **subset** are often used interchangeably to describe this task). There are three main methods:
+This perhaps the most important and versatile skills to know in R. So you have an object with data in it and you want to use it for analysis. But you don't want the whole data set: just a few rows or just a few columns, or perhaps you need just a single element from a vector. This section is devoted to ways you can extract certain parts of a data object (the terms **query** and **subset** are often used interchangeably to describe this task). There are three main methods:
 
 1.  **By Index** -- This method allows you to pull out specific rows/columns by their location in an object. However, you must know exactly where in the object the desired data are. An **index** is a location of a element in a data object, like the element position or the position of a specific row or column. To subset by index, you specify the object, then what rows, then what columns. The syntax for subsetting a vector by index is `vector[element]` and for a matrix it is `matrix[row,column]`. Here are some examples
 
@@ -348,7 +348,7 @@ pander::pandoc.table(data.frame(Lake, Area, Time, Fish))
 
 ## Read External Data Files {#read}
 
-It is rare that you will enter data by hand as you did in Exercise 1A. Often, you have a dataset that you wish to analyze or manipulate that is stored in a spreadsheet. R has several ways to read information from data files and in this workshop, we will be using a common and simple method: reading in `.csv` files. `.csv` files are data files that separate columns with commas^[Note that if your computer is configured for a Spanish-speaking country, Microsoft Excel might convert decimals to commas. This can really mess with reading in data - I would suggest changing the language of Excel if you find this to be the case.]. If your data are in a Microsoft Excel spreadsheet, you can save your spreadsheet file as a `.csv` file (_File > Save As > Save as Type> CSV (Comma Delimited)_). Several dialog boxes will open asking if you are sure you want to save it as a `.csv` file. 
+It is rare that you will enter data by hand as you did in Exercise 1A. Often, you have a data set that you wish to analyze or manipulate that is stored in a spreadsheet. R has several ways to read information from data files and in this workshop, we will be using a common and simple method: reading in `.csv` files. `.csv` files are data files that separate columns with commas^[Note that if your computer is configured for a Spanish-speaking country, Microsoft Excel might convert decimals to commas. This can really mess with reading in data - I would suggest changing the language of Excel if you find this to be the case.]. If your data are in a Microsoft Excel spreadsheet, you can save your spreadsheet file as a `.csv` file (_File > Save As > Save as Type> CSV (Comma Delimited)_). Several dialog boxes will open asking if you are sure you want to save it as a `.csv` file. 
 
 The syntax for reading in a `.csv` file is:
 
@@ -356,7 +356,7 @@ The syntax for reading in a `.csv` file is:
 dat = read.csv("FileName.csv")
 ```
 
-The data files for this workshop are found in the GitHub repository: <https://github.com/bstaton1/au-r-workshop-data/tree/master>. Navigate to this repository, find the file called `streams.csv`, download that file^[To download a single file from GitHub, click on the file, then click "Raw" in the toolbar on the topright, then right-click anywhere in the document and click "Save As...". You can also download a zip folder with all of the `.csv` files, go to "Clone or Download"], and place it in your working directory for this session. This document assumes your working directory is `C:/Users/YOU/Documents/R-Workshop/Chapter1`, though the one you are actually using may be slightly different (the `YOU` should at least be changed for your computer). We can read the contents of `streams.csv` into R using this code (ensure your working directory is set first):
+The data files for this workshop are found in the **GitHub repository, reminder**. Navigate to this repository, find the file called `streams.csv`, download that file^[To download a single file from GitHub, click on the file, then click "Raw" in the toolbar on the top right, then right-click anywhere in the document and click "Save As...". You can also download a zip folder with all of the `.csv` files, go to "Clone or Download"], and place it in your working directory for this session. This document assumes your working directory is `C:/Users/YOU/Documents/R-Workshop/Chapter1`, though the one you are actually using may be slightly different (the `YOU` should at least be changed for your computer). We can read the contents of `streams.csv` into R using this code (ensure your working directory is set first):
 
 ```{r, eval = F}
 dat = read.csv("streams.csv")
@@ -368,7 +368,7 @@ dat = read.csv("streams.csv")
 dat = read.csv("streams.csv")
 ```
 
-then fear not. This has must be among the most common errors encoutered by R users world-wide. It simply means the file you told R to look for doesn't exist where you told R to find it. Here is a trouble-shooting guide to this error:
+then fear not. This has must be among the most common errors encountered by R users world-wide. It simply means the file you told R to look for doesn't exist where you told R to find it. Here is a trouble-shooting guide to this error:
 
 1.  The exact case and spelling matters, as well as do the quotes and `.csv` at the end. Ensure the file name is typed correctly.
 
@@ -400,10 +400,10 @@ If you did not get any errors, then the data are in the object you named (`dat`)
 
 *  If at some point you did "Clear Contents" in Microsoft Excel to delete rows or columns from your `.csv` file, these "deleted" rows/columns will be read in as all `NAs`, which can be annoying. To remove this problem, open the `.csv` file in Excel, then highlight and **delete** the rows/columns in question and save the file. Read it back into R again using `read.csv`.
 
-*  If even a single character is found in a numeric column in `FileName.csv`, the _entire column_ will be coerced to a character/factor data class after it is read in (i.e., no more math with data on that column until you remove the character). A common error is to have a `#VALUE!` record left over from an invalid Excel function result. You must remove all of these occurences in order to use that column as numeric. Characters include anything other than a number ([0-9]) and a period when used as a decimal. None of these characters: `!?[]\/@#$%^&*()<>_-+=[a-z];[A-Z]` should never be found in a column you wish to do math with (e.g., take the mean of that column). **This is an incredibly common problem!**
+*  If even a single character is found in a numeric column in `FileName.csv`, the _entire column_ will be coerced to a character/factor data class after it is read in (i.e., no more math with data on that column until you remove the character). A common error is to have a `#VALUE!` record left over from an invalid Excel function result. You must remove all of these occurrences in order to use that column as numeric. Characters include anything other than a number ([0-9]) and a period when used as a decimal. None of these characters: `!?[]\/@#$%^&*()<>_-+=[a-z];[A-Z]` should never be found in a column you wish to do math with (e.g., take the mean of that column). **This is an incredibly common problem!**
 
 
-## Explore the Data Set
+## Explore the Data Set {#data-summaries}
 
 ```{r, echo = F}
 dat = read.csv("Data/streams.csv")
@@ -411,7 +411,7 @@ dat = read.csv("Data/streams.csv")
 
 Have a look at the data. You could just run `dat` to view the contents of the object, but it will show the whole thing, which may be undesirable if the data set is large. To view the first handful of rows, run `head(dat)` or the last handful of rows with `tail(dat)`.
 
-You will now use some basic functions to explore the simulated streams data before any analysis. The `summary` function is very useful for getting a coarse look at how R has interpretted the data frame: 
+You will now use some basic functions to explore the simulated streams data before any analysis. The `summary` function is very useful for getting a coarse look at how R has interpreted the data frame: 
 
 ```{r}
 summary(dat)
@@ -491,7 +491,7 @@ aggregate(dat$stream_width, by = list(state = dat$state), mean)
 
 ## Logical/Boolean Operators
 
-To be an efficient and capable programmer in any language, you will need to become familiar with how to implement numerical logic, i.e., the boolean operators.  These are very useful because they always return a `TRUE` or a `FALSE`, off of which program-based decisions can be made (e.g., whether to operate a given subroutine, whether to keep certain rows, whether to print the output, etc.).
+To be an efficient and capable programmer in any language, you will need to become familiar with how to implement numerical logic, i.e., the Boolean operators.  These are very useful because they always return a `TRUE` or a `FALSE`, off of which program-based decisions can be made (e.g., whether to operate a given subroutine, whether to keep certain rows, whether to print the output, etc.).
 
 Define a simple object: `x = 5` `r x = 5`. Note that this will write over what was previously stored in the object `x`. We wish to ask some questions of the new `x`, and the answer will be printed to the console as a `TRUE` for "yes" and a `FALSE` for "no". Below are the common Boolean operators.
 
@@ -667,7 +667,7 @@ The first argument is the data frame (or matrix) to write, the second is what yo
 
 ### Saving R Objects
 
-If all you care about is the data frame `dat` as interpretted by R (not a share-able file like the `.csv` method), then you can save the object `dat` to your working directory (in its current state) then load it in to a future R session. You can save the new data frame using:
+If all you care about is the data frame `dat` as interpreted by R (not a share-able file like the `.csv` method), then you can save the object `dat` to your working directory (in its current state) then load it in to a future R session. You can save the new data frame using:
 
 ```{r, eval = F}
 save(dat, file = "updated_streams")
@@ -724,7 +724,7 @@ This is the equivalent of $(5^2)^2$.
 
 In this exercise, you will be using what you learned in Chapter 1 to summarize data from a hypothetical pond experiment. 
 
-Pretend that you added nutrients to mesocosoms and counted the densities of 4 different zooplankton taxa. In this experiment, there were two ponds, two treatments per pond, and five replicates of each treatment. There is one error in the dataset "ponds.csv" (**found on GitHub, reminder**). After you download the data and place it in the appropriate directory, make sure you open this file and fix it _before_ you bring it into R. Refer back to the information about reading in data (Section \@ref(read)) to make sure you find the error.
+Pretend that you added nutrients to mesocosoms and counted the densities of 4 different zooplankton taxa. In this experiment, there were two ponds, two treatments per pond, and five replicates of each treatment. There is one error in the data set "ponds.csv" (**found on GitHub, reminder**). After you download the data and place it in the appropriate directory, make sure you open this file and fix it _before_ you bring it into R. Refer back to the information about reading in data (Section \@ref(read)) to make sure you find the error.
 
 1.  Read in the data to R and assign it to an object.
 2.	Calculate some basic summary statistics of your data using the `summary` function.
