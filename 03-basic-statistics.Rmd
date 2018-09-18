@@ -2,24 +2,24 @@
 
 ```{r, include = F}
 rm(list = ls(all = T))
-knitr::opts_chunk$set(fig.align = "center")
+knitr::opts_chunk$set(fig.align = "center", global.par = T)
 ```
 
 ## Chapter Overview{-}
 
 In this chapter, you will get familiar with the basics of using R for the purpose it was designed: statisitical analysis. You will learn how to:
 
-*  how to fit and interpret the output from various general linear models:
+*  fit and interpret the output from various general linear models:
     - simple linear regression models
     - multiple regression models
     - higher order polynomial regression models
     - T-tests (also ANOVA)
     - ANCOVA models
     - Interactions
-*  very basic model selection
-*  basic GLMs: the logistic regression model
+*  conduct basic model selection
+*  fit basic GLMs: the logistic regression model
 *  Bonus topic: fitting non-linear regression models using `nls`
-*  Bonus topic: fitting custom maximum-likelihood models using `optim`
+*  Bonus topic (_coming soon_): fitting custom maximum-likelihood models using `optim`
 
 R's built-in statistical modeling framework is pretty intuitive and comprehensive. R has gained  popularity as a statistics software and is commonly used both in academia and governmental resource agencies.  This popularity is likely a result of its power, flexibility, intuitive nature, and price (free!). For many students, this chapter may be the one that is most immediately useful. 
 
@@ -29,27 +29,27 @@ R's built-in statistical modeling framework is pretty intuitive and comprehensiv
 
 You should create a new directory and R script for your work in this Chapter. Create a new R script called `Ch3.R` and save it in the directory `C:/Users/YOU/Documents/R-Workshop/Chapter3`. Set your working directory to that location. Revisit the material in Sections \@ref(scripts) and \@ref(working-dir) for more details on these steps. 
 
-## Review: The General Linear Model
+Download the data set `sockeye.csv` from **GitHub, reminder** and place it in your working directory. This is the same data set you used in [Exercise 2](#ex2) - revisit this section for more details on the variables.
 
-This is a family of models that allows you to determine the relationship (if any) between some continuous response variable ($y$) and some predictor variable(s) ($x_n$) and is often written as:
+## The General Linear Model
 
-$$y_i=\beta_0 + \beta_1 x_{i1} + ... + \beta_j x_{ij}+ ... + \beta_n x_{in} + \varepsilon_i; \varepsilon_i \sim N(0,\sigma)$$
+Much of this chapter will focus on the general linear model, so it is important to become familiar with it. The general linear model is a family of models that allows you to determine the relationship (if any) between some continuous response variable ($y$) and some predictor variable(s) ($x_n$) and is often written as:
 
-The predictor variable(s) can be either categorical (i.e., grouping variables used in ANOVA, t-test, etc.), continuous (regression), or a combination of categorical and continuous (ANCOVA). The main focus is to estimate the coefficients ($\beta$), and in some cases it is to determine if they are "significantly" different from the value given by some null hypothesis.
+$$y_i=\beta_0 + \beta_1 x_{i1} + ... + \beta_j x_{ij}+ ... + \beta_n x_{in} + \varepsilon_i; \varepsilon_i \sim N(0,\sigma),$$
+
+where the subscript $i$ represents an individual observation. The predictor variable(s) can be either categorical (i.e., grouping variables used in ANOVA, t-test, etc.), continuous (regression), or a combination of categorical and continuous (ANCOVA). The main focus is to estimate the coefficients ($\beta$), and in some cases it is to determine if their values are "significantly" different from the value assumed by some null hypothesis.
 
 The model makes several assumptions about the residuals^[The residuals ($\varepsilon_i$) are the difference between the data point $y_i$ and the model prediction $\hat{y}_i$: $\varepsilon_i=y_i-\hat{y}_i$] to obtain estimates of the coefficients. For reliable inference, the residuals must:
 
-  * Be independent
-  * Be normally-distributed
-  * Have constant variance across range of the x-axis
+  * be independent
+  * be normally-distributed
+  * have constant variance across range of the x-axis
 
-In R, the general linear model is fitted using the `lm` function. Here's the basic syntax is `lm(y ~ x, data = dat)`^[This should look familar from Section \@ref(box-whisker)]; it says: "fit a model with `y` as the response variable and `x` as the sole predictor variable, look for the variables `x` and `y` in a data frame called `dat`, and store the results in a new object called `fit`". 
+In R, the general linear model is fitted using the `lm` function. Here's the basic syntax is `lm(y ~ x, data = dat)`^[This should look familar from Section \@ref(box-whisker)]; it says: "fit a model with `y` as the response variable and `x` as the sole predictor variable, look for the variables `x` and `y` in a data frame called `dat`". 
 
-## Simple Linear Regression {#regression}
+### Simple Linear Regression {#regression}
 
-Download the data set `sockeye.csv` from GitHub and place it in your working directory. This is the same data set you used in Exercise 2, see that section for more details on the different variables.
-
-Read these data into R:
+Read the data found in `sockeye.csv` into R:
 
 ```{r, eval = F}
 dat = read.csv("sockeye.csv")
@@ -61,7 +61,7 @@ dat = read.csv("Data/sockeye.csv")
 head(dat)
 ```
 
-To fit a regression model using `lm`, but `x` and `y` must be continous (numeric) variables. In the data set `dat`, two such variables are the `weight` and `fecund`. Fit a regression model where you link the average fecundity of an individual to the average weight of an individual by treating years as replicate data points. Ignore for now that the fish come from two sources: hatchery and wild origin. 
+To fit a regression model using `lm`, both `x` and `y` must be continous (numeric) variables. In the data set `dat`, two such variables are the `weight` and `fecund`. Fit a regression model where you link the average fecundity (number of eggs) of an individual to the average weight (in grams) of an individual by treating years as replicate data points. Ignore for now that the fish come from two sources: hatchery and wild origin. 
 
 ```{r}
 fit1 = lm(fecund ~ weight, data = dat)
@@ -84,7 +84,7 @@ For more information about the model fit, you can use the `summary` function:
 summary(fit1)
 ```
 
-Again the coefficient estimates are shown, but now you see the uncertainty on the parameter estimates (standard errors), the test statistic, and the p-value testing the null hypothesis that each coefficient has a zero value. Here you can see that the p-value does not support rejection of the null hypothesis that the slope is zero. You can see the residual standard error (variability of data around the line and the estimate of $\sigma$), the $R^2$ value (the proportion of variation in `fecund` explained by variation in `weight`), and the p-value of the overall model.
+Again the coefficient estimates are shown, but now you see the uncertainty on the parameter estimates (standard errors), the test statistic, and the p-value testing the null hypothesis that each coefficient has a zero value. Here you can see that the p-value does not support rejection of the null hypothesis that the slope is zero. You can see the residual standard error (variability of data around the fitted line and the estimate of $\sigma$), the $R^2$ value (the proportion of variation in `fecund` explained by variation in `weight`), and the p-value of the overall model.
 
 You can easily see the model fit by using the `abline` function. Make a new plot and add the fitted regression line:
 
@@ -95,7 +95,7 @@ abline(fit1)
 
 It fits, but not very well. It seems there are two groups: one with data points mostly above the line and one with data points mostly below the line. You'll now run a new model to get at this.
 
-## ANOVA: Categorical predictors {#anova}
+### ANOVA: Categorical predictors {#anova}
 
 ANOVA models attempt to determine if the means of different groups are different. You can fit them in the same basic `lm` framework. But first, notice that:
 
@@ -138,7 +138,7 @@ coef(fit2)
 
 you see that the mean fecundity of hatchery fish is about `r round(coef(fit2)[1], 0)` eggs and that the average wild fish has about `r round(coef(fit2)[2], 0)` more eggs than the average hatchery fish across all years. The fact that the p-value associated with the `typewild` coefficient when you run `summary(fit2)` is less than 0.05 indicates that there is statistical evidence that the difference in means is not zero.
 
-## ANCOVA: Continuous and categorical predictors
+### ANCOVA: Continuous and categorical predictors
 
 Now that you have seen that hatchery and wild fish tend to separate along the fecundity axis (as evidenced by the ANOVA results above), you would like to include this in your original regression model. You will fit two lines within the same model: one for hatchery fish and one for wild fish. This model is called an ANCOVA model and looks like this:
 
@@ -168,7 +168,7 @@ legend("bottom", legend = c("Hatchery", "Wild"), pch = c(1,16), lty = c(2,1),
        col = "grey", pt.cex = 1.5, bty = "n", horiz = T)
 ```
 
-## Interactions
+### Interactions
 
 Above, you have included an additional predictor variable (and parameter) in your model to help explain variation in the `fecund` variable. However, you have assumed that the effect of weight on fecundity is common between hatchery and wild fish (note the parallel lines in the figure above). You may have reason to believe that the effect of weight depends on the origin of the fish, e.g., wild fish may tend to accumulate more eggs than hatchery fish for the same increase in weight. Cases where the magnitude of the effect depends on the value of another predictor variable are known as "interactions". You can write the interactive ANCOVA model like this:
 
@@ -211,7 +211,7 @@ summary(fit4)$coef
 
 It seems that fish of the different origins have approximately the same intercept, but that their slopes are quite different. 
 
-## Model Selection: AIC
+### AIC Model Selection
 
 You have now fitted four different models, each that makes different claims about how you can predict the fecundity of a given sockeye salmon at Redfish Lake. If you are interested in determining _which_ of these models you should use for prediction, you need to use **model selection**. Model selection attempts to find the model that is likely to have the smallest out-of-sample prediction error (i.e., future predictions will be close to what actually happens). One model selection metric is the AIC^[Akaike's Information Criterion. **GIVE A CITATION HERE**]. Lower AIC values mean the model should have better predictive performance. Compare the four models you fitted with AIC:
 
@@ -221,9 +221,11 @@ AIC(fit1, fit2, fit3, fit4)
 
 In general, AIC values that are different by more than 2 units are interpretted as having importantly different predictive performance. Based on this very quick-and-dirty analysis, it seems that in predicting future fecundity, you would want to use the interactive ANCOVA model.
 
-## An Example GLM: Logistic Regression {#logis-regression}
+## The Generalized Linear Model 
 
 The models you fitted above were called "general linear models". They all made the assumption that the residuals ($\varepsilon_i$) are normally-distributed. Often times data and analyses do not follow this assumption. For these cases you often move to the broader family of statistical models known as "generalized linear models"^[General linear models are a member of this family].
+
+### Logistic Regression {#logis-regression}
 
 One example is in the case of **binary** data. Binary data have two outcomes, e.g., success/failure, lived/died, male/female, spawned/gravid, happy/sad, etc. If you wish to predict how the probability of one outcome over the other changes depending on some other variable, then you need to use the **logistic regression model**, which is written as:
 
@@ -358,6 +360,8 @@ lines(p_hatch ~ wt_seq, lwd = 3, lty = 2)
 legend("topright", legend = c("Hatchery", "Wild"),
        lty = c(2,1), lwd = 3, bty = "n")
 ```
+
+### AIC Model Selection
 
 You may have noticed that you just did the same analysis with `binary` as the response instead of `fecund`. Perform an AIC analysis to determine which model is likely to be best for prediction:
 

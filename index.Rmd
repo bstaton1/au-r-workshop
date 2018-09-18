@@ -14,4 +14,33 @@ description: "This is a first course in R Programming for Natural Resource Scien
 
 # Overview{-}
 
-This is intended to be a first course in R programming. It is by no means comprehensive, but instead attempts to introduce the main topics needed to get a beginner up and running with applying R to their own work. There will be no prior knowledge assumed on the part of the student regarding R or programming. In the later chapters, e.g., Chapters \@ref(ch3) and \@ref(ch4), an understanding of statistics at the introductory undergraduate level would be helpful.
+This book is intended to be a first course in R programming for natural resource professionals. It is by no means comprehensive, but instead attempts to introduce the main topics needed to get a beginner up and running with applying R to their own work. It is intended to be a companion to in-person workshop sessions, in which each chapter is covered in a 2 hour session. Although the examples shown have a natural resource/ecological theme, the general skills presented are general to R users across all scientific disciplines. 
+
+## What is Covered? {-}
+
+The book is composed of six chapters intended to cover a suite of topics in introductory R programming. In general, the material builds in complexity from chapter to chapter and earlier chapters can be seen as prerequisites for later chapters. 
+
+*  **Chapter \@ref(ch1)** covers the basics of working in R through RStudio, including the basics of the R coding language and environment.
+*  **Chapter \@ref(ch2)** covers the basics of plotting using the base R graphics functionality. 
+*  **Chapter \@ref(ch3)** covers the basics of fitting statistical models using built-in functionality for generalized linear models as well as non-linear models.   
+*  **Chapter \@ref(ch4)** covers the basics of simulation modeling in R. 
+*  **Chapter \@ref(ch5)** covers the basics of the `dplyr` and `reshape2` packages for manipulating and summarizing large data sets using highly readable code.
+*  **Chapter \@ref(ch6)** covers the basics of producing maps and performing spatial analysis in R. _This chapter was contributed by Henry Hershey_
+
+## Prerequisites {-}
+
+Chapter \@ref(ch1) starts at the first step (installing R) and progresses by assuming no prior knowledge of programming in R or in any other language. In the later chapters, e.g., Chapters \@ref(ch3) and \@ref(ch4), an understanding of statistics at the introductory undergraduate level would be helpful but not strictly essential.
+
+## Data Sets {-#data-sets}
+
+Many of the data sets used in this book were simulated by the author. Cases in which the data set used was not simulated are noted and a citation to the data source is provided. 
+
+The data sets used in this book are hosted on a [GitHub](github.com) repository: **INSERT GITHUB INFO HERE**. **INSERT INSTRUCTIONS HERE**
+
+## Development of this Book {-}
+
+This book was created using R and the packages `bookdown` **CITE** and `knitr` **CITE**. It is hosted on [GitHub Pages](https://pages.github.com/). 
+
+## About the Author {-}
+
+Ben Staton is a PhD candidate in the School of Fisheries at Auburn University. He studies quantitative methods for assessing fish populations for use in harvest management, with a focus on Pacific salmon in western Alaska. Ben has been using R on a daily basis since the beginning of his graduate work in 2014. 
