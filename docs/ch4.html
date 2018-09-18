@@ -46,7 +46,6 @@
 
 
 
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
 <style type="text/css">
@@ -160,7 +159,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.10.1" data-path="ch2.html"><a href="ch2.html#click-save"><i class="fa fa-check"></i><b>2.10.1</b> Click Save</a></li>
 <li class="chapter" data-level="2.10.2" data-path="ch2.html"><a href="ch2.html#use-a-function-to-place-plot-in-a-new-file"><i class="fa fa-check"></i><b>2.10.2</b> Use a function to place plot in a new file</a></li>
 </ul></li>
-<li class="chapter" data-level="2.11" data-path="ch2.html"><a href="ch2.html#bonus-topic-error-bars"><i class="fa fa-check"></i><b>2.11</b> Bonus Topic: Error Bars</a></li>
+<li class="chapter" data-level="2.11" data-path="ch2.html"><a href="ch2.html#error-bars"><i class="fa fa-check"></i><b>2.11</b> Bonus Topic: Error Bars</a></li>
 <li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#ex2"><i class="fa fa-check"></i>EXERCISE 2</a><ul>
 <li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#exercise-2-bonus"><i class="fa fa-check"></i>EXERCISE 2 BONUS</a></li>
 </ul></li>
@@ -191,11 +190,22 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.2.1" data-path="ch4.html"><a href="ch4.html#random-deviates"><i class="fa fa-check"></i><b>4.2.1</b> Random deviates</a></li>
 <li class="chapter" data-level="4.2.2" data-path="ch4.html"><a href="ch4.html#resampling"><i class="fa fa-check"></i><b>4.2.2</b> Resampling</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="ch4.html"><a href="ch4.html#replication"><i class="fa fa-check"></i><b>4.3</b> Replication</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="ch4.html"><a href="ch4.html#the-for-loop"><i class="fa fa-check"></i><b>4.3.1</b> The <code>for</code> loop</a></li>
+<li class="chapter" data-level="4.3" data-path="ch4.html"><a href="ch4.html#reproducing-randomness"><i class="fa fa-check"></i><b>4.3</b> Reproducing randomness</a></li>
+<li class="chapter" data-level="4.4" data-path="ch4.html"><a href="ch4.html#replication"><i class="fa fa-check"></i><b>4.4</b> Replication</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="ch4.html"><a href="ch4.html#replicate"><i class="fa fa-check"></i><b>4.4.1</b> <code>replicate</code></a></li>
+<li class="chapter" data-level="4.4.2" data-path="ch4.html"><a href="ch4.html#the-for-loop"><i class="fa fa-check"></i><b>4.4.2</b> The <code>for</code> loop</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="ch4.html"><a href="ch4.html#sim-examples"><i class="fa fa-check"></i><b>4.4</b> Simulation-Based Examples</a></li>
-<li class="chapter" data-level="4.5" data-path="ch4.html"><a href="ch4.html#resample-examples"><i class="fa fa-check"></i><b>4.5</b> Resampling-Based Examples</a></li>
+<li class="chapter" data-level="4.5" data-path="ch4.html"><a href="ch4.html#function-writing"><i class="fa fa-check"></i><b>4.5</b> Function Writing</a></li>
+<li class="chapter" data-level="4.6" data-path="ch4.html"><a href="ch4.html#mc-summaries"><i class="fa fa-check"></i><b>4.6</b> Summarization</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="ch4.html"><a href="ch4.html#central-tendency"><i class="fa fa-check"></i><b>4.6.1</b> Central Tendency</a></li>
+<li class="chapter" data-level="4.6.2" data-path="ch4.html"><a href="ch4.html#variability"><i class="fa fa-check"></i><b>4.6.2</b> Variability</a></li>
+<li class="chapter" data-level="4.6.3" data-path="ch4.html"><a href="ch4.html#frequencies"><i class="fa fa-check"></i><b>4.6.3</b> Frequencies</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="ch4.html"><a href="ch4.html#sim-examples"><i class="fa fa-check"></i><b>4.7</b> Simulation-Based Examples</a><ul>
+<li class="chapter" data-level="4.7.1" data-path="ch4.html"><a href="ch4.html#test-rnorm"><i class="fa fa-check"></i><b>4.7.1</b> Test <code>rnorm</code></a></li>
+<li class="chapter" data-level="4.7.2" data-path="ch4.html"><a href="ch4.html#stochastic-power-analysis"><i class="fa fa-check"></i><b>4.7.2</b> Stochastic Power Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="ch4.html"><a href="ch4.html#resample-examples"><i class="fa fa-check"></i><b>4.8</b> Resampling-Based Examples</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="ch5.html"><a href="ch5.html"><i class="fa fa-check"></i><b>5</b> Large Data Manipulation</a></li>
 <li class="chapter" data-level="6" data-path="ch6.html"><a href="ch6.html"><i class="fa fa-check"></i><b>6</b> Mapping and Spatial Analysis</a><ul>
@@ -246,8 +256,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">4.1</span> Layout of this chapter</h2>
 <p>This chapter is divided into two main sections:</p>
 <ul>
-<li><p><strong>Required material</strong> (Sections <a href="ch4.html#randomness">4.2</a> and <a href="ch4.html#replication">4.3</a>) which is necessary to understand the examples in this chapter and the subsequent chapters</p></li>
-<li><p><strong>Example Cases</strong> (Sections <a href="ch4.html#sim-examples">4.4</a> and <a href="ch4.html#resample-examples">4.5</a>) which apply the skills learned in the required material. In the workshop sessions, you will walkthrough 2-3 of these example cases at the choice of the group of the participants. If you are interested in simulation modeling, you are suggested to work through all of the example cases, as slightly different tricks will be shown in the different examples.</p></li>
+<li><p><strong>Required material</strong> (Sections <a href="ch4.html#randomness">4.2</a> and <a href="ch4.html#replication">4.4</a>) which is necessary to understand the examples in this chapter and the subsequent chapters</p></li>
+<li><p><strong>Example Cases</strong> (Sections <a href="ch4.html#sim-examples">4.7</a> and <a href="ch4.html#resample-examples">4.8</a>) which apply the skills learned in the required material. In the workshop sessions, you will walkthrough 2-3 of these example cases at the choice of the group of the participants. If you are interested in simulation modeling, you are suggested to work through all of the example cases, as slightly different tricks will be shown in the different examples.</p></li>
 </ul>
 </div>
 <div id="randomness" class="section level2">
@@ -258,41 +268,67 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>In Section <a href="ch3.html#dists">3.3</a>, you learned about using probability distributions in R. One of the uses was the <code>r-</code> family of distribution functions. These functions create random numbers following a random process specified by a probability distribution.</p>
 <p>Consider animal survival as an example. At the end of each year, each individual alive at the start can either live or die. There are two outcomes here, and suppose each animal has an 80% chance of surviving. The number of individuals that survive is the result of a <strong>binomial random process</strong> in which there were <span class="math inline">\(n\)</span> individuals alive at the start of this year and <span class="math inline">\(p\)</span> is the probability that any one individual survives to the next year. You can execute one binomial random process where <span class="math inline">\(p = 0.8\)</span> and <span class="math inline">\(n = 100\)</span> like this:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rbinom</span>(<span class="dt">n =</span> <span class="dv">1</span>, <span class="dt">size =</span> <span class="dv">100</span>, <span class="dt">prob =</span> <span class="fl">0.8</span>)</code></pre></div>
-<pre><code>## [1] 76</code></pre>
+<pre><code>## [1] 78</code></pre>
 <p>The result you get will almost certainly be different from the one printed here. That is the random component.</p>
 <p>You can execute many such binomial processes by changing the <code>n</code> argument. Plot the distribution of expected surviving individuals:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">survivors =<span class="st"> </span><span class="kw">rbinom</span>(<span class="dv">1000</span>, <span class="dv">100</span>, <span class="fl">0.8</span>)
 <span class="kw">hist</span>(survivors, <span class="dt">col =</span> <span class="st">&quot;skyblue&quot;</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-139-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Another random process is the <strong>lognormal process</strong>: it generates random numbers such that the log of the values are normally-distributed with mean equal to <code>logmean</code> and standard deviation equal to <code>logsd</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(<span class="kw">rlnorm</span>(<span class="dv">1000</span>, <span class="dv">0</span>, <span class="fl">0.1</span>), <span class="dt">col =</span> <span class="st">&quot;skyblue&quot;</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-140-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>There are many random processes you can use in R. Checkout Table <a href="ch3.html#tab:dist-table">3.1</a> for more examples as well as the help files for each individual function for more details.</p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>There are many random processes you can use in R. Checkout Table <a href="#tab:dist-table"><strong>??</strong></a> for more examples as well as the help files for each individual function for more details.</p>
 </div>
 <div id="resampling" class="section level3">
 <h3><span class="header-section-number">4.2.2</span> Resampling</h3>
-<p>Random deviates work great for creating new random numbers, but what if you already have a set of numbers that you wish to introduce randomness to? For this, you can use <strong>resampling techniques</strong>. In R, the <code>sample</code> function is used to sample <code>size</code> elements from the vector <code>x</code>:</p>
+<p>Using random deviates works great for creating new random numbers, but what if you already have a set of numbers that you wish to introduce randomness to? For this, you can use <strong>resampling techniques</strong>. In R, the <code>sample</code> function is used to sample <code>size</code> elements from the vector <code>x</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">size =</span> <span class="dv">5</span>)</code></pre></div>
-<pre><code>## [1] 2 8 5 4 6</code></pre>
+<pre><code>## [1] 9 2 5 1 4</code></pre>
 <p>You can sample with replacement (where it is possible to sample the same element two or more times):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>), <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">replace =</span> T)</code></pre></div>
-<pre><code>##  [1] &quot;b&quot; &quot;c&quot; &quot;b&quot; &quot;b&quot; &quot;b&quot; &quot;c&quot; &quot;c&quot; &quot;a&quot; &quot;b&quot; &quot;a&quot;</code></pre>
-<p>You can set probabilities on the sampling of different elements<a href="#fn30" class="footnoteRef" id="fnref30"><sup>30</sup></a>:</p>
+<pre><code>##  [1] &quot;a&quot; &quot;b&quot; &quot;b&quot; &quot;a&quot; &quot;c&quot; &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;b&quot; &quot;b&quot;</code></pre>
+<p>You can set probabilities on the sampling of different elements<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;live&quot;</span>, <span class="st">&quot;die&quot;</span>), <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">replace =</span> T,
        <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.8</span>, <span class="fl">0.2</span>))</code></pre></div>
-<pre><code>##  [1] &quot;live&quot; &quot;live&quot; &quot;live&quot; &quot;live&quot; &quot;live&quot; &quot;live&quot; &quot;die&quot;  &quot;live&quot; &quot;live&quot; &quot;die&quot;</code></pre>
+<pre><code>##  [1] &quot;live&quot; &quot;live&quot; &quot;live&quot; &quot;live&quot; &quot;live&quot; &quot;live&quot; &quot;live&quot; &quot;die&quot;  &quot;live&quot; &quot;die&quot;</code></pre>
 <p>Notice that this is the same as the binomial random process above, but with only 10 trials and the printing of the outcomes rather than the number of successes.</p>
 </div>
 </div>
+<div id="reproducing-randomness" class="section level2">
+<h2><span class="header-section-number">4.3</span> Reproducing randomness</h2>
+<p>For reproducibility purposes, you may wish to get the same exact random numbers each time you run your script. To do this, you need to set the <strong>random seed</strong>, which is the starting point of the random number generator your computer uses. If you run these two lines of code, you should get the same result as printed here:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">123</span>)
+<span class="kw">rnorm</span>(<span class="dv">1</span>)</code></pre></div>
+<pre><code>## [1] -0.5604756</code></pre>
+</div>
 <div id="replication" class="section level2">
-<h2><span class="header-section-number">4.3</span> Replication</h2>
+<h2><span class="header-section-number">4.4</span> Replication</h2>
+<p>To use Monte Carlo methods, you need to be able to replicate some random process many times. There are two main ways this is commonly done: either with<code>replicate</code> or with <code>for</code> loops.</p>
+<div id="replicate" class="section level3">
+<h3><span class="header-section-number">4.4.1</span> <code>replicate</code></h3>
+<p>The <code>replicate</code> function executes some expression many times and returns the output from each execution. Say we have a vector <code>x</code>, which represents 30 observations of fish length (mm):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x =<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">30</span>, <span class="dv">500</span>, <span class="dv">30</span>)</code></pre></div>
+<p>We wish to build the sampling distribution of the mean length “by hand”. We can sample randomly from it, calculate the mean, then repeat this process many times:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">means =<span class="st"> </span><span class="kw">replicate</span>(<span class="dt">n =</span> <span class="dv">1000</span>, <span class="dt">expr =</span> {
+  x_i =<span class="st"> </span><span class="kw">sample</span>(x, <span class="kw">length</span>(x), <span class="dt">replace =</span> T)
+  <span class="kw">mean</span>(x_i)
+})</code></pre></div>
+<p>If we take <code>mean(means)</code> and <code>sd(means)</code>, that should be very similar to <code>mean(x)</code> and <code>se(x)</code>. Create the <code>se</code> function (also shown in Section <a href="ch2.html#error-bars">2.11</a>) and prove this to yourself:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">se =<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">sd</span>(x)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">length</span>(x))
+<span class="kw">mean</span>(means); <span class="kw">mean</span>(x)</code></pre></div>
+<pre><code>## [1] 499.7709</code></pre>
+<pre><code>## [1] 499.5738</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sd</span>(means); <span class="kw">se</span>(x)</code></pre></div>
+<pre><code>## [1] 5.648848</code></pre>
+<pre><code>## [1] 5.366415</code></pre>
+</div>
 <div id="the-for-loop" class="section level3">
-<h3><span class="header-section-number">4.3.1</span> The <code>for</code> loop</h3>
+<h3><span class="header-section-number">4.4.2</span> The <code>for</code> loop</h3>
 <p>In programming, a <em>loop</em> is a command that does something over and over until it reaches some point that you specify. R has a few types of loops: <code>repeat</code>, <code>while</code>, and <code>for</code>, to name a few. <code>for</code> loops are among the most common in simulation modeling. A <code>for</code> loop repeats some action for however many times you tell it for each value in some vector. The syntax is:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (var <span class="cf">in</span> seq) {
   <span class="kw">expression</span>(var)
 }</code></pre></div>
-<p>The way this works is the loop calculates the expression for values of <code>var</code> by the increments in <code>seq</code>. For example:</p>
+<p>The loop calculates the expression for values of <code>var</code> for each element in the vector <code>seq</code>. For example:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {
   <span class="kw">print</span>(i<span class="op">^</span><span class="dv">2</span>)
 }</code></pre></div>
@@ -301,58 +337,276 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## [1] 9
 ## [1] 16
 ## [1] 25</code></pre>
-<p>The first time through the loop, <code>i</code> equals 1 and the expression is to print the square of 1. The next time through the loop, <code>i</code> equals 2 and the expression prints the square of 2. And so on and so on until <code>i</code> is 5, after which it stops (because that is the end of the sequence you specified.) If we remove the <code>print()</code> function, let’s see what happens:</p>
+<p>I <code>print</code> will be executed 5 times: once for each value of <code>i</code>. It is the same as:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">i =<span class="st"> </span><span class="dv">1</span>; <span class="kw">print</span>(i); i =<span class="st"> </span><span class="dv">2</span>; <span class="kw">print</span>(i); i =<span class="st"> </span><span class="dv">3</span>; <span class="kw">print</span>(i); i =<span class="st"> </span><span class="dv">4</span>; <span class="kw">print</span>(i); i =<span class="st"> </span><span class="dv">5</span>; <span class="kw">print</span>(i)</code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<pre><code>## [1] 2</code></pre>
+<pre><code>## [1] 3</code></pre>
+<pre><code>## [1] 4</code></pre>
+<pre><code>## [1] 5</code></pre>
+<p>If you remove the <code>print()</code> function, see what happens:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {
   i<span class="op">^</span><span class="dv">2</span>
 }</code></pre></div>
-<p>What happened? Well, it turns out that the loop still worked, only it did not show us (or save) the results. If we want to store the results of the loop, we have to make a container for it to store the results in and tell the loop to put the results in the desired location:</p>
+<p>Nothing is printed to the console. R did the calculation, but did not show you or store it. Often, you’ll need to store the results of the calculation in a <strong>container object</strong>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">results =<span class="st"> </span><span class="kw">numeric</span>(<span class="dv">5</span>)</code></pre></div>
-<p>This makes an empty numeric vector of length 5 that are all 0’s. This is where we will put the results of each run through the loop:</p>
+<p>This makes an empty numeric vector of length 5 that are all 0’s. You can store the output of your loop calculations in <code>results</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {
   results[i]=i<span class="op">^</span><span class="dv">2</span>
 }
 results</code></pre></div>
 <pre><code>## [1]  1  4  9 16 25</code></pre>
-<p>We are saying, when <code>i = 1</code>, calculate <code>1^2</code> and put it in the 1<sup>st</sup> element of <code>results</code>. When <code>i = 2</code>, calculate <code>2^2</code> and put it in the 2<sup>nd</sup> element of <code>results</code>. So in general: calculate <code>i^2</code> and put it in the <code>i</code><sup>th</sup> element of <code>results</code>.</p>
-<p>Now, this loop was a trivial example, because we could have very easily could have just done:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)<span class="op">^</span><span class="dv">2</span></code></pre></div>
-<pre><code>## [1]  1  4  9 16 25</code></pre>
-<p>However, there are times where it is advantageous to use a loop. Let’s build a (very) basic population model where the population abundance next year is the population abundance this year times some growth rate. If there are 1000 individuals this year, how many will there be in 3 years from now if the population gets 3.06 times bigger each year?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">N =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1000</span>, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="ot">NA</span>)
-<span class="cf">for</span> (t <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>) {
-  N[t<span class="op">+</span><span class="dv">1</span>] =<span class="st"> </span>N[t] <span class="op">*</span><span class="st"> </span><span class="fl">3.06</span>
+<p>When <code>i^2</code> is calculated, it will be placed in the element <code>results[i]</code>. This was a trivial example, because you should do things like this using R’s vectorized calculation framework: <code>(1:5)^2</code> (see Section <a href="ch1.html#vector-math">1.6</a>).</p>
+<p>However, there are times where it is advantageous to use a loop. Particularly in cases where:</p>
+<ol style="list-style-type: decimal">
+<li>the calculations in one element are determined on the value in previous elements, such as in time series models.</li>
+<li>the calculations have multiple steps or</li>
+<li>you wish to store multiple results</li>
+<li>you wish to track the progress of your calculations</li>
+</ol>
+<p>As an illustration for item (1) above, build a (very) basic population model. At the start of the first year, the population abundance is 1000 individuals and grows by an average factor of 1.1 per year (reproduction and death processes result in a growth rate of 10%) before harvest. The growth rate varies randomly, however. Each year, the 1.1 growth factor has variability introduced by small changes in survival and reproductive process. Model these variations as lognormal random variables. After production, 8% of the population is harvested. Simulate and plot the abundance at the end of the year for 100 years:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nt =<span class="st"> </span><span class="dv">100</span>        <span class="co"># number of years</span>
+N =<span class="st"> </span><span class="ot">NULL</span>       <span class="co"># container for abundance</span>
+N[<span class="dv">1</span>] =<span class="st"> </span><span class="dv">1000</span>    <span class="co"># first end-of-year abundance</span>
+
+<span class="cf">for</span> (t <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span>nt) {
+  <span class="co"># N this year is N last year * growth *</span>
+    <span class="co"># randomness * fraction that survive harvest</span>
+  N[t] =<span class="st"> </span>(N[t<span class="op">-</span><span class="dv">1</span>] <span class="op">*</span><span class="st"> </span><span class="fl">1.1</span> <span class="op">*</span><span class="st"> </span><span class="kw">rlnorm</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="fl">0.1</span>)) <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.08</span>)
 }
-N</code></pre></div>
-<pre><code>## [1]  1000.00  3060.00  9363.60 28652.62</code></pre>
-<p>So we made a vector <code>N</code> which will serve as our starting point and container vector. We then say for the next 3 years, the number next year (<code>N[t+1]</code>) is the number this year (<code>N[t]</code>) times the growth rate. This is another basic example, but you can see how <code>for</code> loops could be used to run some very complex calculations.</p>
+
+<span class="co"># plot</span>
+<span class="kw">plot</span>(N, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">pch =</span> <span class="dv">15</span>, <span class="dt">xlab =</span> <span class="st">&quot;Year&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Abundance&quot;</span>)</code></pre></div>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Examples of the other three utilities are shown in the examples.</p>
+</div>
+</div>
+<div id="function-writing" class="section level2">
+<h2><span class="header-section-number">4.5</span> Function Writing</h2>
+<p>In Monte Carlo analyses, it is often useful to wrap code into functions. This makes them easy to be replicated and have the settings adjusted. As an example, turn the population model shown above into a function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pop_sim =<span class="st"> </span><span class="cf">function</span>(nt, grow, sd_grow, U, <span class="dt">plot =</span> F) {
+  N =<span class="st"> </span><span class="ot">NULL</span> 
+  N[<span class="dv">1</span>] =<span class="st"> </span><span class="dv">1000</span>
+
+  <span class="cf">for</span> (t <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span>nt) {
+    N[t] =<span class="st"> </span>(N[t<span class="op">-</span><span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>grow <span class="op">*</span><span class="st"> </span><span class="kw">rlnorm</span>(<span class="dv">1</span>, <span class="dv">0</span>, sd_grow)) <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>U)
+  }
+  
+  <span class="cf">if</span> (plot) {
+    <span class="kw">plot</span>(N, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">pch =</span> <span class="dv">15</span>, <span class="dt">xlab =</span> <span class="st">&quot;Year&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Abundance&quot;</span>)
+  }
+  
+  N
+}</code></pre></div>
+<p>This function takes five inputs:</p>
 <ul>
-<li>Simulation
-<ul>
-<li>A basic Monte Carlo experiment: validate <code>rnorm</code> using <code>qnorm</code> and <code>pnorm</code></li>
-<li>Harvest-policy analysis</li>
-<li>Mark-recapture evaluation</li>
-<li>Stochastic power analysis</li>
-</ul></li>
-<li>Randomization
-<ul>
-<li>Permutation tests</li>
-<li>The bootstrap</li>
-</ul></li>
+<li><code>nt</code>: the number of years,</li>
+<li><code>grow</code>: the population growth rate,</li>
+<li><code>sd_grow</code>: the amount of annual variability in the growth rate</li>
+<li><code>U</code>: the annual exploitation rate</li>
+<li><code>plot</code>: whether you wish to have a plot created. It has a default setting of <code>FALSE</code>: if you don’t specify <code>plot = T</code> when you call <code>pop_sim</code>, you won’t see a plot made.</li>
 </ul>
+<p>It returns one output: the vector of population abundance.</p>
+<p>Use your function once using the same settings as before:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pop_sim</span>(<span class="dv">100</span>, <span class="fl">1.1</span>, <span class="fl">0.1</span>, <span class="fl">0.08</span>, T)</code></pre></div>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-20-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>##   [1]  1000.0000  1295.7900  1167.0540  1069.0864  1262.5892  1105.1322
+##   [7]  1271.3711  1136.5372   918.6956   876.6976  1023.8931  1042.9960
+##  [13]  1049.0510  1098.0740  1095.4494  1394.5653  1513.7068  1578.7421
+##  [19]  1432.5964  1397.9240  1237.5714  1159.7026  1090.9918  1004.0741
+##  [25]   939.8106   935.7751  1049.3312  1227.2058  1201.8934  1417.5916
+##  [31]  1610.4107  1887.1994  2162.2882  2229.5082  1773.0274  1855.5533
+##  [37]  1685.5738  1698.3613  1909.4173  1965.4014  2049.5859  2317.5072
+##  [43]  2182.4272  2665.3237  2586.9369  2526.1907  2509.4155  2779.7149
+##  [49]  3111.1756  3060.8676  3234.6840  3610.3290  3573.5155  3622.2968
+##  [55]  3515.1466  3731.0774  3579.4810  4205.3906  4167.5403  4153.6562
+##  [61]  4610.1569  5728.6671  6037.1513  7522.9763  7309.7468  7770.8357
+##  [67]  7843.0532  9911.8712  9754.7090 12938.7605 13688.7754 13917.7057
+##  [73] 13448.8651 12676.8634 12799.8298 12283.9954 13129.9338 14794.9673
+##  [79] 14972.1067 15463.3070 16349.9490 14523.0243 15156.4361 15651.2050
+##  [85] 17422.2729 18594.8657 17792.5617 19910.6253 19454.9460 18859.2774
+##  [91] 16916.8541 19681.7666 21168.8864 23637.4310 24125.8204 23155.2549
+##  [97] 32639.1507 29838.7846 26778.3891 30792.7302</code></pre>
+<p>Now, you wish to replicate exectuing this function 1000 times. Use the <code>replicate</code> function to do this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">out =<span class="st"> </span><span class="kw">replicate</span>(<span class="dt">n =</span> <span class="dv">1000</span>, <span class="dt">expr =</span> <span class="kw">pop_sim</span>(<span class="dv">100</span>, <span class="fl">1.1</span>, <span class="fl">0.1</span>, <span class="fl">0.08</span>, F))</code></pre></div>
+<p>If you do <code>dim(out)</code>, you’ll see that rows are stored as years (there are 100 of them) and columns are stored as replicates (there are 1000 of them). Notice how wrapping the code in the function made the <code>replicate</code> call easy.</p>
+<p><strong>Here are some advantages of wrapping code like this into a function</strong>:</p>
+<ul>
+<li>If you do the same task over and over, you don’t need to type all of the code to perform the task, just the function call.</li>
+<li>If you need to change the way the function behaves (mechanically in the function body), you only need to change it one place: in the function definition.</li>
+<li>You can easily change the settings of the code (e.g., whether you want to see the plot) in one place</li>
+<li>Function writing <strong>can</strong> lead to shorter scripts</li>
+<li>Function writing <strong>can</strong> lead to more readable code (if people know what your functions do)</li>
+</ul>
+</div>
+<div id="mc-summaries" class="section level2">
+<h2><span class="header-section-number">4.6</span> Summarization</h2>
+<p>After replicating a calculation many times, you will need to summarize the results. Here are several examples using the <code>out</code> matrix.</p>
+<div id="central-tendency" class="section level3">
+<h3><span class="header-section-number">4.6.1</span> Central Tendency</h3>
+<p>You can calculate the mean abundance each year across your iterations using the <code>apply</code> function (Section <a href="ch1.html#data-summaries">1.9</a>):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">N_mean =<span class="st"> </span><span class="kw">apply</span>(out, <span class="dv">1</span>, mean)
+N_mean[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</code></pre></div>
+<pre><code>##  [1] 1000.000 1020.206 1039.908 1055.698 1072.032 1093.386 1113.873
+##  [8] 1130.438 1151.554 1174.707</code></pre>
+<p>You could do the same thing using <code>median</code> rather than <code>mean</code>. Mode is more difficult to calculate in R, if you need to get the mode, try to Google it<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>.</p>
+</div>
+<div id="variability" class="section level3">
+<h3><span class="header-section-number">4.6.2</span> Variability</h3>
+<p>One of the primary reasons to conduct a Monte Carlo analysis is to obtain estimates of variability. You can summarize the variability easily using the <code>quantile</code> function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">N_quants =<span class="st"> </span><span class="kw">apply</span>(out, <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="kw">quantile</span>(x, <span class="kw">c</span>(<span class="fl">0.1</span>, <span class="fl">0.9</span>)))
+
+<span class="kw">plot</span>(N_mean, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">10000</span>))
+<span class="kw">lines</span>(N_quants[<span class="dv">1</span>,], <span class="dt">lty =</span> <span class="dv">2</span>)
+<span class="kw">lines</span>(N_quants[<span class="dv">2</span>,], <span class="dt">lty =</span> <span class="dv">2</span>)</code></pre></div>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-23-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Notice how a user-defined function was passed to <code>apply</code>. The range within the two dashed lines represents the range that encompassed the central 80% of the random abundances each year.</p>
+</div>
+<div id="frequencies" class="section level3">
+<h3><span class="header-section-number">4.6.3</span> Frequencies</h3>
+<p>Often you will want to count how many times something happened. In some cases, the fraction of times something happened can be interpretted as a probability.</p>
+<p>The <code>table</code> function is very useful for counting occurences of events. Suppose you are interested in how many of your iterations resulted in fewer than 1000 individuals at year 10:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">out10 =<span class="st"> </span><span class="kw">ifelse</span>(out[<span class="dv">10</span>,] <span class="op">&lt;</span><span class="st"> </span><span class="dv">1000</span>, <span class="st">&quot;less10&quot;</span>, <span class="st">&quot;greater10&quot;</span>)
+<span class="kw">table</span>(out10)</code></pre></div>
+<pre><code>## out10
+## greater10    less10 
+##       671       329</code></pre>
+<p>Suppose you are also interested in how many of your iterations resulted in fewer than 1100 individuals at year 20:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">out20 =<span class="st"> </span><span class="kw">ifelse</span>(out[<span class="dv">20</span>,] <span class="op">&lt;</span><span class="st"> </span><span class="dv">1100</span>, <span class="st">&quot;less20&quot;</span>, <span class="st">&quot;greater20&quot;</span>)
+<span class="kw">table</span>(out20)</code></pre></div>
+<pre><code>## out20
+## greater20    less20 
+##       629       371</code></pre>
+<p>Now suppose you are interested in how these two metrics are related:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(out10, out20)</code></pre></div>
+<pre><code>##            out20
+## out10       greater20 less20
+##   greater10       522    149
+##   less10          107    222</code></pre>
+<p>As an example in iterpretting this output, most often populations that were greater than 1000 at year 10 were also greater than 1000 at year 20. If a population was less than 1000 at year 10, it was more likely to be less than 1100 at year 20 than to be greater than it.</p>
+<p>You can turn these into probabilities (if you believe your model represents reality) by dividing each cell by the total number of iterations:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(<span class="kw">table</span>(out10, out20)<span class="op">/</span><span class="dv">1000</span>, <span class="dv">2</span>)</code></pre></div>
+<pre><code>##            out20
+## out10       greater20 less20
+##   greater10      0.52   0.15
+##   less10         0.11   0.22</code></pre>
 </div>
 </div>
 <div id="sim-examples" class="section level2">
-<h2><span class="header-section-number">4.4</span> Simulation-Based Examples</h2>
+<h2><span class="header-section-number">4.7</span> Simulation-Based Examples</h2>
+<div id="test-rnorm" class="section level3">
+<h3><span class="header-section-number">4.7.1</span> Test <code>rnorm</code></h3>
+<p>In this example, you will verify that the function <code>rnorm</code> works the same way that <code>qnorm</code> and <code>pnorm</code> work. Hopefully it will also reinforce the way the random, quantile, and cumulative distribution functions work in R. If you’re feeling advanced, try adjusting this example for another distribution like the Poisson.</p>
+<p>First, specify the mean and standard deviation for this example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mu =<span class="st"> </span><span class="dv">500</span>; sig =<span class="st"> </span><span class="dv">30</span></code></pre></div>
+<p>Now make up <code>n</code> (any number of your choosing, something greater than 10) random deviates from this normal distribution:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">random =<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>, mu, sig)</code></pre></div>
+<p>Test the quantiles (obtain the values that <code>p</code> * 100% of the quantities fall below, both for random numbers and from the <code>qnorm</code> function):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p =<span class="st"> </span><span class="kw">seq</span>(<span class="fl">0.01</span>, <span class="fl">0.99</span>, <span class="fl">0.01</span>)
+
+random_q =<span class="st"> </span><span class="kw">quantile</span>(random, p)
+normal_q =<span class="st"> </span><span class="kw">qnorm</span>(p, mu, sig)
+
+<span class="kw">plot</span>(normal_q <span class="op">~</span><span class="st"> </span>random_q); <span class="kw">abline</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</code></pre></div>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-30-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The fact that all the quantiles fall around the 1:1 line sugggests the <code>n</code> random samples samples are indeed from a normal distribution. Any variabilities you see are due to sampling errors. If you increase <code>n</code> to <code>n = 1e6</code> (one million), you’ll see no deviations. This is called a <strong>q-q plot</strong>, and is frequently used to assess the fit of data to a distribution.</p>
+<p>Now test the values in their agreement with the <code>pnorm</code> function. Plot the cumulative density functions for the truely normal curve and that approximated by the random deviates:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">q =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">400</span>, <span class="dv">600</span>, <span class="dv">10</span>)
+
+random_cdf =<span class="st"> </span><span class="kw">ecdf</span>(random)
+random_p =<span class="st"> </span><span class="kw">random_cdf</span>(q)
+normal_p =<span class="st"> </span><span class="kw">pnorm</span>(q, mu, sig)
+
+<span class="kw">plot</span>(normal_p <span class="op">~</span><span class="st"> </span>q, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)
+<span class="kw">points</span>(random_p <span class="op">~</span><span class="st"> </span>q, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</code></pre></div>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-31-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The <code>ecdf</code> function obtains the empirical cumulative density function (which is just <code>pnorm</code> for a sample). It allows you to plug in any random variable and obtain the probability of having one less than it.</p>
+</div>
+<div id="stochastic-power-analysis" class="section level3">
+<h3><span class="header-section-number">4.7.2</span> Stochastic Power Analysis</h3>
+<p>A power analysis is one where the analyst wishes to determine how much power they will have to detect an effect of size <code>d</code> if the sample size is <code>n</code> and the variability is <code>sig</code>. Having high power means ensuring you do not falsely reject a true hypothesis (e.g., claiming that <code>d</code> is zero based on a p-value greater than 0.05).</p>
+<p>You can conduct a power analysis using stochastic simulation. Here, you will write a power analysis to determine how likely are you to be able to correctly identify what you deem to be a biologically-meaningful difference in survival between two tagging procedures.</p>
+<p>You know one tagging procedure has approximately a 5% mortality rate. Another, cheaper and less labor intensive method has been proposed but before implementing it, your agency wishes to determine if it will have a meaningful impact on the reliability of the study. You and your colleagues determine that if the mortality rate reaches 15%, then it is too costly to implement the new strategy (tags are expensive, after all) and have decided to perform a small-scale study to determine if the new method affects mortality enough to make it inefficient (i.e., have 15% or more mortality). Before performing the study however, they have enlisted your help in determining how many individuals they need to tag using each method to answer their question. You decide to use a stochastic power analysis based on what you’ve learned in this book to help your research group. The small scale study can tag a total of at most 30 fish. Could they tag fewer and still have a high probability of correctly identifying an effect of this size?</p>
+<p>The approach works like this (this is called <strong>psuedocode</strong>):</p>
+<ol style="list-style-type: decimal">
+<li>Simulate data under the reality that the difference is real with <code>n</code> observations per treatment, where <code>n &lt; 30/2</code>.</li>
+<li>Fit the model that will be used when the real data are collected.</li>
+<li>Determine if an effect at least as large as the effect of interest was detected with a significant p-value</li>
+<li>Replicate steps 1 - 3 many times. Determine what fraction of times the effect was correctly identified.</li>
+<li>Replicate step 4 while varying <code>n</code> over the interval from 5 to 15.</li>
+</ol>
+<p>First, create a function that will generate data, fit the model, and determine if the p-value is significant (steps 1-3 above):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sim_fit =<span class="st"> </span><span class="cf">function</span>(n, <span class="dt">p_old =</span> <span class="fl">0.05</span>, <span class="dt">p_new =</span> <span class="fl">0.15</span>) {
+  
+  <span class="co"># create the data</span>
+  dead_old =<span class="st"> </span><span class="kw">rbinom</span>(n, <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">prob =</span> p_old)
+  dead_new =<span class="st"> </span><span class="kw">rbinom</span>(n, <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">prob =</span> p_new)
+  
+  <span class="co"># create the predictor variable</span>
+  method =<span class="st"> </span><span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;old&quot;</span>, <span class="st">&quot;new&quot;</span>), <span class="dt">each =</span> n)
+  
+  <span class="co"># create a data.frame to pass to glm</span>
+  df =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">dead =</span> <span class="kw">c</span>(dead_old, dead_new), <span class="dt">method =</span> method)
+  
+  df<span class="op">$</span>method =<span class="st"> </span><span class="kw">relevel</span>(df<span class="op">$</span>method, <span class="dt">ref =</span> <span class="st">&quot;old&quot;</span>)
+  
+  <span class="co"># fit the model</span>
+  fit =<span class="st"> </span><span class="kw">glm</span>(dead <span class="op">~</span><span class="st"> </span>method, <span class="dt">data =</span> df, <span class="dt">family =</span> binomial)
+  
+  <span class="co"># extract the p-value</span>
+  pval =<span class="st"> </span><span class="kw">summary</span>(fit)<span class="op">$</span>coef[<span class="dv">2</span>,<span class="dv">4</span>]
+  
+  <span class="co"># determine if it was found to be significant</span>
+  pval <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.05</span>
+}</code></pre></div>
+<p>Next, for steps 4 and 5, set up a <strong>nested <code>for</code> loop</strong>. This will have two loops: one that loops over sample sizes for step 5 and one that loops over replicates of each sample size (step 4):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">I =<span class="st"> </span><span class="dv">1000</span>  <span class="co"># the number of replicates at each sample size</span>
+
+n_try =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">5</span>, <span class="dv">15</span>, <span class="dv">2</span>)  <span class="co"># the test sample sizes</span>
+N =<span class="st"> </span><span class="kw">length</span>(n_try)      <span class="co"># count them</span>
+
+<span class="co"># container: </span>
+out =<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, I, N) <span class="co"># matrix with I rows and N columns</span>
+
+<span class="cf">for</span> (n <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>N) {
+  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>I) {
+    out[i,n] =<span class="st"> </span><span class="kw">sim_fit</span>(<span class="dt">n =</span> n_try[n])
+  }
+}</code></pre></div>
+<p>You now have a matrix of <code>TRUE</code> and <code>FALSE</code> elements that indicates whether a significant difference was found at the <span class="math inline">\(\alpha = 0.05\)</span> level if the effect was truely as large as you care about. You can obtain the proportion of all the replicates at each sample size that resulted in a significant difference using the <code>mean</code> function with <code>apply</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">apply</span>(out, <span class="dv">2</span>, mean) <span class="op">~</span><span class="st"> </span>n_try, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>)</code></pre></div>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-34-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Even if you tagged 30 fish total, you would have a 0% chance of saying the effect (which truely is there!) is present under the null hypothesis testing framework.</p>
+<p>Suppose you and your colleagues aren’t relying on p-values in this case, and are purely interested in the <strong>effect size</strong>. Adapt your function to determine how frequently it is you would be able to estimate an effect at least as large as 0.05 vs. 0.15 based on the point estimate only, not the p-value. Change the lines that summarize the <code>fit</code> model object and perform the logical condition to be:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="co"># obtain the estimated mortality rate for the new method</span>
+  p_new_est =<span class="st"> </span><span class="kw">predict</span>(fit, <span class="kw">data.frame</span>(<span class="dt">method =</span> <span class="kw">c</span>(<span class="st">&quot;new&quot;</span>)),
+                      <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)
+
+  <span class="co"># determine if it is at least 0.15</span>
+  p_new_est <span class="op">&gt;=</span><span class="st"> </span><span class="fl">0.15</span></code></pre></div>
+<p>Run your function through the same loop and make the same plot:</p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-36-1.png" width="672" style="display: block; margin: auto;" /></p>
+<ul>
+<li>Harvest-policy analysis</li>
+<li>Mark-recapture evaluation</li>
+<li>Stochastic power analysis</li>
+</ul>
+</div>
 </div>
 <div id="resample-examples" class="section level2">
-<h2><span class="header-section-number">4.5</span> Resampling-Based Examples</h2>
+<h2><span class="header-section-number">4.8</span> Resampling-Based Examples</h2>
+<ul>
+<li>Permutation tests</li>
+<li>The bootstrap</li>
+</ul>
 
 </div>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="30">
-<li id="fn30"><p>If <code>prob</code> doesn’t sum to 1, then it will be rescaled: <code>prob = prob/sum(prob)</code><a href="ch4.html#fnref30">↩</a></p></li>
+<ol start="1">
+<li id="fn1"><p>If <code>prob</code> doesn’t sum to 1, then it will be rescaled: <code>prob = prob/sum(prob)</code><a href="ch4.html#fnref1">↩</a></p></li>
+<li id="fn2"><p>Google is an R programmer’s best friend. There is a massive online community for R, and if you have a question on something, it has almost certainly been asked somewhere on the web.<a href="ch4.html#fnref2">↩</a></p></li>
 </ol>
 </div>
             </section>

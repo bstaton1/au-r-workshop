@@ -258,7 +258,7 @@ read.csv("streams.csv", stringsAsFactors = F)  # see below for details on read.c
 
 will result in character vectors remaining that way as opposed to being coerced to factors. This can be preferable if you are doing many string manipulations, as character vectors are often easier to work with than factors. 
 
-## Vector Math
+## Vector Math {#vector-math}
 
 R does vectorized calculations. This means that if supplied with two numeric vectors of equal length and a mathematical operator, R will perform the calculation on each pair of elements. For example, if you wanted to add the two vectors vector `day` and `month`, then you would just run:
 

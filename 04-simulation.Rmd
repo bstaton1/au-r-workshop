@@ -132,7 +132,7 @@ for (var in seq) {
 }
 ```
 
-The way this works is the loop calculates the expression for values of `var` by the increments in `seq`. For example:
+The loop calculates the expression for values of `var` for each element in the vector `seq`. For example:
 
 ```{r}
 for (i in 1:5) {
@@ -140,8 +140,13 @@ for (i in 1:5) {
 }
 ```
 
-The first time through the loop, `i` equals 1 and the expression is to print the square of 1. The next time through the loop, `i` equals 2 and the expression prints the square of 2. And so on and so on until `i` is 5, after which it stops (because that is the end of the sequence you specified.)
-If we remove the `print()` function, let's see what happens:
+I `print` will be executed 5 times: once for each value of `i`. It is the same as:
+
+```{r}
+i = 1; print(i); i = 2; print(i); i = 3; print(i); i = 4; print(i); i = 5; print(i)
+```
+
+If you remove the `print()` function, see what happens:
 
 ```{r}
 for (i in 1:5) {
@@ -149,13 +154,13 @@ for (i in 1:5) {
 }
 ```
 
-What happened? Well, it turns out that the loop still worked, only it did not show us (or save) the results. If we want to store the results of the loop, we have to make a container for it to store the results in and tell the loop to put the results in the desired location:
+Nothing is printed to the console. R did the calculation, but did not show you or store it. Often, you'll need to store the results of the calculation in a **container object**:
 
 ```{r}
 results = numeric(5)
 ```
 
-This makes an empty numeric vector of length 5 that are all 0's. This is where we will put the results of each run through the loop:
+This makes an empty numeric vector of length 5 that are all 0's. You can store the output of your loop calculations in `results`:
 
 ```{r}
 for (i in 1:5) {
@@ -164,40 +169,330 @@ for (i in 1:5) {
 results
 ```
 
-We are saying, when `i = 1`, calculate `1^2` and put it in the 1^st^ element of `results`. When `i = 2`, calculate `2^2` and put it in the 2^nd^ element of `results`. So in general: calculate `i^2` and put it in the `i`^th^ element of `results`.
+When `i^2` is calculated, it will be placed in the element `results[i]`. This was a trivial example, because you should do things like this using R's vectorized calculation framework: `(1:5)^2` (see Section \@ref(vector-math)). 
 
-Now, this loop was a trivial example, because we could have very easily could have just done:
+However, there are times where it is advantageous to use a loop. Particularly in cases where:
+
+1.  the calculations in one element are determined on the value in previous elements, such as in time series models. 
+2.  the calculations have multiple steps or 
+3.  you wish to store multiple results
+4.  you wish to track the progress of your calculations
+
+As an illustration for item (1) above, build a (very) basic population model. At the start of the first year, the population abundance is 1000 individuals and grows by an average factor of 1.1 per year (reproduction and death processes result in a growth rate of 10%) before harvest. The growth rate varies randomly, however. Each year, the 1.1 growth factor has variability introduced by small changes in survival and reproductive process. Model these variations as lognormal random variables. After production, 8% of the population is harvested. Simulate and plot the abundance at the end of the year for 100 years:
 
 ```{r}
-(1:5)^2
-```
+nt = 100        # number of years
+N = NULL       # container for abundance
+N[1] = 1000    # first end-of-year abundance
 
-However, there are times where it is advantageous to use a loop. Let's build a (very) basic population model where the population abundance next year is the population abundance this year times some growth rate. If there are 1000 individuals this year, how many will there be in 3 years from now if the population gets 3.06 times bigger each year?
-
-```{r}
-N = c(1000, NA, NA, NA)
-for (t in 1:3) {
-  N[t+1] = N[t] * 3.06
+for (t in 2:nt) {
+  # N this year is N last year * growth *
+    # randomness * fraction that survive harvest
+  N[t] = (N[t-1] * 1.1 * rlnorm(1, 0, 0.1)) * (1 - 0.08)
 }
-N
+
+# plot
+plot(N, type = "l", pch = 15, xlab = "Year", ylab = "Abundance")
 ```
 
-So we made a vector `N` which will serve as our starting point and container vector. We then say for the next 3 years, the number next year (`N[t+1]`) is the number this year (`N[t]`) times the growth rate. This is another basic example, but you can see how `for` loops could be used to run some very complex calculations.
+Examples of the other three utilities are shown in the examples.
 
+## Function Writing
+In Monte Carlo analyses, it is often useful to wrap code into functions. This makes them easy to be replicated and have the settings adjusted. As an example, turn the population model shown above into a function:
 
-*  Simulation
-    *  A basic Monte Carlo experiment: validate `rnorm` using `qnorm` and `pnorm`
-    *  Harvest-policy analysis
-    *  Mark-recapture evaluation
-    *  Stochastic power analysis
-* Randomization
-    *  Permutation tests
-    *  The bootstrap
+```{r}
+pop_sim = function(nt, grow, sd_grow, U, plot = F) {
+  N = NULL 
+  N[1] = 1000
 
+  for (t in 2:nt) {
+    N[t] = (N[t-1] * grow * rlnorm(1, 0, sd_grow)) * (1 - U)
+  }
+  
+  if (plot) {
+    plot(N, type = "l", pch = 15, xlab = "Year", ylab = "Abundance")
+  }
+  
+  N
+}
+```
 
+This function takes five inputs: 
 
-## Summarization
+*  `nt`: the number of years,
+*  `grow`: the population growth rate,
+*  `sd_grow`: the amount of annual variability in the growth rate
+*  `U`: the annual exploitation rate
+*  `plot`: whether you wish to have a plot created. It has a default setting of `FALSE`: if you don't specify `plot = T` when you call `pop_sim`, you won't see a plot made.
+
+It returns one output: the vector of population abundance.
+
+Use your function once using the same settings as before:
+
+```{r}
+pop_sim(100, 1.1, 0.1, 0.08, T)
+```
+
+Now, you wish to replicate exectuing this function 1000 times. Use the `replicate` function to do this:
+
+```{r}
+out = replicate(n = 1000, expr = pop_sim(100, 1.1, 0.1, 0.08, F))
+```
+
+If you do `dim(out)`, you'll see that rows are stored as years (there are `r nrow(out)` of them) and columns are stored as replicates (there are `r ncol(out)` of them). Notice how wrapping the code in the function made the `replicate` call easy. 
+
+**Here are some advantages of wrapping code like this into a function**:
+
+*  If you do the same task over and over, you don't need to type all of the code to perform the task, just the function call. 
+*  If you need to change the way the function behaves (mechanically in the function body), you only need to change it one place: in the function definition.
+*  You can easily change the settings of the code (e.g., whether you want to see the plot) in one place
+*  Function writing **can** lead to shorter scripts
+*  Function writing **can** lead to more readable code (if people know what your functions do)
+
+## Summarization {#mc-summaries}
+
+After replicating a calculation many times, you will need to summarize the results. Here are several examples using the `out` matrix.
+
+### Central Tendency
+
+You can calculate the mean abundance each year across your iterations using the `apply` function (Section \@ref(data-summaries)):
+
+```{r}
+N_mean = apply(out, 1, mean)
+N_mean[1:10]
+```
+
+You could do the same thing using `median` rather than `mean`. Mode is more difficult to calculate in R, if you need to get the mode, try to Google it^[Google is an R programmer's best friend. There is a massive online community for R, and if you have a question on something, it has almost certainly been asked somewhere on the web.].
+
+### Variability
+
+One of the primary reasons to conduct a Monte Carlo analysis is to obtain estimates of variability. You can summarize the variability easily using the `quantile` function:
+
+```{r}
+N_quants = apply(out, 1, function(x) quantile(x, c(0.1, 0.9)))
+
+plot(N_mean, type = "l", ylim = c(0, 10000))
+lines(N_quants[1,], lty = 2)
+lines(N_quants[2,], lty = 2)
+```
+
+Notice how a user-defined function was passed to `apply`. The range within the two dashed lines represents the range that encompassed the central 80% of the random abundances each year.
+
+### Frequencies
+
+Often you will want to count how many times something happened. In some cases, the fraction of times something happened can be interpretted as a probability.
+
+The `table` function is very useful for counting occurences of events. Suppose you are interested in how many of your iterations resulted in fewer than 1000 individuals at year 10:
+
+```{r}
+out10 = ifelse(out[10,] < 1000, "less10", "greater10")
+table(out10)
+```
+
+Suppose you are also interested in how many of your iterations resulted in fewer than 1100 individuals at year 20:
+
+```{r}
+out20 = ifelse(out[20,] < 1100, "less20", "greater20")
+table(out20)
+```
+
+Now suppose you are interested in how these two metrics are related:
+
+```{r}
+table(out10, out20)
+```
+
+As an example in iterpretting this output, most often populations that were greater than 1000 at year 10 were also greater than 1000 at year 20. If a population was less than 1000 at year 10, it was more likely to be less than 1100 at year 20 than to be greater than it.
+
+You can turn these into probabilities (if you believe your model represents reality) by dividing each cell by the total number of iterations:
+
+```{r}
+round(table(out10, out20)/1000, 2)
+```
 
 ## Simulation-Based Examples {#sim-examples}
 
+### Test `rnorm`
+
+In this example, you will verify that the function `rnorm` works the same way that `qnorm` and `pnorm` work. Hopefully it will also reinforce the way the random, quantile, and cumulative distribution functions work in R. If you're feeling advanced, try adjusting this example for another distribution like the Poisson.
+
+First, specify the mean and standard deviation for this example:
+
+```{r}
+mu = 500; sig = 30
+```
+
+Now make up `n` (any number of your choosing, something greater than 10) random deviates from this normal distribution:
+
+```{r}
+random = rnorm(100, mu, sig)
+```
+
+Test the quantiles (obtain the values that `p` * 100% of the quantities fall below, both for random numbers and from the `qnorm` function):
+
+```{r}
+p = seq(0.01, 0.99, 0.01)
+
+random_q = quantile(random, p)
+normal_q = qnorm(p, mu, sig)
+
+plot(normal_q ~ random_q); abline(c(0,1))
+```
+
+The fact that all the quantiles fall around the 1:1 line sugggests the `n` random samples samples are indeed from a normal distribution. Any variabilities you see are due to sampling errors. If you increase `n` to `n = 1e6` (one million), you'll see no deviations.  This is called a **q-q plot**, and is frequently used to assess the fit of data to a distribution.
+
+Now test the values in their agreement with the `pnorm` function. Plot the cumulative density functions for the truely normal curve and that approximated by the random deviates:
+
+```{r}
+q = seq(400, 600, 10)
+
+random_cdf = ecdf(random)
+random_p = random_cdf(q)
+normal_p = pnorm(q, mu, sig)
+
+plot(normal_p ~ q, type = "l", col = "blue")
+points(random_p ~ q, col = "red")
+```
+
+The `ecdf` function obtains the empirical cumulative density function (which is just `pnorm` for a sample). It allows you to plug in any random variable and obtain the probability of having one less than it.
+
+### Stochastic Power Analysis
+
+A power analysis is one where the analyst wishes to determine how much power they will have to detect an effect of size `d` if the sample size is `n` and the variability is `sig`. Having high power means ensuring you do not falsely reject a true hypothesis (e.g., claiming that `d` is zero based on a p-value greater than 0.05).
+
+You can conduct a power analysis using stochastic simulation. Here, you will write a power analysis to determine how likely are you to be able to correctly identify what you deem to be a biologically-meaningful difference in survival between two tagging procedures. 
+
+You know one tagging procedure has approximately a 5% mortality rate. Another, cheaper and less labor intensive method has been proposed but before implementing it, your agency wishes to determine if it will have a meaningful impact on the reliability of the study. You and your colleagues determine that if the mortality rate reaches 15%, then it is too costly to implement the new strategy (tags are expensive, after all) and have decided to perform a small-scale study to determine if the new method affects mortality enough to make it inefficient (i.e., have 15% or more mortality). Before performing the study however, they have enlisted your help in determining how many individuals they need to tag using each method to answer their question. You decide to use a stochastic power analysis based on what you've learned in this book to help your research group. The small scale study can tag a total of at most 30 fish. Could they tag fewer and still have a high probability of correctly identifying an effect of this size?
+
+The approach works like this (this is called **psuedocode**):
+
+1.  Simulate data under the reality that the difference is real with `n` observations per treatment, where `n < 30/2`. 
+2.  Fit the model that will be used when the real data are collected.
+3.  Determine if an effect at least as large as the effect of interest was detected with a significant p-value
+4.  Replicate steps 1 - 3 many times. Determine what fraction of times the effect was correctly identified. 
+5.  Replicate step 4 while varying `n` over the interval from 5 to 15.
+
+First, create a function that will generate data, fit the model, and determine if the p-value is significant (steps 1-3 above):
+
+```{r}
+sim_fit = function(n, p_old = 0.05, p_new = 0.15) {
+  
+  # create the data
+  dead_old = rbinom(n, size = 1, prob = p_old)
+  dead_new = rbinom(n, size = 1, prob = p_new)
+  
+  # create the predictor variable
+  method = rep(c("old", "new"), each = n)
+  
+  # create a data.frame to pass to glm
+  df = data.frame(dead = c(dead_old, dead_new), method = method)
+  
+  # relevel so old is the reference
+  df$method = relevel(df$method, ref = "old")
+  
+  # fit the model
+  fit = glm(dead ~ method, data = df, family = binomial)
+  
+  # extract the p-value
+  pval = summary(fit)$coef[2,4]
+  
+  # determine if it was found to be significant
+  pval < 0.05
+}
+```
+
+Next, for steps 4 and 5, set up a **nested `for` loop**. This will have two loops: one that loops over sample sizes for step 5 and one that loops over replicates of each sample size (step 4):
+
+```{r}
+I = 1000  # the number of replicates at each sample size
+
+n_try = seq(5, 15, 2)  # the test sample sizes
+N = length(n_try)      # count them
+
+# container: 
+out = matrix(NA, I, N) # matrix with I rows and N columns
+
+for (n in 1:N) {
+  for (i in 1:I) {
+    out[i,n] = sim_fit(n = n_try[n])
+  }
+}
+```
+
+You now have a matrix of `TRUE` and `FALSE` elements that indicates whether a significant difference was found at the $\alpha = 0.05$ level if the effect was truely as large as you care about. You can obtain the proportion of all the replicates at each sample size that resulted in a significant difference using the `mean` function with `apply`:
+
+```{r}
+plot(apply(out, 2, mean) ~ n_try, type = "l")
+```
+
+Even if you tagged 30 fish total, you would have a `r round(mean(out[,N]),2) * 100`% chance of saying the effect (which truely is there!) is present under the null hypothesis testing framework. 
+
+Suppose you and your colleagues aren't relying on p-values in this case, and are purely interested in the **effect size**. Adapt your function to determine how frequently it is you would be able to estimate an effect at least as large as 0.05 vs. 0.15 based on the point estimate only, not the p-value. Change the lines that summarize the `fit` model object and perform the logical condition to be:
+
+```{r, eval = F}
+  # obtain the estimated mortality rate for the new method
+  p_new_est = predict(fit, data.frame(method = c("new")),
+                      type = "response")
+
+  # determine if it is at least 0.15
+  p_new_est >= 0.15
+```
+
+Run your function through the same loop and make the same plot:
+
+```{r, echo = F}
+sim_fit = function(n, p_old = 0.05, p_new = 0.15) {
+  
+  # create the data
+  dead_old = rbinom(n, size = 1, prob = p_old)
+  dead_new = rbinom(n, size = 1, prob = p_new)
+  
+  # create the predictor variable
+  method = rep(c("old", "new"), each = n)
+  
+  # create a data.frame to pass to glm
+  df = data.frame(dead = c(dead_old, dead_new), method = method)
+  
+  # relevel so old is the reference
+  df$method = relevel(df$method, ref = "old")
+  
+  # fit the model
+  fit = glm(dead ~ method, data = df, family = binomial)
+  
+  # obtain the estimated mortality rate for the new method
+  p_new_est = predict(fit, data.frame(method = c("new")),
+                      type = "response")
+  
+  # determine if it is at least 0.15
+  p_new_est >= 0.15
+}
+
+I = 1000  # the number of replicates at each sample size
+
+n_try = seq(5, 15, 2)  # the test sample sizes
+N = length(n_try)      # count them
+
+# container: 
+out = matrix(NA, I, N) # matrix with I rows and N columns
+
+for (n in 1:N) {
+  for (i in 1:I) {
+    out[i,n] = sim_fit(n = n_try[n])
+  }
+}
+
+plot(apply(out, 2, mean) ~ n_try, type = "l")
+```
+
+
+
+
+
+  *  Harvest-policy analysis
+  *  Mark-recapture evaluation
+  *  Stochastic power analysis
+    
 ## Resampling-Based Examples {#resample-examples}
+
+  *  Permutation tests
+  *  The bootstrap
