@@ -1,2 +1,22 @@
 # Simulation and Randomization {#ch4}
 
+NOTE: Simulation modeling happens to be one of the author's favorite parts of using R, so this Chapter will likely be quite long.
+
+This chapter is intended also to provide the reader with more experience on writing more advanced functions. 
+
+**Topics:**
+
+*  For loops
+*  Use of random deviates
+*  More summaries: probabilities, etc.
+
+**Examples:**
+
+*  Simulation
+    *  A basic monte carlo experiment: validate `rnorm` using `qnorm` and `pnorm`
+    *  Harvest-policy analysis
+    *  Mark-recapture evaluation
+    *  Stochastic power analysis
+* Randomization
+    *  Permutation tests
+    *  The bootstrap

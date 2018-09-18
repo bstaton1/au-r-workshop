@@ -125,10 +125,10 @@ fit2 = lm(fecund ~ type, data = dat)
 Think of this model as being written as:
 
 $$y_i=\beta_0 + \beta_1 x_{i1} + \varepsilon_i$$
-and assume that $x_{i1} = 0$ if observation $i$ is from `"hatch"` fish and $x_{i1} = 1$ if observation $i$ is from `"wild"` fish. In that case:
+and assume that $x_{i1} = 0$ if observation $i$ is a fish from the `"hatch"` level and $x_{i1} = 1$ if observation $i$ is a fish from the `"wild"` level. In that case:
 
-*  $\beta_0$ (the intercept) is interpretted as the mean `fecund` for the `"hatch"` level and
-*  $\beta_1$ is interpretted as the difference in mean `fecund` between the `"wild"` level and the `"hatch"` level. 
+*  $\beta_0$ (the intercept) is the mean `fecund` for the `"hatch"` level and
+*  $\beta_1$ is the difference in mean `fecund`: `"wild"` - `"hatch"`. 
 
 So when you run `coef(fit2)` to extract the coefficient estimates and get:
 
@@ -138,17 +138,29 @@ coef(fit2)
 
 you see that the mean fecundity of hatchery fish is about `r round(coef(fit2)[1], 0)` eggs and that the average wild fish has about `r round(coef(fit2)[2], 0)` more eggs than the average hatchery fish across all years. The fact that the p-value associated with the `typewild` coefficient when you run `summary(fit2)` is less than 0.05 indicates that there is statistical evidence that the difference in means is not zero.
 
+Verify your interpretation of the coefficients:
+
+```{r}
+m = tapply(dat$fecund, dat$type, mean, na.rm = T)
+
+# b0:
+m[1]
+
+# b1:
+m[2] - m[1]
+```
+
 ### ANCOVA: Continuous and categorical predictors
 
-Now that you have seen that hatchery and wild fish tend to separate along the fecundity axis (as evidenced by the ANOVA results above), you would like to include this in your original regression model. You will fit two lines within the same model: one for hatchery fish and one for wild fish. This model is called an ANCOVA model and looks like this:
+Now that you have seen that hatchery and wild fish tend to separate along the fecundity axis (as evidenced by the ANOVA results above), you would like to include this in your original regression model. You will fit two regression lines within the same model: one for hatchery fish and one for wild fish. This model is called an ANCOVA model and looks like this:
 
 $$y_i=\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \varepsilon_i$$
 
 If $x_{i1}$ is `type` coded with 0's and 1's as in Section \@ref(anova) and $x_{i2}$ is `weight`, then the coefficients are interpretted as:
 
 *  $\beta_0$: the y-intercept of the `"hatch"` level (the reference level)
-*  $\beta_1$: the difference in y-intercept between the `"wild"` level and the `"hatch"` level. 
-*  $\beta_2$: the slope of both lines (this model assumes the lines have common slopes, i.e., that the lines are parallel)
+*  $\beta_1$: the difference in mean `fecund` at the same weight: `"wild"` - `"hatch"`
+*  $\beta_2$: the slope of the `fecund` _vs._ `weight` relationship (this model assumes the lines have common slopes, i.e., that the lines are parallel)
 
 You can fit this model and extract the coefficents table from the summary:
 
@@ -192,7 +204,7 @@ fit4 = lm(fecund ~ type + weight + type:weight, data = dat)
 
 The first option above is more clear in its statement, but both do the same thing. 
 
-You can plot the fit. Study these lines to make sure you know what each is doing. Use what you know about the meanings of the four coefficients to decipher the two `abline` commands.
+Plot the fit. Study these lines to make sure you know what each is doing. Use what you know about the meanings of the four coefficients to decipher the two `abline` commands.
 
 ```{r}
 plot(fecund ~ weight, data = dat, col = "grey",
@@ -223,7 +235,7 @@ In general, AIC values that are different by more than 2 units are interpretted 
 
 ## The Generalized Linear Model 
 
-The models you fitted above were called "general linear models". They all made the assumption that the residuals ($\varepsilon_i$) are normally-distributed. Often times data and analyses do not follow this assumption. For these cases you often move to the broader family of statistical models known as "generalized linear models"^[General linear models are a member of this family].
+The models you fitted above were called "general linear models". They all made the assumption that the residuals ($\varepsilon_i$) are normally-distributed. Oftentimes data and analyses do not follow this assumption. For these cases you should often move to the broader family of statistical models known as "generalized linear models"^[General linear models are a member of this family].
 
 ### Logistic Regression {#logis-regression}
 
@@ -231,7 +243,7 @@ One example is in the case of **binary** data. Binary data have two outcomes, e.
 
 $$logit(p_i)=\beta_0 + \beta_1 x_{i1} + ... + \beta_j x_{ij}+ ... + \beta_n x_{in}; y_i \sim Bernoulli(p_i)$$
 
-Where $p_i$ is the probability that observation $y_i$ was a success ($y_i = 1$). The $logit(p_i)$ is the **link function** that links the linear parameter scale to the data scale. It constrains the value of $p_i$ to be between 0 and 1 regardless of the values of the $\beta$ coefficients. The logit link function does this:
+Where $p_i$ is the probability of success for trial $i$ ($y_i = 1$) at the values of the predictor variables $x_{ij}$. The $logit(p_i)$ is the **link function** that links the linear parameter scale to the data scale. It constrains the value of $p_i$ to be between 0 and 1 regardless of the values of the $\beta$ coefficients. The logit link function does this:
 
 $$logit(p_i) = log\left(\frac{p_i}{1-p_i}\right)$$
 
@@ -255,7 +267,7 @@ expit = function(lp) {  # lp stands for logit(p)
 }
 ```
 
-Because of the logit link function, the coefficients have different interpretations than in the previous models you've fitted in this chapter: they are expressed in terms of log odds.
+Because of the logit link function, the coefficients have different interpretations than in the general linear models you fitted in the previous section: they are expressed in terms of **log odds**.
 
 Fit a logistic regression model to the sockeye salmon data. None of the variables of interest are binary, but you can create one. Look at the variable `dat$survival`. This is the average % survival of all eggs laid that make it to the "eye-egg" stage. Create a new variable `binary` which takes on a 0 if `dat$survival` is less than 70% and a 1 otherwise:
 
@@ -265,20 +277,23 @@ dat$binary = ifelse(dat$survival < 70, 0, 1)
 
 This will be your response variable and your model will estimate how the probability of `binary` being a `1` changes (or doesn't) depending on the value of other variables.
 
-A basic model would have just `weight` as the predictor variable:
+Analogous to the simple linear regression model (Section \@ref(regression)), estimate how $p$ changes with `weight`:
 
 ```{r}
 fit1 = glm(binary ~ weight, data = dat, family = binomial)
 summary(fit1)$coef
 ```
 
-The coefficients are interpretted as:
+The coefficients are interpretted as (emember "success" is defined as having at least 70% egg survival to the stage of interest):
 
-*  $\beta_0$: the log odds of success for a fish with zero weight (which is not all that important). $e^{\beta_0}$ is the odds of success for fish with zero weight, and $expit(e^{\beta_0})$ is the probability of success for fish with zero weight. Remember "success" is defined as having at least 70% egg survival to the stage of interest.
+*  $\beta_0$: the log odds of success for a fish with zero weight (which is not all that important, let alone difficult to interpret). It can be transformed into more interpretable quantities: 
+    *  $e^{\beta_0}$ is the odds of success for fish with zero weight and 
+    *  $expit(e^{\beta_0})$ is the probability of success for fish with zero weight. 
 
-*  $\beta_1$: the additive effect of fish weight on the log odds of success. $e^{\beta_1}$ is interpretted as the ratio of the odds at two consective weights (e.g., 1500 and 1501). Claims about $e^{\beta_1}$ are made as "for every one gram increase in weight, success became $e^{\beta_1}$ times as likely to happen".
+*  $\beta_1$: the additive effect of fish weight on the log odds of success. More interpretable expressions are:
+    *  $e^{\beta_1}$ is the ratio of the odds of success at two consective weights (e.g., 1500 and 1501) and Claims about $e^{\beta_1}$ are made as "for every one gram increase in weight, success became        *  $e^{\beta_1}$ times as likely to happen".
 
-* You can predict the probability of success any weight using $expit(\beta_0 + \beta_1 weight)$
+* You can predict the probability of success at any weight using $expit(\beta_0 + \beta_1 weight)$
 
 You can plot the fitted model:
 
@@ -295,7 +310,7 @@ p = expit(coef(fit1)[1] + coef(fit1)[2] * wt_seq)
 plot(p ~ wt_seq, type = "l", lwd = 3, ylim = c(0,1), las = 1)
 ```
 
-Fit another model comparing the success rates between hatchery and wild fish:
+Fit another model comparing the probability of success between hatchery and wild fish (analogous to the ANOVA model in Section \@ref(anova)):
 
 ```{r}
 fit2 = glm(binary ~ type, data = dat, family = binomial)
@@ -375,10 +390,10 @@ Oddly enough, the two best models are the simplest one and the most complex one,
 
 A probability distribution is a way of representing the probability of an event or value of a parameter and they are central to statistical theory. Some of the most commonly used distributions are summarized in Table \@ref(tab:dist-table) below, along with the suffixes of the functions in R that correspond to each distribution^[For an excellent and ecologically-focused description of probability distributions, checkout Ben Bolker's book, _Ecological Models and Data in R_. There is a free proof version online: <https://ms.mcmaster.ca/~bolker/emdbook/book.pdf>]. 
 
-```{r dist-table, results = "asis", echo = F}
+```{r dist-table, results = "asis", echo = F, message = F, warning = F}
 
 tab = data.frame(
-  type = c("Continuous", "", "", "", "Discrete", "", ""),
+  type = c(rep("Continuous", 4), rep("Discrete", 3)),
   dist = c("Normal", "Lognormal", "Uniform", "Beta", "Binomial", "Multinomial", "Poisson"),
   desc = c("Models the relative frequency of outcomes that are symmetric around a mean, can be negative",
            "Models the relative frequency of outcomes that are normally-distributed on the log-scale",
@@ -392,22 +407,28 @@ tab = data.frame(
 
 colnames(tab) = c("Type", "Distribution", "Common Uses", "R Suffix")
 
-knitr::kable(tab, align = "lll", caption = "A brief description of probability distributions commonly used in ecological problems, including the function suffix in R.")
+library(dplyr)
+library(knitr)
+library(kableExtra)
+
+kable(tab, align = "lll", caption = "A brief description of probability distributions commonly used in ecological problems, including the function suffix in R.") %>%
+  kable_styling(full_width = F) %>%
+  column_spec(1, bold = T) %>%
+  collapse_rows(columns = 1, valign = "middle")
 
 ```
 
-In R, there are four different ways to use each of this distribution functions (each as a separate prefix):
+In R, there are four different ways to use each of these distribution functions (each has a separate prefix):
 
 * **The probability density (or mass) function** (`d-`): the height of the probability distribution function at some given value of the random variable. 
 
-* **The cumulative density function** (`p-`): the sum of the probability densities for all random variables below some value.
+* **The cumulative density function** (`p-`): what is the sum of the probability densities for all random variables below the input argument `q`.
 
-*  **The quantile function** (`-q`): what value of the random variable do p% fall below?
+*  **The quantile function** (`-q`): what value of the random variable do `p`% fall below?
 
 *  **The random deviates function** (`-r`): generates random variables from the distribution in proportion to their probability density. 
 
-Suppose that $x$ represents the length of individual age 6 largemouth bass in your private fishing pond. Assume that $x \sim N(\mu=500, \sigma=50)$ ($x$ is a normal random variable with mean equal to 500 and standard deviation equal to 50). Here is the usage of each of the distribution functions and a plot illustrating them:
-
+Suppose that $x$ represents the length of individual age 6 largemouth bass in your private fishing pond. Assume that $x \sim N(\mu=500, \sigma=50)$^[English: $x$ is a normal random variable with mean equal to 500 and standard deviation equal to 50]. Here is the usage of each of the distribution functions and a plot illustrating them:
 
 ```{r norm-plots, fig.height = 6.5, fig.width = 6.5, fig.cap="The four `-norm` functions with input (x-axis) and output (y-axis) displayed."}
 # parameters
@@ -443,7 +464,7 @@ plot(cuprob ~ lengths, type = "l", lwd = 3, main = "pnorm()",
      xlab = "Fish Length (mm)", ylab = "Cumulative Probability", las = 1)
 plot(quants ~ cprobs, type = "l", lwd = 3, main = "qnorm()",
      xlab = "P", ylab = "P Quantile Length (mm)", las = 1)
-hist(random, breaks = 100, col = "grey", main = "rnorm()",
+hist(random, breaks = 50, col = "grey", main = "rnorm()",
      xlab = "Fish Length (mm)", ylab = "Frequency", las = 1)
 box() # add borders to the histogram
 ```
@@ -465,23 +486,23 @@ qnorm(p)
 
 You fitted linear and logistic regression models in Sections \@ref(regression) and \@ref(logis-regression), however, R allows you to fit non-linear regression models as well.
 
-First, aquire the `feeding.csv` data set from the  [GitHub repo](https://www.github.com/bstaton1/au-r-workshop-data) and place it in your working directory. Read the data into R: 
+First, aquire the `feeding.csv` data set from **Github, reminder** and place it in your working directory. Read the data into R: 
+
+```{r, eval = F}
+dat = read.csv("feeding.csv"); summary(dat)
+```
 
 ```{r, echo = F}
 dat = read.csv("Data/feeding.csv")
 summary(dat)
 ```
 
-```{r, eval = F}
-dat = read.csv("feeding.csv"); summary(dat)
-```
-
-These are hypothetical data from an experiment in which you were interested in quantifying the functional feeding response^[A functional response is the number of prey consumed by a predator at various prey densities] of a fish predator on zooplankton in an aquarium. You experimentally manipulated the prey density (`dat$prey`) and counted how many prey items were consumed (`dat$cons`).
+These are hypothetical data from an experiment in which you were interested in quantifying the functional feeding response^[A functional response is the number of prey consumed by a predator at various prey densities] of a fish predator on zooplankton in an aquarium. You experimentally manipulated the prey density (`prey`) and counted how many prey items were consumed (`cons`).
 
 Plot the data:
 
 ```{r}
-plot(cons ~ prey, data = dat)
+plot(cons ~ prey, data = dat, cex = 1.5, pch = 16, col = "grey")
 ```
 
 You can see a distinct non-linearity to the relationship. The Holling Type II functional response^[This function rises quickly at low prey densities, but saturates at high densities] has this functional form:
@@ -489,14 +510,22 @@ You can see a distinct non-linearity to the relationship. The Holling Type II fu
 $$y_i=\frac{ax_i}{1+ahx_i}$$
 where $x_i$ is `prey` and $y_i$ is `cons`. 
 
-You can fit this model in R using the `nls` function, behaves very similarly to the `lm` function. 
+You can fit this model in R using the `nls` function: 
 
 ```{r}
 fit = nls(cons ~ (a * prey)/(1 + a * h * prey), data = dat,
           start = c(a = 3, h = 0.1))
 ```
 
-You can obtain similar output as from `lm` using the `summary`, `coef`, and `predict`. Draw the fitted line over top of the data:
+In general, it behaves very similarly to the `lm` function, however there are a few differences:
+
+*  You need to specify the functional form of the curve you are attempting to fit. In using `lm`, the terms are all additive (e.g., `type + weight`), but in using `nls`, this is not the case. For example, note the use of division. 
+
+*  You may need to provide starting values for the parameters (coefficients) you are estimating. This is because `nls` will use a search algorithm to find the parameters of the best fit line, and it may need to have a reasonable idea of where to start looking for it to work properly.
+
+*  You cannot plot the fit using `abline` anymore, because you have more parameters than just a slope and intercept.
+
+Despite these differences, you can obtain similar output as from `lm` by using the `summary`, `coef`, and `predict` functions. Draw the fitted line over top of the data:
 
 ```{r}
 prey_seq = seq(min(dat$prey), max(dat$prey), length = 100)
