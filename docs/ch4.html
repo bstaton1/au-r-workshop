@@ -46,8 +46,46 @@
 
 
 
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -141,13 +179,31 @@
 <li class="chapter" data-level="3.2.1" data-path="ch3.html"><a href="ch3.html#logis-regression"><i class="fa fa-check"></i><b>3.2.1</b> Logistic Regression</a></li>
 <li class="chapter" data-level="3.2.2" data-path="ch3.html"><a href="ch3.html#aic-model-selection-1"><i class="fa fa-check"></i><b>3.2.2</b> AIC Model Selection</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="ch3.html"><a href="ch3.html#probability-distributions"><i class="fa fa-check"></i><b>3.3</b> Probability Distributions</a></li>
+<li class="chapter" data-level="3.3" data-path="ch3.html"><a href="ch3.html#dists"><i class="fa fa-check"></i><b>3.3</b> Probability Distributions</a></li>
 <li class="chapter" data-level="3.4" data-path="ch3.html"><a href="ch3.html#bonus-topic-non-linear-regression"><i class="fa fa-check"></i><b>3.4</b> Bonus Topic: Non-linear Regression</a></li>
 <li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#exercise-3"><i class="fa fa-check"></i>EXERCISE 3</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="ch4.html"><a href="ch4.html"><i class="fa fa-check"></i><b>4</b> Simulation and Randomization</a></li>
+<li class="chapter" data-level="4" data-path="ch4.html"><a href="ch4.html"><i class="fa fa-check"></i><b>4</b> Simulation and Randomization</a><ul>
+<li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#chapter-overview-3"><i class="fa fa-check"></i>Chapter Overview</a></li>
+<li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#before-you-begin-2"><i class="fa fa-check"></i>Before You Begin</a></li>
+<li class="chapter" data-level="4.1" data-path="ch4.html"><a href="ch4.html#layout-of-this-chapter"><i class="fa fa-check"></i><b>4.1</b> Layout of this chapter</a></li>
+<li class="chapter" data-level="4.2" data-path="ch4.html"><a href="ch4.html#randomness"><i class="fa fa-check"></i><b>4.2</b> Introducing Randomness</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="ch4.html"><a href="ch4.html#random-deviates"><i class="fa fa-check"></i><b>4.2.1</b> Random deviates</a></li>
+<li class="chapter" data-level="4.2.2" data-path="ch4.html"><a href="ch4.html#resampling"><i class="fa fa-check"></i><b>4.2.2</b> Resampling</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="ch4.html"><a href="ch4.html#replication"><i class="fa fa-check"></i><b>4.3</b> Replication</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="ch4.html"><a href="ch4.html#the-for-loop"><i class="fa fa-check"></i><b>4.3.1</b> The <code>for</code> loop</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="ch4.html"><a href="ch4.html#sim-examples"><i class="fa fa-check"></i><b>4.4</b> Simulation-Based Examples</a></li>
+<li class="chapter" data-level="4.5" data-path="ch4.html"><a href="ch4.html#resample-examples"><i class="fa fa-check"></i><b>4.5</b> Resampling-Based Examples</a></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="ch5.html"><a href="ch5.html"><i class="fa fa-check"></i><b>5</b> Large Data Manipulation</a></li>
-<li class="chapter" data-level="6" data-path="ch6.html"><a href="ch6.html"><i class="fa fa-check"></i><b>6</b> Mapping and Spatial Analysis</a></li>
+<li class="chapter" data-level="6" data-path="ch6.html"><a href="ch6.html"><i class="fa fa-check"></i><b>6</b> Mapping and Spatial Analysis</a><ul>
+<li class="chapter" data-level="6.1" data-path="ch6.html"><a href="ch6.html#fsec"><i class="fa fa-check"></i><b>6.1</b> This is the First Section</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="ch6.html"><a href="ch6.html#a-subsection-of-the-first-section"><i class="fa fa-check"></i><b>6.1.1</b> A subsection of the First Section</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="ch6.html"><a href="ch6.html#this-is-the-second-section"><i class="fa fa-check"></i><b>6.2</b> This is the Second Section</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -170,19 +226,109 @@
             <section class="normal" id="section-">
 <div id="ch4" class="section level1">
 <h1><span class="header-section-number">Chapter 4</span> Simulation and Randomization</h1>
-<p>NOTE: Simulation modeling happens to be one of the author’s favorite parts of using R, so this Chapter will likely be quite long.</p>
-<p>This chapter is intended also to provide the reader with more experience on writing more advanced functions.</p>
-<p><strong>Topics:</strong></p>
+<div id="chapter-overview-3" class="section level2 unnumbered">
+<h2>Chapter Overview</h2>
+<p>Simulation modeling is one of the primary reasons to move away from spreadsheet-type programs (like Microsoft Excel) and into a program like R. R allows you to replicate the same (possibly complex and detailed) calculations over and over with slightly different random values. You can then summarize and plot the results of these replicated calculations all within the same program. Analyses of this type are <strong>Monte Carlo methods</strong>: they randomly sample from a set of quanities for the purpose of generating and summarizing a distribution of some statistic related to the sampled quantities. If this concept is confusing, hopefully this chapter will clarify.</p>
+<p>In this chapter, you will learn the basic skills needed for simulation (i.e., Monte Carlo) modeling in R including:</p>
 <ul>
-<li>For loops</li>
-<li>Use of random deviates</li>
-<li>More summaries: probabilities, etc.</li>
+<li>creation of random deviates</li>
+<li><code>for</code> loops</li>
+<li>more advanced function writing</li>
+<li>summarization of many values from a distribution</li>
 </ul>
-<p><strong>Examples:</strong></p>
+<p><strong>IMPORTANT NOTE</strong>: If you did not attend the sessions corresponding to Chapters <a href="ch1.html#ch1">1</a> or <a href="ch2.html#ch2">2</a>, you are recommended to walk through the material found in those chapters before proceeding to this material. Additionally, you will find the material in Section <a href="ch3.html#dists">3.3</a> helpful for this chapter. Remember that if you are confused about a topic, you can use <strong>CTRL + F</strong> to find previous cases where that topic has been discussed in this document.</p>
+</div>
+<div id="before-you-begin-2" class="section level2 unnumbered">
+<h2>Before You Begin</h2>
+<p>You should create a new directory and R script for your work in this Chapter. Create a new R script called <code>Ch4.R</code> and save it in the directory <code>C:/Users/YOU/Documents/R-Workshop/Chapter4</code>. Set your working directory to that location. Revisit the material in Sections <a href="ch1.html#scripts">1.2</a> and <a href="ch1.html#working-dir">1.3</a> for more details on these steps.</p>
+</div>
+<div id="layout-of-this-chapter" class="section level2">
+<h2><span class="header-section-number">4.1</span> Layout of this chapter</h2>
+<p>This chapter is divided into two main sections:</p>
+<ul>
+<li><p><strong>Required material</strong> (Sections <a href="ch4.html#randomness">4.2</a> and <a href="ch4.html#replication">4.3</a>) which is necessary to understand the examples in this chapter and the subsequent chapters</p></li>
+<li><p><strong>Example Cases</strong> (Sections <a href="ch4.html#sim-examples">4.4</a> and <a href="ch4.html#resample-examples">4.5</a>) which apply the skills learned in the required material. In the workshop sessions, you will walkthrough 2-3 of these example cases at the choice of the group of the participants. If you are interested in simulation modeling, you are suggested to work through all of the example cases, as slightly different tricks will be shown in the different examples.</p></li>
+</ul>
+</div>
+<div id="randomness" class="section level2">
+<h2><span class="header-section-number">4.2</span> Introducing Randomness</h2>
+<p>A critical part of simulation modeling is the use of random processes. A <strong>random process</strong> is one that generates a different outcome according to some rules each time it is executed. They are tightly linked to the concept of <strong>uncertainty</strong>: you are unsure about the outcome the next time the process is executed. There are two basic ways to introduce randomness in R: <strong>random deviates</strong> and <strong>resampling</strong>.</p>
+<div id="random-deviates" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Random deviates</h3>
+<p>In Section <a href="ch3.html#dists">3.3</a>, you learned about using probability distributions in R. One of the uses was the <code>r-</code> family of distribution functions. These functions create random numbers following a random process specified by a probability distribution.</p>
+<p>Consider animal survival as an example. At the end of each year, each individual alive at the start can either live or die. There are two outcomes here, and suppose each animal has an 80% chance of surviving. The number of individuals that survive is the result of a <strong>binomial random process</strong> in which there were <span class="math inline">\(n\)</span> individuals alive at the start of this year and <span class="math inline">\(p\)</span> is the probability that any one individual survives to the next year. You can execute one binomial random process where <span class="math inline">\(p = 0.8\)</span> and <span class="math inline">\(n = 100\)</span> like this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rbinom</span>(<span class="dt">n =</span> <span class="dv">1</span>, <span class="dt">size =</span> <span class="dv">100</span>, <span class="dt">prob =</span> <span class="fl">0.8</span>)</code></pre></div>
+<pre><code>## [1] 76</code></pre>
+<p>The result you get will almost certainly be different from the one printed here. That is the random component.</p>
+<p>You can execute many such binomial processes by changing the <code>n</code> argument. Plot the distribution of expected surviving individuals:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">survivors =<span class="st"> </span><span class="kw">rbinom</span>(<span class="dv">1000</span>, <span class="dv">100</span>, <span class="fl">0.8</span>)
+<span class="kw">hist</span>(survivors, <span class="dt">col =</span> <span class="st">&quot;skyblue&quot;</span>)</code></pre></div>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-139-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Another random process is the <strong>lognormal process</strong>: it generates random numbers such that the log of the values are normally-distributed with mean equal to <code>logmean</code> and standard deviation equal to <code>logsd</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(<span class="kw">rlnorm</span>(<span class="dv">1000</span>, <span class="dv">0</span>, <span class="fl">0.1</span>), <span class="dt">col =</span> <span class="st">&quot;skyblue&quot;</span>)</code></pre></div>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-140-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>There are many random processes you can use in R. Checkout Table <a href="ch3.html#tab:dist-table">3.1</a> for more examples as well as the help files for each individual function for more details.</p>
+</div>
+<div id="resampling" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> Resampling</h3>
+<p>Random deviates work great for creating new random numbers, but what if you already have a set of numbers that you wish to introduce randomness to? For this, you can use <strong>resampling techniques</strong>. In R, the <code>sample</code> function is used to sample <code>size</code> elements from the vector <code>x</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">size =</span> <span class="dv">5</span>)</code></pre></div>
+<pre><code>## [1] 2 8 5 4 6</code></pre>
+<p>You can sample with replacement (where it is possible to sample the same element two or more times):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>), <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">replace =</span> T)</code></pre></div>
+<pre><code>##  [1] &quot;b&quot; &quot;c&quot; &quot;b&quot; &quot;b&quot; &quot;b&quot; &quot;c&quot; &quot;c&quot; &quot;a&quot; &quot;b&quot; &quot;a&quot;</code></pre>
+<p>You can set probabilities on the sampling of different elements<a href="#fn30" class="footnoteRef" id="fnref30"><sup>30</sup></a>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;live&quot;</span>, <span class="st">&quot;die&quot;</span>), <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">replace =</span> T,
+       <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.8</span>, <span class="fl">0.2</span>))</code></pre></div>
+<pre><code>##  [1] &quot;live&quot; &quot;live&quot; &quot;live&quot; &quot;live&quot; &quot;live&quot; &quot;live&quot; &quot;die&quot;  &quot;live&quot; &quot;live&quot; &quot;die&quot;</code></pre>
+<p>Notice that this is the same as the binomial random process above, but with only 10 trials and the printing of the outcomes rather than the number of successes.</p>
+</div>
+</div>
+<div id="replication" class="section level2">
+<h2><span class="header-section-number">4.3</span> Replication</h2>
+<div id="the-for-loop" class="section level3">
+<h3><span class="header-section-number">4.3.1</span> The <code>for</code> loop</h3>
+<p>In programming, a <em>loop</em> is a command that does something over and over until it reaches some point that you specify. R has a few types of loops: <code>repeat</code>, <code>while</code>, and <code>for</code>, to name a few. <code>for</code> loops are among the most common in simulation modeling. A <code>for</code> loop repeats some action for however many times you tell it for each value in some vector. The syntax is:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (var <span class="cf">in</span> seq) {
+  <span class="kw">expression</span>(var)
+}</code></pre></div>
+<p>The way this works is the loop calculates the expression for values of <code>var</code> by the increments in <code>seq</code>. For example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {
+  <span class="kw">print</span>(i<span class="op">^</span><span class="dv">2</span>)
+}</code></pre></div>
+<pre><code>## [1] 1
+## [1] 4
+## [1] 9
+## [1] 16
+## [1] 25</code></pre>
+<p>The first time through the loop, <code>i</code> equals 1 and the expression is to print the square of 1. The next time through the loop, <code>i</code> equals 2 and the expression prints the square of 2. And so on and so on until <code>i</code> is 5, after which it stops (because that is the end of the sequence you specified.) If we remove the <code>print()</code> function, let’s see what happens:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {
+  i<span class="op">^</span><span class="dv">2</span>
+}</code></pre></div>
+<p>What happened? Well, it turns out that the loop still worked, only it did not show us (or save) the results. If we want to store the results of the loop, we have to make a container for it to store the results in and tell the loop to put the results in the desired location:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">results =<span class="st"> </span><span class="kw">numeric</span>(<span class="dv">5</span>)</code></pre></div>
+<p>This makes an empty numeric vector of length 5 that are all 0’s. This is where we will put the results of each run through the loop:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {
+  results[i]=i<span class="op">^</span><span class="dv">2</span>
+}
+results</code></pre></div>
+<pre><code>## [1]  1  4  9 16 25</code></pre>
+<p>We are saying, when <code>i = 1</code>, calculate <code>1^2</code> and put it in the 1<sup>st</sup> element of <code>results</code>. When <code>i = 2</code>, calculate <code>2^2</code> and put it in the 2<sup>nd</sup> element of <code>results</code>. So in general: calculate <code>i^2</code> and put it in the <code>i</code><sup>th</sup> element of <code>results</code>.</p>
+<p>Now, this loop was a trivial example, because we could have very easily could have just done:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)<span class="op">^</span><span class="dv">2</span></code></pre></div>
+<pre><code>## [1]  1  4  9 16 25</code></pre>
+<p>However, there are times where it is advantageous to use a loop. Let’s build a (very) basic population model where the population abundance next year is the population abundance this year times some growth rate. If there are 1000 individuals this year, how many will there be in 3 years from now if the population gets 3.06 times bigger each year?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">N =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1000</span>, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="ot">NA</span>)
+<span class="cf">for</span> (t <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>) {
+  N[t<span class="op">+</span><span class="dv">1</span>] =<span class="st"> </span>N[t] <span class="op">*</span><span class="st"> </span><span class="fl">3.06</span>
+}
+N</code></pre></div>
+<pre><code>## [1]  1000.00  3060.00  9363.60 28652.62</code></pre>
+<p>So we made a vector <code>N</code> which will serve as our starting point and container vector. We then say for the next 3 years, the number next year (<code>N[t+1]</code>) is the number this year (<code>N[t]</code>) times the growth rate. This is another basic example, but you can see how <code>for</code> loops could be used to run some very complex calculations.</p>
 <ul>
 <li>Simulation
 <ul>
-<li>A basic monte carlo experiment: validate <code>rnorm</code> using <code>qnorm</code> and <code>pnorm</code></li>
+<li>A basic Monte Carlo experiment: validate <code>rnorm</code> using <code>qnorm</code> and <code>pnorm</code></li>
 <li>Harvest-policy analysis</li>
 <li>Mark-recapture evaluation</li>
 <li>Stochastic power analysis</li>
@@ -193,7 +339,21 @@
 <li>The bootstrap</li>
 </ul></li>
 </ul>
+</div>
+</div>
+<div id="sim-examples" class="section level2">
+<h2><span class="header-section-number">4.4</span> Simulation-Based Examples</h2>
+</div>
+<div id="resample-examples" class="section level2">
+<h2><span class="header-section-number">4.5</span> Resampling-Based Examples</h2>
 
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="30">
+<li id="fn30"><p>If <code>prob</code> doesn’t sum to 1, then it will be rescaled: <code>prob = prob/sum(prob)</code><a href="ch4.html#fnref30">↩</a></p></li>
+</ol>
 </div>
             </section>
 
@@ -242,6 +402,19 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

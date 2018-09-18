@@ -1,4 +1,54 @@
 # Mapping and Spatial Analysis {#ch6}
 
-[Datasets](#data-sets)
+This is Henry's writing. He is introducing Chapter 6 and why spatial stuff in R is easy and possibly better than using GIS.
+
+## This is the First Section {#fsec}
+
+Henry puts some stuff about the first section here. If Henry wants to reference some code in text, he can do `this`. If Henry wishes to execute some code and print the result in text, he can do this: `r mean(rnorm(100))`.
+
+If Henry has a footnote, he can do this^[This is Henry's footnote].
+
+### A subsection of the First Section
+
+Henry has a specific subtopic under the first section.
+
+## This is the Second Section
+
+Henry can link to Section \@ref(fsec) like this. It won't work until it is incorporated into Ben's bookdown framework.
+
+Henry can embed code like this:
+
+```{r}
+mean(rnorm(100))
+```
+
+Henry can hide the code but execute it and show the result like this:
+
+```{r, echo = F}
+mean(rnorm(100))
+```
+
+Henry can have this code ran but hide the result like this:
+
+```{r, results="hide"}
+mean(rnorm(100))
+```
+
+Henry can include code but not execute it like this:
+
+```{r, eval = F}
+mean(rnorm(100))
+```
+
+Henry can also include plots like this:
+
+```{r, fig.align = "center"}
+hist(rnorm(100))
+```
+
+If Henry loads a package and wishes to hide any warnings and messages, he can use this:
+
+```{r, message = F, warning = F}
+library(dplyr)
+```
 

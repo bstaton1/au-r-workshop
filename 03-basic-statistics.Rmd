@@ -386,7 +386,7 @@ AIC(fit1, fit2, fit3, fit4)
 
 Oddly enough, the two best models are the simplest one and the most complex one, with `fit1` being the best, but not by a large margin.
 
-## Probability Distributions
+## Probability Distributions {#dists}
 
 A probability distribution is a way of representing the probability of an event or value of a parameter and they are central to statistical theory. Some of the most commonly used distributions are summarized in Table \@ref(tab:dist-table) below, along with the suffixes of the functions in R that correspond to each distribution^[For an excellent and ecologically-focused description of probability distributions, checkout Ben Bolker's book, _Ecological Models and Data in R_. There is a free proof version online: <https://ms.mcmaster.ca/~bolker/emdbook/book.pdf>]. 
 

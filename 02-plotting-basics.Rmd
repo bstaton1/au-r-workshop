@@ -354,7 +354,7 @@ dev.off()
 
 A plot will be saved in your working directory containing the plot made by the code in step 3 above. The `ppi` object is pixels-per-inch. When you specify `h = 8 * ppi`, you are saying "make a plot with height equal to 8 inches". There are similar functions to make PDFs, tiff files, jpegs, etc. You should try saving one of the plots you made in this Chapter using this approach. 
 
-## Bonus Topic: Error Bars
+## Bonus Topic: Error Bars {#error-bars}
 
 Rarely should you ever present estimates without some measure of uncertainty. The most common way for visualizing the uncertainty in an estimate is by using error bars, which can be added to an R plot using the lower-level function `arrows`. To use `arrows`, you need:
 
@@ -378,13 +378,13 @@ $$\bar{x}=\frac{1}{n}\sum_i^n{x_i}$$
 
 and
 
-$$SE(\bar{x})=\sqrt{\frac{\sum_i^n{(x_i - \bar{x})^2}}{n - 1}}$$
+$$SE(\bar{x})=\frac{\sqrt{\frac{\sum_i^n{(x_i - \bar{x})^2}}{n-1}}}{\sqrt{n}}$$
 
 Begin by creating a function to calculate the standard error ($SE(\bar{x})$):
 
 ```{r}
 calc_se = function(x) {
-  sqrt(sum((x - mean(x))^2)/(length(x) - 1))
+  sqrt(sum((x - mean(x))^2)/(length(x)-1))/sqrt(length(x))
 }
 ```
 

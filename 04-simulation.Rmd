@@ -1,22 +1,203 @@
 # Simulation and Randomization {#ch4}
 
-NOTE: Simulation modeling happens to be one of the author's favorite parts of using R, so this Chapter will likely be quite long.
+```{r, include = F}
+rm(list = ls(all = T))
+knitr::opts_chunk$set(fig.align = "center")
+```
 
-This chapter is intended also to provide the reader with more experience on writing more advanced functions. 
+## Chapter Overview{-}
 
-**Topics:**
+Simulation modeling is one of the primary reasons to move away from spreadsheet-type programs (like Microsoft Excel) and into a program like R. R allows you to replicate the same (possibly complex and detailed) calculations over and over with slightly different random values. You can then summarize and plot the results of these replicated calculations all within the same program. Analyses of this type are **Monte Carlo methods**: they randomly sample from a set of quanities for the purpose of generating and summarizing a distribution of some statistic related to the sampled quantities. If this concept is confusing, hopefully this chapter will clarify. 
 
-*  For loops
-*  Use of random deviates
-*  More summaries: probabilities, etc.
+In this chapter, you will learn the basic skills needed for simulation (i.e., Monte Carlo) modeling in R including:
 
-**Examples:**
+*  creation of random deviates
+*  `for` loops
+*  more advanced function writing
+*  summarization of many values from a distribution
+
+**IMPORTANT NOTE**: If you did not attend the sessions corresponding to Chapters \@ref(ch1) or \@ref(ch2), you are recommended to walk through the material found in those chapters before proceeding to this material. Additionally, you will find the material in Section \@ref(dists) helpful for this chapter. Remember that if you are confused about a topic, you can use **CTRL + F** to find previous cases where that topic has been discussed in this document.
+
+## Before You Begin {-}
+
+You should create a new directory and R script for your work in this Chapter. Create a new R script called `Ch4.R` and save it in the directory `C:/Users/YOU/Documents/R-Workshop/Chapter4`. Set your working directory to that location. Revisit the material in Sections \@ref(scripts) and \@ref(working-dir) for more details on these steps.
+
+## Layout of this chapter
+
+This chapter is divided into two main sections:
+
+*  **Required material** (Sections \@ref(randomness) and \@ref(replication)) which is necessary to understand the examples in this chapter and the subsequent chapters
+
+*  **Example Cases** (Sections \@ref(sim-examples) and \@ref(resample-examples)) which apply the skills learned in the required material. In the workshop sessions, you will walkthrough 2-3 of these example cases at the choice of the group of the participants. If you are interested in simulation modeling, you are suggested to work through all of the example cases, as slightly different tricks will be shown in the different examples. 
+
+## Introducing Randomness {#randomness}
+
+A critical part of simulation modeling is the use of random processes. A **random process** is one that generates a different outcome according to some rules each time it is executed. They are tightly linked to the concept of **uncertainty**: you are unsure about the outcome the next time the process is executed. There are two basic ways to introduce randomness in R: **random deviates** and **resampling**.
+
+### Random deviates
+
+In Section \@ref(dists), you learned about using probability distributions in R. One of the uses was the `r-` family of distribution functions. These functions create random numbers following a random process specified by a probability distribution. 
+
+Consider animal survival as an example. At the end of each year, each individual alive at the start can either live or die. There are two outcomes here, and suppose each animal has an 80% chance of surviving. The number of individuals that survive is the result of a **binomial random process** in which there were $n$ individuals alive at the start of this year and $p$ is the probability that any one individual survives to the next year. You can execute one binomial random process where $p = 0.8$ and $n = 100$ like this:
+
+```{r}
+rbinom(n = 1, size = 100, prob = 0.8)
+```
+
+The result you get will almost certainly be different from the one printed here. That is the random component.
+
+You can execute many such binomial processes by changing the `n` argument. Plot the distribution of expected surviving individuals:
+
+```{r}
+survivors = rbinom(1000, 100, 0.8)
+hist(survivors, col = "skyblue")
+```
+
+Another random process is the **lognormal process**: it generates random numbers such that the log of the values are normally-distributed with mean equal to `logmean` and standard deviation equal to `logsd`:
+
+```{r}
+hist(rlnorm(1000, 0, 0.1), col = "skyblue")
+```
+
+There are many random processes you can use in R. Checkout Table \@ref(tab:dist-table) for more examples as well as the help files for each individual function for more details.
+
+### Resampling
+
+Using random deviates works great for creating new random numbers, but what if you already have a set of numbers that you wish to introduce randomness to? For this, you can use **resampling techniques**. In R, the `sample` function is used to sample `size` elements from the vector `x`:
+
+```{r}
+sample(x = 1:10, size = 5)
+```
+
+You can sample with replacement (where it is possible to sample the same element two or more times):
+
+```{r}
+sample(x = c("a", "b", "c"), size = 10, replace = T)
+```
+
+You can set probabilities on the sampling of different elements^[If `prob` doesn't sum to 1, then it will be rescaled: `prob = prob/sum(prob)`]:
+
+```{r}
+sample(x = c("live", "die"), size = 10, replace = T,
+       prob = c(0.8, 0.2))
+```
+
+Notice that this is the same as the binomial random process above, but with only 10 trials and the printing of the outcomes rather than the number of successes.
+
+## Reproducing randomness 
+
+For reproducibility purposes, you may wish to get the same exact random numbers each time you run your script. To do this, you need to set the **random seed**, which is the starting point of the random number generator your computer uses. If you run these two lines of code, you should get the same result as printed here:
+
+```{r}
+set.seed(123)
+rnorm(1)
+```
+
+## Replication
+
+To use Monte Carlo methods, you need to be able to replicate some random process many times. There are two main ways this is commonly done: either with`replicate` or with `for` loops.
+
+### `replicate`
+
+The `replicate` function executes some expression many times and returns the output from each execution. Say we have a vector `x`, which represents 30 observations of fish length (mm):
+
+```{r}
+x = rnorm(30, 500, 30)
+```
+
+We wish to build the sampling distribution of the mean length "by hand". We can sample randomly from it, calculate the mean, then repeat this process many times:
+
+```{r}
+means = replicate(n = 1000, expr = {
+  x_i = sample(x, length(x), replace = T)
+  mean(x_i)
+})
+```
+
+If we take `mean(means)` and `sd(means)`, that should be very similar to `mean(x)` and `se(x)`. Create the `se` function (also shown in Section \@ref(error-bars)) and prove this to yourself:
+
+```{r}
+se = function(x) sd(x)/sqrt(length(x))
+mean(means); mean(x)
+sd(means); se(x)
+```
+
+### The `for` loop
+
+In programming, a *loop* is a command that does something over and over until it reaches some point that you specify. R has a few types of loops: `repeat`, `while`, and `for`, to name a few. `for` loops are among the most common in simulation modeling. A `for` loop repeats some action for however many times you tell it for each value in some vector. The syntax is:
+
+```{r eval = F}
+for (var in seq) {
+  expression(var)
+}
+```
+
+The way this works is the loop calculates the expression for values of `var` by the increments in `seq`. For example:
+
+```{r}
+for (i in 1:5) {
+  print(i^2)
+}
+```
+
+The first time through the loop, `i` equals 1 and the expression is to print the square of 1. The next time through the loop, `i` equals 2 and the expression prints the square of 2. And so on and so on until `i` is 5, after which it stops (because that is the end of the sequence you specified.)
+If we remove the `print()` function, let's see what happens:
+
+```{r}
+for (i in 1:5) {
+  i^2
+}
+```
+
+What happened? Well, it turns out that the loop still worked, only it did not show us (or save) the results. If we want to store the results of the loop, we have to make a container for it to store the results in and tell the loop to put the results in the desired location:
+
+```{r}
+results = numeric(5)
+```
+
+This makes an empty numeric vector of length 5 that are all 0's. This is where we will put the results of each run through the loop:
+
+```{r}
+for (i in 1:5) {
+  results[i]=i^2
+}
+results
+```
+
+We are saying, when `i = 1`, calculate `1^2` and put it in the 1^st^ element of `results`. When `i = 2`, calculate `2^2` and put it in the 2^nd^ element of `results`. So in general: calculate `i^2` and put it in the `i`^th^ element of `results`.
+
+Now, this loop was a trivial example, because we could have very easily could have just done:
+
+```{r}
+(1:5)^2
+```
+
+However, there are times where it is advantageous to use a loop. Let's build a (very) basic population model where the population abundance next year is the population abundance this year times some growth rate. If there are 1000 individuals this year, how many will there be in 3 years from now if the population gets 3.06 times bigger each year?
+
+```{r}
+N = c(1000, NA, NA, NA)
+for (t in 1:3) {
+  N[t+1] = N[t] * 3.06
+}
+N
+```
+
+So we made a vector `N` which will serve as our starting point and container vector. We then say for the next 3 years, the number next year (`N[t+1]`) is the number this year (`N[t]`) times the growth rate. This is another basic example, but you can see how `for` loops could be used to run some very complex calculations.
+
 
 *  Simulation
-    *  A basic monte carlo experiment: validate `rnorm` using `qnorm` and `pnorm`
+    *  A basic Monte Carlo experiment: validate `rnorm` using `qnorm` and `pnorm`
     *  Harvest-policy analysis
     *  Mark-recapture evaluation
     *  Stochastic power analysis
 * Randomization
     *  Permutation tests
     *  The bootstrap
+
+
+
+## Summarization
+
+## Simulation-Based Examples {#sim-examples}
+
+## Resampling-Based Examples {#resample-examples}

@@ -46,8 +46,46 @@
 
 
 
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -68,8 +106,9 @@
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-is-covered"><i class="fa fa-check"></i>What is Covered?</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#data-sets"><i class="fa fa-check"></i>Data sets</a></li>
-<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#development-of-this-book"><i class="fa fa-check"></i><b>0.1</b> Development of this book</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#data-sets"><i class="fa fa-check"></i>Data Sets</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#development-of-this-book"><i class="fa fa-check"></i>Development of this Book</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#about-the-author"><i class="fa fa-check"></i>About the Author</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="ch1.html"><a href="ch1.html"><i class="fa fa-check"></i><b>1</b> Introduction to the R Environment</a><ul>
 <li class="chapter" data-level="" data-path="ch1.html"><a href="ch1.html#chapter-overview"><i class="fa fa-check"></i>Chapter Overview</a></li>
@@ -122,27 +161,49 @@
 <li class="chapter" data-level="2.10.2" data-path="ch2.html"><a href="ch2.html#use-a-function-to-place-plot-in-a-new-file"><i class="fa fa-check"></i><b>2.10.2</b> Use a function to place plot in a new file</a></li>
 </ul></li>
 <li class="chapter" data-level="2.11" data-path="ch2.html"><a href="ch2.html#bonus-topic-error-bars"><i class="fa fa-check"></i><b>2.11</b> Bonus Topic: Error Bars</a></li>
-<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#exercise-2"><i class="fa fa-check"></i>EXERCISE 2</a><ul>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#ex2"><i class="fa fa-check"></i>EXERCISE 2</a><ul>
 <li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#exercise-2-bonus"><i class="fa fa-check"></i>EXERCISE 2 BONUS</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="ch3.html"><a href="ch3.html"><i class="fa fa-check"></i><b>3</b> Basic Statistics</a><ul>
 <li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#chapter-overview-2"><i class="fa fa-check"></i>Chapter Overview</a></li>
 <li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#before-you-begin-1"><i class="fa fa-check"></i>Before You Begin</a></li>
-<li class="chapter" data-level="3.1" data-path="ch3.html"><a href="ch3.html#review-the-general-linear-model"><i class="fa fa-check"></i><b>3.1</b> Review: The General Linear Model</a></li>
-<li class="chapter" data-level="3.2" data-path="ch3.html"><a href="ch3.html#regression"><i class="fa fa-check"></i><b>3.2</b> Simple Linear Regression</a></li>
-<li class="chapter" data-level="3.3" data-path="ch3.html"><a href="ch3.html#anova"><i class="fa fa-check"></i><b>3.3</b> ANOVA: Categorical predictors</a></li>
-<li class="chapter" data-level="3.4" data-path="ch3.html"><a href="ch3.html#ancova-continuous-and-categorical-predictors"><i class="fa fa-check"></i><b>3.4</b> ANCOVA: Continuous and categorical predictors</a></li>
-<li class="chapter" data-level="3.5" data-path="ch3.html"><a href="ch3.html#interactions"><i class="fa fa-check"></i><b>3.5</b> Interactions</a></li>
-<li class="chapter" data-level="3.6" data-path="ch3.html"><a href="ch3.html#model-selection-aic"><i class="fa fa-check"></i><b>3.6</b> Model Selection: AIC</a></li>
-<li class="chapter" data-level="3.7" data-path="ch3.html"><a href="ch3.html#logis-regression"><i class="fa fa-check"></i><b>3.7</b> An Example GLM: Logistic Regression</a></li>
-<li class="chapter" data-level="3.8" data-path="ch3.html"><a href="ch3.html#probability-distributions"><i class="fa fa-check"></i><b>3.8</b> Probability Distributions</a></li>
-<li class="chapter" data-level="3.9" data-path="ch3.html"><a href="ch3.html#bonus-topic-non-linear-regression"><i class="fa fa-check"></i><b>3.9</b> Bonus Topic: Non-linear Regression</a></li>
+<li class="chapter" data-level="3.1" data-path="ch3.html"><a href="ch3.html#the-general-linear-model"><i class="fa fa-check"></i><b>3.1</b> The General Linear Model</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="ch3.html"><a href="ch3.html#regression"><i class="fa fa-check"></i><b>3.1.1</b> Simple Linear Regression</a></li>
+<li class="chapter" data-level="3.1.2" data-path="ch3.html"><a href="ch3.html#anova"><i class="fa fa-check"></i><b>3.1.2</b> ANOVA: Categorical predictors</a></li>
+<li class="chapter" data-level="3.1.3" data-path="ch3.html"><a href="ch3.html#ancova-continuous-and-categorical-predictors"><i class="fa fa-check"></i><b>3.1.3</b> ANCOVA: Continuous and categorical predictors</a></li>
+<li class="chapter" data-level="3.1.4" data-path="ch3.html"><a href="ch3.html#interactions"><i class="fa fa-check"></i><b>3.1.4</b> Interactions</a></li>
+<li class="chapter" data-level="3.1.5" data-path="ch3.html"><a href="ch3.html#aic-model-selection"><i class="fa fa-check"></i><b>3.1.5</b> AIC Model Selection</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="ch3.html"><a href="ch3.html#the-generalized-linear-model"><i class="fa fa-check"></i><b>3.2</b> The Generalized Linear Model</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="ch3.html"><a href="ch3.html#logis-regression"><i class="fa fa-check"></i><b>3.2.1</b> Logistic Regression</a></li>
+<li class="chapter" data-level="3.2.2" data-path="ch3.html"><a href="ch3.html#aic-model-selection-1"><i class="fa fa-check"></i><b>3.2.2</b> AIC Model Selection</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="ch3.html"><a href="ch3.html#dists"><i class="fa fa-check"></i><b>3.3</b> Probability Distributions</a></li>
+<li class="chapter" data-level="3.4" data-path="ch3.html"><a href="ch3.html#bonus-topic-non-linear-regression"><i class="fa fa-check"></i><b>3.4</b> Bonus Topic: Non-linear Regression</a></li>
 <li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#exercise-3"><i class="fa fa-check"></i>EXERCISE 3</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="ch4.html"><a href="ch4.html"><i class="fa fa-check"></i><b>4</b> Simulation and Randomization</a></li>
+<li class="chapter" data-level="4" data-path="ch4.html"><a href="ch4.html"><i class="fa fa-check"></i><b>4</b> Simulation and Randomization</a><ul>
+<li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#chapter-overview-3"><i class="fa fa-check"></i>Chapter Overview</a></li>
+<li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#before-you-begin-2"><i class="fa fa-check"></i>Before You Begin</a></li>
+<li class="chapter" data-level="4.1" data-path="ch4.html"><a href="ch4.html#layout-of-this-chapter"><i class="fa fa-check"></i><b>4.1</b> Layout of this chapter</a></li>
+<li class="chapter" data-level="4.2" data-path="ch4.html"><a href="ch4.html#randomness"><i class="fa fa-check"></i><b>4.2</b> Introducing Randomness</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="ch4.html"><a href="ch4.html#random-deviates"><i class="fa fa-check"></i><b>4.2.1</b> Random deviates</a></li>
+<li class="chapter" data-level="4.2.2" data-path="ch4.html"><a href="ch4.html#resampling"><i class="fa fa-check"></i><b>4.2.2</b> Resampling</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="ch4.html"><a href="ch4.html#replication"><i class="fa fa-check"></i><b>4.3</b> Replication</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="ch4.html"><a href="ch4.html#the-for-loop"><i class="fa fa-check"></i><b>4.3.1</b> The <code>for</code> loop</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="ch4.html"><a href="ch4.html#sim-examples"><i class="fa fa-check"></i><b>4.4</b> Simulation-Based Examples</a></li>
+<li class="chapter" data-level="4.5" data-path="ch4.html"><a href="ch4.html#resample-examples"><i class="fa fa-check"></i><b>4.5</b> Resampling-Based Examples</a></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="ch5.html"><a href="ch5.html"><i class="fa fa-check"></i><b>5</b> Large Data Manipulation</a></li>
-<li class="chapter" data-level="6" data-path="ch6.html"><a href="ch6.html"><i class="fa fa-check"></i><b>6</b> Mapping and Spatial Analysis</a></li>
+<li class="chapter" data-level="6" data-path="ch6.html"><a href="ch6.html"><i class="fa fa-check"></i><b>6</b> Mapping and Spatial Analysis</a><ul>
+<li class="chapter" data-level="6.1" data-path="ch6.html"><a href="ch6.html#fsec"><i class="fa fa-check"></i><b>6.1</b> This is the First Section</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="ch6.html"><a href="ch6.html#a-subsection-of-the-first-section"><i class="fa fa-check"></i><b>6.1.1</b> A subsection of the First Section</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="ch6.html"><a href="ch6.html#this-is-the-second-section"><i class="fa fa-check"></i><b>6.2</b> This is the Second Section</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -179,8 +240,8 @@
 <li><strong>Chapter <a href="ch2.html#ch2">2</a></strong> covers the basics of plotting using the base R graphics functionality.</li>
 <li><strong>Chapter <a href="ch3.html#ch3">3</a></strong> covers the basics of fitting statistical models using built-in functionality for generalized linear models as well as non-linear models.<br />
 </li>
-<li><strong>Chapter <a href="ch4.html#ch4">4</a></strong> covers the basics simulation modeling in R.</li>
-<li><strong>Chapter <a href="ch5.html#ch5">5</a></strong> covers the basics the <code>dplyr</code> and <code>reshape2</code> packages for manipulating and summarizing large data sets using highly readable code.</li>
+<li><strong>Chapter <a href="ch4.html#ch4">4</a></strong> covers the basics of simulation modeling in R.</li>
+<li><strong>Chapter <a href="ch5.html#ch5">5</a></strong> covers the basics of the <code>dplyr</code> and <code>reshape2</code> packages for manipulating and summarizing large data sets using highly readable code.</li>
 <li><strong>Chapter <a href="ch6.html#ch6">6</a></strong> covers the basics of producing maps and performing spatial analysis in R. <em>This chapter was contributed by Henry Hershey</em></li>
 </ul>
 </div>
@@ -189,13 +250,17 @@
 <p>Chapter <a href="ch1.html#ch1">1</a> starts at the first step (installing R) and progresses by assuming no prior knowledge of programming in R or in any other language. In the later chapters, e.g., Chapters <a href="ch3.html#ch3">3</a> and <a href="ch4.html#ch4">4</a>, an understanding of statistics at the introductory undergraduate level would be helpful but not strictly essential.</p>
 </div>
 <div id="data-sets" class="section level2 unnumbered">
-<h2>Data sets</h2>
-<p>Many of the data sets used in this book were simulated (using R!) by the author. In cases where the data set used is not simulated, this is noted and a citation to the data source is provided.</p>
+<h2>Data Sets</h2>
+<p>Many of the data sets used in this book were simulated by the author. Cases in which the data set used was not simulated are noted and a citation to the data source is provided.</p>
 <p>The data sets used in this book are hosted on a <a href="github.com">GitHub</a> repository: <strong>INSERT GITHUB INFO HERE</strong>. <strong>INSERT INSTRUCTIONS HERE</strong></p>
 </div>
-<div id="development-of-this-book" class="section level2">
-<h2><span class="header-section-number">0.1</span> Development of this book</h2>
-<p>This book was created using R and the packages <code>bookdown</code> and <code>knitr</code>. It is hosted on <a href="https://pages.github.com/">GitHub Pages</a></p>
+<div id="development-of-this-book" class="section level2 unnumbered">
+<h2>Development of this Book</h2>
+<p>This book was created using R and the packages <code>bookdown</code> <strong>CITE</strong> and <code>knitr</code> <strong>CITE</strong>. It is hosted on <a href="https://pages.github.com/">GitHub Pages</a>.</p>
+</div>
+<div id="about-the-author" class="section level2 unnumbered">
+<h2>About the Author</h2>
+<p>Ben Staton is a PhD candidate in the School of Fisheries at Auburn University. He studies quantitative methods for assessing fish populations for use in harvest management, with a focus on Pacific salmon in western Alaska. Ben has been using R on a daily basis since the beginning of his graduate work in 2014.</p>
 
 </div>
 </div>
@@ -246,6 +311,19 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
