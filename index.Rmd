@@ -37,7 +37,7 @@ Many of the data sets used in this book were simulated by the author. Cases in w
 
 The data sets used in this book are hosted on a GitHub repository maintained by the author. It is located here: **INSERT GITHUB LINK HERE**.
 
-You have two main options for how to aquire the data used by this book:
+You have two main options for how to acquire the data used by this book:
 
 1.  **Clone the whole repository**. You can download a zip folder containing all of the data for the book directly from GitHub:
 
