@@ -1,0 +1,256 @@
+# Exercise Solutions {-}
+
+```{r, echo = F}
+rm(list = ls(all = T))
+```
+
+## Exercise 1A Solutions {-#ex1a-answers}
+
+**1.  Create a new file in your working directory called `Ex1A.R`.**
+
+Go to _File > New File > R Script_. This will create an untitled R script. Go the _File > Save_, give it the appropriate name and click _Save_. If your working directory is already set to `C:/Users/YOU/Documents/R-Workshop/Chapter 1`, then the file will be saved there by default.
+
+You can create a new script using **CTRL + SHIFT + N** as well.
+
+**2.  Enter these data into vectors. Call the vectors whatever you would like. Should you enter the data as vectors by rows, or by columns? (Hint: remember the properties of vectors).**
+
+Because you have both numeric and character data classes for a single row, you should enter them by columns:
+
+```{r}
+Lake = c("Big", "Small", "Square", "Circle")
+Area = c(100, 25, 45, 30)
+Time = c(1000, 1200, 1400, 1600)
+Fish = c(643, 203, 109, 15)
+```
+
+**3.  Combine your vectors into a data frame. Why should you use a data frame instead of a matrix?**
+
+You should use a data frame because, unlike matrices, they can store multiple data classes in the different columns. Refer back the sections on matrices (Section \@ref(matrices)) and data frames (Section \@ref(data-frames)) for more details.
+
+```{r}
+df = data.frame(Lake, Area, Time, Fish)
+```
+
+**4.  Subset all of the data from Small Lake.**
+
+Refer back to Section \@ref(sub) for details on subsetting using indices and by column names, see Section \@ref(logsub) for details on logical subsetting.
+
+```{r, eval = F}
+df[df$Lake == "Small",]
+# or
+df[3,]
+```
+
+**5.  Subset the area for all of the lakes.**
+
+Refer to the suggestions for question 4 for more details. 
+
+```{r, eval = F}
+df$Area
+# or
+df[,2]
+```
+
+**6.  Subset the number of fish for Big and Square Lakes only.**
+
+Refer to the suggestions for question 4 for more details. 
+
+```{r, eval = F}
+df[df$Lake == "Big" | df$Lake == "Square","Fish"]
+# or
+df$Fish[c(1,3)]
+```
+
+**7.  You realize that you sampled 209 fish at Square Lake, not 109. Fix the mistake. There are two ways to do this, can you think of them both? Which do you think is better?**
+
+The two methods are:
+
+*  Fix the mistake in the first place it appears: when you made the `Fish` vector. If you change it there, all other instances in your code where you use the `Fish` object will be fixed after you re-run everything.
+
+```{r, eval = F}
+Fish = c(643, 203, 209, 15)
+# re-run the rest of your code and see the error was fixed
+```
+
+*  Fix the cell in the data frame only:
+
+```{r, eval = F}
+df[df$Lake == "Square","Fish"] = 209
+```
+
+The second method would only fix the data frame, so if you wanted to use the vector `Fish` outside of the data frame, the error would still be present. For this reason, the first method is likely better.
+
+**8.  Save your script. Close RStudio and re-open your script to see that it was saved**. 
+
+_File > Save_ or **CTRL + S**
+
+## Exercise 1B Solutions {-#ex1b-answers}
+
+```{r, echo = F}
+rm(list = ls(all = T))
+```
+
+First, did you find the error? It is the `#VALUE!` entry in the `chao` column. You should have R treat this as an `NA`. The two easiest ways to do this are to either enter `NA` in that cell or delete its contents. You can do this easily by opening `ponds.csv` in Microsoft Excel or some other spreadsheet editor.
+
+**1.  Read in the data to R and assign it to an object.**
+
+After downloading `ponds.csv` to your working directory and creating `Ex1B.R`, 
+
+```{r, echo = F}
+dat = read.csv("Data/ponds.csv")
+```
+
+```{r, eval = F}
+dat = read.csv("ponds.csv")
+```
+
+**2.	Calculate some basic summary statistics of your data using the `summary` function.**
+
+```{r, eval = F}
+summary(dat)
+```
+
+**3.	Calculate the mean chlorophyll _a_ for each pond (_Hint: pond is a grouping variable_).**
+
+Remember the `tapply` function. The first argument is the variable you wish to calculate a statistic for (chlorophyll), the second argument is the grouping variable (pond), and the third argument is the function you wish to apply.
+
+```{r, eval = F}
+tapply(dat$chl.a, dat$pond, mean)
+```
+
+**4.	Calculate the mean number of _Chaoborus_ for each treatment in each pond using `tapply`. (_Hint: You can group by two variables with:_ `tapply(dat$var, list(dat$grp1, dat$grp2), fun)`.**
+
+The hint pretty much gives this one away:
+
+```{r, eval = F}
+tapply(dat$chao, list(dat$pond, dat$treatment), mean)
+```
+
+**5.	Use the more general `apply` function to calculate the variance for each zooplankton taxa found only in pond S-28.**
+
+First, subset only the correct pond and the zooplankton counts. Then, specify you want the `var` function applied to the second dimension (columns). Finally, because `chao` has an `NA`, you'll need to include the `na.rm = T` argument.
+
+```{r, eval = F}
+apply(dat[dat$pond == "S.28",c("daph", "bosm", "cope", "chao")], 2, var, na.rm = T)
+```
+
+**6.	Create a new variable called `prod` in the data frame that represents the quantity of chlorophyll _a_ in each replicate. If the chlorophyll _a_ in the replicate is greater than 30 give it a "high", otherwise give it a "low". (_Hint: are you asking a question of a single number or multiple numbers? How should this change the strategy you use?_)**
+
+Remember, you can add a new column to a data set using the `df$new_column = something()`. If the column `new_column` doesn't exist, it will be added. If it exists already, it will be written over. You can use `ifelse` (not `if`!) to ask if each chlorophyll measurement was greater or less than 30, and to do something differently based on the result:
+
+```{r}
+dat$prod = ifelse(dat$chl.a > 30, "high", "low")
+```
+
+**Bonus 1.  Use `?table` to figure out how you can use `table` to count how many observations of high and low there were in each treatment (_Hint: `table` will have only two arguments._).**
+
+After looking through the help file, you should have seen that `table` has a `...` as its first argument. After reading about what it takes there, you would see it is expecting:
+
+> one or more objects which can be interpretted as factors (including character strings)...
+
+So if you ran:
+
+```{r}
+table(dat$prod, dat$treatment)
+```
+
+You would get a table showing how many high and low chlorophyll observations were made for each treatment.
+
+**Bonus 2.	Create a new function called `product` that multiplies any two numbers you specify.**
+
+See Section \@ref(user-funcs) for more details on user-defined functions. Your function might look like this:
+
+```{r}
+product = function(a,b) {
+  a * b
+}
+
+product(4,5)
+```
+
+**Bonus 3.	Modify your function to print a message to the console and return the value `if` it meets a condition and to print another message and not return the value if it doesn't.**
+
+```{r}
+product = function(a,b,z) {
+  result = a * b
+  
+  if (result <= z) {
+    cat("The result of a * b is less than", z, "so you don't care what it is")
+  } else {
+    cat("The result of a * b is", result, "\n")
+    result
+  }
+}
+
+product(4, 5, 19)
+
+product(4, 5, 30)
+```
+
+The use of `cat` here is similar to `print`, but it is better for printing messages to the console.
+
+## Exercise 2 Solutions {-#ex2-answers}
+
+```{r, echo = F}
+rm(list = ls(all = T))
+```
+
+## Exercise 3 Solutions {-#ex3-answers}
+
+```{r, echo = F}
+rm(list = ls(all = T))
+```
+
+
+## Exercise 4A Solutions {-#ex4a-answers}
+
+```{r, echo = F}
+rm(list = ls(all = T))
+```
+
+
+## Exercise 4B Solutions {-#ex4b-answers}
+
+```{r, echo = F}
+rm(list = ls(all = T))
+```
+
+
+## Exercise 4C Solutions {-#ex4c-answers}
+
+```{r, echo = F}
+rm(list = ls(all = T))
+```
+
+
+## Exercise 4D Solutions {-#ex4d-answers}
+
+```{r, echo = F}
+rm(list = ls(all = T))
+```
+
+## Exercise 4E Solutions {-#ex4e-answers}
+
+```{r, echo = F}
+rm(list = ls(all = T))
+```
+
+## Exercise 4F Solutions {-#ex4f-answers}
+
+```{r, echo = F}
+rm(list = ls(all = T))
+```
+
+## Exercise 5 Solutions {-#ex5-answers}
+
+```{r, echo = F}
+rm(list = ls(all = T))
+```
+
+## Exercise 6 Solutions {-#ex6-answers}
+
+```{r, echo = F}
+rm(list = ls(all = T))
+```
+
+

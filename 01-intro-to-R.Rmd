@@ -193,7 +193,7 @@ sum(v)
 
 we would find that it is impossible in its current form.
 
-### Matrices
+### Matrices {#matrices}
 
 Matrices act just like vectors, but they are in two dimensions, i.e., they have both rows and columns. One easy way to make a matrix is by combining vectors you have already made:
 
@@ -211,7 +211,7 @@ Just like vectors, matrices can hold only one data class (note the coercion of n
 cbind(m1, pond)
 ```
 
-### Data Frames
+### Data Frames {#data-frames}
 
 Many data sets you will work with require storing different data classes in different columns, which would rule out the use of a matrix. This is where **data frames** come in:
 
@@ -324,9 +324,13 @@ df1$dm = df1$day + df1$month; df1
 
 3.  **Logical Subsetting** -- This is perhaps the most flexible method, and is described in Section \@ref(logsub). 
 
-## EXERCISE 1A {-}
+---
+
+## Exercise 1A {-}
 
 Take a break to apply what you've learned so far to enter this data frame into R by hand and do some basic data subsets.
+
+_The solutions to this exercise are found at the end of this book ([here](#ex1a-answers)). You are **strongly recommended** to make a good attempt at completing this exercise on your own and only look at the solutions when you are truly stumped._
 
 ```{r, echo = F, results = "asis"}
 Lake = c("Big", "Small", "Square", "Circle")
@@ -345,6 +349,8 @@ pander::pandoc.table(data.frame(Lake, Area, Time, Fish))
 6.	Subset the number of fish for Big and Square lakes.
 7.	You realize that you sampled 209 fish at Square Lake, not 109. Fix the mistake. There are two ways to do this, can you think of them both? Which do you think is better?
 8.	Save your script. Close R and re-open your script to see that it was saved.
+
+---
 
 ## Read External Data Files {#read}
 
@@ -401,7 +407,6 @@ If you did not get any errors, then the data are in the object you named (`dat`)
 *  If at some point you did "Clear Contents" in Microsoft Excel to delete rows or columns from your `.csv` file, these "deleted" rows/columns will be read in as all `NAs`, which can be annoying. To remove this problem, open the `.csv` file in Excel, then highlight and **delete** the rows/columns in question and save the file. Read it back into R again using `read.csv`.
 
 *  If even a single character is found in a numeric column in `FileName.csv`, the _entire column_ will be coerced to a character/factor data class after it is read in (i.e., no more math with data on that column until you remove the character). A common error is to have a `#VALUE!` record left over from an invalid Excel function result. You must remove all of these occurrences in order to use that column as numeric. Characters include anything other than a number ([0-9]) and a period when used as a decimal. None of these characters: `!?[]\/@#$%^&*()<>_-+=[a-z];[A-Z]` should never be found in a column you wish to do math with (e.g., take the mean of that column). **This is an incredibly common problem!**
-
 
 ## Explore the Data Set {#data-summaries}
 
@@ -681,7 +686,7 @@ load(file = "updated_streams")
 head(dat) # should show first 6 rows
 ```
 
-## User-Defined Functions
+## User-Defined Functions {#user-funcs}
 
 Sometimes you may want R to carry out a specific task, but there is no built-in function to do it. In these cases, you can write your own functions. Function writing makes R incredibly flexible, though you will only get a small taste of this topic here. We will be going into more detail in later Chapters, particularly in Chapter \@ref(ch4).
 
@@ -720,11 +725,17 @@ power(power(5,2),2)
 
 This is the equivalent of $(5^2)^2$.
 
-## EXERCISE 1B {-}
+---
+
+## Exercise 1B {-}
 
 In this exercise, you will be using what you learned in Chapter 1 to summarize data from a hypothetical pond experiment. 
 
 Pretend that you added nutrients to mesocosoms and counted the densities of 4 different zooplankton taxa. In this experiment, there were two ponds, two treatments per pond, and five replicates of each treatment. There is one error in the data set "ponds.csv" (**found on GitHub, reminder**). After you download the data and place it in the appropriate directory, make sure you open this file and fix it _before_ you bring it into R. Refer back to the information about reading in data (Section \@ref(read)) to make sure you find the error.
+
+Create a new R script in your working directory for this chapter called `Ex1B.R` and use that script to complete this exercise.
+
+_The solutions to this exercise are found at the end of this book ([here](#ex1b-answers)). You are **strongly recommended** to make a good attempt at completing this exercise on your own and only look at the solutions when you are truly stumped._
 
 1.  Read in the data to R and assign it to an object.
 2.	Calculate some basic summary statistics of your data using the `summary` function.
@@ -733,7 +744,9 @@ Pretend that you added nutrients to mesocosoms and counted the densities of 4 di
 5.	Use the more general `apply` function to calculate the variance for each zooplankton taxa found only in pond S-28.
 6.	Create a new variable called `prod` in the data frame that represents the quantity of chlorophyll _a_ in each replicate. If the chlorophyll _a_ in the replicate is greater than 30 give it a "high", otherwise give it a "low". (_Hint: are you asking a question of a single number or multiple numbers? How should this change the strategy you use?_)
 
-### EXERCISE 1B BONUS {-}
+### Exercise 1B Bonus {-}
 1.  Use `?table` to figure out how you can use `table` to count how many observations of high and low there were in each treatment (_Hint: `table` will have only two arguments.).
 2.	Create a new function called `product` that multiplies any two numbers you specify.
 3.	Modify your function to print a message to the console and return the value `if` it meets a condition and to print another message and not return the value if it doesn't.
+
+

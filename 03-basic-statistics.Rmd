@@ -535,6 +535,10 @@ plot(cons ~ prey, data = dat, cex = 1.5, pch = 16, col = "grey")
 lines(cons_seq ~ prey_seq, lwd = 3)
 ```
 
-## EXERCISE 3 {-}
+---
+
+## Exercise 3 {-}
+
+_The solutions to this exercise are found at the end of this book ([here](#ex3-answers)). You are **strongly recommended** to make a good attempt at completing this exercise on your own and only look at the solutions when you are truly stumped._
 
 1.  Make the same graphic as in Figure \@ref(fig:norm-plots) with at least one of the other distributions listed in Table \@ref(tab:dist-table) (other than the multinomial - being a multivariate distribution, it wouldn't work well with this code). Try thinking of a variable from your work that meets the uses of each distribution in Table \@ref(tab:dist-table) (or one that's not listed). If you run into trouble, check out the help file for that distribution^[Executing `?rnorm` or any other of the `-norm` functions will take you to a page with info on all four function types for that distribution]. 

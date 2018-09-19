@@ -56,6 +56,12 @@ You have two main options for how to aquire the data used by this book:
 
 Following each chapter, there is a set of exercises. Attempting and completing them, as they give you an opportunity to practice what you learned while reading and typing along. Solutions are provided at the end of this book, however you are **strongly** recommended to attempt to figure the problems out before looking to how the author would solve them.
 
+Some exercises have bonus questions. These are intended to challenge you with some of the more difficult tasks shown in the chapter or ask you to extend what you learned to a completely different problem. If you can get all of the non-bonus questions without looking at the solutions too much, you can consider yourself to have good understanding of that chapter's material. If you can complete the bonus questions with little or no help, that means you have mastered that chapter's material!
+
+## Keyboard Shortcuts
+
+Several parts of this book in this book make reference to keyboard shortcuts. They are never necessary, but can help you be more efficient if you commit them to muscle memory. This book assumes you are using a PC for the keyboard shortcuts. If you are using a Mac, they will be different (in many cases, you may just need to swap out the **CTRL** keystroke for the **CMD** keystroke). For a complete list of RStudio's keyboard shortcuts, go to _Help > Keyboard Shortcuts Help_
+
 ## Development of this Book {-}
 
 This book represents the third reincarnation of the Auburn R Workshop Series. The first version was written in Fall 2014 using Microsoft Word, but the author found that making even small changes was clunky. Individual session materials were created in separate documents, as were the exercises and solutions. 

@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
+<link rel="prev" href="ch6.html">
 
-<link rel="next" href="ch1.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -48,6 +48,43 @@
 
 
 
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -70,6 +107,7 @@
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#data-sets"><i class="fa fa-check"></i>Data Sets</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#exercises"><i class="fa fa-check"></i>Exercises</a></li>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#keyboard-shortcuts"><i class="fa fa-check"></i><b>0.1</b> Keyboard Shortcuts</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#development-of-this-book"><i class="fa fa-check"></i>Development of this Book</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#about-the-author"><i class="fa fa-check"></i>About the Author</a></li>
 </ul></li>
@@ -100,7 +138,7 @@
 <li class="chapter" data-level="1.13.1" data-path="ch1.html"><a href="ch1.html#csv-files"><i class="fa fa-check"></i><b>1.13.1</b> <code>.csv</code> Files</a></li>
 <li class="chapter" data-level="1.13.2" data-path="ch1.html"><a href="ch1.html#saving-r-objects"><i class="fa fa-check"></i><b>1.13.2</b> Saving R Objects</a></li>
 </ul></li>
-<li class="chapter" data-level="1.14" data-path="ch1.html"><a href="ch1.html#user-defined-functions"><i class="fa fa-check"></i><b>1.14</b> User-Defined Functions</a></li>
+<li class="chapter" data-level="1.14" data-path="ch1.html"><a href="ch1.html#user-funcs"><i class="fa fa-check"></i><b>1.14</b> User-Defined Functions</a></li>
 <li class="chapter" data-level="" data-path="ch1.html"><a href="ch1.html#exercise-1b"><i class="fa fa-check"></i>Exercise 1B</a><ul>
 <li class="chapter" data-level="" data-path="ch1.html"><a href="ch1.html#exercise-1b-bonus"><i class="fa fa-check"></i>Exercise 1B Bonus</a></li>
 </ul></li>
@@ -240,66 +278,140 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Introduction to R for Natural Resource Scientists</h1>
-<h4 class="author"><em>Ben Staton</em></h4>
-<h4 class="date"><em>with contributions from Henry Hershey</em></h4>
-</div>
-<div id="overview" class="section level1 unnumbered">
-<h1>Overview</h1>
-<p>This book is intended to be a first course in R programming for natural resource professionals. It is by no means comprehensive, but instead attempts to introduce the main topics needed to get a beginner up and running with applying R to their own work. It is intended to be a companion to in-person workshop sessions, in which each chapter is covered in a 2 hour session. Although the examples shown have a natural resource/ecological theme, the general skills presented are general to R users across all scientific disciplines.</p>
-<div id="what-is-covered" class="section level2 unnumbered">
-<h2>What is Covered?</h2>
-<p>The book is composed of six chapters intended to cover a suite of topics in introductory R programming. In general, the material builds in complexity from chapter to chapter and earlier chapters can be seen as prerequisites for later chapters.</p>
+<div id="exercise-solutions" class="section level1 unnumbered">
+<h1>Exercise Solutions</h1>
+<div id="ex1a-answers" class="section level2 unnumbered">
+<h2>Exercise 1A Solutions</h2>
+<p><strong>1. Create a new file in your working directory called <code>Ex1A.R</code>.</strong></p>
+<p>Go to <em>File &gt; New File &gt; R Script</em>. This will create an untitled R script. Go the <em>File &gt; Save</em>, give it the appropriate name and click <em>Save</em>. If your working directory is already set to <code>C:/Users/YOU/Documents/R-Workshop/Chapter 1</code>, then the file will be saved there by default.</p>
+<p>You can create a new script using <strong>CTRL + SHIFT + N</strong> as well.</p>
+<p><strong>2. Enter these data into vectors. Call the vectors whatever you would like. Should you enter the data as vectors by rows, or by columns? (Hint: remember the properties of vectors).</strong></p>
+<p>Because you have both numeric and character data classes for a single row, you should enter them by columns:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Lake =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Big&quot;</span>, <span class="st">&quot;Small&quot;</span>, <span class="st">&quot;Square&quot;</span>, <span class="st">&quot;Circle&quot;</span>)
+Area =<span class="st"> </span><span class="kw">c</span>(<span class="dv">100</span>, <span class="dv">25</span>, <span class="dv">45</span>, <span class="dv">30</span>)
+Time =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1000</span>, <span class="dv">1200</span>, <span class="dv">1400</span>, <span class="dv">1600</span>)
+Fish =<span class="st"> </span><span class="kw">c</span>(<span class="dv">643</span>, <span class="dv">203</span>, <span class="dv">109</span>, <span class="dv">15</span>)</code></pre></div>
+<p><strong>3. Combine your vectors into a data frame. Why should you use a data frame instead of a matrix?</strong></p>
+<p>You should use a data frame because, unlike matrices, they can store multiple data classes in the different columns. Refer back the sections on matrices (Section <a href="ch1.html#matrices">1.4.3</a>) and data frames (Section <a href="ch1.html#data-frames">1.4.4</a>) for more details.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df =<span class="st"> </span><span class="kw">data.frame</span>(Lake, Area, Time, Fish)</code></pre></div>
+<p><strong>4. Subset all of the data from Small Lake.</strong></p>
+<p>Refer back to Section <a href="ch1.html#sub">1.7</a> for details on subsetting using indices and by column names, see Section <a href="ch1.html#logsub">1.11</a> for details on logical subsetting.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df[df<span class="op">$</span>Lake <span class="op">==</span><span class="st"> &quot;Small&quot;</span>,]
+<span class="co"># or</span>
+df[<span class="dv">3</span>,]</code></pre></div>
+<p><strong>5. Subset the area for all of the lakes.</strong></p>
+<p>Refer to the suggestions for question 4 for more details.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>Area
+<span class="co"># or</span>
+df[,<span class="dv">2</span>]</code></pre></div>
+<p><strong>6. Subset the number of fish for Big and Square Lakes only.</strong></p>
+<p>Refer to the suggestions for question 4 for more details.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df[df<span class="op">$</span>Lake <span class="op">==</span><span class="st"> &quot;Big&quot;</span> <span class="op">|</span><span class="st"> </span>df<span class="op">$</span>Lake <span class="op">==</span><span class="st"> &quot;Square&quot;</span>,<span class="st">&quot;Fish&quot;</span>]
+<span class="co"># or</span>
+df<span class="op">$</span>Fish[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)]</code></pre></div>
+<p><strong>7. You realize that you sampled 209 fish at Square Lake, not 109. Fix the mistake. There are two ways to do this, can you think of them both? Which do you think is better?</strong></p>
+<p>The two methods are:</p>
 <ul>
-<li><strong>Chapter <a href="ch1.html#ch1">1</a></strong> covers the basics of working in R through RStudio, including the basics of the R coding language and environment.</li>
-<li><strong>Chapter <a href="ch2.html#ch2">2</a></strong> covers the basics of plotting using the base R graphics functionality.</li>
-<li><strong>Chapter <a href="ch3.html#ch3">3</a></strong> covers the basics of fitting statistical models using built-in functionality for generalized linear models as well as non-linear models.<br />
-</li>
-<li><strong>Chapter <a href="ch4.html#ch4">4</a></strong> covers the basics of simulation modeling in R.</li>
-<li><strong>Chapter <a href="ch5.html#ch5">5</a></strong> covers the basics of the <code>dplyr</code> and <code>reshape2</code> packages for manipulating and summarizing large data sets using highly readable code.</li>
-<li><strong>Chapter <a href="ch6.html#ch6">6</a></strong> covers the basics of producing maps and performing spatial analysis in R. <em>This chapter was contributed by Henry Hershey</em></li>
+<li>Fix the mistake in the first place it appears: when you made the <code>Fish</code> vector. If you change it there, all other instances in your code where you use the <code>Fish</code> object will be fixed after you re-run everything.</li>
 </ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Fish =<span class="st"> </span><span class="kw">c</span>(<span class="dv">643</span>, <span class="dv">203</span>, <span class="dv">209</span>, <span class="dv">15</span>)
+<span class="co"># re-run the rest of your code and see the error was fixed</span></code></pre></div>
+<ul>
+<li>Fix the cell in the data frame only:</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df[df<span class="op">$</span>Lake <span class="op">==</span><span class="st"> &quot;Square&quot;</span>,<span class="st">&quot;Fish&quot;</span>] =<span class="st"> </span><span class="dv">209</span></code></pre></div>
+<p>The second method would only fix the data frame, so if you wanted to use the vector <code>Fish</code> outside of the data frame, the error would still be present. For this reason, the first method is likely better.</p>
+<p><strong>8. Save your script. Close RStudio and re-open your script to see that it was saved</strong>.</p>
+<p><em>File &gt; Save</em> or <strong>CTRL + S</strong></p>
 </div>
-<div id="prerequisites" class="section level2 unnumbered">
-<h2>Prerequisites</h2>
-<p>Chapter <a href="ch1.html#ch1">1</a> starts at the first step (installing R) and progresses by assuming no prior knowledge of programming in R or in any other language. In the later chapters, e.g., Chapters <a href="ch3.html#ch3">3</a> and <a href="ch4.html#ch4">4</a>, an understanding of statistics at the introductory undergraduate level would be helpful but not strictly essential.</p>
+<div id="ex1b-answers" class="section level2 unnumbered">
+<h2>Exercise 1B Solutions</h2>
+<p>First, did you find the error? It is the <code>#VALUE!</code> entry in the <code>chao</code> column. You should have R treat this as an <code>NA</code>. The two easiest ways to do this are to either enter <code>NA</code> in that cell or delete its contents. You can do this easily by opening <code>ponds.csv</code> in Microsoft Excel or some other spreadsheet editor.</p>
+<p><strong>1. Read in the data to R and assign it to an object.</strong></p>
+<p>After downloading <code>ponds.csv</code> to your working directory and creating <code>Ex1B.R</code>,</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;ponds.csv&quot;</span>)</code></pre></div>
+<p><strong>2. Calculate some basic summary statistics of your data using the <code>summary</code> function.</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(dat)</code></pre></div>
+<p><strong>3. Calculate the mean chlorophyll <em>a</em> for each pond (<em>Hint: pond is a grouping variable</em>).</strong></p>
+<p>Remember the <code>tapply</code> function. The first argument is the variable you wish to calculate a statistic for (chlorophyll), the second argument is the grouping variable (pond), and the third argument is the function you wish to apply.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tapply</span>(dat<span class="op">$</span>chl.a, dat<span class="op">$</span>pond, mean)</code></pre></div>
+<p><strong>4. Calculate the mean number of <em>Chaoborus</em> for each treatment in each pond using <code>tapply</code>. (<em>Hint: You can group by two variables with:</em> <code>tapply(dat$var, list(dat$grp1, dat$grp2), fun)</code>.</strong></p>
+<p>The hint pretty much gives this one away:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tapply</span>(dat<span class="op">$</span>chao, <span class="kw">list</span>(dat<span class="op">$</span>pond, dat<span class="op">$</span>treatment), mean)</code></pre></div>
+<p><strong>5. Use the more general <code>apply</code> function to calculate the variance for each zooplankton taxa found only in pond S-28.</strong></p>
+<p>First, subset only the correct pond and the zooplankton counts. Then, specify you want the <code>var</code> function applied to the second dimension (columns). Finally, because <code>chao</code> has an <code>NA</code>, you’ll need to include the <code>na.rm = T</code> argument.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(dat[dat<span class="op">$</span>pond <span class="op">==</span><span class="st"> &quot;S.28&quot;</span>,<span class="kw">c</span>(<span class="st">&quot;daph&quot;</span>, <span class="st">&quot;bosm&quot;</span>, <span class="st">&quot;cope&quot;</span>, <span class="st">&quot;chao&quot;</span>)], <span class="dv">2</span>, var, <span class="dt">na.rm =</span> T)</code></pre></div>
+<p><strong>6. Create a new variable called <code>prod</code> in the data frame that represents the quantity of chlorophyll <em>a</em> in each replicate. If the chlorophyll <em>a</em> in the replicate is greater than 30 give it a “high”, otherwise give it a “low”. (<em>Hint: are you asking a question of a single number or multiple numbers? How should this change the strategy you use?</em>)</strong></p>
+<p>Remember, you can add a new column to a data set using the <code>df$new_column = something()</code>. If the column <code>new_column</code> doesn’t exist, it will be added. If it exists already, it will be written over. You can use <code>ifelse</code> (not <code>if</code>!) to ask if each chlorophyll measurement was greater or less than 30, and to do something differently based on the result:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat<span class="op">$</span>prod =<span class="st"> </span><span class="kw">ifelse</span>(dat<span class="op">$</span>chl.a <span class="op">&gt;</span><span class="st"> </span><span class="dv">30</span>, <span class="st">&quot;high&quot;</span>, <span class="st">&quot;low&quot;</span>)</code></pre></div>
+<p><strong>Bonus 1. Use <code>?table</code> to figure out how you can use <code>table</code> to count how many observations of high and low there were in each treatment (<em>Hint: <code>table</code> will have only two arguments.</em>).</strong></p>
+<p>After looking through the help file, you should have seen that <code>table</code> has a <code>...</code> as its first argument. After reading about what it takes there, you would see it is expecting:</p>
+<blockquote>
+<p>one or more objects which can be interpretted as factors (including character strings)…</p>
+</blockquote>
+<p>So if you ran:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(dat<span class="op">$</span>prod, dat<span class="op">$</span>treatment)</code></pre></div>
+<pre><code>##       
+##        Add Control
+##   high   8       0
+##   low    2      10</code></pre>
+<p>You would get a table showing how many high and low chlorophyll observations were made for each treatment.</p>
+<p><strong>Bonus 2. Create a new function called <code>product</code> that multiplies any two numbers you specify.</strong></p>
+<p>See Section <a href="ch1.html#user-funcs">1.14</a> for more details on user-defined functions. Your function might look like this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">product =<span class="st"> </span><span class="cf">function</span>(a,b) {
+  a <span class="op">*</span><span class="st"> </span>b
+}
+
+<span class="kw">product</span>(<span class="dv">4</span>,<span class="dv">5</span>)</code></pre></div>
+<pre><code>## [1] 20</code></pre>
+<p><strong>Bonus 3. Modify your function to print a message to the console and return the value <code>if</code> it meets a condition and to print another message and not return the value if it doesn’t.</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">product =<span class="st"> </span><span class="cf">function</span>(a,b,z) {
+  result =<span class="st"> </span>a <span class="op">*</span><span class="st"> </span>b
+  
+  <span class="cf">if</span> (result <span class="op">&lt;=</span><span class="st"> </span>z) {
+    <span class="kw">cat</span>(<span class="st">&quot;The result of a * b is less than&quot;</span>, z, <span class="st">&quot;so you don&#39;t care what it is&quot;</span>)
+  } <span class="cf">else</span> {
+    <span class="kw">cat</span>(<span class="st">&quot;The result of a * b is&quot;</span>, result, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)
+    result
+  }
+}
+
+<span class="kw">product</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">19</span>)</code></pre></div>
+<pre><code>## The result of a * b is 20</code></pre>
+<pre><code>## [1] 20</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">product</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">30</span>)</code></pre></div>
+<pre><code>## The result of a * b is less than 30 so you don&#39;t care what it is</code></pre>
+<p>The use of <code>cat</code> here is similar to <code>print</code>, but it is better for printing messages to the console.</p>
 </div>
-<div id="data-sets" class="section level2 unnumbered">
-<h2>Data Sets</h2>
-<p>Many of the data sets used in this book were simulated by the author. Cases in which the data set used was not simulated are noted and a citation to the data source is provided.</p>
-<p>The data sets used in this book are hosted on a GitHub repository maintained by the author. It is located here: <strong>INSERT GITHUB LINK HERE</strong>.</p>
-<p>You have two main options for how to aquire the data used by this book:</p>
-<ol style="list-style-type: decimal">
-<li><p><strong>Clone the whole repository</strong>. You can download a zip folder containing all of the data for the book directly from GitHub:</p>
-<ol style="list-style-type: decimal">
-<li>click the green <em>Clone or download</em> button at the top right,</li>
-<li>click <em>Download ZIP</em></li>
-<li>unzip this folders contents into somewhere you know where to find it.</li>
-</ol></li>
-<li><p><strong>Download individual files at a time</strong>. To download a single file from GitHub:</p>
-<ol style="list-style-type: decimal">
-<li>click on the file,</li>
-<li>click <em>Raw</em> in the toolbar on the top right,</li>
-<li>right-click anywhere in the document, and</li>
-<li>click <em>Save As…</em>.</li>
-</ol></li>
-</ol>
+<div id="ex2-answers" class="section level2 unnumbered">
+<h2>Exercise 2 Solutions</h2>
 </div>
-<div id="exercises" class="section level2 unnumbered">
-<h2>Exercises</h2>
-<p>Following each chapter, there is a set of exercises. Attempting and completing them, as they give you an opportunity to practice what you learned while reading and typing along. Solutions are provided at the end of this book, however you are <strong>strongly</strong> recommended to attempt to figure the problems out before looking to how the author would solve them.</p>
+<div id="ex3-answers" class="section level2 unnumbered">
+<h2>Exercise 3 Solutions</h2>
 </div>
-<div id="development-of-this-book" class="section level2 unnumbered">
-<h2>Development of this Book</h2>
-<p>This book represents the third reincarnation of the Auburn R Workshop Series. The first version was written in Fall 2014 using Microsoft Word, but the author found that making even small changes was clunky. Individual session materials were created in separate documents, as were the exercises and solutions.</p>
-<p>The second version was written through R and RStudio using the R packages <code>rmarkdown</code> <strong>CITE</strong> and <code>knitr</code> <strong>CITE</strong>, which allowed the integration of text, code, and output all into one output file. This was completed in Fall 2015. Like the first version, individual session materials were created in separate documents.</p>
-<p>This third version was written through R and RStudio but used the R package <code>bookdown</code> <strong>CITE</strong> which allowed for the individual sessions to be combined into one “book” by turning each session into a chapter. This facilitated cross-references to topics covered in previous chapters and allows the reader to only refer to one location when trying to remember how to use a skill. It also allowed for multiple formats to be published including both HTML and PDF versions.</p>
-<p>The book is hosted on <a href="https://pages.github.com/">GitHub Pages</a>.</p>
+<div id="ex4a-answers" class="section level2 unnumbered">
+<h2>Exercise 4A Solutions</h2>
 </div>
-<div id="about-the-author" class="section level2 unnumbered">
-<h2>About the Author</h2>
-<p>Ben Staton is a PhD candidate in the School of Fisheries at Auburn University. He studies quantitative methods for assessing fish populations for use in harvest management, with a focus on Pacific salmon in western Alaska. Ben has been using R on a daily basis since the beginning of his graduate work in 2014.</p>
+<div id="ex4b-answers" class="section level2 unnumbered">
+<h2>Exercise 4B Solutions</h2>
+</div>
+<div id="ex4c-answers" class="section level2 unnumbered">
+<h2>Exercise 4C Solutions</h2>
+</div>
+<div id="ex4d-answers" class="section level2 unnumbered">
+<h2>Exercise 4D Solutions</h2>
+</div>
+<div id="ex4e-answers" class="section level2 unnumbered">
+<h2>Exercise 4E Solutions</h2>
+</div>
+<div id="ex4f-answers" class="section level2 unnumbered">
+<h2>Exercise 4F Solutions</h2>
+</div>
+<div id="ex5-answers" class="section level2 unnumbered">
+<h2>Exercise 5 Solutions</h2>
+</div>
+<div id="ex6-answers" class="section level2 unnumbered">
+<h2>Exercise 6 Solutions</h2>
 
 </div>
 </div>
@@ -308,8 +420,8 @@
           </div>
         </div>
       </div>
+<a href="ch6.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="ch1.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -339,7 +451,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/index.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/07-exercise-solutions.rmd",
 "text": "Edit"
 },
 "download": ["au-r-workshop.pdf"],

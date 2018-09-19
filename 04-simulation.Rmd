@@ -511,9 +511,13 @@ You and your colleagues consider these results and determine that you will need 
 ### Permutation Test {#perm-test-ex}
 ### The Bootstrap {#boot-test-ex}
 
+---
+
 ## Exercise 4
 
-In this exercise, you will be adapting the code written in this chapter to investigate slightly different questions. You should create a new R script `Ex4.R` in your working directory for these exercises so your chapter code is left unchanged. Exercise 4A is based solely on the required material and Exercises 4B - 4F are based on the example cases. You should work through each example before attempting each of the later exercises.
+In these exercise, you will be adapting the code written in this chapter to investigate slightly different questions. You should create a new R script `Ex4.R` in your working directory for these exercises so your chapter code is left unchanged. Exercise 4A is based solely on the required material and Exercises 4B - 4F are based on the example cases. You should work through each example before attempting each of the later exercises.
+
+_The solutions to this exercise are found at the end of this book ([here](#ex4a-answers)). You are **strongly recommended** to make a good attempt at completing this exercise on your own and only look at the solutions when you are truly stumped._
 
 ### Exercise 4A: Required Material Only {-}
 
@@ -526,6 +530,7 @@ These questions are based on the material in Sections \@ref(randomness) - \@ref(
 5.
 6.
 
+[Solutions](#ex4a-answers)
 
 ### Exercise 4B: Stochastic Power Analysis {-}
 
@@ -534,6 +539,7 @@ These questions will require you to adapt the code written in Section \@ref(powe
 1.  What sample size `n` do you need to have a power of 0.8 of detecting a significant difference between the two tagging methods?
 2.  How do the inferences from the power analysis change if you are interested in `p_new = 0.4` instead of `p_new = 0.25`? Do you need to tag more or fewer fish in this case?
 3.  Your analysis takes a bit of time to run so you are interested in tracking its progress. Add a progress message to your nested `for` loop that will print the sample size currently being analyzed: 
+
 
 ```{r, eval = F}
 for (n in 1:N) {
@@ -544,6 +550,8 @@ for (n in 1:N) {
 }
 ```
 
+[Solutions](#ex4b-answers)
+
 ### Exercise 4C: Harvest Policy Analysis {-}
 
 These questions will require you to adapt the code written in Section \@ref(harv-ex)
@@ -551,6 +559,8 @@ These questions will require you to adapt the code written in Section \@ref(harv
 1.  
 2.  
 3.
+
+[Solutions](#ex4c-answers)
 
 ### Exercise 4D: Mark-Recapture Evaluation {-}
 
@@ -560,6 +570,8 @@ These questions will require you to adapt the code written in Section \@ref(mrc-
 2.  
 3.
 
+[Solutions](#ex4d-answers)
+
 ### Exercise 4E: Permutation Tests {-}
 
 These questions will require you to adapt the code written in Section \@ref(perm-test-ex)
@@ -567,6 +579,8 @@ These questions will require you to adapt the code written in Section \@ref(perm
 1.  
 2.  
 3.
+
+[Solutions](#ex4e-answers)
 
 ### Exercise 4F: The Bootstrap {-}
 
@@ -576,3 +590,4 @@ These questions will require you to adapt the code written in Section \@ref(boot
 2.  
 3.
 
+[Solutions](#ex4f-answers)
