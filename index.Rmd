@@ -35,11 +35,11 @@ Chapter \@ref(ch1) starts at the first step (installing R) and progresses by ass
 
 Many of the data sets used in this book were simulated by the author. Cases in which the data set used was not simulated are noted and a citation to the data source is provided. 
 
-The data sets used in this book are hosted on a GitHub repository maintained by the author. It is located here: **INSERT GITHUB LINK HERE**.
+The data sets used in this book are hosted on a GitHub repository maintained by the author. It is located here: <https://github.com/bstaton1/au-r-workshop-data>.
 
 You have two main options for how to acquire the data used by this book:
 
-1.  **Clone the whole repository**. You can download a zip folder containing all of the data for the book directly from GitHub:
+1.  **Download the whole repository**. You can download a zip folder containing all of the data for the book directly from GitHub:
 
     1.  click the green _Clone or download_ button at the top right,
     2.  click _Download ZIP_
@@ -58,7 +58,7 @@ Following each chapter, there is a set of exercises. Attempting and completing t
 
 Some exercises have bonus questions. These are intended to challenge you with some of the more difficult tasks shown in the chapter or ask you to extend what you learned to a completely different problem. If you can get all of the non-bonus questions without looking at the solutions too much, you can consider yourself to have good understanding of that chapter's material. If you can complete the bonus questions with little or no help, that means you have mastered that chapter's material!
 
-## Keyboard Shortcuts
+## Keyboard Shortcuts {-}
 
 Several parts of this book in this book make reference to keyboard shortcuts. They are never necessary, but can help you be more efficient if you commit them to muscle memory. This book assumes you are using a PC for the keyboard shortcuts. If you are using a Mac, they will be different (in many cases, you may just need to swap out the **CTRL** keystroke for the **CMD** keystroke). For a complete list of RStudio's keyboard shortcuts, go to _Help > Keyboard Shortcuts Help_
 

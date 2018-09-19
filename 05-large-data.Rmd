@@ -22,7 +22,7 @@ You will be turning daily observations of harvest and escapement (fish that are 
 
 You should create a new directory and R script for your work in this Chapter. Create a new R script called `Ch5.R` and save it in the directory `C:/Users/YOU/Documents/R-Workshop/Chapter5`. Set your working directory to that location. Revisit the material in Sections \@ref(scripts) and \@ref(working-dir) for more details on these steps.
 
-Download the data sets `daily_escape.csv` and `daily_catch.csv` from **GitHub, reminder** and place them in your working directory.
+Download the data sets `daily_escape.csv` and `daily_catch.csv` from the [GitHub repo](https://github.com/bstaton1/au-r-workshop-data) (or go [here](#data-sets) for details) and place them in your working directory.
 
 ## Aquiring and Loading Packages
 
@@ -487,7 +487,7 @@ In this exercise, you will be working with another simulated salmon data set. Th
 
 _The solutions to this exercise are found at the end of this book ([here](#ex5-answers)). You are **strongly recommended** to make a good attempt at completing this exercise on your own and only look at the solutions when you are truly stumped._
 
-Download the data file `asl.csv` (**a**ge, **s**ex, **l**ength) from the **Github repo, reminder** and save it in your working directory for this chapter. Create a new R script `Ex5.R` there. Open this script and read the data file into R. If this is a new session, load the `dplyr` package.
+Download the data file `asl.csv` (**a**ge, **s**ex, **l**ength) from the [GitHub repo](https://github.com/bstaton1/au-r-workshop-data) (or go [here](#data-sets) for details) and save it in your working directory for this chapter. Create a new R script `Ex5.R` there. Open this script and read the data file into R. If this is a new session, load the `dplyr` package.
 
 1.  Count the number of females that were sampled each year using the `dplyr` function `n` within a `summarize` call (_Hint: `n` works just like length - it counts the number of records_).
 

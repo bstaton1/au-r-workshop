@@ -46,6 +46,7 @@
 
 
 
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
 <style type="text/css">
@@ -107,6 +108,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#data-sets"><i class="fa fa-check"></i>Data Sets</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#exercises"><i class="fa fa-check"></i>Exercises</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#keyboard-shortcuts"><i class="fa fa-check"></i>Keyboard Shortcuts</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#development-of-this-book"><i class="fa fa-check"></i>Development of this Book</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#about-the-author"><i class="fa fa-check"></i>About the Author</a></li>
 </ul></li>
@@ -137,7 +139,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.13.1" data-path="ch1.html"><a href="ch1.html#csv-files"><i class="fa fa-check"></i><b>1.13.1</b> <code>.csv</code> Files</a></li>
 <li class="chapter" data-level="1.13.2" data-path="ch1.html"><a href="ch1.html#saving-r-objects"><i class="fa fa-check"></i><b>1.13.2</b> Saving R Objects</a></li>
 </ul></li>
-<li class="chapter" data-level="1.14" data-path="ch1.html"><a href="ch1.html#user-defined-functions"><i class="fa fa-check"></i><b>1.14</b> User-Defined Functions</a></li>
+<li class="chapter" data-level="1.14" data-path="ch1.html"><a href="ch1.html#user-funcs"><i class="fa fa-check"></i><b>1.14</b> User-Defined Functions</a></li>
 <li class="chapter" data-level="" data-path="ch1.html"><a href="ch1.html#exercise-1b"><i class="fa fa-check"></i>Exercise 1B</a><ul>
 <li class="chapter" data-level="" data-path="ch1.html"><a href="ch1.html#exercise-1b-bonus"><i class="fa fa-check"></i>Exercise 1B Bonus</a></li>
 </ul></li>
@@ -311,29 +313,29 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>In Section <a href="ch3.html#dists">3.3</a>, you learned about using probability distributions in R. One of the uses was the <code>r-</code> family of distribution functions. These functions create random numbers following a random process specified by a probability distribution.</p>
 <p>Consider animal survival as an example. At the end of each year, each individual alive at the start can either live or die. There are two outcomes here, and suppose each animal has an 80% chance of surviving. The number of individuals that survive is the result of a <strong>binomial random process</strong> in which there were <span class="math inline">\(n\)</span> individuals alive at the start of this year and <span class="math inline">\(p\)</span> is the probability that any one individual survives to the next year. You can execute one binomial random process where <span class="math inline">\(p = 0.8\)</span> and <span class="math inline">\(n = 100\)</span> like this:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rbinom</span>(<span class="dt">n =</span> <span class="dv">1</span>, <span class="dt">size =</span> <span class="dv">100</span>, <span class="dt">prob =</span> <span class="fl">0.8</span>)</code></pre></div>
-<pre><code>## [1] 80</code></pre>
+<pre><code>## [1] 84</code></pre>
 <p>The result you get will almost certainly be different from the one printed here. That is the random component.</p>
 <p>You can execute many such binomial processes by changing the <code>n</code> argument. Plot the distribution of expected surviving individuals:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">survivors =<span class="st"> </span><span class="kw">rbinom</span>(<span class="dv">1000</span>, <span class="dv">100</span>, <span class="fl">0.8</span>)
 <span class="kw">hist</span>(survivors, <span class="dt">col =</span> <span class="st">&quot;skyblue&quot;</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-139-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Another random process is the <strong>lognormal process</strong>: it generates random numbers such that the log of the values are normally-distributed with mean equal to <code>logmean</code> and standard deviation equal to <code>logsd</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(<span class="kw">rlnorm</span>(<span class="dv">1000</span>, <span class="dv">0</span>, <span class="fl">0.1</span>), <span class="dt">col =</span> <span class="st">&quot;skyblue&quot;</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>There are many random processes you can use in R. Checkout Table <a href="#tab:dist-table"><strong>??</strong></a> for more examples as well as the help files for each individual function for more details.</p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-140-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>There are many random processes you can use in R. Checkout Table <a href="ch3.html#tab:dist-table">3.1</a> for more examples as well as the help files for each individual function for more details.</p>
 </div>
 <div id="resampling" class="section level3">
 <h3><span class="header-section-number">4.2.2</span> Resampling</h3>
 <p>Using random deviates works great for creating new random numbers, but what if you already have a set of numbers that you wish to introduce randomness to? For this, you can use <strong>resampling techniques</strong>. In R, the <code>sample</code> function is used to sample <code>size</code> elements from the vector <code>x</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">size =</span> <span class="dv">5</span>)</code></pre></div>
-<pre><code>## [1]  3  1  9  6 10</code></pre>
+<pre><code>## [1]  1  8 10  7  9</code></pre>
 <p>You can sample with replacement (where it is possible to sample the same element two or more times):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>), <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">replace =</span> T)</code></pre></div>
-<pre><code>##  [1] &quot;b&quot; &quot;c&quot; &quot;b&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;b&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot;</code></pre>
-<p>You can set probabilities on the sampling of different elements<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>:</p>
+<pre><code>##  [1] &quot;a&quot; &quot;c&quot; &quot;c&quot; &quot;c&quot; &quot;c&quot; &quot;a&quot; &quot;b&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot;</code></pre>
+<p>You can set probabilities on the sampling of different elements<a href="#fn29" class="footnoteRef" id="fnref29"><sup>29</sup></a>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;live&quot;</span>, <span class="st">&quot;die&quot;</span>), <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">replace =</span> T,
        <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.8</span>, <span class="fl">0.2</span>))</code></pre></div>
-<pre><code>##  [1] &quot;live&quot; &quot;live&quot; &quot;live&quot; &quot;live&quot; &quot;die&quot;  &quot;live&quot; &quot;live&quot; &quot;live&quot; &quot;die&quot;  &quot;live&quot;</code></pre>
+<pre><code>##  [1] &quot;live&quot; &quot;die&quot;  &quot;die&quot;  &quot;live&quot; &quot;live&quot; &quot;live&quot; &quot;live&quot; &quot;live&quot; &quot;live&quot; &quot;live&quot;</code></pre>
 <p>Notice that this is the same as the binomial random process above, but with only 10 trials and the printing of the outcomes rather than the number of successes.</p>
 </div>
 </div>
@@ -415,7 +417,7 @@ N[<span class="dv">1</span>] =<span class="st"> </span><span class="dv">1000</sp
 
 <span class="co"># plot</span>
 <span class="kw">plot</span>(N, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">pch =</span> <span class="dv">15</span>, <span class="dt">xlab =</span> <span class="st">&quot;Year&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Abundance&quot;</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-154-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Examples of the other three utilities are shown in the example cases.</p>
 </div>
 </div>
@@ -447,7 +449,7 @@ N[<span class="dv">1</span>] =<span class="st"> </span><span class="dv">1000</sp
 <p>It returns one output: the vector of population abundance.</p>
 <p>Use your function once using the same settings as before:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pop_sim</span>(<span class="dv">100</span>, <span class="fl">1.1</span>, <span class="fl">0.1</span>, <span class="fl">0.08</span>, T)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-20-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-156-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>##   [1] 1000.0000  991.9189  966.1673 1119.8166 1167.4864  940.7572 1003.4028
 ##   [8]  993.7741 1092.3542 1114.6248 1011.6523 1012.8149 1180.6373 1125.6400
 ##  [15] 1128.9152 1234.7466 1546.7473 1438.8662 1677.2920 1878.7559 1601.6186
@@ -485,7 +487,7 @@ N[<span class="dv">1</span>] =<span class="st"> </span><span class="dv">1000</sp
 N_mean[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</code></pre></div>
 <pre><code>##  [1] 1000.000 1017.511 1033.436 1054.619 1069.542 1086.413 1107.854
 ##  [8] 1129.619 1145.288 1161.254</code></pre>
-<p>You could do the same thing using <code>median</code> rather than <code>mean</code>. Mode is more difficult to calculate in R, if you need to get the mode, try to Google it<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>.</p>
+<p>You could do the same thing using <code>median</code> rather than <code>mean</code>. Mode is more difficult to calculate in R, if you need to get the mode, try to Google it<a href="#fn30" class="footnoteRef" id="fnref30"><sup>30</sup></a>.</p>
 </div>
 <div id="variability" class="section level3">
 <h3><span class="header-section-number">4.6.2</span> Variability</h3>
@@ -495,7 +497,7 @@ N_mean[<span class="dv">1</span><span class="op">:</span><span class="dv">10</sp
 <span class="kw">plot</span>(N_mean, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">10000</span>))
 <span class="kw">lines</span>(N_quants[<span class="dv">1</span>,], <span class="dt">lty =</span> <span class="dv">2</span>)
 <span class="kw">lines</span>(N_quants[<span class="dv">2</span>,], <span class="dt">lty =</span> <span class="dv">2</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-23-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-159-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Notice how a user-defined function was passed to <code>apply</code>. The range within the two dashed lines represents the range that encompassed the central 80% of the random abundances each year.</p>
 </div>
 <div id="frequencies" class="section level3">
@@ -544,7 +546,7 @@ random_q =<span class="st"> </span><span class="kw">quantile</span>(random, p)
 normal_q =<span class="st"> </span><span class="kw">qnorm</span>(p, mu, sig)
 
 <span class="kw">plot</span>(normal_q <span class="op">~</span><span class="st"> </span>random_q); <span class="kw">abline</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-30-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-166-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The fact that all the quantiles fall around the 1:1 line sugggests the <code>n</code> random samples samples are indeed from a normal distribution. Any variabilities you see are due to sampling errors. If you increase <code>n</code> to <code>n = 1e6</code> (one million), you’ll see no deviations. This is called a <strong>q-q plot</strong>, and is frequently used to assess the fit of data to a distribution.</p>
 <p>Now test the values in their agreement with the <code>pnorm</code> function. Plot the cumulative density functions for the truely normal curve and that approximated by the random deviates:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">q =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">400</span>, <span class="dv">600</span>, <span class="dv">10</span>)
@@ -555,7 +557,7 @@ normal_p =<span class="st"> </span><span class="kw">pnorm</span>(q, mu, sig)
 
 <span class="kw">plot</span>(normal_p <span class="op">~</span><span class="st"> </span>q, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)
 <span class="kw">points</span>(random_p <span class="op">~</span><span class="st"> </span>q, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-31-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-167-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The <code>ecdf</code> function obtains the empirical cumulative density function (which is just <code>pnorm</code> for a sample). It allows you to plug in any random variable and obtain the probability of having one less than it.</p>
 </div>
 <div id="power-ex" class="section level3">
@@ -617,7 +619,7 @@ out =<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">apply</span>(out, <span class="dv">2</span>, mean) <span class="op">~</span><span class="st"> </span>n_try, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>,
      <span class="dt">xlab =</span> <span class="st">&quot;Tagged Fish per Treatment&quot;</span>,
      <span class="dt">ylab =</span> <span class="st">&quot;Probability of Finding Effect (Power)&quot;</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-34-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-170-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Even if you tagged 100 fish total, you would have a 48% chance of saying the effect (which truely is there!) is present under the null hypothesis testing framework.</p>
 <p>Suppose you and your colleagues aren’t relying on p-values in this case, and are purely interested in how precisely the <strong>effect size</strong> would be estimated. Adapt your function to determine how frequently it is you would be able to estimate the true mortality probability of the new method within +/- 5% based on the point estimate only (the true estimate must be between 0.2 and 0.3 for a successful study). Change your function to calculate this additional metric and re-run the analysis:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sim_fit =<span class="st"> </span><span class="cf">function</span>(n, <span class="dt">p_old =</span> <span class="fl">0.10</span>, <span class="dt">p_new =</span> <span class="fl">0.25</span>) {
@@ -681,7 +683,7 @@ out_prc =<span class="st"> </span><span class="kw">matrix</span>(<span class="ot
 <span class="kw">plot</span>(<span class="kw">apply</span>(out_prc, <span class="dv">2</span>, mean) <span class="op">~</span><span class="st"> </span>n_try, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>,
      <span class="dt">xlab =</span> <span class="st">&quot;Tagged Fish per Treatment&quot;</span>,
      <span class="dt">ylab =</span> <span class="st">&quot;Probability of A Precise Estimate&quot;</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-35-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-171-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>It seems that even if you tagged 50 fish per treatment, you would have a 58% chance of estimating that the mortality rate is between 0.2 and 0.3 if it was truly 0.25.</p>
 <p>You and your colleagues consider these results and determine that you will need to somehow aquire more funds to tag more fish in the small-scale study in order to a high level of confidence in the results.</p>
 </div>
@@ -705,7 +707,7 @@ out_prc =<span class="st"> </span><span class="kw">matrix</span>(<span class="ot
 <div id="exercise-4" class="section level2">
 <h2><span class="header-section-number">4.9</span> Exercise 4</h2>
 <p>In these exercise, you will be adapting the code written in this chapter to investigate slightly different questions. You should create a new R script <code>Ex4.R</code> in your working directory for these exercises so your chapter code is left unchanged. Exercise 4A is based solely on the required material and Exercises 4B - 4F are based on the example cases. You should work through each example before attempting each of the later exercises.</p>
-<p><em>The solutions to this exercize are found at the end of this book (<a href="exercise-solutions.html#ex4a-answers">here</a>). You are <strong>strongly recommended</strong> to make a good attempt at completing this exercise on your own and only look at the solutions when you are truly stumped.</em></p>
+<p><em>The solutions to this exercise are found at the end of this book (<a href="exercise-solutions.html#ex4a-answers">here</a>). You are <strong>strongly recommended</strong> to make a good attempt at completing this exercise on your own and only look at the solutions when you are truly stumped.</em></p>
 <div id="exercise-4a-required-material-only" class="section level3 unnumbered">
 <h3>Exercise 4A: Required Material Only</h3>
 <p>These questions are based on the material in Sections <a href="ch4.html#randomness">4.2</a> - <a href="ch4.html#mc-summaries">4.6</a> only.</p>
@@ -780,9 +782,9 @@ out_prc =<span class="st"> </span><span class="kw">matrix</span>(<span class="ot
 </div>
 <div class="footnotes">
 <hr />
-<ol start="1">
-<li id="fn1"><p>If <code>prob</code> doesn’t sum to 1, then it will be rescaled: <code>prob = prob/sum(prob)</code><a href="ch4.html#fnref1">↩</a></p></li>
-<li id="fn2"><p>Google is an R programmer’s best friend. There is a massive online community for R, and if you have a question on something, it has almost certainly been asked somewhere on the web.<a href="ch4.html#fnref2">↩</a></p></li>
+<ol start="29">
+<li id="fn29"><p>If <code>prob</code> doesn’t sum to 1, then it will be rescaled: <code>prob = prob/sum(prob)</code><a href="ch4.html#fnref29">↩</a></p></li>
+<li id="fn30"><p>Google is an R programmer’s best friend. There is a massive online community for R, and if you have a question on something, it has almost certainly been asked somewhere on the web.<a href="ch4.html#fnref30">↩</a></p></li>
 </ol>
 </div>
             </section>

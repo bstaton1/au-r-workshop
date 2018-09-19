@@ -46,8 +46,46 @@
 
 
 
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -70,6 +108,7 @@
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#data-sets"><i class="fa fa-check"></i>Data Sets</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#exercises"><i class="fa fa-check"></i>Exercises</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#keyboard-shortcuts"><i class="fa fa-check"></i>Keyboard Shortcuts</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#development-of-this-book"><i class="fa fa-check"></i>Development of this Book</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#about-the-author"><i class="fa fa-check"></i>About the Author</a></li>
 </ul></li>
@@ -100,7 +139,7 @@
 <li class="chapter" data-level="1.13.1" data-path="ch1.html"><a href="ch1.html#csv-files"><i class="fa fa-check"></i><b>1.13.1</b> <code>.csv</code> Files</a></li>
 <li class="chapter" data-level="1.13.2" data-path="ch1.html"><a href="ch1.html#saving-r-objects"><i class="fa fa-check"></i><b>1.13.2</b> Saving R Objects</a></li>
 </ul></li>
-<li class="chapter" data-level="1.14" data-path="ch1.html"><a href="ch1.html#user-defined-functions"><i class="fa fa-check"></i><b>1.14</b> User-Defined Functions</a></li>
+<li class="chapter" data-level="1.14" data-path="ch1.html"><a href="ch1.html#user-funcs"><i class="fa fa-check"></i><b>1.14</b> User-Defined Functions</a></li>
 <li class="chapter" data-level="" data-path="ch1.html"><a href="ch1.html#exercise-1b"><i class="fa fa-check"></i>Exercise 1B</a><ul>
 <li class="chapter" data-level="" data-path="ch1.html"><a href="ch1.html#exercise-1b-bonus"><i class="fa fa-check"></i>Exercise 1B Bonus</a></li>
 </ul></li>
@@ -268,10 +307,10 @@
 <div id="data-sets" class="section level2 unnumbered">
 <h2>Data Sets</h2>
 <p>Many of the data sets used in this book were simulated by the author. Cases in which the data set used was not simulated are noted and a citation to the data source is provided.</p>
-<p>The data sets used in this book are hosted on a GitHub repository maintained by the author. It is located here: <strong>INSERT GITHUB LINK HERE</strong>.</p>
-<p>You have two main options for how to aquire the data used by this book:</p>
+<p>The data sets used in this book are hosted on a GitHub repository maintained by the author. It is located here: <a href="https://github.com/bstaton1/au-r-workshop-data" class="uri">https://github.com/bstaton1/au-r-workshop-data</a>.</p>
+<p>You have two main options for how to acquire the data used by this book:</p>
 <ol style="list-style-type: decimal">
-<li><p><strong>Clone the whole repository</strong>. You can download a zip folder containing all of the data for the book directly from GitHub:</p>
+<li><p><strong>Download the whole repository</strong>. You can download a zip folder containing all of the data for the book directly from GitHub:</p>
 <ol style="list-style-type: decimal">
 <li>click the green <em>Clone or download</em> button at the top right,</li>
 <li>click <em>Download ZIP</em></li>
@@ -289,6 +328,11 @@
 <div id="exercises" class="section level2 unnumbered">
 <h2>Exercises</h2>
 <p>Following each chapter, there is a set of exercises. Attempting and completing them, as they give you an opportunity to practice what you learned while reading and typing along. Solutions are provided at the end of this book, however you are <strong>strongly</strong> recommended to attempt to figure the problems out before looking to how the author would solve them.</p>
+<p>Some exercises have bonus questions. These are intended to challenge you with some of the more difficult tasks shown in the chapter or ask you to extend what you learned to a completely different problem. If you can get all of the non-bonus questions without looking at the solutions too much, you can consider yourself to have good understanding of that chapter’s material. If you can complete the bonus questions with little or no help, that means you have mastered that chapter’s material!</p>
+</div>
+<div id="keyboard-shortcuts" class="section level2 unnumbered">
+<h2>Keyboard Shortcuts</h2>
+<p>Several parts of this book in this book make reference to keyboard shortcuts. They are never necessary, but can help you be more efficient if you commit them to muscle memory. This book assumes you are using a PC for the keyboard shortcuts. If you are using a Mac, they will be different (in many cases, you may just need to swap out the <strong>CTRL</strong> keystroke for the <strong>CMD</strong> keystroke). For a complete list of RStudio’s keyboard shortcuts, go to <em>Help &gt; Keyboard Shortcuts Help</em></p>
 </div>
 <div id="development-of-this-book" class="section level2 unnumbered">
 <h2>Development of this Book</h2>
@@ -350,6 +394,19 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

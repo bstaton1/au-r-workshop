@@ -29,7 +29,7 @@ R's built-in statistical modeling framework is pretty intuitive and comprehensiv
 
 You should create a new directory and R script for your work in this Chapter. Create a new R script called `Ch3.R` and save it in the directory `C:/Users/YOU/Documents/R-Workshop/Chapter3`. Set your working directory to that location. Revisit the material in Sections \@ref(scripts) and \@ref(working-dir) for more details on these steps. 
 
-Download the data set `sockeye.csv` from **GitHub, reminder** and place it in your working directory. This is the same data set you used in [Exercise 2](#ex2) - revisit this section for more details on the variables.
+Download the data set `sockeye.csv` from the [GitHub repository](https://github.com/bstaton1/au-r-workshop-data) (or go [here](#data-sets) for details) and place it in your working directory. This is the same data set you used in [Exercise 2](#ex2) - revisit this section for more details on the meaning of the variables.
 
 ## The General Linear Model
 
@@ -486,7 +486,7 @@ qnorm(p)
 
 You fitted linear and logistic regression models in Sections \@ref(regression) and \@ref(logis-regression), however, R allows you to fit non-linear regression models as well.
 
-First, aquire the `feeding.csv` data set from **Github, reminder** and place it in your working directory. Read the data into R: 
+First, aquire the `feeding.csv` data set from the [GitHub repository](https://github.com/bstaton1/au-r-workshop-data) (or go [here](#data-sets) for details) and place it in your working directory. Read the data into R: 
 
 ```{r, eval = F}
 dat = read.csv("feeding.csv"); summary(dat)

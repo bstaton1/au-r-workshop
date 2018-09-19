@@ -196,7 +196,7 @@ Oftentimes, you will want to add error bars to a bar graph like this. To avoid d
 
 ## Box-and-Whisker Plots {#box-whisker}
 
-Box-and-whisker plots are a great way to visualize the spread of your data. All you need to make a box-and-whisker plot is a grouping variable (a factor, revisit Section \@ref(factors) if you don't remember what these are) and some continuous (i.e., numeric) data for each level of the factor. Download the `creel.csv` data set from the **GitHub repository, reminder**, place it in the same directory as your R script `Ch2.R` (which is the one you should be working on right now).
+Box-and-whisker plots are a great way to visualize the spread of your data. All you need to make a box-and-whisker plot is a grouping variable (a factor, revisit Section \@ref(factors) if you don't remember what these are) and some continuous (i.e., numeric) data for each level of the factor. Download the `creel.csv` data set from the [GitHub repository](https://github.com/bstaton1/au-r-workshop-data) (or go [here](#data-sets) for details) and place it in the same directory as your R script `Ch2.R` (which is the one you should be working on right now).
 
 Read the data in and print a summary:
 
@@ -426,7 +426,7 @@ For this exercise, you will be making a few of plots and changing how they look 
 
 _The solutions to this exercise are found at the end of this book ([here](#ex2-answers)). You are **strongly recommended** to make a good attempt at completing this exercise on your own and only look at the solutions when you are truly stumped._
 
-1.  Create a new R script called `Ex2.R` and save it in the `Chapter2` directory. Download the `sockeye.csv` data set from **GitHub, reminder** and read it into R. Produce a basic summary of the data and take note of the data classes, missing values (`NA`), and the relative ranges for each variable.
+1.  Create a new R script called `Ex2.R` and save it in the `Chapter2` directory. Download the `sockeye.csv` data set from the [GitHub repository](https://github.com/bstaton1/au-r-workshop-data) (go [here](#data-sets) for details) and read it into R. Produce a basic summary of the data and take note of the data classes, missing values (`NA`), and the relative ranges for each variable.
 2.	Make a histogram of fish weights for only hatchery-origin fish. Set `breaks = 10` so you can see the distribution more clearly.
 3.	Make a scatter plot of the fecundity of females as a function of their body weight for wild fish only. Use whichever plotting character (`pch`) and color (`col`) you wish. Change the main title and axes labels to reflect what they mean. Change the x-axis limits to be 600 to 3000 and the y-axis limits to be 0 to 3500. (_Hint: The `NAs` will not cause a problem. R will only use points where there are paired records for both `x` and `y` and ignore otherwise_).
 4.	Add points that do the same thing but for hatchery fish. Use a different plotting character and a different color.
