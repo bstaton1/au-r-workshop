@@ -1,2 +1,116 @@
 # Large Data Manipulation {#ch5}
 
+```{r, include = F}
+rm(list = ls(all = T))
+knitr::opts_chunk$set(fig.align = "center")
+```
+
+## Chapter Overview{-}
+
+Any data analyst will tell you that oftentimes the most difficult part of an analysis is simply getting the data in the proper format. Real data sets are messy: they have missing values, variables are often stored in multiple columns but would be better stored as rows, the same factor level may be coded as two or more different types (`"hatch"`, "`Hatch`", and `"HATCH"` are all treated differently in R). You get the point: sometimes significant data-wrangling may be required before you perform an analysis.
+
+In this chapter, you will learn the more advanced data manipulation in R using two R **packages**:
+
+*  `reshape2`: used for changing data between formats (wide and long)
+*  `dplyr`: used for large data manipulations with a consistent and readable format.
+
+You will be turning daily observations of harvest and escapement (fish that are not harvested) into annual totals for the purpose of fitting a **spawner-recruit analysis** on a hypothetical pink salmon (_Oncorhynchus gorbuscha_) data set. More details and context on these terms and topics will be provided later. 
+
+**IMPORTANT NOTE**: If you did not attend the sessions corresponding to Chapters \@ref(ch1) or \@ref(ch2), you are recommended to walk through the material found in those chapters before proceeding to this material. Additionally, you will find the material in Section \@ref(nls) helpful for the end of this chapter. Remember that if you are confused about a topic, you can use **CTRL + F** to find previous cases where that topic has been discussed in this document.
+
+## Before You Begin {-}
+
+You should create a new directory and R script for your work in this Chapter. Create a new R script called `Ch5.R` and save it in the directory `C:/Users/YOU/Documents/R-Workshop/Chapter5`. Set your working directory to that location. Revisit the material in Sections \@ref(scripts) and \@ref(working-dir) for more details on these steps.
+
+Download the data sets `daily_escape.csv` and `daily_catch.csv` from **GitHub, reminder** and place them in your working directory.
+
+## Aquiring and Loading Packages
+
+An **R package** is a bunch of code, documentation, and data that someone has written and bundled into a consistent format that allows other R users to install and use in their R sessions. R packages make R incredibly flexible and extensible. If you are trying to do a specialized analysis that is not included in the base R distribution, it is likely that someone has already written a package to allow you to do it!
+
+You will be using some new packages that you likely don't already have on your computer, so you will need to install them first:
+
+```{r, eval = F}
+install.packages("dplyr")
+install.packages("reshape2")
+```
+
+This requires an internet connection. You will see some text display in the console telling you the packages are being installed. This only needs to be done once for each version of R you have. If you install a new version of R, you will likely need to update your packages (i.e., re-install them).
+
+Now that the packages are on your computer, you will need to load them into the current session:
+
+```{r}
+library(dplyr)
+library(reshape2)
+```
+
+These messages are telling you that there are functions in the `dplyr` package that have the same names as those already being used in the `stats` and `base` R packages. This is fine so long as you don't want to use the original functions. If you wish to use the base version of the `filter` function rather than the `dplyr` version, use it like this: `base::filter()`. Each time you close and reopen R, you will need to load any packages you want to use using `library` again.
+
+## The Data
+
+You have daily observations of catch and escapement for every other year between 1917 and 2015. Pink salmon have a simple life history where fish spawned in one odd year return as adults to spawn in the next odd year. There is a commercial fishery in this system located at the river mouth which harvests fish as they enter the river. A counting tower is located upstream of the fishing grounds that counts the number of fish that escaped the fishery and will have a chance to spawn (this number is termed "escapement"). The ultimate goal is to obtain annual totals of spawners and total run (catch + escapement) for the purpose of fitting a spawner recruit analysis. You will perform some other analyses along the way directed quantifying patterns in run timing.
+
+Read in the two data sets:
+
+```{r, eval = F}
+catch = read.csv("daily_catch.csv")
+esc = read.csv("daily_escape.csv")
+```
+
+```{r, echo = F}
+catch = read.csv("Data/daily_catch.csv")
+esc = read.csv("Data/daily_escape.csv")
+```
+
+Look at the first 6 rows and columns of the `catch` data:
+
+```{r}
+catch[1:6,1:6]
+```
+
+The column `doy` is the day of the year that record corresponds to, and each column represents a different year. Notice the format of the `esc` data is the same:
+
+```{r}
+esc[1:6,1:6]
+```
+
+But notice the first `doy` is one day later for `esc` than for `catch`. This is because of the time lag for fish to make it from the fishery grounds to the counting tower (a one day swim: fish that were in the fishing grounds on day `d` passed the counting tower on day `d+1` if they were not harvested).
+
+## Change format using `melt`
+
+These data are in what is called **wide** format: different levels of the `year` variable are stored as columns. A **long** format would have three columns: one for `doy`, `year`, and `catch` or `esc`. Turn the `catch` data frame into long format using the `melt` function from `reshape2`:
+
+```{r}
+long.catch = melt(catch, id.var = "doy",
+                  variable.name = "year",
+                  value.name = "catch")
+head(long.catch)
+```
+
+The first argument is the data frame to reformat, the second argument (`id.var`) is the variable that identifies one observation from another, here it is the `doy` that the count occured on. In this case, it is actually all we need to run `melt` properly. The optional `variable.name` and `value.name` arguments specify the names of the other two columns.  These default to "variable" and "value" if not specified. Do the same thing for escapement:
+
+```{r}
+long.esc = melt(esc, id.var = "doy",
+                variable.name = "year",
+                value.name = "esc")
+head(long.esc)
+```
+
+Anytime you do a large data manipulation like this, you should compare the new dataset with the original to verify that it worked properly. Ask if `all` of the daily catches for a given year in the original dataset match up to the new dataset:
+
+```{r}
+all(catch$y_2015 == long.catch[long.catch$year == "y_2015", "catch"])
+```
+
+The single `TRUE` indicates that every element matches up for 2015 in the catch data, just like they should.
+
+## Join Data Sets with `merge`
+
+You now have two long format data sets. You can turn them into one data set with the `merge` function (which is actually in the `base` package). `merge` takes two data frames and joins them based on certain grouping variables. Here, you want to combine the data frames `long.catch` and `long.esc` into one data frame, and match the rows by the `doy` and `year` that each observation occurred:
+
+```{r}
+dat = merge(x = long.esc, y = long.catch,
+            by = c("doy", "year"), all = T)
+head(dat)
+```
+

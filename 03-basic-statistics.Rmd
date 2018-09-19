@@ -233,7 +233,7 @@ AIC(fit1, fit2, fit3, fit4)
 
 In general, AIC values that are different by more than 2 units are interpretted as having importantly different predictive performance. Based on this very quick-and-dirty analysis, it seems that in predicting future fecundity, you would want to use the interactive ANCOVA model.
 
-## The Generalized Linear Model 
+## The Generalized Linear Model {#glms}
 
 The models you fitted above were called "general linear models". They all made the assumption that the residuals ($\varepsilon_i$) are normally-distributed. Oftentimes data and analyses do not follow this assumption. For these cases you should often move to the broader family of statistical models known as "generalized linear models"^[General linear models are a member of this family].
 
@@ -482,7 +482,7 @@ p = pnorm(0)
 qnorm(p)
 ```
 
-## Bonus Topic: Non-linear Regression
+## Bonus Topic: Non-linear Regression {#nls}
 
 You fitted linear and logistic regression models in Sections \@ref(regression) and \@ref(logis-regression), however, R allows you to fit non-linear regression models as well.
 

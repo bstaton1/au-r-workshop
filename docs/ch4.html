@@ -203,9 +203,22 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="4.7" data-path="ch4.html"><a href="ch4.html#sim-examples"><i class="fa fa-check"></i><b>4.7</b> Simulation-Based Examples</a><ul>
 <li class="chapter" data-level="4.7.1" data-path="ch4.html"><a href="ch4.html#test-rnorm"><i class="fa fa-check"></i><b>4.7.1</b> Test <code>rnorm</code></a></li>
-<li class="chapter" data-level="4.7.2" data-path="ch4.html"><a href="ch4.html#stochastic-power-analysis"><i class="fa fa-check"></i><b>4.7.2</b> Stochastic Power Analysis</a></li>
+<li class="chapter" data-level="4.7.2" data-path="ch4.html"><a href="ch4.html#power-ex"><i class="fa fa-check"></i><b>4.7.2</b> Stochastic Power Analysis</a></li>
+<li class="chapter" data-level="4.7.3" data-path="ch4.html"><a href="ch4.html#harv-ex"><i class="fa fa-check"></i><b>4.7.3</b> Harvest Policy Analysis</a></li>
+<li class="chapter" data-level="4.7.4" data-path="ch4.html"><a href="ch4.html#mrc-ex"><i class="fa fa-check"></i><b>4.7.4</b> Mark-Recapture Evaluation</a></li>
 </ul></li>
-<li class="chapter" data-level="4.8" data-path="ch4.html"><a href="ch4.html#resample-examples"><i class="fa fa-check"></i><b>4.8</b> Resampling-Based Examples</a></li>
+<li class="chapter" data-level="4.8" data-path="ch4.html"><a href="ch4.html#resample-examples"><i class="fa fa-check"></i><b>4.8</b> Resampling-Based Examples</a><ul>
+<li class="chapter" data-level="4.8.1" data-path="ch4.html"><a href="ch4.html#perm-test-ex"><i class="fa fa-check"></i><b>4.8.1</b> Permutation Test</a></li>
+<li class="chapter" data-level="4.8.2" data-path="ch4.html"><a href="ch4.html#boot-test-ex"><i class="fa fa-check"></i><b>4.8.2</b> The Bootstrap</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="ch4.html"><a href="ch4.html#exercise-4"><i class="fa fa-check"></i><b>4.9</b> Exercise 4</a><ul>
+<li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#exercise-4a-required-material-only"><i class="fa fa-check"></i>Exercise 4A: Required Material Only</a></li>
+<li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#exercise-4b-stochastic-power-analysis"><i class="fa fa-check"></i>Exercise 4B: Stochastic Power Analysis</a></li>
+<li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#exercise-4c-harvest-policy-analysis"><i class="fa fa-check"></i>Exercise 4C: Harvest Policy Analysis</a></li>
+<li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#exercise-4d-mark-recapture-evaluation"><i class="fa fa-check"></i>Exercise 4D: Mark-Recapture Evaluation</a></li>
+<li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#exercise-4e-permutation-tests"><i class="fa fa-check"></i>Exercise 4E: Permutation Tests</a></li>
+<li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#exercise-4f-the-bootstrap"><i class="fa fa-check"></i>Exercise 4F: The Bootstrap</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="ch5.html"><a href="ch5.html"><i class="fa fa-check"></i><b>5</b> Large Data Manipulation</a></li>
 <li class="chapter" data-level="6" data-path="ch6.html"><a href="ch6.html"><i class="fa fa-check"></i><b>6</b> Mapping and Spatial Analysis</a><ul>
@@ -256,7 +269,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">4.1</span> Layout of this chapter</h2>
 <p>This chapter is divided into two main sections:</p>
 <ul>
-<li><p><strong>Required material</strong> (Sections <a href="ch4.html#randomness">4.2</a> and <a href="ch4.html#replication">4.4</a>) which is necessary to understand the examples in this chapter and the subsequent chapters</p></li>
+<li><p><strong>Required material</strong> (Sections <a href="ch4.html#randomness">4.2</a> and <a href="ch4.html#mc-summaries">4.6</a>) which is necessary to understand the examples in this chapter and the subsequent chapters</p></li>
 <li><p><strong>Example Cases</strong> (Sections <a href="ch4.html#sim-examples">4.7</a> and <a href="ch4.html#resample-examples">4.8</a>) which apply the skills learned in the required material. In the workshop sessions, you will walkthrough 2-3 of these example cases at the choice of the group of the participants. If you are interested in simulation modeling, you are suggested to work through all of the example cases, as slightly different tricks will be shown in the different examples.</p></li>
 </ul>
 </div>
@@ -268,7 +281,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>In Section <a href="ch3.html#dists">3.3</a>, you learned about using probability distributions in R. One of the uses was the <code>r-</code> family of distribution functions. These functions create random numbers following a random process specified by a probability distribution.</p>
 <p>Consider animal survival as an example. At the end of each year, each individual alive at the start can either live or die. There are two outcomes here, and suppose each animal has an 80% chance of surviving. The number of individuals that survive is the result of a <strong>binomial random process</strong> in which there were <span class="math inline">\(n\)</span> individuals alive at the start of this year and <span class="math inline">\(p\)</span> is the probability that any one individual survives to the next year. You can execute one binomial random process where <span class="math inline">\(p = 0.8\)</span> and <span class="math inline">\(n = 100\)</span> like this:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rbinom</span>(<span class="dt">n =</span> <span class="dv">1</span>, <span class="dt">size =</span> <span class="dv">100</span>, <span class="dt">prob =</span> <span class="fl">0.8</span>)</code></pre></div>
-<pre><code>## [1] 78</code></pre>
+<pre><code>## [1] 83</code></pre>
 <p>The result you get will almost certainly be different from the one printed here. That is the random component.</p>
 <p>You can execute many such binomial processes by changing the <code>n</code> argument. Plot the distribution of expected surviving individuals:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">survivors =<span class="st"> </span><span class="kw">rbinom</span>(<span class="dv">1000</span>, <span class="dv">100</span>, <span class="fl">0.8</span>)
@@ -283,23 +296,23 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3><span class="header-section-number">4.2.2</span> Resampling</h3>
 <p>Using random deviates works great for creating new random numbers, but what if you already have a set of numbers that you wish to introduce randomness to? For this, you can use <strong>resampling techniques</strong>. In R, the <code>sample</code> function is used to sample <code>size</code> elements from the vector <code>x</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">size =</span> <span class="dv">5</span>)</code></pre></div>
-<pre><code>## [1] 9 2 5 1 4</code></pre>
+<pre><code>## [1]  4  3 10  5  2</code></pre>
 <p>You can sample with replacement (where it is possible to sample the same element two or more times):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>), <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">replace =</span> T)</code></pre></div>
-<pre><code>##  [1] &quot;a&quot; &quot;b&quot; &quot;b&quot; &quot;a&quot; &quot;c&quot; &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;b&quot; &quot;b&quot;</code></pre>
+<pre><code>##  [1] &quot;c&quot; &quot;b&quot; &quot;b&quot; &quot;a&quot; &quot;c&quot; &quot;a&quot; &quot;b&quot; &quot;a&quot; &quot;b&quot; &quot;a&quot;</code></pre>
 <p>You can set probabilities on the sampling of different elements<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;live&quot;</span>, <span class="st">&quot;die&quot;</span>), <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">replace =</span> T,
        <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.8</span>, <span class="fl">0.2</span>))</code></pre></div>
-<pre><code>##  [1] &quot;live&quot; &quot;live&quot; &quot;live&quot; &quot;live&quot; &quot;live&quot; &quot;live&quot; &quot;live&quot; &quot;die&quot;  &quot;live&quot; &quot;die&quot;</code></pre>
+<pre><code>##  [1] &quot;live&quot; &quot;live&quot; &quot;live&quot; &quot;live&quot; &quot;live&quot; &quot;live&quot; &quot;live&quot; &quot;live&quot; &quot;live&quot; &quot;live&quot;</code></pre>
 <p>Notice that this is the same as the binomial random process above, but with only 10 trials and the printing of the outcomes rather than the number of successes.</p>
 </div>
 </div>
 <div id="reproducing-randomness" class="section level2">
 <h2><span class="header-section-number">4.3</span> Reproducing randomness</h2>
 <p>For reproducibility purposes, you may wish to get the same exact random numbers each time you run your script. To do this, you need to set the <strong>random seed</strong>, which is the starting point of the random number generator your computer uses. If you run these two lines of code, you should get the same result as printed here:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">123</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1234</span>)
 <span class="kw">rnorm</span>(<span class="dv">1</span>)</code></pre></div>
-<pre><code>## [1] -0.5604756</code></pre>
+<pre><code>## [1] -1.207066</code></pre>
 </div>
 <div id="replication" class="section level2">
 <h2><span class="header-section-number">4.4</span> Replication</h2>
@@ -316,11 +329,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>If we take <code>mean(means)</code> and <code>sd(means)</code>, that should be very similar to <code>mean(x)</code> and <code>se(x)</code>. Create the <code>se</code> function (also shown in Section <a href="ch2.html#error-bars">2.11</a>) and prove this to yourself:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">se =<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">sd</span>(x)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">length</span>(x))
 <span class="kw">mean</span>(means); <span class="kw">mean</span>(x)</code></pre></div>
-<pre><code>## [1] 499.7709</code></pre>
-<pre><code>## [1] 499.5738</code></pre>
+<pre><code>## [1] 493.8096</code></pre>
+<pre><code>## [1] 493.4166</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sd</span>(means); <span class="kw">se</span>(x)</code></pre></div>
-<pre><code>## [1] 5.648848</code></pre>
-<pre><code>## [1] 5.366415</code></pre>
+<pre><code>## [1] 4.899929</code></pre>
+<pre><code>## [1] 5.044153</code></pre>
 </div>
 <div id="the-for-loop" class="section level3">
 <h3><span class="header-section-number">4.4.2</span> The <code>for</code> loop</h3>
@@ -337,13 +350,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## [1] 9
 ## [1] 16
 ## [1] 25</code></pre>
-<p>I <code>print</code> will be executed 5 times: once for each value of <code>i</code>. It is the same as:</p>
+<p>The <code>print</code> command will be executed 5 times: once for each value of <code>i</code>. It is the same as:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">i =<span class="st"> </span><span class="dv">1</span>; <span class="kw">print</span>(i); i =<span class="st"> </span><span class="dv">2</span>; <span class="kw">print</span>(i); i =<span class="st"> </span><span class="dv">3</span>; <span class="kw">print</span>(i); i =<span class="st"> </span><span class="dv">4</span>; <span class="kw">print</span>(i); i =<span class="st"> </span><span class="dv">5</span>; <span class="kw">print</span>(i)</code></pre></div>
-<pre><code>## [1] 1</code></pre>
-<pre><code>## [1] 2</code></pre>
-<pre><code>## [1] 3</code></pre>
-<pre><code>## [1] 4</code></pre>
-<pre><code>## [1] 5</code></pre>
 <p>If you remove the <code>print()</code> function, see what happens:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {
   i<span class="op">^</span><span class="dv">2</span>
@@ -359,8 +367,8 @@ results</code></pre></div>
 <p>When <code>i^2</code> is calculated, it will be placed in the element <code>results[i]</code>. This was a trivial example, because you should do things like this using R’s vectorized calculation framework: <code>(1:5)^2</code> (see Section <a href="ch1.html#vector-math">1.6</a>).</p>
 <p>However, there are times where it is advantageous to use a loop. Particularly in cases where:</p>
 <ol style="list-style-type: decimal">
-<li>the calculations in one element are determined on the value in previous elements, such as in time series models.</li>
-<li>the calculations have multiple steps or</li>
+<li>the calculations in one element are determined from the value in previous elements, such as in time series models</li>
+<li>the calculations have multiple steps</li>
 <li>you wish to store multiple results</li>
 <li>you wish to track the progress of your calculations</li>
 </ol>
@@ -378,7 +386,7 @@ N[<span class="dv">1</span>] =<span class="st"> </span><span class="dv">1000</sp
 <span class="co"># plot</span>
 <span class="kw">plot</span>(N, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">pch =</span> <span class="dv">15</span>, <span class="dt">xlab =</span> <span class="st">&quot;Year&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Abundance&quot;</span>)</code></pre></div>
 <p><img src="au-r-workshop_files/figure-html/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>Examples of the other three utilities are shown in the examples.</p>
+<p>Examples of the other three utilities are shown in the example cases.</p>
 </div>
 </div>
 <div id="function-writing" class="section level2">
@@ -410,23 +418,21 @@ N[<span class="dv">1</span>] =<span class="st"> </span><span class="dv">1000</sp
 <p>Use your function once using the same settings as before:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pop_sim</span>(<span class="dv">100</span>, <span class="fl">1.1</span>, <span class="fl">0.1</span>, <span class="fl">0.08</span>, T)</code></pre></div>
 <p><img src="au-r-workshop_files/figure-html/unnamed-chunk-20-1.png" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>##   [1]  1000.0000  1295.7900  1167.0540  1069.0864  1262.5892  1105.1322
-##   [7]  1271.3711  1136.5372   918.6956   876.6976  1023.8931  1042.9960
-##  [13]  1049.0510  1098.0740  1095.4494  1394.5653  1513.7068  1578.7421
-##  [19]  1432.5964  1397.9240  1237.5714  1159.7026  1090.9918  1004.0741
-##  [25]   939.8106   935.7751  1049.3312  1227.2058  1201.8934  1417.5916
-##  [31]  1610.4107  1887.1994  2162.2882  2229.5082  1773.0274  1855.5533
-##  [37]  1685.5738  1698.3613  1909.4173  1965.4014  2049.5859  2317.5072
-##  [43]  2182.4272  2665.3237  2586.9369  2526.1907  2509.4155  2779.7149
-##  [49]  3111.1756  3060.8676  3234.6840  3610.3290  3573.5155  3622.2968
-##  [55]  3515.1466  3731.0774  3579.4810  4205.3906  4167.5403  4153.6562
-##  [61]  4610.1569  5728.6671  6037.1513  7522.9763  7309.7468  7770.8357
-##  [67]  7843.0532  9911.8712  9754.7090 12938.7605 13688.7754 13917.7057
-##  [73] 13448.8651 12676.8634 12799.8298 12283.9954 13129.9338 14794.9673
-##  [79] 14972.1067 15463.3070 16349.9490 14523.0243 15156.4361 15651.2050
-##  [85] 17422.2729 18594.8657 17792.5617 19910.6253 19454.9460 18859.2774
-##  [91] 16916.8541 19681.7666 21168.8864 23637.4310 24125.8204 23155.2549
-##  [97] 32639.1507 29838.7846 26778.3891 30792.7302</code></pre>
+<pre><code>##   [1] 1000.0000  991.9189  966.1673 1119.8166 1167.4864  940.7572 1003.4028
+##   [8]  993.7741 1092.3542 1114.6248 1011.6523 1012.8149 1180.6373 1125.6400
+##  [15] 1128.9152 1234.7466 1546.7473 1438.8662 1677.2920 1878.7559 1601.6186
+##  [22] 1803.7180 2124.3262 1888.6512 1950.4458 2170.6249 2574.6142 2088.5542
+##  [29] 2506.9833 2743.3092 2350.9056 2150.1135 2067.0640 1870.8924 2061.8156
+##  [36] 1895.1914 1690.9365 2112.3612 2114.7401 1815.7680 1949.8661 1953.3604
+##  [43] 1810.1937 1982.6345 1920.9718 1970.1317 1905.9889 2061.5250 2105.1941
+##  [50] 1870.4381 1809.3494 1717.6727 1396.3874 1311.3019 1288.7084 1472.9669
+##  [57] 1681.8080 1636.4883 1874.0338 1937.6544 1767.9563 1927.9457 2056.8504
+##  [64] 1868.7910 2133.6614 2393.3918 2174.1558 1987.7674 2079.1235 1990.4753
+##  [71] 2020.4988 2207.8347 2371.1186 2235.4894 1861.8581 1955.1694 2126.6954
+##  [78] 1934.2892 1919.1523 2035.2788 2595.0493 2624.3191 2634.0353 2619.8963
+##  [85] 3063.5877 3335.9375 3036.8140 3211.4930 3108.6992 2879.1979 3044.2377
+##  [92] 2667.8093 3036.1608 3264.0875 3067.2281 3003.3483 2867.4153 2882.2673
+##  [99] 2741.6617 2748.9291</code></pre>
 <p>Now, you wish to replicate exectuing this function 1000 times. Use the <code>replicate</code> function to do this:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">out =<span class="st"> </span><span class="kw">replicate</span>(<span class="dt">n =</span> <span class="dv">1000</span>, <span class="dt">expr =</span> <span class="kw">pop_sim</span>(<span class="dv">100</span>, <span class="fl">1.1</span>, <span class="fl">0.1</span>, <span class="fl">0.08</span>, F))</code></pre></div>
 <p>If you do <code>dim(out)</code>, you’ll see that rows are stored as years (there are 100 of them) and columns are stored as replicates (there are 1000 of them). Notice how wrapping the code in the function made the <code>replicate</code> call easy.</p>
@@ -447,8 +453,8 @@ N[<span class="dv">1</span>] =<span class="st"> </span><span class="dv">1000</sp
 <p>You can calculate the mean abundance each year across your iterations using the <code>apply</code> function (Section <a href="ch1.html#data-summaries">1.9</a>):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">N_mean =<span class="st"> </span><span class="kw">apply</span>(out, <span class="dv">1</span>, mean)
 N_mean[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</code></pre></div>
-<pre><code>##  [1] 1000.000 1020.206 1039.908 1055.698 1072.032 1093.386 1113.873
-##  [8] 1130.438 1151.554 1174.707</code></pre>
+<pre><code>##  [1] 1000.000 1017.511 1033.436 1054.619 1069.542 1086.413 1107.854
+##  [8] 1129.619 1145.288 1161.254</code></pre>
 <p>You could do the same thing using <code>median</code> rather than <code>mean</code>. Mode is more difficult to calculate in R, if you need to get the mode, try to Google it<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>.</p>
 </div>
 <div id="variability" class="section level3">
@@ -470,26 +476,26 @@ N_mean[<span class="dv">1</span><span class="op">:</span><span class="dv">10</sp
 <span class="kw">table</span>(out10)</code></pre></div>
 <pre><code>## out10
 ## greater10    less10 
-##       671       329</code></pre>
+##       643       357</code></pre>
 <p>Suppose you are also interested in how many of your iterations resulted in fewer than 1100 individuals at year 20:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">out20 =<span class="st"> </span><span class="kw">ifelse</span>(out[<span class="dv">20</span>,] <span class="op">&lt;</span><span class="st"> </span><span class="dv">1100</span>, <span class="st">&quot;less20&quot;</span>, <span class="st">&quot;greater20&quot;</span>)
 <span class="kw">table</span>(out20)</code></pre></div>
 <pre><code>## out20
 ## greater20    less20 
-##       629       371</code></pre>
+##       592       408</code></pre>
 <p>Now suppose you are interested in how these two metrics are related:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(out10, out20)</code></pre></div>
 <pre><code>##            out20
 ## out10       greater20 less20
-##   greater10       522    149
-##   less10          107    222</code></pre>
-<p>As an example in iterpretting this output, most often populations that were greater than 1000 at year 10 were also greater than 1000 at year 20. If a population was less than 1000 at year 10, it was more likely to be less than 1100 at year 20 than to be greater than it.</p>
+##   greater10       502    141
+##   less10           90    267</code></pre>
+<p>As an example in iterpretting this output, most often populations that were greater than 1000 at year 10 were also greater than 1100 at year 20. If a population was less than 1000 at year 10, it was more likely to be less than 1100 at year 20 than to be greater than it.</p>
 <p>You can turn these into probabilities (if you believe your model represents reality) by dividing each cell by the total number of iterations:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(<span class="kw">table</span>(out10, out20)<span class="op">/</span><span class="dv">1000</span>, <span class="dv">2</span>)</code></pre></div>
 <pre><code>##            out20
 ## out10       greater20 less20
-##   greater10      0.52   0.15
-##   less10         0.11   0.22</code></pre>
+##   greater10      0.50   0.14
+##   less10         0.09   0.27</code></pre>
 </div>
 </div>
 <div id="sim-examples" class="section level2">
@@ -522,12 +528,12 @@ normal_p =<span class="st"> </span><span class="kw">pnorm</span>(q, mu, sig)
 <p><img src="au-r-workshop_files/figure-html/unnamed-chunk-31-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The <code>ecdf</code> function obtains the empirical cumulative density function (which is just <code>pnorm</code> for a sample). It allows you to plug in any random variable and obtain the probability of having one less than it.</p>
 </div>
-<div id="stochastic-power-analysis" class="section level3">
+<div id="power-ex" class="section level3">
 <h3><span class="header-section-number">4.7.2</span> Stochastic Power Analysis</h3>
-<p>A power analysis is one where the analyst wishes to determine how much power they will have to detect an effect of size <code>d</code> if the sample size is <code>n</code> and the variability is <code>sig</code>. Having high power means ensuring you do not falsely reject a true hypothesis (e.g., claiming that <code>d</code> is zero based on a p-value greater than 0.05).</p>
+<p>A power analysis is one where the analyst wishes to determine how much power they will have to detect an effect. Having high power means ensuring you do not falsely reject a true hypothesis (e.g., claiming that there is not effect based on a p-value greater than 0.05).</p>
 <p>You can conduct a power analysis using stochastic simulation. Here, you will write a power analysis to determine how likely are you to be able to correctly identify what you deem to be a biologically-meaningful difference in survival between two tagging procedures.</p>
-<p>You know one tagging procedure has approximately a 5% mortality rate. Another, cheaper and less labor intensive method has been proposed but before implementing it, your agency wishes to determine if it will have a meaningful impact on the reliability of the study. You and your colleagues determine that if the mortality rate reaches 15%, then it is too costly to implement the new strategy (tags are expensive, after all) and have decided to perform a small-scale study to determine if the new method affects mortality enough to make it inefficient (i.e., have 15% or more mortality). Before performing the study however, they have enlisted your help in determining how many individuals they need to tag using each method to answer their question. You decide to use a stochastic power analysis based on what you’ve learned in this book to help your research group. The small scale study can tag a total of at most 30 fish. Could they tag fewer and still have a high probability of correctly identifying an effect of this size?</p>
-<p>The approach works like this (this is called <strong>psuedocode</strong>):</p>
+<p>You know one tagging procedure has approximately a 10% mortality rate (10% of tagged fish die within the first 12 hours as result of the tagging process). Another, cheaper and less labor intensive method has been proposed but before implementing it, your agency wishes to determine if it will have a meaningful impact on the reliability of the study. You and your colleagues determine that if the mortality rate reaches 25%, then gains in time and cost efficiency would be offset by needing to tag more fish (because more will die). You have decided to perform a small-scale study to determine if the new method affects mortality enough to result in 25% or more mortality. The study will tag <code>n</code> individuals using each method (new and old) and track the fraction that survived after 12 hours. Before performing the study however, you deem it important to determine how large <code>n</code> needs to be to answer this question. You decide to use a stochastic power analysis based on what you’ve learned in this book to help your research group. The small-scale study can tag a total of at most 100 fish with the currently available resources. Could you tag fewer than 100 total individuals and still have a high probability of correctly identifying an effect of this size?</p>
+<p>The stochastic power analysis approach works like this (this is called <strong>psuedocode</strong>):</p>
 <ol style="list-style-type: decimal">
 <li>Simulate data under the reality that the difference is real with <code>n</code> observations per treatment, where <code>n &lt; 30/2</code>.</li>
 <li>Fit the model that will be used when the real data are collected.</li>
@@ -535,10 +541,12 @@ normal_p =<span class="st"> </span><span class="kw">pnorm</span>(q, mu, sig)
 <li>Replicate steps 1 - 3 many times. Determine what fraction of times the effect was correctly identified.</li>
 <li>Replicate step 4 while varying <code>n</code> over the interval from 5 to 15.</li>
 </ol>
+<p>Step 2 will require fitting a generalized linear model, for a review revisit Section <a href="#glms"><strong>??</strong></a> (specifically Section <a href="ch3.html#logis-regression">3.2.1</a> on logistic regression).</p>
 <p>First, create a function that will generate data, fit the model, and determine if the p-value is significant (steps 1-3 above):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sim_fit =<span class="st"> </span><span class="cf">function</span>(n, <span class="dt">p_old =</span> <span class="fl">0.05</span>, <span class="dt">p_new =</span> <span class="fl">0.15</span>) {
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sim_fit =<span class="st"> </span><span class="cf">function</span>(n, <span class="dt">p_old =</span> <span class="fl">0.10</span>, <span class="dt">p_new =</span> <span class="fl">0.25</span>) {
   
-  <span class="co"># create the data</span>
+  ### step 1: create the data <span class="al">###</span>
+  <span class="co"># generate random response data</span>
   dead_old =<span class="st"> </span><span class="kw">rbinom</span>(n, <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">prob =</span> p_old)
   dead_new =<span class="st"> </span><span class="kw">rbinom</span>(n, <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">prob =</span> p_new)
   
@@ -548,11 +556,13 @@ normal_p =<span class="st"> </span><span class="kw">pnorm</span>(q, mu, sig)
   <span class="co"># create a data.frame to pass to glm</span>
   df =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">dead =</span> <span class="kw">c</span>(dead_old, dead_new), <span class="dt">method =</span> method)
   
+  <span class="co"># relevel so old is the reference</span>
   df<span class="op">$</span>method =<span class="st"> </span><span class="kw">relevel</span>(df<span class="op">$</span>method, <span class="dt">ref =</span> <span class="st">&quot;old&quot;</span>)
   
-  <span class="co"># fit the model</span>
+  ### step 2: fit the model <span class="al">###</span>
   fit =<span class="st"> </span><span class="kw">glm</span>(dead <span class="op">~</span><span class="st"> </span>method, <span class="dt">data =</span> df, <span class="dt">family =</span> binomial)
   
+  ### step 3: determine if a sig. p-value was found <span class="al">###</span>
   <span class="co"># extract the p-value</span>
   pval =<span class="st"> </span><span class="kw">summary</span>(fit)<span class="op">$</span>coef[<span class="dv">2</span>,<span class="dv">4</span>]
   
@@ -562,7 +572,7 @@ normal_p =<span class="st"> </span><span class="kw">pnorm</span>(q, mu, sig)
 <p>Next, for steps 4 and 5, set up a <strong>nested <code>for</code> loop</strong>. This will have two loops: one that loops over sample sizes for step 5 and one that loops over replicates of each sample size (step 4):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">I =<span class="st"> </span><span class="dv">1000</span>  <span class="co"># the number of replicates at each sample size</span>
 
-n_try =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">5</span>, <span class="dv">15</span>, <span class="dv">2</span>)  <span class="co"># the test sample sizes</span>
+n_try =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">10</span>, <span class="dv">50</span>, <span class="dv">10</span>)  <span class="co"># the test sample sizes</span>
 N =<span class="st"> </span><span class="kw">length</span>(n_try)      <span class="co"># count them</span>
 
 <span class="co"># container: </span>
@@ -574,32 +584,160 @@ out =<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA
   }
 }</code></pre></div>
 <p>You now have a matrix of <code>TRUE</code> and <code>FALSE</code> elements that indicates whether a significant difference was found at the <span class="math inline">\(\alpha = 0.05\)</span> level if the effect was truely as large as you care about. You can obtain the proportion of all the replicates at each sample size that resulted in a significant difference using the <code>mean</code> function with <code>apply</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">apply</span>(out, <span class="dv">2</span>, mean) <span class="op">~</span><span class="st"> </span>n_try, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">apply</span>(out, <span class="dv">2</span>, mean) <span class="op">~</span><span class="st"> </span>n_try, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>,
+     <span class="dt">xlab =</span> <span class="st">&quot;Tagged Fish per Treatment&quot;</span>,
+     <span class="dt">ylab =</span> <span class="st">&quot;Probability of Finding Effect (Power)&quot;</span>)</code></pre></div>
 <p><img src="au-r-workshop_files/figure-html/unnamed-chunk-34-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>Even if you tagged 30 fish total, you would have a 0% chance of saying the effect (which truely is there!) is present under the null hypothesis testing framework.</p>
-<p>Suppose you and your colleagues aren’t relying on p-values in this case, and are purely interested in the <strong>effect size</strong>. Adapt your function to determine how frequently it is you would be able to estimate an effect at least as large as 0.05 vs. 0.15 based on the point estimate only, not the p-value. Change the lines that summarize the <code>fit</code> model object and perform the logical condition to be:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="co"># obtain the estimated mortality rate for the new method</span>
+<p>Even if you tagged 100 fish total, you would have a 48% chance of saying the effect (which truely is there!) is present under the null hypothesis testing framework.</p>
+<p>Suppose you and your colleagues aren’t relying on p-values in this case, and are purely interested in how precisely the <strong>effect size</strong> would be estimated. Adapt your function to determine how frequently it is you would be able to estimate the true mortality probability of the new method within +/- 5% based on the point estimate only (the true estimate must be between 0.2 and 0.3 for a successful study). Change your function to calculate this additional metric and re-run the analysis:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sim_fit =<span class="st"> </span><span class="cf">function</span>(n, <span class="dt">p_old =</span> <span class="fl">0.10</span>, <span class="dt">p_new =</span> <span class="fl">0.25</span>) {
+  
+  <span class="co"># create the data</span>
+  dead_old =<span class="st"> </span><span class="kw">rbinom</span>(n, <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">prob =</span> p_old)
+  dead_new =<span class="st"> </span><span class="kw">rbinom</span>(n, <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">prob =</span> p_new)
+  
+  <span class="co"># create the predictor variable</span>
+  method =<span class="st"> </span><span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;old&quot;</span>, <span class="st">&quot;new&quot;</span>), <span class="dt">each =</span> n)
+  
+  <span class="co"># create a data.frame to pass to glm</span>
+  df =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">dead =</span> <span class="kw">c</span>(dead_old, dead_new), <span class="dt">method =</span> method)
+  
+  <span class="co"># relevel so old is the reference</span>
+  df<span class="op">$</span>method =<span class="st"> </span><span class="kw">relevel</span>(df<span class="op">$</span>method, <span class="dt">ref =</span> <span class="st">&quot;old&quot;</span>)
+  
+  <span class="co"># fit the model</span>
+  fit =<span class="st"> </span><span class="kw">glm</span>(dead <span class="op">~</span><span class="st"> </span>method, <span class="dt">data =</span> df, <span class="dt">family =</span> binomial)
+  
+    ### step 3: determine if a sig. p-value was found <span class="al">###</span>
+  <span class="co"># extract the p-value</span>
+  pval =<span class="st"> </span><span class="kw">summary</span>(fit)<span class="op">$</span>coef[<span class="dv">2</span>,<span class="dv">4</span>]
+  
+  <span class="co"># determine if it was found to be significant</span>
+  sig_pval =<span class="st"> </span>pval <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.05</span>
+  
+  <span class="co"># obtain the estimated mortality rate for the new method</span>
   p_new_est =<span class="st"> </span><span class="kw">predict</span>(fit, <span class="kw">data.frame</span>(<span class="dt">method =</span> <span class="kw">c</span>(<span class="st">&quot;new&quot;</span>)),
                       <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)
+  
+  <span class="co"># determine if it is +/- 5% from the true value</span>
+  prc_est =<span class="st"> </span>p_new_est <span class="op">&gt;=</span><span class="st"> </span>(p_new <span class="op">-</span><span class="st"> </span><span class="fl">0.05</span>) <span class="op">&amp;</span><span class="st"> </span>p_new_est <span class="op">&lt;=</span><span class="st"> </span>(p_new <span class="op">+</span><span class="st"> </span><span class="fl">0.05</span>)
+  
+  <span class="co"># return a vector with these two elements</span>
+  <span class="kw">c</span>(<span class="dt">sig_pval =</span> sig_pval, <span class="dt">prc_est =</span> <span class="kw">unname</span>(prc_est))
+}
 
-  <span class="co"># determine if it is at least 0.15</span>
-  p_new_est <span class="op">&gt;=</span><span class="st"> </span><span class="fl">0.15</span></code></pre></div>
-<p>Run your function through the same loop and make the same plot:</p>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-36-1.png" width="672" style="display: block; margin: auto;" /></p>
-<ul>
-<li>Harvest-policy analysis</li>
-<li>Mark-recapture evaluation</li>
-<li>Stochastic power analysis</li>
-</ul>
+<span class="co"># run the analysis</span>
+I =<span class="st"> </span><span class="dv">1000</span>  <span class="co"># the number of replicates at each sample size</span>
+
+n_try =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">10</span>, <span class="dv">50</span>, <span class="dv">10</span>)  <span class="co"># the test sample sizes</span>
+N =<span class="st"> </span><span class="kw">length</span>(n_try)      <span class="co"># count them</span>
+
+<span class="co"># containers: </span>
+out_sig =<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, I, N) <span class="co"># matrix with I rows and N columns</span>
+out_prc =<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, I, N) <span class="co"># matrix with I rows and N columns</span>
+
+<span class="cf">for</span> (n <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>N) {
+  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>I) {
+    tmp =<span class="st"> </span><span class="kw">sim_fit</span>(<span class="dt">n =</span> n_try[n])     <span class="co"># run sim</span>
+    out_sig[i,n] =<span class="st"> </span>tmp[<span class="st">&quot;sig_pval&quot;</span>]  <span class="co"># extract and store significance metric</span>
+    out_prc[i,n] =<span class="st"> </span>tmp[<span class="st">&quot;prc_est&quot;</span>]   <span class="co"># extract and store precision metric</span>
+  }
+}
+
+<span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
+<span class="kw">plot</span>(<span class="kw">apply</span>(out_sig, <span class="dv">2</span>, mean) <span class="op">~</span><span class="st"> </span>n_try, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>,
+     <span class="dt">xlab =</span> <span class="st">&quot;Tagged Fish per Treatment&quot;</span>,
+     <span class="dt">ylab =</span> <span class="st">&quot;Probability of Finding Effect (Power)&quot;</span>)
+<span class="kw">plot</span>(<span class="kw">apply</span>(out_prc, <span class="dv">2</span>, mean) <span class="op">~</span><span class="st"> </span>n_try, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>,
+     <span class="dt">xlab =</span> <span class="st">&quot;Tagged Fish per Treatment&quot;</span>,
+     <span class="dt">ylab =</span> <span class="st">&quot;Probability of A Precise Estimate&quot;</span>)</code></pre></div>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-35-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>It seems that even if you tagged 50 fish per treatment, you would have a 58% chance of estimating that the mortality rate is between 0.2 and 0.3 if it was truly 0.25.</p>
+<p>You and your colleagues consider these results and determine that you will need to somehow aquire more funds to tag more fish in the small-scale study in order to a high level of confidence in the results.</p>
+</div>
+<div id="harv-ex" class="section level3">
+<h3><span class="header-section-number">4.7.3</span> Harvest Policy Analysis</h3>
+</div>
+<div id="mrc-ex" class="section level3">
+<h3><span class="header-section-number">4.7.4</span> Mark-Recapture Evaluation</h3>
 </div>
 </div>
 <div id="resample-examples" class="section level2">
 <h2><span class="header-section-number">4.8</span> Resampling-Based Examples</h2>
-<ul>
-<li>Permutation tests</li>
-<li>The bootstrap</li>
-</ul>
+<div id="perm-test-ex" class="section level3">
+<h3><span class="header-section-number">4.8.1</span> Permutation Test</h3>
+</div>
+<div id="boot-test-ex" class="section level3">
+<h3><span class="header-section-number">4.8.2</span> The Bootstrap</h3>
+</div>
+</div>
+<div id="exercise-4" class="section level2">
+<h2><span class="header-section-number">4.9</span> Exercise 4</h2>
+<p>In this exercise, you will be adapting the code written in this chapter to investigate slightly different questions. You should create a new R script <code>Ex4.R</code> in your working directory for these exercises so your chapter code is left unchanged. Exercise 4A is based solely on the required material and Exercises 4B - 4F are based on the example cases. You should work through each example before attempting each of the later exercises.</p>
+<div id="exercise-4a-required-material-only" class="section level3 unnumbered">
+<h3>Exercise 4A: Required Material Only</h3>
+<p>These questions are based on the material in Sections <a href="ch4.html#randomness">4.2</a> - <a href="ch4.html#mc-summaries">4.6</a> only.</p>
+<ol style="list-style-type: decimal">
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+</div>
+<div id="exercise-4b-stochastic-power-analysis" class="section level3 unnumbered">
+<h3>Exercise 4B: Stochastic Power Analysis</h3>
+<p>These questions will require you to adapt the code written in Section <a href="ch4.html#power-ex">4.7.2</a></p>
+<ol style="list-style-type: decimal">
+<li>What sample size <code>n</code> do you need to have a power of 0.8 of detecting a significant difference between the two tagging methods?</li>
+<li>How do the inferences from the power analysis change if you are interested in <code>p_new = 0.4</code> instead of <code>p_new = 0.25</code>? Do you need to tag more or fewer fish in this case?</li>
+<li>Your analysis takes a bit of time to run so you are interested in tracking its progress. Add a progress message to your nested <code>for</code> loop that will print the sample size currently being analyzed:</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (n <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>N) {
+  <span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\r</span><span class="st">&quot;</span>, <span class="st">&quot;Sample Size = &quot;</span>, n_try[n])
+  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>I) {
+    ...
+  }
+}</code></pre></div>
+</div>
+<div id="exercise-4c-harvest-policy-analysis" class="section level3 unnumbered">
+<h3>Exercise 4C: Harvest Policy Analysis</h3>
+<p>These questions will require you to adapt the code written in Section <a href="ch4.html#harv-ex">4.7.3</a></p>
+<ol style="list-style-type: decimal">
+<li></li>
+<li></li>
+<li></li>
+</ol>
+</div>
+<div id="exercise-4d-mark-recapture-evaluation" class="section level3 unnumbered">
+<h3>Exercise 4D: Mark-Recapture Evaluation</h3>
+<p>These questions will require you to adapt the code written in Section <a href="ch4.html#mrc-ex">4.7.4</a></p>
+<ol style="list-style-type: decimal">
+<li></li>
+<li></li>
+<li></li>
+</ol>
+</div>
+<div id="exercise-4e-permutation-tests" class="section level3 unnumbered">
+<h3>Exercise 4E: Permutation Tests</h3>
+<p>These questions will require you to adapt the code written in Section <a href="ch4.html#perm-test-ex">4.8.1</a></p>
+<ol style="list-style-type: decimal">
+<li></li>
+<li></li>
+<li></li>
+</ol>
+</div>
+<div id="exercise-4f-the-bootstrap" class="section level3 unnumbered">
+<h3>Exercise 4F: The Bootstrap</h3>
+<p>These questions will require you to adapt the code written in Section <a href="ch4.html#boot-test-ex">4.8.2</a></p>
+<ol style="list-style-type: decimal">
+<li></li>
+<li></li>
+<li></li>
+</ol>
 
+</div>
 </div>
 </div>
 <div class="footnotes">

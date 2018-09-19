@@ -26,7 +26,7 @@ You should create a new directory and R script for your work in this Chapter. Cr
 
 This chapter is divided into two main sections:
 
-*  **Required material** (Sections \@ref(randomness) and \@ref(replication)) which is necessary to understand the examples in this chapter and the subsequent chapters
+*  **Required material** (Sections \@ref(randomness) and \@ref(mc-summaries)) which is necessary to understand the examples in this chapter and the subsequent chapters
 
 *  **Example Cases** (Sections \@ref(sim-examples) and \@ref(resample-examples)) which apply the skills learned in the required material. In the workshop sessions, you will walkthrough 2-3 of these example cases at the choice of the group of the participants. If you are interested in simulation modeling, you are suggested to work through all of the example cases, as slightly different tricks will be shown in the different examples. 
 
@@ -89,7 +89,7 @@ Notice that this is the same as the binomial random process above, but with only
 For reproducibility purposes, you may wish to get the same exact random numbers each time you run your script. To do this, you need to set the **random seed**, which is the starting point of the random number generator your computer uses. If you run these two lines of code, you should get the same result as printed here:
 
 ```{r}
-set.seed(123)
+set.seed(1234)
 rnorm(1)
 ```
 
@@ -140,9 +140,9 @@ for (i in 1:5) {
 }
 ```
 
-I `print` will be executed 5 times: once for each value of `i`. It is the same as:
+The `print` command will be executed 5 times: once for each value of `i`. It is the same as:
 
-```{r}
+```{r, eval = F}
 i = 1; print(i); i = 2; print(i); i = 3; print(i); i = 4; print(i); i = 5; print(i)
 ```
 
@@ -173,8 +173,8 @@ When `i^2` is calculated, it will be placed in the element `results[i]`. This wa
 
 However, there are times where it is advantageous to use a loop. Particularly in cases where:
 
-1.  the calculations in one element are determined on the value in previous elements, such as in time series models. 
-2.  the calculations have multiple steps or 
+1.  the calculations in one element are determined from the value in previous elements, such as in time series models
+2.  the calculations have multiple steps 
 3.  you wish to store multiple results
 4.  you wish to track the progress of your calculations
 
@@ -195,7 +195,7 @@ for (t in 2:nt) {
 plot(N, type = "l", pch = 15, xlab = "Year", ylab = "Abundance")
 ```
 
-Examples of the other three utilities are shown in the examples.
+Examples of the other three utilities are shown in the example cases.
 
 ## Function Writing
 In Monte Carlo analyses, it is often useful to wrap code into functions. This makes them easy to be replicated and have the settings adjusted. As an example, turn the population model shown above into a function:
@@ -302,7 +302,7 @@ Now suppose you are interested in how these two metrics are related:
 table(out10, out20)
 ```
 
-As an example in iterpretting this output, most often populations that were greater than 1000 at year 10 were also greater than 1000 at year 20. If a population was less than 1000 at year 10, it was more likely to be less than 1100 at year 20 than to be greater than it.
+As an example in iterpretting this output, most often populations that were greater than 1000 at year 10 were also greater than 1100 at year 20. If a population was less than 1000 at year 10, it was more likely to be less than 1100 at year 20 than to be greater than it.
 
 You can turn these into probabilities (if you believe your model represents reality) by dividing each cell by the total number of iterations:
 
@@ -356,15 +356,15 @@ points(random_p ~ q, col = "red")
 
 The `ecdf` function obtains the empirical cumulative density function (which is just `pnorm` for a sample). It allows you to plug in any random variable and obtain the probability of having one less than it.
 
-### Stochastic Power Analysis
+### Stochastic Power Analysis {#power-ex}
 
-A power analysis is one where the analyst wishes to determine how much power they will have to detect an effect of size `d` if the sample size is `n` and the variability is `sig`. Having high power means ensuring you do not falsely reject a true hypothesis (e.g., claiming that `d` is zero based on a p-value greater than 0.05).
+A power analysis is one where the analyst wishes to determine how much power they will have to detect an effect. Having high power means ensuring you do not falsely reject a true hypothesis (e.g., claiming that there is not effect based on a p-value greater than 0.05).
 
 You can conduct a power analysis using stochastic simulation. Here, you will write a power analysis to determine how likely are you to be able to correctly identify what you deem to be a biologically-meaningful difference in survival between two tagging procedures. 
 
-You know one tagging procedure has approximately a 5% mortality rate. Another, cheaper and less labor intensive method has been proposed but before implementing it, your agency wishes to determine if it will have a meaningful impact on the reliability of the study. You and your colleagues determine that if the mortality rate reaches 15%, then it is too costly to implement the new strategy (tags are expensive, after all) and have decided to perform a small-scale study to determine if the new method affects mortality enough to make it inefficient (i.e., have 15% or more mortality). Before performing the study however, they have enlisted your help in determining how many individuals they need to tag using each method to answer their question. You decide to use a stochastic power analysis based on what you've learned in this book to help your research group. The small scale study can tag a total of at most 30 fish. Could they tag fewer and still have a high probability of correctly identifying an effect of this size?
+You know one tagging procedure has approximately a 10% mortality rate (10% of tagged fish die within the first 12 hours as result of the tagging process). Another, cheaper and less labor intensive method has been proposed but before implementing it, your agency wishes to determine if it will have a meaningful impact on the reliability of the study. You and your colleagues determine that if the mortality rate reaches 25%, then gains in time and cost efficiency would be offset by needing to tag more fish (because more will die). You have decided to perform a small-scale study to determine if the new method affects mortality enough to result in 25% or more mortality. The study will tag `n` individuals using each method (new and old) and track the fraction that survived after 12 hours. Before performing the study however, you deem it important to determine how large `n` needs to be to answer this question. You decide to use a stochastic power analysis based on what you've learned in this book to help your research group. The small-scale study can tag a total of at most 100 fish with the currently available resources. Could you tag fewer than 100 total individuals and still have a high probability of correctly identifying an effect of this size?
 
-The approach works like this (this is called **psuedocode**):
+The stochastic power analysis approach works like this (this is called **psuedocode**):
 
 1.  Simulate data under the reality that the difference is real with `n` observations per treatment, where `n < 30/2`. 
 2.  Fit the model that will be used when the real data are collected.
@@ -372,12 +372,15 @@ The approach works like this (this is called **psuedocode**):
 4.  Replicate steps 1 - 3 many times. Determine what fraction of times the effect was correctly identified. 
 5.  Replicate step 4 while varying `n` over the interval from 5 to 15.
 
+Step 2 will require fitting a generalized linear model, for a review revisit Section \@ref(glms) (specifically Section \@ref(logis-regression) on logistic regression).
+
 First, create a function that will generate data, fit the model, and determine if the p-value is significant (steps 1-3 above):
 
 ```{r}
-sim_fit = function(n, p_old = 0.05, p_new = 0.15) {
+sim_fit = function(n, p_old = 0.10, p_new = 0.25) {
   
-  # create the data
+  ### step 1: create the data ###
+  # generate random response data
   dead_old = rbinom(n, size = 1, prob = p_old)
   dead_new = rbinom(n, size = 1, prob = p_new)
   
@@ -390,9 +393,10 @@ sim_fit = function(n, p_old = 0.05, p_new = 0.15) {
   # relevel so old is the reference
   df$method = relevel(df$method, ref = "old")
   
-  # fit the model
+  ### step 2: fit the model ###
   fit = glm(dead ~ method, data = df, family = binomial)
   
+  ### step 3: determine if a sig. p-value was found ###
   # extract the p-value
   pval = summary(fit)$coef[2,4]
   
@@ -406,7 +410,7 @@ Next, for steps 4 and 5, set up a **nested `for` loop**. This will have two loop
 ```{r}
 I = 1000  # the number of replicates at each sample size
 
-n_try = seq(5, 15, 2)  # the test sample sizes
+n_try = seq(10, 50, 10)  # the test sample sizes
 N = length(n_try)      # count them
 
 # container: 
@@ -422,26 +426,17 @@ for (n in 1:N) {
 You now have a matrix of `TRUE` and `FALSE` elements that indicates whether a significant difference was found at the $\alpha = 0.05$ level if the effect was truely as large as you care about. You can obtain the proportion of all the replicates at each sample size that resulted in a significant difference using the `mean` function with `apply`:
 
 ```{r}
-plot(apply(out, 2, mean) ~ n_try, type = "l")
+plot(apply(out, 2, mean) ~ n_try, type = "l",
+     xlab = "Tagged Fish per Treatment",
+     ylab = "Probability of Finding Effect (Power)")
 ```
 
-Even if you tagged 30 fish total, you would have a `r round(mean(out[,N]),2) * 100`% chance of saying the effect (which truely is there!) is present under the null hypothesis testing framework. 
+Even if you tagged `r n_try[N] * 2` fish total, you would have a `r round(mean(out[,N]),2) * 100`% chance of saying the effect (which truely is there!) is present under the null hypothesis testing framework.
 
-Suppose you and your colleagues aren't relying on p-values in this case, and are purely interested in the **effect size**. Adapt your function to determine how frequently it is you would be able to estimate an effect at least as large as 0.05 vs. 0.15 based on the point estimate only, not the p-value. Change the lines that summarize the `fit` model object and perform the logical condition to be:
+Suppose you and your colleagues aren't relying on p-values in this case, and are purely interested in how precisely the **effect size** would be estimated. Adapt your function to determine how frequently it is you would be able to estimate the true mortality probability of the new method within +/- 5% based on the point estimate only (the true estimate must be between 0.2 and 0.3 for a successful study). Change your function to calculate this additional metric and re-run the analysis:
 
-```{r, eval = F}
-  # obtain the estimated mortality rate for the new method
-  p_new_est = predict(fit, data.frame(method = c("new")),
-                      type = "response")
-
-  # determine if it is at least 0.15
-  p_new_est >= 0.15
-```
-
-Run your function through the same loop and make the same plot:
-
-```{r, echo = F}
-sim_fit = function(n, p_old = 0.05, p_new = 0.15) {
+```{r}
+sim_fit = function(n, p_old = 0.10, p_new = 0.25) {
   
   # create the data
   dead_old = rbinom(n, size = 1, prob = p_old)
@@ -459,40 +454,125 @@ sim_fit = function(n, p_old = 0.05, p_new = 0.15) {
   # fit the model
   fit = glm(dead ~ method, data = df, family = binomial)
   
+    ### step 3: determine if a sig. p-value was found ###
+  # extract the p-value
+  pval = summary(fit)$coef[2,4]
+  
+  # determine if it was found to be significant
+  sig_pval = pval < 0.05
+  
   # obtain the estimated mortality rate for the new method
   p_new_est = predict(fit, data.frame(method = c("new")),
                       type = "response")
   
-  # determine if it is at least 0.15
-  p_new_est >= 0.15
+  # determine if it is +/- 5% from the true value
+  prc_est = p_new_est >= (p_new - 0.05) & p_new_est <= (p_new + 0.05)
+  
+  # return a vector with these two elements
+  c(sig_pval = sig_pval, prc_est = unname(prc_est))
 }
 
+# run the analysis
 I = 1000  # the number of replicates at each sample size
 
-n_try = seq(5, 15, 2)  # the test sample sizes
+n_try = seq(10, 50, 10)  # the test sample sizes
 N = length(n_try)      # count them
 
-# container: 
-out = matrix(NA, I, N) # matrix with I rows and N columns
+# containers: 
+out_sig = matrix(NA, I, N) # matrix with I rows and N columns
+out_prc = matrix(NA, I, N) # matrix with I rows and N columns
 
 for (n in 1:N) {
   for (i in 1:I) {
-    out[i,n] = sim_fit(n = n_try[n])
+    tmp = sim_fit(n = n_try[n])     # run sim
+    out_sig[i,n] = tmp["sig_pval"]  # extract and store significance metric
+    out_prc[i,n] = tmp["prc_est"]   # extract and store precision metric
   }
 }
 
-plot(apply(out, 2, mean) ~ n_try, type = "l")
+par(mfrow = c(1,2))
+plot(apply(out_sig, 2, mean) ~ n_try, type = "l",
+     xlab = "Tagged Fish per Treatment",
+     ylab = "Probability of Finding Effect (Power)")
+plot(apply(out_prc, 2, mean) ~ n_try, type = "l",
+     xlab = "Tagged Fish per Treatment",
+     ylab = "Probability of A Precise Estimate")
 ```
 
+It seems that even if you tagged `r n_try[N]` fish per treatment, you would have a `r round(mean(out_prc[,N]),2) * 100`% chance of estimating that the mortality rate is between 0.2 and 0.3 if it was truly 0.25.
 
+You and your colleagues consider these results and determine that you will need to somehow aquire more funds to tag more fish in the small-scale study in order to a high level of confidence in the results.
 
+### Harvest Policy Analysis {#harv-ex}
+### Mark-Recapture Evaluation {#mrc-ex}
 
-
-  *  Harvest-policy analysis
-  *  Mark-recapture evaluation
-  *  Stochastic power analysis
-    
 ## Resampling-Based Examples {#resample-examples}
 
-  *  Permutation tests
-  *  The bootstrap
+### Permutation Test {#perm-test-ex}
+### The Bootstrap {#boot-test-ex}
+
+## Exercise 4
+
+In this exercise, you will be adapting the code written in this chapter to investigate slightly different questions. You should create a new R script `Ex4.R` in your working directory for these exercises so your chapter code is left unchanged. Exercise 4A is based solely on the required material and Exercises 4B - 4F are based on the example cases. You should work through each example before attempting each of the later exercises.
+
+### Exercise 4A: Required Material Only {-}
+
+These questions are based on the material in Sections \@ref(randomness) - \@ref(mc-summaries) only.
+
+1.  
+2.  
+3.
+4.
+5.
+6.
+
+
+### Exercise 4B: Stochastic Power Analysis {-}
+
+These questions will require you to adapt the code written in Section \@ref(power-ex)
+
+1.  What sample size `n` do you need to have a power of 0.8 of detecting a significant difference between the two tagging methods?
+2.  How do the inferences from the power analysis change if you are interested in `p_new = 0.4` instead of `p_new = 0.25`? Do you need to tag more or fewer fish in this case?
+3.  Your analysis takes a bit of time to run so you are interested in tracking its progress. Add a progress message to your nested `for` loop that will print the sample size currently being analyzed: 
+
+```{r, eval = F}
+for (n in 1:N) {
+  cat("\r", "Sample Size = ", n_try[n])
+  for (i in 1:I) {
+    ...
+  }
+}
+```
+
+### Exercise 4C: Harvest Policy Analysis {-}
+
+These questions will require you to adapt the code written in Section \@ref(harv-ex)
+
+1.  
+2.  
+3.
+
+### Exercise 4D: Mark-Recapture Evaluation {-}
+
+These questions will require you to adapt the code written in Section \@ref(mrc-ex)
+
+1.  
+2.  
+3.
+
+### Exercise 4E: Permutation Tests {-}
+
+These questions will require you to adapt the code written in Section \@ref(perm-test-ex)
+
+1.  
+2.  
+3.
+
+### Exercise 4F: The Bootstrap {-}
+
+These questions will require you to adapt the code written in Section \@ref(boot-test-ex)
+
+1.  
+2.  
+3.
+
