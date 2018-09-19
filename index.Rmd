@@ -35,11 +35,36 @@ Chapter \@ref(ch1) starts at the first step (installing R) and progresses by ass
 
 Many of the data sets used in this book were simulated by the author. Cases in which the data set used was not simulated are noted and a citation to the data source is provided. 
 
-The data sets used in this book are hosted on a [GitHub](github.com) repository: **INSERT GITHUB INFO HERE**. **INSERT INSTRUCTIONS HERE**
+The data sets used in this book are hosted on a GitHub repository maintained by the author. It is located here: **INSERT GITHUB LINK HERE**.
+
+You have two main options for how to aquire the data used by this book:
+
+1.  **Clone the whole repository**. You can download a zip folder containing all of the data for the book directly from GitHub:
+
+    1.  click the green _Clone or download_ button at the top right,
+    2.  click _Download ZIP_
+    3.  unzip this folders contents into somewhere you know where to find it.
+    
+2.  **Download individual files at a time**. To download a single file from GitHub:
+
+    1.  click on the file, 
+    2.  click _Raw_ in the toolbar on the top right,
+    3.  right-click anywhere in the document, and
+    4.  click _Save As..._.
+
+## Exercises {-}
+
+Following each chapter, there is a set of exercises. Attempting and completing them, as they give you an opportunity to practice what you learned while reading and typing along. Solutions are provided at the end of this book, however you are **strongly** recommended to attempt to figure the problems out before looking to how the author would solve them.
 
 ## Development of this Book {-}
 
-This book was created using R and the packages `bookdown` **CITE** and `knitr` **CITE**. It is hosted on [GitHub Pages](https://pages.github.com/). 
+This book represents the third reincarnation of the Auburn R Workshop Series. The first version was written in Fall 2014 using Microsoft Word, but the author found that making even small changes was clunky. Individual session materials were created in separate documents, as were the exercises and solutions. 
+
+The second version was written through R and RStudio using the R packages `rmarkdown` **CITE** and `knitr` **CITE**, which allowed the integration of text, code, and output all into one output file. This was completed in Fall 2015. Like the first version, individual session materials were created in separate documents. 
+
+This third version was written through R and RStudio but used the R package `bookdown` **CITE** which allowed for the individual sessions to be combined into one "book" by turning each session into a chapter. This facilitated cross-references to topics covered in previous chapters and allows the reader to only refer to one location when trying to remember how to use a skill. It also allowed for multiple formats to be published including both HTML and PDF versions.
+
+The book is hosted on [GitHub Pages](https://pages.github.com/). 
 
 ## About the Author {-}
 

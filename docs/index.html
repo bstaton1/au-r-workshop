@@ -46,46 +46,8 @@
 
 
 
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
-<style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -107,6 +69,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-is-covered"><i class="fa fa-check"></i>What is Covered?</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#data-sets"><i class="fa fa-check"></i>Data Sets</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#exercises"><i class="fa fa-check"></i>Exercises</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#development-of-this-book"><i class="fa fa-check"></i>Development of this Book</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#about-the-author"><i class="fa fa-check"></i>About the Author</a></li>
 </ul></li>
@@ -160,7 +123,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.10.1" data-path="ch2.html"><a href="ch2.html#click-save"><i class="fa fa-check"></i><b>2.10.1</b> Click Save</a></li>
 <li class="chapter" data-level="2.10.2" data-path="ch2.html"><a href="ch2.html#use-a-function-to-place-plot-in-a-new-file"><i class="fa fa-check"></i><b>2.10.2</b> Use a function to place plot in a new file</a></li>
 </ul></li>
-<li class="chapter" data-level="2.11" data-path="ch2.html"><a href="ch2.html#bonus-topic-error-bars"><i class="fa fa-check"></i><b>2.11</b> Bonus Topic: Error Bars</a></li>
+<li class="chapter" data-level="2.11" data-path="ch2.html"><a href="ch2.html#error-bars"><i class="fa fa-check"></i><b>2.11</b> Bonus Topic: Error Bars</a></li>
 <li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#ex2"><i class="fa fa-check"></i>EXERCISE 2</a><ul>
 <li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#exercise-2-bonus"><i class="fa fa-check"></i>EXERCISE 2 BONUS</a></li>
 </ul></li>
@@ -175,12 +138,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.1.4" data-path="ch3.html"><a href="ch3.html#interactions"><i class="fa fa-check"></i><b>3.1.4</b> Interactions</a></li>
 <li class="chapter" data-level="3.1.5" data-path="ch3.html"><a href="ch3.html#aic-model-selection"><i class="fa fa-check"></i><b>3.1.5</b> AIC Model Selection</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="ch3.html"><a href="ch3.html#the-generalized-linear-model"><i class="fa fa-check"></i><b>3.2</b> The Generalized Linear Model</a><ul>
+<li class="chapter" data-level="3.2" data-path="ch3.html"><a href="ch3.html#glms"><i class="fa fa-check"></i><b>3.2</b> The Generalized Linear Model</a><ul>
 <li class="chapter" data-level="3.2.1" data-path="ch3.html"><a href="ch3.html#logis-regression"><i class="fa fa-check"></i><b>3.2.1</b> Logistic Regression</a></li>
 <li class="chapter" data-level="3.2.2" data-path="ch3.html"><a href="ch3.html#aic-model-selection-1"><i class="fa fa-check"></i><b>3.2.2</b> AIC Model Selection</a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="ch3.html"><a href="ch3.html#dists"><i class="fa fa-check"></i><b>3.3</b> Probability Distributions</a></li>
-<li class="chapter" data-level="3.4" data-path="ch3.html"><a href="ch3.html#bonus-topic-non-linear-regression"><i class="fa fa-check"></i><b>3.4</b> Bonus Topic: Non-linear Regression</a></li>
+<li class="chapter" data-level="3.4" data-path="ch3.html"><a href="ch3.html#nls"><i class="fa fa-check"></i><b>3.4</b> Bonus Topic: Non-linear Regression</a></li>
 <li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#exercise-3"><i class="fa fa-check"></i>EXERCISE 3</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="ch4.html"><a href="ch4.html"><i class="fa fa-check"></i><b>4</b> Simulation and Randomization</a><ul>
@@ -191,13 +154,52 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.2.1" data-path="ch4.html"><a href="ch4.html#random-deviates"><i class="fa fa-check"></i><b>4.2.1</b> Random deviates</a></li>
 <li class="chapter" data-level="4.2.2" data-path="ch4.html"><a href="ch4.html#resampling"><i class="fa fa-check"></i><b>4.2.2</b> Resampling</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="ch4.html"><a href="ch4.html#replication"><i class="fa fa-check"></i><b>4.3</b> Replication</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="ch4.html"><a href="ch4.html#the-for-loop"><i class="fa fa-check"></i><b>4.3.1</b> The <code>for</code> loop</a></li>
+<li class="chapter" data-level="4.3" data-path="ch4.html"><a href="ch4.html#reproducing-randomness"><i class="fa fa-check"></i><b>4.3</b> Reproducing randomness</a></li>
+<li class="chapter" data-level="4.4" data-path="ch4.html"><a href="ch4.html#replication"><i class="fa fa-check"></i><b>4.4</b> Replication</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="ch4.html"><a href="ch4.html#replicate"><i class="fa fa-check"></i><b>4.4.1</b> <code>replicate</code></a></li>
+<li class="chapter" data-level="4.4.2" data-path="ch4.html"><a href="ch4.html#the-for-loop"><i class="fa fa-check"></i><b>4.4.2</b> The <code>for</code> loop</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="ch4.html"><a href="ch4.html#sim-examples"><i class="fa fa-check"></i><b>4.4</b> Simulation-Based Examples</a></li>
-<li class="chapter" data-level="4.5" data-path="ch4.html"><a href="ch4.html#resample-examples"><i class="fa fa-check"></i><b>4.5</b> Resampling-Based Examples</a></li>
+<li class="chapter" data-level="4.5" data-path="ch4.html"><a href="ch4.html#function-writing"><i class="fa fa-check"></i><b>4.5</b> Function Writing</a></li>
+<li class="chapter" data-level="4.6" data-path="ch4.html"><a href="ch4.html#mc-summaries"><i class="fa fa-check"></i><b>4.6</b> Summarization</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="ch4.html"><a href="ch4.html#central-tendency"><i class="fa fa-check"></i><b>4.6.1</b> Central Tendency</a></li>
+<li class="chapter" data-level="4.6.2" data-path="ch4.html"><a href="ch4.html#variability"><i class="fa fa-check"></i><b>4.6.2</b> Variability</a></li>
+<li class="chapter" data-level="4.6.3" data-path="ch4.html"><a href="ch4.html#frequencies"><i class="fa fa-check"></i><b>4.6.3</b> Frequencies</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="ch5.html"><a href="ch5.html"><i class="fa fa-check"></i><b>5</b> Large Data Manipulation</a></li>
+<li class="chapter" data-level="4.7" data-path="ch4.html"><a href="ch4.html#sim-examples"><i class="fa fa-check"></i><b>4.7</b> Simulation-Based Examples</a><ul>
+<li class="chapter" data-level="4.7.1" data-path="ch4.html"><a href="ch4.html#test-rnorm"><i class="fa fa-check"></i><b>4.7.1</b> Test <code>rnorm</code></a></li>
+<li class="chapter" data-level="4.7.2" data-path="ch4.html"><a href="ch4.html#power-ex"><i class="fa fa-check"></i><b>4.7.2</b> Stochastic Power Analysis</a></li>
+<li class="chapter" data-level="4.7.3" data-path="ch4.html"><a href="ch4.html#harv-ex"><i class="fa fa-check"></i><b>4.7.3</b> Harvest Policy Analysis</a></li>
+<li class="chapter" data-level="4.7.4" data-path="ch4.html"><a href="ch4.html#mrc-ex"><i class="fa fa-check"></i><b>4.7.4</b> Mark-Recapture Evaluation</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="ch4.html"><a href="ch4.html#resample-examples"><i class="fa fa-check"></i><b>4.8</b> Resampling-Based Examples</a><ul>
+<li class="chapter" data-level="4.8.1" data-path="ch4.html"><a href="ch4.html#perm-test-ex"><i class="fa fa-check"></i><b>4.8.1</b> Permutation Test</a></li>
+<li class="chapter" data-level="4.8.2" data-path="ch4.html"><a href="ch4.html#boot-test-ex"><i class="fa fa-check"></i><b>4.8.2</b> The Bootstrap</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="ch4.html"><a href="ch4.html#exercise-4"><i class="fa fa-check"></i><b>4.9</b> Exercise 4</a><ul>
+<li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#exercise-4a-required-material-only"><i class="fa fa-check"></i>Exercise 4A: Required Material Only</a></li>
+<li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#exercise-4b-stochastic-power-analysis"><i class="fa fa-check"></i>Exercise 4B: Stochastic Power Analysis</a></li>
+<li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#exercise-4c-harvest-policy-analysis"><i class="fa fa-check"></i>Exercise 4C: Harvest Policy Analysis</a></li>
+<li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#exercise-4d-mark-recapture-evaluation"><i class="fa fa-check"></i>Exercise 4D: Mark-Recapture Evaluation</a></li>
+<li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#exercise-4e-permutation-tests"><i class="fa fa-check"></i>Exercise 4E: Permutation Tests</a></li>
+<li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#exercise-4f-the-bootstrap"><i class="fa fa-check"></i>Exercise 4F: The Bootstrap</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="ch5.html"><a href="ch5.html"><i class="fa fa-check"></i><b>5</b> Large Data Manipulation</a><ul>
+<li class="chapter" data-level="" data-path="ch5.html"><a href="ch5.html#chapter-overview-4"><i class="fa fa-check"></i>Chapter Overview</a></li>
+<li class="chapter" data-level="" data-path="ch5.html"><a href="ch5.html#before-you-begin-3"><i class="fa fa-check"></i>Before You Begin</a></li>
+<li class="chapter" data-level="5.1" data-path="ch5.html"><a href="ch5.html#aquiring-and-loading-packages"><i class="fa fa-check"></i><b>5.1</b> Aquiring and Loading Packages</a></li>
+<li class="chapter" data-level="5.2" data-path="ch5.html"><a href="ch5.html#the-data"><i class="fa fa-check"></i><b>5.2</b> The Data</a></li>
+<li class="chapter" data-level="5.3" data-path="ch5.html"><a href="ch5.html#change-format-using-melt"><i class="fa fa-check"></i><b>5.3</b> Change format using <code>melt</code></a></li>
+<li class="chapter" data-level="5.4" data-path="ch5.html"><a href="ch5.html#join-data-sets-with-merge"><i class="fa fa-check"></i><b>5.4</b> Join Data Sets with <code>merge</code></a></li>
+<li class="chapter" data-level="5.5" data-path="ch5.html"><a href="ch5.html#lagged-vectors"><i class="fa fa-check"></i><b>5.5</b> Lagged vectors</a></li>
+<li class="chapter" data-level="5.6" data-path="ch5.html"><a href="ch5.html#adding-columns-with-mutate"><i class="fa fa-check"></i><b>5.6</b> Adding columns with <code>mutate</code></a></li>
+<li class="chapter" data-level="5.7" data-path="ch5.html"><a href="ch5.html#apply-to-all-years"><i class="fa fa-check"></i><b>5.7</b> Apply to all years</a></li>
+<li class="chapter" data-level="5.8" data-path="ch5.html"><a href="ch5.html#calculate-daily-means-with-summarize"><i class="fa fa-check"></i><b>5.8</b> Calculate Daily Means with <code>summarize</code></a></li>
+<li class="chapter" data-level="5.9" data-path="ch5.html"><a href="ch5.html#more-summarize"><i class="fa fa-check"></i><b>5.9</b> More <code>summarize</code></a></li>
+<li class="chapter" data-level="5.10" data-path="ch5.html"><a href="ch5.html#fit-the-model"><i class="fa fa-check"></i><b>5.10</b> Fit the Model</a></li>
+<li class="chapter" data-level="" data-path="ch5.html"><a href="ch5.html#exercise-5"><i class="fa fa-check"></i>Exercise 5</a></li>
+<li class="chapter" data-level="" data-path="ch5.html"><a href="ch5.html#exercise-5-bonus"><i class="fa fa-check"></i>Exercise 5 Bonus</a></li>
+</ul></li>
 <li class="chapter" data-level="6" data-path="ch6.html"><a href="ch6.html"><i class="fa fa-check"></i><b>6</b> Mapping and Spatial Analysis</a><ul>
 <li class="chapter" data-level="6.1" data-path="ch6.html"><a href="ch6.html#fsec"><i class="fa fa-check"></i><b>6.1</b> This is the First Section</a><ul>
 <li class="chapter" data-level="6.1.1" data-path="ch6.html"><a href="ch6.html#a-subsection-of-the-first-section"><i class="fa fa-check"></i><b>6.1.1</b> A subsection of the First Section</a></li>
@@ -252,11 +254,34 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="data-sets" class="section level2 unnumbered">
 <h2>Data Sets</h2>
 <p>Many of the data sets used in this book were simulated by the author. Cases in which the data set used was not simulated are noted and a citation to the data source is provided.</p>
-<p>The data sets used in this book are hosted on a <a href="github.com">GitHub</a> repository: <strong>INSERT GITHUB INFO HERE</strong>. <strong>INSERT INSTRUCTIONS HERE</strong></p>
+<p>The data sets used in this book are hosted on a GitHub repository maintained by the author. It is located here: <strong>INSERT GITHUB LINK HERE</strong>.</p>
+<p>You have two main options for how to aquire the data used by this book:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Clone the whole repository</strong>. You can download a zip folder containing all of the data for the book directly from GitHub:</p>
+<ol style="list-style-type: decimal">
+<li>click the green <em>Clone or download</em> button at the top right,</li>
+<li>click <em>Download ZIP</em></li>
+<li>unzip this folders contents into somewhere you know where to find it.</li>
+</ol></li>
+<li><p><strong>Download individual files at a time</strong>. To download a single file from GitHub:</p>
+<ol style="list-style-type: decimal">
+<li>click on the file,</li>
+<li>click <em>Raw</em> in the toolbar on the top right,</li>
+<li>right-click anywhere in the document, and</li>
+<li>click <em>Save As…</em>.</li>
+</ol></li>
+</ol>
+</div>
+<div id="exercises" class="section level2 unnumbered">
+<h2>Exercises</h2>
+<p>Following each chapter, there is a set of exercises. Attempting and completing them, as they give you an opportunity to practice what you learned while reading and typing along. Solutions are provided at the end of this book, however you are <strong>strongly</strong> recommended to attempt to figure the problems out before looking to how the author would solve them.</p>
 </div>
 <div id="development-of-this-book" class="section level2 unnumbered">
 <h2>Development of this Book</h2>
-<p>This book was created using R and the packages <code>bookdown</code> <strong>CITE</strong> and <code>knitr</code> <strong>CITE</strong>. It is hosted on <a href="https://pages.github.com/">GitHub Pages</a>.</p>
+<p>This book represents the third reincarnation of the Auburn R Workshop Series. The first version was written in Fall 2014 using Microsoft Word, but the author found that making even small changes was clunky. Individual session materials were created in separate documents, as were the exercises and solutions.</p>
+<p>The second version was written through R and RStudio using the R packages <code>rmarkdown</code> <strong>CITE</strong> and <code>knitr</code> <strong>CITE</strong>, which allowed the integration of text, code, and output all into one output file. This was completed in Fall 2015. Like the first version, individual session materials were created in separate documents.</p>
+<p>This third version was written through R and RStudio but used the R package <code>bookdown</code> <strong>CITE</strong> which allowed for the individual sessions to be combined into one “book” by turning each session into a chapter. This facilitated cross-references to topics covered in previous chapters and allows the reader to only refer to one location when trying to remember how to use a skill. It also allowed for multiple formats to be published including both HTML and PDF versions.</p>
+<p>The book is hosted on <a href="https://pages.github.com/">GitHub Pages</a>.</p>
 </div>
 <div id="about-the-author" class="section level2 unnumbered">
 <h2>About the Author</h2>
@@ -311,19 +336,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

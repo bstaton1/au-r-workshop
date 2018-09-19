@@ -356,7 +356,7 @@ The syntax for reading in a `.csv` file is:
 dat = read.csv("FileName.csv")
 ```
 
-The data files for this workshop are found in the **GitHub repository, reminder**. Navigate to this repository, find the file called `streams.csv`, download that file^[To download a single file from GitHub, click on the file, then click "Raw" in the toolbar on the top right, then right-click anywhere in the document and click "Save As...". You can also download a zip folder with all of the `.csv` files, go to "Clone or Download"], and place it in your working directory for this session. This document assumes your working directory is `C:/Users/YOU/Documents/R-Workshop/Chapter1`, though the one you are actually using may be slightly different (the `YOU` should at least be changed for your computer). We can read the contents of `streams.csv` into R using this code (ensure your working directory is set first):
+The data files for this workshop are found in the **GitHub repository, reminder**. Navigate to this repository, download the file `streams.csv` and place it in your working directory for this session. This document assumes your working directory is `C:/Users/YOU/Documents/R-Workshop/Chapter1`, though the one you are actually using may be slightly different (the `YOU` should at least be changed for your computer). We can read the contents of `streams.csv` into R using this code (ensure your working directory is set first):
 
 ```{r, eval = F}
 dat = read.csv("streams.csv")
