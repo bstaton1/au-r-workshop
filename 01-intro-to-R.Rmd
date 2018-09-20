@@ -532,6 +532,22 @@ x <= 5
 
 Greater than works the same way, though with the `>` symbol replaced.
 
+#### In {-}
+
+Suppose you want to ask which elements of one vector are also found within another vector:
+
+```{r}
+y = c(1,2,3)
+x %in% y
+# or
+y = c(4,5,6)
+x %in% y
+# or
+y %in% x
+```
+
+%in% is a very useful operator in R that is not one of the traditional Boolean operators.
+
 #### And {-}
 
 Suppose you have two conditions, and you want to know if **both are met**. For this you would use **and** by running:

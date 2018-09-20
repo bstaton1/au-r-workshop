@@ -312,7 +312,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>In Section <a href="ch3.html#dists">3.3</a>, you learned about using probability distributions in R. One of the uses was the <code>r-</code> family of distribution functions. These functions create random numbers following a random process specified by a probability distribution.</p>
 <p>Consider animal survival as an example. At the end of each year, each individual alive at the start can either live or die. There are two outcomes here, and suppose each animal has an 80% chance of surviving. The number of individuals that survive is the result of a <strong>binomial random process</strong> in which there were <span class="math inline">\(n\)</span> individuals alive at the start of this year and <span class="math inline">\(p\)</span> is the probability that any one individual survives to the next year. You can execute one binomial random process where <span class="math inline">\(p = 0.8\)</span> and <span class="math inline">\(n = 100\)</span> like this:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rbinom</span>(<span class="dt">n =</span> <span class="dv">1</span>, <span class="dt">size =</span> <span class="dv">100</span>, <span class="dt">prob =</span> <span class="fl">0.8</span>)</code></pre></div>
-<pre><code>## [1] 77</code></pre>
+<pre><code>## [1] 78</code></pre>
 <p>The result you get will almost certainly be different from the one printed here. That is the random component.</p>
 <p>You can execute many such binomial processes by changing the <code>n</code> argument. Plot the distribution of expected surviving individuals:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">survivors =<span class="st"> </span><span class="kw">rbinom</span>(<span class="dv">1000</span>, <span class="dv">100</span>, <span class="fl">0.8</span>)
@@ -327,14 +327,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3><span class="header-section-number">4.2.2</span> Resampling</h3>
 <p>Using random deviates works great for creating new random numbers, but what if you already have a set of numbers that you wish to introduce randomness to? For this, you can use <strong>resampling techniques</strong>. In R, the <code>sample</code> function is used to sample <code>size</code> elements from the vector <code>x</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">size =</span> <span class="dv">5</span>)</code></pre></div>
-<pre><code>## [1] 1 2 4 8 3</code></pre>
+<pre><code>## [1]  7  4  6 10  5</code></pre>
 <p>You can sample with replacement (where it is possible to sample the same element two or more times):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>), <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">replace =</span> T)</code></pre></div>
-<pre><code>##  [1] &quot;c&quot; &quot;b&quot; &quot;b&quot; &quot;a&quot; &quot;b&quot; &quot;b&quot; &quot;c&quot; &quot;b&quot; &quot;a&quot; &quot;a&quot;</code></pre>
+<pre><code>##  [1] &quot;c&quot; &quot;b&quot; &quot;b&quot; &quot;c&quot; &quot;b&quot; &quot;b&quot; &quot;b&quot; &quot;b&quot; &quot;c&quot; &quot;c&quot;</code></pre>
 <p>You can set probabilities on the sampling of different elements<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;live&quot;</span>, <span class="st">&quot;die&quot;</span>), <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">replace =</span> T,
        <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.8</span>, <span class="fl">0.2</span>))</code></pre></div>
-<pre><code>##  [1] &quot;live&quot; &quot;live&quot; &quot;live&quot; &quot;live&quot; &quot;live&quot; &quot;die&quot;  &quot;die&quot;  &quot;live&quot; &quot;live&quot; &quot;die&quot;</code></pre>
+<pre><code>##  [1] &quot;live&quot; &quot;die&quot;  &quot;live&quot; &quot;live&quot; &quot;die&quot;  &quot;die&quot;  &quot;live&quot; &quot;live&quot; &quot;live&quot; &quot;live&quot;</code></pre>
 <p>Notice that this is the same as the binomial random process above, but with only 10 trials and the printing of the outcomes rather than the number of successes.</p>
 </div>
 </div>
@@ -601,7 +601,7 @@ normal_p =<span class="st"> </span><span class="kw">pnorm</span>(q, mu, sig)
   pval <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.05</span>
 }</code></pre></div>
 <p>Next, for steps 4 and 5, set up a <strong>nested <code>for</code> loop</strong>. This will have two loops: one that loops over sample sizes for step 5 and one that loops over replicates of each sample size (step 4):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">I =<span class="st"> </span><span class="dv">1000</span>  <span class="co"># the number of replicates at each sample size</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">I =<span class="st"> </span><span class="dv">10</span>  <span class="co"># the number of replicates at each sample size</span>
 
 n_try =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">10</span>, <span class="dv">50</span>, <span class="dv">10</span>)  <span class="co"># the test sample sizes</span>
 N =<span class="st"> </span><span class="kw">length</span>(n_try)      <span class="co"># count them</span>
@@ -619,7 +619,7 @@ out =<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA
      <span class="dt">xlab =</span> <span class="st">&quot;Tagged Fish per Treatment&quot;</span>,
      <span class="dt">ylab =</span> <span class="st">&quot;Probability of Finding Effect (Power)&quot;</span>)</code></pre></div>
 <p><img src="au-r-workshop_files/figure-html/unnamed-chunk-34-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>Even if you tagged 100 fish total, you would have a 48% chance of saying the effect (which truely is there!) is present under the null hypothesis testing framework.</p>
+<p>Even if you tagged 100 fish total, you would have a 50% chance of saying the effect (which truely is there!) is present under the null hypothesis testing framework.</p>
 <p>Suppose you and your colleagues aren’t relying on p-values in this case, and are purely interested in how precisely the <strong>effect size</strong> would be estimated. Adapt your function to determine how frequently it is you would be able to estimate the true mortality probability of the new method within +/- 5% based on the point estimate only (the true estimate must be between 0.2 and 0.3 for a successful study). Change your function to calculate this additional metric and re-run the analysis:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sim_fit =<span class="st"> </span><span class="cf">function</span>(n, <span class="dt">p_old =</span> <span class="fl">0.10</span>, <span class="dt">p_new =</span> <span class="fl">0.25</span>) {
   
@@ -658,7 +658,7 @@ out =<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA
 }
 
 <span class="co"># run the analysis</span>
-I =<span class="st"> </span><span class="dv">1000</span>  <span class="co"># the number of replicates at each sample size</span>
+I =<span class="st"> </span><span class="dv">10</span>  <span class="co"># the number of replicates at each sample size</span>
 
 n_try =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">10</span>, <span class="dv">50</span>, <span class="dv">10</span>)  <span class="co"># the test sample sizes</span>
 N =<span class="st"> </span><span class="kw">length</span>(n_try)      <span class="co"># count them</span>
@@ -683,13 +683,13 @@ out_prc =<span class="st"> </span><span class="kw">matrix</span>(<span class="ot
      <span class="dt">xlab =</span> <span class="st">&quot;Tagged Fish per Treatment&quot;</span>,
      <span class="dt">ylab =</span> <span class="st">&quot;Probability of A Precise Estimate&quot;</span>)</code></pre></div>
 <p><img src="au-r-workshop_files/figure-html/unnamed-chunk-35-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>It seems that even if you tagged 50 fish per treatment, you would have a 58% chance of estimating that the mortality rate is between 0.2 and 0.3 if it was truly 0.25.</p>
+<p>It seems that even if you tagged 50 fish per treatment, you would have a 60% chance of estimating that the mortality rate is between 0.2 and 0.3 if it was truly 0.25.</p>
 <p>You and your colleagues consider these results and determine that you will need to somehow aquire more funds to tag more fish in the small-scale study in order to a high level of confidence in the results.</p>
 </div>
 <div id="harv-ex" class="section level3">
 <h3><span class="header-section-number">4.7.3</span> Harvest Policy Analysis</h3>
 <p>In this example, you will simulate population dynamics under a more realistic model than in Sections <a href="ch4.html#for-loops">4.4.2</a> and <a href="ch4.html#adv-funcs">4.5</a> for the purposes of evaluating different harvest policies.</p>
-<p>Suppose you are a fisheries research biologist, and a large commercial fishery for pink salmon (<em>Oncorhynchus gorbuscha</em>) takes place in your district. For the past 10 years, it has been fished with an exploitation rate of 40% (40% of the fish that return each year have been harvested, exploitation rate is abbreviated by <span class="math inline">\(U\)</span>). The management plan is up for evaluation this year, and your supervisor has asked you to prepare an analysis that determines if more yields could be taken if a different exploitation rate were to be used in the future.</p>
+<p>Suppose you are a fisheries research biologist, and a commercial fishery for pink salmon (<em>Oncorhynchus gorbuscha</em>) takes place in your district. For the past 10 years, it has been fished with an exploitation rate of 40% (40% of the fish that return each year have been harvested, exploitation rate is abbreviated by <span class="math inline">\(U\)</span>), resulting in an average annual harvest of 8.5 million fish. The management plan is up for evaluation this year, and your supervisor has asked you to prepare an analysis that determines if more yields could be taken if a different exploitation rate were to be used in the future.</p>
 <p>Based on historical data, your best understanding implies that the stock is driven by Ricker spawner-recruit dynamics. That is, the total number of fish that return this year (recruits) are a function of the total number of spawners that spawned the recruits this year. The functional form of the Ricker relationship can be written this way:</p>
 <p><span class="math display">\[R_t = \alpha S_{t-1} e^{-\beta S_{t-1} + \varepsilon_t} ,\varepsilon_t \sim N(0,\sigma)\]</span></p>
 <p>where <span class="math inline">\(\alpha\)</span> is a parameter representing the maximum recruits per spawner (obtained at very low spawner abundances) and <span class="math inline">\(\beta\)</span> is a measure of the strength of <strong>density-dependent mortality</strong>. Notice that the error term is in the exponent, which makes <span class="math inline">\(e^{\varepsilon_t}\)</span> lognormal.</p>
@@ -699,6 +699,115 @@ out_prc =<span class="st"> </span><span class="kw">matrix</span>(<span class="ot
 <li><span class="math inline">\(\beta = 1 \times 10^{-7}\)</span></li>
 <li><span class="math inline">\(\sigma = 0.4\)</span></li>
 </ul>
+<p>You decide that you can build a policy analysis by simulating the stock forward through time under different exploitation rates to determine if its reasonable to expect a different exploitation rate to provide more yields than what are currently being extracted.</p>
+<p>First, write a function for your population model. Your function must:</p>
+<ol style="list-style-type: decimal">
+<li>take the parameters, dimensions (number of years), and the policy variable (<span class="math inline">\(U\)</span>) as input arguments</li>
+<li>simulate the population using Ricker dynamics</li>
+<li>calculate and return the sum of the yields over the number future years you simulated.</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Step #1: name function and give it some arguments</span>
+ricker_sim =<span class="st"> </span><span class="cf">function</span>(ny, params, U) {
+  
+  <span class="co"># extract the parameters out by name:</span>
+  alpha =<span class="st"> </span>params[<span class="st">&quot;alpha&quot;</span>]
+  beta =<span class="st"> </span>params[<span class="st">&quot;beta&quot;</span>]
+  sigma =<span class="st"> </span>params[<span class="st">&quot;sigma&quot;</span>]
+  
+  <span class="co"># create containers:</span>
+  <span class="co"># yep, you can do this</span>
+  R =<span class="st"> </span>S =<span class="st"> </span>H =<span class="st"> </span><span class="ot">NULL</span>
+  
+  <span class="co"># initialize the population in the first year</span>
+    <span class="co"># start the population at being fished at 40%</span>
+    <span class="co"># with lognormal error</span>
+  R[<span class="dv">1</span>] =<span class="st"> </span><span class="kw">log</span>(alpha <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.4</span>))<span class="op">/</span>(beta <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.4</span>)) <span class="op">*</span><span class="st"> </span><span class="kw">exp</span>(<span class="kw">rnorm</span>(<span class="dv">1</span>, <span class="dv">0</span>, sigma))
+  S[<span class="dv">1</span>] =<span class="st"> </span>R[<span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>U)
+  H[<span class="dv">1</span>] =<span class="st"> </span>R[<span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>U
+  
+  <span class="co"># carry simulation forward through time</span>
+  <span class="cf">for</span> (y <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span>ny) {
+    <span class="co"># use the ricker function with random lognormal white noise</span>
+    R[y] =<span class="st"> </span>S[y<span class="op">-</span><span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>alpha <span class="op">*</span><span class="st"> </span><span class="kw">exp</span>(<span class="op">-</span>beta <span class="op">*</span><span class="st"> </span>S[y<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1</span>, <span class="dv">0</span>, sigma))
+    <span class="co">#harvest and spawners are the same as before</span>
+    S[y] =<span class="st"> </span>R[y] <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>U)
+    H[y] =<span class="st"> </span>R[y] <span class="op">*</span><span class="st"> </span>U
+  }
+  
+  <span class="kw">list</span>(
+    <span class="dt">mean_H =</span> <span class="kw">mean</span>(H),
+    <span class="dt">sd_H =</span> <span class="kw">sd</span>(H),
+    <span class="dt">cv_H =</span> <span class="kw">sd</span>(H)<span class="op">/</span><span class="kw">mean</span>(H),
+    <span class="dt">mean_S =</span> <span class="kw">mean</span>(S)
+    )
+}</code></pre></div>
+<p>Use the function once:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">params =<span class="st"> </span><span class="kw">c</span>(<span class="dt">alpha =</span> <span class="dv">6</span>, <span class="dt">beta =</span> <span class="fl">1e-7</span>, <span class="dt">sigma =</span> <span class="fl">0.4</span>)
+out =<span class="st"> </span><span class="kw">ricker_sim</span>(<span class="dt">U =</span> <span class="fl">0.4</span>, <span class="dt">ny =</span> <span class="dv">20</span>, <span class="dt">params =</span> params)
+
+<span class="co">#average annual harvest (in millions)</span>
+<span class="kw">round</span>(out<span class="op">$</span>mean<span class="op">/</span><span class="fl">1e6</span>, <span class="dt">digits =</span> <span class="dv">2</span>)</code></pre></div>
+<pre><code>## numeric(0)</code></pre>
+<p>If you completed the stochastic power analysis example (Section <a href="ch4.html#power-ex">4.7.2</a>), you might see where this is going. You are going to replicate applying a fixed policy many times to a random system. This is the Monte Carlo part of the analysis. The policy part is that you will compare several candidate exploitation rates. This time, set up your analysis using <code>sapply</code> and <code>replicate</code> instead of performing a nested <code>for</code> loop as in previous examples:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">U_try =<span class="st"> </span><span class="kw">seq</span>(<span class="fl">0.4</span>, <span class="fl">0.6</span>, <span class="fl">0.01</span>)
+n_rep =<span class="st"> </span><span class="dv">500</span>
+
+H_out =<span class="st"> </span><span class="kw">sapply</span>(U_try, <span class="cf">function</span>(u) {
+  <span class="kw">replicate</span>(<span class="dt">n =</span> n_rep, <span class="dt">expr =</span> {
+    <span class="kw">ricker_sim</span>(<span class="dt">U =</span> u, <span class="dt">ny =</span> <span class="dv">20</span>, <span class="dt">params =</span> params)<span class="op">$</span>mean_H<span class="op">/</span><span class="fl">1e6</span>
+  })
+})</code></pre></div>
+<p>The nested <code>replicate</code> and <code>sapply</code> are a bit cleaner than a nested <code>for</code> loop, but you have less control over the format of the output.</p>
+<p>Plot the output of your simulations using a boxplot. To make things easier, give <code>H_out</code> column names representing the exploitation rate:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">colnames</span>(H_out) =<span class="st"> </span>U_try
+<span class="kw">boxplot</span>(H_out, <span class="dt">outline =</span> F,
+        <span class="dt">xlab =</span> <span class="st">&quot;U&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Harvest (Millions of Fish)&quot;</span>,
+        <span class="dt">col =</span> <span class="st">&quot;tomato&quot;</span>, <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">max</span>(H_out)))</code></pre></div>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-39-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>It appears the stock could produce more harvest than its current 8.5 million fish per year if it was fished harder. However, your supervisors also do not want to see the escapement drop below three-quarters of what it has been in recent history (75% of approximately 13 million fish). They ask you to obtain the expected average annual escapement as well as harvest. You can simply re-run the code above, but extracting <code>$S_mean$ rather than $H_mean$. Call this output $S_out$ and plot it just like harvest (if your curious, this blue color is</code>col = “skyblue”`):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">S_out =<span class="st"> </span><span class="kw">sapply</span>(U_try, <span class="cf">function</span>(u) {
+  <span class="kw">replicate</span>(<span class="dt">n =</span> n_rep, <span class="dt">expr =</span> {
+    <span class="kw">ricker_sim</span>(<span class="dt">U =</span> u, <span class="dt">ny =</span> <span class="dv">20</span>, <span class="dt">params =</span> params)<span class="op">$</span>mean_S<span class="op">/</span><span class="fl">1e6</span>
+  })
+})
+
+<span class="kw">colnames</span>(S_out) =<span class="st"> </span>U_try
+<span class="kw">boxplot</span>(S_out, <span class="dt">outline =</span> F,
+        <span class="dt">xlab =</span> <span class="st">&quot;U&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Escapement (Millions of Fish)&quot;</span>,
+        <span class="dt">col =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">max</span>(H_out)))</code></pre></div>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-40-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(H_out[,U_try <span class="op">==</span><span class="st"> </span><span class="fl">0.4</span>])</code></pre></div>
+<pre><code>## [1] 8.544733</code></pre>
+<p>After seeing this information, your supervisor realizes they are faced with a trade-off: the stock could produce more with high exploitation rates, but they are concerned about pushing the stock too low for sustainability reasons. They tell you to determine the probability the average escapement would not be pushed below 75% of 13 million at each exploitation rate, as well as the probability that the average annual harvests will be at least 20% greater than they are currently (approximately 8.5 million fish). Given your output, this is easy:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># determine if each element meets escapement criterion</span>
+Smeet =<span class="st"> </span>S_out <span class="op">&gt;</span><span class="st"> </span>(<span class="fl">0.75</span> <span class="op">*</span><span class="st"> </span><span class="dv">13</span>)
+
+<span class="co"># determine if each element meets harvest criterion</span>
+Hmeet =<span class="st"> </span>H_out <span class="op">&gt;</span><span class="st"> </span>(<span class="fl">1.2</span> <span class="op">*</span><span class="st"> </span><span class="fl">8.5</span>)
+
+<span class="co"># calculate the probability of each occuring at a given exploitation rate:</span>
+p_Smeet =<span class="st"> </span><span class="kw">apply</span>(Smeet, <span class="dv">2</span>, mean)
+p_Hmeet =<span class="st"> </span><span class="kw">apply</span>(Hmeet, <span class="dv">2</span>, mean)</code></pre></div>
+<p>You plot this for your supervisor as follows:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># the U levels to highlight on plot</span>
+plot_U =<span class="st"> </span><span class="kw">seq</span>(<span class="fl">0.4</span>, <span class="fl">0.6</span>, <span class="fl">0.05</span>)
+<span class="co"># create an empty plot</span>
+<span class="kw">plot</span>(p_Smeet <span class="op">~</span><span class="st"> </span>p_Hmeet, <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>,
+     <span class="dt">xlab =</span> <span class="st">&quot;Probability of Meeting Harvest Criterion&quot;</span>,
+     <span class="dt">ylab =</span> <span class="st">&quot;Probability of Meeting Escapement Criterion&quot;</span>)
+<span class="co"># add gridlines</span>
+<span class="kw">abline</span>(<span class="dt">v =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.1</span>), <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>)
+<span class="kw">abline</span>(<span class="dt">h =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.1</span>), <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>)
+<span class="co">#draw on the tradeoff curve</span>
+<span class="kw">lines</span>(p_Smeet <span class="op">~</span><span class="st"> </span>p_Hmeet, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)
+<span class="co"># add points and text for particular U policies</span>
+<span class="kw">points</span>(p_Smeet[U_try <span class="op">%in%</span><span class="st"> </span>plot_U] <span class="op">~</span><span class="st"> </span>p_Hmeet[U_try <span class="op">%in%</span><span class="st"> </span>plot_U],
+       <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">cex =</span> <span class="fl">1.5</span>)
+<span class="kw">text</span>(p_Smeet[U_try <span class="op">%in%</span><span class="st"> </span>plot_U] <span class="op">~</span><span class="st"> </span>p_Hmeet[U_try <span class="op">%in%</span><span class="st"> </span>plot_U],
+     <span class="dt">labels =</span> U_try[U_try <span class="op">%in%</span><span class="st"> </span>plot_U], <span class="dt">pos =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>))</code></pre></div>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-42-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Equipped with this analysis, your supervisor plans to go to the policy-makers with the recommendation of adjusting the exploitation rate policy to use <span class="math inline">\(U = 0.5\)</span>, because they think it balances the trade-off. Notice how if the status quo was maintained, your model suggests you would have complete certainty of staying where you are now: escapement will remain above 75% of its current level with a 100% chance, but you would have no chance of improving harvests to greater than 20% of their current level. Small increases in the exploitation rate (e.g., from 0.4 to 0.45) have a reasonably large gain in harvest performance, but hardly any losses for the escapement criterion. Your supervisor is willing to live with a 90% chance that the escapement will stay where they desire in order to gain a &gt;80% chance of obtaining the desired amount of increases in harvest.</p>
+<p>The real utility of using Monte Carlo methods in this example is the ability to calculate the probability of some event you are interested in. There are analytical (i.e., not simulation-based) solutions to predict the annual harvest and escapement from a fixed <span class="math inline">\(U\)</span> from a population with parameters <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>, but by incorporating randomness, you were able to obtain the relative weights of outcomes other than the expectation under the deterministic Ricker model.</p>
 </div>
 <div id="mrc-ex" class="section level3">
 <h3><span class="header-section-number">4.7.4</span> Mark-Recapture Evaluation</h3>

@@ -505,15 +505,15 @@ You and your colleagues consider these results and determine that you will need 
 
 ### Harvest Policy Analysis {#harv-ex}
 
-In this example, you will simulate population dynamics under a more realistic model than in Sections \@ref(for-loops) and \@ref(adv-funcs) for the purposes of evaluating different harvest policies. 
+In this example, you will simulate population dynamics under a more realistic model than in Sections \@ref(for-loops) and \@ref(adv-funcs) for the purpose of evaluating different harvest policies. 
 
-Suppose you are a fisheries research biologist, and a large commercial fishery for pink salmon (_Oncorhynchus gorbuscha_) takes place in your district. For the past 10 years, it has been fished with an exploitation rate of 40% (40% of the fish that return each year have been harvested, exploitation rate is abbreviated by $U$). The management plan is up for evaluation this year, and your supervisor has asked you to prepare an analysis that determines if more yields could be taken if a different exploitation rate were to be used in the future.
+Suppose you are a fisheries research biologist, and a commercial fishery for pink salmon (_Oncorhynchus gorbuscha_) takes place in your district. For the past 10 years, it has been fished with an exploitation rate of 40% (40% of the fish that return each year have been harvested, exploitation rate is abbreviated by $U$), resulting in an average annual harvest of 8.5 million fish. The management plan is up for evaluation this year, and your supervisor has asked you to prepare an analysis that determines if more yields could be taken if a different exploitation rate were to be used in the future.
 
-Based on historical data, your best understanding implies that the stock is driven by Ricker spawner-recruit dynamics. That is, the total number of fish that return this year (recruits) are a function of the total number of spawners that spawned the recruits this year. The functional form of the Ricker relationship can be written this way:
+Based on historical data, your best understanding implies that the stock is driven by Ricker spawner-recruit dynamics. That is, the total number of fish that return this year (recruits) are a function of the total number of spawners that produced and fertilized the eggs from which this year's recruits recruits were produced. The Ricker model can be written this way:
 
 $$R_t = \alpha S_{t-1} e^{-\beta S_{t-1} + \varepsilon_t} ,\varepsilon_t \sim N(0,\sigma)$$
 
-where $\alpha$ is a parameter representing the maximum recruits per spawner (obtained at very low spawner abundances) and $\beta$ is a measure of the strength of **density-dependent mortality**. Notice that the error term is in the exponent, which makes $e^{\varepsilon_t}$ lognormal.
+where $\alpha$ is a parameter representing the maximum recruits per spawner (obtained at very low spawner abundances) and $\beta$ is a measure of the strength of density-dependent mortality. Notice that the error term is in the exponent, which makes $e^{\varepsilon_t}$ lognormal.
 
 You have estimates of the parameters:
 
@@ -528,6 +528,129 @@ First, write a function for your population model. Your function must:
 1.  take the parameters, dimensions (number of years), and the policy variable ($U$) as input arguments
 2.  simulate the population using Ricker dynamics
 3.  calculate and return the sum of the yields over the number future years you simulated.
+
+```{r}
+# Step #1: name function and give it some arguments
+ricker_sim = function(ny, params, U) {
+  
+  # extract the parameters out by name:
+  alpha = params["alpha"]
+  beta = params["beta"]
+  sigma = params["sigma"]
+  
+  # create containers:
+  # yep, you can do this
+  R = S = H = NULL
+  
+  # initialize the population in the first year
+    # start the population at being fished at 40%
+    # with lognormal error
+  R[1] = log(alpha * (1 - 0.4))/(beta * (1 - 0.4)) * exp(rnorm(1, 0, sigma))
+  S[1] = R[1] * (1 - U)
+  H[1] = R[1] * U
+  
+  # carry simulation forward through time
+  for (y in 2:ny) {
+    # use the ricker function with random lognormal white noise
+    R[y] = S[y-1] * alpha * exp(-beta * S[y-1] + rnorm(1, 0, sigma))
+    #harvest and spawners are the same as before
+    S[y] = R[y] * (1 - U)
+    H[y] = R[y] * U
+  }
+  
+  list(
+    mean_H = mean(H),
+    mean_S = mean(S)
+    )
+}
+```
+
+Use the function once:
+
+```{r}
+params = c(alpha = 6, beta = 1e-7, sigma = 0.4)
+out = ricker_sim(U = 0.4, ny = 20, params = params)
+#average annual harvest (in millions)
+round(out$mean_S/1e6, digits = 2)
+```
+
+If you completed the stochastic power analysis example (Section \@ref(power-ex)), you might see where this is going. You are going to replicate applying a fixed policy many times to a random system. This is the Monte Carlo part of the analysis. The policy part is that you will compare the output from several candidate exploitation rates to inform a decision about which is best. This time, set up your analysis using `sapply` and `replicate` instead of performing a nested `for` loop as in previous examples:
+
+```{r}
+U_try = seq(0.4, 0.6, 0.01)
+n_rep = 500
+H_out = sapply(U_try, function(u) {
+  replicate(n = n_rep, expr = {
+    ricker_sim(U = u, ny = 20, params = params)$mean_H/1e6
+  })
+})
+```
+
+The nested `replicate` and `sapply` method is a bit cleaner than a nested `for` loop, but you have less control over the format of the output.
+
+Plot the output of your simulations using a boxplot. To make things easier, give `H_out` column names representing the exploitation rate:
+
+```{r}
+colnames(H_out) = U_try
+boxplot(H_out, outline = F,
+        xlab = "U", ylab = "Harvest (Millions of Fish)",
+        col = "tomato", las = 1)
+```
+
+It appears the stock could produce more harvest than its current 8.5 million fish per year if it was fished harder. However, your supervisors also do not want to see the escapement drop below three-quarters of what it has been in recent history (75% of approximately 13 million fish). They ask you to obtain the expected average annual escapement as well as harvest. You can simply re-run the code above, but extracting `S_mean` rather than `H_mean`. Call this output `S_out` and plot it just like harvest (if your curious, this blue color is `col = "skyblue"`):
+
+```{r, echo = F}
+S_out = sapply(U_try, function(u) {
+  replicate(n = n_rep, expr = {
+    ricker_sim(U = u, ny = 20, params = params)$mean_S/1e6
+  })
+})
+
+colnames(S_out) = U_try
+boxplot(S_out, outline = F,
+        xlab = "U", ylab = "Escapement (Millions of Fish)",
+        col = "skyblue", las = 1)
+```
+
+After seeing this information, your supervisor realizes they are faced with a trade-off: the stock could produce more with high exploitation rates, but they are concerned about pushing the stock too low for sustainability reasons. They tell you to determine the probability the average escapement would not be pushed below 75% of 13 million at each exploitation rate, as well as the probability that the average annual harvests will be at least 20% greater than they are currently (approximately 8.5 million fish). Given your output, this is easy:
+
+```{r}
+# determine if each element meets escapement criterion
+Smeet = S_out > (0.75 * 13)
+
+# determine if each element meets harvest criterion
+Hmeet = H_out > (1.2 * 8.5)
+
+# calculate the probability of each occuring at a given exploitation rate
+  # remember, mean of a logical vector calculate the proportion of TRUEs
+p_Smeet = apply(Smeet, 2, mean)
+p_Hmeet = apply(Hmeet, 2, mean)
+```
+
+You plot this for your supervisor as follows:
+
+```{r}
+# the U levels to highlight on plot
+plot_U = seq(0.4, 0.6, 0.05)
+# create an empty plot
+plot(p_Smeet ~ p_Hmeet, type = "n",
+     xlab = "Probability of Meeting Harvest Criterion",
+     ylab = "Probability of Meeting Escapement Criterion")
+# add gridlines
+abline(v = seq(0, 1, 0.1), col = "grey")
+abline(h = seq(0, 1, 0.1), col = "grey")
+#draw on the tradeoff curve
+lines(p_Smeet ~ p_Hmeet, type = "l", lwd = 2)
+# add points and text for particular U policies
+points(p_Smeet[U_try %in% plot_U] ~ p_Hmeet[U_try %in% plot_U],
+       pch = 16, cex = 1.5)
+text(p_Smeet[U_try %in% plot_U] ~ p_Hmeet[U_try %in% plot_U],
+     labels = U_try[U_try %in% plot_U], pos = c(1,1,1,2,2))
+```
+
+Equipped with this analysis, your supervisor plans to go to the policy-makers with the recommendation of adjusting the exploitation rate policy to use $U = 0.5$, because they think it balances the trade-off. Notice how if the status quo was maintained, your model suggests you would have complete certainty of staying where you are now: escapement will remain above 75% of its current level with a 100% chance, but you would have no chance of improving harvests to greater than 20% of their current level. Small increases in the exploitation rate (e.g., from 0.4 to 0.45) have a reasonably large gain in harvest performance, but hardly any losses for the escapement criterion. Your supervisor is willing to live with a 90% chance that the escapement will stay where they desire in order to gain a >80% chance of obtaining the desired amount of increases in harvest.
+
+The utility of using Monte Carlo methods in this example is the ability to calculate the probability of some event you are interested in. There are analytical (i.e., not simulation-based) solutions to predict the annual harvest and escapement from a fixed $U$ from a population with parameters $\alpha$ and $\beta$, but by incorporating randomness, you were able to obtain the relative weights of outcomes other than the expectation under the deterministic Ricker model, thereby allowing the assignment of probabilities to meeting the two criteria.
 
 ### Mark-Recapture Evaluation {#mrc-ex}
 
