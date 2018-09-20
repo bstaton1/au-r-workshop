@@ -143,7 +143,7 @@ for (i in 1:5) {
 The `print` command will be executed 5 times: once for each value of `i`. It is the same as:
 
 ```{r, eval = F}
-i = 1; print(i); i = 2; print(i); i = 3; print(i); i = 4; print(i); i = 5; print(i)
+i = 1; print(i^2); i = 2; print(i^2); i = 3; print(i^2); i = 4; print(i^2); i = 5; print(i^2)
 ```
 
 If you remove the `print()` function, see what happens:
@@ -154,7 +154,7 @@ for (i in 1:5) {
 }
 ```
 
-Nothing is printed to the console. R did the calculation, but did not show you or store it. Often, you'll need to store the results of the calculation in a **container object**:
+Nothing is printed to the console. R did the calculation, but did not show you or store the result Often, you'll need to store the results of the calculation in a **container object**:
 
 ```{r}
 results = numeric(5)
