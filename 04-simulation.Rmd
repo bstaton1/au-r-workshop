@@ -11,24 +11,24 @@ Simulation modeling is one of the primary reasons to move away from spreadsheet-
 
 In this chapter, you will learn the basic skills needed for simulation (i.e., Monte Carlo) modeling in R including:
 
-*  creation of random deviates
-*  `for` loops
-*  more advanced function writing
+*  introduce randomness to a model
+*  repeat calculations many times
 *  summarization of many values from a distribution
+*  more advanced function writing
 
-**IMPORTANT NOTE**: If you did not attend the sessions corresponding to Chapters \@ref(ch1) or \@ref(ch2), you are recommended to walk through the material found in those chapters before proceeding to this material. Additionally, you will find the material in Section \@ref(dists) helpful for this chapter. Remember that if you are confused about a topic, you can use **CTRL + F** to find previous cases where that topic has been discussed in this document.
+**IMPORTANT NOTE**: If you did not attend the sessions corresponding to Chapters \@ref(ch1) or \@ref(ch2) or \@ref(ch3), you are recommended to walk through the material found in those chapters before proceeding to this material. Remember that if you are confused about a topic, you can use **CTRL + F** to find previous cases where that topic has been discussed in this document.
 
 ## Before You Begin {-}
 
 You should create a new directory and R script for your work in this Chapter. Create a new R script called `Ch4.R` and save it in the directory `C:/Users/YOU/Documents/R-Workshop/Chapter4`. Set your working directory to that location. Revisit the material in Sections \@ref(scripts) and \@ref(working-dir) for more details on these steps.
 
-## Layout of this chapter
+## Layout of This Chapter {-}
 
 This chapter is divided into two main sections:
 
 *  **Required material** (Sections \@ref(randomness) and \@ref(mc-summaries)) which is necessary to understand the examples in this chapter and the subsequent chapters
 
-*  **Example Cases** (Sections \@ref(sim-examples) and \@ref(resample-examples)) which apply the skills learned in the required material. In the workshop sessions, you will walkthrough 2-3 of these example cases at the choice of the group of the participants. If you are interested in simulation modeling, you are suggested to work through all of the example cases, as slightly different tricks will be shown in the different examples. 
+*  **Example Cases** (Sections \@ref(sim-examples) and \@ref(resample-examples)) which apply the skills learned in the required material. In the workshop session, you will walkthrough 2-3 of these example cases at the choice of the group of the participants. If you are interested in simulation modeling, you are suggested to work through all of the example cases, as slightly different tricks will be shown in the different examples. 
 
 ## Introducing Randomness {#randomness}
 
@@ -652,18 +652,212 @@ Equipped with this analysis, your supervisor plans to go to the policy-makers wi
 
 The utility of using Monte Carlo methods in this example is the ability to calculate the probability of some event you are interested in. There are analytical (i.e., not simulation-based) solutions to predict the annual harvest and escapement from a fixed $U$ from a population with parameters $\alpha$ and $\beta$, but by incorporating randomness, you were able to obtain the relative weights of outcomes other than the expectation under the deterministic Ricker model, thereby allowing the assignment of probabilities to meeting the two criteria.
 
-### Mark-Recapture Evaluation {#mrc-ex}
-
 ## Resampling-Based Examples {#resample-examples}
 
-### Permutation Test {#perm-test-ex}
 ### The Bootstrap {#boot-test-ex}
+
+Oftentimes, you'll have a fitted model that you wish to propagate the uncertainty from to some derived quantity. Consider the case of the **von Bertalanffy growth model**. This is a non-linear model used to predict the size of an organism (weight or length) based on its age. The model can be written for a non-linear regression model (see Section \@ref(nls)) as:
+
+$$ L_i = L_{\infty}\left(1 - e^{-k(age_i-t_0)}\right) + \varepsilon_i, \varepsilon_i \sim N(0, \sigma) $$
+
+where $L_i$ and $age_i$ are the observed length and age of individual $i$, respectively, and $L_{\infty}$, $k$, and $t_0$ are parameters to be estimated. The interpretations of the parameters are as follows:
+
+*  $L_{\infty}$: the maximum average length acheived
+*  $k$: a growth coefficient linked to metabolic rate. It specifies the rate of increase in length as the fish ages early in life
+*  $t_0$: the theoretical age when length equals zero (the x-intercept).
+
+Acquire the data set `growth.csv` (found in the [GitHub repository](https://github.com/bstaton1/au-r-workshop-data), or go [here](#data-sets) for more info). Read in and plot the data:
+
+```{r, eval = F}
+dat = read.csv("growth.csv")
+plot(length ~ age, data = dat, pch = 16, col = "grey")
+```
+
+```{r, echo = F}
+dat = read.csv("Data/growth.csv")
+plot(length ~ age, data = dat, pch = 16, col = "grey")
+```
+
+Due to a large amount of variability in individual growth rates, the relationship looks pretty noisy. Notice how you have mostly young fish in your sample: this is characteristic of "random" sampling of fish populations. 
+
+Suppose you would like to obtain the probability that an average-sized fish of each age is sexually mature. You know that fish of this species mature at approximately 450 mm, and you simply need to determine the fraction of all fish at each age are greater than 450 mm. However, you don't have any observations for some ages (e.g., age 8), so you cannot simply calculate this fraction based on your raw data. You need to fit the von Bertalanffy growth model, then carry the statistical uncertainty from the fitted model forward to the predicted length-at-age. This would be difficult to obtain using only the coefficient estimates and their standard errors, because of the non-linear relationship between the $x$ and $y$ variables.
+
+Enter the **bootstrap**, which is a Monte Carlo analysis using an observed data set and a model. The **pseudocode** for a bootstrap analysis is:
+
+1.  Resample from the originial data (with replacement)
+2.  Fit a model of interest 
+3.  Derive some quantity of interest from the fitted model
+4.  Repeat steps 1 - 3 many times
+5.  Summarize the randomized quantities from step 4
+
+In this example, you will apply a bootstrap approach to obtain the distribution of expected fish lengths at each age, then use these distributions to quantify the probability that an averaged-sized fish of each age is mature (i.e., greater than 450 mm).
+
+You will write a function for each of steps 1 - 3 above. The first is to resample the data:
+
+```{r}
+randomize = function(dat) {
+  # number of observed pairs
+  n = nrow(dat)
+  
+  # sample the rows to determine which will be kept
+  keep = sample(x = 1:n, size = n, replace = T)
+  
+  # retreive these rows from the data
+  dat[keep,]
+}
+```
+
+Notice the use of `replace = T` here: without this, there would be no bootstrap. You would just sample the same observations over and over, their order in the rows would just be shuffled. Next, write a function to fit the model (revisit Section \@ref(nls) for more details on `nls`):
+
+```{r}
+fit_vonB = function(dat) {
+  nls(length ~ linf * (1 - exp(-k * (age - t0))),
+      data = dat,
+      start = c(linf = 600, k = 0.3, t0 = -0.2))
+}
+```
+
+This function will return a fitted model object when executed. Next, write a function to predict mean length-at-age:
+
+```{r}
+# create a vector of ages
+ages = min(dat$age):max(dat$age)
+pred_vonB = function(fit) {
+  # extract the coefficients
+  ests = coef(fit)
+  
+  # predict length-at-age
+  ests["linf"] * (1 - exp(-ests["k"] * (ages - ests["t0"])))
+}
+```
+
+Notice your function will use the object `ages` even though it was not defined in the function. This has to do with **lexical scoping** and **environments**, which are beyond the scope of this introductional material^[If you'd like more details, see Hadley Wickham's page on it: <http://adv-r.had.co.nz/Functions.html#lexical-scoping>]. Now, use these three functions to perform one iteration:
+
+```{r, eval = F}
+pred_vonB(fit = fit_vonB(dat = randomize(dat = dat)))
+```
+
+You can wrap this inside of a `replicate` call to perform step 4 above:
+
+```{r}
+set.seed(2)
+out = replicate(n = 100, expr = {
+  pred_vonB(fit = fit_vonB(dat = randomize(dat = dat)))
+})
+
+dim(out)
+```
+
+It appears the rows are different ages and the columns are different bootstrapped iterations. Summarize the random lengths at each age:
+
+```{r}
+summ = apply(out, 1, function(x) c(mean = mean(x), quantile(x, c(0.025, 0.975))))
+```
+
+Plot the data, the summarized ranges of mean lengths, and the length at which all fish are assumed to be mature (450 mm)
+
+```{r}
+plot(length ~ age, data = dat, col = "grey", pch = 16,
+     ylim = c(0, max(dat$length, summ["97.5%",])),
+     ylab = "Length (mm)", xlab = "Age (years)")
+lines(summ["mean",] ~ ages, lwd = 2)
+lines(summ["2.5%",] ~ ages, col = "grey")
+lines(summ["97.5%",] ~ ages, col = "grey")
+abline(h = 450, col = "blue")
+```
+
+Obtain the fraction of iterations that resulted in the mean length-at-age being greater than 450 mm. This is interpretted as the probability that the average-sized fish of each age is mature:
+
+```{r}
+p_mat = apply(out, 1, function(x) mean(x > 450))
+
+plot(p_mat ~ ages, type = "b", pch = 17,
+     xlab = "Age (years)", ylab = "Probability of Average Fish Mature")
+```
+
+This **maturity schedule** can be used by fishery managers in attempting to decide which ages should be allowed to be harvested and which should be allowed to grow more^[possibly in a **yield-per-recruit** analysis]. Because each age has an associated expected length, managers can use what they know about the size selectivity of various gear types to set policies that attempt to target some ages more than others.
+
+### Permutation Test {#perm-test-ex}
+
+In the previous example (Section \@ref(boot-test-ex)), you learned about the bootstrap. A related Monte Carlo analysis is the **permutation test**. This is a non-parametric statistical test to determine if there is a statistically-significant difference in the mean of some quantity between two populations. It is used in cases where the assumptions of a generalized linear model may not be met, but a p-value is still required.
+
+The **pseudocode** for the permutation test is:
+
+1.  Calculate the difference between means based on the original data set
+2.  Shuffle the group assignments randomly among the observations
+3.  Calculate the difference between the randomly-assigned groups
+4.  Repeat steps 2 - 3 many times. This builds the **null distribution**: the distribution of the test statistic (the difference) assuming the null hypothesis that there is not difference in means is true
+5.  Determine what fraction of the absolute differences were larger than the original difference. This constitutes a **two-tailed** p-value. One-tailed tests can also be derived using the same steps 1 - 4, which is left as an exercise.
+
+Acquire the data set `ponds.csv` (found in the [GitHub repository](https://github.com/bstaton1/au-r-workshop-data), or go [here](#data-sets) for more info). This is the same data set used for [Exercise 1B](#ex1b), revisit that exercise for details on this hypothetical data set. Read in and plot the data:
+
+```{r, eval = F}
+dat = read.csv("ponds.csv")
+plot(chl.a ~ treatment, data = dat)
+```
+
+```{r, echo = F}
+dat = read.csv("Data/ponds.csv")
+plot(chl.a ~ treatment, data = dat)
+```
+
+It appears as though there is a relatively strong signal indicating a difference. Use the permutation test to determine if it is statistically significant. Step 1 from the pseudocode is to caluclate the observed difference between groups:
+
+```{r}
+Dobs = mean(dat$chl.a[dat$treatment == "Add"]) - mean(dat$chl.a[dat$treatment == "Control"])
+Dobs
+```
+
+Write a function to perform one iteration of steps 2 - 3 from the pseudocode:
+
+```{r}
+# x is the group: Add or Control
+# y is chl.a
+perm = function(x, y) {
+  # turn x to a character, easier to deal with
+  x = as.character(x)
+  # shuffle the x values:
+  x_shuff = sample(x)
+  # calculate the mean of each group:
+  x_bar_add = mean(y[x_shuff == "Add"])
+  x_bar_ctl = mean(y[x_shuff == "Control"])
+  # calculate the difference:
+  x_bar_add - x_bar_ctl
+}
+```
+
+Use your function once:
+
+```{r}
+perm(x = dat$treatment, y = dat$chl.a)
+```
+
+Perform step 4 from the pseudocode by replicating the `perm` function many times:
+
+```{r}
+Dnull = replicate(n = 5000, expr = perm(x = dat$treatment, y = dat$chl.a))
+```
+
+Plot the distribution of the null test statistic and draw a line where the originally-observed difference falls:
+
+```{r}
+hist(Dnull, col = "grey")
+abline(v = Dobs, col = "blue", lwd = 3, lty = 2)
+```
+
+Notice the null distribution is centered on zero: that's because the assumption it makes is that there is no difference. The observation (blue line) falls way in the upper tail of the null distribution, indicating it is unlikely an effect that large was observed by random chance. The two-tailed p-value can be calculated as:
+
+```{r}
+mean(abs(Dnull) >= Dobs)
+```
+
+Very few (or zero) of the random data sets resulted in a difference greater than what was observed, indicating there is statisitcal support to the hypothesis that there is a non-zero difference between the two nutrient treatments.
 
 ---
 
 ## Exercise 4
 
-In these exercise, you will be adapting the code written in this chapter to investigate slightly different questions. You should create a new R script `Ex4.R` in your working directory for these exercises so your chapter code is left unchanged. Exercise 4A is based solely on the required material and Exercises 4B - 4F are based on the example cases. You should work through each example before attempting each of the later exercises.
+In these exercises, you will be adapting the code written in this chapter to investigate slightly different questions. You should create a new R script `Ex4.R` in your working directory for these exercises so your chapter code is left unchanged. Exercise 4A is based solely on the required material and Exercises 4B - 4F are based on the example cases. You should work through each example before attempting each of the later exercises.
 
 _The solutions to this exercise are found at the end of this book ([here](#ex4a-answers)). You are **strongly recommended** to make a good attempt at completing this exercise on your own and only look at the solutions when you are truly stumped._
 
@@ -671,11 +865,11 @@ _The solutions to this exercise are found at the end of this book ([here](#ex4a-
 
 These questions are based on the material in Sections \@ref(randomness) - \@ref(mc-summaries) only.
 
-1.  
-2.  
-3.
-4.
-5.
+1.  Simulate flipping an unfair coin (probability of heads = 0.6) 100 times using `rbinom`. Count the number of heads and tails.
+2.  Simulate flipping the same unfair coin 100 times, but suing `sample` instead. Determine what fraction of the flips resulted in heads.
+3.  Simulate rolling a fair 6-sided die 100 times using `sample`. Determine what fraction of the rolls resulted in an even number.
+4.  Simulate rolling the same die 100 times, but use the function `rmultinom` instead. Look at the help file for details on how to use this function. Determin what fraction of the rolls resulted in an odd number.
+5.  
 6.
 
 [Solutions](#ex4a-answers)
@@ -704,19 +898,19 @@ for (n in 1:N) {
 
 These questions will require you to adapt the code written in Section \@ref(harv-ex)
 
-1.  
-2.  
-3.
+1.  Add an argument to `ricker_sim` that will give the user an option to create a plot that shows the time series of recruitment, harvest, and escapement all on the same plot. Set the default to be to not plot the result, in case you forget to turn it off before performing the Monte Carlo analysis. 
+2.  Add a _error handler** to `ricker_sim` that will cause the function to return an error `if` the names of the vector passed to the `param` argument aren't what the function is expecting. You can use stop("Error Message Goes Here") to have your function stop and return an error.
+3.  How do the results of the trade-off analysis differ if the process error was larger (a larger value of $\sigma$)?
+4.  Add implementation error to the harvest policy. That is, if the target exploitation rate is $U$, make the real exploitation rate in year $y$ be: $U_y ~ Beta(a,b)$, where $a = 100U$ and $b = 100(1-U)$. You can make there be more implementation error by inserting a smaller number other than 100 here. How does this affect the trade-off analysis?
 
 [Solutions](#ex4c-answers)
 
-### Exercise 4D: Mark-Recapture Evaluation {-}
+### Exercise 4D: The Bootstrap {-}
 
-These questions will require you to adapt the code written in Section \@ref(mrc-ex)
+These questions will require you to adapt the code written in Section \@ref(boot-test-ex)
 
-1.  
-2.  
-3.
+1.  Replicate the bootstrap analysis but adapted for the linear regression example in Section \@ref(regression). Stop at the step where you summarize the 95% interval range.
+2.  Compare the 95% bootstrap confidence intervals to the intervals you get by running the `predict` function on the original data set with the argument `interval = "confidence"` set.
 
 [Solutions](#ex4d-answers)
 
@@ -724,18 +918,8 @@ These questions will require you to adapt the code written in Section \@ref(mrc-
 
 These questions will require you to adapt the code written in Section \@ref(perm-test-ex)
 
-1.  
-2.  
-3.
+1.  Adapt the code to perform a permutation test for the difference in each of the zooplankton densities between treatments. Don't forget to fix the missing value in the `chao` variable. See [Exercise 2](#ex1b) for more details on this.
+2.  Adapt the code to perform a permutation test for another data set used in this book where there are observations of both a categorical variable and a continuous variable. The the data sets `sockeye.csv`, `growth.csv`, or `creel.csv` should be good starting points.
+3.  Add a calculation of the p-value for a one-tailed test (i.e., that the difference in means is greater or less than zero). Steps 1 - 4 are the same: all you need is `Dnull` and `Dobs`. Don't be afraid to Google this if you are confused. 
 
 [Solutions](#ex4e-answers)
-
-### Exercise 4F: The Bootstrap {-}
-
-These questions will require you to adapt the code written in Section \@ref(boot-test-ex)
-
-1.  
-2.  
-3.
-
-[Solutions](#ex4f-answers)

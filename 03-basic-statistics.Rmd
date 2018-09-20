@@ -507,7 +507,7 @@ plot(cons ~ prey, data = dat, cex = 1.5, pch = 16, col = "grey")
 
 You can see a distinct non-linearity to the relationship. The Holling Type II functional response^[This function rises quickly at low prey densities, but saturates at high densities] has this functional form:
 
-$$y_i=\frac{ax_i}{1+ahx_i}$$
+$$y_i=\frac{ax_i}{1+ahx_i} + \varepsilon_i, \varepsilon_i \sim N(0, \sigma)$$
 where $x_i$ is `prey` and $y_i$ is `cons`. 
 
 You can fit this model in R using the `nls` function: 

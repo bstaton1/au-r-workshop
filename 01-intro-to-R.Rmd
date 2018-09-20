@@ -743,7 +743,7 @@ This is the equivalent of $(5^2)^2$.
 
 ---
 
-## Exercise 1B {-}
+## Exercise 1B {-#ex1b}
 
 In this exercise, you will be using what you learned in Chapter 1 to summarize data from a hypothetical pond experiment. 
 
