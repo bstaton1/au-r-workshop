@@ -374,7 +374,7 @@ dat = read.csv("streams.csv")
 dat = read.csv("streams.csv")
 ```
 
-then fear not. This has must be among the most common errors encountered by R users world-wide. It simply means the file you told R to look for doesn't exist where you told R to find it. Here is a trouble-shooting guide to this error:
+then fear not. This must be among the most common errors encountered by R users world-wide. It simply means the file you told R to look for doesn't exist where you told R to find it. Here is a trouble-shooting guide to this error:
 
 1.  The exact case and spelling matters, as well as do the quotes and `.csv` at the end. Ensure the file name is typed correctly.
 

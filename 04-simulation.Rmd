@@ -122,7 +122,7 @@ mean(means); mean(x)
 sd(means); se(x)
 ```
 
-### The `for` loop
+### The `for` loop {#for-loops}
 
 In programming, a *loop* is a command that does something over and over until it reaches some point that you specify. R has a few types of loops: `repeat`, `while`, and `for`, to name a few. `for` loops are among the most common in simulation modeling. A `for` loop repeats some action for however many times you tell it for each value in some vector. The syntax is:
 
@@ -197,7 +197,7 @@ plot(N, type = "l", pch = 15, xlab = "Year", ylab = "Abundance")
 
 Examples of the other three utilities are shown in the example cases.
 
-## Function Writing
+## Function Writing {#adv-funcs}
 In Monte Carlo analyses, it is often useful to wrap code into functions. This makes them easy to be replicated and have the settings adjusted. As an example, turn the population model shown above into a function:
 
 ```{r}
@@ -408,7 +408,7 @@ sim_fit = function(n, p_old = 0.10, p_new = 0.25) {
 Next, for steps 4 and 5, set up a **nested `for` loop**. This will have two loops: one that loops over sample sizes for step 5 and one that loops over replicates of each sample size (step 4):
 
 ```{r}
-I = 1000  # the number of replicates at each sample size
+I = 10  # the number of replicates at each sample size
 
 n_try = seq(10, 50, 10)  # the test sample sizes
 N = length(n_try)      # count them
@@ -473,7 +473,7 @@ sim_fit = function(n, p_old = 0.10, p_new = 0.25) {
 }
 
 # run the analysis
-I = 1000  # the number of replicates at each sample size
+I = 10  # the number of replicates at each sample size
 
 n_try = seq(10, 50, 10)  # the test sample sizes
 N = length(n_try)      # count them
@@ -504,6 +504,31 @@ It seems that even if you tagged `r n_try[N]` fish per treatment, you would have
 You and your colleagues consider these results and determine that you will need to somehow aquire more funds to tag more fish in the small-scale study in order to a high level of confidence in the results.
 
 ### Harvest Policy Analysis {#harv-ex}
+
+In this example, you will simulate population dynamics under a more realistic model than in Sections \@ref(for-loops) and \@ref(adv-funcs) for the purposes of evaluating different harvest policies. 
+
+Suppose you are a fisheries research biologist, and a large commercial fishery for pink salmon (_Oncorhynchus gorbuscha_) takes place in your district. For the past 10 years, it has been fished with an exploitation rate of 40% (40% of the fish that return each year have been harvested, exploitation rate is abbreviated by $U$). The management plan is up for evaluation this year, and your supervisor has asked you to prepare an analysis that determines if more yields could be taken if a different exploitation rate were to be used in the future.
+
+Based on historical data, your best understanding implies that the stock is driven by Ricker spawner-recruit dynamics. That is, the total number of fish that return this year (recruits) are a function of the total number of spawners that spawned the recruits this year. The functional form of the Ricker relationship can be written this way:
+
+$$R_t = \alpha S_{t-1} e^{-\beta S_{t-1} + \varepsilon_t} ,\varepsilon_t \sim N(0,\sigma)$$
+
+where $\alpha$ is a parameter representing the maximum recruits per spawner (obtained at very low spawner abundances) and $\beta$ is a measure of the strength of **density-dependent mortality**. Notice that the error term is in the exponent, which makes $e^{\varepsilon_t}$ lognormal.
+
+You have estimates of the parameters:
+
+*  $\alpha = 6$
+*  $\beta = 1 \times 10^{-7}$
+*  $\sigma = 0.4$
+
+You decide that you can build a policy analysis by simulating the stock forward through time under different exploitation rates to determine if its reasonable to expect a different exploitation rate to provide more yields than what are currently being extracted.
+
+First, write a function for your population model. Your function must:
+
+1.  take the parameters, dimensions (number of years), and the policy variable ($U$) as input arguments
+2.  simulate the population using Ricker dynamics
+3.  calculate and return the sum of the yields over the number future years you simulated.
+
 ### Mark-Recapture Evaluation {#mrc-ex}
 
 ## Resampling-Based Examples {#resample-examples}
