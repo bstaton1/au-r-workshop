@@ -238,12 +238,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="ch5.html"><a href="ch5.html#exercise-5"><i class="fa fa-check"></i>Exercise 5</a></li>
 <li class="chapter" data-level="" data-path="ch5.html"><a href="ch5.html#exercise-5-bonus"><i class="fa fa-check"></i>Exercise 5 Bonus</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="ch6.html"><a href="ch6.html"><i class="fa fa-check"></i><b>6</b> Mapping and Spatial Analysis</a><ul>
-<li class="chapter" data-level="6.1" data-path="ch6.html"><a href="ch6.html#fsec"><i class="fa fa-check"></i><b>6.1</b> This is the First Section</a><ul>
-<li class="chapter" data-level="6.1.1" data-path="ch6.html"><a href="ch6.html#a-subsection-of-the-first-section"><i class="fa fa-check"></i><b>6.1.1</b> A subsection of the First Section</a></li>
-</ul></li>
-<li class="chapter" data-level="6.2" data-path="ch6.html"><a href="ch6.html#this-is-the-second-section"><i class="fa fa-check"></i><b>6.2</b> This is the Second Section</a></li>
-</ul></li>
+<li class="chapter" data-level="6" data-path="ch6.html"><a href="ch6.html"><i class="fa fa-check"></i><b>6</b> Mapping and Spatial Analysis</a></li>
 <li class="chapter" data-level="" data-path="exercise-solutions.html"><a href="exercise-solutions.html"><i class="fa fa-check"></i>Exercise Solutions</a><ul>
 <li class="chapter" data-level="" data-path="exercise-solutions.html"><a href="exercise-solutions.html#ex1a-answers"><i class="fa fa-check"></i>Exercise 1A Solutions</a></li>
 <li class="chapter" data-level="" data-path="exercise-solutions.html"><a href="exercise-solutions.html#ex1b-answers"><i class="fa fa-check"></i>Exercise 1B Solutions</a></li>
@@ -314,7 +309,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>The <strong>graphics device</strong> is the area that a plot shows up. RStudio has a built in graphics device in its interface (lower right by default in the “Plots” tab), or you can create a new device. R will plot on the active device, which is the most recently created device. There can only be one active device at a time.</li>
 </ul>
 <p>Here is an example of a basic R plot:</p>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>There are a few components:</p>
 <ul>
 <li>The <strong>plotting region</strong>: all data information is displayed here.</li>
@@ -330,94 +325,214 @@ y =<span class="st"> </span>x<span class="op">^</span><span class="dv">2</span>
      <span class="dt">ylab =</span> <span class="st">&quot;y-axis label goes here&quot;</span>,
      <span class="dt">main =</span> <span class="st">&quot;Main Plot Title Goes Here&quot;</span>)</code></pre></div>
 <p>Note that the first two arguments, <code>x</code> and <code>y</code>, specify the coordinates of the points (i.e., the first point is placed at coordinates <code>x[1]</code>,<code>y[1]</code>). <code>plot</code> has <em>tons</em> of arguments (or <em>graphical parameters</em> as the help file found using <code>?plot</code> or <code>?par</code> calls them) that change how the plot looks. Note that when you want something displayed verbatim on the plotting device, you must wrap that code in <code>&quot; &quot;</code>, i.e., the arguments <code>xlab</code>, <code>ylab</code>, and <code>main</code> all receive a character vector of length 1 as input.</p>
-<p>Here are just a handful of them to get you started:</p>
+<p>Table <a href="ch2.html#tab:plot-arg-table-html">2.1</a> are just a handful of them to get you started.</p>
 <table>
-<caption><span id="tab:plot-arg-table">Table 2.1: </span>Several of the key arguments to high- and low-level plotting functions</caption>
+<caption>
+<span id="tab:plot-arg-table-html">Table 2.1: </span>Several of the key arguments to high- and low-level plotting functions
+</caption>
 <thead>
-<tr class="header">
-<th align="left">Arg.</th>
-<th align="left">Usage</th>
-<th align="left">Description</th>
+<tr>
+<th style="text-align:left;">
+Arg.
+</th>
+<th style="text-align:left;">
+Usage
+</th>
+<th style="text-align:left;">
+Description
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left"><code>xlab</code></td>
-<td align="left"><code>xlab = &quot;X-AXIS&quot;</code></td>
-<td align="left">changes the x-axis label text</td>
+<tr>
+<td style="text-align:left;">
+<code>xlab</code>
+</td>
+<td style="text-align:left;">
+<code>xlab = &amp;quot;X-AXIS&amp;quot;</code>
+</td>
+<td style="text-align:left;">
+changes the x-axis label text
+</td>
 </tr>
-<tr class="even">
-<td align="left"><code>ylab</code></td>
-<td align="left"><code>ylab = &quot;Y-AXIS&quot;</code></td>
-<td align="left">changes the y-axis label text</td>
+<tr>
+<td style="text-align:left;">
+<code>ylab</code>
+</td>
+<td style="text-align:left;">
+<code>ylab = &amp;quot;Y-AXIS&amp;quot;</code>
+</td>
+<td style="text-align:left;">
+changes the y-axis label text
+</td>
 </tr>
-<tr class="odd">
-<td align="left"><code>main</code></td>
-<td align="left"><code>main = &quot;TITLE&quot;</code></td>
-<td align="left">changes the main title text</td>
+<tr>
+<td style="text-align:left;">
+<code>main</code>
+</td>
+<td style="text-align:left;">
+<code>main = &amp;quot;TITLE&amp;quot;</code>
+</td>
+<td style="text-align:left;">
+changes the main title text
+</td>
 </tr>
-<tr class="even">
-<td align="left"><code>cex</code></td>
-<td align="left"><code>cex = 1.5</code></td>
-<td align="left">changes the size of symbols in the plotting region<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a></td>
+<tr>
+<td style="text-align:left;">
+<code>cex</code>
+</td>
+<td style="text-align:left;">
+<code>cex = 1.5</code>
+</td>
+<td style="text-align:left;">
+changes the size of symbols in the plotting region<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>
+</td>
 </tr>
-<tr class="odd">
-<td align="left"><code>pch</code></td>
-<td align="left"><code>pch = 17</code></td>
-<td align="left">changes the symbol type<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a></td>
+<tr>
+<td style="text-align:left;">
+<code>pch</code>
+</td>
+<td style="text-align:left;">
+<code>pch = 17</code>
+</td>
+<td style="text-align:left;">
+changes the symbol type<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a>
+</td>
 </tr>
-<tr class="even">
-<td align="left"><code>xlim</code></td>
-<td align="left"><code>xlim = range(x)</code></td>
-<td align="left">changes the endpoints (limits) of the x-axis<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a></td>
+<tr>
+<td style="text-align:left;">
+<code>xlim</code>
+</td>
+<td style="text-align:left;">
+<code>xlim = range(x)</code>
+</td>
+<td style="text-align:left;">
+changes the endpoints (limits) of the x-axis<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>
+</td>
 </tr>
-<tr class="odd">
-<td align="left"><code>ylim</code></td>
-<td align="left"><code>ylim = c(0,1)</code></td>
-<td align="left">same as <code>xlim</code>, but for the y-axis</td>
+<tr>
+<td style="text-align:left;">
+<code>ylim</code>
+</td>
+<td style="text-align:left;">
+<code>ylim = c(0,1)</code>
+</td>
+<td style="text-align:left;">
+same as <code>xlim</code>, but for the y-axis
+</td>
 </tr>
-<tr class="even">
-<td align="left"><code>type</code></td>
-<td align="left"><code>type = &quot;l&quot;</code></td>
-<td align="left">changes the way points are connected by lines<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a></td>
+<tr>
+<td style="text-align:left;">
+<code>type</code>
+</td>
+<td style="text-align:left;">
+<code>type = &amp;quot;l&amp;quot;</code>
+</td>
+<td style="text-align:left;">
+changes the way points are connected by lines<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a>
+</td>
 </tr>
-<tr class="odd">
-<td align="left"><code>lty</code></td>
-<td align="left"><code>lty = 2</code></td>
-<td align="left">changes the line type<a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a></td>
+<tr>
+<td style="text-align:left;">
+<code>lty</code>
+</td>
+<td style="text-align:left;">
+<code>lty = 2</code>
+</td>
+<td style="text-align:left;">
+changes the line type<a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a>
+</td>
 </tr>
-<tr class="even">
-<td align="left"><code>lwd</code></td>
-<td align="left"><code>lwd = 2</code></td>
-<td align="left">changes the line width<a href="#fn7" class="footnoteRef" id="fnref7"><sup>7</sup></a></td>
+<tr>
+<td style="text-align:left;">
+<code>lwd</code>
+</td>
+<td style="text-align:left;">
+<code>lwd = 2</code>
+</td>
+<td style="text-align:left;">
+changes the line width<a href="#fn7" class="footnoteRef" id="fnref7"><sup>7</sup></a>
+</td>
 </tr>
-<tr class="odd">
-<td align="left"><code>col</code></td>
-<td align="left"><code>col = &quot;blue&quot;</code></td>
-<td align="left">changes the color of plotted objects<a href="#fn8" class="footnoteRef" id="fnref8"><sup>8</sup></a></td>
+<tr>
+<td style="text-align:left;">
+<code>col</code>
+</td>
+<td style="text-align:left;">
+<code>col = &amp;quot;blue&amp;quot;</code>
+</td>
+<td style="text-align:left;">
+changes the color of plotted objects<a href="#fn8" class="footnoteRef" id="fnref8"><sup>8</sup></a>
+</td>
 </tr>
 </tbody>
 </table>
-<p>You are advised to try at least some of these arguments out for yourself with your <code>plot(x, y)</code> code from above - notice how every time you run <code>plot</code>, a whole new plot is created, not just the thing you changed. There are definitely other options: check out <code>?plot</code> or <code>?par</code> for more details.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pars =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;xlab&quot;</span>, <span class="st">&quot;ylab&quot;</span>, <span class="st">&quot;main&quot;</span>, <span class="st">&quot;cex&quot;</span>, <span class="st">&quot;pch&quot;</span>, <span class="st">&quot;xlim&quot;</span>, <span class="st">&quot;ylim&quot;</span>, <span class="st">&quot;type&quot;</span>,
+         <span class="st">&quot;lty&quot;</span>, <span class="st">&quot;lwd&quot;</span>, <span class="st">&quot;col&quot;</span>)
+
+usage =<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;xlab = &quot;X-AXIS&quot;&#39;</span>, <span class="st">&#39;ylab = &quot;Y-AXIS&quot;&#39;</span>,
+          <span class="st">&#39;main = &quot;TITLE&quot;&#39;</span>, <span class="st">&#39;cex = 1.5&#39;</span>, <span class="st">&#39;pch = 17&#39;</span>, 
+          <span class="st">&#39;xlim = range(x)&#39;</span>, <span class="st">&#39;ylim = c(0,1)&#39;</span>,
+          <span class="st">&#39;type = &quot;l&quot;&#39;</span>, <span class="st">&#39;lty = 2&#39;</span>, <span class="st">&#39;lwd = 2&#39;</span>, <span class="st">&#39;col = &quot;blue&quot;&#39;</span>)
+
+desc =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;changes the x-axis label text&quot;</span>,
+         <span class="st">&quot;changes the y-axis label text&quot;</span>,
+         <span class="st">&quot;changes the main title text&quot;</span>,
+         <span class="st">&quot;changes the size of symbols in the plotting region&quot;</span>,
+         <span class="st">&quot;changes the symbol type&quot;</span>,
+         <span class="st">&quot;changes the endpoints (limits) of the x-axis&quot;</span>,
+         <span class="st">&quot;same as xlim, but for the y-axis&quot;</span>,
+         <span class="st">&quot;changes the way points are connected by lines&quot;</span>,
+         <span class="st">&#39;changes the line type&#39;</span>, 
+         <span class="st">&quot;changes the line width&quot;</span>,
+         <span class="st">&quot;changes the color of plotted objects&quot;</span>)
+df =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Argument =</span> pars, <span class="dt">Usage =</span> usage, <span class="dt">Description =</span> desc)
+<span class="co"># pander::pandoc.table(df, justify = &quot;lll&quot;, split.cells = c(&quot;10%&quot;, &quot;30%&quot;, &quot;60%&quot;))</span>
+
+
+df[<span class="dv">4</span>,<span class="dv">3</span>] =<span class="st"> </span><span class="kw">paste0</span>(df[<span class="dv">4</span>,<span class="dv">3</span>], <span class="kw">footnote_marker_alphabet</span>(<span class="dv">1</span>))
+df[<span class="dv">5</span>,<span class="dv">3</span>] =<span class="st"> </span><span class="kw">paste0</span>(df[<span class="dv">5</span>,<span class="dv">3</span>], <span class="kw">footnote_marker_alphabet</span>(<span class="dv">2</span>))
+df[<span class="dv">6</span>,<span class="dv">3</span>] =<span class="st"> </span><span class="kw">paste0</span>(df[<span class="dv">6</span>,<span class="dv">3</span>], <span class="kw">footnote_marker_alphabet</span>(<span class="dv">2</span>))
+
+<span class="kw">kable</span>(
+  df, <span class="st">&quot;latex&quot;</span>, <span class="dt">booktabs =</span> T,
+  <span class="dt">caption =</span> <span class="st">&quot;Several of the key arguments to high- and low-level plotting functions&quot;</span>,
+  <span class="dt">escape =</span> F) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">footnote</span>(
+    <span class="dt">alphabet =</span> <span class="kw">c</span>(
+      <span class="st">&quot;cex is a multiplier: cex = 1.5 says make the points 1.5 times as large as they would be by default.&quot;</span>,
+      <span class="st">&quot;There are approximately 20 different pch settings: pch = 1 is empty circles, pch = 16 is filled circles, etc.&quot;</span>,
+      <span class="st">&quot;xlim and ylim both require a numeric vector of length 2 where neither of the elements may be an NA.&quot;</span>,
+      <span class="st">&#39;The default is points only, type = &quot;l&quot; is for lines only, type = &quot;o&quot; is for points connected with lines, and type = &quot;b&quot; is for points and lines but with a small amount of separation between them.&#39;</span>,
+      <span class="st">&#39;lty = 1 is solid, lty = 2 is dashed, lty = 3 is dotted, etc. You can also specific it like lty = &quot;solid&quot;, lty = &quot;dotted&quot;, or lty = &quot;dotdash&quot;.&#39;</span>,
+      <span class="st">&quot;works just like cex: lwd = 3 codes for a line that is 3 times as thick as it would normally be&quot;</span>,
+      <span class="st">&quot;there is a whole host of colors you can pass R by name, run colors() to see for yourself&quot;</span>
+    ),
+    <span class="dt">footnote_as_chunk =</span> F, <span class="dt">threeparttable =</span> T
+  ) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">full_width =</span> F) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">column_spec</span>(<span class="dv">3</span>, <span class="dt">width =</span> <span class="st">&quot;25em&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">column_spec</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">monospace =</span> T)</code></pre></div>
+<p>You are advised to try at least some of the arguments in Table <a href="ch2.html#tab:plot-arg-table-html">2.1</a> out for yourself with your <code>plot(x, y)</code> code from above - notice how every time you run <code>plot</code>, a whole new plot is created, not just the thing you changed. There are definitely other options: check out <code>?plot</code> or <code>?par</code> for more details.</p>
 </div>
 <div id="lower-level-plotting-functions" class="section level2">
 <h2><span class="header-section-number">2.2</span> Lower Level Plotting Functions</h2>
 <p>Now that you have a base plot designed to your liking, you might want to add some additional “layers” to it to represent more data or other kind of information like an additional label or text. Add some more points to your plot by putting this line right beneath your <code>plot(x,y)</code> code and run just the <code>points()</code> line (make sure your device is showing a plot first):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># rev() reverses a vector: so the old x[1] is x[11] now</span>
 <span class="kw">points</span>(<span class="dt">x =</span> <span class="kw">rev</span>(x), <span class="dt">y =</span> y, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">pch =</span> <span class="dv">16</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>Here, <code>points</code> acted like a low-level plotting function because it added points to a plot you already made. Many of the arguments shown in Table <a href="ch2.html#tab:plot-arg-table">2.1</a> can be used in both high-level and low-level plotting functions (notice how <code>col</code> and <code>pch</code> were used in <code>points</code>). Just like <code>points</code>, there is also <code>lines</code>:</p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Here, <code>points</code> acted like a low-level plotting function because it added points to a plot you already made. Many of the arguments shown in Table <a href="ch2.html#tab:plot-arg-table-html">2.1</a> can be used in both high-level and low-level plotting functions (notice how <code>col</code> and <code>pch</code> were used in <code>points</code>). Just like <code>points</code>, there is also <code>lines</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lines</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> x, <span class="dt">lty =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>You can also add text to the plotting region:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">text</span>(<span class="dt">x =</span> <span class="dv">5</span>, <span class="dt">y =</span> <span class="dv">80</span>, <span class="st">&quot;This is Text&quot;</span>, <span class="dt">cex =</span> <span class="fl">1.5</span>, <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>, <span class="dt">font =</span> <span class="dv">4</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The text is centered on the coordinates you provide. You can also provide vectors of coordinates and text to write different things at once.</p>
 <p>The easiest way to add a straight line to a plot is with <code>abline</code>. By default it takes two arguments: <code>a</code> and <code>b</code> which are the intercept and slope, respectively, e.g., <code>abline(c(0,1))</code> will draw a 1:1 line. You can also do <code>abline(h = 5)</code> to draw a horizontal line at 5 or <code>abline(v = 5)</code> to draw a vertical line at <code>5</code>.</p>
 <p>You can see that the text is centered on the coordinates <code>x = 5</code> and <code>y = 80</code> using <code>abline</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">80</span>, <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>)
 <span class="kw">abline</span>(<span class="dt">v =</span> <span class="dv">5</span>, <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>If you accidentally add a plot element that you don’t want using a low-level plotting function, the only way to remove it is by re-running the high-level plotting function to start a new plot and adding only the objects you want. Try removing the “This is Text” text and the straight lines you drew with <code>abline</code> from the plot displayed in your device.</p>
 </div>
 <div id="other-high-level-plotting-functions" class="section level2">
@@ -428,7 +543,7 @@ y =<span class="st"> </span>x<span class="op">^</span><span class="dv">2</span>
 <p>Another very common graph is a bar graph. R has a <code>bargraph</code> function, and again, it has lots of arguments. Here you will just make two common variations: single bars per group and multiple bars per group. Create a vector and plot it:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x1 =<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>)
 <span class="kw">barplot</span>(x1)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Notice that there are no group names on the bars (if <code>x1</code> had names, there would be). You can add names by using the argument <code>names.arg</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">barplot</span>(x1, <span class="dt">names.arg =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>))</code></pre></div>
 <p>Add some more information by including two bars per group. Create another vector and combine it with the old data:</p>
@@ -436,7 +551,7 @@ y =<span class="st"> </span>x<span class="op">^</span><span class="dv">2</span>
 x3 =<span class="st"> </span><span class="kw">rbind</span>(x1, x2)
 
 <span class="kw">barplot</span>(x3, <span class="dt">names.arg =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>), <span class="dt">beside =</span> T)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>To add multiple bars per group, R needs a matrix like you just made. The <strong>columns</strong> store the heights of the bars that will be placed together in a group. Including the <code>beside = T</code> argument tells R to plot all groups as different bars as opposed to using a stacked bar graph.</p>
 <p>Oftentimes, you will want to add error bars to a bar graph like this. To avoid digressing too much here, creating error bars is covered as a bonus topic.</p>
 </div>
@@ -456,7 +571,7 @@ x3 =<span class="st"> </span><span class="kw">rbind</span>(x1, x2)
 ##                       Max.   :62.649</code></pre>
 <p>This data set contains some simulated (i.e., fake) continuous and categorical data that represent 300 anglers who were creel surveyed<a href="#fn9" class="footnoteRef" id="fnref9"><sup>9</sup></a>. In the data set, there are three categories (levels to the factor <code>fishery</code>) and the continuous variable is how many hours each angler fished this year. If you supply the generic <code>plot</code> function with a continuous response (<code>y</code>) variable and a categorical predictor (<code>x</code>) variable, it will automatically assume you want to make a box-and-whisker plot:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x =</span> dat<span class="op">$</span>fishery, <span class="dt">y =</span> dat<span class="op">$</span>hours)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>In the box-and-whisker plot above, the heavy line is the median, the ends of the boxes are the 25<sup>th</sup> and 75<sup>th</sup> percentiles and the “whiskers” are the 2.5<sup>th</sup> and 97.5<sup>th</sup> percentiles. Any points that are outliers (i.e., fall outside of the whiskers) will be shown as points<a href="#fn10" class="footnoteRef" id="fnref10"><sup>10</sup></a>.</p>
 <p>It is worth introducing a shorthand syntax of typing the same command:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(hours <span class="op">~</span><span class="st"> </span>fishery, <span class="dt">data =</span> dat)</code></pre></div>
@@ -466,7 +581,7 @@ x3 =<span class="st"> </span><span class="kw">rbind</span>(x1, x2)
 <h2><span class="header-section-number">2.5</span> Histograms</h2>
 <p>Another way to show the distribution of a variable is with histograms. These figures show the relative frequencies of observations in different discrete bins. Make a histogram for the hours the surveyed tournament anglers fished this year:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(dat<span class="op">$</span>hours[dat<span class="op">$</span>fishery <span class="op">==</span><span class="st"> &quot;Tournament&quot;</span>])</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-19-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-20-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Notice the subset that extracts hours fished for tournament anglers only before plotting.</p>
 <p><code>hist</code> automatically selects the number of bins based on the range and resolution of the data. You can specify how many evenly-sized bins you want to plot:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># extract the hours for tournament anglers</span>
@@ -476,16 +591,16 @@ t_hrs =<span class="st"> </span>dat<span class="op">$</span>hours[dat<span class
 nbins =<span class="st"> </span><span class="dv">20</span>
 breaks =<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="kw">min</span>(t_hrs), <span class="dt">to =</span> <span class="kw">max</span>(t_hrs), <span class="dt">length =</span> nbins <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)
 <span class="kw">hist</span>(t_hrs, <span class="dt">breaks =</span> breaks, <span class="dt">main =</span> <span class="st">&quot;Tournament&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-20-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-21-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="the-par-function" class="section level2">
 <h2><span class="header-section-number">2.6</span> The <code>par</code> Function</h2>
 <p>If it bothers you that the axes are “floating”, you can fix this using this command:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">xaxs =</span> <span class="st">&quot;i&quot;</span>, <span class="dt">yaxs =</span> <span class="st">&quot;i&quot;</span>)
 <span class="kw">hist</span>(t_hrs, <span class="dt">breaks =</span> breaks, <span class="dt">main =</span> <span class="st">&quot;Tournament&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-21-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-22-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Here, you changed the graphical parameters of the graphics device by using the <code>par</code> argument. Once you change the settings in <code>par</code>, they will remain that way until you start a new device.</p>
-<p>The <code>par</code> function is central to fine-tuning your graphics. Here, the <code>xaxs = &quot;i&quot;</code> and <code>yaxs = &quot;i&quot;</code> arguments essentially removed the buffer between the data and the axes. <code>par</code> has options to change the size of the margins, add outer margins, change colors, etc. Some of the graphical parameters that can be passed to high- and low-level plotting functions (like those in Table <a href="ch2.html#tab:plot-arg-table">2.1</a>) can also be passed <code>par</code>. Check out the help file (<code>?par</code>) to see everything it can do. If you want to start over with fresh <code>par</code> settings, start a new device.</p>
+<p>The <code>par</code> function is central to fine-tuning your graphics. Here, the <code>xaxs = &quot;i&quot;</code> and <code>yaxs = &quot;i&quot;</code> arguments essentially removed the buffer between the data and the axes. <code>par</code> has options to change the size of the margins, add outer margins, change colors, etc. Some of the graphical parameters that can be passed to high- and low-level plotting functions (like those in Table <a href="ch2.html#tab:plot-arg-table-html">2.1</a> can also be passed <code>par</code>. Check out the help file (<code>?par</code>) to see everything it can do. If you want to start over with fresh <code>par</code> settings, start a new device.</p>
 </div>
 <div id="new-temporary-devices" class="section level2">
 <h2><span class="header-section-number">2.7</span> New Temporary Devices</h2>
@@ -504,7 +619,7 @@ breaks =<span class="st"> </span><span class="kw">seq</span>(<span class="dt">fr
 <span class="kw">hist</span>(dat<span class="op">$</span>hours[dat<span class="op">$</span>fishery <span class="op">==</span><span class="st"> &quot;Tournament&quot;</span>], <span class="dt">main =</span> <span class="st">&quot;Tourn&quot;</span>)
 <span class="kw">hist</span>(dat<span class="op">$</span>hours[dat<span class="op">$</span>fishery <span class="op">==</span><span class="st"> &quot;Non.Tournament&quot;</span>], <span class="dt">main =</span> <span class="st">&quot;Non.Tourn&quot;</span>)
 <span class="kw">hist</span>(dat<span class="op">$</span>hours[dat<span class="op">$</span>fishery <span class="op">==</span><span class="st"> &quot;Harvest&quot;</span>], <span class="dt">main =</span> <span class="st">&quot;Harvest&quot;</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-22-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-23-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>There are other ways to make multi-panel plots, however, they are beyond the scope of this beginner’s workshop. See <code>?layout</code> for details. With this function you can change the size of certain plots and make them have different shapes (i.e., some squares, some rectangles, etc.), but it takes some pretty involved (though not impossible, by any means) specification of how you want the device to be split up into regions.</p>
 </div>
 <div id="legends" class="section level2">
@@ -512,7 +627,7 @@ breaks =<span class="st"> </span><span class="kw">seq</span>(<span class="dt">fr
 <p>Oftentimes you will want to add a legend to plots to help people interpret what it is showing. You can add legends to R plots using the low-level plotting function <code>legend</code>. Add a legend to the bar plot you made earlier with two groups. First, re-make the plot by running the high-level <code>barplot</code> function, but change the colors of the bars to be shades of blue and red. Once you have the plot made, add the legend:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">barplot</span>(x3, <span class="dt">beside =</span> T,<span class="dt">names.arg =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>), <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;skyblue2&quot;</span>, <span class="st">&quot;tomato2&quot;</span>))
 <span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;Group 1&quot;</span>, <span class="st">&quot;Group 2&quot;</span>), <span class="dt">fill =</span> <span class="kw">c</span>(<span class="st">&quot;skyblue2&quot;</span>, <span class="st">&quot;tomato2&quot;</span>))</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-23-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-24-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The box can be removed using the <code>bty = &quot;n&quot;</code> argument and the size can be changed using <code>cex</code>. The position can be specified either with words (like above) or by using x-y coordinates.</p>
 <p>Here is a more complex example:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 1) extract and sort the hours for two fisheries from fewest hours</span>
@@ -536,7 +651,7 @@ n_hrs =<span class="st"> </span><span class="kw">sort</span>(dat<span class="op"
 <span class="co"># 4) add the legend</span>
 <span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;Tournament&quot;</span>, <span class="st">&quot;Non-Tournament&quot;</span>), 
        <span class="dt">lty =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>), <span class="dt">pch =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">16</span>), <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-24-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-25-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Notice that you need to be careful about the order of how you specify which <code>lty</code> and <code>pch</code> settings match up with the elements of the <code>legend</code> argument. In the <code>plot code</code>, you specified that the <code>lty = 2</code> but didn’t specify what <code>pch</code> should be (it defaults to <code>1</code>). So when you put the “Tournament” group first the the <code>legend</code> argument vector, you must be sure to use the corresponding plotting codes. The first element of the <code>lty</code> argument matches up with the first element of <code>legend</code>, and so on. Note the other plotting tricks used in the code above: changing the margins using <code>par(mar)</code> and the rotation of y-axis tick mark labels using <code>las = 1</code>.</p>
 </div>
 <div id="exporting-plots" class="section level2">
@@ -577,7 +692,7 @@ ppi =<span class="st"> </span><span class="dv">600</span>
 <p>The syntax for <code>arrows</code> is as follows: <code>arrows(x0, y0, x1, y1, ...)</code>, where <code>x0</code> and <code>y0</code> are the coordinates you are drawing “from” (e.g., lower limits) and the <code>x1</code> and <code>y1</code> are the coordinates you are drawing “to” (e.g., upper limits). The <code>...</code> represents other arguments to change how the error bars look. Calculate the mean of the different fishery sectors (if you don’t remember how <code>tapply</code> works, revisit Section <a href="ch1.html#data-summaries">1.9</a>) and plot them:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x_bar =<span class="st"> </span><span class="kw">tapply</span>(dat<span class="op">$</span>hours, dat<span class="op">$</span>fishery, mean)
 <span class="kw">barplot</span>(x_bar)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-26-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-27-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>You wish to add error bars that represent 95% confidence intervals on the mean. You can create a 95% confidence interval using this basic formula:</p>
 <span class="math display" id="eq:ci">\[\begin{equation}
   \bar{x} \pm 1.96 * SE(\bar{x}),
@@ -605,12 +720,12 @@ upr =<span class="st"> </span>x_bar <span class="op">+</span><span class="st"> <
 <p>Then draw them on using the arrows function:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mp =<span class="st"> </span><span class="kw">barplot</span>(x_bar, <span class="dt">ylim =</span> <span class="kw">range</span>(<span class="kw">c</span>(<span class="dv">0</span>, upr)))
 <span class="kw">arrows</span>(<span class="dt">x0 =</span> mp, <span class="dt">y0 =</span> lwr, <span class="dt">x1 =</span> mp, <span class="dt">y1 =</span> upr, <span class="dt">length =</span> <span class="fl">0.1</span>, <span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">code =</span> <span class="dv">3</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-30-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-31-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Notice four things:</p>
 <ol style="list-style-type: decimal">
 <li>The use of <code>mp</code> to specify the <code>x</code> coordinate. If you do <code>mp = barplot(...)</code>, <code>mp</code> will contain the <code>x</code> coordinates of the midpoint of each bar.</li>
 <li><code>x0</code> and <code>x1</code> are the same: you wish to have vertical bars, so these must be the same while <code>y1</code> and <code>y2</code> differ.</li>
-<li>The use of <code>ylim = range(c(lwr, upr))</code>: you want the y-axis to show the full range of all the error bars.</li>
+<li>The use of <code>ylim = range(c(0, upr))</code>: you want the y-axis to show the full range of all the error bars.</li>
 <li>The three arguments at the end of <code>arrows</code>:
 <ul>
 <li><code>length = 0.1</code>: the length of the arrow heads, fiddle with this until you like it.</li>
@@ -652,8 +767,8 @@ upr =<span class="st"> </span>x_bar <span class="op">+</span><span class="st"> <
 <li id="fn2"><p><code>cex</code> is a multiplier: <code>cex = 1.5</code> says make the points 1.5 times as large as they would be by default.<a href="ch2.html#fnref2">↩</a></p></li>
 <li id="fn3"><p>There are approximately 20 different <code>pch</code> settings: <code>pch = 1</code> is empty circles, <code>pch = 16</code> is filled circles, etc.<a href="ch2.html#fnref3">↩</a></p></li>
 <li id="fn4"><p><code>xlim</code> and <code>ylim</code> both require a numeric vector of length 2 where neither of the elements may be an <code>NA</code>.<a href="ch2.html#fnref4">↩</a></p></li>
-<li id="fn5"><p>The default is points only, <code>type = &quot;l&quot;</code> is for lines only, <code>type = &quot;o&quot;</code> is for points connected with lines, and <code>type = &quot;b&quot;</code> is for points and lines but with a small amount of separation between them.<a href="ch2.html#fnref5">↩</a></p></li>
-<li id="fn6"><p><code>lty = 1</code> is solid, <code>lty = 2</code> is dashed, <code>lty = 3</code> is dotted, etc. You can also specific it like <code>lty = &quot;solid&quot;</code>, <code>lty = &quot;dotted&quot;</code>, or <code>lty = &quot;dotdash&quot;</code>.<a href="ch2.html#fnref6">↩</a></p></li>
+<li id="fn5"><p>The default is points only, <code>type = &amp;quot;l&amp;quot;</code> is for lines only, <code>type = &amp;quot;o&amp;quot;</code> is for points connected with lines, and <code>type = &amp;quot;b&amp;quot;</code> is for points and lines but with a small amount of separation between them.<a href="ch2.html#fnref5">↩</a></p></li>
+<li id="fn6"><p><code>lty = 1</code> is solid, <code>lty = 2</code> is dashed, <code>lty = 3</code> is dotted, etc. You can also specific it like <code>lty = &amp;quot;solid&amp;quot;</code>, <code>lty = &amp;quot;dotted&amp;quot;</code>, or <code>lty = &amp;quot;dotdash&amp;quot;</code>.<a href="ch2.html#fnref6">↩</a></p></li>
 <li id="fn7"><p>works just like <code>cex</code>: <code>lwd = 3</code> codes for a line that is 3 times as thick as it would normally be<a href="ch2.html#fnref7">↩</a></p></li>
 <li id="fn8"><p>there is a whole host of colors you can pass R by name, run <code>colors()</code> to see for yourself<a href="ch2.html#fnref8">↩</a></p></li>
 <li id="fn9"><p>A creel survey is a sampling program where fishers are asked questions about their fishing behavior in order to estimate effort and harvest.<a href="ch2.html#fnref9">↩</a></p></li>

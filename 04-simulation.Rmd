@@ -5,6 +5,12 @@ rm(list = ls(all = T))
 knitr::opts_chunk$set(fig.align = "center")
 ```
 
+```{r, echo = F, warning = F, message = F}
+library(dplyr)
+library(kableExtra)
+library(knitr)
+```
+
 ## Chapter Overview{-}
 
 Simulation modeling is one of the primary reasons to move away from spreadsheet-type programs (like Microsoft Excel) and into a program like R. R allows you to replicate the same (possibly complex and detailed) calculations over and over with slightly different random values. You can then summarize and plot the results of these replicated calculations all within the same program. Analyses of this type are **Monte Carlo methods**: they randomly sample from a set of quanities for the purpose of generating and summarizing a distribution of some statistic related to the sampled quantities. If this concept is confusing, hopefully this chapter will clarify. 
@@ -59,7 +65,7 @@ Another random process is the **lognormal process**: it generates random numbers
 hist(rlnorm(1000, 0, 0.1), col = "skyblue")
 ```
 
-There are many random processes you can use in R. Checkout Table \@ref(tab:dist-table) for more examples as well as the help files for each individual function for more details.
+There are many random processes you can use in R. Checkout Table `r if(is_html_output()) "\\@ref(tab:dist-table-html)" else "\\@ref(tab:dist-table-pdf)"` for more examples as well as the help files for each individual function for more details.
 
 ### Resampling
 
@@ -489,7 +495,10 @@ Suppose you are a fisheries research biologist, and a commercial fishery for pin
 
 Based on historical data, your best understanding implies that the stock is driven by Ricker spawner-recruit dynamics. That is, the total number of fish that return this year (recruits) are a function of the total number of spawners that produced and fertilized the eggs from which this year's recruits were produced. The Ricker model can be written this way:
 
-$$R_t = \alpha S_{t-1} e^{-\beta S_{t-1} + \varepsilon_t} ,\varepsilon_t \sim N(0,\sigma)$$
+\begin{equation}
+  R_t = \alpha S_{t-1} e^{-\beta S_{t-1} + \varepsilon_t} ,\varepsilon_t \sim N(0,\sigma)
+(\#eq:ricker-ch4)
+\end{equation}
 
 where $\alpha$ is a parameter representing the maximum recruits per spawner (obtained at very low spawner abundances) and $\beta$ is a measure of the strength of density-dependent mortality. Notice that the error term is in the exponent, which makes $e^{\varepsilon_t}$ lognormal.
 
@@ -631,7 +640,10 @@ The utility of using Monte Carlo methods in this example is the ability to calcu
 
 Oftentimes, you'll have a fitted model that you wish to propagate the uncertainty from to some derived quantity. Consider the case of the **von Bertalanffy growth model**. This is a non-linear model used to predict the size of an organism (weight or length) based on its age. The model can be written for a non-linear regression model (see Section \@ref(nls)) as:
 
-$$ L_i = L_{\infty}\left(1 - e^{-k(age_i-t_0)}\right) + \varepsilon_i, \varepsilon_i \sim N(0, \sigma) $$
+\begin{equation}
+  L_i = L_{\infty}\left(1 - e^{-k(age_i-t_0)}\right) + \varepsilon_i, \varepsilon_i \sim N(0, \sigma)
+(\#eq:vonB)
+\end{equation}
 
 where $L_i$ and $age_i$ are the observed length and age of individual $i$, respectively, and $L_{\infty}$, $k$, and $t_0$ are parameters to be estimated. The interpretations of the parameters are as follows:
 

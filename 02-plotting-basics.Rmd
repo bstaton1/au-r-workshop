@@ -5,6 +5,12 @@ rm(list = ls(all = T))
 knitr::opts_chunk$set(fig.align = "center")
 ```
 
+```{r, echo = F, warning = F, message = F}
+library(dplyr)
+library(kableExtra)
+library(knitr)
+```
+
 ## Chapter Overview{-}
 
 In this chapter, you will get familiar with the basics of using R for making plots and figures. You will learn:
@@ -68,9 +74,9 @@ plot(x = x, y = y,
 
 Note that the first two arguments, `x` and `y`, specify the coordinates of the points (i.e., the first point is placed at coordinates `x[1]`,`y[1]`). `plot` has _tons_ of arguments (or _graphical parameters_ as the help file found using `?plot` or `?par` calls them) that change how the plot looks. Note that when you want something displayed verbatim on the plotting device, you must wrap that code in `" "`, i.e., the arguments `xlab`, `ylab`, and `main` all receive a character vector of length 1 as input. 
 
-Here are just a handful of them to get you started:
+Table `r if(is_html_output()) "\\@ref(tab:plot-arg-table-html)" else "\\@ref(tab:plot-arg-table-pdf)"` are just a handful of them to get you started.
 
-```{r plot-arg-table, echo = F, results = "asis"}
+```{r plot-arg-table-html, echo = F, results = "asis", eval = is_html_output()}
 pars = c("`xlab`", "`ylab`", "`main`", "`cex`", "`pch`", "`xlim`", "`ylim`", "`type`",
          "`lty`", "`lwd`", "`col`")
 
@@ -96,7 +102,51 @@ knitr::kable(df,
              caption = "Several of the key arguments to high- and low-level plotting functions")
 ```
 
-You are advised to try at least some of these arguments out for yourself with your `plot(x, y)` code from above - notice how every time you run `plot`, a whole new plot is created, not just the thing you changed. There are definitely other options: check out `?plot` or `?par` for more details. 
+```{r plot-arg-table-pdf, ech = F, eval = is_latex_output()}
+pars = c("xlab", "ylab", "main", "cex", "pch", "xlim", "ylim", "type",
+         "lty", "lwd", "col")
+
+usage = c('xlab = "X-AXIS"', 'ylab = "Y-AXIS"',
+          'main = "TITLE"', 'cex = 1.5', 'pch = 17', 
+          'xlim = range(x)', 'ylim = c(0,1)',
+          'type = "l"', 'lty = 2', 'lwd = 2', 'col = "blue"')
+
+desc = c("changes the x-axis label text",
+         "changes the y-axis label text",
+         "changes the main title text",
+         "changes the size of symbols in the plotting region",
+         "changes the symbol type",
+         "changes the endpoints (limits) of the x-axis",
+         "same as xlim, but for the y-axis",
+         "changes the way points are connected by lines",
+         'changes the line type', 
+         "changes the line width",
+         "changes the color of plotted objects")
+df = data.frame(Argument = pars, Usage = usage, Description = desc)
+# pander::pandoc.table(df, justify = "lll", split.cells = c("10%", "30%", "60%"))
+
+kable(
+  df, "latex", booktabs = T,
+  caption = "Several of the key arguments to high- and low-level plotting functions",
+  escape = F) %>%
+  footnote(
+    alphabet = c(
+      "cex is a multiplier: cex = 1.5 says make the points 1.5 times as large as they would be by default.",
+      "There are approximately 20 different pch settings: pch = 1 is empty circles, pch = 16 is filled circles, etc.",
+      "xlim and ylim both require a numeric vector of length 2 where neither of the elements may be an NA.",
+      'The default is points only, type = "l" is for lines only, type = "o" is for points connected with lines, and type = "b" is for points and lines but with a small amount of separation between them.',
+      'lty = 1 is solid, lty = 2 is dashed, lty = 3 is dotted, etc. You can also specific it like lty = "solid", lty = "dotted", or lty = "dotdash".',
+      "works just like cex: lwd = 3 codes for a line that is 3 times as thick as it would normally be",
+      "there is a whole host of colors you can pass R by name, run colors() to see for yourself"
+    ),
+    footnote_as_chunk = F, threeparttable = T
+  ) %>%
+  kable_styling(full_width = F) %>%
+  column_spec(3, width = "25em") %>%
+  column_spec(1:2, monospace = T)
+```
+
+You are advised to try at least some of the arguments in Table `r if(is_html_output()) "\\@ref(tab:plot-arg-table-html)" else "\\@ref(tab:plot-arg-table-pdf)"` out for yourself with your `plot(x, y)` code from above - notice how every time you run `plot`, a whole new plot is created, not just the thing you changed. There are definitely other options: check out `?plot` or `?par` for more details. 
 
 ## Lower Level Plotting Functions
 
@@ -113,7 +163,7 @@ plot(x = x, y = y, xlab = "x-axis label goes here", ylab = "y-axis label goes he
 points(x = rev(x), y = y, col = "blue", pch = 16)
 ```
 
-Here, `points` acted like a low-level plotting function because it added points to a plot you already made. Many of the arguments shown in Table \@ref(tab:plot-arg-table) can be used in both high-level and low-level plotting functions (notice how `col` and `pch` were used in `points`). Just like `points`, there is also `lines`:
+Here, `points` acted like a low-level plotting function because it added points to a plot you already made. Many of the arguments shown in Table `r if(is_html_output()) "\\@ref(tab:plot-arg-table-html)" else "\\@ref(tab:plot-arg-table-pdf)"` can be used in both high-level and low-level plotting functions (notice how `col` and `pch` were used in `points`). Just like `points`, there is also `lines`:
 
 ```{r, eval = F}
 lines(x = x, y = x, lty = 2, col = "red")
@@ -259,7 +309,7 @@ hist(t_hrs, breaks = breaks, main = "Tournament", col = "grey")
 
 Here, you changed the graphical parameters of the graphics device by using the `par` argument. Once you change the settings in `par`, they will remain that way until you start a new device. 
 
-The `par` function is central to fine-tuning your graphics. Here, the `xaxs = "i"` and `yaxs = "i"` arguments essentially removed the buffer between the data and the axes. `par` has options to change the size of the margins, add outer margins, change colors, etc. Some of the graphical parameters that can be passed to high- and low-level plotting functions (like those in Table \@ref(tab:plot-arg-table)) can also be passed `par`. Check out the help file (`?par`) to see everything it can do. If you want to start over with fresh `par` settings, start a new device.
+The `par` function is central to fine-tuning your graphics. Here, the `xaxs = "i"` and `yaxs = "i"` arguments essentially removed the buffer between the data and the axes. `par` has options to change the size of the margins, add outer margins, change colors, etc. Some of the graphical parameters that can be passed to high- and low-level plotting functions (like those in Table `r if(is_html_output()) "\\@ref(tab:plot-arg-table-html)" else "\\@ref(tab:plot-arg-table-pdf)"` can also be passed `par`. Check out the help file (`?par`) to see everything it can do. If you want to start over with fresh `par` settings, start a new device.
 
 ## New Temporary Devices
 

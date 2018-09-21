@@ -1,6 +1,10 @@
 # Introduction to the R Environment {#ch1}
 
----
+```{r, echo = F, warning = F, message = F}
+library(dplyr)
+library(kableExtra)
+library(knitr)
+```
 
 ## Chapter Overview{-}
 
@@ -758,7 +762,7 @@ _The solutions to this exercise are found at the end of this book ([here](#ex1b-
 6.	Create a new variable called `prod` in the data frame that represents the quantity of chlorophyll _a_ in each replicate. If the chlorophyll _a_ in the replicate is greater than 30 give it a "high", otherwise give it a "low". (_Hint: are you asking a question of a single number or multiple numbers? How should this change the strategy you use?_)
 
 ### Exercise 1B Bonus {-}
-1.  Use `?table` to figure out how you can use `table` to count how many observations of high and low there were in each treatment (_Hint: `table` will have only two arguments.).
+1.  Use `?table` to figure out how you can use `table` to count how many observations of high and low there were in each treatment (_Hint: `table` will have only two arguments._).
 2.	Create a new function called `product` that multiplies any two numbers you specify.
 3.	Modify your function to print a message to the console and return the value `if` it meets a condition and to print another message and not return the value if it doesn't.
 

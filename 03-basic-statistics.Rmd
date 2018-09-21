@@ -5,6 +5,12 @@ rm(list = ls(all = T))
 knitr::opts_chunk$set(fig.align = "center", global.par = T)
 ```
 
+```{r, echo = F, warning = F, message = F}
+library(dplyr)
+library(kableExtra)
+library(knitr)
+```
+
 ## Chapter Overview{-}
 
 In this chapter, you will get familiar with the basics of using R for the purpose it was designed: statisitical analysis. You will learn how to:
@@ -415,9 +421,9 @@ Oddly enough, the two best models are the simplest one and the most complex one,
 
 ## Probability Distributions {#dists}
 
-A probability distribution is a way of representing the probability of an event or value of a parameter and they are central to statistical theory. Some of the most commonly used distributions are summarized in Table \@ref(tab:dist-table) below, along with the suffixes of the functions in R that correspond to each distribution^[For an excellent and ecologically-focused description of probability distributions, checkout Ben Bolker's book, _Ecological Models and Data in R_. There is a free proof version online: <https://ms.mcmaster.ca/~bolker/emdbook/book.pdf>]. 
+A probability distribution is a way of representing the probability of an event or value of a parameter and they are central to statistical theory. Some of the most commonly used distributions are summarized in Table `r if(is_html_output()) "\\@ref(tab:dist-table-html)" else "\\@ref(tab:dist-table-pdf)"`, along with the suffixes of the functions in R that correspond to each distribution^[For an excellent and ecologically-focused description of probability distributions, checkout Ben Bolker's book, _Ecological Models and Data in R_. There is a free proof version online: <https://ms.mcmaster.ca/~bolker/emdbook/book.pdf>]. 
 
-```{r dist-table, results = "asis", echo = F, message = F, warning = F}
+```{r dist-table-html, results = "asis", echo = F, eval = is_html_output()}
 
 tab = data.frame(
   type = c(rep("Continuous", 4), rep("Discrete", 3)),
@@ -434,14 +440,36 @@ tab = data.frame(
 
 colnames(tab) = c("Type", "Distribution", "Common Uses", "R Suffix")
 
-library(dplyr)
-library(knitr)
-library(kableExtra)
-
 kable(tab, align = "lll", caption = "A brief description of probability distributions commonly used in ecological problems, including the function suffix in R.") %>%
   kable_styling(full_width = F) %>%
   column_spec(1, bold = T) %>%
   collapse_rows(columns = 1, valign = "middle")
+
+```
+
+```{r dist-table-pdf, echo = F, eval = is_latex_output()}
+tab = data.frame(
+  dist = c("Normal", "Lognormal", "Uniform", "Beta", "Binomial", "Multinomial", "Poisson"),
+  desc = c("Models the relative frequency of outcomes that are symmetric around a mean, can be negative",
+           "Models the relative frequency of outcomes that are normally-distributed on the log-scale",
+           "Models values that are between two endpoints and that all occur with the same frequency",
+           "Models values that are between 0 and 1",
+           "Models the number of successes from a given number of trials when there are only two possible outcomes and all trials have the same probability of success",
+           "The same as the binomial distribution, but when there are more than two possible outcomes",
+           "Used for count data in cases where the variance and mean are roughly equal"),
+  suffix = c("-norm", "-lnorm", "-unif", "-beta", "-binom", "-multinom", "-pois")
+)
+
+colnames(tab) = c("Distribution", "Description", "R Suffix")
+
+kable(tab, "latex", booktabs = T,
+      caption = "A brief description of probability distributions commonly used in ecological problems, including the function suffix in R.") %>%
+  kable_styling(full_width = F) %>%
+  row_spec(0, bold = T) %>%
+  column_spec(2, width = "20em") %>%
+  column_spec(3, monospace = T) %>%
+  group_rows("Continuous", 1,4, hline_after = T) %>%
+  group_rows("Discrete", 5, 7, hline_before = F, hline_after = T)
 
 ```
 
@@ -572,4 +600,4 @@ lines(cons_seq ~ prey_seq, lwd = 3)
 
 _The solutions to this exercise are found at the end of this book ([here](#ex3-answers)). You are **strongly recommended** to make a good attempt at completing this exercise on your own and only look at the solutions when you are truly stumped._
 
-1.  Make the same graphic as in Figure \@ref(fig:norm-plots) with at least one of the other distributions listed in Table \@ref(tab:dist-table) (other than the multinomial - being a multivariate distribution, it wouldn't work well with this code). Try thinking of a variable from your work that meets the uses of each distribution in Table \@ref(tab:dist-table) (or one that's not listed). If you run into trouble, check out the help file for that distribution^[Executing `?rnorm` or any other of the `-norm` functions will take you to a page with info on all four function types for that distribution]. 
+1.  Make the same graphic as in Figure \@ref(fig:norm-plots) with at least one of the other distributions listed in Table `r if(is_html_output()) "\\@ref(tab:dist-table-html)" else "\\@ref(tab:dist-table-pdf)"` (other than the multinomial - being a multivariate distribution, it wouldn't work well with this code). Try thinking of a variable from your work that meets the uses of each distribution in Table `r if(is_html_output()) "\\@ref(tab:dist-table-html)" else "\\@ref(tab:dist-table-pdf)"` (or one that's not listed). If you run into trouble, check out the help file for that distribution^[Executing `?rnorm` or any other of the `-norm` functions will take you to a page with info on all four function types for that distribution]. 
