@@ -1,4 +1,4 @@
-# Simulation and Randomization {#ch4}
+# Monte Carlo Methods {#ch4}
 
 ```{r, include = F}
 rm(list = ls(all = T))

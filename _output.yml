@@ -2,13 +2,13 @@ bookdown::gitbook:
   css: style.css
   config:
     toc:
-      collapse: subsection
+      collapse: section
       before: |
-        <li><a href="./">Intro to R</a></li>
+        <li><a href="./">Intro to R for Nat. Res. Sci.</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-    edit: https://github.com/rstudio/bookdown-demo/edit/master/%s
     download: ["pdf"]
+    sharing: null
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex

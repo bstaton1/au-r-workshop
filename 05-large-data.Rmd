@@ -16,8 +16,8 @@ Any data analyst will tell you that oftentimes the most difficult part of an ana
 
 In this chapter, you will learn tricks to do more advanced data manipulation in R using two R **packages**:
 
-*  `reshape2`: used for changing data between formats (wide and long)
-*  `dplyr`: used for large data manipulations with a consistent and readable format.
+*  `{reshape2}`: used for changing data between formats (wide and long)
+*  `{dplyr}`: used for large data manipulations with a consistent and readable format.
 
 You will be turning daily observations of harvest and escapement (fish that are not harvested) into annual totals for the purpose of fitting a **spawner-recruit analysis** on a hypothetical pink salmon (_Oncorhynchus gorbuscha_) data set. More details and context on these terms and topics will be provided later. 
 
@@ -47,7 +47,7 @@ library(dplyr)
 library(reshape2)
 ```
 
-These messages are telling you that there are functions in the `dplyr` package that have the same names as those already being used in the `stats` and `base` R packages. This is fine so long as you don't want to use the original functions. If you wish to use the base version of the `filter` function rather than the `dplyr` version, use it like this: `base::filter()`. Each time you close and reopen R, you will need to load any packages you want to use using `library` again.
+These messages are telling you that there are functions in the `{dplyr}` package that have the same names as those already being used in the `{stats}` and `{base}` R packages. This is fine so long as you don't want to use the original functions. If you wish to use the `{base}` version of the `filter()` function rather than the `{dplyr}` version, use it like this: `base::filter()`. Each time you close and reopen R, you will need to load any packages you want to use using `library()` again.
 
 ## The Data
 
@@ -81,7 +81,7 @@ But notice the first `doy` is one day later for `esc` than for `catch`. This is 
 
 ## Change format using `melt`
 
-These data are in what is called **wide** format: different levels of the `year` variable are stored as columns. A **long** format would have three columns: one for `doy`, `year`, and `catch` or `esc`. Turn the `catch` data frame into long format using the `melt` function from `reshape2`:
+These data are in what is called **wide** format: different levels of the `year` variable are stored as columns. A **long** format would have three columns: one for `doy`, `year`, and `catch` or `esc`. Turn the `catch` data frame into long format using the `melt` function from `{reshape2}`:
 
 ```{r}
 long.catch = melt(catch, id.var = "doy",
@@ -109,7 +109,7 @@ The single `TRUE` indicates that every element matches up for 2015 in the catch 
 
 ## Join Data Sets with `merge`
 
-You now have two long format data sets. You can turn them into one data set with the `merge` function (which is actually in the `base` package). `merge` takes two data frames and joins them based on certain grouping variables. Here, you want to combine the data frames `long.catch` and `long.esc` into one data frame, and match the rows by the `doy` and `year` for each unique pair:
+You now have two long format data sets. You can turn them into one data set with the `merge` function (which is actually in the `{base}` package). `merge` takes two data frames and joins them based on certain grouping variables. Here, you want to combine the data frames `long.catch` and `long.esc` into one data frame, and match the rows by the `doy` and `year` for each unique pair:
 
 ```{r}
 dat = merge(x = long.esc, y = long.catch,
@@ -119,7 +119,7 @@ head(dat)
 
 The `all = T` argument is important to specify here. It says that you wish to keep **all** of the unique records in the columns passed to `by` from both data frames. The `doy` in the catch data ranges from day `r min(long.catch$doy)` to day `r max(long.catch$doy)`, whereas in escapement it ranges from day `r min(long.esc$doy)` to day `r max(long.esc$doy)`. In this system, the fishery opens on the 160^th^ day of every year, and the counting tower starts the 161^st^. If you didn't use `all = T`, you would drop all the rows in each data set that do not have a match the other data set (you would lose day `r min(long.catch$doy)` and day `r max(long.esc$doy)` from every year). Notice that because no escapement observations were ever made one `doy` `r min(long.catch$doy)`, the `esc` values on this day is `NA`.
 
-Notice how the data set is now ordered by `doy` instead of `year`. This is not a problem, but if you want to reorder the data frame by `year`, you can use the `arrange` function from `dplyr`:
+Notice how the data set is now ordered by `doy` instead of `year`. This is not a problem, but if you want to reorder the data frame by `year`, you can use the `arrange` function from `{dplyr}`:
 
 ```{r}
 head(arrange(dat, year))
@@ -127,16 +127,16 @@ head(arrange(dat, year))
 
 ## Lagged vectors
 
-The present task is to the calculate daily cumulative run proportion^[This is the fraction of all fish that came back each year that did so on or before a given day] in 2015 for comparison to the other years. Given the information you have, this task would be very cumbersome if not for the flexibility allowed by `dplyr`. 
+The present task is to the calculate daily cumulative run proportion^[This is the fraction of all fish that came back each year that did so on or before a given day] in 2015 for comparison to the other years. Given the information you have, this task would be very cumbersome if not for the flexibility allowed by `{dplyr}`. 
 
-Remember the counting tower is an average one day swim for the salmon from the fishing grounds. This means that the escapement counts are **lagged** relative to the catch counts. If you want the daily run (defined as the number in fishing grounds each day), you need to account for this lag. An easy way to think about the lag is to show it graphically. First, pull out one year of data using the `filter` function in `dplyr`:
+Remember the counting tower is an average one day swim for the salmon from the fishing grounds. This means that the escapement counts are **lagged** relative to the catch counts. If you want the daily run (defined as the number in fishing grounds each day), you need to account for this lag. An easy way to think about the lag is to show it graphically. First, pull out one year of data using the `filter` function in `{dplyr}`:
 
 ```{r}
 y15 = filter(dat, year == "y_2015")
 head(y15)
 ```
 
-The `base` analog to the `filter` function is:
+The `{base}` analog to the `filter` function is:
 
 ```{r, eval = F}
 y15 = dat[dat$year == "y_2015", ]
@@ -144,7 +144,7 @@ y15 = dat[dat$year == "y_2015", ]
 y15 = subset(dat, year == "y_2015")
 ```
 
-They take about the same amount of code to write, but `filter` has some advantages when used with other `dplyr` functions that will be discussed later. Now plot the daily catch and escapement (not cumulative yet) for 2015:
+They take about the same amount of code to write, but `filter` has some advantages when used with other `{dplyr}` functions that will be discussed later. Now plot the daily catch and escapement (not cumulative yet) for 2015:
 
 ```{r}
 plot(catch ~ doy, data = y15, type = "b", pch = 16, col = "blue",
@@ -154,7 +154,7 @@ legend("topright", legend = c("Catch", "Escapement"),
        col = c("blue", "red"), pch = 16, lty = 1, bty = "n", cex = 0.8)
 ```
 
-Notice how the escapement counts are shifted to the right by one day. This is the lag. To account for it, you can use the `lag` function from `dplyr`. `lag` works by lagging some vector by `n` elements (it shifts every element in the vector to the right by one place by putting `n` `NAs` at the front and removing the last `n` elements from the original vector). One way to fix the lag problem would be to use `lag` on `catch` to make the days match up with `esc` (don't lag `esc` because that would just lag it by `n` additional days):
+Notice how the escapement counts are shifted to the right by one day. This is the lag. To account for it, you can use the `lag` function from `{dplyr}`. `lag` works by lagging some vector by `n` elements (it shifts every element in the vector to the right by one place by putting `n` `NAs` at the front and removing the last `n` elements from the original vector). One way to fix the lag problem would be to use `lag` on `catch` to make the days match up with `esc` (don't lag `esc` because that would just lag it by `n` additional days):
 
 ```{r}
 plot(lag(catch, n = 1) ~ doy, data = y15, type = "b", pch = 16, col = "blue",
@@ -185,25 +185,25 @@ Try out the `lag_sum` function:
 lag_sum(y15$esc, y15$catch)
 ```
 
-You will want to add this column to your data set. You add columns in `dplyr` using `mutate`:
+You will want to add this column to your data set. You add columns in `{dplyr}` using `mutate`:
 
 ```{r}
 y15 = mutate(y15, run = lag_sum(esc, catch))
 ```
 
-The base equivalent to `mutate` is:
+The `{base}` equivalent to `mutate` is:
 
 ```{r, eval = F}
 y15$run = lag_sum(y15$esc, y15$catch)
 ```
 
-`mutate` has advantages when used with other `dplyr` functions that will be shown soon. Use the new variable `run` to calculate two new variables: the cumulative run by day (`crun`) and cumulative run proportion by day (`cprun`). Cumulative means that each new element is the value that occurred on that day plus all of the values that happened on days before it. You can use R's `cumsum` for this:
+`mutate` has advantages when used with other `{dplyr}` functions that will be shown soon. Use the new variable `run` to calculate two new variables: the cumulative run by day (`crun`) and cumulative run proportion by day (`cprun`). Cumulative means that each new element is the value that occurred on that day plus all of the values that happened on days before it. You can use R's `cumsum` for this:
 
 ```{r}
 y15 = mutate(y15, crun = cumsum(run), cprun = crun/sum(run, na.rm = T))
 ```
 
-Here is one advantage of `mutate`: you can refer to a column you just created to make a new column within the same function. You would have to split this into two lines to do it in `base`. Indeed, you could have made `run`, `crun`, and `cprun` all in the same `mutate` call.  Plot `cprun`^[It doesn't look like much, but this information is incredibly important for fishery managers. It provides information on how much of the annual run has passed on each day. You can see that the rate of change is the fastest in the middle of the run, this corresponds to the major hump in the plots you made earlier (which were raw numbers by day). Of course during the run, the managers don't know what proportion of the total run has passed because they don't know the total number of fish that will come that season, but by characterizing the mean and variability of the different run completion proportions on each day in the past, they can have some idea of how much of the run to expect yet to come on any given day.]:
+Here is one advantage of `mutate`: you can refer to a column you just created to make a new column within the same function. You would have to split this into two lines to do it in `{base}`. Indeed, you could have made `run`, `crun`, and `cprun` all in the same `mutate` call.  Plot `cprun`^[It doesn't look like much, but this information is incredibly important for fishery managers. It provides information on how much of the annual run has passed on each day. You can see that the rate of change is the fastest in the middle of the run, this corresponds to the major hump in the plots you made earlier (which were raw numbers by day). Of course during the run, the managers don't know what proportion of the total run has passed because they don't know the total number of fish that will come that season, but by characterizing the mean and variability of the different run completion proportions on each day in the past, they can have some idea of how much of the run to expect yet to come on any given day.]:
 
 ```{r}
 plot(cprun ~ doy, data = y15, type = "l", ylim = c(0, 1),
@@ -212,7 +212,7 @@ plot(cprun ~ doy, data = y15, type = "l", ylim = c(0, 1),
 
 ## Apply to all years
 
-You have just obtained the daily and cumulative run for one year (2015), but `dplyr` makes it easy to apply these same manipulations to all years. To really see the advantage, you'll need to learn to use piping. A code **pipe** is one that takes the result of one function and inserts it into the input of another function. Here is a basic example of a pipe:
+You have just obtained the daily and cumulative run for one year (2015), but `{dplyr}` makes it easy to apply these same manipulations to all years. To really see the advantage, you'll need to learn to use piping. A code **pipe** is one that takes the result of one function and inserts it into the input of another function. Here is a basic example of a pipe:
 
 ```{r}
 rnorm(10) %>% length
@@ -220,7 +220,7 @@ rnorm(10) %>% length
 
 The pipe took the result of `rnorm(10)` and passed it as the first argument to the `length` function. This allows you to string together commands so you aren't continuously making intermediate objects or nesting a ton of functions together.
 
-The reason piping works so well with `dplyr` is because its functions are designed to take a data frame as input as the first argument and return another data frame as output, which allows you to string them together with pipes. Do a more complex pipe: take your main data frame (`dat`), group it by `year`, and pass it to a `mutate` call that will add the new three columns to the entire data set:
+The reason piping works so well with `{dplyr}` is because its functions are designed to take a data frame as input as the first argument and return another data frame as output, which allows you to string them together with pipes. Do a more complex pipe: take your main data frame (`dat`), group it by `year`, and pass it to a `mutate` call that will add the new three columns to the entire data set:
 
 ```{r}
 dat = dat %>%
@@ -232,7 +232,7 @@ dat = dat %>%
 arrange(dat, year)
 ```
  
-The `group_by` function is spectacular: you grouped the data frame by `year`, which tells the next function to apply its commands to each year independently. With this function, you can group your data in any way you please and calculate statistics on a group-by-group basis. Note that in this example, it doesn't do much for you, because the data are so neat (all years have same number of days, `NAs` in all of the same places, etc.), but for data that are messier, this trick is very handy. Also note that the `dat` object looks a little different. When you print it, it only shows the first 10 rows. This is a `dplyr` feature that prevents you from printing a huge data set to the console.
+The `group_by` function is spectacular: you grouped the data frame by `year`, which tells the next function to apply its commands to each year independently. With this function, you can group your data in any way you please and calculate statistics on a group-by-group basis. Note that in this example, it doesn't do much for you, because the data are so neat (all years have same number of days, `NAs` in all of the same places, etc.), but for data that are messier, this trick is very handy. Also note that the `dat` object looks a little different. When you print it, it only shows the first 10 rows. This is a `{dplyr}` feature that prevents you from printing a huge data set to the console.
 
 Now plot the cumulative run proportion by day for each year, highlighting 2015:
 
@@ -252,7 +252,7 @@ tmp = sapply(years, function(x) {
 
 ## Calculate Daily Means with `summarize`
 
-Oftentimes, you want to calculate a statistic for a value across grouping variables, like year or site or day. Remember the `tapply` function does this in base R. Here you want to calculate the mean cumulative run proportion for each day averaged across years. For this, you can make use of the `summarize` function in `dplyr`. Begin by ungrouping the data to remove the `year` groups and grouping the data by `doy`. This will allow you to calculate the mean proportion by day. You then pass this grouped data frame to `summarize` which will apply the `mean` function to the cumulative run proportions across all years on a particular day. It will do this for all days: 
+Oftentimes, you want to calculate a statistic for a value across grouping variables, like year or site or day. Remember the `tapply` function does this in `{base}`. Here you want to calculate the mean cumulative run proportion for each day averaged across years. For this, you can make use of the `summarize` function in `{dplyr}`. Begin by ungrouping the data to remove the `year` groups and grouping the data by `doy`. This will allow you to calculate the mean proportion by day. You then pass this grouped data frame to `summarize` which will apply the `mean` function to the cumulative run proportions across all years on a particular day. It will do this for all days: 
 
 ```{r}
 mean_cprun = dat %>% 
@@ -262,7 +262,7 @@ mean_cprun = dat %>%
 head(mean_cprun)
 ```
 
-The way to do this in `base` is with `tapply`:
+The way to do this in `{base}` is with `tapply`:
 
 ```{r}
 tapply(dat$cprun, dat$doy, mean)[1:6]
@@ -339,7 +339,7 @@ med_doy15 = find_median_doy(p = y15$cprun, doy = y15$doy)
 filter(y15, doy == med_doy15) %>% select(cprun)
 ```
 
-The `select` function in `dplyr` extracts the variables requested from the data frame. If there is a grouping variable set using `group_by`, it will be returned as well. It looks like the function works. Now combine it with `summarize` to calculate the median day for every year:
+The `select` function in `{dplyr}` extracts the variables requested from the data frame. If there is a grouping variable set using `group_by`, it will be returned as well. It looks like the function works. Now combine it with `summarize` to calculate the median day for every year:
 
 ```{r}
 med_doy = 
@@ -349,7 +349,7 @@ med_doy =
 head(med_doy)
 ```
 
-Now, use your `dplyr` skills to turn the year column into a numeric variable:
+Now, use your `{dplyr}` skills to turn the year column into a numeric variable:
 
 ```{r}
 # get years as a number
@@ -381,7 +381,7 @@ The results tell you that there is an `r abs(round(coef(summary(fit))[2,1], 3))`
 
 ## Fit the Model
 
-You have done some neat data exploration exercises (and hopefully learned `dplyr` and piping along the way!), but you ultimate task with this data set is to run a spawner-recruit analysis on all the data. A **spawner-recruit analysis** is one that links the number of total fish produced (the recruits) by a given number of spawners (the escapement). This is done in an attempt to describe the productivity and carrying capacity of the population and to obtain **biological reference points** off of which harvest policies can be set. You will need to summarize the daily data into annual totals of escapement and total run:
+You have done some neat data exploration exercises (and hopefully learned `{dplyr}` and piping along the way!), but you ultimate task with this data set is to run a spawner-recruit analysis on all the data. A **spawner-recruit analysis** is one that links the number of total fish produced (the recruits) by a given number of spawners (the escapement). This is done in an attempt to describe the productivity and carrying capacity of the population and to obtain **biological reference points** off of which harvest policies can be set. You will need to summarize the daily data into annual totals of escapement and total run:
 
 ```{r}
 sr_dat = 
@@ -493,9 +493,9 @@ In this exercise, you will be working with another simulated salmon data set. Th
 
 _The solutions to this exercise are found at the end of this book ([here](#ex5-answers)). You are **strongly recommended** to make a good attempt at completing this exercise on your own and only look at the solutions when you are truly stumped._
 
-Download the data file `asl.csv` (**a**ge, **s**ex, **l**ength) from the [GitHub repo](https://github.com/bstaton1/au-r-workshop-data) (or go [here](#data-sets) for details) and save it in your working directory for this chapter. Create a new R script `Ex5.R` there. Open this script and read the data file into R. If this is a new session, load the `dplyr` package.
+Download the data file `asl.csv` (**a**ge, **s**ex, **l**ength) from the [GitHub repo](https://github.com/bstaton1/au-r-workshop-data) (or go [here](#data-sets) for details) and save it in your working directory for this chapter. Create a new R script `Ex5.R` there. Open this script and read the data file into R. If this is a new session, load the `{dplyr}` package.
 
-1.  Count the number of females that were sampled each year using the `dplyr` function `n` within a `summarize` call (_Hint: `n` works just like length - it counts the number of records_).
+1.  Count the number of females that were sampled each year using the `{dplyr}` function `n` within a `summarize` call (_Hint: `n` works just like length - it counts the number of records_).
 
 2. Calculate the proportion of females by year.
 
