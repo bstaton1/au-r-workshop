@@ -27,7 +27,7 @@ R's base plotting package is incredibly versatile, and as you will see, it doesn
 
 ## Before You Begin {-}
 
-You should create a new directory and R script for your work in this Chapter. Create a new R script called `Ch2.R` and save it in a directory like `C:/Users/YOU/Documents/R-Workshop/Chapter2`. Set your working directory to that location. Revisit Sections \@ref(scripts) and \@ref(working-dir) for more details on these steps.  
+You should create a new directory and R script for your work in this Chapter. Create a new R script called `Ch2.R` and save it in the directory `C:/Users/YOU/Documents/R-Book/Chapter2`. Set your working directory to that location. Revisit Sections \@ref(scripts) and \@ref(working-dir) for more details on these steps.  
 
 ## R Plotting Lingo
 
@@ -196,12 +196,12 @@ Oftentimes, you will want to add error bars to a bar graph like this. To avoid d
 
 ## Box-and-Whisker Plots {#box-whisker}
 
-Box-and-whisker plots are a great way to visualize the spread of your data. All you need to make a box-and-whisker plot is a grouping variable (a factor, revisit Section \@ref(factors) if you don't remember what these are) and some continuous (i.e., numeric) data for each level of the factor. Download the `creel.csv` data set from the [GitHub repository](https://github.com/bstaton1/au-r-workshop-data) (or go [here](#data-sets) for details) and place it in the same directory as your R script `Ch2.R` (which is the one you should be working on right now).
+Box-and-whisker plots are a great way to visualize the spread of your data. All you need to make a box-and-whisker plot is a grouping variable (a factor, revisit Section \@ref(factors) if you don't remember what these are) and some continuous (i.e., numeric) data for each level of the factor. You will be using the `creel.csv` data set (see the [instructions](#data-sets)).
 
 Read the data in and print a summary:
 
 ```{r, eval = F}
-dat = read.csv("creel.csv")
+dat = read.csv("../Data/creel.csv")
 summary(dat)
 ```
 
@@ -370,15 +370,24 @@ barplot(x_bar)
 
 You wish to add error bars that represent 95% confidence intervals on the mean. You can create a 95% confidence interval using this basic formula:
 
-$$ \bar{x} \pm 1.96 * SE(\bar{x}) $$
+\begin{equation}
+  \bar{x} \pm 1.96 * SE(\bar{x}),
+(\#eq:ci)
+\end{equation}
 
-where 
+where
 
-$$\bar{x}=\frac{1}{n}\sum_i^n{x_i}$$
+\begin{equation}
+  \bar{x}=\frac{1}{n}\sum_i^n{x_i},
+(\#eq:ci-mean)
+\end{equation}
 
 and
 
-$$SE(\bar{x})=\frac{\sqrt{\frac{\sum_i^n{(x_i - \bar{x})^2}}{n-1}}}{\sqrt{n}}$$
+\begin{equation}
+  SE(\bar{x})=\frac{\sqrt{\frac{\sum_i^n{(x_i - \bar{x})^2}}{n-1}}}{\sqrt{n}}
+(\#eq:ci-se)
+\end{equation}
 
 Begin by creating a function to calculate the standard error ($SE(\bar{x})$):
 
@@ -404,7 +413,7 @@ upr = x_bar + 1.96 * se
 Then draw them on using the arrows function:
 
 ```{r}
-mp = barplot(x_bar, ylim = range(c(lwr, upr)))
+mp = barplot(x_bar, ylim = range(c(0, upr)))
 arrows(x0 = mp, y0 = lwr, x1 = mp, y1 = upr, length = 0.1, angle = 90, code = 3)
 ```
 
@@ -412,7 +421,7 @@ Notice four things:
 
 1.  The use of `mp` to specify the `x` coordinate. If you do `mp = barplot(...)`, `mp` will contain the `x` coordinates of the midpoint of each bar.
 2.  `x0` and `x1` are the same: you wish to have vertical bars, so these must be the same while `y1` and `y2` differ.
-3.  The use of `ylim = range(c(lwr, upr))`: you want the y-axis to show the full range of all the error bars.
+3.  The use of `ylim = range(c(0, upr))`: you want the y-axis to show the full range of all the error bars.
 4.  The three arguments at the end of `arrows`:
     - `length = 0.1`: the length of the arrow heads, fiddle with this until you like it.
     - `angle = 90`: the angle of the arrow heads, you want 90 here for the error bars.
@@ -422,11 +431,11 @@ Notice four things:
 
 ## Exercise 2 {-#ex2}
 
-For this exercise, you will be making a few of plots and changing how they look to suit your taste. You will use a real dataset this time from a sockeye salmon (_Oncorhynchus nerka_) population from the Columbia/Snake River system. This population spawns in Redfish Lake in Idaho, which feeds into the Salmon River which is a tributary of the Snake River. In order to reach the lake, the sockeye salmon must successfully pass through a total eight dams that have fish passage mechanisms in place. The Redfish Lake population is one of the most endangered sockeye populations in the U.S. and travels farther (1,448 km), higher (1,996 m), and is the southernmost population of all sockeye populations in the world (Kline and Flagg 2014). Given this uniqueness, a captive breeding program was initiated in 1991 to preserve the genes from this population. These data came from both hatchery-raised and wild fish and include average female spawner weight (g), fecundity (number of eggs), egg size (eggs/g), and % survival to the eyed-egg stage.
+For this exercise, you will be making a few of plots and changing how they look to suit your taste. You will use a real dataset (`sockeye.csv`, see the [instructions](#data-sets) regarding acquiring the data files) this time from a sockeye salmon (_Oncorhynchus nerka_) population from the Columbia/Snake River system. This population spawns in Redfish Lake in Idaho, which feeds into the Salmon River which is a tributary of the Snake River. In order to reach the lake, the sockeye salmon must successfully pass through a total eight dams that have fish passage mechanisms in place. The Redfish Lake population is one of the most endangered sockeye populations in the U.S. and travels farther (1,448 km), higher (1,996 m), and is the southernmost population of all sockeye populations in the world (Kline and Flagg 2014). Given this uniqueness, a captive breeding program was initiated in 1991 to preserve the genes from this population. These data came from both hatchery-raised and wild fish and include average female spawner weight (g), fecundity (number of eggs), egg size (eggs/g), and % survival to the eyed-egg stage.
 
 _The solutions to this exercise are found at the end of this book ([here](#ex2-answers)). You are **strongly recommended** to make a good attempt at completing this exercise on your own and only look at the solutions when you are truly stumped._
 
-1.  Create a new R script called `Ex2.R` and save it in the `Chapter2` directory. Download the `sockeye.csv` data set from the [GitHub repository](https://github.com/bstaton1/au-r-workshop-data) (go [here](#data-sets) for details) and read it into R. Produce a basic summary of the data and take note of the data classes, missing values (`NA`), and the relative ranges for each variable.
+1.  Create a new R script called `Ex2.R` and save it in the `Chapter2` directory. Read in the data set `sockeye.csv`. Produce a basic summary of the data and take note of the data classes, missing values (`NA`), and the relative ranges for each variable.
 2.	Make a histogram of fish weights for only hatchery-origin fish. Set `breaks = 10` so you can see the distribution more clearly.
 3.	Make a scatter plot of the fecundity of females as a function of their body weight for wild fish only. Use whichever plotting character (`pch`) and color (`col`) you wish. Change the main title and axes labels to reflect what they mean. Change the x-axis limits to be 600 to 3000 and the y-axis limits to be 0 to 3500. (_Hint: The `NAs` will not cause a problem. R will only use points where there are paired records for both `x` and `y` and ignore otherwise_).
 4.	Add points that do the same thing but for hatchery fish. Use a different plotting character and a different color.

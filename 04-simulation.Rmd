@@ -20,13 +20,13 @@ In this chapter, you will learn the basic skills needed for simulation (i.e., Mo
 
 ## Before You Begin {-}
 
-You should create a new directory and R script for your work in this Chapter. Create a new R script called `Ch4.R` and save it in the directory `C:/Users/YOU/Documents/R-Workshop/Chapter4`. Set your working directory to that location. Revisit the material in Sections \@ref(scripts) and \@ref(working-dir) for more details on these steps.
+You should create a new directory and R script for your work in this Chapter. Create a new R script called `Ch4.R` and save it in the directory `C:/Users/YOU/Documents/R-Book/Chapter4`. Set your working directory to that location. Revisit the material in Sections \@ref(scripts) and \@ref(working-dir) for more details on these steps.
 
 ## Layout of This Chapter {-}
 
 This chapter is divided into two main sections:
 
-*  **Required material** (Sections \@ref(randomness) and \@ref(mc-summaries)) which is necessary to understand the examples in this chapter and the subsequent chapters
+*  **Required Material** (Sections \@ref(randomness) and \@ref(mc-summaries)) which is necessary to understand the examples in this chapter and the subsequent chapters
 
 *  **Example Cases** (Sections \@ref(sim-examples) and \@ref(resample-examples)) which apply the skills learned in the required material. In the workshop session, you will walkthrough 2-3 of these example cases at the choice of the group of the participants. If you are interested in simulation modeling, you are suggested to work through all of the example cases, as slightly different tricks will be shown in the different examples. 
 
@@ -312,9 +312,9 @@ round(table(out10, out20)/1000, 2)
 
 ## Simulation-Based Examples {#sim-examples}
 
-### Test `rnorm`
+### Test `rnorm` {#rnorm-ex}
 
-In this example, you will verify that the function `rnorm` works the same way that `qnorm` and `pnorm` work. Hopefully it will also reinforce the way the random, quantile, and cumulative distribution functions work in R. If you're feeling advanced, try adjusting this example for another distribution like the Poisson.
+In this example, you will verify that the function `rnorm` works the same way that `qnorm` and `pnorm` work. Hopefully it will also reinforce the way the random, quantile, and cumulative distribution functions work in R.
 
 First, specify the mean and standard deviation for this example:
 
@@ -332,24 +332,20 @@ Test the quantiles (obtain the values that `p` * 100% of the quantities fall bel
 
 ```{r}
 p = seq(0.01, 0.99, 0.01)
-
 random_q = quantile(random, p)
 normal_q = qnorm(p, mu, sig)
-
 plot(normal_q ~ random_q); abline(c(0,1))
 ```
 
 The fact that all the quantiles fall around the 1:1 line sugggests the `n` random samples samples are indeed from a normal distribution. Any variabilities you see are due to sampling errors. If you increase `n` to `n = 1e6` (one million), you'll see no deviations.  This is called a **q-q plot**, and is frequently used to assess the fit of data to a distribution.
 
-Now test the values in their agreement with the `pnorm` function. Plot the cumulative density functions for the truely normal curve and that approximated by the random deviates:
+Now test the random values in their agreement with the `pnorm` function. Plot the cumulative density functions for the truely normal curve and that approximated by the random deviates:
 
 ```{r}
 q = seq(400, 600, 10)
-
 random_cdf = ecdf(random)
 random_p = random_cdf(q)
 normal_p = pnorm(q, mu, sig)
-
 plot(normal_p ~ q, type = "l", col = "blue")
 points(random_p ~ q, col = "red")
 ```
@@ -358,19 +354,20 @@ The `ecdf` function obtains the empirical cumulative density function (which is 
 
 ### Stochastic Power Analysis {#power-ex}
 
-A power analysis is one where the analyst wishes to determine how much power they will have to detect an effect. Having high power means ensuring you do not falsely reject a true hypothesis (e.g., claiming that there is not effect based on a p-value greater than 0.05).
+A **power analysis** is one where the analyst wishes to determine how much power they will have to detect an effect. Having high power means ensuring you do not falsely reject a true hypothesis (e.g., claiming that there is not effect based on a p-value greater than 0.05).
 
-You can conduct a power analysis using stochastic simulation. Here, you will write a power analysis to determine how likely are you to be able to correctly identify what you deem to be a biologically-meaningful difference in survival between two tagging procedures. 
+You can conduct a power analysis using stochastic simulation (i.e., a Monte Carlo analysis). Here, you will write a power analysis to determine how likely are you to be able to correctly identify what you deem to be a biologically-meaningful difference in survival between two tagging procedures. 
 
-You know one tagging procedure has approximately a 10% mortality rate (10% of tagged fish die within the first 12 hours as result of the tagging process). Another, cheaper and less labor intensive method has been proposed but before implementing it, your agency wishes to determine if it will have a meaningful impact on the reliability of the study. You and your colleagues determine that if the mortality rate reaches 25%, then gains in time and cost efficiency would be offset by needing to tag more fish (because more will die). You have decided to perform a small-scale study to determine if the new method affects mortality enough to result in 25% or more mortality. The study will tag `n` individuals using each method (new and old) and track the fraction that survived after 12 hours. Before performing the study however, you deem it important to determine how large `n` needs to be to answer this question. You decide to use a stochastic power analysis based on what you've learned in this book to help your research group. The small-scale study can tag a total of at most 100 fish with the currently available resources. Could you tag fewer than 100 total individuals and still have a high probability of correctly identifying an effect of this size?
+You know one tagging procedure has approximately a 10% mortality rate (10% of tagged fish die within the first 12 hours as result of the tagging process). Another, cheaper and less labor-intensive method has been proposed but before implementing it, your agency wishes to determine if it will have a meaningful impact on the reliability of the study or the efficiency of the tagging crew to tag individuals that will be alive long enough to be useful. You and your colleagues determine that if the mortality rate reaches 25%, then gains in time and cost efficiency would be offset by needing to tag more fish (because more will die). You have decided to perform a small-scale study to determine if the new method affects mortality enough to result in 25% or more mortality. The study will tag `n` individuals using each method (new and old) and track the fraction that survived after 12 hours. Before performing the study however, you deem it important to determine how large `n` needs to be to answer this question. You decide to use a stochastic power analysis based on what you've learned in this book to help your research group. The small-scale study can tag a total of at most 100 fish with the currently available resources. Could you tag fewer than 100 total individuals and still have a high probability of correctly identifying an effect of this size?
 
 The stochastic power analysis approach works like this (this is called **psuedocode**):
 
-1.  Simulate data under the reality that the difference is real with `n` observations per treatment, where `n < 30/2`. 
-2.  Fit the model that will be used when the real data are collected.
-3.  Determine if an effect at least as large as the effect of interest was detected with a significant p-value
-4.  Replicate steps 1 - 3 many times. Determine what fraction of times the effect was correctly identified. 
-5.  Replicate step 4 while varying `n` over the interval from 5 to 15.
+1.  Simulate data under the reality that the difference is real with `n` observations per treatment, where `n < 30/2` 
+2.  Fit the model that will be used when the real data are collected
+3.  Determine if the effect was detected with a significant p-value
+4.  Replicate steps 1 - 3 many times
+5.  Replicate step 4 while varying `n` over the interval from 10 to 50
+6.  Determine what fraction of the p-values were deemed significant at each `n`
 
 Step 2 will require fitting a generalized linear model, for a review revisit Section \@ref(glms) (specifically Section \@ref(logis-regression) on logistic regression).
 
@@ -383,13 +380,10 @@ sim_fit = function(n, p_old = 0.10, p_new = 0.25) {
   # generate random response data
   dead_old = rbinom(n, size = 1, prob = p_old)
   dead_new = rbinom(n, size = 1, prob = p_new)
-  
   # create the predictor variable
   method = rep(c("old", "new"), each = n)
-  
   # create a data.frame to pass to glm
   df = data.frame(dead = c(dead_old, dead_new), method = method)
-  
   # relevel so old is the reference
   df$method = relevel(df$method, ref = "old")
   
@@ -399,7 +393,6 @@ sim_fit = function(n, p_old = 0.10, p_new = 0.25) {
   ### step 3: determine if a sig. p-value was found ###
   # extract the p-value
   pval = summary(fit)$coef[2,4]
-  
   # determine if it was found to be significant
   pval < 0.05
 }
@@ -409,13 +402,10 @@ Next, for steps 4 and 5, set up a **nested `for` loop**. This will have two loop
 
 ```{r}
 I = 10  # the number of replicates at each sample size
-
 n_try = seq(10, 50, 10)  # the test sample sizes
-N = length(n_try)      # count them
-
+N = length(n_try)        # count them
 # container: 
 out = matrix(NA, I, N) # matrix with I rows and N columns
-
 for (n in 1:N) {
   for (i in 1:I) {
     out[i,n] = sim_fit(n = n_try[n])
@@ -431,57 +421,45 @@ plot(apply(out, 2, mean) ~ n_try, type = "l",
      ylab = "Probability of Finding Effect (Power)")
 ```
 
-Even if you tagged `r n_try[N] * 2` fish total, you would have a `r round(mean(out[,N]),2) * 100`% chance of saying the effect (which truely is there!) is present under the null hypothesis testing framework.
+Even if you tagged `r n_try[N] * 2` fish total, you would only have a `r round(mean(out[,N]),2) * 100`% chance of saying the effect (which truely is there!) is present under the null hypothesis testing framework.
 
-Suppose you and your colleagues aren't relying on p-values in this case, and are purely interested in how precisely the **effect size** would be estimated. Adapt your function to determine how frequently it is you would be able to estimate the true mortality probability of the new method within +/- 5% based on the point estimate only (the true estimate must be between 0.2 and 0.3 for a successful study). Change your function to calculate this additional metric and re-run the analysis:
+Suppose you and your colleagues aren't relying on p-values in this case, and are purely interested in how precisely the **effect size** would be estimated. Adapt your function to determine how frequently it is you would be able to estimate the true mortality probability of the new method within +/- 5% based on the point estimate only (the estimate for the tagging mortality of the new method must be between 0.2 and 0.3 for a successful study). Change your function to calculate this additional metric and re-run the analysis:
 
 ```{r}
 sim_fit = function(n, p_old = 0.10, p_new = 0.25) {
-  
   # create the data
   dead_old = rbinom(n, size = 1, prob = p_old)
   dead_new = rbinom(n, size = 1, prob = p_new)
-  
   # create the predictor variable
   method = rep(c("old", "new"), each = n)
-  
   # create a data.frame to pass to glm
   df = data.frame(dead = c(dead_old, dead_new), method = method)
-  
   # relevel so old is the reference
   df$method = relevel(df$method, ref = "old")
-  
   # fit the model
   fit = glm(dead ~ method, data = df, family = binomial)
-  
-    ### step 3: determine if a sig. p-value was found ###
   # extract the p-value
   pval = summary(fit)$coef[2,4]
-  
   # determine if it was found to be significant
   sig_pval = pval < 0.05
-  
   # obtain the estimated mortality rate for the new method
   p_new_est = predict(fit, data.frame(method = c("new")),
                       type = "response")
   
   # determine if it is +/- 5% from the true value
   prc_est = p_new_est >= (p_new - 0.05) & p_new_est <= (p_new + 0.05)
-  
   # return a vector with these two elements
   c(sig_pval = sig_pval, prc_est = unname(prc_est))
 }
 
 # run the analysis
 I = 10  # the number of replicates at each sample size
-
 n_try = seq(10, 50, 10)  # the test sample sizes
 N = length(n_try)      # count them
 
 # containers: 
 out_sig = matrix(NA, I, N) # matrix with I rows and N columns
 out_prc = matrix(NA, I, N) # matrix with I rows and N columns
-
 for (n in 1:N) {
   for (i in 1:I) {
     tmp = sim_fit(n = n_try[n])     # run sim
@@ -501,15 +479,15 @@ plot(apply(out_prc, 2, mean) ~ n_try, type = "l",
 
 It seems that even if you tagged `r n_try[N]` fish per treatment, you would have a `r round(mean(out_prc[,N]),2) * 100`% chance of estimating that the mortality rate is between 0.2 and 0.3 if it was truly 0.25.
 
-You and your colleagues consider these results and determine that you will need to somehow aquire more funds to tag more fish in the small-scale study in order to a high level of confidence in the results.
+You and your colleagues consider these results and determine that you will need to somehow acquire more funds to tag more fish in the small-scale study in order to a high level of confidence in the results.
 
 ### Harvest Policy Analysis {#harv-ex}
 
 In this example, you will simulate population dynamics under a more realistic model than in Sections \@ref(for-loops) and \@ref(adv-funcs) for the purpose of evaluating different harvest policies. 
 
-Suppose you are a fisheries research biologist, and a commercial fishery for pink salmon (_Oncorhynchus gorbuscha_) takes place in your district. For the past 10 years, it has been fished with an exploitation rate of 40% (40% of the fish that return each year have been harvested, exploitation rate is abbreviated by $U$), resulting in an average annual harvest of 8.5 million fish. The management plan is up for evaluation this year, and your supervisor has asked you to prepare an analysis that determines if more yields could be taken if a different exploitation rate were to be used in the future.
+Suppose you are a fisheries research biologist, and a commercial fishery for pink salmon (_Oncorhynchus gorbuscha_) takes place in your district. For the past 10 years, it has been fished with an exploitation rate of 40% (40% of the fish that return each year have been harvested, exploitation rate is abbreviated by $U$), resulting in an average annual harvest of 8.5 million fish. The management plan is up for evaluation this year, and your supervisor has asked you to prepare an analysis that determines if more harvest could be sustained if a different exploitation rate were to be used in the future.
 
-Based on historical data, your best understanding implies that the stock is driven by Ricker spawner-recruit dynamics. That is, the total number of fish that return this year (recruits) are a function of the total number of spawners that produced and fertilized the eggs from which this year's recruits recruits were produced. The Ricker model can be written this way:
+Based on historical data, your best understanding implies that the stock is driven by Ricker spawner-recruit dynamics. That is, the total number of fish that return this year (recruits) are a function of the total number of spawners that produced and fertilized the eggs from which this year's recruits were produced. The Ricker model can be written this way:
 
 $$R_t = \alpha S_{t-1} e^{-\beta S_{t-1} + \varepsilon_t} ,\varepsilon_t \sim N(0,\sigma)$$
 
@@ -521,7 +499,7 @@ You have estimates of the parameters:
 *  $\beta = 1 \times 10^{-7}$
 *  $\sigma = 0.4$
 
-You decide that you can build a policy analysis by simulating the stock forward through time under different exploitation rates to determine if its reasonable to expect a different exploitation rate to provide more yields than what are currently being extracted.
+You decide that you can build a policy analysis by simulating the stock forward through time under different exploitation rates to determine if its reasonable to expect a different exploitation rate to provide more harvest than what is currently being extracted.
 
 First, write a function for your population model. Your function must:
 
@@ -532,16 +510,13 @@ First, write a function for your population model. Your function must:
 ```{r}
 # Step #1: name function and give it some arguments
 ricker_sim = function(ny, params, U) {
-  
   # extract the parameters out by name:
   alpha = params["alpha"]
   beta = params["beta"]
   sigma = params["sigma"]
-  
   # create containers:
   # yep, you can do this
   R = S = H = NULL
-  
   # initialize the population in the first year
     # start the population at being fished at 40%
     # with lognormal error
@@ -557,7 +532,7 @@ ricker_sim = function(ny, params, U) {
     S[y] = R[y] * (1 - U)
     H[y] = R[y] * U
   }
-  
+  # wrap output in a list object
   list(
     mean_H = mean(H),
     mean_S = mean(S)
@@ -617,10 +592,8 @@ After seeing this information, your supervisor realizes they are faced with a tr
 ```{r}
 # determine if each element meets escapement criterion
 Smeet = S_out > (0.75 * 13)
-
 # determine if each element meets harvest criterion
 Hmeet = H_out > (1.2 * 8.5)
-
 # calculate the probability of each occuring at a given exploitation rate
   # remember, mean of a logical vector calculate the proportion of TRUEs
 p_Smeet = apply(Smeet, 2, mean)
@@ -666,10 +639,10 @@ where $L_i$ and $age_i$ are the observed length and age of individual $i$, respe
 *  $k$: a growth coefficient linked to metabolic rate. It specifies the rate of increase in length as the fish ages early in life
 *  $t_0$: the theoretical age when length equals zero (the x-intercept).
 
-Acquire the data set `growth.csv` (found in the [GitHub repository](https://github.com/bstaton1/au-r-workshop-data), or go [here](#data-sets) for more info). Read in and plot the data:
+Use the data set `growth.csv` for this example (see the [instructions](#data-sets) on aquiring data files). Read in and plot the data:
 
 ```{r, eval = F}
-dat = read.csv("growth.csv")
+dat = read.csv("../Data/growth.csv")
 plot(length ~ age, data = dat, pch = 16, col = "grey")
 ```
 
@@ -698,10 +671,8 @@ You will write a function for each of steps 1 - 3 above. The first is to resampl
 randomize = function(dat) {
   # number of observed pairs
   n = nrow(dat)
-  
   # sample the rows to determine which will be kept
   keep = sample(x = 1:n, size = n, replace = T)
-  
   # retreive these rows from the data
   dat[keep,]
 }
@@ -713,7 +684,8 @@ Notice the use of `replace = T` here: without this, there would be no bootstrap.
 fit_vonB = function(dat) {
   nls(length ~ linf * (1 - exp(-k * (age - t0))),
       data = dat,
-      start = c(linf = 600, k = 0.3, t0 = -0.2))
+      start = c(linf = 600, k = 0.3, t0 = -0.2)
+      )
 }
 ```
 
@@ -725,13 +697,14 @@ ages = min(dat$age):max(dat$age)
 pred_vonB = function(fit) {
   # extract the coefficients
   ests = coef(fit)
-  
   # predict length-at-age
   ests["linf"] * (1 - exp(-ests["k"] * (ages - ests["t0"])))
 }
 ```
 
-Notice your function will use the object `ages` even though it was not defined in the function. This has to do with **lexical scoping** and **environments**, which are beyond the scope of this introductional material^[If you'd like more details, see Hadley Wickham's page on it: <http://adv-r.had.co.nz/Functions.html#lexical-scoping>]. Now, use these three functions to perform one iteration:
+Notice your function will use the object `ages` even though it was not defined in the function. This has to do with **lexical scoping** and **environments**, which are beyond the scope of this introductional material^[If you'd like more details, see Hadley Wickham's page on it: <http://adv-r.had.co.nz/Functions.html#lexical-scoping>]. Basically, if an object with the same name as one defined in the function exists outside of the funciton, the function will use the one that is defined in it. If there is no object defined in the function with that name, it will look outside of the function for that object. 
+
+Now, use these three functions to perform one iteration:
 
 ```{r, eval = F}
 pred_vonB(fit = fit_vonB(dat = randomize(dat = dat)))
@@ -770,7 +743,6 @@ Obtain the fraction of iterations that resulted in the mean length-at-age being 
 
 ```{r}
 p_mat = apply(out, 1, function(x) mean(x > 450))
-
 plot(p_mat ~ ages, type = "b", pch = 17,
      xlab = "Age (years)", ylab = "Probability of Average Fish Mature")
 ```
@@ -789,7 +761,7 @@ The **pseudocode** for the permutation test is:
 4.  Repeat steps 2 - 3 many times. This builds the **null distribution**: the distribution of the test statistic (the difference) assuming the null hypothesis that there is not difference in means is true
 5.  Determine what fraction of the absolute differences were larger than the original difference. This constitutes a **two-tailed** p-value. One-tailed tests can also be derived using the same steps 1 - 4, which is left as an exercise.
 
-Acquire the data set `ponds.csv` (found in the [GitHub repository](https://github.com/bstaton1/au-r-workshop-data), or go [here](#data-sets) for more info). This is the same data set used for [Exercise 1B](#ex1b), revisit that exercise for details on this hypothetical data set. Read in and plot the data:
+Use the data set `ponds.csv` for this example (see the [instructions](#data-sets) on aquiring data files). This is the same data set used for [Exercise 1B](#ex1b), revisit that exercise for details on this hypothetical data set. Read in and plot the data:
 
 ```{r, eval = F}
 dat = read.csv("ponds.csv")
@@ -845,7 +817,7 @@ hist(Dnull, col = "grey")
 abline(v = Dobs, col = "blue", lwd = 3, lty = 2)
 ```
 
-Notice the null distribution is centered on zero: that's because the assumption it makes is that there is no difference. The observation (blue line) falls way in the upper tail of the null distribution, indicating it is unlikely an effect that large was observed by random chance. The two-tailed p-value can be calculated as:
+Notice the null distribution is centered on zero: this is because the null hypothesis is that there is no difference. The observation (blue line) falls way in the upper tail of the null distribution, indicating it is unlikely an effect that large was observed by random chance. The two-tailed p-value can be calculated as:
 
 ```{r}
 mean(abs(Dnull) >= Dobs)
@@ -869,12 +841,18 @@ These questions are based on the material in Sections \@ref(randomness) - \@ref(
 2.  Simulate flipping the same unfair coin 100 times, but suing `sample` instead. Determine what fraction of the flips resulted in heads.
 3.  Simulate rolling a fair 6-sided die 100 times using `sample`. Determine what fraction of the rolls resulted in an even number.
 4.  Simulate rolling the same die 100 times, but use the function `rmultinom` instead. Look at the help file for details on how to use this function. Determin what fraction of the rolls resulted in an odd number.
-5.  
-6.
 
 [Solutions](#ex4a-answers)
 
-### Exercise 4B: Stochastic Power Analysis {-}
+### Exercise 4B: Test `rnorm` {-}
+
+These questions will require you to adapt the code written in Section \@ref(rnorm-ex)
+
+1.  Adapt this example to investigate another univariate probability distribution, like `-lnorm`, `-pois`, or `-beta`. See the help files (e.g., `?rpois`) for details on how to use each function.
+
+[Solutions](#ex4b-answers)
+
+### Exercise 4C: Stochastic Power Analysis {-}
 
 These questions will require you to adapt the code written in Section \@ref(power-ex)
 
@@ -892,9 +870,9 @@ for (n in 1:N) {
 }
 ```
 
-[Solutions](#ex4b-answers)
+[Solutions](#ex4c-answers)
 
-### Exercise 4C: Harvest Policy Analysis {-}
+### Exercise 4D: Harvest Policy Analysis {-}
 
 These questions will require you to adapt the code written in Section \@ref(harv-ex)
 
@@ -903,18 +881,18 @@ These questions will require you to adapt the code written in Section \@ref(harv
 3.  How do the results of the trade-off analysis differ if the process error was larger (a larger value of $\sigma$)?
 4.  Add implementation error to the harvest policy. That is, if the target exploitation rate is $U$, make the real exploitation rate in year $y$ be: $U_y ~ Beta(a,b)$, where $a = 100U$ and $b = 100(1-U)$. You can make there be more implementation error by inserting a smaller number other than 100 here. How does this affect the trade-off analysis?
 
-[Solutions](#ex4c-answers)
+[Solutions](#ex4d-answers)
 
-### Exercise 4D: The Bootstrap {-}
+### Exercise 4E: The Bootstrap {-}
 
 These questions will require you to adapt the code written in Section \@ref(boot-test-ex)
 
 1.  Replicate the bootstrap analysis but adapted for the linear regression example in Section \@ref(regression). Stop at the step where you summarize the 95% interval range.
 2.  Compare the 95% bootstrap confidence intervals to the intervals you get by running the `predict` function on the original data set with the argument `interval = "confidence"` set.
 
-[Solutions](#ex4d-answers)
+[Solutions](#ex4e-answers)
 
-### Exercise 4E: Permutation Tests {-}
+### Exercise 4F: Permutation Tests {-}
 
 These questions will require you to adapt the code written in Section \@ref(perm-test-ex)
 
@@ -922,4 +900,4 @@ These questions will require you to adapt the code written in Section \@ref(perm
 2.  Adapt the code to perform a permutation test for another data set used in this book where there are observations of both a categorical variable and a continuous variable. The the data sets `sockeye.csv`, `growth.csv`, or `creel.csv` should be good starting points.
 3.  Add a calculation of the p-value for a one-tailed test (i.e., that the difference in means is greater or less than zero). Steps 1 - 4 are the same: all you need is `Dnull` and `Dobs`. Don't be afraid to Google this if you are confused. 
 
-[Solutions](#ex4e-answers)
+[Solutions](#ex4f-answers)

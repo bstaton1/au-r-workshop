@@ -89,23 +89,27 @@ z = y - x
 
 If you closed R at this moment, your work would be lost. Running code in the console like you have just done **does not save a record of your work**. To save R code, you must use what is called a **script**, which is a plain-text file with the extension `.R`. To create a new script file, go to _File > New File > R Script_, or use the keyboard shortcut **CTRL + SHIFT + N**. A new pane will open called the **source** pane - this is where you will edit your code and save your progress. R Scripts are a key feature of reproducible research with R, given that if they are well-written they can present a complete road map of your statistical analysis and workflow.
 
+To help keep things organized (which is **essential** for efficient use of R!), you should have a separate subfolder for each chapter of this book. Create a new folder:  and save the script there.
+
 ## The Working Directory {#working-dir}
 
-You will want to save your hard work. A key part of doing saving your work is thinking about **where** you save it. In R, a key concept is the **working directory**. This is the location (i.e., folder) on your computer where your current R session will "talk to" by default. The working directory is where R will read files from and write files to by default, and is where all of your data should be stored for your analysis in R. Because you'll likely be visiting it often, it should probably be somewhere that is easy to remember and not too deeply buried in your computer's file system. 
+A key part of saving your work is thinking about **where** you save it. In R, a key concept is the **working directory**. This is the location (i.e., folder) on your computer where your current R session will "talk to" by default. The working directory is where R will read files from and write files to by default. Because you'll likely be visiting it often, it should probably be somewhere that is easy to remember and not too deeply buried in your computer's file system. 
 
-Save your script somewhere like `C:/Users/YOU/Documents/R-Workshop/Chapter1` on your computer. To set the working directory to this location, you have three options:
+Save your new script here: `C:/Users/YOU/Documents/R-Book/Chapter1``. To set the working directory to this location, you have three options:
 
 1.  **Go to Session > Set Working Directory > Source File Location**. This will set the working directory to the location of the file that is currently open in your source pane.
 
 2. **Go to Session > Set Working Directory > Choose Directory**. This will open an interactive file selection window to allow you to navigate to the desired directory.
 
-3. **Use code**. In the console, you can type `setwd("C:/Users/YOU/Documents/R-Workshop/Chapter1")`. If at any point you want to know where your current working directory is set to, you can either look at the top of the console pane, which shows the full path or by running `getwd()` in the console.
+3. **Use code**. In the console, you can type `setwd("C:/Users/YOU/Documents/R-Book/Chapter1")`. If at any point you want to know where your current working directory is set to, you can either look at the top of the console pane, which shows the full path or by running `getwd()` in the console.
 
 **The main benefits of using a working directory are**:
 
 *  Files are read from and written to a consistent and predictable place every time
 *  Everything for your analysis is organized into one place
-*  You don't have to continuously type file paths to your work. If `file.txt` is a file in your current working directory, you can reference it your R session using `"file.txt"` rather than with `"C:/Users/YOU/Documents/R-Workshop/Chapter1/file.txt"` each time.
+*  You don't have to continuously type file paths to your work. If `file.txt` is a file in your current working directory, you can reference it your R session using `"file.txt"` rather than with `"C:/Users/YOU/Documents/R-Book/Chapter1/file.txt"` each time.
+
+Note that while it is generally good practice to keep your data in the working directory, this is not recommended for this book. You will be using the same data files in multiple chapters, so it will help if they were all stored in one location. More details on this later (Section \@ref(read)).
 
 ## R Object Types
 
@@ -155,7 +159,6 @@ day = seq(from = 1, to = 9, by = 2); day
 
 # repeat the same number (repeat 2018 5 times)
 year = rep(2018, 5); year
-
 ```
 
 The `[1]` that shows up is a element position, more on this later (see Section \@ref(sub)). If you wish to know how many elements are in a vector, use `length`:
@@ -267,7 +270,6 @@ dm = day + month; dm
 ```
 
 You typically should ensure that the vectors you are doing math with are of equal lengths. 
-
 You could do the same calculation to each element (e.g., divide each element by 2) with:
 
 ```{r}
@@ -359,16 +361,18 @@ It is rare that you will enter data by hand as you did in Exercise 1A. Often, yo
 The syntax for reading in a `.csv` file is:
 
 ```{r, eval = F}
-dat = read.csv("FileName.csv")
+dat = read.csv("Path/To/FileName.csv")
 ```
 
-The data files for this workshop are found in this [GitHub repository](https://github.com/bstaton1/au-r-workshop-data). Go [here](#data-sets) for details. Navigate to this repository, download the file `streams.csv` and place it in your working directory for this session. This chapter assumes your working directory is `C:/Users/YOU/Documents/R-Workshop/Chapter1`, though the one you are actually using may be slightly different (the `YOU` should at least be changed for your computer). You can read the contents of `streams.csv` into R using this code (ensure your working directory is set **first**):
+Make sure your working directory is set to the location of your current file, which should be in the location `C:/Users/YOU/Documents/R-Book/Chapter 1`. According the [instructions](#data-sets) on acquiring the data, you should have placed all of the data files for this book (downloaded from the [GitHub repository]()) in the location `C:/Users/YOU/Documents/R-Book/Data`. If you have done this already and your working directory is set to the location of the `Ch1.R` script, you can simply run:
 
 ```{r, eval = F}
-dat = read.csv("streams.csv")
+dat = read.csv("../Data/streams.csv")
 ```
 
-**If `streams.csv` is in your working directory, all you need to provide is the file name.** If you do not get an error, congratulations! However, if you get an error that looks like this:
+The `../` tells R to look up one directory from the working directory for a folder called `Data`, then within that, look for a file called `streams.csv`.
+
+If you do not get an error, congratulations! However, if you get an error that looks like this:
 
 ```{r, echo = F, error = T}
 dat = read.csv("streams.csv")
@@ -378,16 +382,9 @@ then fear not. This must be among the most common errors encountered by R users 
 
 1.  The exact case and spelling matters, as well as do the quotes and `.csv` at the end. Ensure the file name is typed correctly.
 
-2.  Check what files are in your working directory: run `dir()`. This will return a vector with the names of the files located in your working directory. Is the file you told R was there truly in there? Is your working directory set to where you thought it was?
+2.  Check what files are in the path you are specifying: run `dir(../Data)`. This will return a vector with the names of the files located in the `Data` directory (which is one folder up from your working directory). Is the file you told R was there truly in there? Is your working directory set to where you thought it was?
 
-3.  If the file is not in your working directory, and you wish to keep it that way, you must point R to where that file is. Pretend for a moment that you put `streams.csv` in `/R-Workshop/DataHere`. Here are two examples that would both read in the file in this case:
-
-```{r, eval = F}
-dat = read.csv("C:/Users/YOU/Documents/R-Workshop/DataHere/streams.csv")
-dat = read.csv("../DataHere/streams")
-```
-
-The first line is the full file path to the file in question. The second line uses a **relative path**: the `../` says "look one folder up from the working directory for a folder called `DataHere` then find a file called `streams.csv` in it."
+A simpler method is to put the data file in your working directory, in which case it can be read into R using `dat = read.csv("streams.csv")`. This method is not recommended for this book, because you will be using the same data files in multiple chapters, and it will help if they are all located in the same location.
 
 If you did not get any errors, then the data are in the object you named (`dat`) and that object is a data frame. Do not proceed until you are able to get `read.csv` to run successfully.
 
@@ -747,7 +744,7 @@ This is the equivalent of $(5^2)^2$.
 
 In this exercise, you will be using what you learned in Chapter 1 to summarize data from a hypothetical pond experiment. 
 
-Pretend that you added nutrients to mesocosoms and counted the densities of 4 different zooplankton taxa. In this experiment, there were two ponds, two treatments per pond, and five replicates of each treatment. There is one error in the data set `ponds.csv` (download it from the [GitHub repository](https://github.com/bstaton1/au-r-workshop-data) or go [here](#data-sets) for details). After you download the data and place it in the appropriate directory, make sure you open this file and fix it _before_ you bring it into R. Refer back to the information about reading in data (Section \@ref(read)) to make sure you find the error.
+Pretend that you added nutrients to mesocosoms and counted the densities of 4 different zooplankton taxa. In this experiment, there were two ponds, two treatments per pond, and five replicates of each treatment. The data are located in the data file `ponds.csv` (see the [instructions](#data-sets) on acquiring and organizing the data files for this book. There is one error in the data set. After you download the data and place it in the appropriate directory, make sure you open this file and fix it _before_ you bring it into R. Refer back to the information about reading in data (Section \@ref(read)) to make sure you find the error.
 
 Create a new R script in your working directory for this chapter called `Ex1B.R` and use that script to complete this exercise.
 

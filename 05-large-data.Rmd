@@ -20,9 +20,7 @@ You will be turning daily observations of harvest and escapement (fish that are 
 
 ## Before You Begin {-}
 
-You should create a new directory and R script for your work in this Chapter. Create a new R script called `Ch5.R` and save it in the directory `C:/Users/YOU/Documents/R-Workshop/Chapter5`. Set your working directory to that location. Revisit the material in Sections \@ref(scripts) and \@ref(working-dir) for more details on these steps.
-
-Download the data sets `daily_escape.csv` and `daily_catch.csv` from the [GitHub repo](https://github.com/bstaton1/au-r-workshop-data) (or go [here](#data-sets) for details) and place them in your working directory.
+You should create a new directory and R script for your work in this Chapter. Create a new R script called `Ch5.R` and save it in the directory `C:/Users/YOU/Documents/R-Book/Chapter5`. Set your working directory to that location. Revisit the material in Sections \@ref(scripts) and \@ref(working-dir) for more details on these steps.
 
 ## Aquiring and Loading Packages
 
@@ -50,11 +48,11 @@ These messages are telling you that there are functions in the `dplyr` package t
 
 You have daily observations of catch and escapement for every other year between 1917 and 2015. Pink salmon have a simple life history where fish spawned in one odd year return as adults to spawn in the next odd year. There is a commercial fishery in this system located at the river mouth which harvests fish as they enter the river. A counting tower is located upstream of the fishing grounds that counts the number of fish that escaped the fishery and will have a chance to spawn (this number is termed "escapement"). The ultimate goal is to obtain annual totals of spawners and total run (catch + escapement) for the purpose of fitting a spawner recruit analysis. You will perform some other analyses along the way directed quantifying patterns in run timing.
 
-Read in the two data sets:
+Read in the two data sets for this chapter (see the [instructions](#data-sets) for details on acquiring data files):
 
 ```{r, eval = F}
-catch = read.csv("daily_catch.csv")
-esc = read.csv("daily_escape.csv")
+catch = read.csv("../Data/daily_catch.csv")
+esc = read.csv("../Data/daily_escape.csv")
 ```
 
 ```{r, echo = F}

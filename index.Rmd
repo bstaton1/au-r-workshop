@@ -31,26 +31,26 @@ The book is composed of six chapters intended to cover a suite of topics in intr
 
 Chapter \@ref(ch1) starts at the first step (installing R) and progresses by assuming no prior knowledge of programming in R or in any other language. In the later chapters, e.g., Chapters \@ref(ch3) and \@ref(ch4), an understanding of statistics at the introductory undergraduate level would be helpful but not strictly essential.
 
-## Data Sets {-#data-sets}
+## Getting Ready {-#comp-prep}
 
-Many of the data sets used in this book were simulated by the author. Cases in which the data set used was not simulated are noted and a citation to the data source is provided. 
+You will install R and RStudio as the first step in Chapter 1. See [here](#install) for the links to get these programs.
+
+You should create a devoted folder on your computer for this book. All examples will assume this folder is located here: `C:/Users/YOU/Documents/R-Book`.
+
+Change `YOU` to be specific for your computer.
+
+## Data Sets {-#data-sets}
 
 The data sets used in this book are hosted on a GitHub repository maintained by the author. It is located here: <https://github.com/bstaton1/au-r-workshop-data>.
 
-You have two main options for how to acquire the data used by this book:
+To acquire the data for this book, you should:
 
-1.  **Download the whole repository**. You can download a zip folder containing all of the data for the book directly from GitHub:
+  1.  Navigate to the GitHub repository
+  2.  click the green _Clone or download_ button at the top right,
+  3.  click _Download ZIP_
+  4.  unzip the contents of this folder into the location: `C:/Users/YOU/Documents/R-Book/Data`
 
-    1.  click the green _Clone or download_ button at the top right,
-    2.  click _Download ZIP_
-    3.  unzip this folders contents into somewhere you know where to find it.
-    
-2.  **Download individual files at a time**. To download a single file from GitHub:
-
-    1.  click on the file, 
-    2.  click _Raw_ in the toolbar on the top right,
-    3.  right-click anywhere in the document, and
-    4.  click _Save As..._.
+Many of the data sets used in this book were simulated by the author. Cases in which the data set used was not simulated are noted and a citation to the data source is provided. More details on the individual data sets can be found on the GitHub repository.
 
 ## Exercises {-}
 
@@ -74,4 +74,4 @@ The book is hosted on [GitHub Pages](https://pages.github.com/).
 
 ## About the Author {-}
 
-Ben Staton is a PhD candidate in the School of Fisheries at Auburn University. He studies quantitative methods for assessing fish populations for use in harvest management, with a focus on Pacific salmon in western Alaska. Ben has been using R on a daily basis since the beginning of his graduate work in 2014. 
+Ben Staton is a PhD candidate in the School of Fisheries at Auburn University. He studies quantitative methods for assessing fish populations for use in harvest management, with a focus on Pacific salmon in western Alaska. Ben has been using R on a daily basis since the beginning of his graduate work in 2014, and is enthusiastic about helping others learn to use R for their own work. 

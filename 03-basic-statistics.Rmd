@@ -27,15 +27,16 @@ R's built-in statistical modeling framework is pretty intuitive and comprehensiv
 
 ## Before You Begin {-}
 
-You should create a new directory and R script for your work in this Chapter. Create a new R script called `Ch3.R` and save it in the directory `C:/Users/YOU/Documents/R-Workshop/Chapter3`. Set your working directory to that location. Revisit the material in Sections \@ref(scripts) and \@ref(working-dir) for more details on these steps. 
-
-Download the data set `sockeye.csv` from the [GitHub repository](https://github.com/bstaton1/au-r-workshop-data) (or go [here](#data-sets) for details) and place it in your working directory. This is the same data set you used in [Exercise 2](#ex2) - revisit this section for more details on the meaning of the variables.
+You should create a new directory and R script for your work in this Chapter. Create a new R script called `Ch3.R` and save it in the directory `C:/Users/YOU/Documents/R-Book/Chapter3`. Set your working directory to that location. Revisit the material in Sections \@ref(scripts) and \@ref(working-dir) for more details on these steps. 
 
 ## The General Linear Model
 
 Much of this chapter will focus on the general linear model, so it is important to become familiar with it. The general linear model is a family of models that allows you to determine the relationship (if any) between some continuous response variable ($y$) and some predictor variable(s) ($x_n$) and is often written as:
 
-$$y_i=\beta_0 + \beta_1 x_{i1} + ... + \beta_j x_{ij}+ ... + \beta_n x_{in} + \varepsilon_i; \varepsilon_i \sim N(0,\sigma),$$
+\begin{equation}
+  y_i=\beta_0 + \beta_1 x_{i1} + ... + \beta_j x_{ij}+ ... + \beta_n x_{in} + \varepsilon_i, \varepsilon_i \sim N(0,\sigma),
+(\#eq:lin-mod)
+\end{equation}
 
 where the subscript $i$ represents an individual observation. The predictor variable(s) can be either categorical (i.e., grouping variables used in ANOVA, t-test, etc.), continuous (regression), or a combination of categorical and continuous (ANCOVA). The main focus is to estimate the coefficients ($\beta$), and in some cases it is to determine if their values are "significantly" different from the value assumed by some null hypothesis.
 
@@ -49,10 +50,10 @@ In R, the general linear model is fitted using the `lm` function. Here's the bas
 
 ### Simple Linear Regression {#regression}
 
-Read the data found in `sockeye.csv` into R:
+Read the data found in `sockeye.csv` (see in the [instructions](#data-sets) for help with acquiring the data) into R. This is the same data set you used in [Exercise 2](#ex2) - revisit this section for more details on the meaning of the variables.
 
 ```{r, eval = F}
-dat = read.csv("sockeye.csv")
+dat = read.csv("../Data/sockeye.csv")
 head(dat)
 ```
 
@@ -73,7 +74,14 @@ If you run just the `fit1` object, you will see the model you ran along with the
 fit1
 ```
 
-If $x_{i1}$ is `weight`, then the coefficients are interpretted as:
+This model looks like this:
+
+\begin{equation}
+  y_i=\beta_0 + \beta_1 x_{i1} + \varepsilon_i, \varepsilon_i \sim N(0,\sigma),
+(\#eq:lin-reg)
+\end{equation}
+
+where $x_{i1}$ is `weight`. The coefficients are interpretted as:
 
 *  $\beta_0$: the y-intercept (mean `fecund` at zero `weight`)
 *  $\beta_1$: the slope (change in `fecund` for one unit increase in `weight`)
@@ -124,7 +132,11 @@ fit2 = lm(fecund ~ type, data = dat)
 
 Think of this model as being written as:
 
-$$y_i=\beta_0 + \beta_1 x_{i1} + \varepsilon_i$$
+\begin{equation}
+  y_i=\beta_0 + \beta_1 x_{i1} + \varepsilon_i
+(\#eq:anova)
+\end{equation}
+
 and assume that $x_{i1} = 0$ if observation $i$ is a fish from the `"hatch"` level and $x_{i1} = 1$ if observation $i$ is a fish from the `"wild"` level. In that case:
 
 *  $\beta_0$ (the intercept) is the mean `fecund` for the `"hatch"` level and
@@ -154,7 +166,10 @@ m[2] - m[1]
 
 Now that you have seen that hatchery and wild fish tend to separate along the fecundity axis (as evidenced by the ANOVA results above), you would like to include this in your original regression model. You will fit two regression lines within the same model: one for hatchery fish and one for wild fish. This model is called an ANCOVA model and looks like this:
 
-$$y_i=\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \varepsilon_i$$
+\begin{equation}
+  y_i=\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \varepsilon_i
+(\#eq:ancova)
+\end{equation}
 
 If $x_{i1}$ is `type` coded with 0's and 1's as in Section \@ref(anova) and $x_{i2}$ is `weight`, then the coefficients are interpretted as:
 
@@ -184,7 +199,10 @@ legend("bottom", legend = c("Hatchery", "Wild"), pch = c(1,16), lty = c(2,1),
 
 Above, you have included an additional predictor variable (and parameter) in your model to help explain variation in the `fecund` variable. However, you have assumed that the effect of weight on fecundity is common between hatchery and wild fish (note the parallel lines in the figure above). You may have reason to believe that the effect of weight depends on the origin of the fish, e.g., wild fish may tend to accumulate more eggs than hatchery fish for the same increase in weight. Cases where the magnitude of the effect depends on the value of another predictor variable are known as "interactions". You can write the interactive ANCOVA model like this:
 
-$$y_i=\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \beta_3 x_{i1} x_{i2} + \varepsilon_i$$
+\begin{equation}
+  y_i=\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \beta_3 x_{i1} x_{i2} + \varepsilon_i
+(\#eq:ancova-interact)
+\end{equation}
 
 If $x_{i1}$ is `type` coded with 0's and 1's as in Section \@ref(anova) and $x_{i2}$ is `weight`, then the coefficients are interpretted as:
 
@@ -241,11 +259,17 @@ The models you fitted above were called "general linear models". They all made t
 
 One example is in the case of **binary** data. Binary data have two outcomes, e.g., success/failure, lived/died, male/female, spawned/gravid, happy/sad, etc. If you wish to predict how the probability of one outcome over the other changes depending on some other variable, then you need to use the **logistic regression model**, which is written as:
 
-$$logit(p_i)=\beta_0 + \beta_1 x_{i1} + ... + \beta_j x_{ij}+ ... + \beta_n x_{in}; y_i \sim Bernoulli(p_i)$$
+\begin{equation}
+  logit(p_i)=\beta_0 + \beta_1 x_{i1} + ... + \beta_j x_{ij}+ ... + \beta_n x_{in}, y_i \sim Bernoulli(p_i)
+(\#eq:logis-reg)
+\end{equation}
 
 Where $p_i$ is the probability of success for trial $i$ ($y_i = 1$) at the values of the predictor variables $x_{ij}$. The $logit(p_i)$ is the **link function** that links the linear parameter scale to the data scale. It constrains the value of $p_i$ to be between 0 and 1 regardless of the values of the $\beta$ coefficients. The logit link function does this:
 
-$$logit(p_i) = log\left(\frac{p_i}{1-p_i}\right)$$
+\begin{equation}
+  logit(p_i) = log\left(\frac{p_i}{1-p_i}\right)
+(\#eq:logit)
+\end{equation}
 
 which is the natural logarithm of the **odds**, a measure of how likely the event is to happen relative to it not happening. Make an R function to calculate the logit transformation:
 
@@ -257,7 +281,10 @@ logit = function(p) {
 
 If you have the result of `logit(p[i])` (which is given by the $\beta$ coefficients and the $x_{ij}$ data) and need to get `p[i]`, you can apply the inverse logit function:
 
-$$expit(lp_i)=\frac{e^{lp_i}}{1 + e^{lp_i}}$$
+\begin{equation}
+  expit(lp_i)=\frac{e^{lp_i}}{1 + e^{lp_i}}
+(\#eq:expit)
+\end{equation}
 
 where $lp_i = logit(p_i)$. Make a function for the inverse logit transformation:
 
@@ -486,10 +513,10 @@ qnorm(p)
 
 You fitted linear and logistic regression models in Sections \@ref(regression) and \@ref(logis-regression), however, R allows you to fit non-linear regression models as well.
 
-First, aquire the `feeding.csv` data set from the [GitHub repository](https://github.com/bstaton1/au-r-workshop-data) (or go [here](#data-sets) for details) and place it in your working directory. Read the data into R: 
+First, read the data into R: 
 
 ```{r, eval = F}
-dat = read.csv("feeding.csv"); summary(dat)
+dat = read.csv("../Data/feeding.csv"); summary(dat)
 ```
 
 ```{r, echo = F}
@@ -507,7 +534,11 @@ plot(cons ~ prey, data = dat, cex = 1.5, pch = 16, col = "grey")
 
 You can see a distinct non-linearity to the relationship. The Holling Type II functional response^[This function rises quickly at low prey densities, but saturates at high densities] has this functional form:
 
-$$y_i=\frac{ax_i}{1+ahx_i} + \varepsilon_i, \varepsilon_i \sim N(0, \sigma)$$
+\begin{equation}
+  y_i=\frac{ax_i}{1+ahx_i} + \varepsilon_i, \varepsilon_i \sim N(0, \sigma)
+(\#eq:func-resp)
+\end{equation}
+
 where $x_i$ is `prey` and $y_i$ is `cons`. 
 
 You can fit this model in R using the `nls` function: 

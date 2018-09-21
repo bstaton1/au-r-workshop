@@ -8,7 +8,7 @@ rm(list = ls(all = T))
 
 **1.  Create a new file in your working directory called `Ex1A.R`.**
 
-Go to _File > New File > R Script_. This will create an untitled R script. Go the _File > Save_, give it the appropriate name and click _Save_. If your working directory is already set to `C:/Users/YOU/Documents/R-Workshop/Chapter 1`, then the file will be saved there by default.
+Go to _File > New File > R Script_. This will create an untitled R script. Go the _File > Save_, give it the appropriate name and click _Save_. If your working directory is already set to `C:/Users/YOU/Documents/R-Book/Chapter1`, then the file will be saved there by default.
 
 You can create a new script using **CTRL + SHIFT + N** as well.
 
@@ -94,7 +94,7 @@ First, did you find the error? It is the `#VALUE!` entry in the `chao` column. Y
 
 **1.  Read in the data to R and assign it to an object.**
 
-After downloading `ponds.csv` to your working directory and creating `Ex1B.R`, 
+After placing `ponds.csv` (and all of the other ) to your working directory and creating `Ex1B.R`, 
 
 ```{r, echo = F}
 dat = read.csv("Data/ponds.csv")
