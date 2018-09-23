@@ -62,7 +62,7 @@
 \contentsline {chapter}{\numberline {3}Basic Statistics}{51}{chapter.3}
 \contentsline {section}{Chapter Overview}{51}{section*.26}
 \contentsline {section}{Before You Begin}{51}{section*.27}
-\contentsline {section}{\numberline {3.1}The General Linear Model}{52}{section.3.1}
+\contentsline {section}{\numberline {3.1}The General Linear Model}{51}{section.3.1}
 \contentsline {subsection}{\numberline {3.1.1}Simple Linear Regression}{52}{subsection.3.1.1}
 \contentsline {subsection}{\numberline {3.1.2}ANOVA: Categorical predictors}{54}{subsection.3.1.2}
 \contentsline {subsection}{\numberline {3.1.3}ANCOVA: Continuous and categorical predictors}{56}{subsection.3.1.3}

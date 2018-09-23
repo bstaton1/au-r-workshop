@@ -17,19 +17,16 @@ In this chapter, you will get familiar with the basics of using R for the purpos
 
 *  fit and interpret the output from various general linear models:
     - simple linear regression models
-    - multiple regression models
-    - higher order polynomial regression models
     - T-tests (also ANOVA)
     - ANCOVA models
     - Interactions
 *  conduct basic model selection
 *  fit basic GLMs: the logistic regression model
-*  Bonus topic: fitting non-linear regression models using `nls`
-*  Bonus topic (_coming soon_): fitting custom maximum-likelihood models using `optim`
+*  Bonus topic: fitting non-linear regression models using `nls()`
 
 R's built-in statistical modeling framework is pretty intuitive and comprehensive. R has gained  popularity as a statistics software and is commonly used both in academia and governmental resource agencies.  This popularity is likely a result of its power, flexibility, intuitive nature, and price (free!). For many students, this chapter may be the one that is most immediately useful. 
 
-**IMPORTANT NOTE**: If you did not attend the sessions corresponding to Chapters \@ref(ch1) or \@ref(ch2), you are recommended to walk through the material found in those chapters before proceeding to this material. Also note that if you are confused about a topic, you can use **CTRL + F** to find previous cases where that topic has been discussed in this document. 
+**IMPORTANT NOTE**: If you did not attend the sessions corresponding to Chapters \@ref(ch1) or \@ref(ch2), you are recommended to walk through the material found in those chapters before proceeding to this material. Also note that if you are confused about a topic, you can use **CTRL + F** to find previous cases where that topic has been discussed in this book. 
 
 ## Before You Begin {-}
 
@@ -52,11 +49,11 @@ The model makes several assumptions about the residuals^[The residuals ($\vareps
   * be normally-distributed
   * have constant variance across range of the x-axis
 
-In R, the general linear model is fitted using the `lm` function. Here's the basic syntax is `lm(y ~ x, data = dat)`^[This should look familar from Section \@ref(box-whisker)]; it says: "fit a model with `y` as the response variable and `x` as the sole predictor variable, look for the variables `x` and `y` in a data frame called `dat`". 
+In R, the general linear model is fitted using the `lm()` function. Here's the basic syntax is `lm(y ~ x, data = dat)`^[This should look familar from Section \@ref(box-whisker)]; it says: "fit a model with `y` as the response variable and `x` as the sole predictor variable, look for the variables `x` and `y` in a data frame called `dat`". 
 
 ### Simple Linear Regression {#regression}
 
-Read the data found in `sockeye.csv` (see in the [instructions](#data-sets) for help with acquiring the data) into R. This is the same data set you used in [Exercise 2](#ex2) - revisit this section for more details on the meaning of the variables.
+Read the data found in `sockeye.csv` (see in the [instructions](#data-sets) for help with acquiring the data) into R. This is the same data set you used in [Exercise 2](#ex2) - revisit this section for more details on the meaning of the variables. These are real data and are presented in @sockeye-cite.
 
 ```{r, eval = F}
 dat = read.csv("../Data/sockeye.csv")
@@ -68,7 +65,7 @@ dat = read.csv("Data/sockeye.csv")
 head(dat)
 ```
 
-To fit a regression model using `lm`, both `x` and `y` must be continous (numeric) variables. In the data set `dat`, two such variables are the `weight` and `fecund`. Fit a regression model where you link the average fecundity (number of eggs) of an individual to the average weight (in grams) of an individual by treating years as replicate data points. Ignore for now that the fish come from two sources: hatchery and wild origin. 
+To fit a regression model using `lm()`, both `x` and `y` must be continous (numeric) variables. In the data set `dat`, two such variables are the `weight` and `fecund`. Fit a regression model where you link the average fecundity (number of eggs) of an individual year to the average weight (in grams) in that year. Ignore for now that the fish come from two sources: hatchery and wild origin. 
 
 ```{r}
 fit1 = lm(fecund ~ weight, data = dat)
@@ -92,7 +89,7 @@ where $x_{i1}$ is `weight`. The coefficients are interpretted as:
 *  $\beta_0$: the y-intercept (mean `fecund` at zero `weight`)
 *  $\beta_1$: the slope (change in `fecund` for one unit increase in `weight`)
 
-For more information about the model fit, you can use the `summary` function:
+For more information about the model fit, you can use the `summary()` function:
 
 ```{r}
 summary(fit1)
@@ -100,7 +97,7 @@ summary(fit1)
 
 Again the coefficient estimates are shown, but now you see the uncertainty on the parameter estimates (standard errors), the test statistic, and the p-value testing the null hypothesis that each coefficient has a zero value. Here you can see that the p-value does not support rejection of the null hypothesis that the slope is zero. You can see the residual standard error (variability of data around the fitted line and the estimate of $\sigma$), the $R^2$ value (the proportion of variation in `fecund` explained by variation in `weight`), and the p-value of the overall model.
 
-You can easily see the model fit by using the `abline` function. Make a new plot and add the fitted regression line:
+You can easily see the model fit by using the `abline()` function. Make a new plot and add the fitted regression line:
 
 ```{r}
 plot(fecund ~ weight, data = dat, col = "grey", pch = 16, cex = 1.5)
@@ -111,13 +108,13 @@ It fits, but not very well. It seems there are two groups: one with data points 
 
 ### ANOVA: Categorical predictors {#anova}
 
-ANOVA models attempt to determine if the means of different groups are different. You can fit them in the same basic `lm` framework. But first, notice that:
+ANOVA models attempt to determine if the means of different groups are different. You can fit them in the same basic `lm()` framework. But first, notice that:
 
 ```{r}
 class(dat$type); levels(dat$type)
 ```
 
-tells you the `type` variable is a factor. It has levels of `"hatch"` and `"wild"` which indicate the origin of the adult spawning fish sampled each year. If you pass `lm` a predictor variable with a factor class, the R will automatically fit it as an ANOVA model. See Section \@ref(factors) for more details on factors. Factors have an explicit ordering of the levels. By default, this ordering happens alphabetically: if your factor has levels `"a"`, `"b"`, and `"c"`, they will be assigned the order of `1`, `2` and `3`, respectively. You can always see how R is ordering your factor by doing something similar to this:
+tells you the `type` variable is a factor. It has levels of `"hatch"` and `"wild"` which indicate the origin of the adult spawning fish sampled each year. If you pass `lm()` a predictor variable with a factor class, R will automatically fit it as an ANOVA model. See Section \@ref(factors) for more details on factors. Factors have an explicit ordering of the levels. By default, this ordering happens alphabetically: if your factor has levels `"a"`, `"b"`, and `"c"`, they will be assigned the order of `1`, `2` and `3`, respectively. You can always see how R is ordering your factor by doing something similar to this:
 
 ```{r}
 pairs = cbind(
@@ -143,7 +140,7 @@ Think of this model as being written as:
 (\#eq:anova)
 \end{equation}
 
-and assume that $x_{i1} = 0$ if observation $i$ is a fish from the `"hatch"` level and $x_{i1} = 1$ if observation $i$ is a fish from the `"wild"` level. In that case:
+and assume that $x_{i1} = 0$ if observation $i$ is a fish from the `"hatch"` level and $x_{i1} = 1$ if observation $i$ is a fish from the `"wild"` level. Note that Equations \@ref(eq:lin-reg) and  \@ref(eq:anova) are the same, the only thing that differs is the coding of the variable $x_{i1}$. In the ANOVA case:
 
 *  $\beta_0$ (the intercept) is the mean `fecund` for the `"hatch"` level and
 *  $\beta_1$ is the difference in mean `fecund`: `"wild"` - `"hatch"`. 
@@ -190,7 +187,7 @@ fit3 = lm(fecund ~ type + weight, data = dat)
 summary(fit3)$coef
 ```
 
-And you can plot the fit. Study this code to make sure you know what each is doing. Use what you know about the meanings of the three coefficients to decipher the two `abline` commands. Remember that `abline` takes takes two arguments: `a` is the intercept and `b` is the slope.
+And you can plot the fit. Study this code to make sure you know what each is doing. Use what you know about the meanings of the three coefficients to decipher the two `abline()` commands. Remember that `abline()` takes takes two arguments: `a` is the intercept and `b` is the slope.
 
 ```{r}
 plot(fecund ~ weight, data = dat, col = "grey",
@@ -228,7 +225,7 @@ fit4 = lm(fecund ~ type + weight + type:weight, data = dat)
 
 The first option above is more clear in its statement, but both do the same thing. 
 
-Plot the fit. Study these lines to make sure you know what each is doing. Use what you know about the meanings of the four coefficients to decipher the two `abline` commands.
+Plot the fit. Study these lines to make sure you know what each is doing. Use what you know about the meanings of the four coefficients to decipher the two `abline()` commands.
 
 ```{r}
 plot(fecund ~ weight, data = dat, col = "grey",
@@ -249,17 +246,18 @@ It seems that fish of the different origins have approximately the same intercep
 
 ### AIC Model Selection
 
-You have now fitted four different models, each that makes different claims about how you can predict the fecundity of a given sockeye salmon at Redfish Lake. If you are interested in determining _which_ of these models you should use for prediction, you need to use **model selection**. Model selection attempts to find the model that is likely to have the smallest out-of-sample prediction error (i.e., future predictions will be close to what actually happens). One model selection metric is the AIC^[Akaike's Information Criterion. **GIVE A CITATION HERE**]. Lower AIC values mean the model should have better predictive performance. Compare the four models you fitted with AIC:
+You have now fitted four different models, each that makes different claims about how you can predict the fecundity of a given sockeye salmon at Redfish Lake. If you are interested in determining _which_ of these models you should use for prediction, you need to use **model selection**. Model selection attempts to find the model that is likely to have the smallest out-of-sample prediction error (i.e., future predictions will be close to what actually happens). One model selection metric is the AIC^[Akaike's Information Criterion. An excellent overview of AIC with ecological applications is given in @aic-cite]. Lower AIC values mean the model should have better predictive performance. Obtain a simple AIC table from your fitted model objects and sort the table by increasing values of AIC:
 
 ```{r}
-AIC(fit1, fit2, fit3, fit4)
+tab = AIC(fit1, fit2, fit3, fit4)
+tab[order(tab$AIC),]
 ```
 
 In general, AIC values that are different by more than 2 units are interpretted as having importantly different predictive performance. Based on this very quick-and-dirty analysis, it seems that in predicting future fecundity, you would want to use the interactive ANCOVA model.
 
 ## The Generalized Linear Model {#glms}
 
-The models you fitted above were called "general linear models". They all made the assumption that the residuals ($\varepsilon_i$) are normally-distributed. Oftentimes data and analyses do not follow this assumption. For these cases you should often move to the broader family of statistical models known as "generalized linear models"^[General linear models are a member of this family].
+The models you fitted above were called "general linear models". They all made the assumption that the residuals ($\varepsilon_i$) are normally-distributed and that the response variable and the predictor variables are linearly related. Oftentimes data and analyses do not follow this assumption. For these cases you should often move to the broader family of statistical models known as **generalized linear models**^[General linear models are a member of this family].
 
 ### Logistic Regression {#logis-regression}
 
@@ -285,7 +283,7 @@ logit = function(p) {
 }
 ```
 
-If you have the result of `logit(p[i])` (which is given by the $\beta$ coefficients and the $x_{ij}$ data) and need to get `p[i]`, you can apply the inverse logit function:
+If you have the result of `logit(p[i])` (which is given by the $\beta$ coefficients and the $x_{ij}$ data in Equation \@ref(eq:logis-reg)) and need to get `p[i]`, you can apply the inverse logit function:
 
 \begin{equation}
   expit(lp_i)=\frac{e^{lp_i}}{1 + e^{lp_i}}
@@ -317,7 +315,7 @@ fit1 = glm(binary ~ weight, data = dat, family = binomial)
 summary(fit1)$coef
 ```
 
-The coefficients are interpretted as (emember "success" is defined as having at least 70% egg survival to the stage of interest):
+The coefficients are interpretted as (remember, "success" is defined as having at least 70% egg survival to the stage of interest):
 
 *  $\beta_0$: the log odds of success for a fish with zero weight (which is not all that important, let alone difficult to interpret). It can be transformed into more interpretable quantities: 
     *  $e^{\beta_0}$ is the odds of success for fish with zero weight and 
@@ -414,7 +412,8 @@ legend("topright", legend = c("Hatchery", "Wild"),
 You may have noticed that you just did the same analysis with `binary` as the response instead of `fecund`. Perform an AIC analysis to determine which model is likely to be best for prediction:
 
 ```{r}
-AIC(fit1, fit2, fit3, fit4)
+tab = AIC(fit1, fit2, fit3, fit4)
+tab[order(tab$AIC),]
 ```
 
 Oddly enough, the two best models are the simplest one and the most complex one, with `fit1` being the best, but not by a large margin.
@@ -435,7 +434,7 @@ tab = data.frame(
            "Models the number of successes from a given number of trials when there are only two possible outcomes and all trials have the same probability of success",
            "The same as the binomial distribution, but when there are more than two possible outcomes",
            "Used for count data in cases where the variance and mean are roughly equal"),
-  suffix = c("`-norm`", "`-lnorm`", "`-unif`", "`-beta`", "`-binom`", "`-multinom`", "`-pois`")
+  suffix = c("`-norm()`", "`-lnorm()`", "`-unif()`", "`-beta()`", "`-binom()`", "`-multinom()`", "`-pois()`")
 )
 
 colnames(tab) = c("Type", "Distribution", "Common Uses", "R Suffix")
@@ -457,7 +456,7 @@ tab = data.frame(
            "Models the number of successes from a given number of trials when there are only two possible outcomes and all trials have the same probability of success",
            "The same as the binomial distribution, but when there are more than two possible outcomes",
            "Used for count data in cases where the variance and mean are roughly equal"),
-  suffix = c("-norm", "-lnorm", "-unif", "-beta", "-binom", "-multinom", "-pois")
+  suffix = c("-norm()", "-lnorm()", "-unif()", "-beta()", "-binom()", "-multinom()", "-pois()")
 )
 
 colnames(tab) = c("Distribution", "Description", "R Suffix")
@@ -476,11 +475,8 @@ kable(tab, "latex", booktabs = T,
 In R, there are four different ways to use each of these distribution functions (each has a separate prefix):
 
 * **The probability density (or mass) function** (`d-`): the height of the probability distribution function at some given value of the random variable. 
-
 * **The cumulative density function** (`p-`): what is the sum of the probability densities for all random variables below the input argument `q`.
-
 *  **The quantile function** (`-q`): what value of the random variable do `p`% fall below?
-
 *  **The random deviates function** (`-r`): generates random variables from the distribution in proportion to their probability density. 
 
 Suppose that $x$ represents the length of individual age 6 largemouth bass in your private fishing pond. Assume that $x \sim N(\mu=500, \sigma=50)$^[English: $x$ is a normal random variable with mean equal to 500 and standard deviation equal to 50]. Here is the usage of each of the distribution functions and a plot illustrating them:
@@ -524,7 +520,7 @@ hist(random, breaks = 50, col = "grey", main = "rnorm()",
 box() # add borders to the histogram
 ```
 
-Notice that `pnorm` and `qnorm` are inverses of one another: if you put the output of one into the output of the other, you get the original input back:
+Notice that `pnorm()` and `qnorm()` are inverses of one another: if you put the output of one into the output of the other, you get the original input back:
 
 ```{r}
 qnorm(pnorm(0))
@@ -569,22 +565,20 @@ You can see a distinct non-linearity to the relationship. The Holling Type II fu
 
 where $x_i$ is `prey` and $y_i$ is `cons`. 
 
-You can fit this model in R using the `nls` function: 
+You can fit this model in R using the `nls()` function: 
 
 ```{r}
 fit = nls(cons ~ (a * prey)/(1 + a * h * prey), data = dat,
           start = c(a = 3, h = 0.1))
 ```
 
-In general, it behaves very similarly to the `lm` function, however there are a few differences:
+In general, it behaves very similarly to the `lm()` function, however there are a few differences:
 
-*  You need to specify the functional form of the curve you are attempting to fit. In using `lm`, the terms are all additive (e.g., `type + weight`), but in using `nls`, this is not the case. For example, note the use of division. 
+*  You need to specify the functional form of the curve you are attempting to fit. In using `lm()`, the terms are all additive (e.g., `type + weight`), but in using `nls()`, this is not the case. For example, note the use of division. 
+*  You may need to provide starting values for the parameters (coefficients) you are estimating. This is because `nls()` will use a search algorithm to find the parameters of the best fit line, and it may need to have a reasonable idea of where to start looking for it to work properly.
+*  You cannot plot the fit using `abline()` anymore, because you have more parameters than just a slope and intercept, and the relationship between $x$ and $y$ is no longer linear.
 
-*  You may need to provide starting values for the parameters (coefficients) you are estimating. This is because `nls` will use a search algorithm to find the parameters of the best fit line, and it may need to have a reasonable idea of where to start looking for it to work properly.
-
-*  You cannot plot the fit using `abline` anymore, because you have more parameters than just a slope and intercept.
-
-Despite these differences, you can obtain similar output as from `lm` by using the `summary`, `coef`, and `predict` functions. Draw the fitted line over top of the data:
+Despite these differences, you can obtain similar output as from `lm()` by using the `summary()`, `coef()`, and `predict()` functions. Draw the fitted line over top of the data:
 
 ```{r}
 prey_seq = seq(min(dat$prey), max(dat$prey), length = 100)
@@ -600,4 +594,4 @@ lines(cons_seq ~ prey_seq, lwd = 3)
 
 _The solutions to this exercise are found at the end of this book ([here](#ex3-answers)). You are **strongly recommended** to make a good attempt at completing this exercise on your own and only look at the solutions when you are truly stumped._
 
-1.  Make the same graphic as in Figure \@ref(fig:norm-plots) with at least one of the other distributions listed in Table `r if(is_html_output()) "\\@ref(tab:dist-table-html)" else "\\@ref(tab:dist-table-pdf)"` (other than the multinomial - being a multivariate distribution, it wouldn't work well with this code). Try thinking of a variable from your work that meets the uses of each distribution in Table `r if(is_html_output()) "\\@ref(tab:dist-table-html)" else "\\@ref(tab:dist-table-pdf)"` (or one that's not listed). If you run into trouble, check out the help file for that distribution^[Executing `?rnorm` or any other of the `-norm` functions will take you to a page with info on all four function types for that distribution]. 
+1.  Make the same graphic as in Figure \@ref(fig:norm-plots) with at least one of the other distributions listed in Table `r if(is_html_output()) "\\@ref(tab:dist-table-html)" else "\\@ref(tab:dist-table-pdf)"` (other than the multinomial - being a multivariate distribution, it wouldn't work well with this code). Try thinking of a variable from your work that meets the uses of each distribution in Table `r if(is_html_output()) "\\@ref(tab:dist-table-html)" else "\\@ref(tab:dist-table-pdf)"` (or one that's not listed). If you run into trouble, check out the help file for that distribution^[Executing `?rnorm` or any other of the `-norm()` functions will take you to a page with info on all four function types for that distribution]. 

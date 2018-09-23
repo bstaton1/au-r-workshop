@@ -22,7 +22,7 @@ In this chapter, you will learn the basic skills needed for simulation (i.e., Mo
 *  summarization of many values from a distribution
 *  more advanced function writing
 
-**IMPORTANT NOTE**: If you did not attend the sessions corresponding to Chapters \@ref(ch1) or \@ref(ch2) or \@ref(ch3), you are recommended to walk through the material found in those chapters before proceeding to this material. Remember that if you are confused about a topic, you can use **CTRL + F** to find previous cases where that topic has been discussed in this document.
+**IMPORTANT NOTE**: If you did not attend the sessions corresponding to Chapters \@ref(ch1) or \@ref(ch2) or \@ref(ch3), you are recommended to walk through the material found in those chapters before proceeding to this material. Remember that if you are confused about a topic, you can use **CTRL + F** to find previous cases where that topic has been discussed in this book.
 
 ## Before You Begin {-}
 

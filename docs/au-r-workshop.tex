@@ -2310,7 +2310,7 @@ corresponding to Chapter \ref{ch1}, you are recommended to walk through
 the material found in that chapter before proceeding to this material.
 Also note that if you are confused about a topic, you can use
 \textbf{CTRL + F} to find previous cases where that topic has been
-discussed in this document.
+discussed in this book.
 
 \section*{Before You Begin}\label{before-you-begin}
 \addcontentsline{toc}{section}{Before You Begin}
@@ -3130,10 +3130,6 @@ to:
   \item
     simple linear regression models
   \item
-    multiple regression models
-  \item
-    higher order polynomial regression models
-  \item
     T-tests (also ANOVA)
   \item
     ANCOVA models
@@ -3145,10 +3141,7 @@ to:
 \item
   fit basic GLMs: the logistic regression model
 \item
-  Bonus topic: fitting non-linear regression models using \texttt{nls}
-\item
-  Bonus topic (\emph{coming soon}): fitting custom maximum-likelihood
-  models using \texttt{optim}
+  Bonus topic: fitting non-linear regression models using \texttt{nls()}
 \end{itemize}
 
 R's built-in statistical modeling framework is pretty intuitive and
@@ -3163,7 +3156,7 @@ corresponding to Chapters \ref{ch1} or \ref{ch2}, you are recommended to
 walk through the material found in those chapters before proceeding to
 this material. Also note that if you are confused about a topic, you can
 use \textbf{CTRL + F} to find previous cases where that topic has been
-discussed in this document.
+discussed in this book.
 
 \section*{Before You Begin}\label{before-you-begin-1}
 \addcontentsline{toc}{section}{Before You Begin}
@@ -3211,8 +3204,8 @@ coefficients. For reliable inference, the residuals must:
   have constant variance across range of the x-axis
 \end{itemize}
 
-In R, the general linear model is fitted using the \texttt{lm} function.
-Here's the basic syntax is
+In R, the general linear model is fitted using the \texttt{lm()}
+function. Here's the basic syntax is
 \texttt{lm(y\ \textasciitilde{}\ x,\ data\ =\ dat)}\footnote{This should
   look familar from Section \ref{box-whisker}}; it says: ``fit a model
 with \texttt{y} as the response variable and \texttt{x} as the sole
@@ -3225,7 +3218,8 @@ Read the data found in \texttt{sockeye.csv} (see in the
 \protect\hyperlink{data-sets}{instructions} for help with acquiring the
 data) into R. This is the same data set you used in
 \protect\hyperlink{ex2}{Exercise 2} - revisit this section for more
-details on the meaning of the variables.
+details on the meaning of the variables. These are real data and are
+presented in \citet{sockeye-cite}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3244,14 +3238,13 @@ details on the meaning of the variables.
 ## 6 1996 hatch   2165   2171     8.74    63.43
 \end{verbatim}
 
-To fit a regression model using \texttt{lm}, both \texttt{x} and
+To fit a regression model using \texttt{lm()}, both \texttt{x} and
 \texttt{y} must be continous (numeric) variables. In the data set
 \texttt{dat}, two such variables are the \texttt{weight} and
 \texttt{fecund}. Fit a regression model where you link the average
-fecundity (number of eggs) of an individual to the average weight (in
-grams) of an individual by treating years as replicate data points.
-Ignore for now that the fish come from two sources: hatchery and wild
-origin.
+fecundity (number of eggs) of an individual year to the average weight
+(in grams) in that year. Ignore for now that the fish come from two
+sources: hatchery and wild origin.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3300,7 +3293,7 @@ as:
 \end{itemize}
 
 For more information about the model fit, you can use the
-\texttt{summary} function:
+\texttt{summary()} function:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3340,8 +3333,8 @@ line and the estimate of \(\sigma\)), the \(R^2\) value (the proportion
 of variation in \texttt{fecund} explained by variation in
 \texttt{weight}), and the p-value of the overall model.
 
-You can easily see the model fit by using the \texttt{abline} function.
-Make a new plot and add the fitted regression line:
+You can easily see the model fit by using the \texttt{abline()}
+function. Make a new plot and add the fitted regression line:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3359,8 +3352,8 @@ line. You'll now run a new model to get at this.
 \subsection{ANOVA: Categorical predictors}\label{anova}
 
 ANOVA models attempt to determine if the means of different groups are
-different. You can fit them in the same basic \texttt{lm} framework. But
-first, notice that:
+different. You can fit them in the same basic \texttt{lm()} framework.
+But first, notice that:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3378,15 +3371,14 @@ first, notice that:
 
 tells you the \texttt{type} variable is a factor. It has levels of
 \texttt{"hatch"} and \texttt{"wild"} which indicate the origin of the
-adult spawning fish sampled each year. If you pass \texttt{lm} a
-predictor variable with a factor class, the R will automatically fit it
-as an ANOVA model. See Section \ref{factors} for more details on
-factors. Factors have an explicit ordering of the levels. By default,
-this ordering happens alphabetically: if your factor has levels
-\texttt{"a"}, \texttt{"b"}, and \texttt{"c"}, they will be assigned the
-order of \texttt{1}, \texttt{2} and \texttt{3}, respectively. You can
-always see how R is ordering your factor by doing something similar to
-this:
+adult spawning fish sampled each year. If you pass \texttt{lm()} a
+predictor variable with a factor class, R will automatically fit it as
+an ANOVA model. See Section \ref{factors} for more details on factors.
+Factors have an explicit ordering of the levels. By default, this
+ordering happens alphabetically: if your factor has levels \texttt{"a"},
+\texttt{"b"}, and \texttt{"c"}, they will be assigned the order of
+\texttt{1}, \texttt{2} and \texttt{3}, respectively. You can always see
+how R is ordering your factor by doing something similar to this:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3447,7 +3439,9 @@ Think of this model as being written as:
 
 and assume that \(x_{i1} = 0\) if observation \(i\) is a fish from the
 \texttt{"hatch"} level and \(x_{i1} = 1\) if observation \(i\) is a fish
-from the \texttt{"wild"} level. In that case:
+from the \texttt{"wild"} level. Note that Equations \eqref{eq:lin-reg} and
+\eqref{eq:anova} are the same, the only thing that differs is the coding
+of the variable \(x_{i1}\). In the ANOVA case:
 
 \begin{itemize}
 \tightlist
@@ -3554,9 +3548,9 @@ summary:
 
 And you can plot the fit. Study this code to make sure you know what
 each is doing. Use what you know about the meanings of the three
-coefficients to decipher the two \texttt{abline} commands. Remember that
-\texttt{abline} takes takes two arguments: \texttt{a} is the intercept
-and \texttt{b} is the slope.
+coefficients to decipher the two \texttt{abline()} commands. Remember
+that \texttt{abline()} takes takes two arguments: \texttt{a} is the
+intercept and \texttt{b} is the slope.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3624,7 +3618,7 @@ same thing.
 
 Plot the fit. Study these lines to make sure you know what each is
 doing. Use what you know about the meanings of the four coefficients to
-decipher the two \texttt{abline} commands.
+decipher the two \texttt{abline()} commands.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3668,22 +3662,24 @@ these models you should use for prediction, you need to use
 that is likely to have the smallest out-of-sample prediction error
 (i.e., future predictions will be close to what actually happens). One
 model selection metric is the AIC\footnote{Akaike's Information
-  Criterion. \textbf{GIVE A CITATION HERE}}. Lower AIC values mean the
-model should have better predictive performance. Compare the four models
-you fitted with AIC:
+  Criterion. An excellent overview of AIC with ecological applications
+  is given in \citet{aic-cite}}. Lower AIC values mean the model should
+have better predictive performance. Obtain a simple AIC table from your
+fitted model objects and sort the table by increasing values of AIC:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{AIC}\NormalTok{(fit1, fit2, fit3, fit4)}
+\NormalTok{tab =}\StringTok{ }\KeywordTok{AIC}\NormalTok{(fit1, fit2, fit3, fit4)}
+\NormalTok{tab[}\KeywordTok{order}\NormalTok{(tab}\OperatorTok{$}\NormalTok{AIC),]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
 ##      df      AIC
-## fit1  3 568.9166
-## fit2  3 543.6914
-## fit3  4 525.7834
 ## fit4  5 522.0968
+## fit3  4 525.7834
+## fit2  3 543.6914
+## fit1  3 568.9166
 \end{verbatim}
 
 In general, AIC values that are different by more than 2 units are
@@ -3695,10 +3691,11 @@ future fecundity, you would want to use the interactive ANCOVA model.
 
 The models you fitted above were called ``general linear models''. They
 all made the assumption that the residuals (\(\varepsilon_i\)) are
-normally-distributed. Oftentimes data and analyses do not follow this
-assumption. For these cases you should often move to the broader family
-of statistical models known as ``generalized linear models''\footnote{General
-  linear models are a member of this family}.
+normally-distributed and that the response variable and the predictor
+variables are linearly related. Oftentimes data and analyses do not
+follow this assumption. For these cases you should often move to the
+broader family of statistical models known as \textbf{generalized linear
+models}\footnote{General linear models are a member of this family}.
 
 \subsection{Logistic Regression}\label{logis-regression}
 
@@ -3739,8 +3736,9 @@ function to calculate the logit transformation:
 \end{Shaded}
 
 If you have the result of \texttt{logit(p{[}i{]})} (which is given by
-the \(\beta\) coefficients and the \(x_{ij}\) data) and need to get
-\texttt{p{[}i{]}}, you can apply the inverse logit function:
+the \(\beta\) coefficients and the \(x_{ij}\) data in Equation
+\eqref{eq:logis-reg}) and need to get \texttt{p{[}i{]}}, you can apply the
+inverse logit function:
 
 \begin{equation}
   expit(lp_i)=\frac{e^{lp_i}}{1 + e^{lp_i}}
@@ -3795,8 +3793,8 @@ Analogous to the simple linear regression model (Section
 ## weight      -0.002819271 0.00125243 -2.251040 0.02438303
 \end{verbatim}
 
-The coefficients are interpretted as (emember ``success'' is defined as
-having at least 70\% egg survival to the stage of interest):
+The coefficients are interpretted as (remember, ``success'' is defined
+as having at least 70\% egg survival to the stage of interest):
 
 \begin{itemize}
 \tightlist
@@ -3933,16 +3931,17 @@ prediction:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{AIC}\NormalTok{(fit1, fit2, fit3, fit4)}
+\NormalTok{tab =}\StringTok{ }\KeywordTok{AIC}\NormalTok{(fit1, fit2, fit3, fit4)}
+\NormalTok{tab[}\KeywordTok{order}\NormalTok{(tab}\OperatorTok{$}\NormalTok{AIC),]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
 ##      df      AIC
 ## fit1  2 45.40720
+## fit4  3 46.00622
 ## fit2  2 50.07577
 ## fit3  4 50.42090
-## fit4  3 46.00622
 \end{verbatim}
 
 Oddly enough, the two best models are the simplest one and the most
@@ -3972,16 +3971,16 @@ in R that correspond to each distribution\footnote{For an excellent and
 \addlinespace[0.3em]
 \multicolumn{3}{l}{\textbf{Continuous}}\\
 \hline
-\hspace{1em}Normal & Models the relative frequency of outcomes that are symmetric around a mean, can be negative & -norm\\
-\hspace{1em}Lognormal & Models the relative frequency of outcomes that are normally-distributed on the log-scale & -lnorm\\
-\hspace{1em}Uniform & Models values that are between two endpoints and that all occur with the same frequency & -unif\\
-\hspace{1em}Beta & Models values that are between 0 and 1 & -beta\\
+\hspace{1em}Normal & Models the relative frequency of outcomes that are symmetric around a mean, can be negative & -norm()\\
+\hspace{1em}Lognormal & Models the relative frequency of outcomes that are normally-distributed on the log-scale & -lnorm()\\
+\hspace{1em}Uniform & Models values that are between two endpoints and that all occur with the same frequency & -unif()\\
+\hspace{1em}Beta & Models values that are between 0 and 1 & -beta()\\
 \addlinespace[0.3em]
 \multicolumn{3}{l}{\textbf{Discrete}}\\
 \hline
-\hspace{1em}Binomial & Models the number of successes from a given number of trials when there are only two possible outcomes and all trials have the same probability of success & -binom\\
-\hspace{1em}Multinomial & The same as the binomial distribution, but when there are more than two possible outcomes & -multinom\\
-\hspace{1em}Poisson & Used for count data in cases where the variance and mean are roughly equal & -pois\\
+\hspace{1em}Binomial & Models the number of successes from a given number of trials when there are only two possible outcomes and all trials have the same probability of success & -binom()\\
+\hspace{1em}Multinomial & The same as the binomial distribution, but when there are more than two possible outcomes & -multinom()\\
+\hspace{1em}Poisson & Used for count data in cases where the variance and mean are roughly equal & -pois()\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -3990,6 +3989,7 @@ In R, there are four different ways to use each of these distribution
 functions (each has a separate prefix):
 
 \begin{itemize}
+\tightlist
 \item
   \textbf{The probability density (or mass) function} (\texttt{d-}): the
   height of the probability distribution function at some given value of
@@ -4064,7 +4064,7 @@ plot illustrating them:
 \caption{The four `-norm` functions with input (x-axis) and output (y-axis) displayed.}\label{fig:norm-plots}
 \end{figure}
 
-Notice that \texttt{pnorm} and \texttt{qnorm} are inverses of one
+Notice that \texttt{pnorm()} and \texttt{qnorm()} are inverses of one
 another: if you put the output of one into the output of the other, you
 get the original input back:
 
@@ -4146,7 +4146,7 @@ form:
 
 where \(x_i\) is \texttt{prey} and \(y_i\) is \texttt{cons}.
 
-You can fit this model in R using the \texttt{nls} function:
+You can fit this model in R using the \texttt{nls()} function:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4155,29 +4155,31 @@ You can fit this model in R using the \texttt{nls} function:
 \end{Highlighting}
 \end{Shaded}
 
-In general, it behaves very similarly to the \texttt{lm} function,
+In general, it behaves very similarly to the \texttt{lm()} function,
 however there are a few differences:
 
 \begin{itemize}
+\tightlist
 \item
   You need to specify the functional form of the curve you are
-  attempting to fit. In using \texttt{lm}, the terms are all additive
-  (e.g., \texttt{type\ +\ weight}), but in using \texttt{nls}, this is
+  attempting to fit. In using \texttt{lm()}, the terms are all additive
+  (e.g., \texttt{type\ +\ weight}), but in using \texttt{nls()}, this is
   not the case. For example, note the use of division.
 \item
   You may need to provide starting values for the parameters
-  (coefficients) you are estimating. This is because \texttt{nls} will
+  (coefficients) you are estimating. This is because \texttt{nls()} will
   use a search algorithm to find the parameters of the best fit line,
   and it may need to have a reasonable idea of where to start looking
   for it to work properly.
 \item
-  You cannot plot the fit using \texttt{abline} anymore, because you
-  have more parameters than just a slope and intercept.
+  You cannot plot the fit using \texttt{abline()} anymore, because you
+  have more parameters than just a slope and intercept, and the
+  relationship between \(x\) and \(y\) is no longer linear.
 \end{itemize}
 
 Despite these differences, you can obtain similar output as from
-\texttt{lm} by using the \texttt{summary}, \texttt{coef}, and
-\texttt{predict} functions. Draw the fitted line over top of the data:
+\texttt{lm()} by using the \texttt{summary()}, \texttt{coef()}, and
+\texttt{predict()} functions. Draw the fitted line over top of the data:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4213,7 +4215,7 @@ own and only look at the solutions when you are truly stumped.}
   distribution in Table \ref{tab:dist-table-pdf} (or one that's not
   listed). If you run into trouble, check out the help file for that
   distribution\footnote{Executing \texttt{?rnorm} or any other of the
-    \texttt{-norm} functions will take you to a page with info on all
+    \texttt{-norm()} functions will take you to a page with info on all
     four function types for that distribution}.
 \end{enumerate}
 
@@ -4253,7 +4255,7 @@ corresponding to Chapters \ref{ch1} or \ref{ch2} or \ref{ch3}, you are
 recommended to walk through the material found in those chapters before
 proceeding to this material. Remember that if you are confused about a
 topic, you can use \textbf{CTRL + F} to find previous cases where that
-topic has been discussed in this document.
+topic has been discussed in this book.
 
 \section*{Before You Begin}\label{before-you-begin-2}
 \addcontentsline{toc}{section}{Before You Begin}
@@ -4317,7 +4319,7 @@ random process where \(p = 0.8\) and \(n = 100\) like this:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 84
+## [1] 76
 \end{verbatim}
 
 The result you get will almost certainly be different from the one
@@ -4367,7 +4369,7 @@ from the vector \texttt{x}:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 6 2 3 4 1
+## [1] 2 4 9 6 1
 \end{verbatim}
 
 You can sample with replacement (where it is possible to sample the same
@@ -4380,7 +4382,7 @@ element two or more times):
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "c" "c" "a" "b" "c" "a" "a" "c" "a" "a"
+##  [1] "b" "b" "c" "c" "c" "b" "c" "a" "c" "b"
 \end{verbatim}
 
 You can set probabilities on the sampling of different
@@ -4395,7 +4397,7 @@ elements\footnote{If \texttt{prob} doesn't sum to 1, then it will be
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "live" "live" "live" "live" "die"  "die"  "live" "die"  "live" "live"
+##  [1] "die"  "live" "live" "live" "die"  "live" "live" "live" "live" "live"
 \end{verbatim}
 
 Notice that this is the same as the binomial random process above, but
@@ -5963,7 +5965,7 @@ walk through the material found in those chapters before proceeding to
 this material. Additionally, you will find the material in Section
 \ref{nls} helpful for the end of this chapter. Remember that if you are
 confused about a topic, you can use \textbf{CTRL + F} to find previous
-cases where that topic has been discussed in this document.
+cases where that topic has been discussed in this book.
 
 \section*{Before You Begin}\label{before-you-begin-3}
 \addcontentsline{toc}{section}{Before You Begin}
