@@ -40,7 +40,6 @@ As a matter of personal preference, you are recommended to configure a few setti
 
 These settings will prevent you from getting a bunch of useless files and dialog boxes every time you open and close R.
 
-
 ### Write Some Simple Code
 
 To start off, you will just use R as a calculator. Type these commands (not the lines with `##`, those are output^[The formatting used here includes `##` on output to denote code and output separately. You won't see the `##` show up in your console.]) one at a time and hit **CTRL + ENTER** to run it. The spaces don't matter at all, they are used here for clarity and for styling.^[To learn more about standard R code styling, check out Hadley Wickham's great chapter on it: <http://adv-r.had.co.nz/Style.html>.]
@@ -85,27 +84,26 @@ z = y - x
     - numbers
     - the `.` or `_` symbols
 *  Object names must start with a letter, not a number or symbol and cannot contain spaces
-*  As a general rule, avoid naming your objects things that already have names in R, e.g., `data`, `mean`, `sum`, `sd`, etc.
+*  As a general rule, avoid naming your objects things that already have names in R, e.g., `data()`, `mean()`, `sum()`, `sd()`, etc.
 *  Capitalization matters: `A` and `a` are two different objects
-
 
 ## Saving Your Code: Scripts {#scripts}
 
 If you closed R at this moment, your work would be lost. Running code in the console like you have just done **does not save a record of your work**. To save R code, you must use what is called a **script**, which is a plain-text file with the extension `.R`. To create a new script file, go to _File > New File > R Script_, or use the keyboard shortcut **CTRL + SHIFT + N**. A new pane will open called the **source** pane - this is where you will edit your code and save your progress. R Scripts are a key feature of reproducible research with R, given that if they are well-written they can present a complete road map of your statistical analysis and workflow.
 
-To help keep things organized (which is **essential** for efficient use of R!), you should have a separate subfolder for each chapter of this book. Create a new folder:  and save the script there.
-
 ## The Working Directory {#working-dir}
 
-A key part of saving your work is thinking about **where** you save it. In R, a key concept is the **working directory**. This is the location (i.e., folder) on your computer where your current R session will "talk to" by default. The working directory is where R will read files from and write files to by default. Because you'll likely be visiting it often, it should probably be somewhere that is easy to remember and not too deeply buried in your computer's file system. 
+Keeping things organized is essential to efficient use of R. For this book, you should have a separate subfolder for your scripts in each chapter. Create a subfolder called `C:/Users/YOU/Documents/R-Book/Chapter1` and save your `Ch1.R` script there. 
 
-Save your new script here: `C:/Users/YOU/Documents/R-Book/Chapter1``. To set the working directory to this location, you have three options:
+Part of keeping your work organized in R is making sure you know where R is looking for your files. One way to facilitate this is to use a **working directory**. This is the location (i.e., folder) on your computer where your current R session will "talk to" by default. The working directory is where R will read files from and write files to by default. Because you'll likely be visiting it often, it should probably be somewhere that is easy to remember and not too deeply buried in your computer's file system. 
+
+To set the working directory to `C:/Users/YOU/Documents/R-Book/Chapter1`, you have three options:
 
 1.  **Go to Session > Set Working Directory > Source File Location**. This will set the working directory to the location of the file that is currently open in your source pane.
 
 2. **Go to Session > Set Working Directory > Choose Directory**. This will open an interactive file selection window to allow you to navigate to the desired directory.
 
-3. **Use code**. In the console, you can type `setwd("C:/Users/YOU/Documents/R-Book/Chapter1")`. If at any point you want to know where your current working directory is set to, you can either look at the top of the console pane, which shows the full path or by running `getwd()` in the console.
+3. **Use code**. In the console, you can type `setwd("C:/Users/YOU/Documents/R-Book/Chapter1")`. If at any point you want to know where your current working directory is set to, you can either look at the top of the console pane, which shows the full path or by running `getwd()` in the console. Note the use of `/` rather than `\` for file paths in R.
 
 **The main benefits of using a working directory are**:
 
@@ -113,7 +111,7 @@ Save your new script here: `C:/Users/YOU/Documents/R-Book/Chapter1``. To set the
 *  Everything for your analysis is organized into one place
 *  You don't have to continuously type file paths to your work. If `file.txt` is a file in your current working directory, you can reference it your R session using `"file.txt"` rather than with `"C:/Users/YOU/Documents/R-Book/Chapter1/file.txt"` each time.
 
-Note that while it is generally good practice to keep your data in the working directory, this is not recommended for this book. You will be using the same data files in multiple chapters, so it will help if they were all stored in one location. More details on this later (Section \@ref(read)).
+Note that while it is generally good practice to keep your data in the working directory, this is not recommended for this book. You will be using the same data files in multiple chapters, so it will help if they are all stored in one location. More details on this later (Section \@ref(read)).
 
 ## R Object Types
 
@@ -127,7 +125,7 @@ Much of your work in R will involve functions. A function is called using the sy
 fun(arg1 = value1, arg2 = value2)
 ```
 
-Here, `fun` is the **function name** and `arg1` and `arg2` are called **arguments**. Functions take input in the form of the arguments, do some task with them, then return some output. The parentheses are a sure sign that `fun` is a function.
+Here, `fun()` is the **function name** and `arg1` and `arg2` are called **arguments**. Functions take input in the form of the arguments, do some task with them, then return some output. The parentheses are a sure sign that `fun()` is a function.
 
 We have passed the function two arguments by name: all functions have arguments, all arguments have names, and there is always a default order to the arguments. If you memorize the argument order of functions you use frequently, you don't have to specify the argument name:
 
@@ -143,13 +141,13 @@ Here's a real example:
 print(x = z)
 ```
 
-The function is `print`, the argument is `x`, and the value we have supplied the argument is the object `z`. The task that `print` does is to print the value of `z` to the console.
+The function is `print()`, the argument is `x`, and the value we have supplied the argument is the object `z`. The task that `print()` does is to print the value of `z` to the console.
 
-R has lots of built-in information to help you learn how to use a function. Take a look at the help file for the mean function. Run `?mean` in the console: a window on the right-hand side of the R Studio interface should open. The help file tells you what goes into a function and what comes out. For more complex functions it also tells you what all of the options (i.e., arguments) can do. Help files can be a bit intimidating to interpret at first, but they are all organized the same and once you learn their layout you will know where to go to find the information you're looking for.
+R has a ton of built-in documentation to help you learn how to use a function. Take a look at the help file for the mean function. Run `?mean` in the console: a window on the right-hand side of the R Studio interface should open. The help file tells you what goes into a function and what comes out. For more complex functions it also tells you what all of the options (i.e., arguments) can do. Help files can be a bit intimidating to interpret at first, but they are all organized the same and once you learn their layout you will know where to go to find the information you're looking for.
 
 ### Vectors
 
-Vectors are one of the most common data structures. A vector is a set of numbers going in only one dimension. Each position in a vector is termed an **element**, and the number of elements is termed the **length** of the vector. Here are some ways to make some vectors with different elements, all of length five:
+Vectors are one of the most common data structures. A vector is a set of numbers going in only one dimension. Each position in a vector is called an **element**, and the number of elements is called the **length** of the vector. Here are some ways to make some vectors with different elements, all of length five:
 
 ```{r}
 # this is a comment. R will ignore all text on a line after a #
@@ -165,13 +163,13 @@ day = seq(from = 1, to = 9, by = 2); day
 year = rep(2018, 5); year
 ```
 
-The `[1]` that shows up is a element position, more on this later (see Section \@ref(sub)). If you wish to know how many elements are in a vector, use `length`:
+The `[1]` that shows up is a element position, more on this later (see Section \@ref(sub)). If you wish to know how many elements are in a vector, use `length()`:
 
 ```{r}
 length(year)
 ```
 
-You can also create a vector "by-hand" using the `c` function^[The `c` stands for **concatenate**, which basically means combine many smaller objects into one larger object]:
+You can also create a vector "by-hand" using the `c()` function^[The `c` stands for **concatenate**, which basically means combine many smaller objects into one larger object]:
 
 ```{r}
 # a numeric vector
@@ -192,17 +190,17 @@ A vector can only hold one data class at a time:
 v = c(1,2,3,"a"); v
 ```
 
-Notice how all the elements now have quotes around them. The numbers have been **coerced** to characters^[The coercion works this way because numbers can be expressed as characters, but a letter cannot be unambiguously be expressed as a number.]. If we attempted to calculate the sum of our vector:
+Notice how all the elements now have quotes around them. The numbers have been **coerced** to characters^[The coercion works this way because numbers can be expressed as characters, but a letter cannot be unambiguously be expressed as a number.]. If you attempt to calculate the sum of your vector:
 
 ```{r, error=T}
 sum(v)
 ```
 
-we would find that it is impossible in its current form.
+you would find that it is impossible in its current form.
 
 ### Matrices {#matrices}
 
-Matrices act just like vectors, but they are in two dimensions, i.e., they have both rows and columns. One easy way to make a matrix is by combining vectors you have already made:
+Matrices act just like vectors, but they are in two dimensions, i.e., they have both rows and columns. An easy way to make a matrix is by combining vectors you have already made:
 
 ```{r}
 # combine vectors by column (each vector will become a column)
@@ -218,6 +216,8 @@ Just like vectors, matrices can hold only one data class (note the coercion of n
 cbind(m1, pond)
 ```
 
+Each vector should have the same length.
+
 ### Data Frames {#data-frames}
 
 Many data sets you will work with require storing different data classes in different columns, which would rule out the use of a matrix. This is where **data frames** come in:
@@ -228,7 +228,7 @@ df1 = data.frame(month, day, year, number, pond); df1
 
 Notice the lack of quotation marks which indicates that all variables (i.e., columns) are stored as their original data class. 
 
-It is important to know what kind of object type you are using, since R treats them differently. For example, some functions can only use a certain object type. The same holds true for data classes (numeric vs. character).You can quickly determine what kind of object you are dealing with by using the `class` function.  Simply run `class(object.name)`:
+It is important to know what kind of object type you are using, since R treats them differently. For example, some functions can only use a certain object type. The same holds true for data classes (numeric vs. character).You can quickly determine what kind of object you are dealing with by using the `class()` function:
 
 ```{r}
 class(day); class(pond); class(m1); class(df1)
@@ -236,7 +236,7 @@ class(day); class(pond); class(m1); class(df1)
 
 ## Factors {#factors}
 
-At this point, it is worthwhile to introduce an additional data class: factors. Notice the class of the `pond` variable in `df1`:
+At this point, it is worthwhile to introduce an additional data class: factors. Notice the data class of the `pond` variable in `df1`:
 
 ```{r}
 class(df1$pond)
@@ -248,7 +248,7 @@ The character vector `pond` was coerced to a factor when you placed it in the da
 df1$pond
 ```
 
-That looks weird, huh? A factor has levels, with each level being a subcategory of the factor. You can see the unique levels of your factor by running:
+A factor has levels, with each level being a subcategory of the factor. You can see the unique levels of your factor by running:
 
 ```{r}
 levels(df1$pond)
@@ -273,8 +273,9 @@ R does vectorized calculations. This means that if supplied with two numeric vec
 dm = day + month; dm
 ```
 
-You typically should ensure that the vectors you are doing math with are of equal lengths. 
-You could do the same calculation to each element (e.g., divide each element by 2) with:
+Look at the contents of both `day` and `month` again to make sure you see what R did. You typically should ensure that the vectors you are doing math with are of equal lengths. 
+
+You could do the same calculation to each element of a vector (e.g., divide each element by 2) with:
 
 ```{r}
 dm/2
@@ -282,16 +283,16 @@ dm/2
 
 ## Data Subsets/Queries {#sub}
 
-This perhaps the most important and versatile skills to know in R. So you have an object with data in it and you want to use it for analysis. But you don't want the whole data set: just a few rows or just a few columns, or perhaps you need just a single element from a vector. This section is devoted to ways you can extract certain parts of a data object (the terms **query** and **subset** are often used interchangeably to describe this task). There are three main methods:
+This perhaps the most important and versatile skills to know in R. So you have an object with data in it and you want to use it for analysis. But you don't want the whole data set: just a few rows or just a few columns, or perhaps you need just a single element from a vector. This section is devoted to ways you can extract certain parts of data objects (the terms **query** and **subset** are often used interchangeably to describe this task). There are three main methods:
 
-1.  **By Index** -- This method allows you to pull out specific rows/columns by their location in an object. However, you must know exactly where in the object the desired data are. An **index** is a location of a element in a data object, like the element position or the position of a specific row or column. To subset by index, you specify the object, then what rows, then what columns. The syntax for subsetting a vector by index is `vector[element]` and for a matrix it is `matrix[row,column]`. Here are some examples
+1.  **By Index** -- This method allows you to pull out specific rows/columns by their location in an object. However, you must know exactly where in the object the desired data are. An **index** is a location of a element in a data object, like the element position or the position of a specific row or column. The syntax for subsetting a vector by index is `vector[element]` and for a matrix it is `matrix[row,column]`. Here are some examples:
 
 ```{r}
 # show all of day, then subset the third element
 day; day[3]
 
-# show all of m1, then subset the cell in row 1 col 3 
-m1; m1[1,3]
+# show all of m1, then subset the cell in row 1 col 4 
+m1; m1[1,4]
 
 # show all of df1, then subset the entire first column
 df1; df1[,1]
@@ -319,32 +320,42 @@ You can combine these two methods:
 df1$month[3]
 
 # or
-df1[,"year"]
+df1[,c("year", "month")]
 ```
 
-The by name (`$`) method is useful because it can be used to add columns to a data frame:
+The `$` method is useful because it can be used to add columns to a data frame:
 
 ```{r}
 df1$dm = df1$day + df1$month; df1
 ```
 
-3.  **Logical Subsetting** -- This is perhaps the most flexible method, and is described in Section \@ref(logsub). 
+3.  **Logical Subsetting** -- This is perhaps the most flexible method, but requires more explaining. It is described in Section \@ref(logsub). 
 
 ---
 
 ## Exercise 1A {-}
 
-Take a break to apply what you've learned so far to enter this data frame into R by hand and do some basic data subsets.
+Take a break to apply what you've learned so far to enter the data found in Table `r if(is_html_output()) "\\@ref(tab:ex-1-table-html)" else "\\@ref(tab:ex-1-table-pdf)"` into R by hand and do some basic data subsets.
 
 _The solutions to this exercise are found at the end of this book ([here](#ex1a-answers)). You are **strongly recommended** to make a good attempt at completing this exercise on your own and only look at the solutions when you are truly stumped._
 
-```{r, echo = F, results = "asis"}
+```{r, echo = F}
 Lake = c("Big", "Small", "Square", "Circle")
 Area = c(100, 25, 45, 30)
 Time = c(1000, 1200, 1400, 1600)
 Fish = c(643, 203, 109, 15)
+```
 
-pander::pandoc.table(data.frame(Lake, Area, Time, Fish))
+```{r ex-1-table-html, echo = F, eval = is_html_output()}
+kable(data.frame(Lake, Area, Time, Fish), 
+      caption = "The table you should enter in to R by hand for Exercise 1A") %>%
+  kable_styling(full_width = F) %>%
+  column_spec(1:4, width = "5em")
+```
+
+```{r ex-1-table-pdf, echo = F, eval = is_latex_output()}
+kable(data.frame(Lake, Area, Time, Fish), "latex",
+      caption = "The table you should enter in to R by hand for Exercise 1A")
 ```
 
 1.	Create a new file in your working directory called `Ex_1A.R`.
@@ -384,9 +395,8 @@ dat = read.csv("streams.csv")
 
 then fear not. This must be among the most common errors encountered by R users world-wide. It simply means the file you told R to look for doesn't exist where you told R to find it. Here is a trouble-shooting guide to this error:
 
-1.  The exact case and spelling matters, as well as do the quotes and `.csv` at the end. Ensure the file name is typed correctly.
-
-2.  Check what files are in the path you are specifying: run `dir(../Data)`. This will return a vector with the names of the files located in the `Data` directory (which is one folder up from your working directory). Is the file you told R was there truly in there? Is your working directory set to where you thought it was?
+1.  The exact case and spelling matters, as do the quotes and `.csv` at the end. Ensure the file name is typed correctly.
+2.  Check what files are in the path you are specifying: run `dir("../Data")`. This will return a vector with the names of the files located in the `Data` directory (which is one folder up from your working directory). Is the file you told R was there truly in there? Is your working directory set to where you thought it was?
 
 A simpler method is to put the data file in your working directory, in which case it can be read into R using `dat = read.csv("streams.csv")`. This method is not recommended for this book, because you will be using the same data files in multiple chapters, and it will help if they are all located in the same location.
 
@@ -395,18 +405,13 @@ If you did not get any errors, then the data are in the object you named (`dat`)
 **A few things to note about reading in `.csv` files**: 
 
 *  R will assume the first row are column headers by default.
-
-*  If there is a space in one of the header cells, a `"."` will be inserted. For example, `Total Length` would become `Total.Length`. 
-
+*  If there is a space in one of the header cells, a `"."` will be inserted. For example, the column header `Total Length` would become `Total.Length`. 
 *  R brings in `.csv` files in as data frames by default.
-
 *  If a record (i.e., cell) is truly missing and you want R to treat it that way (i.e., as an `NA`), you have three options:
     - Hard code an `NA` into that cell in Excel
     - Leave that cell completely empty
-    - Enter in some other character (e.g., `"."`) alone in all cells that are meant to be coded as `NA` in R and use the `na.strings = "."` argument of `read.csv`.
-
-*  If at some point you did "Clear Contents" in Microsoft Excel to delete rows or columns from your `.csv` file, these "deleted" rows/columns will be read in as all `NAs`, which can be annoying. To remove this problem, open the `.csv` file in Excel, then highlight and **delete** the rows/columns in question and save the file. Read it back into R again using `read.csv`.
-
+    - Enter in some other character (e.g., `"."`) alone in all cells that are meant to be coded as `NA` in R and use the `na.strings = "."` argument of `read.csv()`.
+*  If at some point you did "Clear Contents" in Microsoft Excel to delete rows or columns from your `.csv` file, these "deleted" rows/columns will be read in as all `NAs`, which can be annoying. To remove this problem, open the `.csv` file in Excel, then highlight and **delete** the rows/columns in question and save the file. Read it back into R again using `read.csv()`.
 *  If even a single character is found in a numeric column in `FileName.csv`, the _entire column_ will be coerced to a character/factor data class after it is read in (i.e., no more math with data on that column until you remove the character). A common error is to have a `#VALUE!` record left over from an invalid Excel function result. You must remove all of these occurrences in order to use that column as numeric. Characters include anything other than a number ([0-9]) and a period when used as a decimal. None of these characters: `!?[]\/@#$%^&*()<>_-+=[a-z];[A-Z]` should never be found in a column you wish to do math with (e.g., take the mean of that column). **This is an incredibly common problem!**
 
 ## Explore the Data Set {#data-summaries}
@@ -417,7 +422,7 @@ dat = read.csv("Data/streams.csv")
 
 Have a look at the data. You could just run `dat` to view the contents of the object, but it will show the whole thing, which may be undesirable if the data set is large. To view the first handful of rows, run `head(dat)` or the last handful of rows with `tail(dat)`.
 
-You will now use some basic functions to explore the simulated streams data before any analysis. The `summary` function is very useful for getting a coarse look at how R has interpreted the data frame: 
+You will now use some basic functions to explore the simulated streams data before any analysis. The `summary()` function is very useful for getting a coarse look at how R has interpreted the data frame: 
 
 ```{r}
 summary(dat)
@@ -425,7 +430,7 @@ summary(dat)
 
 You can see the spread of the numeric data and see the different levels of the factor (`state`) as well as how many records belong to each level. Note that there is one `NA` in the variable called `flow`.
 
-To count the number of elements in a variable (or any vector), remember the `length` function:
+To count the number of elements in a variable (or any vector), remember the `length()` function:
 
 ```{r}
 length(dat$stream_width)
@@ -437,13 +442,13 @@ Note that R counts missing values as elements as well:
 length(dat$flow)
 ```
 
-To get the dimensions of an object with more than one dimension (i.e., a data frame or matrix) we can use the `dim` function. This returns a vector with two elements: the first number is the number of rows and the second is the number of columns. If you only want one of these, use the `nrow` or `ncol` functions (but remember, only for objects with more than one dimension; vectors don't have rows or columns!).
+To get the dimensions of an object with more than one dimension (i.e., a data frame or matrix) we can use the `dim()` function. This returns a vector with two elements: the first number is the number of rows and the second is the number of columns. If you only want one of these, use the `nrow()` or `ncol()` functions (but remember, only for objects with more than one dimension; vectors don't have rows or columns!).
 
 ```{r}
 dim(dat); nrow(dat); ncol(dat)
 ```
 
-You can extract the names of the variables (i.e., columns) in the data frame using `colnames`:
+You can extract the names of the variables (i.e., columns) in the data frame using `colnames()`:
 
 ```{r}
 colnames(dat)
@@ -461,7 +466,7 @@ Calculate the mean of all of the `flow` records:
 mean(dat$flow)
 ```
 
-It returned an `NA` because there is an `NA` in the data for this variable. There is a way to tell R to ignore this `NA`: include the argument `na.rm = TRUE` in the `mean` function (separate arguments are always separated by commas). This is a **logical** argument, meaning that it asks a question. It says "do you want to remove `NAs` before calculating the mean?" `TRUE` means "yes" and `FALSE` means "no." `TRUE` and `FALSE` can be abbreviated as `T` and `F`, respectively. Many of R's functions have the `na.rm` argument (e.g. `mean`, `sd`, `var`, `min`, `max`, `sum`, etc. - most anything that collapses a vector into one number).  
+`mean()` returned an `NA` because there is an `NA` in the data for this variable. The way to tell R to ignore this `NA` is by including the argument `na.rm = TRUE` in the `mean()` function (separate arguments are always separated by commas). This is a **logical** argument, meaning that it asks a question. It says "do you want to remove `NAs` before calculating the mean?" `TRUE` means "yes" and `FALSE` means "no." `TRUE` and `FALSE` can be abbreviated as `T` and `F`, respectively. Many of R's functions have the `na.rm` argument (e.g. `mean()`, `sd()`, `var()`, `min()`, `max()`, `sum()`, etc. - most anything that collapses a vector into one number).  
 
 ```{r}
 mean(dat$flow, na.rm = T)
@@ -473,15 +478,15 @@ which is the same as (i.e., the definition of the mean with the `NA` removed):
 sum(dat$flow, na.rm = T)/(nrow(dat) - 1)
 ```
 
-What if you need apply a function to more than one variable at a time? One of the easiest ways to do this (though as with most things in R, there are many) is by using the `apply` function. This function applies the same summary function to individual subsets of a data object at a time then returns the individual summaries all at once:
+What if you need apply a function to more than one variable at a time? One of the easiest ways to do this (though as with most things in R, there are many) is by using the `apply()` function. This function applies the same summary function to individual subsets of a data object at a time then returns the individual summaries all at once:
 
 ```{r}
-apply(dat[,2:3], 2, FUN = var, na.rm = T)
+apply(dat[,c("stream_width", "flow")], 2, FUN = var, na.rm = T)
 ```
 
-The first argument is the data object you want to apply the function to. The second argument (the number `2`) specifies that you want to apply the function to columns, `1` would tell R to apply it to rows. The `FUN` argument specifies what function you wish to apply to each of the columns; here we are calculating the variance which takes the `na.rm = T` argument. This use of `apply` alone is very powerful and can help you get around having to write the dreaded `for` loop (introduced in Chapter \@ref(ch4)).
+The first argument is the data object you want to apply the function to. The second argument (the number `2`) specifies that you want to apply the function to columns, `1` would tell R to apply it to rows. The `FUN` argument specifies what function you wish to apply to each of the columns; here you are calculating the variance which takes the `na.rm = T` argument. This use of `apply()` alone is very powerful and can help you get around having to write the dreaded `for()` loop (introduced in Chapter \@ref(ch4)).
 
-There is a whole family of `apply` functions, the base `apply` is the most basic but a more sophisticated one is `tapply`, which applies a function based on some grouping variable (a factor). Calculate the mean stream width **separated by state**:
+There is a whole family of `-apply()` functions, the base `apply()` is the most basic but a more sophisticated one is `tapply()`, which applies a function based on some grouping variable (a factor). Calculate the mean stream width **separated by state**:
 
 ```{r}
 tapply(dat$stream_width, dat$state, mean)
@@ -509,7 +514,7 @@ To ask if `x` is exactly equal to 5, you run:
 x == 5
 ```
 
-Note the use of the double equals-sign to denote equality as opposed to the single `=` as used in assignment when you ran `x = 5` a minute ago. 
+Note the use of the double `==` to denote equality as opposed to the single `=` as used in assignment (`x = 5`). 
 
 #### Inequalities {-}
 
@@ -547,7 +552,7 @@ x %in% y
 y %in% x
 ```
 
-%in% is a very useful operator in R that is not one of the traditional Boolean operators.
+`%in%` is a very useful operator in R that is not one of the traditional Boolean operators.
 
 #### And {-}
 
@@ -591,7 +596,7 @@ dat[dat$state == "Alabama",]
 
 You will be frequently revisiting this skill throughout the workshop.
 
-## if, else, and ifelse
+## `if()`, `else`, and `ifelse()`
 
 You can tell R to do something if the result of a question is `TRUE`. This is a typical if-then statement:
 
@@ -632,25 +637,25 @@ if (x > 5) {
 } 
 ```
 
-The `if` function is useful, but it can only ask one question at a time. If you supply it with a vector of length greater than 1, it will give a warning:
+The `if()` function is useful, but it can only respond to one question at a time. If you supply it with a vector of length greater than 1, it will give a warning:
 
 ```{r}
 # vector from -5 to 5, excluding zero
 xs = c(-5:-1, 1:5)
 
 # attempt a logical decision
-if (xs < 0) print("negative")
+if (xs < 0) print("negative") else print("positive")
 ```
 
-Warnings are different than errors in that something still happens, but it tells you that it might not be what you wanted, whereas an error stops R altogether. In short, this warning is telling you that you passed `if` a logical vector with more than 1 element, and that it can only use one element so it's picking the first one. Because the first element of `xs` is -5, `xs < 0` evaluated to `TRUE`, and you got a `"negative"` printed along with the warning.
+Warnings are different than errors in that something still happens, but it tells you that it might not be what you wanted, whereas an error stops R altogether. In short, this warning is telling you that you passed `if()` a logical vector with more than 1 element, and that it can only use one element so it's picking the first one. Because the first element of `xs` is -5, `xs < 0` evaluated to `TRUE`, and you got a `"negative"` printed along with the warning.
 
-To ask multiple questions at once, we must use `ifelse`. This function is similar, but it combines the `if` and `else` syntax into one useful function function:
+To respond to multiple questions at once, you must use `ifelse()`. This function is similar, but it combines the `if()` and `else` syntax into one useful function function:
 
 ```{r}
 ifelse(xs > 0, "positive", "negative")
 ```
 
-The syntax is `ifelse(condition, do_if_TRUE, do_if_FALSE)`. You can `cbind` the output with `xs` to verify it worked:
+The syntax is `ifelse(condition, do_if_TRUE, do_if_FALSE)`. You can `cbind()` the output with `xs` to verify it worked:
 
 ```{r}
 cbind(
@@ -659,7 +664,7 @@ cbind(
 )
 ```
 
-Use `ifelse` to create a new variable in `dat` that indicates whether a stream is big or small depending **whether the stream width is greater or less than 50**:
+Use `ifelse()` to create a new variable in `dat` that indicates whether a stream is big or small depending whether `stream_width` is greater or less than 50:
 
 ```{r}
 dat$size_cat = ifelse(dat$stream_width > 50, "big", "small"); head(dat)
@@ -667,14 +672,14 @@ dat$size_cat = ifelse(dat$stream_width > 50, "big", "small"); head(dat)
 
 This says "make a new variable in the data frame `dat` called `size_cat` and assign each row a 'big' if `stream_width` is greater than 50 and a 'small' if less than 50". 
 
-One neat thing about `ifelse` is that you can nest multiple statements inside another^[You can nest **ALL** R functions, by the way.]. **What if we wanted three categories: 'small', 'medium', and 'large'?**
+One neat thing about `ifelse()` is that you can nest multiple statements inside another^[You can nest **ALL** R functions, by the way.]. What if you wanted three categories: 'small', 'medium', and 'large'?
 
 ```{r}
 dat$size_cat_fine = ifelse(dat$stream_width <= 40, "small",
                            ifelse(dat$stream_width > 40 & dat$stream_width <= 70, "medium", "big")); head(dat)
 ```
 
-If the first condition is `TRUE`, then it will give that row a "small". If not, it will start another `ifelse` to ask if the `stream_width` is greater than 40 _and_ less than or equal to 70. If so, it will give it a "medium", if not it will get a "big". Not all function nesting examples are this complex, but this is a neat example.  Without `ifelse`, you would have to use as many `if` statements as there are elements in `dat$stream_width`.
+If the first condition is `TRUE`, then it will give that row a "small". If not, it will start another `ifelse()` to ask if the `stream_width` is greater than 40 _and_ less than or equal to 70. If so, it will give it a "medium", if not it will get a "big". Not all function nesting examples are this complex, but this is a neat example.  Without `ifelse()`, you would have to use as many `if()` statements as there are elements in `dat$stream_width`.
 
 ## Writing Output Files
 
@@ -685,11 +690,11 @@ Now that you have made some new variables in your data frame, you may want to sa
 write.csv(dat, "updated_streams.csv", row.names = F)
 ```
 
-The first argument is the data frame (or matrix) to write, the second is what you want to call it (don't forget the `.csv`!), and `row.names = F` tells R to not include the row names (because they are just numbers in this case). R puts the file in your working directory unless you tell it otherwise. To put it somewhere else, type in the path with the new file name at the end. 
+The first argument is the data frame (or matrix) to write, the second is what you want to call it (don't forget the `.csv`!), and `row.names = F` tells R to not include the row names (because they are just numbers in this case). R puts the file in your working directory unless you tell it otherwise. To put it somewhere else, type in the path with the new file name at the end (e.g., `C:/Users/YOU/Documents/R-Book/Data/updated_streams.csv`. 
 
 ### Saving R Objects
 
-If all you care about is the data frame `dat` as interpreted by R (not a share-able file like the `.csv` method), then you can save the object `dat` to your working directory (in its current state) then load it in to a future R session. You can save the new data frame using:
+If all you care about is the data frame `dat` as interpreted by R (not a share-able file like the `.csv` method), then you can save the object `dat` (in its current state) then load it in to a future R session. You can save the new data frame using:
 
 ```{r, eval = F}
 save(dat, file = "updated_streams")
@@ -705,9 +710,9 @@ head(dat) # should show first 6 rows
 
 ## User-Defined Functions {#user-funcs}
 
-Sometimes you may want R to carry out a specific task, but there is no built-in function to do it. In these cases, you can write your own functions. Function writing makes R incredibly flexible, though you will only get a small taste of this topic here. We will be going into more detail in later Chapters, particularly in Chapter \@ref(ch4).
+Sometimes you may want R to carry out a specific task, but there is no built-in function to do it. In these cases, you can write your own functions. Function writing makes R incredibly flexible, though you will only get a small taste of this topic here. You will see more examples in later Chapters, particularly in Chapter \@ref(ch4).
 
-First, you must think of a name for your function (e.g., `myfun`). Then, you specify that you want the object `myfun` to be a function by using using the `function` function (I know). Then, in parentheses, you specify any arguments that you want to use within the function to carry out the specific task. Open and closed curly braces specify the start and end of your function body, i.e., the code that specifies how it uses the arguments to do its job.
+First, you must think of a name for your function (e.g., `myfun`). Then, you specify that you want the object `myfun()` to be a function by using using the `function()` function. Then, in parentheses, you specify any arguments that you want to use within the function to carry out the specific task. Open and closed curly braces specify the start and end of your function body, i.e., the code that specifies how it uses the arguments to do its job.
 
 Here's the general syntax for specifying your own function:
 
@@ -729,7 +734,7 @@ power = function(x, y){
 
 ```
 
-After typing and running the function code (`power` is an object that must be assigned), try using it:
+After typing and running the function code (`power()` is an object that must be assigned), try using it:
 
 ```{r}
 power(x = 5, y = 3)
@@ -748,22 +753,20 @@ This is the equivalent of $(5^2)^2$.
 
 In this exercise, you will be using what you learned in Chapter 1 to summarize data from a hypothetical pond experiment. 
 
-Pretend that you added nutrients to mesocosoms and counted the densities of 4 different zooplankton taxa. In this experiment, there were two ponds, two treatments per pond, and five replicates of each treatment. The data are located in the data file `ponds.csv` (see the [instructions](#data-sets) on acquiring and organizing the data files for this book. There is one error in the data set. After you download the data and place it in the appropriate directory, make sure you open this file and fix it _before_ you bring it into R. Refer back to the information about reading in data (Section \@ref(read)) to make sure you find the error.
+Pretend that you added nutrients to mesocosoms and counted the densities of four different zooplankton taxa. In this experiment, there were two ponds, two treatments per pond, and five replicates of each treatment. The data are located in the data file `ponds.csv` (see the [instructions](#data-sets) on acquiring and organizing the data files for this book. There is one error in the data set. After you download the data and place it in the appropriate directory, make sure you open this file and fix it _before_ you bring it into R. Refer back to the information about reading in data (Section \@ref(read)) to make sure you find the error.
 
 Create a new R script in your working directory for this chapter called `Ex1B.R` and use that script to complete this exercise.
 
 _The solutions to this exercise are found at the end of this book ([here](#ex1b-answers)). You are **strongly recommended** to make a good attempt at completing this exercise on your own and only look at the solutions when you are truly stumped._
 
 1.  Read in the data to R and assign it to an object.
-2.	Calculate some basic summary statistics of your data using the `summary` function.
+2.	Calculate some basic summary statistics of your data using the `summary()` function.
 3.	Calculate the mean chlorophyll _a_ for each pond (_Hint: pond is a grouping variable_)
-4.	Calculate the mean number of _Chaoborus_ for each treatment in each pond using `tapply`. (_Hint: You can group by two variables with:_ `tapply(dat$var, list(dat$grp1, dat$grp2), fun)`.
-5.	Use the more general `apply` function to calculate the variance for each zooplankton taxa found only in pond S-28.
-6.	Create a new variable called `prod` in the data frame that represents the quantity of chlorophyll _a_ in each replicate. If the chlorophyll _a_ in the replicate is greater than 30 give it a "high", otherwise give it a "low". (_Hint: are you asking a question of a single number or multiple numbers? How should this change the strategy you use?_)
+4.	Calculate the mean number of _Chaoborus_ for each treatment in each pond using `tapply()`. (_Hint: You can group by two variables with:_ `tapply(dat$var, list(dat$grp1, dat$grp2), fun)`.
+5.	Use the more general `apply()` function to calculate the variance for each zooplankton taxa found only in pond S-28.
+6.	Create a new variable called `prod` in the data frame that represents the quantity of chlorophyll _a_ in each replicate. If the chlorophyll _a_ in the replicate is greater than 30 give it a "high", otherwise give it a "low". (_Hint: are you asking R to respond to one question or multiple questions? How should this change the strategy you use?_)
 
 ### Exercise 1B Bonus {-}
-1.  Use `?table` to figure out how you can use `table` to count how many observations of high and low there were in each treatment (_Hint: `table` will have only two arguments._).
-2.	Create a new function called `product` that multiplies any two numbers you specify.
-3.	Modify your function to print a message to the console and return the value `if` it meets a condition and to print another message and not return the value if it doesn't.
-
-
+1.  Use `?table` to figure out how you can use `table()` to count how many observations of high and low there were in each treatment (_Hint: `table` will have only two arguments._).
+2.	Create a new function called `product()` that multiplies any two numbers you specify.
+3.	Modify your function to print a message to the console and return the value `if()` it meets a condition and to print another message and not return the value if it doesn't.

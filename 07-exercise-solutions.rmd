@@ -1,7 +1,10 @@
 # Exercise Solutions {-}
 
-```{r, echo = F}
+```{r, echo = F, message = F, warning = F}
 rm(list = ls(all = T))
+library(dplyr)
+library(knitr)
+library(kableExtra)
 ```
 
 ## Exercise 1A Solutions {-#ex1a-answers}
@@ -12,7 +15,7 @@ Go to _File > New File > R Script_. This will create an untitled R script. Go th
 
 You can create a new script using **CTRL + SHIFT + N** as well.
 
-**2.  Enter these data into vectors. Call the vectors whatever you would like. Should you enter the data as vectors by rows, or by columns? (Hint: remember the properties of vectors).**
+**2.  Enter these data (found in Table `r if(is_html_output()) "\\@ref(tab:ex-1-table-html)" else "\\@ref(tab:ex-1-table-pdf)"`) into vectors. Call the vectors whatever you would like. Should you enter the data as vectors by rows, or by columns? (Hint: remember the properties of vectors).**
 
 Because you have both numeric and character data classes for a single row, you should enter them by columns:
 
@@ -101,10 +104,10 @@ dat = read.csv("Data/ponds.csv")
 ```
 
 ```{r, eval = F}
-dat = read.csv("ponds.csv")
+dat = read.csv("..Data/ponds.csv")
 ```
 
-**2.	Calculate some basic summary statistics of your data using the `summary` function.**
+**2.	Calculate some basic summary statistics of your data using the `summary()` function.**
 
 ```{r, eval = F}
 summary(dat)
@@ -112,13 +115,13 @@ summary(dat)
 
 **3.	Calculate the mean chlorophyll _a_ for each pond (_Hint: pond is a grouping variable_).**
 
-Remember the `tapply` function. The first argument is the variable you wish to calculate a statistic for (chlorophyll), the second argument is the grouping variable (pond), and the third argument is the function you wish to apply.
+Remember the `tapply()` function. The first argument is the variable you wish to calculate a statistic for (chlorophyll), the second argument is the grouping variable (pond), and the third argument is the function you wish to apply.
 
 ```{r, eval = F}
 tapply(dat$chl.a, dat$pond, mean)
 ```
 
-**4.	Calculate the mean number of _Chaoborus_ for each treatment in each pond using `tapply`. (_Hint: You can group by two variables with:_ `tapply(dat$var, list(dat$grp1, dat$grp2), fun)`.**
+**4.	Calculate the mean number of _Chaoborus_ for each treatment in each pond using `tapply()`. (_Hint: You can group by two variables with:_ `tapply(dat$var, list(dat$grp1, dat$grp2), fun)`.**
 
 The hint pretty much gives this one away:
 
@@ -126,25 +129,25 @@ The hint pretty much gives this one away:
 tapply(dat$chao, list(dat$pond, dat$treatment), mean)
 ```
 
-**5.	Use the more general `apply` function to calculate the variance for each zooplankton taxa found only in pond S-28.**
+**5.	Use the more general `apply()` function to calculate the variance for each zooplankton taxa found only in pond S-28.**
 
-First, subset only the correct pond and the zooplankton counts. Then, specify you want the `var` function applied to the second dimension (columns). Finally, because `chao` has an `NA`, you'll need to include the `na.rm = T` argument.
+First, subset only the correct pond and the zooplankton counts. Then, specify you want the `var()` function applied to the second dimension (columns). Finally, because `chao` has an `NA`, you'll need to include the `na.rm = T` argument.
 
 ```{r, eval = F}
 apply(dat[dat$pond == "S.28",c("daph", "bosm", "cope", "chao")], 2, var, na.rm = T)
 ```
 
-**6.	Create a new variable called `prod` in the data frame that represents the quantity of chlorophyll _a_ in each replicate. If the chlorophyll _a_ in the replicate is greater than 30 give it a "high", otherwise give it a "low". (_Hint: are you asking a question of a single number or multiple numbers? How should this change the strategy you use?_)**
+**6.	Create a new variable called `prod` in the data frame that represents the quantity of chlorophyll _a_ in each replicate. If the chlorophyll _a_ in the replicate is greater than 30 give it a "high", otherwise give it a "low". (_Hint: are you asking R to respond to one question or multiple questions? How should this change the strategy you use?_)**
 
-Remember, you can add a new column to a data set using the `df$new_column = something()`. If the column `new_column` doesn't exist, it will be added. If it exists already, it will be written over. You can use `ifelse` (not `if`!) to ask if each chlorophyll measurement was greater or less than 30, and to do something differently based on the result:
+Remember, you can add a new column to a data set using the `df$new_column = something()`. If the column `new_column` doesn't exist, it will be added. If it exists already, it will be written over. You can use `ifelse()` (not `if()`!) to ask if each chlorophyll measurement was greater or less than 30, and to do something differently based on the result:
 
 ```{r}
 dat$prod = ifelse(dat$chl.a > 30, "high", "low")
 ```
 
-**Bonus 1.  Use `?table` to figure out how you can use `table` to count how many observations of high and low there were in each treatment (_Hint: `table` will have only two arguments._).**
+**Bonus 1.  Use `?table` to figure out how you can use `table()` to count how many observations of high and low there were in each treatment (_Hint: `table()` will have only two arguments._).**
 
-After looking through the help file, you should have seen that `table` has a `...` as its first argument. After reading about what it takes there, you would see it is expecting:
+After looking through the help file, you should have seen that `table()` has a `...` as its first argument. After reading about what it takes there, you would see it is expecting:
 
 > one or more objects which can be interpretted as factors (including character strings)...
 
@@ -156,7 +159,7 @@ table(dat$prod, dat$treatment)
 
 You would get a table showing how many high and low chlorophyll observations were made for each treatment.
 
-**Bonus 2.	Create a new function called `product` that multiplies any two numbers you specify.**
+**Bonus 2.	Create a new function called `product()` that multiplies any two numbers you specify.**
 
 See Section \@ref(user-funcs) for more details on user-defined functions. Your function might look like this:
 
@@ -164,11 +167,10 @@ See Section \@ref(user-funcs) for more details on user-defined functions. Your f
 product = function(a,b) {
   a * b
 }
-
 product(4,5)
 ```
 
-**Bonus 3.	Modify your function to print a message to the console and return the value `if` it meets a condition and to print another message and not return the value if it doesn't.**
+**Bonus 3.	Modify your function to print a message to the console and return the value `if()` it meets a condition and to print another message and not return the value if it doesn't.**
 
 ```{r}
 product = function(a,b,z) {
@@ -187,12 +189,139 @@ product(4, 5, 19)
 product(4, 5, 30)
 ```
 
-The use of `cat` here is similar to `print`, but it is better for printing messages to the console.
+The use of `cat()` here is similar to `print()`, but it is better for printing messages to the console.
 
 ## Exercise 2 Solutions {-#ex2-answers}
 
 ```{r, echo = F}
 rm(list = ls(all = T))
+```
+
+**1.  Create a new R script called `Ex2.R` and save it in the `Chapter2` directory. Read in the data set `sockeye.csv`. Produce a basic summary of the data and take note of the data classes, missing values (`NA`), and the relative ranges for each variable.**
+
+_File > New File > R Script_, then _File > Save > call it Ex2.R > Save_. Then:
+
+```{r, eval = F}
+dat = read.csv("../Data/sockeye.csv")
+summary(dat)
+```
+
+**2.	Make a histogram of fish weights for only hatchery-origin fish. Set `breaks = 10` so you can see the distribution more clearly.**
+
+```{r, eval = F}
+hist(dat[dat$type == "hatch","weight"], breaks = 10)
+```
+
+**3.	Make a scatter plot of the fecundity of females as a function of their body weight for wild fish only. Use whichever plotting character (`pch`) and color (`col`) you wish. Change the main title and axes labels to reflect what they mean. Change the x-axis limits to be 600 to 3000 and the y-axis limits to be 0 to 3500. (_Hint: The `NAs` will not cause a problem. R will only use points where there are paired records for both `x` and `y` and ignore otherwise_).**
+
+```{r, eval = F}
+plot(fecund ~ weight, data = dat[dat$type == "wild",],
+     main = "Fecundity vs. Weight",
+     pch = 17, col = "red", cex = 1.5,
+     xlab = "Weight (g)", xlim = c(600, 3000),
+     ylab = "Fecundity (#eggs)", ylim = c(0, 3500))
+```
+
+All of these arguments are found in Table `r if(is_html_output()) "\\@ref(tab:plot-arg-table-html)" else "\\@ref(tab:plot-arg-table-pdf)"`.
+
+**4.	Add points that do the same thing but for hatchery fish. Use a different plotting character and a different color.**
+
+```{r, eval = F}
+points(fecund ~ weight, data = dat[dat$type == "wild",],
+       pch = 15, col = "blue", cex = 1.5)
+```
+
+**5.	Add a legend to the plot to differentiate between the two types of fish.**
+
+```{r, eval = F}
+legend("bottomright",
+       legend = c("Wild", "Hatchery"),
+       col = c("blue", "red"),
+       pch = c(15, 17),
+       bty = "n",
+       pt.cex = 1.5
+)
+```
+
+Make sure the correct elements of the `legend`, `col`, and `pch` arguments match the way they were specified in the `plot()` and `lines()` calls!
+
+**6.	Make a multi-panel plot in a new window with box-and-whisker plots that compare (1) spawner weight, (2) fecundity, and (3) egg size between hatchery and wild fish. (_Hint: each comparison will be on its own panel_). Change the titles of each plot to reflect what you are comparing.**
+
+```{r, eval = F}
+vars = c("weight", "fecund", "egg_size")
+par(mfrow = c(1,3))
+sapply(vars, function(v) {
+  plot(dat[,v] ~ dat[,"type"], xlab = "", ylab = v)
+})
+```
+
+**7.	Save the plot as a .png file in your working directory with a file name of your choosing.**
+
+One way to do this:
+
+```{r, eval = F}
+ppi = 600
+png("SockeyeComparisons.png", h = 5 * ppi, w = 7 * ppi, res = ppi)
+par(mfrow = c(1,3))
+sapply(vars, function(v) {
+  plot(dat[,v] ~ dat[,"type"], xlab = "", ylab = v)
+})
+dev.off()
+```
+
+### EXERCISE 2 BONUS {-}
+
+**Bonus 1.  Make a bar plot comparing the mean survival to eyed-egg stage for each type of fish (hatchery and wild). Add error bars that represent 95% confidence intervals.**
+
+First, adapt the `calc_se()` function to be able to cope with `NAs`:
+
+```{r, eval = F}
+calc_se = function(x, na.rm = F) {
+  # include a option to remove NAs before calculating SE
+  if (na.rm) x = x[!is.na(x)]
+  
+  sqrt(sum((x - mean(x))^2)/(length(x)-1))/sqrt(length(x))
+}
+```
+
+Then, calculate the mean and standard error for the % survival to the eyed-egg stage:
+
+```{r, eval = F}
+mean_surv = tapply(dat$survival, dat$type, mean, na.rm = T)
+se_surv = tapply(dat$survival, dat$type, calc_se, na.rm = T)
+```
+
+Then, get the 95% confidence interval:
+
+```{r, eval = F}
+lwr_ci_surv = mean_surv - 1.96 * se_surv
+upr_ci_surv = mean_surv + 1.96 * se_surv
+```
+
+Finally, plot the means and intervals:
+
+```{r, eval = F}
+mp = barplot(mean_surv, ylim = c(0, max(upr_ci_surv)))
+arrows(mp, lwr_ci_surv, mp, upr_ci_surv, length = 0.1, code = 3, angle = 90)
+```
+
+**Bonus 2.  Change the names of each bar, the main plot title, and the y-axis title. ** 
+
+```{r, eval = F}
+mp = barplot(mean_surv, ylim = c(0, max(upr_ci_surv)),
+             main = "% Survival to Eyed-Egg Stage by Origin",
+             ylab = "% Survival to Eyed-Egg Stage",
+             names.arg = c("Hatchery", "Wild"))
+arrows(mp, lwr_ci_surv, mp, upr_ci_surv, length = 0.1, code = 3, angle = 90)
+
+```
+
+**Bonus 3.  Adjust the margins so there are 2 lines on the bottom, 5 on the left, 2 on the top, and 1 on the right.**
+
+Place this line above your `barplot(...)` code:
+
+```{r, eval = F}
+par(mar = c(2,5,2,1))
 ```
 
 ## Exercise 3 Solutions {-#ex3-answers}

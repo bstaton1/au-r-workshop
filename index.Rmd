@@ -26,14 +26,16 @@ The book is composed of six chapters intended to cover a suite of topics in intr
 *  **Chapter \@ref(ch2)** covers the basics of plotting using the base R graphics functionality. 
 *  **Chapter \@ref(ch3)** covers the basics of fitting statistical models using built-in functionality for generalized linear models as well as non-linear models.   
 *  **Chapter \@ref(ch4)** covers the basics of simulation modeling in R. 
-*  **Chapter \@ref(ch5)** covers the basics of the `dplyr` and `reshape2` packages for manipulating and summarizing large data sets using highly readable code.
+*  **Chapter \@ref(ch5)** covers the basics of the `{dplyr}` and `{reshape2}` packages for manipulating and summarizing large data sets using highly readable code.
 *  **Chapter \@ref(ch6)** covers the basics of producing maps and performing spatial analysis in R. _This chapter was contributed by Henry Hershey_
 
 ## Prerequisites {-}
 
 Chapter \@ref(ch1) starts at the first step (installing R) and progresses by assuming no prior knowledge of programming in R or in any other language. In the later chapters, e.g., Chapters \@ref(ch3) and \@ref(ch4), an understanding of statistics at the introductory undergraduate level would be helpful but not strictly essential.
 
-## Getting Ready {-#comp-prep}
+There are, however, some tasks you'll need to complete before using this book, which are described in the two sections that follow.
+
+### Prepare Your Computer {-#comp-prep}
 
 You will install R and RStudio as the first step in Chapter 1. See [here](#install) for the links to get these programs.
 
@@ -41,9 +43,10 @@ You should create a devoted folder on your computer for this book. All examples 
 
 Change `YOU` to be specific for your computer.
 
-## Data Sets {-#data-sets}
+### Data Sets {-#data-sets}
 
-The data sets used in this book are hosted on a GitHub repository maintained by the author. It is located here: <https://github.com/bstaton1/au-r-workshop-data>.
+The data sets^[Many of the data sets used in this book were simulated by the author. Cases in which the data set used was not simulated are noted and a citation to the data source is provided. More details on the individual data sets can be found on the GitHub repository.]
+ used in this book are hosted on a GitHub repository maintained by the author. It is located here: <https://github.com/bstaton1/au-r-workshop-data>.
 
 To acquire the data for this book, you should:
 
@@ -52,25 +55,36 @@ To acquire the data for this book, you should:
   3.  click _Download ZIP_
   4.  unzip the contents of this folder into the location: `C:/Users/YOU/Documents/R-Book/Data`
 
-Many of the data sets used in this book were simulated by the author. Cases in which the data set used was not simulated are noted and a citation to the data source is provided. More details on the individual data sets can be found on the GitHub repository.
-
 ## Exercises {-}
 
-Following each chapter, there is a set of exercises. Attempting and completing them, as they give you an opportunity to practice what you learned while reading and typing along. Solutions are provided at the end of this book, however you are **strongly** recommended to attempt to figure the problems out before looking to how the author would solve them.
+Following each chapter, there is a set of exercises. You should attempt and complete them, as they give you an opportunity to practice what you learned while reading and typing along. Solutions are provided at the end of this book, however you are **strongly** recommended to attempt to figure the problems out on your own before looking to how the author would solve them.
 
 Some exercises have bonus questions. These are intended to challenge you with some of the more difficult tasks shown in the chapter or ask you to extend what you learned to a completely different problem. If you can get all of the non-bonus questions without looking at the solutions too much, you can consider yourself to have good understanding of that chapter's material. If you can complete the bonus questions with little or no help, that means you have mastered that chapter's material!
 
+## Text Conventions {-#notation}
+
+*  Regular text: a description of what you you should do, how some code works, or a general narrative of something.
+*  `monospace`: references something in R
+    *  `this()` references some function
+    *  `this` references some other object
+    *  `{this}` references an R package
+    *  `C:/This` is a file path
+*  **Bold** is intended to provide more emphasis to a word or topic. In general, new topics are introduced this way.
+*  [Links](#notation): this is a link to some other location in this book. External links are provided with a full URL.
+*  $Equations$: it is sometimes useful to describe concepts mathematically before showing how to do it in R.
+*  ^[This is a footnote]: a footnote containing more information.
+
 ## Keyboard Shortcuts {-}
 
-Several parts of this book in this book make reference to keyboard shortcuts. They are never necessary, but can help you be more efficient if you commit them to muscle memory. This book assumes you are using a PC for the keyboard shortcuts. If you are using a Mac, they will be different (in many cases, you may just need to swap out the **CTRL** keystroke for the **CMD** keystroke). For a complete list of RStudio's keyboard shortcuts, go to _Help > Keyboard Shortcuts Help_
+Several parts of this book in this book make reference to keyboard shortcuts. They are never necessary, but can help you be more efficient if you commit them to muscle memory. This book assumes you are using a PC for the keyboard shortcuts. If you are using a Mac, they will be different^[In for some keyboard shortcuts, you may just need to swap out the **CTRL** keystroke for the **CMD** keystroke for a Mac computer]. For a complete list of RStudio's keyboard shortcuts specific to your operating system, go to _Help > Keyboard Shortcuts Help_.
 
 ## Development of this Book {-}
 
-This book represents the third reincarnation of the Auburn R Workshop Series. The first version was written in Fall 2014 using Microsoft Word, but the author found that making even small changes was clunky. Individual session materials were created in separate documents, as were the exercises and solutions. 
+This book represents the third reincarnation of the Auburn R Workshop Series. The first version was written in Fall 2014 using Microsoft Word, but the author found that making even small changes was clunky - each change to code in the document required a copy-paste of code and output from R to Word. Individual session materials (i.e., handout, exercises, solutions, data) were created in separate documents, saved as pdfs and `.xlsx` files, and uploaded to a wordpress webpage. 
 
-The second version was written through R and RStudio using the R packages `{rmarkdown}` and `{knitr}` **CITE**, which allowed the integration of text, code, and output all into one output file. This was completed in Fall 2015. Like the first version, individual session materials were created in separate documents. 
+The second version was written through R and RStudio using the R packages `{rmarkdown}` [@rmarkdown-cite] and `{knitr}` [@knitr-cite], which allowed the integration of text, code, and output all into one output file. This version was completed in Fall 2015. Like the first version, individual session materials were created in separate documents, and replaced those previously found on the wordpress site. 
 
-This third version was written through R and RStudio but used the R package `{bookdown}` **CITE** which allowed for the individual sessions to be combined into one "book" by turning each session into a chapter. This facilitated cross-references to topics covered in previous chapters and allows the reader to only refer to one location when trying to remember how to use a skill. It also allowed for multiple formats to be published including both HTML and PDF versions.
+This third version was written through R and RStudio but used the R package `{bookdown}` [@bookdown-cite] which allowed for the individual sessions to be combined into one "book" by turning each session into a chapter. This facilitated cross-references to topics covered in previous chapters and allows the reader to only refer to one location when trying to remember how to use a skill. It also allowed for multiple formats to be published including both HTML and PDF versions.
 
 The book is hosted on [GitHub Pages](https://pages.github.com/). 
 

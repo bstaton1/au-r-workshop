@@ -180,13 +180,14 @@
 \addcontentsline{toc}{chapter}{Overview}
 
 This book is intended to be a first course in R programming for natural
-resource professionals. It is by no means comprehensive, but instead
-attempts to introduce the main topics needed to get a beginner up and
-running with applying R to their own work. It is intended to be a
-companion to in-person workshop sessions, in which each chapter is
-covered in a 2 hour session. Although the examples shown have a natural
-resource/ecological theme, the general skills presented are general to R
-users across all scientific disciplines.
+resource professionals. It is by no means comprehensive (no book about R
+ever could be), but instead attempts to introduce the main topics needed
+to get a beginner up and running with applying R to their own work. It
+is intended to be a companion to in-person workshop sessions, in which
+each chapter is covered in a 2 hour session, however it can be used as
+``self-teach'' manual as well. Although the examples shown have a
+natural resource/ecological theme, the general skills presented are
+general to R users across all scientific disciplines.
 
 \section*{What is Covered?}\label{what-is-covered}
 \addcontentsline{toc}{section}{What is Covered?}
@@ -213,9 +214,9 @@ prerequisites for later chapters.
   \textbf{Chapter \ref{ch4}} covers the basics of simulation modeling in
   R.
 \item
-  \textbf{Chapter \ref{ch5}} covers the basics of the \texttt{dplyr} and
-  \texttt{reshape2} packages for manipulating and summarizing large data
-  sets using highly readable code.
+  \textbf{Chapter \ref{ch5}} covers the basics of the \texttt{\{dplyr\}}
+  and \texttt{\{reshape2\}} packages for manipulating and summarizing
+  large data sets using highly readable code.
 \item
   \textbf{Chapter \ref{ch6}} covers the basics of producing maps and
   performing spatial analysis in R. \emph{This chapter was contributed
@@ -231,8 +232,11 @@ language. In the later chapters, e.g., Chapters \ref{ch3} and \ref{ch4},
 an understanding of statistics at the introductory undergraduate level
 would be helpful but not strictly essential.
 
-\section*{Getting Ready}\label{comp-prep}
-\addcontentsline{toc}{section}{Getting Ready}
+There are, however, some tasks you'll need to complete before using this
+book, which are described in the two sections that follow.
+
+\subsection*{Prepare Your Computer}\label{comp-prep}
+\addcontentsline{toc}{subsection}{Prepare Your Computer}
 
 You will install R and RStudio as the first step in Chapter 1. See
 \protect\hyperlink{install}{here} for the links to get these programs.
@@ -243,10 +247,14 @@ examples will assume this folder is located here:
 
 Change \texttt{YOU} to be specific for your computer.
 
-\hypertarget{data-sets}{\section*{Data Sets}\label{data-sets}}
-\addcontentsline{toc}{section}{Data Sets}
+\hypertarget{data-sets}{\subsection*{Data Sets}\label{data-sets}}
+\addcontentsline{toc}{subsection}{Data Sets}
 
-The data sets used in this book are hosted on a GitHub repository
+The data sets\footnote{Many of the data sets used in this book were
+  simulated by the author. Cases in which the data set used was not
+  simulated are noted and a citation to the data source is provided.
+  More details on the individual data sets can be found on the GitHub
+  repository.} used in this book are hosted on a GitHub repository
 maintained by the author. It is located here:
 \url{https://github.com/bstaton1/au-r-workshop-data}.
 
@@ -266,20 +274,15 @@ To acquire the data for this book, you should:
   \texttt{C:/Users/YOU/Documents/R-Book/Data}
 \end{enumerate}
 
-Many of the data sets used in this book were simulated by the author.
-Cases in which the data set used was not simulated are noted and a
-citation to the data source is provided. More details on the individual
-data sets can be found on the GitHub repository.
-
 \section*{Exercises}\label{exercises}
 \addcontentsline{toc}{section}{Exercises}
 
-Following each chapter, there is a set of exercises. Attempting and
-completing them, as they give you an opportunity to practice what you
+Following each chapter, there is a set of exercises. You should attempt
+and complete them, as they give you an opportunity to practice what you
 learned while reading and typing along. Solutions are provided at the
 end of this book, however you are \textbf{strongly} recommended to
-attempt to figure the problems out before looking to how the author
-would solve them.
+attempt to figure the problems out on your own before looking to how the
+author would solve them.
 
 Some exercises have bonus questions. These are intended to challenge you
 with some of the more difficult tasks shown in the chapter or ask you to
@@ -289,6 +292,41 @@ much, you can consider yourself to have good understanding of that
 chapter's material. If you can complete the bonus questions with little
 or no help, that means you have mastered that chapter's material!
 
+\hypertarget{notation}{\section*{Text Conventions}\label{notation}}
+\addcontentsline{toc}{section}{Text Conventions}
+
+\begin{itemize}
+\tightlist
+\item
+  Regular text: a description of what you you should do, how some code
+  works, or a general narrative of something.
+\item
+  \texttt{monospace}: references something in R
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{this()} references some function
+  \item
+    \texttt{this} references some other object
+  \item
+    \texttt{\{this\}} references an R package
+  \item
+    \texttt{C:/This} is a file path
+  \end{itemize}
+\item
+  \textbf{Bold} is intended to provide more emphasis to a word or topic.
+  In general, new topics are introduced this way.
+\item
+  \protect\hyperlink{notation}{Links}: this is a link to some other
+  location in this book. External links are provided with a full URL.
+\item
+  \(Equations\): it is sometimes useful to describe concepts
+  mathematically before showing how to do it in R.
+\item
+  \footnote{This is a footnote}: a footnote containing more information.
+\end{itemize}
+
 \section*{Keyboard Shortcuts}\label{keyboard-shortcuts}
 \addcontentsline{toc}{section}{Keyboard Shortcuts}
 
@@ -296,34 +334,38 @@ Several parts of this book in this book make reference to keyboard
 shortcuts. They are never necessary, but can help you be more efficient
 if you commit them to muscle memory. This book assumes you are using a
 PC for the keyboard shortcuts. If you are using a Mac, they will be
-different (in many cases, you may just need to swap out the
-\textbf{CTRL} keystroke for the \textbf{CMD} keystroke). For a complete
-list of RStudio's keyboard shortcuts, go to \emph{Help \textgreater{}
-Keyboard Shortcuts Help}
+different\footnote{In for some keyboard shortcuts, you may just need to
+  swap out the \textbf{CTRL} keystroke for the \textbf{CMD} keystroke
+  for a Mac computer}. For a complete list of RStudio's keyboard
+shortcuts specific to your operating system, go to \emph{Help
+\textgreater{} Keyboard Shortcuts Help}.
 
 \section*{Development of this Book}\label{development-of-this-book}
 \addcontentsline{toc}{section}{Development of this Book}
 
 This book represents the third reincarnation of the Auburn R Workshop
 Series. The first version was written in Fall 2014 using Microsoft Word,
-but the author found that making even small changes was clunky.
-Individual session materials were created in separate documents, as were
-the exercises and solutions.
+but the author found that making even small changes was clunky - each
+change to code in the document required a copy-paste of code and output
+from R to Word. Individual session materials (i.e., handout, exercises,
+solutions, data) were created in separate documents, saved as pdfs and
+\texttt{.xlsx} files, and uploaded to a wordpress webpage.
 
 The second version was written through R and RStudio using the R
-packages \texttt{rmarkdown} \textbf{CITE} and \texttt{knitr}
-\textbf{CITE}, which allowed the integration of text, code, and output
-all into one output file. This was completed in Fall 2015. Like the
-first version, individual session materials were created in separate
-documents.
+packages \texttt{\{rmarkdown\}} \citep{rmarkdown-cite} and
+\texttt{\{knitr\}} \citep{knitr-cite}, which allowed the integration of
+text, code, and output all into one output file. This version was
+completed in Fall 2015. Like the first version, individual session
+materials were created in separate documents, and replaced those
+previously found on the wordpress site.
 
 This third version was written through R and RStudio but used the R
-package \texttt{bookdown} \textbf{CITE} which allowed for the individual
-sessions to be combined into one ``book'' by turning each session into a
-chapter. This facilitated cross-references to topics covered in previous
-chapters and allows the reader to only refer to one location when trying
-to remember how to use a skill. It also allowed for multiple formats to
-be published including both HTML and PDF versions.
+package \texttt{\{bookdown\}} \citep{bookdown-cite} which allowed for
+the individual sessions to be combined into one ``book'' by turning each
+session into a chapter. This facilitated cross-references to topics
+covered in previous chapters and allows the reader to only refer to one
+location when trying to remember how to use a skill. It also allowed for
+multiple formats to be published including both HTML and PDF versions.
 
 The book is hosted on \href{https://pages.github.com/}{GitHub Pages}.
 
@@ -523,8 +565,8 @@ You can use your objects together to make a new object:
   cannot contain spaces
 \item
   As a general rule, avoid naming your objects things that already have
-  names in R, e.g., \texttt{data}, \texttt{mean}, \texttt{sum},
-  \texttt{sd}, etc.
+  names in R, e.g., \texttt{data()}, \texttt{mean()}, \texttt{sum()},
+  \texttt{sd()}, etc.
 \item
   Capitalization matters: \texttt{A} and \texttt{a} are two different
   objects
@@ -544,22 +586,25 @@ your progress. R Scripts are a key feature of reproducible research with
 R, given that if they are well-written they can present a complete road
 map of your statistical analysis and workflow.
 
-To help keep things organized (which is \textbf{essential} for efficient
-use of R!), you should have a separate subfolder for each chapter of
-this book. Create a new folder: and save the script there.
-
 \section{The Working Directory}\label{working-dir}
 
-A key part of saving your work is thinking about \textbf{where} you save
-it. In R, a key concept is the \textbf{working directory}. This is the
-location (i.e., folder) on your computer where your current R session
-will ``talk to'' by default. The working directory is where R will read
-files from and write files to by default. Because you'll likely be
-visiting it often, it should probably be somewhere that is easy to
-remember and not too deeply buried in your computer's file system.
+Keeping things organized is essential to efficient use of R. For this
+book, you should have a separate subfolder for your scripts in each
+chapter. Create a subfolder called
+\texttt{C:/Users/YOU/Documents/R-Book/Chapter1} and save your
+\texttt{Ch1.R} script there.
 
-Save your new script here: `C:/Users/YOU/Documents/R-Book/Chapter1``. To
-set the working directory to this location, you have three options:
+Part of keeping your work organized in R is making sure you know where R
+is looking for your files. One way to facilitate this is to use a
+\textbf{working directory}. This is the location (i.e., folder) on your
+computer where your current R session will ``talk to'' by default. The
+working directory is where R will read files from and write files to by
+default. Because you'll likely be visiting it often, it should probably
+be somewhere that is easy to remember and not too deeply buried in your
+computer's file system.
+
+To set the working directory to
+\texttt{C:/Users/YOU/Documents/R-Book/Chapter1}, you have three options:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -577,7 +622,9 @@ set the working directory to this location, you have three options:
   \texttt{setwd("C:/Users/YOU/Documents/R-Book/Chapter1")}. If at any
   point you want to know where your current working directory is set to,
   you can either look at the top of the console pane, which shows the
-  full path or by running \texttt{getwd()} in the console.
+  full path or by running \texttt{getwd()} in the console. Note the use
+  of \texttt{/} rather than \texttt{\textbackslash{}} for file paths in
+  R.
 \end{enumerate}
 
 \textbf{The main benefits of using a working directory are}:
@@ -599,7 +646,7 @@ set the working directory to this location, you have three options:
 Note that while it is generally good practice to keep your data in the
 working directory, this is not recommended for this book. You will be
 using the same data files in multiple chapters, so it will help if they
-were all stored in one location. More details on this later (Section
+are all stored in one location. More details on this later (Section
 \ref{read}).
 
 \section{R Object Types}\label{r-object-types}
@@ -618,10 +665,10 @@ using the syntax:
 \end{Highlighting}
 \end{Shaded}
 
-Here, \texttt{fun} is the \textbf{function name} and \texttt{arg1} and
+Here, \texttt{fun()} is the \textbf{function name} and \texttt{arg1} and
 \texttt{arg2} are called \textbf{arguments}. Functions take input in the
 form of the arguments, do some task with them, then return some output.
-The parentheses are a sure sign that \texttt{fun} is a function.
+The parentheses are a sure sign that \texttt{fun()} is a function.
 
 We have passed the function two arguments by name: all functions have
 arguments, all arguments have names, and there is always a default order
@@ -649,12 +696,12 @@ Here's a real example:
 ## [1] 1
 \end{verbatim}
 
-The function is \texttt{print}, the argument is \texttt{x}, and the
+The function is \texttt{print()}, the argument is \texttt{x}, and the
 value we have supplied the argument is the object \texttt{z}. The task
-that \texttt{print} does is to print the value of \texttt{z} to the
+that \texttt{print()} does is to print the value of \texttt{z} to the
 console.
 
-R has lots of built-in information to help you learn how to use a
+R has a ton of built-in documentation to help you learn how to use a
 function. Take a look at the help file for the mean function. Run
 \texttt{?mean} in the console: a window on the right-hand side of the R
 Studio interface should open. The help file tells you what goes into a
@@ -667,8 +714,8 @@ the information you're looking for.
 \subsection{Vectors}\label{vectors}
 
 Vectors are one of the most common data structures. A vector is a set of
-numbers going in only one dimension. Each position in a vector is termed
-an \textbf{element}, and the number of elements is termed the
+numbers going in only one dimension. Each position in a vector is called
+an \textbf{element}, and the number of elements is called the
 \textbf{length} of the vector. Here are some ways to make some vectors
 with different elements, all of length five:
 
@@ -710,7 +757,7 @@ with different elements, all of length five:
 
 The \texttt{{[}1{]}} that shows up is a element position, more on this
 later (see Section \ref{sub}). If you wish to know how many elements are
-in a vector, use \texttt{length}:
+in a vector, use \texttt{length()}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -722,7 +769,7 @@ in a vector, use \texttt{length}:
 ## [1] 5
 \end{verbatim}
 
-You can also create a vector ``by-hand'' using the \texttt{c}
+You can also create a vector ``by-hand'' using the \texttt{c()}
 function\footnote{The \texttt{c} stands for \textbf{concatenate}, which
   basically means combine many smaller objects into one larger object}:
 
@@ -780,8 +827,8 @@ A vector can only hold one data class at a time:
 Notice how all the elements now have quotes around them. The numbers
 have been \textbf{coerced} to characters\footnote{The coercion works
   this way because numbers can be expressed as characters, but a letter
-  cannot be unambiguously be expressed as a number.}. If we attempted to
-calculate the sum of our vector:
+  cannot be unambiguously be expressed as a number.}. If you attempt to
+calculate the sum of your vector:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -793,12 +840,12 @@ calculate the sum of our vector:
 ## Error in sum(v): invalid 'type' (character) of argument
 \end{verbatim}
 
-we would find that it is impossible in its current form.
+you would find that it is impossible in its current form.
 
 \subsection{Matrices}\label{matrices}
 
 Matrices act just like vectors, but they are in two dimensions, i.e.,
-they have both rows and columns. One easy way to make a matrix is by
+they have both rows and columns. An easy way to make a matrix is by
 combining vectors you have already made:
 
 \begin{Shaded}
@@ -850,6 +897,8 @@ coercion of numbers to characters):
 ## [5,] "6"   "9" "2018" "15"   "S11"
 \end{verbatim}
 
+Each vector should have the same length.
+
 \subsection{Data Frames}\label{data-frames}
 
 Many data sets you will work with require storing different data classes
@@ -878,8 +927,7 @@ It is important to know what kind of object type you are using, since R
 treats them differently. For example, some functions can only use a
 certain object type. The same holds true for data classes (numeric
 vs.~character).You can quickly determine what kind of object you are
-dealing with by using the \texttt{class} function. Simply run
-\texttt{class(object.name)}:
+dealing with by using the \texttt{class()} function:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -906,7 +954,8 @@ dealing with by using the \texttt{class} function. Simply run
 \section{Factors}\label{factors}
 
 At this point, it is worthwhile to introduce an additional data class:
-factors. Notice the class of the \texttt{pond} variable in \texttt{df1}:
+factors. Notice the data class of the \texttt{pond} variable in
+\texttt{df1}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -936,9 +985,8 @@ it is a grouping variable. See what happens when you print the
 ## Levels: F11 S11 S28 S30 S8
 \end{verbatim}
 
-That looks weird, huh? A factor has levels, with each level being a
-subcategory of the factor. You can see the unique levels of your factor
-by running:
+A factor has levels, with each level being a subcategory of the factor.
+You can see the unique levels of your factor by running:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -991,9 +1039,12 @@ then you would just run:
 ## [1]  3  6  9 12 15
 \end{verbatim}
 
-You typically should ensure that the vectors you are doing math with are
-of equal lengths. You could do the same calculation to each element
-(e.g., divide each element by 2) with:
+Look at the contents of both \texttt{day} and \texttt{month} again to
+make sure you see what R did. You typically should ensure that the
+vectors you are doing math with are of equal lengths.
+
+You could do the same calculation to each element of a vector (e.g.,
+divide each element by 2) with:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1011,8 +1062,8 @@ This perhaps the most important and versatile skills to know in R. So
 you have an object with data in it and you want to use it for analysis.
 But you don't want the whole data set: just a few rows or just a few
 columns, or perhaps you need just a single element from a vector. This
-section is devoted to ways you can extract certain parts of a data
-object (the terms \textbf{query} and \textbf{subset} are often used
+section is devoted to ways you can extract certain parts of data objects
+(the terms \textbf{query} and \textbf{subset} are often used
 interchangeably to describe this task). There are three main methods:
 
 \begin{enumerate}
@@ -1023,10 +1074,9 @@ interchangeably to describe this task). There are three main methods:
   rows/columns by their location in an object. However, you must know
   exactly where in the object the desired data are. An \textbf{index} is
   a location of a element in a data object, like the element position or
-  the position of a specific row or column. To subset by index, you
-  specify the object, then what rows, then what columns. The syntax for
-  subsetting a vector by index is \texttt{vector{[}element{]}} and for a
-  matrix it is \texttt{matrix{[}row,column{]}}. Here are some examples
+  the position of a specific row or column. The syntax for subsetting a
+  vector by index is \texttt{vector{[}element{]}} and for a matrix it is
+  \texttt{matrix{[}row,column{]}}. Here are some examples:
 \end{enumerate}
 
 \begin{Shaded}
@@ -1046,8 +1096,8 @@ interchangeably to describe this task). There are three main methods:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# show all of m1, then subset the cell in row 1 col 3 }
-\NormalTok{m1; m1[}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{]}
+\CommentTok{# show all of m1, then subset the cell in row 1 col 4 }
+\NormalTok{m1; m1[}\DecValTok{1}\NormalTok{,}\DecValTok{4}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1061,8 +1111,8 @@ interchangeably to describe this task). There are three main methods:
 \end{verbatim}
 
 \begin{verbatim}
-## year 
-## 2018
+## number 
+##      4
 \end{verbatim}
 
 \begin{Shaded}
@@ -1145,16 +1195,21 @@ You can combine these two methods:
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# or}
-\NormalTok{df1[,}\StringTok{"year"}\NormalTok{]}
+\NormalTok{df1[,}\KeywordTok{c}\NormalTok{(}\StringTok{"year"}\NormalTok{, }\StringTok{"month"}\NormalTok{)]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2018 2018 2018 2018 2018
+##   year month
+## 1 2018     2
+## 2 2018     3
+## 3 2018     4
+## 4 2018     5
+## 5 2018     6
 \end{verbatim}
 
-The by name (\texttt{\$}) method is useful because it can be used to add
-columns to a data frame:
+The \texttt{\$} method is useful because it can be used to add columns
+to a data frame:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1177,7 +1232,8 @@ columns to a data frame:
 \tightlist
 \item
   \textbf{Logical Subsetting} -- This is perhaps the most flexible
-  method, and is described in Section \ref{logsub}.
+  method, but requires more explaining. It is described in Section
+  \ref{logsub}.
 \end{enumerate}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
@@ -1185,65 +1241,33 @@ columns to a data frame:
 \section*{Exercise 1A}\label{exercise-1a}
 \addcontentsline{toc}{section}{Exercise 1A}
 
-Take a break to apply what you've learned so far to enter this data
-frame into R by hand and do some basic data subsets.
+Take a break to apply what you've learned so far to enter the data found
+in Table \ref{tab:ex-1-table-pdf} into R by hand and do some basic data
+subsets.
 
 \emph{The solutions to this exercise are found at the end of this book
 (\protect\hyperlink{ex1a-answers}{here}). You are \textbf{strongly
 recommended} to make a good attempt at completing this exercise on your
 own and only look at the solutions when you are truly stumped.}
 
-\begin{longtable}[]{@{}cccc@{}}
-\toprule
-\begin{minipage}[b]{0.11\columnwidth}\centering\strut
-Lake\strut
-\end{minipage} & \begin{minipage}[b]{0.09\columnwidth}\centering\strut
-Area\strut
-\end{minipage} & \begin{minipage}[b]{0.09\columnwidth}\centering\strut
-Time\strut
-\end{minipage} & \begin{minipage}[b]{0.09\columnwidth}\centering\strut
-Fish\strut
-\end{minipage}\tabularnewline
-\midrule
-\endhead
-\begin{minipage}[t]{0.11\columnwidth}\centering\strut
-Big\strut
-\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\centering\strut
-100\strut
-\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\centering\strut
-1000\strut
-\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\centering\strut
-643\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.11\columnwidth}\centering\strut
-Small\strut
-\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\centering\strut
-25\strut
-\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\centering\strut
-1200\strut
-\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\centering\strut
-203\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.11\columnwidth}\centering\strut
-Square\strut
-\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\centering\strut
-45\strut
-\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\centering\strut
-1400\strut
-\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\centering\strut
-109\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.11\columnwidth}\centering\strut
-Circle\strut
-\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\centering\strut
-30\strut
-\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\centering\strut
-1600\strut
-\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\centering\strut
-15\strut
-\end{minipage}\tabularnewline
-\bottomrule
-\end{longtable}
+\begin{table}
+
+\caption{\label{tab:ex-1-table-pdf}The table you should enter in to R by hand for Exercise 1A}
+\centering
+\begin{tabular}[t]{l|r|r|r}
+\hline
+Lake & Area & Time & Fish\\
+\hline
+Big & 100 & 1000 & 643\\
+\hline
+Small & 25 & 1200 & 203\\
+\hline
+Square & 45 & 1400 & 109\\
+\hline
+Circle & 30 & 1600 & 15\\
+\hline
+\end{tabular}
+\end{table}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1338,15 +1362,17 @@ guide to this error:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
+\tightlist
 \item
-  The exact case and spelling matters, as well as do the quotes and
+  The exact case and spelling matters, as do the quotes and
   \texttt{.csv} at the end. Ensure the file name is typed correctly.
 \item
   Check what files are in the path you are specifying: run
-  \texttt{dir(../Data)}. This will return a vector with the names of the
-  files located in the \texttt{Data} directory (which is one folder up
-  from your working directory). Is the file you told R was there truly
-  in there? Is your working directory set to where you thought it was?
+  \texttt{dir("../Data")}. This will return a vector with the names of
+  the files located in the \texttt{Data} directory (which is one folder
+  up from your working directory). Is the file you told R was there
+  truly in there? Is your working directory set to where you thought it
+  was?
 \end{enumerate}
 
 A simpler method is to put the data file in your working directory, in
@@ -1362,12 +1388,13 @@ are able to get \texttt{read.csv} to run successfully.
 \textbf{A few things to note about reading in \texttt{.csv} files}:
 
 \begin{itemize}
+\tightlist
 \item
   R will assume the first row are column headers by default.
 \item
   If there is a space in one of the header cells, a \texttt{"."} will be
-  inserted. For example, \texttt{Total\ Length} would become
-  \texttt{Total.Length}.
+  inserted. For example, the column header \texttt{Total\ Length} would
+  become \texttt{Total.Length}.
 \item
   R brings in \texttt{.csv} files in as data frames by default.
 \item
@@ -1383,7 +1410,7 @@ are able to get \texttt{read.csv} to run successfully.
   \item
     Enter in some other character (e.g., \texttt{"."}) alone in all
     cells that are meant to be coded as \texttt{NA} in R and use the
-    \texttt{na.strings\ =\ "."} argument of \texttt{read.csv}.
+    \texttt{na.strings\ =\ "."} argument of \texttt{read.csv()}.
   \end{itemize}
 \item
   If at some point you did ``Clear Contents'' in Microsoft Excel to
@@ -1391,7 +1418,8 @@ are able to get \texttt{read.csv} to run successfully.
   rows/columns will be read in as all \texttt{NAs}, which can be
   annoying. To remove this problem, open the \texttt{.csv} file in
   Excel, then highlight and \textbf{delete} the rows/columns in question
-  and save the file. Read it back into R again using \texttt{read.csv}.
+  and save the file. Read it back into R again using
+  \texttt{read.csv()}.
 \item
   If even a single character is found in a numeric column in
   \texttt{FileName.csv}, the \emph{entire column} will be coerced to a
@@ -1417,7 +1445,7 @@ run \texttt{head(dat)} or the last handful of rows with
 \texttt{tail(dat)}.
 
 You will now use some basic functions to explore the simulated streams
-data before any analysis. The \texttt{summary} function is very useful
+data before any analysis. The \texttt{summary()} function is very useful
 for getting a coarse look at how R has interpreted the data frame:
 
 \begin{Shaded}
@@ -1443,7 +1471,7 @@ each level. Note that there is one \texttt{NA} in the variable called
 \texttt{flow}.
 
 To count the number of elements in a variable (or any vector), remember
-the \texttt{length} function:
+the \texttt{length()} function:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1468,12 +1496,12 @@ Note that R counts missing values as elements as well:
 \end{verbatim}
 
 To get the dimensions of an object with more than one dimension (i.e., a
-data frame or matrix) we can use the \texttt{dim} function. This returns
-a vector with two elements: the first number is the number of rows and
-the second is the number of columns. If you only want one of these, use
-the \texttt{nrow} or \texttt{ncol} functions (but remember, only for
-objects with more than one dimension; vectors don't have rows or
-columns!).
+data frame or matrix) we can use the \texttt{dim()} function. This
+returns a vector with two elements: the first number is the number of
+rows and the second is the number of columns. If you only want one of
+these, use the \texttt{nrow()} or \texttt{ncol()} functions (but
+remember, only for objects with more than one dimension; vectors don't
+have rows or columns!).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1494,7 +1522,7 @@ columns!).
 \end{verbatim}
 
 You can extract the names of the variables (i.e., columns) in the data
-frame using \texttt{colnames}:
+frame using \texttt{colnames()}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1530,18 +1558,18 @@ Calculate the mean of all of the \texttt{flow} records:
 ## [1] NA
 \end{verbatim}
 
-It returned an \texttt{NA} because there is an \texttt{NA} in the data
-for this variable. There is a way to tell R to ignore this \texttt{NA}:
-include the argument \texttt{na.rm\ =\ TRUE} in the \texttt{mean}
-function (separate arguments are always separated by commas). This is a
-\textbf{logical} argument, meaning that it asks a question. It says ``do
-you want to remove \texttt{NAs} before calculating the mean?''
-\texttt{TRUE} means ``yes'' and \texttt{FALSE} means ``no.''
-\texttt{TRUE} and \texttt{FALSE} can be abbreviated as \texttt{T} and
-\texttt{F}, respectively. Many of R's functions have the \texttt{na.rm}
-argument (e.g. \texttt{mean}, \texttt{sd}, \texttt{var}, \texttt{min},
-\texttt{max}, \texttt{sum}, etc. - most anything that collapses a vector
-into one number).
+\texttt{mean()} returned an \texttt{NA} because there is an \texttt{NA}
+in the data for this variable. The way to tell R to ignore this
+\texttt{NA} is by including the argument \texttt{na.rm\ =\ TRUE} in the
+\texttt{mean()} function (separate arguments are always separated by
+commas). This is a \textbf{logical} argument, meaning that it asks a
+question. It says ``do you want to remove \texttt{NAs} before
+calculating the mean?'' \texttt{TRUE} means ``yes'' and \texttt{FALSE}
+means ``no.'' \texttt{TRUE} and \texttt{FALSE} can be abbreviated as
+\texttt{T} and \texttt{F}, respectively. Many of R's functions have the
+\texttt{na.rm} argument (e.g. \texttt{mean()}, \texttt{sd()},
+\texttt{var()}, \texttt{min()}, \texttt{max()}, \texttt{sum()}, etc. -
+most anything that collapses a vector into one number).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1568,13 +1596,13 @@ which is the same as (i.e., the definition of the mean with the
 
 What if you need apply a function to more than one variable at a time?
 One of the easiest ways to do this (though as with most things in R,
-there are many) is by using the \texttt{apply} function. This function
+there are many) is by using the \texttt{apply()} function. This function
 applies the same summary function to individual subsets of a data object
 at a time then returns the individual summaries all at once:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{apply}\NormalTok{(dat[,}\DecValTok{2}\OperatorTok{:}\DecValTok{3}\NormalTok{], }\DecValTok{2}\NormalTok{, }\DataTypeTok{FUN =}\NormalTok{ var, }\DataTypeTok{na.rm =}\NormalTok{ T)}
+\KeywordTok{apply}\NormalTok{(dat[,}\KeywordTok{c}\NormalTok{(}\StringTok{"stream_width"}\NormalTok{, }\StringTok{"flow"}\NormalTok{)], }\DecValTok{2}\NormalTok{, }\DataTypeTok{FUN =}\NormalTok{ var, }\DataTypeTok{na.rm =}\NormalTok{ T)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1587,14 +1615,15 @@ The first argument is the data object you want to apply the function to.
 The second argument (the number \texttt{2}) specifies that you want to
 apply the function to columns, \texttt{1} would tell R to apply it to
 rows. The \texttt{FUN} argument specifies what function you wish to
-apply to each of the columns; here we are calculating the variance which
-takes the \texttt{na.rm\ =\ T} argument. This use of \texttt{apply}
-alone is very powerful and can help you get around having to write the
-dreaded \texttt{for} loop (introduced in Chapter \ref{ch4}).
+apply to each of the columns; here you are calculating the variance
+which takes the \texttt{na.rm\ =\ T} argument. This use of
+\texttt{apply()} alone is very powerful and can help you get around
+having to write the dreaded \texttt{for()} loop (introduced in Chapter
+\ref{ch4}).
 
-There is a whole family of \texttt{apply} functions, the base
-\texttt{apply} is the most basic but a more sophisticated one is
-\texttt{tapply}, which applies a function based on some grouping
+There is a whole family of \texttt{-apply()} functions, the base
+\texttt{apply()} is the most basic but a more sophisticated one is
+\texttt{tapply()}, which applies a function based on some grouping
 variable (a factor). Calculate the mean stream width \textbf{separated
 by state}:
 
@@ -1661,9 +1690,8 @@ To ask if \texttt{x} is exactly equal to 5, you run:
 ## [1] TRUE
 \end{verbatim}
 
-Note the use of the double equals-sign to denote equality as opposed to
-the single \texttt{=} as used in assignment when you ran
-\texttt{x\ =\ 5} a minute ago.
+Note the use of the double \texttt{==} to denote equality as opposed to
+the single \texttt{=} as used in assignment (\texttt{x\ =\ 5}).
 
 \subsubsection*{Inequalities}\label{inequalities}
 \addcontentsline{toc}{subsubsection}{Inequalities}
@@ -1747,8 +1775,8 @@ within another vector:
 ## [1] FALSE  TRUE FALSE
 \end{verbatim}
 
-\%in\% is a very useful operator in R that is not one of the traditional
-Boolean operators.
+\texttt{\%in\%} is a very useful operator in R that is not one of the
+traditional Boolean operators.
 
 \subsubsection*{And}\label{and}
 \addcontentsline{toc}{subsubsection}{And}
@@ -1840,7 +1868,8 @@ To extract all of the data from Alabama, you would run:
 
 You will be frequently revisiting this skill throughout the workshop.
 
-\section{if, else, and ifelse}\label{if-else-and-ifelse}
+\section{\texorpdfstring{\texttt{if()}, \texttt{else}, and
+\texttt{ifelse()}}{if(), else, and ifelse()}}\label{if-else-and-ifelse}
 
 You can tell R to do something if the result of a question is
 \texttt{TRUE}. This is a typical if-then statement:
@@ -1911,9 +1940,9 @@ Or extend this same thing to multiple lines:
 \end{Highlighting}
 \end{Shaded}
 
-The \texttt{if} function is useful, but it can only ask one question at
-a time. If you supply it with a vector of length greater than 1, it will
-give a warning:
+The \texttt{if()} function is useful, but it can only respond to one
+question at a time. If you supply it with a vector of length greater
+than 1, it will give a warning:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1921,13 +1950,13 @@ give a warning:
 \NormalTok{xs =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{5}\OperatorTok{:-}\DecValTok{1}\NormalTok{, }\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{)}
 
 \CommentTok{# attempt a logical decision}
-\ControlFlowTok{if}\NormalTok{ (xs }\OperatorTok{<}\StringTok{ }\DecValTok{0}\NormalTok{) }\KeywordTok{print}\NormalTok{(}\StringTok{"negative"}\NormalTok{)}
+\ControlFlowTok{if}\NormalTok{ (xs }\OperatorTok{<}\StringTok{ }\DecValTok{0}\NormalTok{) }\KeywordTok{print}\NormalTok{(}\StringTok{"negative"}\NormalTok{) }\ControlFlowTok{else} \KeywordTok{print}\NormalTok{(}\StringTok{"positive"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in if (xs < 0) print("negative"): the condition has length > 1 and
-## only the first element will be used
+## Warning in if (xs < 0) print("negative") else print("positive"): the
+## condition has length > 1 and only the first element will be used
 \end{verbatim}
 
 \begin{verbatim}
@@ -1937,15 +1966,16 @@ give a warning:
 Warnings are different than errors in that something still happens, but
 it tells you that it might not be what you wanted, whereas an error
 stops R altogether. In short, this warning is telling you that you
-passed \texttt{if} a logical vector with more than 1 element, and that
+passed \texttt{if()} a logical vector with more than 1 element, and that
 it can only use one element so it's picking the first one. Because the
 first element of \texttt{xs} is -5, \texttt{xs\ \textless{}\ 0}
 evaluated to \texttt{TRUE}, and you got a \texttt{"negative"} printed
 along with the warning.
 
-To ask multiple questions at once, we must use \texttt{ifelse}. This
-function is similar, but it combines the \texttt{if} and \texttt{else}
-syntax into one useful function function:
+To respond to multiple questions at once, you must use
+\texttt{ifelse()}. This function is similar, but it combines the
+\texttt{if()} and \texttt{else} syntax into one useful function
+function:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1959,7 +1989,8 @@ syntax into one useful function function:
 \end{verbatim}
 
 The syntax is \texttt{ifelse(condition,\ do\_if\_TRUE,\ do\_if\_FALSE)}.
-You can \texttt{cbind} the output with \texttt{xs} to verify it worked:
+You can \texttt{cbind()} the output with \texttt{xs} to verify it
+worked:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1984,9 +2015,9 @@ You can \texttt{cbind} the output with \texttt{xs} to verify it worked:
 ## [10,] "5"  "positive"
 \end{verbatim}
 
-Use \texttt{ifelse} to create a new variable in \texttt{dat} that
-indicates whether a stream is big or small depending \textbf{whether the
-stream width is greater or less than 50}:
+Use \texttt{ifelse()} to create a new variable in \texttt{dat} that
+indicates whether a stream is big or small depending whether
+\texttt{stream\_width} is greater or less than 50:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2008,10 +2039,10 @@ This says ``make a new variable in the data frame \texttt{dat} called
 \texttt{size\_cat} and assign each row a `big' if \texttt{stream\_width}
 is greater than 50 and a `small' if less than 50''.
 
-One neat thing about \texttt{ifelse} is that you can nest multiple
+One neat thing about \texttt{ifelse()} is that you can nest multiple
 statements inside another\footnote{You can nest \textbf{ALL} R
-  functions, by the way.}. \textbf{What if we wanted three categories:
-`small', `medium', and `large'?}
+  functions, by the way.}. What if you wanted three categories: `small',
+`medium', and `large'?
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2031,12 +2062,12 @@ statements inside another\footnote{You can nest \textbf{ALL} R
 \end{verbatim}
 
 If the first condition is \texttt{TRUE}, then it will give that row a
-``small''. If not, it will start another \texttt{ifelse} to ask if the
+``small''. If not, it will start another \texttt{ifelse()} to ask if the
 \texttt{stream\_width} is greater than 40 \emph{and} less than or equal
 to 70. If so, it will give it a ``medium'', if not it will get a
 ``big''. Not all function nesting examples are this complex, but this is
-a neat example. Without \texttt{ifelse}, you would have to use as many
-\texttt{if} statements as there are elements in
+a neat example. Without \texttt{ifelse()}, you would have to use as many
+\texttt{if()} statements as there are elements in
 \texttt{dat\$stream\_width}.
 
 \section{Writing Output Files}\label{writing-output-files}
@@ -2059,15 +2090,15 @@ what you want to call it (don't forget the \texttt{.csv}!), and
 \texttt{row.names\ =\ F} tells R to not include the row names (because
 they are just numbers in this case). R puts the file in your working
 directory unless you tell it otherwise. To put it somewhere else, type
-in the path with the new file name at the end.
+in the path with the new file name at the end (e.g.,
+\texttt{C:/Users/YOU/Documents/R-Book/Data/updated\_streams.csv}.
 
 \subsection{Saving R Objects}\label{saving-r-objects}
 
 If all you care about is the data frame \texttt{dat} as interpreted by R
 (not a share-able file like the \texttt{.csv} method), then you can save
-the object \texttt{dat} to your working directory (in its current state)
-then load it in to a future R session. You can save the new data frame
-using:
+the object \texttt{dat} (in its current state) then load it in to a
+future R session. You can save the new data frame using:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2091,15 +2122,15 @@ Then try removing the \texttt{dat} object from your current session
 Sometimes you may want R to carry out a specific task, but there is no
 built-in function to do it. In these cases, you can write your own
 functions. Function writing makes R incredibly flexible, though you will
-only get a small taste of this topic here. We will be going into more
-detail in later Chapters, particularly in Chapter \ref{ch4}.
+only get a small taste of this topic here. You will see more examples in
+later Chapters, particularly in Chapter \ref{ch4}.
 
 First, you must think of a name for your function (e.g.,
 \texttt{myfun}). Then, you specify that you want the object
-\texttt{myfun} to be a function by using using the \texttt{function}
-function (I know). Then, in parentheses, you specify any arguments that
-you want to use within the function to carry out the specific task. Open
-and closed curly braces specify the start and end of your function body,
+\texttt{myfun()} to be a function by using using the \texttt{function()}
+function. Then, in parentheses, you specify any arguments that you want
+to use within the function to carry out the specific task. Open and
+closed curly braces specify the start and end of your function body,
 i.e., the code that specifies how it uses the arguments to do its job.
 
 Here's the general syntax for specifying your own function:
@@ -2126,8 +2157,8 @@ any power \texttt{y}:
 \end{Highlighting}
 \end{Shaded}
 
-After typing and running the function code (\texttt{power} is an object
-that must be assigned), try using it:
+After typing and running the function code (\texttt{power()} is an
+object that must be assigned), try using it:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2162,7 +2193,7 @@ In this exercise, you will be using what you learned in Chapter 1 to
 summarize data from a hypothetical pond experiment.
 
 Pretend that you added nutrients to mesocosoms and counted the densities
-of 4 different zooplankton taxa. In this experiment, there were two
+of four different zooplankton taxa. In this experiment, there were two
 ponds, two treatments per pond, and five replicates of each treatment.
 The data are located in the data file \texttt{ponds.csv} (see the
 \protect\hyperlink{data-sets}{instructions} on acquiring and organizing
@@ -2187,24 +2218,24 @@ own and only look at the solutions when you are truly stumped.}
   Read in the data to R and assign it to an object.
 \item
   Calculate some basic summary statistics of your data using the
-  \texttt{summary} function.
+  \texttt{summary()} function.
 \item
   Calculate the mean chlorophyll \emph{a} for each pond (\emph{Hint:
   pond is a grouping variable})
 \item
   Calculate the mean number of \emph{Chaoborus} for each treatment in
-  each pond using \texttt{tapply}. (\emph{Hint: You can group by two
+  each pond using \texttt{tapply()}. (\emph{Hint: You can group by two
   variables with:}
   \texttt{tapply(dat\$var,\ list(dat\$grp1,\ dat\$grp2),\ fun)}.
 \item
-  Use the more general \texttt{apply} function to calculate the variance
-  for each zooplankton taxa found only in pond S-28.
+  Use the more general \texttt{apply()} function to calculate the
+  variance for each zooplankton taxa found only in pond S-28.
 \item
   Create a new variable called \texttt{prod} in the data frame that
   represents the quantity of chlorophyll \emph{a} in each replicate. If
   the chlorophyll \emph{a} in the replicate is greater than 30 give it a
-  ``high'', otherwise give it a ``low''. (\emph{Hint: are you asking a
-  question of a single number or multiple numbers? How should this
+  ``high'', otherwise give it a ``low''. (\emph{Hint: are you asking R
+  to respond to one question or multiple questions? How should this
   change the strategy you use?})
 \end{enumerate}
 
@@ -2215,15 +2246,15 @@ own and only look at the solutions when you are truly stumped.}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Use \texttt{?table} to figure out how you can use \texttt{table} to
+  Use \texttt{?table} to figure out how you can use \texttt{table()} to
   count how many observations of high and low there were in each
   treatment (\emph{Hint: \texttt{table} will have only two arguments.}).
 \item
-  Create a new function called \texttt{product} that multiplies any two
-  numbers you specify.
+  Create a new function called \texttt{product()} that multiplies any
+  two numbers you specify.
 \item
   Modify your function to print a message to the console and return the
-  value \texttt{if} it meets a condition and to print another message
+  value \texttt{if()} it meets a condition and to print another message
   and not return the value if it doesn't.
 \end{enumerate}
 
@@ -2238,9 +2269,7 @@ making plots and figures. You will learn:
 \begin{itemize}
 \tightlist
 \item
-  the different types of plotting functions
-\item
-  the basics of how to make:
+  how ot make various plots including:
 
   \begin{itemize}
   \tightlist
@@ -2266,15 +2295,15 @@ making plots and figures. You will learn:
   how to save your plot to an external file
 \end{itemize}
 
-R's base plotting package is incredibly versatile, and as you will see,
-it doesn't take much to get started making professional-looking graphs.
-It is worth mentioning that there are other R packages\footnote{An
-  \textbf{R package} is a bunch of code that somebody has written and
-  placed on the web for you to install, their use is first introduced in
-  Chapter \ref{ch5}} for plotting (e.g. \texttt{ggplot2} and
-\texttt{lattice}) that have nice features. They can be more complex to
-learn at first than the base R plotting capabilities and look a bit
-different.
+R's base \texttt{\{graphics\}} plotting package is incredibly versatile,
+and as you will see, it doesn't take much to get started making
+professional-looking graphs. It is worth mentioning that there are other
+R packages\footnote{An \textbf{R package} is a bunch of code that
+  somebody has written and placed on the web for you to install, their
+  use is first introduced in Chapter \ref{ch5}} for plotting (e.g.
+\texttt{\{ggplot2\}} and \texttt{\{lattice\}}) that have nice features.
+They can be more complex to learn at first than the base R plotting
+capabilities and look a bit different.
 
 \textbf{IMPORTANT NOTE}: If you did not attend the sessions
 corresponding to Chapter \ref{ch1}, you are recommended to walk through
@@ -2302,16 +2331,16 @@ system:
 \item
   A \textbf{high-level plotting function} is one that is used to make a
   new graph. Examples of higher level plotting functions are the general
-  \texttt{plot} and the \texttt{barplot} functions. When-a high level
-  plotting function is executed, the currently displayed plot (if any)
-  is written over.
+  \texttt{plot()} and the \texttt{barplot()} functions. When-a high
+  level plotting function is executed, the currently displayed plot (if
+  any) is written over.
 \item
   A \textbf{low-level plotting function} is one that is used to modify a
   plot that has already been created. You must already have made a plot
   using a higher level plotting function before you use lower level
-  plotting functions. Examples include \texttt{text}, \texttt{points},
-  and \texttt{lines}. When a low-level plotting function is executed,
-  the output is simply added to an existing plot.
+  plotting functions. Examples include \texttt{text()},
+  \texttt{points()}, and \texttt{lines()}. When a low-level plotting
+  function is executed, the output is simply added to an existing plot.
 \item
   The \textbf{graphics device} is the area that a plot shows up. RStudio
   has a built in graphics device in its interface (lower right by
@@ -2345,9 +2374,9 @@ titles something other than the placeholders shown here:
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{# plot dummy data}
 \NormalTok{x =}\StringTok{ }\DecValTok{0}\OperatorTok{:}\DecValTok{10}
 \NormalTok{y =}\StringTok{ }\NormalTok{x}\OperatorTok{^}\DecValTok{2}
-
 \KeywordTok{plot}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ x, }\DataTypeTok{y =}\NormalTok{ y,}
      \DataTypeTok{xlab =} \StringTok{"x-axis label goes here"}\NormalTok{, }
      \DataTypeTok{ylab =} \StringTok{"y-axis label goes here"}\NormalTok{,}
@@ -2357,7 +2386,7 @@ titles something other than the placeholders shown here:
 
 Note that the first two arguments, \texttt{x} and \texttt{y}, specify
 the coordinates of the points (i.e., the first point is placed at
-coordinates \texttt{x{[}1{]}},\texttt{y{[}1{]}}). \texttt{plot} has
+coordinates \texttt{x{[}1{]}},\texttt{y{[}1{]}}). \texttt{plot()} has
 \emph{tons} of arguments (or \emph{graphical parameters} as the help
 file found using \texttt{?plot} or \texttt{?par} calls them) that change
 how the plot looks. Note that when you want something displayed verbatim
@@ -2365,54 +2394,8 @@ on the plotting device, you must wrap that code in \texttt{"\ "}, i.e.,
 the arguments \texttt{xlab}, \texttt{ylab}, and \texttt{main} all
 receive a character vector of length 1 as input.
 
-Table \ref{tab:plot-arg-table-pdf} are just a handful of them to get you
-started.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{pars =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"xlab"}\NormalTok{, }\StringTok{"ylab"}\NormalTok{, }\StringTok{"main"}\NormalTok{, }\StringTok{"cex"}\NormalTok{, }\StringTok{"pch"}\NormalTok{, }\StringTok{"xlim"}\NormalTok{, }\StringTok{"ylim"}\NormalTok{, }\StringTok{"type"}\NormalTok{,}
-         \StringTok{"lty"}\NormalTok{, }\StringTok{"lwd"}\NormalTok{, }\StringTok{"col"}\NormalTok{)}
-
-\NormalTok{usage =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{'xlab = "X-AXIS"'}\NormalTok{, }\StringTok{'ylab = "Y-AXIS"'}\NormalTok{,}
-          \StringTok{'main = "TITLE"'}\NormalTok{, }\StringTok{'cex = 1.5'}\NormalTok{, }\StringTok{'pch = 17'}\NormalTok{, }
-          \StringTok{'xlim = range(x)'}\NormalTok{, }\StringTok{'ylim = c(0,1)'}\NormalTok{,}
-          \StringTok{'type = "l"'}\NormalTok{, }\StringTok{'lty = 2'}\NormalTok{, }\StringTok{'lwd = 2'}\NormalTok{, }\StringTok{'col = "blue"'}\NormalTok{)}
-
-\NormalTok{desc =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"changes the x-axis label text"}\NormalTok{,}
-         \StringTok{"changes the y-axis label text"}\NormalTok{,}
-         \StringTok{"changes the main title text"}\NormalTok{,}
-         \StringTok{"changes the size of symbols in the plotting region"}\NormalTok{,}
-         \StringTok{"changes the symbol type"}\NormalTok{,}
-         \StringTok{"changes the endpoints (limits) of the x-axis"}\NormalTok{,}
-         \StringTok{"same as xlim, but for the y-axis"}\NormalTok{,}
-         \StringTok{"changes the way points are connected by lines"}\NormalTok{,}
-         \StringTok{'changes the line type'}\NormalTok{, }
-         \StringTok{"changes the line width"}\NormalTok{,}
-         \StringTok{"changes the color of plotted objects"}\NormalTok{)}
-\NormalTok{df =}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{Argument =}\NormalTok{ pars, }\DataTypeTok{Usage =}\NormalTok{ usage, }\DataTypeTok{Description =}\NormalTok{ desc)}
-\CommentTok{# pander::pandoc.table(df, justify = "lll", split.cells = c("10%", "30%", "60%"))}
-
-\KeywordTok{kable}\NormalTok{(}
-\NormalTok{  df, }\StringTok{"latex"}\NormalTok{, }\DataTypeTok{booktabs =}\NormalTok{ T,}
-  \DataTypeTok{caption =} \StringTok{"Several of the key arguments to high- and low-level plotting functions"}\NormalTok{,}
-  \DataTypeTok{escape =}\NormalTok{ F) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{footnote}\NormalTok{(}
-    \DataTypeTok{alphabet =} \KeywordTok{c}\NormalTok{(}
-      \StringTok{"cex is a multiplier: cex = 1.5 says make the points 1.5 times as large as they would be by default."}\NormalTok{,}
-      \StringTok{"There are approximately 20 different pch settings: pch = 1 is empty circles, pch = 16 is filled circles, etc."}\NormalTok{,}
-      \StringTok{"xlim and ylim both require a numeric vector of length 2 where neither of the elements may be an NA."}\NormalTok{,}
-      \StringTok{'The default is points only, type = "l" is for lines only, type = "o" is for points connected with lines, and type = "b" is for points and lines but with a small amount of separation between them.'}\NormalTok{,}
-      \StringTok{'lty = 1 is solid, lty = 2 is dashed, lty = 3 is dotted, etc. You can also specific it like lty = "solid", lty = "dotted", or lty = "dotdash".'}\NormalTok{,}
-      \StringTok{"works just like cex: lwd = 3 codes for a line that is 3 times as thick as it would normally be"}\NormalTok{,}
-      \StringTok{"there is a whole host of colors you can pass R by name, run colors() to see for yourself"}
-\NormalTok{    ),}
-    \DataTypeTok{footnote_as_chunk =}\NormalTok{ F, }\DataTypeTok{threeparttable =}\NormalTok{ T}
-\NormalTok{  ) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{kable_styling}\NormalTok{(}\DataTypeTok{full_width =}\NormalTok{ F) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{column_spec}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DataTypeTok{width =} \StringTok{"25em"}\NormalTok{) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{column_spec}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{, }\DataTypeTok{monospace =}\NormalTok{ T)}
-\end{Highlighting}
-\end{Shaded}
+Table \ref{tab:plot-arg-table-pdf} shows information on just a handful
+of them to get you started.
 
 \begin{table}
 
@@ -2452,7 +2435,7 @@ col & col = "blue" & changes the color of plotted objects\\
 You are advised to try at least some of the arguments in Table
 \ref{tab:plot-arg-table-pdf} out for yourself with your
 \texttt{plot(x,\ y)} code from above - notice how every time you run
-\texttt{plot}, a whole new plot is created, not just the thing you
+\texttt{plot()}, a whole new plot is created, not just the thing you
 changed. There are definitely other options: check out \texttt{?plot} or
 \texttt{?par} for more details.
 
@@ -2475,12 +2458,12 @@ sure your device is showing a plot first):
 
 \begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-77-1} \end{center}
 
-Here, \texttt{points} acted like a low-level plotting function because
+Here, \texttt{points()} acted like a low-level plotting function because
 it added points to a plot you already made. Many of the arguments shown
 in Table \ref{tab:plot-arg-table-pdf} can be used in both high-level and
 low-level plotting functions (notice how \texttt{col} and \texttt{pch}
-were used in \texttt{points}). Just like \texttt{points}, there is also
-\texttt{lines}:
+were used in \texttt{points()}). Just like \texttt{points()}, there is
+also \texttt{lines()}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2490,7 +2473,7 @@ were used in \texttt{points}). Just like \texttt{points}, there is also
 
 \begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-79-1} \end{center}
 
-You can also add text to the plotting region:
+You can add text to the plotting region:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2505,14 +2488,14 @@ provide vectors of coordinates and text to write different things at
 once.
 
 The easiest way to add a straight line to a plot is with
-\texttt{abline}. By default it takes two arguments: \texttt{a} and
+\texttt{abline()}. By default it takes two arguments: \texttt{a} and
 \texttt{b} which are the intercept and slope, respectively, e.g.,
 \texttt{abline(c(0,1))} will draw a 1:1 line. You can also do
 \texttt{abline(h\ =\ 5)} to draw a horizontal line at 5 or
 \texttt{abline(v\ =\ 5)} to draw a vertical line at \texttt{5}.
 
 You can see that the text is centered on the coordinates
-\texttt{x\ =\ 5} and \texttt{y\ =\ 80} using \texttt{abline}:
+\texttt{x\ =\ 5} and \texttt{y\ =\ 80} using \texttt{abline()}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2527,8 +2510,8 @@ If you accidentally add a plot element that you don't want using a
 low-level plotting function, the only way to remove it is by re-running
 the high-level plotting function to start a new plot and adding only the
 objects you want. Try removing the ``This is Text'' text and the
-straight lines you drew with \texttt{abline} from the plot displayed in
-your device.
+straight lines you drew with \texttt{abline()} from the plot displayed
+in your device.
 
 \section{Other High-Level Plotting
 Functions}\label{other-high-level-plotting-functions}
@@ -2538,7 +2521,7 @@ and line plots. You will now explore other types of graphs you can make.
 
 \subsection{The Bar Graph}\label{the-bar-graph}
 
-Another very common graph is a bar graph. R has a \texttt{bargraph}
+Another very common graph is a bar graph. R has a \texttt{bargraph()}
 function, and again, it has lots of arguments. Here you will just make
 two common variations: single bars per group and multiple bars per
 group. Create a vector and plot it:
@@ -2569,7 +2552,6 @@ another vector and combine it with the old data:
 \begin{Highlighting}[]
 \NormalTok{x2 =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{7}\NormalTok{)}
 \NormalTok{x3 =}\StringTok{ }\KeywordTok{rbind}\NormalTok{(x1, x2)}
-
 \KeywordTok{barplot}\NormalTok{(x3, }\DataTypeTok{names.arg =} \KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"c"}\NormalTok{), }\DataTypeTok{beside =}\NormalTok{ T)}
 \end{Highlighting}
 \end{Shaded}
@@ -2584,7 +2566,7 @@ graph.
 
 Oftentimes, you will want to add error bars to a bar graph like this. To
 avoid digressing too much here, creating error bars is covered as a
-bonus topic.
+bonus topic (Section \ref{error-bars}).
 
 \section{Box-and-Whisker Plots}\label{box-whisker}
 
@@ -2593,7 +2575,8 @@ data. All you need to make a box-and-whisker plot is a grouping variable
 (a factor, revisit Section \ref{factors} if you don't remember what
 these are) and some continuous (i.e., numeric) data for each level of
 the factor. You will be using the \texttt{creel.csv} data set (see the
-\protect\hyperlink{data-sets}{instructions}).
+\protect\hyperlink{data-sets}{instructions} on acquiring and placing the
+data files in the appropriate location).
 
 Read the data in and print a summary:
 
@@ -2621,9 +2604,9 @@ surveyed\footnote{A creel survey is a sampling program where fishers are
   effort and harvest.}. In the data set, there are three categories
 (levels to the factor \texttt{fishery}) and the continuous variable is
 how many hours each angler fished this year. If you supply the generic
-\texttt{plot} function with a continuous response (\texttt{y}) variable
-and a categorical predictor (\texttt{x}) variable, it will automatically
-assume you want to make a box-and-whisker plot:
+\texttt{plot()} function with a continuous response (\texttt{y})
+variable and a categorical predictor (\texttt{x}) variable, it will
+automatically assume you want to make a box-and-whisker plot:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2639,7 +2622,7 @@ ends of the boxes are the 25\textsuperscript{th} and
 2.5\textsuperscript{th} and 97.5\textsuperscript{th} percentiles. Any
 points that are outliers (i.e., fall outside of the whiskers) will be
 shown as points\footnote{Outliers can be turned off using the
-  \texttt{outline\ =\ F} argument to the \texttt{plot} function}.
+  \texttt{outline\ =\ F} argument to the \texttt{plot()} function}.
 
 It is worth introducing a shorthand syntax of typing the same command:
 
@@ -2678,7 +2661,7 @@ anglers fished this year:
 Notice the subset that extracts hours fished for tournament anglers only
 before plotting.
 
-\texttt{hist} automatically selects the number of bins based on the
+\texttt{hist()} automatically selects the number of bins based on the
 range and resolution of the data. You can specify how many evenly-sized
 bins you want to plot:
 
@@ -2712,18 +2695,19 @@ this command:
 \begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-93-1} \end{center}
 
 Here, you changed the graphical parameters of the graphics device by
-using the \texttt{par} argument. Once you change the settings in
-\texttt{par}, they will remain that way until you start a new device.
+using the \texttt{par()} function. Once you change the settings in
+\texttt{par()}, they will remain that way until you start a new device.
 
-The \texttt{par} function is central to fine-tuning your graphics. Here,
-the \texttt{xaxs\ =\ "i"} and \texttt{yaxs\ =\ "i"} arguments
+The \texttt{par()} function is central to fine-tuning your graphics.
+Here, the \texttt{xaxs\ =\ "i"} and \texttt{yaxs\ =\ "i"} arguments
 essentially removed the buffer between the data and the axes.
-\texttt{par} has options to change the size of the margins, add outer
+\texttt{par()} has options to change the size of the margins, add outer
 margins, change colors, etc. Some of the graphical parameters that can
 be passed to high- and low-level plotting functions (like those in Table
-\ref{tab:plot-arg-table-pdf} can also be passed \texttt{par}. Check out
-the help file (\texttt{?par}) to see everything it can do. If you want
-to start over with fresh \texttt{par} settings, start a new device.
+\ref{tab:plot-arg-table-pdf}) can also be passed \texttt{par()}. Check
+out the help file (\texttt{?par}) to see everything it can do. If you
+want to start over with fresh \texttt{par()} settings, start a new
+device.
 
 \section{New Temporary Devices}\label{new-temporary-devices}
 
@@ -2753,7 +2737,7 @@ a multi-panel plot which allows for multiple plotting regions to show up
 simultaneously within the same plotting device. First, you need to
 change the layout of the plotting region. The easiest way to set up the
 device for multi-panel plotting is by using the \texttt{mfrow} argument
-in the \texttt{par} function.
+in the \texttt{par()} function.
 
 Below, the code says ``set up the graphical parameters so that there is
 1 row and 3 columns of plotting regions within the device''. Every time
@@ -2764,39 +2748,48 @@ fishery:
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{))}
-\KeywordTok{hist}\NormalTok{(dat}\OperatorTok{$}\NormalTok{hours[dat}\OperatorTok{$}\NormalTok{fishery }\OperatorTok{==}\StringTok{ "Tournament"}\NormalTok{], }\DataTypeTok{main =} \StringTok{"Tourn"}\NormalTok{)}
-\KeywordTok{hist}\NormalTok{(dat}\OperatorTok{$}\NormalTok{hours[dat}\OperatorTok{$}\NormalTok{fishery }\OperatorTok{==}\StringTok{ "Non.Tournament"}\NormalTok{], }\DataTypeTok{main =} \StringTok{"Non.Tourn"}\NormalTok{)}
-\KeywordTok{hist}\NormalTok{(dat}\OperatorTok{$}\NormalTok{hours[dat}\OperatorTok{$}\NormalTok{fishery }\OperatorTok{==}\StringTok{ "Harvest"}\NormalTok{], }\DataTypeTok{main =} \StringTok{"Harvest"}\NormalTok{)}
+\KeywordTok{sapply}\NormalTok{(}\KeywordTok{levels}\NormalTok{(dat}\OperatorTok{$}\NormalTok{fishery), }\ControlFlowTok{function}\NormalTok{(f) \{}
+  \KeywordTok{hist}\NormalTok{(dat}\OperatorTok{$}\NormalTok{hours[dat}\OperatorTok{$}\NormalTok{fishery }\OperatorTok{==}\StringTok{ }\NormalTok{f], }\DataTypeTok{main =}\NormalTok{ f, }\DataTypeTok{xlab =} \StringTok{""}\NormalTok{)}
+\NormalTok{\})}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-94-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-95-1} \end{center}
 
-There are other ways to make multi-panel plots, however, they are beyond
-the scope of this beginner's workshop. See \texttt{?layout} for details.
-With this function you can change the size of certain plots and make
-them have different shapes (i.e., some squares, some rectangles, etc.),
-but it takes some pretty involved (though not impossible, by any means)
+Here, \texttt{sapply()} applied a user-defined function that plots a
+histogram for a given fishery type to each of the fishery types
+separately\footnote{\texttt{sapply()} works like \texttt{apply()},
+  except on vectors only so you don't need to supply it with a
+  \texttt{1} or \texttt{2} for rows or columns}, which allowed you to
+only need to type the \texttt{hist()} code once. There are other ways to
+make multi-panel plots, however, they are beyond the scope of this
+introductory material. See \texttt{?layout} for details. With this
+function you can change the size of certain plots and make them have
+different shapes (i.e., some squares, some rectangles, etc.), but it
+takes some pretty involved (though not impossible, by any means)
 specification of how you want the device to be split up into regions.
 
 \section{Legends}\label{legends}
 
 Oftentimes you will want to add a legend to plots to help people
 interpret what it is showing. You can add legends to R plots using the
-low-level plotting function \texttt{legend}. Add a legend to the bar
+low-level plotting function \texttt{legend()}. Add a legend to the bar
 plot you made earlier with two groups. First, re-make the plot by
-running the high-level \texttt{barplot} function, but change the colors
-of the bars to be shades of blue and red. Once you have the plot made,
-add the legend:
+running the high-level \texttt{barplot()} function, but change the
+colors of the bars to be shades of blue and red. Once you have the plot
+made, add the legend:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{barplot}\NormalTok{(x3, }\DataTypeTok{beside =}\NormalTok{ T,}\DataTypeTok{names.arg =} \KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"c"}\NormalTok{), }\DataTypeTok{col =} \KeywordTok{c}\NormalTok{(}\StringTok{"skyblue2"}\NormalTok{, }\StringTok{"tomato2"}\NormalTok{))}
-\KeywordTok{legend}\NormalTok{(}\StringTok{"topleft"}\NormalTok{, }\DataTypeTok{legend =} \KeywordTok{c}\NormalTok{(}\StringTok{"Group 1"}\NormalTok{, }\StringTok{"Group 2"}\NormalTok{), }\DataTypeTok{fill =} \KeywordTok{c}\NormalTok{(}\StringTok{"skyblue2"}\NormalTok{, }\StringTok{"tomato2"}\NormalTok{))}
+\KeywordTok{barplot}\NormalTok{(x3, }\DataTypeTok{beside =}\NormalTok{ T, }
+        \DataTypeTok{names.arg =} \KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"c"}\NormalTok{),}
+        \DataTypeTok{col =} \KeywordTok{c}\NormalTok{(}\StringTok{"skyblue2"}\NormalTok{, }\StringTok{"tomato2"}\NormalTok{))}
+\KeywordTok{legend}\NormalTok{(}\StringTok{"topleft"}\NormalTok{, }\DataTypeTok{legend =} \KeywordTok{c}\NormalTok{(}\StringTok{"Group 1"}\NormalTok{, }\StringTok{"Group 2"}\NormalTok{),}
+       \DataTypeTok{fill =} \KeywordTok{c}\NormalTok{(}\StringTok{"skyblue2"}\NormalTok{, }\StringTok{"tomato2"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-95-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-96-1} \end{center}
 
 The box can be removed using the \texttt{bty\ =\ "n"} argument and the
 size can be changed using \texttt{cex}. The position can be specified
@@ -2811,7 +2804,6 @@ Here is a more complex example:
 \NormalTok{n_hrs =}\StringTok{ }\KeywordTok{sort}\NormalTok{(dat}\OperatorTok{$}\NormalTok{hours[dat}\OperatorTok{$}\NormalTok{fishery }\OperatorTok{==}\StringTok{ "Non.Tournament"}\NormalTok{])}
 
 \CommentTok{# 2) make the plot: plot for t_hrs only, but ensure xlim covers both groups}
-
 \CommentTok{# set the margins: }
   \CommentTok{# 4 lines of margin space on bottom and left,}
   \CommentTok{# 1 on top and right}
@@ -2820,21 +2812,19 @@ Here is a more complex example:
      \DataTypeTok{type =} \StringTok{"o"}\NormalTok{, }\DataTypeTok{lty =} \DecValTok{2}\NormalTok{, }\DataTypeTok{xlim =} \KeywordTok{range}\NormalTok{(}\KeywordTok{c}\NormalTok{(t_hrs, n_hrs)),}
      \DataTypeTok{xlab =} \StringTok{"Hours Fished/Year"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"Rank within Fishery Samples"}\NormalTok{,}
      \DataTypeTok{las =} \DecValTok{1}\NormalTok{)  }\CommentTok{# las = 1 says "turn the y-axis tick labels to be horizontal"}
-
 \CommentTok{# 3) add info for the other fishery}
 \KeywordTok{points}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ n_hrs, }\DataTypeTok{y =} \DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(n_hrs), }\DataTypeTok{type =} \StringTok{"o"}\NormalTok{, }\DataTypeTok{lty =} \DecValTok{1}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{16}\NormalTok{)}
-
 \CommentTok{# 4) add the legend}
 \KeywordTok{legend}\NormalTok{(}\StringTok{"topleft"}\NormalTok{, }\DataTypeTok{legend =} \KeywordTok{c}\NormalTok{(}\StringTok{"Tournament"}\NormalTok{, }\StringTok{"Non-Tournament"}\NormalTok{), }
        \DataTypeTok{lty =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{), }\DataTypeTok{pch =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{16}\NormalTok{), }\DataTypeTok{bty =} \StringTok{"n"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-96-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-97-1} \end{center}
 
 Notice that you need to be careful about the order of how you specify
 which \texttt{lty} and \texttt{pch} settings match up with the elements
-of the \texttt{legend} argument. In the \texttt{plot\ code}, you
+of the \texttt{legend} argument. In the \texttt{plot()} code, you
 specified that the \texttt{lty\ =\ 2} but didn't specify what
 \texttt{pch} should be (it defaults to \texttt{1}). So when you put the
 ``Tournament'' group first the the \texttt{legend} argument vector, you
@@ -2850,7 +2840,8 @@ There are two main ways to save plots. First is a quick-and-dirty method
 that saves the plots, but they are not high-resolution and you can't
 automate this process. The second method produces cleaner-looking
 high-resolution plots with code that can be embedded in your script,
-ensuring the same exact plot will be created each time the code is run.
+ensuring the same exact plot will be created each time the code is
+executed
 
 \subsection{Click Save}\label{click-save}
 
@@ -2867,18 +2858,19 @@ ensuring the same exact plot will be created each time the code is run.
 \end{itemize}
 
 All plots will be saved in the working directory by default. You can
-also just copy the plot to your clipboard (File \textgreater{} Copy to
-the clipboard \textgreater{} bitmap) and paste it where you want. You
-should saving one of the plots you made in this Chapter using this
-approach.
+also just copy the plot to your clipboard (\emph{File \textgreater{}
+Copy to the clipboard \textgreater{} bitmap}) and paste it where you
+want. You should saving one of the plots you made in this Chapter using
+this approach.
 
 \subsection{Use a function to place plot in a new
 file}\label{use-a-function-to-place-plot-in-a-new-file}
 
 If you are producing plots for a final report or publication, you want
 the output to be as clean-looking as possible and you want them to be
-fully reproducible. You can save high-resolution plots through R by
-using the following steps:
+fully reproducible so when something changes with your data or analysis
+in review, you can reproduce the same figure with the new results. You
+can save high-resolution plots through R by using the following steps:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2908,8 +2900,8 @@ made in this Chapter using this approach.
 Rarely should you ever present estimates without some measure of
 uncertainty. The most common way for visualizing the uncertainty in an
 estimate is by using error bars, which can be added to an R plot using
-the lower-level function \texttt{arrows}. To use \texttt{arrows}, you
-need:
+the lower-level function \texttt{arrows()}. To use \texttt{arrows()},
+you need:
 
 \begin{itemize}
 \tightlist
@@ -2921,13 +2913,13 @@ need:
   bound of the error bars
 \end{itemize}
 
-The syntax for \texttt{arrows} is as follows:
+The syntax for \texttt{arrows()} is as follows:
 \texttt{arrows(x0,\ y0,\ x1,\ y1,\ ...)}, where \texttt{x0} and
 \texttt{y0} are the coordinates you are drawing ``from'' (e.g., lower
 limits) and the \texttt{x1} and \texttt{y1} are the coordinates you are
 drawing ``to'' (e.g., upper limits). The \texttt{...} represents other
 arguments to change how the error bars look. Calculate the mean of the
-different fishery sectors (if you don't remember how \texttt{tapply}
+different fishery sectors (if you don't remember how \texttt{tapply()}
 works, revisit Section \ref{data-summaries}) and plot them:
 
 \begin{Shaded}
@@ -2937,7 +2929,7 @@ works, revisit Section \ref{data-summaries}) and plot them:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-98-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-99-1} \end{center}
 
 You wish to add error bars that represent 95\% confidence intervals on
 the mean. You can create a 95\% confidence interval using this basic
@@ -2990,7 +2982,7 @@ Then calculate the lower and upper limits of your bars:
 \end{Highlighting}
 \end{Shaded}
 
-Then draw them on using the arrows function:
+Then draw them on using the \texttt{arrows()} function:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2999,7 +2991,7 @@ Then draw them on using the arrows function:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-102-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-103-1} \end{center}
 
 Notice four things:
 
@@ -3007,9 +2999,9 @@ Notice four things:
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  The use of \texttt{mp} to specify the \texttt{x} coordinate. If you do
-  \texttt{mp\ =\ barplot(...)}, \texttt{mp} will contain the \texttt{x}
-  coordinates of the midpoint of each bar.
+  The use of \texttt{mp} to specify the \texttt{x} coordinates. If you
+  do \texttt{mp\ =\ barplot(...)}, \texttt{mp} will contain the
+  \texttt{x} coordinates of the midpoint of each bar.
 \item
   \texttt{x0} and \texttt{x1} are the same: you wish to have vertical
   bars, so these must be the same while \texttt{y1} and \texttt{y2}
@@ -3044,19 +3036,19 @@ they look to suit your taste. You will use a real dataset
 (\texttt{sockeye.csv}, see the
 \protect\hyperlink{data-sets}{instructions} regarding acquiring the data
 files) this time from a sockeye salmon (\emph{Oncorhynchus nerka})
-population from the Columbia/Snake River system. This population spawns
-in Redfish Lake in Idaho, which feeds into the Salmon River which is a
-tributary of the Snake River. In order to reach the lake, the sockeye
-salmon must successfully pass through a total eight dams that have fish
-passage mechanisms in place. The Redfish Lake population is one of the
-most endangered sockeye populations in the U.S. and travels farther
-(1,448 km), higher (1,996 m), and is the southernmost population of all
-sockeye populations in the world (Kline and Flagg 2014). Given this
-uniqueness, a captive breeding program was initiated in 1991 to preserve
-the genes from this population. These data came from both
-hatchery-raised and wild fish and include average female spawner weight
-(g), fecundity (number of eggs), egg size (eggs/g), and \% survival to
-the eyed-egg stage.
+population from the Columbia/Snake River system, and the data set was
+obtained from \citet{sockeye-cite}. This population spawns in Redfish
+Lake in Idaho, which feeds into the Salmon River which is a tributary of
+the Snake River. In order to reach the lake, the sockeye salmon must
+successfully pass through a total eight dams that have fish passage
+mechanisms in place. The Redfish Lake population is one of the most
+endangered sockeye populations in the U.S. and travels farther (1,448
+km), higher (1,996 m), and is the southernmost population of all sockeye
+populations in the world \citep{sockeye-cite}. Given this uniqueness, a
+captive breeding program was initiated in 1991 to conserve the genes
+from this population. These data came from both hatchery-raised and wild
+fish and include average female spawner weight (g), fecundity (number of
+eggs), egg size (eggs/g), and \% survival to the eyed-egg stage.
 
 \emph{The solutions to this exercise are found at the end of this book
 (\protect\hyperlink{ex2-answers}{here}). You are \textbf{strongly
@@ -3106,19 +3098,18 @@ own and only look at the solutions when you are truly stumped.}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
+\tightlist
 \item
   Make a bar plot comparing the mean survival to eyed-egg stage for each
-  type of fish (hatchery and wild). Add error bars that represent +/-
-  2SE of each mean.
+  type of fish (hatchery and wild). Add error bars that represent 95\%
+  confidence intervals.
 \item
   Change the names of each bar, the main plot title, and the y-axis
-  title.
+  title.\\
+\item
+  Adjust the margins so there are 2 lines on the bottom, 5 on the left,
+  2 on the top, and 1 on the right.
 \end{enumerate}
-
-\textbf{Reference for data} Kline, P.A. and T.A. Flagg. 2014. Putting
-the red back in Redfish Lake, 20 years of progress toward saving the
-Pacific Northwest's most endangered salmon population.
-\textbf{Fisheries}. \emph{39(11)}: 488-500.
 
 \chapter{Basic Statistics}\label{ch3}
 
@@ -3359,7 +3350,7 @@ Make a new plot and add the fitted regression line:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-110-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-111-1} \end{center}
 
 It fits, but not very well. It seems there are two groups: one with data
 points mostly above the line and one with data points mostly below the
@@ -3578,7 +3569,7 @@ and \texttt{b} is the slope.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-117-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-118-1} \end{center}
 
 \subsection{Interactions}\label{interactions}
 
@@ -3646,7 +3637,7 @@ decipher the two \texttt{abline} commands.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-119-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-120-1} \end{center}
 
 Based on the coefficients table:
 
@@ -3856,7 +3847,7 @@ You can plot the fitted model:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-126-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-127-1} \end{center}
 
 Fit another model comparing the probability of success between hatchery
 and wild fish (analogous to the ANOVA model in Section \ref{anova}):
@@ -3924,14 +3915,14 @@ and obtain/plot the fitted probabilities for each group:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-130-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-131-1} \end{center}
 
 Look for an interaction (all the code is the same except use
 \texttt{glm(binary\ \textasciitilde{}\ type\ *\ weight)} instead of
 \texttt{glm(binary\ \textasciitilde{}\ type\ +\ weight)} and change
 everything to \texttt{fit4} instead of \texttt{fit3}).
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-131-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-132-1} \end{center}
 
 \subsection{AIC Model Selection}\label{aic-model-selection-1}
 
@@ -4141,7 +4132,7 @@ Plot the data:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-137-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-138-1} \end{center}
 
 You can see a distinct non-linearity to the relationship. The Holling
 Type II functional response\footnote{This function rises quickly at low
@@ -4198,7 +4189,7 @@ Despite these differences, you can obtain similar output as from
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-139-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-140-1} \end{center}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -4226,7 +4217,7 @@ own and only look at the solutions when you are truly stumped.}
     four function types for that distribution}.
 \end{enumerate}
 
-\chapter{Simulation and Randomization}\label{ch4}
+\chapter{Monte Carlo Methods}\label{ch4}
 
 \section*{Chapter Overview}\label{chapter-overview-3}
 \addcontentsline{toc}{section}{Chapter Overview}
@@ -4326,7 +4317,7 @@ random process where \(p = 0.8\) and \(n = 100\) like this:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 80
+## [1] 84
 \end{verbatim}
 
 The result you get will almost certainly be different from the one
@@ -4342,7 +4333,7 @@ argument. Plot the distribution of expected surviving individuals:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-143-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-144-1} \end{center}
 
 Another random process is the \textbf{lognormal process}: it generates
 random numbers such that the log of the values are normally-distributed
@@ -4355,7 +4346,7 @@ with mean equal to \texttt{logmean} and standard deviation equal to
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-144-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-145-1} \end{center}
 
 There are many random processes you can use in R. Checkout Table
 \ref{tab:dist-table-pdf} for more examples as well as the help files for
@@ -4376,7 +4367,7 @@ from the vector \texttt{x}:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 8 9 6 4 1
+## [1] 6 2 3 4 1
 \end{verbatim}
 
 You can sample with replacement (where it is possible to sample the same
@@ -4389,7 +4380,7 @@ element two or more times):
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "b" "c" "c" "b" "b" "a" "a" "b" "a" "a"
+##  [1] "c" "c" "a" "b" "c" "a" "a" "c" "a" "a"
 \end{verbatim}
 
 You can set probabilities on the sampling of different
@@ -4404,7 +4395,7 @@ elements\footnote{If \texttt{prob} doesn't sum to 1, then it will be
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "live" "die"  "live" "live" "live" "die"  "live" "live" "live" "live"
+##  [1] "live" "live" "live" "live" "die"  "die"  "live" "die"  "live" "live"
 \end{verbatim}
 
 Notice that this is the same as the binomial random process above, but
@@ -4626,7 +4617,7 @@ abundance at the end of the year for 100 years:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-158-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-159-1} \end{center}
 
 Examples of the other three utilities are shown in the example cases.
 
@@ -4684,7 +4675,7 @@ Use your function once using the same settings as before:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-160-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-161-1} \end{center}
 
 \begin{verbatim}
 ##   [1] 1000.0000  991.9189  966.1673 1119.8166 1167.4864  940.7572 1003.4028
@@ -4785,7 +4776,7 @@ easily using the \texttt{quantile} function:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-163-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-164-1} \end{center}
 
 Notice how a user-defined function was passed to \texttt{apply}. The
 range within the two dashed lines represents the range that encompassed
@@ -4907,7 +4898,7 @@ quantities fall below, both for random numbers and from the
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-170-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-171-1} \end{center}
 
 The fact that all the quantiles fall around the 1:1 line sugggests the
 \texttt{n} random samples samples are indeed from a normal distribution.
@@ -4931,7 +4922,7 @@ curve and that approximated by the random deviates:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-171-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-172-1} \end{center}
 
 The \texttt{ecdf} function obtains the empirical cumulative density
 function (which is just \texttt{pnorm} for a sample). It allows you to
@@ -5064,7 +5055,7 @@ sample size that resulted in a significant difference using the
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-174-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-175-1} \end{center}
 
 Even if you tagged 100 fish total, you would only have a 50\% chance of
 saying the effect (which truely is there!) is present under the null
@@ -5133,7 +5124,7 @@ additional metric and re-run the analysis:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-175-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-176-1} \end{center}
 
 It seems that even if you tagged 50 fish per treatment, you would have a
 60\% chance of estimating that the mortality rate is between 0.2 and 0.3
@@ -5296,7 +5287,7 @@ rate:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-179-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-180-1} \end{center}
 
 It appears the stock could produce more harvest than its current 8.5
 million fish per year if it was fished harder. However, your supervisors
@@ -5308,7 +5299,7 @@ harvest. You can simply re-run the code above, but extracting
 \texttt{S\_out} and plot it just like harvest (if your curious, this
 blue color is \texttt{col\ =\ "skyblue"}):
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-180-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-181-1} \end{center}
 
 After seeing this information, your supervisor realizes they are faced
 with a trade-off: the stock could produce more with high exploitation
@@ -5355,7 +5346,7 @@ You plot this for your supervisor as follows:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-182-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-183-1} \end{center}
 
 Equipped with this analysis, your supervisor plans to go to the
 policy-makers with the recommendation of adjusting the exploitation rate
@@ -5424,7 +5415,7 @@ Read in and plot the data:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-184-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-185-1} \end{center}
 
 Due to a large amount of variability in individual growth rates, the
 relationship looks pretty noisy. Notice how you have mostly young fish
@@ -5577,7 +5568,7 @@ which all fish are assumed to be mature (450 mm)
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-191-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-192-1} \end{center}
 
 Obtain the fraction of iterations that resulted in the mean
 length-at-age being greater than 450 mm. This is interpretted as the
@@ -5591,7 +5582,7 @@ probability that the average-sized fish of each age is mature:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-192-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-193-1} \end{center}
 
 This \textbf{maturity schedule} can be used by fishery managers in
 attempting to decide which ages should be allowed to be harvested and
@@ -5647,7 +5638,7 @@ Read in and plot the data:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-194-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-195-1} \end{center}
 
 It appears as though there is a relatively strong signal indicating a
 difference. Use the permutation test to determine if it is statistically
@@ -5717,7 +5708,7 @@ the originally-observed difference falls:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-199-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-200-1} \end{center}
 
 Notice the null distribution is centered on zero: this is because the
 null hypothesis is that there is no difference. The observation (blue
@@ -5953,11 +5944,11 @@ manipulation in R using two R \textbf{packages}:
 \begin{itemize}
 \tightlist
 \item
-  \texttt{reshape2}: used for changing data between formats (wide and
-  long)
+  \texttt{\{reshape2\}}: used for changing data between formats (wide
+  and long)
 \item
-  \texttt{dplyr}: used for large data manipulations with a consistent
-  and readable format.
+  \texttt{\{dplyr\}}: used for large data manipulations with a
+  consistent and readable format.
 \end{itemize}
 
 You will be turning daily observations of harvest and escapement (fish
@@ -6021,13 +6012,13 @@ into the current session:
 \end{Shaded}
 
 These messages are telling you that there are functions in the
-\texttt{dplyr} package that have the same names as those already being
-used in the \texttt{stats} and \texttt{base} R packages. This is fine so
-long as you don't want to use the original functions. If you wish to use
-the base version of the \texttt{filter} function rather than the
-\texttt{dplyr} version, use it like this: \texttt{base::filter()}. Each
-time you close and reopen R, you will need to load any packages you want
-to use using \texttt{library} again.
+\texttt{\{dplyr\}} package that have the same names as those already
+being used in the \texttt{\{stats\}} and \texttt{\{base\}} R packages.
+This is fine so long as you don't want to use the original functions. If
+you wish to use the \texttt{\{base\}} version of the \texttt{filter()}
+function rather than the \texttt{\{dplyr\}} version, use it like this:
+\texttt{base::filter()}. Each time you close and reopen R, you will need
+to load any packages you want to use using \texttt{library()} again.
 
 \section{The Data}\label{the-data}
 
@@ -6106,7 +6097,7 @@ of the \texttt{year} variable are stored as columns. A \textbf{long}
 format would have three columns: one for \texttt{doy}, \texttt{year},
 and \texttt{catch} or \texttt{esc}. Turn the \texttt{catch} data frame
 into long format using the \texttt{melt} function from
-\texttt{reshape2}:
+\texttt{\{reshape2\}}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6178,11 +6169,11 @@ The single \texttt{TRUE} indicates that every element matches up for
 
 You now have two long format data sets. You can turn them into one data
 set with the \texttt{merge} function (which is actually in the
-\texttt{base} package). \texttt{merge} takes two data frames and joins
-them based on certain grouping variables. Here, you want to combine the
-data frames \texttt{long.catch} and \texttt{long.esc} into one data
-frame, and match the rows by the \texttt{doy} and \texttt{year} for each
-unique pair:
+\texttt{\{base\}} package). \texttt{merge} takes two data frames and
+joins them based on certain grouping variables. Here, you want to
+combine the data frames \texttt{long.catch} and \texttt{long.esc} into
+one data frame, and match the rows by the \texttt{doy} and \texttt{year}
+for each unique pair:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6217,7 +6208,7 @@ Notice that because no escapement observations were ever made one
 Notice how the data set is now ordered by \texttt{doy} instead of
 \texttt{year}. This is not a problem, but if you want to reorder the
 data frame by \texttt{year}, you can use the \texttt{arrange} function
-from \texttt{dplyr}:
+from \texttt{\{dplyr\}}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6241,7 +6232,7 @@ The present task is to the calculate daily cumulative run
 proportion\footnote{This is the fraction of all fish that came back each
   year that did so on or before a given day} in 2015 for comparison to
 the other years. Given the information you have, this task would be very
-cumbersome if not for the flexibility allowed by \texttt{dplyr}.
+cumbersome if not for the flexibility allowed by \texttt{\{dplyr\}}.
 
 Remember the counting tower is an average one day swim for the salmon
 from the fishing grounds. This means that the escapement counts are
@@ -6249,7 +6240,7 @@ from the fishing grounds. This means that the escapement counts are
 (defined as the number in fishing grounds each day), you need to account
 for this lag. An easy way to think about the lag is to show it
 graphically. First, pull out one year of data using the \texttt{filter}
-function in \texttt{dplyr}:
+function in \texttt{\{dplyr\}}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6268,7 +6259,7 @@ function in \texttt{dplyr}:
 ## 6 165 y_2015 3486   379
 \end{verbatim}
 
-The \texttt{base} analog to the \texttt{filter} function is:
+The \texttt{\{base\}} analog to the \texttt{filter} function is:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6279,9 +6270,9 @@ The \texttt{base} analog to the \texttt{filter} function is:
 \end{Shaded}
 
 They take about the same amount of code to write, but \texttt{filter}
-has some advantages when used with other \texttt{dplyr} functions that
-will be discussed later. Now plot the daily catch and escapement (not
-cumulative yet) for 2015:
+has some advantages when used with other \texttt{\{dplyr\}} functions
+that will be discussed later. Now plot the daily catch and escapement
+(not cumulative yet) for 2015:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6293,17 +6284,18 @@ cumulative yet) for 2015:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-217-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-218-1} \end{center}
 
 Notice how the escapement counts are shifted to the right by one day.
 This is the lag. To account for it, you can use the \texttt{lag}
-function from \texttt{dplyr}. \texttt{lag} works by lagging some vector
-by \texttt{n} elements (it shifts every element in the vector to the
-right by one place by putting \texttt{n} \texttt{NAs} at the front and
-removing the last \texttt{n} elements from the original vector). One way
-to fix the lag problem would be to use \texttt{lag} on \texttt{catch} to
-make the days match up with \texttt{esc} (don't lag \texttt{esc} because
-that would just lag it by \texttt{n} additional days):
+function from \texttt{\{dplyr\}}. \texttt{lag} works by lagging some
+vector by \texttt{n} elements (it shifts every element in the vector to
+the right by one place by putting \texttt{n} \texttt{NAs} at the front
+and removing the last \texttt{n} elements from the original vector). One
+way to fix the lag problem would be to use \texttt{lag} on
+\texttt{catch} to make the days match up with \texttt{esc} (don't lag
+\texttt{esc} because that would just lag it by \texttt{n} additional
+days):
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6315,7 +6307,7 @@ that would just lag it by \texttt{n} additional days):
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-218-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-219-1} \end{center}
 
 Notice how the two curves line up better now.
 
@@ -6364,7 +6356,7 @@ Try out the \texttt{lag\_sum} function:
 \end{verbatim}
 
 You will want to add this column to your data set. You add columns in
-\texttt{dplyr} using \texttt{mutate}:
+\texttt{\{dplyr\}} using \texttt{mutate}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6372,7 +6364,7 @@ You will want to add this column to your data set. You add columns in
 \end{Highlighting}
 \end{Shaded}
 
-The base equivalent to \texttt{mutate} is:
+The \texttt{\{base\}} equivalent to \texttt{mutate} is:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6380,7 +6372,7 @@ The base equivalent to \texttt{mutate} is:
 \end{Highlighting}
 \end{Shaded}
 
-\texttt{mutate} has advantages when used with other \texttt{dplyr}
+\texttt{mutate} has advantages when used with other \texttt{\{dplyr\}}
 functions that will be shown soon. Use the new variable \texttt{run} to
 calculate two new variables: the cumulative run by day (\texttt{crun})
 and cumulative run proportion by day (\texttt{cprun}). Cumulative means
@@ -6396,14 +6388,14 @@ the values that happened on days before it. You can use R's
 
 Here is one advantage of \texttt{mutate}: you can refer to a column you
 just created to make a new column within the same function. You would
-have to split this into two lines to do it in \texttt{base}. Indeed, you
-could have made \texttt{run}, \texttt{crun}, and \texttt{cprun} all in
-the same \texttt{mutate} call. Plot \texttt{cprun}\footnote{It doesn't
-  look like much, but this information is incredibly important for
-  fishery managers. It provides information on how much of the annual
-  run has passed on each day. You can see that the rate of change is the
-  fastest in the middle of the run, this corresponds to the major hump
-  in the plots you made earlier (which were raw numbers by day). Of
+have to split this into two lines to do it in \texttt{\{base\}}. Indeed,
+you could have made \texttt{run}, \texttt{crun}, and \texttt{cprun} all
+in the same \texttt{mutate} call. Plot \texttt{cprun}\footnote{It
+  doesn't look like much, but this information is incredibly important
+  for fishery managers. It provides information on how much of the
+  annual run has passed on each day. You can see that the rate of change
+  is the fastest in the middle of the run, this corresponds to the major
+  hump in the plots you made earlier (which were raw numbers by day). Of
   course during the run, the managers don't know what proportion of the
   total run has passed because they don't know the total number of fish
   that will come that season, but by characterizing the mean and
@@ -6418,13 +6410,13 @@ the same \texttt{mutate} call. Plot \texttt{cprun}\footnote{It doesn't
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-224-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-225-1} \end{center}
 
 \section{Apply to all years}\label{apply-to-all-years}
 
 You have just obtained the daily and cumulative run for one year (2015),
-but \texttt{dplyr} makes it easy to apply these same manipulations to
-all years. To really see the advantage, you'll need to learn to use
+but \texttt{\{dplyr\}} makes it easy to apply these same manipulations
+to all years. To really see the advantage, you'll need to learn to use
 piping. A code \textbf{pipe} is one that takes the result of one
 function and inserts it into the input of another function. Here is a
 basic example of a pipe:
@@ -6444,7 +6436,7 @@ first argument to the \texttt{length} function. This allows you to
 string together commands so you aren't continuously making intermediate
 objects or nesting a ton of functions together.
 
-The reason piping works so well with \texttt{dplyr} is because its
+The reason piping works so well with \texttt{\{dplyr\}} is because its
 functions are designed to take a data frame as input as the first
 argument and return another data frame as output, which allows you to
 string them together with pipes. Do a more complex pipe: take your main
@@ -6491,8 +6483,8 @@ you, because the data are so neat (all years have same number of days,
 \texttt{NAs} in all of the same places, etc.), but for data that are
 messier, this trick is very handy. Also note that the \texttt{dat}
 object looks a little different. When you print it, it only shows the
-first 10 rows. This is a \texttt{dplyr} feature that prevents you from
-printing a huge data set to the console.
+first 10 rows. This is a \texttt{\{dplyr\}} feature that prevents you
+from printing a huge data set to the console.
 
 Now plot the cumulative run proportion by day for each year,
 highlighting 2015:
@@ -6513,22 +6505,22 @@ highlighting 2015:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-227-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-228-1} \end{center}
 
 \section{\texorpdfstring{Calculate Daily Means with
 \texttt{summarize}}{Calculate Daily Means with summarize}}\label{calculate-daily-means-with-summarize}
 
 Oftentimes, you want to calculate a statistic for a value across
 grouping variables, like year or site or day. Remember the
-\texttt{tapply} function does this in base R. Here you want to calculate
-the mean cumulative run proportion for each day averaged across years.
-For this, you can make use of the \texttt{summarize} function in
-\texttt{dplyr}. Begin by ungrouping the data to remove the \texttt{year}
-groups and grouping the data by \texttt{doy}. This will allow you to
-calculate the mean proportion by day. You then pass this grouped data
-frame to \texttt{summarize} which will apply the \texttt{mean} function
-to the cumulative run proportions across all years on a particular day.
-It will do this for all days:
+\texttt{tapply} function does this in \texttt{\{base\}}. Here you want
+to calculate the mean cumulative run proportion for each day averaged
+across years. For this, you can make use of the \texttt{summarize}
+function in \texttt{\{dplyr\}}. Begin by ungrouping the data to remove
+the \texttt{year} groups and grouping the data by \texttt{doy}. This
+will allow you to calculate the mean proportion by day. You then pass
+this grouped data frame to \texttt{summarize} which will apply the
+\texttt{mean} function to the cumulative run proportions across all
+years on a particular day. It will do this for all days:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6552,7 +6544,7 @@ It will do this for all days:
 ## 6   165 0.0579
 \end{verbatim}
 
-The way to do this in \texttt{base} is with \texttt{tapply}:
+The way to do this in \texttt{\{base\}} is with \texttt{tapply}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6632,7 +6624,7 @@ maximum columns in the same \texttt{summarize} call:
 Add the mean cumulative run proportion to our plot (use \texttt{lines}
 just like before, add it after the \texttt{sapply} call).
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-232-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-233-1} \end{center}
 
 It looks like 2015 started like an average year but the peak of the run
 happened a couple days earlier than average.
@@ -6697,11 +6689,11 @@ data only:
 ## 1 0.5023032
 \end{verbatim}
 
-The \texttt{select} function in \texttt{dplyr} extracts the variables
-requested from the data frame. If there is a grouping variable set using
-\texttt{group\_by}, it will be returned as well. It looks like the
-function works. Now combine it with \texttt{summarize} to calculate the
-median day for every year:
+The \texttt{select} function in \texttt{\{dplyr\}} extracts the
+variables requested from the data frame. If there is a grouping variable
+set using \texttt{group\_by}, it will be returned as well. It looks like
+the function works. Now combine it with \texttt{summarize} to calculate
+the median day for every year:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6725,7 +6717,7 @@ median day for every year:
 ## 6 y_1927   188
 \end{verbatim}
 
-Now, use your \texttt{dplyr} skills to turn the year column into a
+Now, use your \texttt{\{dplyr\}} skills to turn the year column into a
 numeric variable:
 
 \begin{Shaded}
@@ -6746,7 +6738,7 @@ numeric variable:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-237-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-238-1} \end{center}
 
 It doesn't appear that there is a trend in either direction, but fit a
 regression line because you can (Section \ref{regression}):
@@ -6771,7 +6763,7 @@ regression line because you can (Section \ref{regression}):
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-238-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-239-1} \end{center}
 
 The results tell you that there is an 0.005 day decrease in median run
 date for every 1 year that has gone by and that it is not significantly
@@ -6780,10 +6772,10 @@ different from a zero day decrease per year.
 \section{Fit the Model}\label{fit-the-model}
 
 You have done some neat data exploration exercises (and hopefully
-learned \texttt{dplyr} and piping along the way!), but you ultimate task
-with this data set is to run a spawner-recruit analysis on all the data.
-A \textbf{spawner-recruit analysis} is one that links the number of
-total fish produced (the recruits) by a given number of spawners (the
+learned \texttt{\{dplyr\}} and piping along the way!), but you ultimate
+task with this data set is to run a spawner-recruit analysis on all the
+data. A \textbf{spawner-recruit analysis} is one that links the number
+of total fish produced (the recruits) by a given number of spawners (the
 escapement). This is done in an attempt to describe the productivity and
 carrying capacity of the population and to obtain \textbf{biological
 reference points} off of which harvest policies can be set. You will
@@ -6906,7 +6898,7 @@ Plot the recruits versus spawners and the fitted line:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-243-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-244-1} \end{center}
 
 The diagonal line is the \textbf{1:1 replacement line}: where 1 spawner
 would produce 1 recruit. The distance between this line and the curve is
@@ -6947,7 +6939,7 @@ Draw these reference points onto your plot and label them:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-246-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-247-1} \end{center}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -6982,15 +6974,15 @@ Download the data file \texttt{asl.csv} (\textbf{a}ge, \textbf{s}ex,
 go \protect\hyperlink{data-sets}{here} for details) and save it in your
 working directory for this chapter. Create a new R script \texttt{Ex5.R}
 there. Open this script and read the data file into R. If this is a new
-session, load the \texttt{dplyr} package.
+session, load the \texttt{\{dplyr\}} package.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
   Count the number of females that were sampled each year using the
-  \texttt{dplyr} function \texttt{n} within a \texttt{summarize} call
-  (\emph{Hint: \texttt{n} works just like length - it counts the number
-  of records}).
+  \texttt{\{dplyr\}} function \texttt{n} within a \texttt{summarize}
+  call (\emph{Hint: \texttt{n} works just like length - it counts the
+  number of records}).
 \item
   Calculate the proportion of females by year.
 \item
@@ -7043,9 +7035,10 @@ saved there by default.
 
 You can create a new script using \textbf{CTRL + SHIFT + N} as well.
 
-\textbf{2. Enter these data into vectors. Call the vectors whatever you
-would like. Should you enter the data as vectors by rows, or by columns?
-(Hint: remember the properties of vectors).}
+\textbf{2. Enter these data (found in Table \ref{tab:ex-1-table-pdf})
+into vectors. Call the vectors whatever you would like. Should you enter
+the data as vectors by rows, or by columns? (Hint: remember the
+properties of vectors).}
 
 Because you have both numeric and character data classes for a single
 row, you should enter them by columns:
@@ -7171,12 +7164,12 @@ directory and creating \texttt{Ex1B.R},
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{dat =}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"ponds.csv"}\NormalTok{)}
+\NormalTok{dat =}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"..Data/ponds.csv"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \textbf{2. Calculate some basic summary statistics of your data using
-the \texttt{summary} function.}
+the \texttt{summary()} function.}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7187,7 +7180,7 @@ the \texttt{summary} function.}
 \textbf{3. Calculate the mean chlorophyll \emph{a} for each pond
 (\emph{Hint: pond is a grouping variable}).}
 
-Remember the \texttt{tapply} function. The first argument is the
+Remember the \texttt{tapply()} function. The first argument is the
 variable you wish to calculate a statistic for (chlorophyll), the second
 argument is the grouping variable (pond), and the third argument is the
 function you wish to apply.
@@ -7199,8 +7192,8 @@ function you wish to apply.
 \end{Shaded}
 
 \textbf{4. Calculate the mean number of \emph{Chaoborus} for each
-treatment in each pond using \texttt{tapply}. (\emph{Hint: You can group
-by two variables with:}
+treatment in each pond using \texttt{tapply()}. (\emph{Hint: You can
+group by two variables with:}
 \texttt{tapply(dat\$var,\ list(dat\$grp1,\ dat\$grp2),\ fun)}.}
 
 The hint pretty much gives this one away:
@@ -7211,11 +7204,11 @@ The hint pretty much gives this one away:
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{5. Use the more general \texttt{apply} function to calculate the
-variance for each zooplankton taxa found only in pond S-28.}
+\textbf{5. Use the more general \texttt{apply()} function to calculate
+the variance for each zooplankton taxa found only in pond S-28.}
 
 First, subset only the correct pond and the zooplankton counts. Then,
-specify you want the \texttt{var} function applied to the second
+specify you want the \texttt{var()} function applied to the second
 dimension (columns). Finally, because \texttt{chao} has an \texttt{NA},
 you'll need to include the \texttt{na.rm\ =\ T} argument.
 
@@ -7228,16 +7221,16 @@ you'll need to include the \texttt{na.rm\ =\ T} argument.
 \textbf{6. Create a new variable called \texttt{prod} in the data frame
 that represents the quantity of chlorophyll \emph{a} in each replicate.
 If the chlorophyll \emph{a} in the replicate is greater than 30 give it
-a ``high'', otherwise give it a ``low''. (\emph{Hint: are you asking a
-question of a single number or multiple numbers? How should this change
+a ``high'', otherwise give it a ``low''. (\emph{Hint: are you asking R
+to respond to one question or multiple questions? How should this change
 the strategy you use?})}
 
 Remember, you can add a new column to a data set using the
 \texttt{df\$new\_column\ =\ something()}. If the column
 \texttt{new\_column} doesn't exist, it will be added. If it exists
-already, it will be written over. You can use \texttt{ifelse} (not
-\texttt{if}!) to ask if each chlorophyll measurement was greater or less
-than 30, and to do something differently based on the result:
+already, it will be written over. You can use \texttt{ifelse()} (not
+\texttt{if()}!) to ask if each chlorophyll measurement was greater or
+less than 30, and to do something differently based on the result:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7246,12 +7239,12 @@ than 30, and to do something differently based on the result:
 \end{Shaded}
 
 \textbf{Bonus 1. Use \texttt{?table} to figure out how you can use
-\texttt{table} to count how many observations of high and low there were
-in each treatment (\emph{Hint: \texttt{table} will have only two
+\texttt{table()} to count how many observations of high and low there
+were in each treatment (\emph{Hint: \texttt{table()} will have only two
 arguments.}).}
 
 After looking through the help file, you should have seen that
-\texttt{table} has a \texttt{...} as its first argument. After reading
+\texttt{table()} has a \texttt{...} as its first argument. After reading
 about what it takes there, you would see it is expecting:
 
 \begin{quote}
@@ -7277,7 +7270,7 @@ So if you ran:
 You would get a table showing how many high and low chlorophyll
 observations were made for each treatment.
 
-\textbf{Bonus 2. Create a new function called \texttt{product} that
+\textbf{Bonus 2. Create a new function called \texttt{product()} that
 multiplies any two numbers you specify.}
 
 See Section \ref{user-funcs} for more details on user-defined functions.
@@ -7288,7 +7281,6 @@ Your function might look like this:
 \NormalTok{product =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(a,b) \{}
 \NormalTok{  a }\OperatorTok{*}\StringTok{ }\NormalTok{b}
 \NormalTok{\}}
-
 \KeywordTok{product}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -7298,7 +7290,7 @@ Your function might look like this:
 \end{verbatim}
 
 \textbf{Bonus 3. Modify your function to print a message to the console
-and return the value \texttt{if} it meets a condition and to print
+and return the value \texttt{if()} it meets a condition and to print
 another message and not return the value if it doesn't.}
 
 \begin{Shaded}
@@ -7336,12 +7328,195 @@ another message and not return the value if it doesn't.}
 ## The result of a * b is less than 30 so you don't care what it is
 \end{verbatim}
 
-The use of \texttt{cat} here is similar to \texttt{print}, but it is
+The use of \texttt{cat()} here is similar to \texttt{print()}, but it is
 better for printing messages to the console.
 
 \hypertarget{ex2-answers}{\section*{Exercise 2
 Solutions}\label{ex2-answers}}
 \addcontentsline{toc}{section}{Exercise 2 Solutions}
+
+\textbf{1. Create a new R script called \texttt{Ex2.R} and save it in
+the \texttt{Chapter2} directory. Read in the data set
+\texttt{sockeye.csv}. Produce a basic summary of the data and take note
+of the data classes, missing values (\texttt{NA}), and the relative
+ranges for each variable.}
+
+\emph{File \textgreater{} New File \textgreater{} R Script}, then
+\emph{File \textgreater{} Save \textgreater{} call it Ex2.R
+\textgreater{} Save}. Then:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dat =}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"../Data/sockeye.csv"}\NormalTok{)}
+\KeywordTok{summary}\NormalTok{(dat)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{2. Make a histogram of fish weights for only hatchery-origin
+fish. Set \texttt{breaks\ =\ 10} so you can see the distribution more
+clearly.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(dat[dat}\OperatorTok{$}\NormalTok{type }\OperatorTok{==}\StringTok{ "hatch"}\NormalTok{,}\StringTok{"weight"}\NormalTok{], }\DataTypeTok{breaks =} \DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{3. Make a scatter plot of the fecundity of females as a function
+of their body weight for wild fish only. Use whichever plotting
+character (\texttt{pch}) and color (\texttt{col}) you wish. Change the
+main title and axes labels to reflect what they mean. Change the x-axis
+limits to be 600 to 3000 and the y-axis limits to be 0 to 3500.
+(\emph{Hint: The \texttt{NAs} will not cause a problem. R will only use
+points where there are paired records for both \texttt{x} and \texttt{y}
+and ignore otherwise}).}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(fecund }\OperatorTok{~}\StringTok{ }\NormalTok{weight, }\DataTypeTok{data =}\NormalTok{ dat[dat}\OperatorTok{$}\NormalTok{type }\OperatorTok{==}\StringTok{ "wild"}\NormalTok{,],}
+     \DataTypeTok{main =} \StringTok{"Fecundity vs. Weight"}\NormalTok{,}
+     \DataTypeTok{pch =} \DecValTok{17}\NormalTok{, }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{cex =} \FloatTok{1.5}\NormalTok{,}
+     \DataTypeTok{xlab =} \StringTok{"Weight (g)"}\NormalTok{, }\DataTypeTok{xlim =} \KeywordTok{c}\NormalTok{(}\DecValTok{600}\NormalTok{, }\DecValTok{3000}\NormalTok{),}
+     \DataTypeTok{ylab =} \StringTok{"Fecundity (#eggs)"}\NormalTok{, }\DataTypeTok{ylim =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{3500}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+All of these arguments are found in Table \ref{tab:plot-arg-table-pdf}.
+
+\textbf{4. Add points that do the same thing but for hatchery fish. Use
+a different plotting character and a different color.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{points}\NormalTok{(fecund }\OperatorTok{~}\StringTok{ }\NormalTok{weight, }\DataTypeTok{data =}\NormalTok{ dat[dat}\OperatorTok{$}\NormalTok{type }\OperatorTok{==}\StringTok{ "wild"}\NormalTok{,],}
+       \DataTypeTok{pch =} \DecValTok{15}\NormalTok{, }\DataTypeTok{col =} \StringTok{"blue"}\NormalTok{, }\DataTypeTok{cex =} \FloatTok{1.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{5. Add a legend to the plot to differentiate between the two
+types of fish.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{legend}\NormalTok{(}\StringTok{"bottomright"}\NormalTok{,}
+       \DataTypeTok{legend =} \KeywordTok{c}\NormalTok{(}\StringTok{"Wild"}\NormalTok{, }\StringTok{"Hatchery"}\NormalTok{),}
+       \DataTypeTok{col =} \KeywordTok{c}\NormalTok{(}\StringTok{"blue"}\NormalTok{, }\StringTok{"red"}\NormalTok{),}
+       \DataTypeTok{pch =} \KeywordTok{c}\NormalTok{(}\DecValTok{15}\NormalTok{, }\DecValTok{17}\NormalTok{),}
+       \DataTypeTok{bty =} \StringTok{"n"}\NormalTok{,}
+       \DataTypeTok{pt.cex =} \FloatTok{1.5}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Make sure the correct elements of the \texttt{legend}, \texttt{col}, and
+\texttt{pch} arguments match the way they were specified in the
+\texttt{plot()} and \texttt{lines()} calls!
+
+\textbf{6. Make a multi-panel plot in a new window with box-and-whisker
+plots that compare (1) spawner weight, (2) fecundity, and (3) egg size
+between hatchery and wild fish. (\emph{Hint: each comparison will be on
+its own panel}). Change the titles of each plot to reflect what you are
+comparing.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vars =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"weight"}\NormalTok{, }\StringTok{"fecund"}\NormalTok{, }\StringTok{"egg_size"}\NormalTok{)}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{))}
+\KeywordTok{sapply}\NormalTok{(vars, }\ControlFlowTok{function}\NormalTok{(v) \{}
+  \KeywordTok{plot}\NormalTok{(dat[,v] }\OperatorTok{~}\StringTok{ }\NormalTok{dat[,}\StringTok{"type"}\NormalTok{], }\DataTypeTok{xlab =} \StringTok{""}\NormalTok{, }\DataTypeTok{ylab =}\NormalTok{ v)}
+\NormalTok{\})}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{7. Save the plot as a .png file in your working directory with a
+file name of your choosing.}
+
+One way to do this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ppi =}\StringTok{ }\DecValTok{600}
+\KeywordTok{png}\NormalTok{(}\StringTok{"SockeyeComparisons.png"}\NormalTok{, }\DataTypeTok{h =} \DecValTok{5} \OperatorTok{*}\StringTok{ }\NormalTok{ppi, }\DataTypeTok{w =} \DecValTok{7} \OperatorTok{*}\StringTok{ }\NormalTok{ppi, }\DataTypeTok{res =}\NormalTok{ ppi)}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{))}
+\KeywordTok{sapply}\NormalTok{(vars, }\ControlFlowTok{function}\NormalTok{(v) \{}
+  \KeywordTok{plot}\NormalTok{(dat[,v] }\OperatorTok{~}\StringTok{ }\NormalTok{dat[,}\StringTok{"type"}\NormalTok{], }\DataTypeTok{xlab =} \StringTok{""}\NormalTok{, }\DataTypeTok{ylab =}\NormalTok{ v)}
+\NormalTok{\})}
+\KeywordTok{dev.off}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection*{EXERCISE 2 BONUS}\label{exercise-2-bonus-1}
+\addcontentsline{toc}{subsection}{EXERCISE 2 BONUS}
+
+\textbf{Bonus 1. Make a bar plot comparing the mean survival to eyed-egg
+stage for each type of fish (hatchery and wild). Add error bars that
+represent 95\% confidence intervals.}
+
+First, adapt the \texttt{calc\_se()} function to be able to cope with
+\texttt{NAs}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{calc_se =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, }\DataTypeTok{na.rm =}\NormalTok{ F) \{}
+  \CommentTok{# include a option to remove NAs before calculating SE}
+  \ControlFlowTok{if}\NormalTok{ (na.rm) x =}\StringTok{ }\NormalTok{x[}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(x)]}
+  
+  \KeywordTok{sqrt}\NormalTok{(}\KeywordTok{sum}\NormalTok{((x }\OperatorTok{-}\StringTok{ }\KeywordTok{mean}\NormalTok{(x))}\OperatorTok{^}\DecValTok{2}\NormalTok{)}\OperatorTok{/}\NormalTok{(}\KeywordTok{length}\NormalTok{(x)}\OperatorTok{-}\DecValTok{1}\NormalTok{))}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(}\KeywordTok{length}\NormalTok{(x))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Then, calculate the mean and standard error for the \% survival to the
+eyed-egg stage:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mean_surv =}\StringTok{ }\KeywordTok{tapply}\NormalTok{(dat}\OperatorTok{$}\NormalTok{survival, dat}\OperatorTok{$}\NormalTok{type, mean, }\DataTypeTok{na.rm =}\NormalTok{ T)}
+\NormalTok{se_surv =}\StringTok{ }\KeywordTok{tapply}\NormalTok{(dat}\OperatorTok{$}\NormalTok{survival, dat}\OperatorTok{$}\NormalTok{type, calc_se, }\DataTypeTok{na.rm =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+Then, get the 95\% confidence interval:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lwr_ci_surv =}\StringTok{ }\NormalTok{mean_surv }\OperatorTok{-}\StringTok{ }\FloatTok{1.96} \OperatorTok{*}\StringTok{ }\NormalTok{se_surv}
+\NormalTok{upr_ci_surv =}\StringTok{ }\NormalTok{mean_surv }\OperatorTok{+}\StringTok{ }\FloatTok{1.96} \OperatorTok{*}\StringTok{ }\NormalTok{se_surv}
+\end{Highlighting}
+\end{Shaded}
+
+Finally, plot the means and intervals:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mp =}\StringTok{ }\KeywordTok{barplot}\NormalTok{(mean_surv, }\DataTypeTok{ylim =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\KeywordTok{max}\NormalTok{(upr_ci_surv)))}
+\KeywordTok{arrows}\NormalTok{(mp, lwr_ci_surv, mp, upr_ci_surv, }\DataTypeTok{length =} \FloatTok{0.1}\NormalTok{, }\DataTypeTok{code =} \DecValTok{3}\NormalTok{, }\DataTypeTok{angle =} \DecValTok{90}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Bonus 2. Change the names of each bar, the main plot title, and
+the y-axis title. }
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mp =}\StringTok{ }\KeywordTok{barplot}\NormalTok{(mean_surv, }\DataTypeTok{ylim =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\KeywordTok{max}\NormalTok{(upr_ci_surv)),}
+             \DataTypeTok{main =} \StringTok{"% Survival to Eyed-Egg Stage by Origin"}\NormalTok{,}
+             \DataTypeTok{ylab =} \StringTok{"% Survival to Eyed-Egg Stage"}\NormalTok{,}
+             \DataTypeTok{names.arg =} \KeywordTok{c}\NormalTok{(}\StringTok{"Hatchery"}\NormalTok{, }\StringTok{"Wild"}\NormalTok{))}
+\KeywordTok{arrows}\NormalTok{(mp, lwr_ci_surv, mp, upr_ci_surv, }\DataTypeTok{length =} \FloatTok{0.1}\NormalTok{, }\DataTypeTok{code =} \DecValTok{3}\NormalTok{, }\DataTypeTok{angle =} \DecValTok{90}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Bonus 3. Adjust the margins so there are 2 lines on the bottom,
+5 on the left, 2 on the top, and 1 on the right.}
+
+Place this line above your \texttt{barplot(...)} code:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{ex3-answers}{\section*{Exercise 3
 Solutions}\label{ex3-answers}}
