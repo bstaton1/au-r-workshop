@@ -5,6 +5,8 @@ rm(list = ls(all = T))
 library(dplyr)
 library(knitr)
 library(kableExtra)
+knitr::opts_chunk$set(fig.align = "center")
+set.seed(1)
 ```
 
 ## Exercise 1A Solutions {-#ex1a-answers}
@@ -97,14 +99,14 @@ First, did you find the error? It is the `#VALUE!` entry in the `chao` column. Y
 
 **1.  Read in the data to R and assign it to an object.**
 
-After placing `ponds.csv` (and all of the other ) to your working directory and creating `Ex1B.R`, 
+After placing `ponds.csv` (and all of the other data files) in the location `C:/Users/YOU/Documents/R-Book/Data` and creating `Ex1B.R` in your working directory: 
 
 ```{r, echo = F}
 dat = read.csv("Data/ponds.csv")
 ```
 
 ```{r, eval = F}
-dat = read.csv("..Data/ponds.csv")
+dat = read.csv("../Data/ponds.csv")
 ```
 
 **2.	Calculate some basic summary statistics of your data using the `summary()` function.**
@@ -269,8 +271,6 @@ sapply(vars, function(v) {
 dev.off()
 ```
 
-### EXERCISE 2 BONUS {-}
-
 **Bonus 1.  Make a bar plot comparing the mean survival to eyed-egg stage for each type of fish (hatchery and wild). Add error bars that represent 95% confidence intervals.**
 
 First, adapt the `calc_se()` function to be able to cope with `NAs`:
@@ -330,6 +330,109 @@ par(mar = c(2,5,2,1))
 rm(list = ls(all = T))
 ```
 
+**1.  Perform the same analyses as conducted in Section \@ref(lm) (simple linear regression, ANOVA, ANCOVA, ANCOVA with interaction), using `egg_size` as the response variable. The predictor variables you should use are `type` (categorical) and `year`. You should plot the fit for each model separately and perform an AIC analysis. Practice interpretting the coefficient estimates.**
+
+First, read in the data:
+
+```{r, eval = F}
+dat = read.csv("../Data/sockeye.csv")
+```
+
+```{r, echo = F}
+dat = read.csv("Data/sockeye.csv")
+```
+
+```{r}
+# regression
+fit1 = lm(egg_size ~ year, data = dat)
+# anova
+fit2 = lm(egg_size ~ type, data = dat)
+# ancova
+fit3 = lm(egg_size ~ year + type, data = dat)
+# ancova with interaction
+fit4 = lm(egg_size ~ year * type, data = dat)
+```
+
+**2.  Perform the same analyses as conducted in Section \@ref(glms), this time using a success being having greater than 80% survival to the eyed-egg stage. Use `egg_size` and `type` as the predictor variables. You should plot the fitted lines for each model separately and perform an AIC analysis. Practice interpretting the coefficient estimates.**
+
+```{r}
+dat$binary = ifelse(dat$survival < 80, 0, 1)
+
+fit1 = glm(binary ~ egg_size, data = dat, family = binomial)
+fit2 = glm(binary ~ type, data = dat, family = binomial)
+fit3 = glm(binary ~ egg_size + type, data = dat, family = binomial)
+fit4 = glm(binary ~ egg_size * type, data = dat, family = binomial)
+```
+
+**3.  Make the same graphic as in Figure \@ref(fig:norm-plots) with at least one of the other distributions listed in Table `r if(is_html_output()) "\\@ref(tab:dist-table-html)" else "\\@ref(tab:dist-table-pdf)"` (other than the multinomial - being a multivariate distribution, it wouldn't work well with this code). Try thinking of a variable from your work that meets the uses of each distribution in Table `r if(is_html_output()) "\\@ref(tab:dist-table-html)" else "\\@ref(tab:dist-table-pdf)"` (or one that's not listed). If you run into trouble, check out the help file for that distribution.**
+
+This example uses the lognormal distribution, with `meanlog = 10` and `sdlog = 0.25`:
+
+```{r}
+# parameters
+meanlog = 10; sdlog = 0.25
+
+# a sequence of possible random variables (fish lengths)
+lengths = seq(0, 8e4, length = 100)
+
+# a sequence of possible cumulative probabilities
+cprobs = seq(0, 1, length = 100)
+
+densty = dlnorm(x = lengths, meanlog, sdlog)  # takes specific lengths
+cuprob = plnorm(q = lengths, meanlog, sdlog)  # takes specific lengths
+quants = qlnorm(p = cprobs, meanlog, sdlog)   # takes specific probabilities
+random = rlnorm(n = 1e4, meanlog, sdlog)      # takes a number of random deviates to make
+
+# set up plotting region: see ?par for more details
+# notice the tricks to clean up the plot
+par(
+  mfrow = c(2,2),    # set up 2x2 regions
+  mar = c(3,3,3,1),  # set narrower margins
+  xaxs = "i",        # remove "x-buffer"
+  yaxs = "i",        # remove "y-buffer"
+  mgp = c(2,0.4,0),  # bring in axis titles ([1]) and tick labels ([2])
+  tcl = -0.25        # shorten tick marks
+)
+
+plot(densty ~ lengths, type = "l", lwd = 3, main = "dlnorm()",
+     xlab = "Random Variable", ylab = "Density", las = 1)
+plot(cuprob ~ lengths, type = "l", lwd = 3, main = "plnorm()",
+     xlab = "Random Variable", ylab = "Cumulative Probability", las = 1)
+plot(quants ~ cprobs, type = "l", lwd = 3, main = "qlnorm()",
+     xlab = "P", ylab = "P Quantile Random Variable", las = 1)
+hist(random, breaks = 50, col = "grey", main = "rlnorm()",
+     xlab = "Fish Length (mm)", ylab = "Frequency", las = 1)
+box() # add borders to the histogram
+```
+
+**Bonus 1.  Fit a von Bertalannfy growth model to the data found in the `growth.csv` data file. Visit Section \@ref(boot-test-ex) (particularly Equation \@ref(eq:vonB)) for details on this model. Use the initial values: `linf = 600`, `k = 0.3`, `t0 = -0.2`. Plot the fitted line over top of the data.** 
+
+Read in the data:
+
+```{r, eval = F}
+dat = read.csv("../Data/growth.csv")
+```
+
+```{r, echo = F}
+dat = read.csv("Data/growth.csv")
+```
+
+Fit the model:
+
+```{r}
+fit = nls(length ~ linf * (1 - exp(-k * (age - t0))),
+          data = dat, start = c(linf = 600, k = 0.3, t0 = -0.2))
+```
+
+Plot the fit:
+
+```{r}
+ages = seq(min(dat$age), max(dat$age), length = 100)
+pred_length = predict(fit, newdata = data.frame(age = ages))
+
+plot(length ~ age, data = dat)
+lines(pred_length ~ ages, lwd = 3)
+```
 
 ## Exercise 4A Solutions {-#ex4a-answers}
 
@@ -337,6 +440,38 @@ rm(list = ls(all = T))
 rm(list = ls(all = T))
 ```
 
+**1.  Simulate flipping an unfair coin (probability of heads = 0.6) 100 times using `rbinom()`. Count the number of heads and tails.**
+
+```{r, eval = F}
+flips = rbinom(n = 100, size = 1, prob = 0.6)
+flips = ifelse(flips == 1, "heads", "tails")
+table(flips)
+```
+
+**2.  Simulate flipping the same unfair coin 100 times, but using `sample()` instead. Determine what fraction of the flips resulted in heads.**
+
+```{r, eval = F}
+flips = sample(x = c("heads", "tails"), size = 100, replace = T, prob = c(0.6, 0.4))
+table(flips)["heads"]/length(flips)
+```
+
+**3.  Simulate rolling a fair 6-sided die 100 times using `sample()`. Determine what fraction of the rolls resulted in an even number.**
+
+```{r, eval = F}
+rolls = sample(x = 1:6, size = 100, replace = T)
+mean(rolls %in% c(2,4,6))
+
+```
+
+**4.  Simulate rolling the same die 100 times, but use the function `rmultinom()` instead. Look at the help file for details on how to use this function. Determine what fraction of the rolls resulted in an odd number.**
+
+```{r, eval = F}
+rolls = rmultinom(n = 100, size = 1, prob = rep(1, 6))
+dim(rolls) #  rows are different outcomes, columns are iterations
+
+# get the fraction of odd numbered outcomes
+sum(rolls[c(1,3,5),])/sum(rolls)
+```
 
 ## Exercise 4B Solutions {-#ex4b-answers}
 
@@ -344,6 +479,45 @@ rm(list = ls(all = T))
 rm(list = ls(all = T))
 ```
 
+**1.  Adapt this example to investigate another univariate probability distribution, like `-lnorm()`, `-pois()`, or `-beta()`. See the help files (e.g., `?rpois`) for details on how to use each function.**
+
+This solution uses the `rbeta()`, `qbeta()`, and `pbeta()` functions. These are for the beta distribution, which has random variables that are between zero and one.
+
+First, create the parameters of the distribution of interest:
+
+```{r}
+mean_p = 0.6  # the mean of the random variable
+B_sum = 100   # controls the variance: bigger values are lower variance
+
+# get the shape parameters of the beta dist
+beta_shape = c(mean_p * B_sum, (1 - mean_p) * B_sum)
+```
+
+Then, generate random samples from this distribution:
+
+```{r}
+random = rbeta(100, beta_shape[1], beta_shape[2])
+```
+
+Then, test the `qbeta()` function:
+
+```{r}
+p = seq(0.01, 0.99, 0.01)
+random_q = quantile(random, p)
+beta_q = qbeta(p, beta_shape[1], beta_shape[2])
+plot(beta_q ~ random_q); abline(c(0,1))
+```
+
+Then, test the `pbeta() function:
+
+```{r}
+q = seq(0, 1, 0.05)
+random_cdf = ecdf(random)
+random_p = random_cdf(q)
+beta_p = pbeta(q, beta_shape[1], beta_shape[2])
+plot(beta_p ~ q, type = "l", col = "blue")
+points(random_p ~ q, col = "red")
+```
 
 ## Exercise 4C Solutions {-#ex4c-answers}
 
@@ -351,6 +525,119 @@ rm(list = ls(all = T))
 rm(list = ls(all = T))
 ```
 
+**1.  What sample size `n` do you need to have a power of 0.8 of detecting a significant difference between the two tagging methods?**
+
+Simply increase the maximum sample size considered and re-run the whole analysis:
+
+```{r, eval = F}
+n_try = seq(20, 200, 20)
+```
+
+```{r, echo = F}
+sim_fit = function(n, p_old = 0.10, p_new = 0.25) {
+  # create the data
+  dead_old = rbinom(n, size = 1, prob = p_old)
+  dead_new = rbinom(n, size = 1, prob = p_new)
+  # create the predictor variable
+  method = rep(c("old", "new"), each = n)
+  # create a data.frame to pass to glm
+  df = data.frame(dead = c(dead_old, dead_new), method = method)
+  # relevel so old is the reference
+  df$method = relevel(df$method, ref = "old")
+  # fit the model
+  fit = glm(dead ~ method, data = df, family = binomial)
+  # extract the p-value
+  pval = summary(fit)$coef[2,4]
+  # determine if it was found to be significant
+  sig_pval = pval < 0.05
+  # obtain the estimated mortality rate for the new method
+  p_new_est = predict(fit, data.frame(method = c("new")),
+                      type = "response")
+  
+  # determine if it is +/- 5% from the true value
+  prc_est = p_new_est >= (p_new - 0.05) & p_new_est <= (p_new + 0.05)
+  # return a vector with these two elements
+  c(sig_pval = sig_pval, prc_est = unname(prc_est))
+}
+
+# run the analysis
+I = 500  # the number of replicates at each sample size
+n_try = seq(20, 200, 20)  # the test sample sizes
+N = length(n_try)      # count them
+
+# containers: 
+out_sig = matrix(NA, I, N) # matrix with I rows and N columns
+out_prc = matrix(NA, I, N) # matrix with I rows and N columns
+for (n in 1:N) {
+  for (i in 1:I) {
+    tmp = sim_fit(n = n_try[n])     # run sim
+    out_sig[i,n] = tmp["sig_pval"]  # extract and store significance metric
+    out_prc[i,n] = tmp["prc_est"]   # extract and store precision metric
+  }
+}
+
+par(mfrow = c(1,2))
+plot(apply(out_sig, 2, mean) ~ n_try, type = "l",
+     xlab = "Tagged Fish per Treatment",
+     ylab = "Probability of Finding Effect (Power)")
+plot(apply(out_prc, 2, mean) ~ n_try, type = "l",
+     xlab = "Tagged Fish per Treatment",
+     ylab = "Probability of A Precise Estimate")
+```
+
+It appears you need about 100 fish per treatment to be able to detect an effect of this size.
+
+**2.  How do the inferences from the power analysis change if you are interested in `p_new = 0.4` instead of `p_new = 0.25`? Do you need to tag more or fewer fish in this case?**
+
+This is a argument to your function, so simply change its setting when you execute the analysis:
+
+```{r, eval = F}
+#...more code above this
+tmp = sim_fit(n = n_try[n], p_new = 0.4)
+#more code after this...
+```
+
+```{r, echo = F}
+
+# run the analysis
+I = 500  # the number of replicates at each sample size
+n_try = seq(20, 200, 20)  # the test sample sizes
+N = length(n_try)      # count them
+
+# containers: 
+out_sig = matrix(NA, I, N) # matrix with I rows and N columns
+out_prc = matrix(NA, I, N) # matrix with I rows and N columns
+for (n in 1:N) {
+  for (i in 1:I) {
+    tmp = sim_fit(n = n_try[n], p_new = 0.4)     # run sim
+    out_sig[i,n] = tmp["sig_pval"]  # extract and store significance metric
+    out_prc[i,n] = tmp["prc_est"]   # extract and store precision metric
+  }
+}
+
+par(mfrow = c(1,2))
+plot(apply(out_sig, 2, mean) ~ n_try, type = "l",
+     xlab = "Tagged Fish per Treatment",
+     ylab = "Probability of Finding Effect (Power)")
+plot(apply(out_prc, 2, mean) ~ n_try, type = "l",
+     xlab = "Tagged Fish per Treatment",
+     ylab = "Probability of A Precise Estimate")
+```
+
+Because the effect is larger, it is easier to detect with fewer observations.
+
+**3.  Your analysis takes a bit of time to run so you are interested in tracking its progress. Add a progress message to your nested `for()` loop that will print the sample size currently being analyzed.** 
+
+Simply insert the `cat()` line in the appropriate place in your loop. This is a handy trick for long-running simulations.
+
+```{r, eval = F}
+for (n in 1:N) {
+  cat("\r", "Sample Size = ", n_try[n])
+  for (i in 1:I) {
+    ...
+  }
+}
+```
 
 ## Exercise 4D Solutions {-#ex4d-answers}
 
@@ -358,16 +645,497 @@ rm(list = ls(all = T))
 rm(list = ls(all = T))
 ```
 
+**1.  Add an argument to `ricker_sim()` that will give the user an option to create a plot that shows the time series of recruitment, harvest, and escapement all on the same plot. Set the default to be to not plot the result, in case you forget to turn it off before performing the Monte Carlo analysis.**
+
+Change your function to look something like this:
+
+```{r}
+ricker_sim = function(ny, params, U, plot = F) {
+  # extract the parameters out by name:
+  alpha = params["alpha"]
+  beta = params["beta"]
+  sigma = params["sigma"]
+  # create containers:
+  # yep, you can do this
+  R = S = H = NULL
+  # initialize the population in the first year
+    # start the population at being fished at 40%
+    # with lognormal error
+  R[1] = log(alpha * (1 - 0.4))/(beta * (1 - 0.4)) * exp(rnorm(1, 0, sigma))
+  S[1] = R[1] * (1 - U)
+  H[1] = R[1] * U
+  
+  # carry simulation forward through time
+  for (y in 2:ny) {
+    # use the ricker function with random lognormal white noise
+    R[y] = S[y-1] * alpha * exp(-beta * S[y-1] + rnorm(1, 0, sigma))
+    #harvest and spawners are the same as before
+    S[y] = R[y] * (1 - U)
+    H[y] = R[y] * U
+  }
+  
+  if (plot) {
+    # the I() lets you calculate a quantity within the plot call
+    plot(I(R/1e6) ~ seq(1,ny), type = "l", col = "black",
+         xlab = "Year", ylab = "State (millions of fish)",
+         ylim = range(c(R, S, H)/1e6) + c(0,0.2))
+    lines(I(S/1e6) ~ seq(1,ny), col = "blue")
+    lines(I(H/1e6) ~ seq(1,ny), col = "red")
+    legend("top", legend = c("R", "S", "H"), lty = 1, bty = "n",
+           col = c("black", "blue", "red"), horiz = T)
+  }
+  
+  # wrap output in a list object
+  list(
+    mean_H = mean(H),
+    mean_S = mean(S)
+    )
+}
+```
+
+Then use the function:
+
+```{r}
+ricker_sim(ny = 20, params = c(alpha = 6,
+                               beta = 1e-7,
+                               sigma = 0.4),
+           U = 0.4, plot = T)
+```
+
+**2.  Add an _error handler_ to `ricker_sim()` that will cause the function to return an error `if()` the names of the vector passed to the `param` argument aren't what the function is expecting. You can use stop("Error Message Goes Here") to have your function stop and return an error.**
+
+Error handlers are useful: they catch common errors that someone might make when using your function and return and informative error. Insert this at the top of your function:
+
+```{r, eval = F}
+if (!all(names(params) %in% c("alpha", "beta", "sigma"))) {
+  stop("the `params` argument must take a named vector
+       with three elements: 'alpha', 'beta', and 'sigma'")
+}
+```
+
+This says, if not all of the names of the params argument are in the specified vector, then stop the execution of the function and return the error message.
+
+**3.  How do the results of the trade-off analysis differ if the process error was larger (a larger value of $\sigma$)?**
+
+Simply increase the process error variance term (the `sigma` element of `params`) to be 0.6 and re-run the analysis:
+
+```{r, echo = F}
+n_rep = 5000
+U_try = seq(0.4, 0.6, 0.01)
+params1 = c(alpha = 6, beta = 1e-7, sigma = 0.4)
+params2 = c(alpha = 6, beta = 1e-7, sigma = 0.6)
+S_out1 = sapply(U_try, function(u) {
+  replicate(n = n_rep, expr = {
+    ricker_sim(U = u, ny = 20, params = params1)$mean_S/1e6
+  })
+})
+S_out2 = sapply(U_try, function(u) {
+  replicate(n = n_rep, expr = {
+    ricker_sim(U = u, ny = 20, params = params2)$mean_S/1e6
+  })
+})
+H_out1 = sapply(U_try, function(u) {
+  replicate(n = n_rep, expr = {
+    ricker_sim(U = u, ny = 20, params = params1)$mean_H/1e6
+  })
+})
+H_out2 = sapply(U_try, function(u) {
+  replicate(n = n_rep, expr = {
+    ricker_sim(U = u, ny = 20, params = params2)$mean_H/1e6
+  })
+})
+Smeet1 = S_out1 > (0.75 * 13)
+Smeet2 = S_out2 > (0.75 * 13)
+Hmeet1 = H_out1 > (1.2 * 8.5)
+Hmeet2 = H_out2 > (1.2 * 8.5)
+p_Smeet1 = apply(Smeet1, 2, mean)
+p_Smeet2 = apply(Smeet2, 2, mean)
+p_Hmeet1 = apply(Hmeet1, 2, mean)
+p_Hmeet2 = apply(Hmeet2, 2, mean)
+
+# the U levels to highlight on plot
+plot_U = seq(0.4, 0.6, 0.05)
+# create an empty plot
+par(mar = c(4,5,1,1))
+plot(p_Smeet1 ~ p_Hmeet1, type = "n",
+     xlab = "Probability of Meeting Harvest Criterion",
+     ylab = "Probability of Meeting Escapement Criterion")
+# add gridlines
+abline(v = seq(0, 1, 0.1), col = "grey")
+abline(h = seq(0, 1, 0.1), col = "grey")
+#draw on the tradeoff curve
+lines(p_Smeet1 ~ p_Hmeet1, type = "l", lwd = 2)
+lines(p_Smeet2 ~ p_Hmeet2, type = "l", lwd = 2, col = "blue")
+# add points and text for particular U policies
+points(p_Smeet1[U_try %in% plot_U] ~ p_Hmeet1[U_try %in% plot_U],
+       pch = 16, cex = 1.5)
+text(p_Smeet1[U_try %in% plot_U] ~ p_Hmeet1[U_try %in% plot_U],
+     labels = U_try[U_try %in% plot_U], pos = c(1,1,1,2,2))
+points(p_Smeet2[U_try %in% plot_U] ~ p_Hmeet2[U_try %in% plot_U],
+       pch = 16, cex = 1.5, col = "blue")
+text(p_Smeet2[U_try %in% plot_U] ~ p_Hmeet2[U_try %in% plot_U],
+     labels = U_try[U_try %in% plot_U], pos = c(1,1,1,2,2), col = "blue")
+```
+
+The blue line is the higher process error scenario. It seems that if the process error was higher, you would need to sacrifice more in the escapement objective to obtain the same level of the harvest objective than in the case with lower process error. This makes sense: more variability means more iterations will have escapement less than the criterion. 
+
+**4.  Add implementation error to the harvest policy. That is, if the target exploitation rate is $U$, make the real exploitation rate in year $y$ be: $U_y \sim Beta(a,b)$, where $a = 100U$ and $b = 100(1-U)$. You can make there be more implementation error by inserting a smaller number other than 100 here. How does this affect the trade-off analysis?**
+
+For this, add a `B_sum` argument to your function (this represents the 100 value in the question) and use a different randomly generated exploitation rate each year according to the directions:
+
+```{r}
+ricker_sim = function(ny, params, U, B_sum, plot = F) {
+  
+  if (!all(names(params) %in% c("alpha", "beta", "sigma"))) {
+    stop("the `params` argument must take a named 
+         vector with three elements: 'alpha', 'beta', and 'sigma'")
+  }
+  
+  # obtain the actual exploitation rates each year
+  # managers shoot for U, but because of imperfect implementation
+  # and errors in abundance estimation, it varies
+  U_real = rbeta(ny, 100 * U, 100 * (1 - U))
+  
+  # extract the parameters out by name:
+  alpha = params["alpha"]
+  beta = params["beta"]
+  sigma = params["sigma"]
+  # create containers:
+  # yep, you can do this
+  R = S = H = NULL
+  # initialize the population in the first year
+    # start the population at being fished at 40%
+    # with lognormal error
+  R[1] = log(alpha * (1 - 0.4))/(beta * (1 - 0.4)) * exp(rnorm(1, 0, sigma))
+  S[1] = R[1] * (1 - U_real[1])
+  H[1] = R[1] * U_real[1]
+  
+  # carry simulation forward through time
+  for (y in 2:ny) {
+    # use the ricker function with random lognormal white noise
+    R[y] = S[y-1] * alpha * exp(-beta * S[y-1] + rnorm(1, 0, sigma))
+    #harvest and spawners are the same as before
+    S[y] = R[y] * (1 - U_real[y])
+    H[y] = R[y] * U_real[y]
+  }
+  
+  if (plot) {
+    plot(I(R/1e6) ~ seq(1,ny), type = "l", col = "black",
+         xlab = "Year", ylab = "State (millions of fish)",
+         ylim = range(c(R, S, H)/1e6) + c(0,0.2))
+    lines(I(S/1e6) ~ seq(1,ny), col = "blue")
+    lines(I(H/1e6) ~ seq(1,ny), col = "red")
+    legend("top", legend = c("R", "S", "H"), lty = 1, bty = "n",
+           col = c("black", "blue", "red"), horiz = T)
+  }
+  
+  # wrap output in a list object
+  list(
+    mean_H = mean(H),
+    mean_S = mean(S)
+    )
+}
+```
+
+```{r, echo = F}
+n_rep = 5000
+U_try = seq(0.4, 0.6, 0.01)
+params1 = c(alpha = 6, beta = 1e-7, sigma = 0.4)
+params2 = c(alpha = 6, beta = 1e-7, sigma = 0.4)
+S_out1 = sapply(U_try, function(u) {
+  replicate(n = n_rep, expr = {
+    ricker_sim(U = u, ny = 20, B_sum = 1e6, params = params1)$mean_S/1e6
+  })
+})
+S_out2 = sapply(U_try, function(u) {
+  replicate(n = n_rep, expr = {
+    ricker_sim(U = u, ny = 20, B_sum = 100,params = params2)$mean_S/1e6
+  })
+})
+H_out1 = sapply(U_try, function(u) {
+  replicate(n = n_rep, expr = {
+    ricker_sim(U = u, ny = 20, B_sum = 1e6, params = params1)$mean_H/1e6
+  })
+})
+H_out2 = sapply(U_try, function(u) {
+  replicate(n = n_rep, expr = {
+    ricker_sim(U = u, ny = 20,B_sum = 100, params = params2)$mean_H/1e6
+  })
+})
+Smeet1 = S_out1 > (0.75 * 13)
+Smeet2 = S_out2 > (0.75 * 13)
+Hmeet1 = H_out1 > (1.2 * 8.5)
+Hmeet2 = H_out2 > (1.2 * 8.5)
+p_Smeet1 = apply(Smeet1, 2, mean)
+p_Smeet2 = apply(Smeet2, 2, mean)
+p_Hmeet1 = apply(Hmeet1, 2, mean)
+p_Hmeet2 = apply(Hmeet2, 2, mean)
+
+# the U levels to highlight on plot
+plot_U = seq(0.4, 0.6, 0.05)
+# create an empty plot
+par(mar = c(4,5,1,1))
+plot(p_Smeet1 ~ p_Hmeet1, type = "n",
+     xlab = "Probability of Meeting Harvest Criterion",
+     ylab = "Probability of Meeting Escapement Criterion")
+# add gridlines
+abline(v = seq(0, 1, 0.1), col = "grey")
+abline(h = seq(0, 1, 0.1), col = "grey")
+#draw on the tradeoff curve
+lines(p_Smeet1 ~ p_Hmeet1, type = "l", lwd = 2)
+lines(p_Smeet2 ~ p_Hmeet2, type = "l", lwd = 2, col = "red")
+# add points and text for particular U policies
+points(p_Smeet1[U_try %in% plot_U] ~ p_Hmeet1[U_try %in% plot_U],
+       pch = 16, cex = 1.5)
+text(p_Smeet1[U_try %in% plot_U] ~ p_Hmeet1[U_try %in% plot_U],
+     labels = U_try[U_try %in% plot_U], pos = c(1,1,1,2,2))
+points(p_Smeet2[U_try %in% plot_U] ~ p_Hmeet2[U_try %in% plot_U],
+       pch = 16, cex = 1.5, col = "red")
+text(p_Smeet2[U_try %in% plot_U] ~ p_Hmeet2[U_try %in% plot_U],
+     labels = U_try[U_try %in% plot_U], pos = c(1,1,1,2,2), col = "red")
+```
+
+The red line has `B_sum = 100` and the black line has `B_sum = 1e6` (really large `B_sum` reduces the variance of `U_real` around `U`). It appears that introducing random implementation errors has no effect on the trade-off analysis.
+
 ## Exercise 4E Solutions {-#ex4e-answers}
 
 ```{r, echo = F}
 rm(list = ls(all = T))
 ```
 
+**1.  Replicate the bootstrap analysis but adapted for the linear regression example in Section \@ref(regression). Stop at the step where you summarize the 95% interval range.**
+
+First, read in the `sockeye.csv` data set:
+
+```{r, eval = F}
+dat = read.csv("../Data/sockeye.csv")
+```
+
+```{r, echo = F}
+dat = read.csv("Data/sockeye.csv")
+```
+
+Then, copy the three functions and change the model to be a linear regression for these data:
+
+```{r}
+randomize = function(dat) {
+  # number of observed pairs
+  n = nrow(dat)
+  # sample the rows to determine which will be kept
+  keep = sample(x = 1:n, size = n, replace = T)
+  # retreive these rows from the data
+  dat[keep,]
+}
+
+fit_lm = function(dat) {
+  lm(fecund ~ weight, data = dat)
+}
+
+# create a vector of weights
+weights = seq(min(dat$weight, na.rm = T),
+              max(dat$weight, na.rm = T),
+              length = 100)
+pred_lm = function(fit) {
+  # extract the coefficients
+  ests = coef(fit)
+  # predict length-at-age
+  ests["(Intercept)"] + ests["weight"] * weights
+}
+```
+
+Then perform the bootstrap by replicating these functions many times:
+
+```{r}
+out = replicate(n = 5000, expr = {
+  pred_lm(fit = fit_lm(dat = randomize(dat = dat)))
+})
+```
+
+Finally, summarize and plot them:
+```{r, eval = F}
+summ = apply(out, 1, function(x) c(mean = mean(x), quantile(x, c(0.025, 0.975))))
+
+plot(summ["mean",] ~ weights, type = "l", ylim = range(summ))
+lines(summ["2.5%",] ~ weights, col = "grey")
+lines(summ["97.5%",] ~ weights, col = "grey")
+```
+
+**2.  Compare the 95% bootstrap confidence intervals to the intervals you get by running the `predict` function on the original data set with the argument `interval = "confidence"` set.**
+
+You can obtain these same intervals using the `predict()` function:
+
+```{r, eval = F}
+pred = predict(lm(fecund ~ weight, data = dat),
+               newdata = data.frame(weight = weights),
+               interval = "confidence")
+```
+
+Plot them over top of the bootstrap intervals to verify the bootstrap worked right:
+
+```{r, echo = F, eval = F}
+plot(summ["mean",] ~ weights, type = "l", ylim = range(summ))
+lines(summ["2.5%",] ~ weights, col = "grey")
+lines(summ["97.5%",] ~ weights, col = "grey")
+lines(pred[,"lwr"] ~ weights, col = "red")
+lines(pred[,"upr"] ~ weights, col = "red")
+```
+
+The intervals should look approximately correct.
+
 ## Exercise 4F Solutions {-#ex4f-answers}
 
 ```{r, echo = F}
 rm(list = ls(all = T))
+```
+
+**1.  Adapt the code to perform a permutation test for the difference in each of the zooplankton densities between treatments. Don't forget to fix the missing value in the `chao` variable. See [Exercise 2](#ex1b) for more details on this.**
+
+Read in the data:
+
+```{r, eval = F}
+dat = read.csv("../Data/ponds.csv")
+```
+
+```{r, echo = F}
+dat = read.csv("Data/ponds.csv")
+```
+
+Calculate the difference in means between the treatments for each zooplankton taxon:
+
+```{r}
+Dobs_daph = mean(dat$daph[dat$treatment == "Add"]) - 
+  mean(dat$daph[dat$treatment == "Control"])
+Dobs_bosm = mean(dat$bosm[dat$treatment == "Add"]) - 
+  mean(dat$bosm[dat$treatment == "Control"])
+Dobs_cope = mean(dat$cope[dat$treatment == "Add"]) - 
+  mean(dat$cope[dat$treatment == "Control"])
+Dobs_chao = mean(dat$chao[dat$treatment == "Add"], na.rm = T) - 
+  mean(dat$chao[dat$treatment == "Control"], na.rm = T)
+```
+
+You can use the same `perm()` function from the chapter to perform this analysis, except you should add an `na.rm` argument. All you need to change is the variables you pass to `y`:
+
+```{r}
+perm = function(x, y, na.rm = T) {
+  # turn x to a character, easier to deal with
+  x = as.character(x)
+  # shuffle the x values:
+  x_shuff = sample(x)
+  # calculate the mean of each group:
+  x_bar_add = mean(y[x_shuff == "Add"], na.rm = na.rm)
+  x_bar_ctl = mean(y[x_shuff == "Control"], na.rm = na.rm)
+  # calculate the difference:
+  x_bar_add - x_bar_ctl
+}
+```
+
+Then, run the permutation test on each taxon separately:
+
+```{r}
+Dnull_daph = replicate(n = 5000, expr = perm(x = dat$treatment, y = dat$daph))
+Dnull_bosm = replicate(n = 5000, expr = perm(x = dat$treatment, y = dat$bosm))
+Dnull_cope = replicate(n = 5000, expr = perm(x = dat$treatment, y = dat$cope))
+Dnull_chao = replicate(n = 5000, expr = perm(x = dat$treatment, y = dat$chao, na.rm = T))
+```
+
+Then, create the histograms for each species showing the null distribution and the observed difference:
+
+```{r}
+par(mfrow = c(1,4), mar = c(2,0,2,0))
+hist(Dnull_daph, col = "skyblue", main = "DAPH", yaxt = "n")
+abline(v = Dobs_daph, col = "red", lwd = 3)
+
+hist(Dnull_bosm, col = "skyblue", main = "BOSM", yaxt = "n")
+abline(v = Dobs_bosm, col = "red", lwd = 3)
+
+hist(Dnull_cope, col = "skyblue", main = "COPE", yaxt = "n")
+abline(v = Dobs_cope, col = "red", lwd = 3)
+
+hist(Dnull_chao, col = "skyblue", main = "CHAO", yaxt = "n")
+abline(v = Dobs_chao, col = "red", lwd = 3)
+```
+
+Finally, calculate the two-tailed hypothesis tests:
+
+```{r}
+mean(abs(Dnull_daph) >= Dobs_daph)
+mean(abs(Dnull_bosm) >= Dobs_bosm)
+mean(abs(Dnull_cope) >= Dobs_cope)
+mean(abs(Dnull_chao) >= Dobs_chao)
+```
+
+It appears that the zooplankton densities differed significantly between treatments for each taxon.
+
+**2.  Adapt the code to perform a permutation test for another data set used in this book where there are observations of both a categorical variable and a continuous variable. The data sets `sockeye.csv`, `growth.csv`, or `creel.csv` should be good starting points.**
+
+This example will test the difference in mean length between age 3 and 4 fish in the `growth.csv` data set.
+
+Read in the data and extract only age 3 and 4 fish:
+
+```{r, eval = F}
+dat = read.csv("../Data/growth.csv")
+dat = dat[dat$age %in% c(3,4),]
+```
+
+```{r, echo = F}
+dat = read.csv("Data/growth.csv")
+dat = dat[dat$age %in% c(3,4),]
+```
+
+Calculate the observed difference in means (age 4 - age 3):
+
+```{r}
+Dobs = mean(dat$length[dat$age == 4]) - mean(dat$length[dat$age == 3])
+```
+
+Adapt the `perm()` function for this example (no `na.rm` argument is needed):
+
+```{r}
+perm = function(x, y) {
+  # shuffle the x values:
+  x_shuff = sample(x)
+  # calculate the mean of each group:
+  x_bar_3 = mean(y[x_shuff == 3])
+  x_bar_4 = mean(y[x_shuff == 4])
+  # calculate the difference:
+  x_bar_4 - x_bar_3
+}
+
+```
+
+Then, use the function:
+
+```{r}
+Dnull = replicate(n = 5000, expr = perm(x = dat$age, y = dat$length))
+```
+
+Plot the null distribution:
+
+```{r}
+hist(Dnull, col = "skyblue")
+abline(v = Dobs, col = "red", lwd = 3)
+```
+
+Obtain the two-tailed p-value:
+
+```{r}
+mean(abs(Dnull) >= Dobs)
+```
+
+Based on this, it appears there is no significant difference between the mean length of age 3 and 4 fish in this example.
+
+**3.  Add a calculation of the p-value for a one-tailed test (i.e., that the difference in means is greater or less than zero). Steps 1 - 4 are the same: all you need is `Dnull` and `Dobs`. Don't be afraid to Google this if you are confused.**
+
+To calculate the p-value for a one-tailed test (null hypothesis is that the mean length of age 4 is less than or equal to the mean length of age 3 fish):
+
+```{r}
+mean(Dnull >= Dobs)
+```
+
+To test the opposite hypothesis (null hypothesis is that the mean length of age 4 fish is greater than or equal to the mean length of age 3 fish):
+
+```{r}
+mean(Dnull <= Dobs)
 ```
 
 ## Exercise 5 Solutions {-#ex5-answers}
@@ -376,10 +1144,176 @@ rm(list = ls(all = T))
 rm(list = ls(all = T))
 ```
 
+First, load `{dplyr}` and read in the data:
+
+```{r, eval = F}
+library(dplyr)
+dat = read.csv("../Data/asl.csv")
+head(dat)
+```
+
+```{r, echo = F, message = F, warning = F}
+library(dplyr)
+dat = read.csv("Data/asl.csv")
+head(dat)
+```
+
+**1.  Count the number of females that were sampled each year using the `{dplyr}` function `n()` within a `summarize()` call (_Hint: `n()` works just like length - it counts the number of records_).**
+
+Pipe `dat` to a `filter()` call to extract only females, then `group_by()` year, then count the number of records:
+
+```{r}
+n_female = dat %>%
+  filter(sex == "Female") %>%
+  group_by(year) %>%
+  summarize(n_female = n())
+```
+
+**2. Calculate the proportion of females by year.**
+
+Do a similar task as in the previous question, but count all individuals each year, regardless of sex:
+
+```{r}
+n_tot = dat %>%
+  group_by(year) %>%
+  summarize(n_tot = n())
+```
+
+Then merge these two data sets:
+
+```{r}
+samp_size = merge(n_tot, n_female, by = "year")
+```
+
+Finally, calculate the fraction that were females:
+
+```{r}
+samp_size = samp_size %>%
+  mutate(p_female = n_female/n_tot)
+```
+
+**3. Plot percent females over time. Does it look like the sex composition has changed over time?**
+
+```{r}
+plot(p_female ~ year, data = samp_size, type = "b")
+```
+
+It seems that the proportion of females has varied randomly over time but has not systematically changed since the beginning of the data time series. Note that some of this variablility is introduced by sampling.
+
+**4. Calculate mean length by age, sex, and year.**
+
+`{dplyr}` makes this relatively complex calculation easy and returns an intuitive data frame as output:
+
+```{r}
+mean_length = dat %>% 
+  group_by(year, age, sex) %>%
+  summarize(mean_length = mean(length))
+  
+```
+
+**5. Come up with a way to plot a time series of mean length-at-age for both sexes. Does it look like mean length-at-age has changed over time for either sex?**
+
+```{r, results = "hide", fig.align = "center"}
+
+# set up a 2x2 plotting device with specialized margins
+par(mfrow = c(2,2), mar = c(2,2,2,2), oma = c(2,2,0,0))
+
+# extract the unique ages
+ages = unique(mean_length$age)
+
+# use sapply() to "loop" over ages
+sapply(ages, function(a) {
+  # create an empty plot
+  plot(1,1, type = "n", ann = F, xlim = range(dat$year),
+       ylim = range(filter(mean_length, age == a)$mean_length))
+  
+  # add a title
+  title(paste("Age", a))
+  
+  # draw on the lines for each sex
+  lines(mean_length ~ year, type = "b", pch = 16,
+        data = filter(mean_length, age == a & sex == "Male"))
+  lines(mean_length ~ year, type = "b", pch = 1, lty = 2,
+        data = filter(mean_length, age == a & sex == "Female"))
+  
+  # draw a legend if the age is 4
+  if (a == 4) {
+    legend("topright", legend = c("Male", "Female"),
+           lty = c(1,2), pch = c(16,1), bty = "n")
+  }
+})
+
+# add on margin text for the shared axes
+mtext(side = 1, outer = T, "Year")
+mtext(side = 2, outer = T, "Mean Length (mm)")
+```
+
+**Bonus 1. Calculate the age composition by sex and year (what proportion of all the males in a year were age 4, age 5, age 6, age 7, and same for females).**
+
+This follows a similar workflow as in the calculation of the proportion of females:
+
+```{r}
+# get the number by age and sex each year
+n_age_samps = dat %>% 
+  group_by(year, age, sex) %>%
+  summarize(age_samps = n())
+
+# get the number by sex each year
+n_tot_samps = dat %>% 
+  group_by(year, sex) %>%
+  summarize(tot_samps = n())
+
+# merge the two:
+n_samps = merge(n_age_samps, n_tot_samps, by = c("year", "sex"))
+
+# calculate the proportion at each age and sex:
+n_samps = n_samps %>%
+  ungroup() %>%
+  mutate(age_comp = age_samps/tot_samps)
+```
+
+**Bonus 2. Plot the time series of age composition by sex and year. Does it look like age composition has changed over time?**
+
+Create the same plots as for Question 5, but with age composition instead of sex composition:
+
+```{r, results = "hide", fig.align = "center"}
+# set up a 2x2 plotting device with specialized margins
+par(mfrow = c(2,2), mar = c(2,2,2,2), oma = c(2,2,0,0))
+
+# extract the unique ages
+ages = unique(n_samps$age)
+
+# use sapply() to "loop" over ages
+sapply(ages, function(a) {
+  # create an empty plot
+  plot(1,1, type = "n", ann = F, xlim = range(dat$year),
+       ylim = range(filter(n_samps, age == a)$age_comp) + c(0, 0.05))
+  
+  # add a title
+  title(paste("Age", a))
+  
+  # draw on the lines for each sex
+  lines(age_comp ~ year, type = "b", pch = 16,
+        data = filter(n_samps, age == a & sex == "Male"))
+  lines(age_comp ~ year, type = "b", pch = 1, lty = 2,
+        data = filter(n_samps, age == a & sex == "Female"))
+  
+  # draw a legend if the age is 4
+  if (a == 4) {
+    legend("topleft", legend = c("Male", "Female"),
+           lty = c(1,2), pch = c(16,1), bty = "n")
+  }
+})
+
+# add on margin text for the shared axes
+mtext(side = 1, outer = T, "Year")
+mtext(side = 2, outer = T, "Age Composition by Sex")
+```
+
 ## Exercise 6 Solutions {-#ex6-answers}
 
 ```{r, echo = F}
 rm(list = ls(all = T))
 ```
 
-
+Henry's material will go here.

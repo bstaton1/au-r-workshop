@@ -11,7 +11,8 @@ link-citations: true
 linkcolor: "blue"
 urlcolor: "blue"
 github-repo: bstaton1/au-r-workshop
-description: "This is a first course in R Programming for Natural Resource Scientists. It was developed and has been primarily instructed at Auburn University."
+description: "This is a first course in R programming for natural resource scientists. It was developed and has been primarily instructed at Auburn University."
+cover-image: cover_image.png
 ---
 
 # Overview{-}
@@ -76,7 +77,7 @@ Some exercises have bonus questions. These are intended to challenge you with so
 
 ## Keyboard Shortcuts {-}
 
-Several parts of this book in this book make reference to keyboard shortcuts. They are never necessary, but can help you be more efficient if you commit them to muscle memory. This book assumes you are using a PC for the keyboard shortcuts. If you are using a Mac, they will be different^[In for some keyboard shortcuts, you may just need to swap out the **CTRL** keystroke for the **CMD** keystroke for a Mac computer]. For a complete list of RStudio's keyboard shortcuts specific to your operating system, go to _Help > Keyboard Shortcuts Help_.
+Several parts of this book in this book make reference to keyboard shortcuts. They are never necessary, but can help you be more efficient if you commit them to muscle memory. This book assumes you are using a PC for the keyboard shortcuts. If you are using a Mac, they will be different^[For some keyboard shortcuts, you may just need to swap out the **CTRL** keystroke for the **CMD** keystroke for a Mac computer]. For a complete list of RStudio's keyboard shortcuts specific to your operating system, go to _Help > Keyboard Shortcuts Help_.
 
 ## Development of this Book {-}
 
@@ -86,8 +87,8 @@ The second version was written through R and RStudio using the R packages `{rmar
 
 This third version was written through R and RStudio but used the R package `{bookdown}` [@bookdown-cite] which allowed for the individual sessions to be combined into one "book" by turning each session into a chapter. This facilitated cross-references to topics covered in previous chapters and allows the reader to only refer to one location when trying to remember how to use a skill. It also allowed for multiple formats to be published including both HTML and PDF versions.
 
-The book is hosted on [GitHub Pages](https://pages.github.com/). 
+The book is hosted on [GitHub Pages](https://pages.github.com/), and was last built on `r format(Sys.time(), format = "%m-%d-%Y")`.
 
 ## About the Author {-}
 
-Ben Staton is a PhD candidate in the School of Fisheries at Auburn University. He studies quantitative methods for assessing fish populations for use in harvest management, with a focus on Pacific salmon in western Alaska. Ben has been using R on a daily basis since the beginning of his graduate work in 2014, and is enthusiastic about helping others learn to use R for their own work. 
+Ben Staton is a PhD candidate in the School of Fisheries at Auburn University. He studies quantitative methods for assessing fish populations for use in harvest management, with a focus on Pacific salmon in western Alaska. His interests are in population dynamics, Bayesian methods, Monte Carlo methods, and reproducible research. Ben has been using R on a daily basis since the beginning of his graduate work in 2014, and is enthusiastic about helping others learn to use R for their own work. 

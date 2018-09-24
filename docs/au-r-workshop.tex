@@ -367,7 +367,8 @@ covered in previous chapters and allows the reader to only refer to one
 location when trying to remember how to use a skill. It also allowed for
 multiple formats to be published including both HTML and PDF versions.
 
-The book is hosted on \href{https://pages.github.com/}{GitHub Pages}.
+The book is hosted on \href{https://pages.github.com/}{GitHub Pages},
+and was last built on 09-24-2018.
 
 \section*{About the Author}\label{about-the-author}
 \addcontentsline{toc}{section}{About the Author}
@@ -375,9 +376,11 @@ The book is hosted on \href{https://pages.github.com/}{GitHub Pages}.
 Ben Staton is a PhD candidate in the School of Fisheries at Auburn
 University. He studies quantitative methods for assessing fish
 populations for use in harvest management, with a focus on Pacific
-salmon in western Alaska. Ben has been using R on a daily basis since
-the beginning of his graduate work in 2014, and is enthusiastic about
-helping others learn to use R for their own work.
+salmon in western Alaska. His interests are in population dynamics,
+Bayesian methods, Monte Carlo methods, and reproducible research. Ben
+has been using R on a daily basis since the beginning of his graduate
+work in 2014, and is enthusiastic about helping others learn to use R
+for their own work.
 
 \chapter{Introduction to the R Environment}\label{ch1}
 
@@ -3167,7 +3170,7 @@ directory \texttt{C:/Users/YOU/Documents/R-Book/Chapter3}. Set your
 working directory to that location. Revisit the material in Sections
 \ref{scripts} and \ref{working-dir} for more details on these steps.
 
-\section{The General Linear Model}\label{the-general-linear-model}
+\section{The General Linear Model}\label{lm}
 
 Much of this chapter will focus on the general linear model, so it is
 important to become familiar with it. The general linear model is a
@@ -4198,6 +4201,10 @@ Despite these differences, you can obtain similar output as from
 \section*{Exercise 3}\label{exercise-3}
 \addcontentsline{toc}{section}{Exercise 3}
 
+You should create a new R script called \texttt{Ex3.R} in your working
+directory for this chapter. You will again be using the
+\texttt{sockeye.csv} data found in \citet{sockeye-cite}.
+
 \emph{The solutions to this exercise are found at the end of this book
 (\protect\hyperlink{ex3-answers}{here}). You are \textbf{strongly
 recommended} to make a good attempt at completing this exercise on your
@@ -4205,7 +4212,20 @@ own and only look at the solutions when you are truly stumped.}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
-\tightlist
+\item
+  Perform the same analyses as conducted in Section \ref{lm} (simple
+  linear regression, ANOVA, ANCOVA, ANCOVA with interaction), using
+  \texttt{egg\_size} as the response variable. The predictor variables
+  you should use are \texttt{type} (categorical) and \texttt{year}. You
+  should plot the fit for each model separately and perform an AIC
+  analysis. Practice interpretting the coefficient estimates.
+\item
+  Perform the same analyses as conducted in Section \ref{glms}, this
+  time using a success being having greater than 80\% survival to the
+  eyed-egg stage. Use \texttt{egg\_size} and \texttt{type} as the
+  predictor variables. You should plot the fitted lines for each model
+  separately and perform an AIC analysis. Practice interpretting the
+  coefficient estimates.
 \item
   Make the same graphic as in Figure \ref{fig:norm-plots} with at least
   one of the other distributions listed in Table
@@ -4216,7 +4236,14 @@ own and only look at the solutions when you are truly stumped.}
   listed). If you run into trouble, check out the help file for that
   distribution\footnote{Executing \texttt{?rnorm} or any other of the
     \texttt{-norm()} functions will take you to a page with info on all
-    four function types for that distribution}.
+    four function types for that distribution}. \#\#\# Exercise 3 Bonus
+  \{-\}
+\item
+  Fit a von Bertalannfy growth model to the data found in the
+  \texttt{growth.csv} data file. Visit Section \ref{boot-test-ex}
+  (particularly Equation \eqref{eq:vonB}) for details on this model. Use
+  the initial values: \texttt{linf\ =\ 600}, \texttt{k\ =\ 0.3},
+  \texttt{t0\ =\ -0.2}. Plot the fitted line over top of the data.
 \end{enumerate}
 
 \chapter{Monte Carlo Methods}\label{ch4}
@@ -4227,13 +4254,13 @@ own and only look at the solutions when you are truly stumped.}
 Simulation modeling is one of the primary reasons to move away from
 spreadsheet-type programs (like Microsoft Excel) and into a program like
 R. R allows you to replicate the same (possibly complex and detailed)
-calculations over and over with slightly different random values. You
-can then summarize and plot the results of these replicated calculations
-all within the same program. Analyses of this type are \textbf{Monte
-Carlo methods}: they randomly sample from a set of quanities for the
-purpose of generating and summarizing a distribution of some statistic
-related to the sampled quantities. If this concept is confusing,
-hopefully this chapter will clarify.
+calculations over and over with different random values. You can then
+summarize and plot the results of these replicated calculations all
+within the same program. Analyses of this type are \textbf{Monte Carlo
+methods}: they randomly sample from a set of quanities for the purpose
+of generating and summarizing a distribution of some statistic related
+to the sampled quantities. If this concept is confusing, hopefully this
+chapter will clarify.
 
 In this chapter, you will learn the basic skills needed for simulation
 (i.e., Monte Carlo) modeling in R including:
@@ -4273,7 +4300,7 @@ This chapter is divided into two main sections:
 
 \begin{itemize}
 \item
-  \textbf{Required Material} (Sections \ref{randomness} and
+  \textbf{Required Material} (Sections \ref{randomness} -
   \ref{mc-summaries}) which is necessary to understand the examples in
   this chapter and the subsequent chapters
 \item
@@ -4319,7 +4346,7 @@ random process where \(p = 0.8\) and \(n = 100\) like this:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 76
+## [1] 79
 \end{verbatim}
 
 The result you get will almost certainly be different from the one
@@ -4359,8 +4386,8 @@ each individual function for more details.
 Using random deviates works great for creating new random numbers, but
 what if you already have a set of numbers that you wish to introduce
 randomness to? For this, you can use \textbf{resampling techniques}. In
-R, the \texttt{sample} function is used to sample \texttt{size} elements
-from the vector \texttt{x}:
+R, the \texttt{sample()} function is used to sample \texttt{size}
+elements from the vector \texttt{x}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4369,7 +4396,7 @@ from the vector \texttt{x}:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2 4 9 6 1
+## [1]  5  1  6 10  7
 \end{verbatim}
 
 You can sample with replacement (where it is possible to sample the same
@@ -4382,7 +4409,7 @@ element two or more times):
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "b" "b" "c" "c" "c" "b" "c" "a" "c" "b"
+##  [1] "c" "a" "c" "a" "c" "c" "b" "c" "a" "b"
 \end{verbatim}
 
 You can set probabilities on the sampling of different
@@ -4397,14 +4424,14 @@ elements\footnote{If \texttt{prob} doesn't sum to 1, then it will be
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "die"  "live" "live" "live" "die"  "live" "live" "live" "live" "live"
+##  [1] "live" "live" "die"  "live" "die"  "live" "live" "live" "live" "live"
 \end{verbatim}
 
 Notice that this is the same as the binomial random process above, but
 with only 10 trials and the printing of the outcomes rather than the
 number of successes.
 
-\section{Reproducing randomness}\label{reproducing-randomness}
+\section{Reproducing Randomness}\label{reproducing-randomness}
 
 For reproducibility purposes, you may wish to get the same exact random
 numbers each time you run your script. To do this, you need to set the
@@ -4427,13 +4454,13 @@ should get the same result as printed here:
 
 To use Monte Carlo methods, you need to be able to replicate some random
 process many times. There are two main ways this is commonly done:
-either with\texttt{replicate} or with \texttt{for} loops.
+either with\texttt{replicate()} or with \texttt{for()} loops.
 
-\subsection{\texorpdfstring{\texttt{replicate}}{replicate}}\label{replicate}
+\subsection{\texorpdfstring{\texttt{replicate()}}{replicate()}}\label{replicate}
 
-The \texttt{replicate} function executes some expression many times and
-returns the output from each execution. Say we have a vector \texttt{x},
-which represents 30 observations of fish length (mm):
+The \texttt{replicate()} function executes some expression many times
+and returns the output from each execution. Say we have a vector
+\texttt{x}, which represents 30 observations of fish length (mm):
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4456,8 +4483,8 @@ this process many times:
 
 If we take \texttt{mean(means)} and \texttt{sd(means)}, that should be
 very similar to \texttt{mean(x)} and \texttt{se(x)}. Create the
-\texttt{se} function (also shown in Section \ref{error-bars}) and prove
-this to yourself:
+\texttt{se()} function (also shown in Section \ref{error-bars}) and
+prove this to yourself:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4488,15 +4515,15 @@ this to yourself:
 ## [1] 5.044153
 \end{verbatim}
 
-\subsection{\texorpdfstring{The \texttt{for}
-loop}{The for loop}}\label{for-loops}
+\subsection{\texorpdfstring{The \texttt{for()}
+loop}{The for() loop}}\label{for-loops}
 
 In programming, a \emph{loop} is a command that does something over and
 over until it reaches some point that you specify. R has a few types of
-loops: \texttt{repeat}, \texttt{while}, and \texttt{for}, to name a few.
-\texttt{for} loops are among the most common in simulation modeling. A
-\texttt{for} loop repeats some action for however many times you tell it
-for each value in some vector. The syntax is:
+loops: \texttt{repeat()}, \texttt{while()}, and \texttt{for()}, to name
+a few. \texttt{for()} loops are among the most common in simulation
+modeling. A \texttt{for()} loop repeats some action for however many
+times you tell it \textbf{for} each value in some vector. The syntax is:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4525,8 +4552,8 @@ element in the vector \texttt{seq}. For example:
 ## [1] 25
 \end{verbatim}
 
-The \texttt{print} command will be executed 5 times: once for each value
-of \texttt{i}. It is the same as:
+The \texttt{print()} command will be executed 5 times: once for each
+value of \texttt{i}. It is the same as:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4604,7 +4631,7 @@ abundance at the end of the year for 100 years:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{nt =}\StringTok{ }\DecValTok{100}        \CommentTok{# number of years}
+\NormalTok{nt =}\StringTok{ }\DecValTok{100}       \CommentTok{# number of years}
 \NormalTok{N =}\StringTok{ }\OtherTok{NULL}       \CommentTok{# container for abundance}
 \NormalTok{N[}\DecValTok{1}\NormalTok{] =}\StringTok{ }\DecValTok{1000}    \CommentTok{# first end-of-year abundance}
 
@@ -4634,7 +4661,6 @@ an example, turn the population model shown above into a function:
 \NormalTok{pop_sim =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(nt, grow, sd_grow, U, }\DataTypeTok{plot =}\NormalTok{ F) \{}
 \NormalTok{  N =}\StringTok{ }\OtherTok{NULL} 
 \NormalTok{  N[}\DecValTok{1}\NormalTok{] =}\StringTok{ }\DecValTok{1000}
-
   \ControlFlowTok{for}\NormalTok{ (t }\ControlFlowTok{in} \DecValTok{2}\OperatorTok{:}\NormalTok{nt) \{}
 \NormalTok{    N[t] =}\StringTok{ }\NormalTok{(N[t}\OperatorTok{-}\DecValTok{1}\NormalTok{] }\OperatorTok{*}\StringTok{ }\NormalTok{grow }\OperatorTok{*}\StringTok{ }\KeywordTok{rlnorm}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, sd_grow)) }\OperatorTok{*}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{-}\StringTok{ }\NormalTok{U)}
 \NormalTok{  \}}
@@ -4663,7 +4689,7 @@ This function takes five inputs:
 \item
   \texttt{plot}: whether you wish to have a plot created. It has a
   default setting of \texttt{FALSE}: if you don't specify
-  \texttt{plot\ =\ T} when you call \texttt{pop\_sim}, you won't see a
+  \texttt{plot\ =\ T} when you call \texttt{pop\_sim()}, you won't see a
   plot made.
 \end{itemize}
 
@@ -4679,26 +4705,8 @@ Use your function once using the same settings as before:
 
 \begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-161-1} \end{center}
 
-\begin{verbatim}
-##   [1] 1000.0000  991.9189  966.1673 1119.8166 1167.4864  940.7572 1003.4028
-##   [8]  993.7741 1092.3542 1114.6248 1011.6523 1012.8149 1180.6373 1125.6400
-##  [15] 1128.9152 1234.7466 1546.7473 1438.8662 1677.2920 1878.7559 1601.6186
-##  [22] 1803.7180 2124.3262 1888.6512 1950.4458 2170.6249 2574.6142 2088.5542
-##  [29] 2506.9833 2743.3092 2350.9056 2150.1135 2067.0640 1870.8924 2061.8156
-##  [36] 1895.1914 1690.9365 2112.3612 2114.7401 1815.7680 1949.8661 1953.3604
-##  [43] 1810.1937 1982.6345 1920.9718 1970.1317 1905.9889 2061.5250 2105.1941
-##  [50] 1870.4381 1809.3494 1717.6727 1396.3874 1311.3019 1288.7084 1472.9669
-##  [57] 1681.8080 1636.4883 1874.0338 1937.6544 1767.9563 1927.9457 2056.8504
-##  [64] 1868.7910 2133.6614 2393.3918 2174.1558 1987.7674 2079.1235 1990.4753
-##  [71] 2020.4988 2207.8347 2371.1186 2235.4894 1861.8581 1955.1694 2126.6954
-##  [78] 1934.2892 1919.1523 2035.2788 2595.0493 2624.3191 2634.0353 2619.8963
-##  [85] 3063.5877 3335.9375 3036.8140 3211.4930 3108.6992 2879.1979 3044.2377
-##  [92] 2667.8093 3036.1608 3264.0875 3067.2281 3003.3483 2867.4153 2882.2673
-##  [99] 2741.6617 2748.9291
-\end{verbatim}
-
 Now, you wish to replicate exectuing this function 1000 times. Use the
-\texttt{replicate} function to do this:
+\texttt{replicate()} function to do this:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4709,7 +4717,7 @@ Now, you wish to replicate exectuing this function 1000 times. Use the
 If you do \texttt{dim(out)}, you'll see that rows are stored as years
 (there are 100 of them) and columns are stored as replicates (there are
 1000 of them). Notice how wrapping the code in the function made the
-\texttt{replicate} call easy.
+\texttt{replicate()} call easy.
 
 \textbf{Here are some advantages of wrapping code like this into a
 function}:
@@ -4720,9 +4728,9 @@ function}:
   If you do the same task over and over, you don't need to type all of
   the code to perform the task, just the function call.
 \item
-  If you need to change the way the function behaves (mechanically in
-  the function body), you only need to change it one place: in the
-  function definition.
+  If you need to change the way the function behaves (i.e., the function
+  body), you only need to change it one place: in the function
+  definition.
 \item
   You can easily change the settings of the code (e.g., whether you want
   to see the plot) in one place
@@ -4736,12 +4744,13 @@ function}:
 \section{Summarization}\label{mc-summaries}
 
 After replicating a calculation many times, you will need to summarize
-the results. Here are several examples using the \texttt{out} matrix.
+the results. Here are several examples using the \texttt{out} matrix
+from Section \ref{adv-funcs}.
 
 \subsection{Central Tendency}\label{central-tendency}
 
 You can calculate the mean abundance each year across your iterations
-using the \texttt{apply} function (Section \ref{data-summaries}):
+using the \texttt{apply()} function (Section \ref{data-summaries}):
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4756,22 +4765,24 @@ using the \texttt{apply} function (Section \ref{data-summaries}):
 \end{verbatim}
 
 You could do the same thing using \texttt{median} rather than
-\texttt{mean}. Mode is more difficult to calculate in R, if you need to
-get the mode, try to Google it\footnote{Google is an R programmer's best
-  friend. There is a massive online community for R, and if you have a
-  question on something, it has almost certainly been asked somewhere on
-  the web.}.
+\texttt{mean}. The mode is more difficult to calculate in R, if you need
+to get the mode, try to Google it\footnote{Google is an R programmer's
+  best friend. There is a massive online community for R, and if you
+  have a question on something, it has almost certainly been asked
+  somewhere on the web.}.
 
 \subsection{Variability}\label{variability}
 
 One of the primary reasons to conduct a Monte Carlo analysis is to
 obtain estimates of variability. You can summarize the variability
-easily using the \texttt{quantile} function:
+easily using the \texttt{quantile()} function:
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{# obtain the 10% and 90% quantiles each year across iterations}
 \NormalTok{N_quants =}\StringTok{ }\KeywordTok{apply}\NormalTok{(out, }\DecValTok{1}\NormalTok{, }\ControlFlowTok{function}\NormalTok{(x) }\KeywordTok{quantile}\NormalTok{(x, }\KeywordTok{c}\NormalTok{(}\FloatTok{0.1}\NormalTok{, }\FloatTok{0.9}\NormalTok{)))}
 
+\CommentTok{# plot them as a time series with the mean}
 \KeywordTok{plot}\NormalTok{(N_mean, }\DataTypeTok{type =} \StringTok{"l"}\NormalTok{, }\DataTypeTok{ylim =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{10000}\NormalTok{))}
 \KeywordTok{lines}\NormalTok{(N_quants[}\DecValTok{1}\NormalTok{,], }\DataTypeTok{lty =} \DecValTok{2}\NormalTok{)}
 \KeywordTok{lines}\NormalTok{(N_quants[}\DecValTok{2}\NormalTok{,], }\DataTypeTok{lty =} \DecValTok{2}\NormalTok{)}
@@ -4780,7 +4791,7 @@ easily using the \texttt{quantile} function:
 
 \begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-164-1} \end{center}
 
-Notice how a user-defined function was passed to \texttt{apply}. The
+Notice how a user-defined function was passed to \texttt{apply()}. The
 range within the two dashed lines represents the range that encompassed
 the central 80\% of the random abundances each year.
 
@@ -4790,9 +4801,9 @@ Often you will want to count how many times something happened. In some
 cases, the fraction of times something happened can be interpretted as a
 probability.
 
-The \texttt{table} function is very useful for counting occurences of
-events. Suppose you are interested in how many of your iterations
-resulted in fewer than 1000 individuals at year 10:
+The \texttt{table()} function is very useful for counting occurences of
+discrete events. Suppose you are interested in how many of your
+iterations resulted in fewer than 1000 individuals at year 10:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4865,10 +4876,13 @@ iterations:
 \subsection{\texorpdfstring{Test
 \texttt{rnorm}}{Test rnorm}}\label{rnorm-ex}
 
-In this example, you will verify that the function \texttt{rnorm} works
-the same way that \texttt{qnorm} and \texttt{pnorm} work. Hopefully it
-will also reinforce the way the random, quantile, and cumulative
-distribution functions work in R.
+In this example, you will verify that the function \texttt{rnorm()}
+works the same way that \texttt{qnorm()} and \texttt{pnorm()} indicate
+that it should work. That is, you will verify that random deviates
+generated using \texttt{rnorm()} have the same properties as the true
+normal distribution given by \texttt{qnorm()} and \texttt{pnorm()}.
+Hopefully it will also reinforce the way the random, quantile, and
+cumulative distribution functions work in R.
 
 First, specify the mean and standard deviation for this example:
 
@@ -4889,7 +4903,7 @@ than 10) random deviates from this normal distribution:
 
 Test the quantiles (obtain the values that \texttt{p} * 100\% of the
 quantities fall below, both for random numbers and from the
-\texttt{qnorm} function):
+\texttt{qnorm()} function):
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4909,7 +4923,7 @@ Any variabilities you see are due to sampling errors. If you increase
 deviations. This is called a \textbf{q-q plot}, and is frequently used
 to assess the fit of data to a distribution.
 
-Now test the random values in their agreement with the \texttt{pnorm}
+Now test the random values in their agreement with the \texttt{pnorm()}
 function. Plot the cumulative density functions for the truely normal
 curve and that approximated by the random deviates:
 
@@ -4926,8 +4940,8 @@ curve and that approximated by the random deviates:
 
 \begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-172-1} \end{center}
 
-The \texttt{ecdf} function obtains the empirical cumulative density
-function (which is just \texttt{pnorm} for a sample). It allows you to
+The \texttt{ecdf()} function obtains the empirical cumulative density
+function (which is just \texttt{pnorm()} for a sample). It allows you to
 plug in any random variable and obtain the probability of having one
 less than it.
 
@@ -4936,34 +4950,34 @@ less than it.
 A \textbf{power analysis} is one where the analyst wishes to determine
 how much power they will have to detect an effect. Having high power
 means ensuring you do not falsely reject a true hypothesis (e.g.,
-claiming that there is not effect based on a p-value greater than 0.05).
+claiming that there is no effect based on a p-value greater than 0.05
+when there truly is an effect).
 
 You can conduct a power analysis using stochastic simulation (i.e., a
 Monte Carlo analysis). Here, you will write a power analysis to
 determine how likely are you to be able to correctly identify what you
 deem to be a biologically-meaningful difference in survival between two
-tagging procedures.
-
-You know one tagging procedure has approximately a 10\% mortality rate
-(10\% of tagged fish die within the first 12 hours as result of the
-tagging process). Another, cheaper and less labor-intensive method has
-been proposed but before implementing it, your agency wishes to
-determine if it will have a meaningful impact on the reliability of the
-study or the efficiency of the tagging crew to tag individuals that will
-be alive long enough to be useful. You and your colleagues determine
-that if the mortality rate reaches 25\%, then gains in time and cost
-efficiency would be offset by needing to tag more fish (because more
-will die). You have decided to perform a small-scale study to determine
-if the new method affects mortality enough to result in 25\% or more
-mortality. The study will tag \texttt{n} individuals using each method
-(new and old) and track the fraction that survived after 12 hours.
-Before performing the study however, you deem it important to determine
-how large \texttt{n} needs to be to answer this question. You decide to
-use a stochastic power analysis based on what you've learned in this
-book to help your research group. The small-scale study can tag a total
-of at most 100 fish with the currently available resources. Could you
-tag fewer than 100 total individuals and still have a high probability
-of correctly identifying an effect of this size?
+tagging procedures. You know one tagging procedure has approximately a
+10\% mortality rate (10\% of tagged fish die within the first 12 hours
+as result of the tagging process). Another, cheaper and less
+labor-intensive method has been proposed but before implementing it,
+your agency wishes to determine if it will have a meaningful impact on
+the reliability of the study or the efficiency of the tagging crew to
+tag individuals that will be alive long enough to be useful. You and
+your colleagues determine that if the mortality rate of the new tagging
+method reaches 25\%, then gains in time and cost efficiency would be
+offset by needing to tag more fish (because more will die). You have
+decided to perform a small-scale study to determine if the new method
+affects mortality enough to result in 25\% or more mortality. The study
+will tag \texttt{n} individuals using each method (new and old) and
+track the fraction that survived after 12 hours. Before performing the
+study however, you deem it important to determine how large \texttt{n}
+needs to be to answer this question. You decide to use a stochastic
+power analysis based on what you've learned in this book to help your
+research group. The small-scale study can tag a total of at most 100
+fish with the currently available resources. Could you tag fewer than
+100 total individuals and still have a high probability of correctly
+identifying an effect of this size?
 
 The stochastic power analysis approach works like this (this is called
 \textbf{psuedocode}):
@@ -4974,9 +4988,10 @@ The stochastic power analysis approach works like this (this is called
 \item
   Simulate data under the reality that the difference is real with
   \texttt{n} observations per treatment, where
-  \texttt{n\ \textless{}\ 30/2}
+  \texttt{n\ \textless{}\ 100/2}
 \item
-  Fit the model that will be used when the real data are collected
+  Fit the model that will be used when the real data are collected to
+  the simulated data
 \item
   Determine if the effect was detected with a significant p-value
 \item
@@ -5029,7 +5044,7 @@ and one that loops over replicates of each sample size (step 4):
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{I =}\StringTok{ }\DecValTok{10}  \CommentTok{# the number of replicates at each sample size}
+\NormalTok{I =}\StringTok{ }\DecValTok{500}  \CommentTok{# the number of replicates at each sample size}
 \NormalTok{n_try =}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{50}\NormalTok{, }\DecValTok{10}\NormalTok{)  }\CommentTok{# the test sample sizes}
 \NormalTok{N =}\StringTok{ }\KeywordTok{length}\NormalTok{(n_try)        }\CommentTok{# count them}
 \CommentTok{# container: }
@@ -5059,7 +5074,7 @@ sample size that resulted in a significant difference using the
 
 \begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-175-1} \end{center}
 
-Even if you tagged 100 fish total, you would only have a 50\% chance of
+Even if you tagged 100 fish total, you would only have a 47\% chance of
 saying the effect (which truely is there!) is present under the null
 hypothesis testing framework.
 
@@ -5101,7 +5116,7 @@ additional metric and re-run the analysis:
 \NormalTok{\}}
 
 \CommentTok{# run the analysis}
-\NormalTok{I =}\StringTok{ }\DecValTok{10}  \CommentTok{# the number of replicates at each sample size}
+\NormalTok{I =}\StringTok{ }\DecValTok{500}  \CommentTok{# the number of replicates at each sample size}
 \NormalTok{n_try =}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{50}\NormalTok{, }\DecValTok{10}\NormalTok{)  }\CommentTok{# the test sample sizes}
 \NormalTok{N =}\StringTok{ }\KeywordTok{length}\NormalTok{(n_try)      }\CommentTok{# count them}
 
@@ -5129,7 +5144,7 @@ additional metric and re-run the analysis:
 \begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-176-1} \end{center}
 
 It seems that even if you tagged 50 fish per treatment, you would have a
-60\% chance of estimating that the mortality rate is between 0.2 and 0.3
+59\% chance of estimating that the mortality rate is between 0.2 and 0.3
 if it was truly 0.25.
 
 You and your colleagues consider these results and determine that you
@@ -5169,7 +5184,10 @@ measure of the strength of density-dependent mortality. Notice that the
 error term is in the exponent, which makes \(e^{\varepsilon_t}\)
 lognormal.
 
-You have estimates of the parameters:
+You have estimates of the parameters\footnote{In reality, these
+  estimates would have substantial uncertainty that you would need to
+  propogate through your harvest policy analysis. In this example, you
+  will ignore this complication}:
 
 \begin{itemize}
 \tightlist
@@ -5197,8 +5215,8 @@ First, write a function for your population model. Your function must:
 \item
   simulate the population using Ricker dynamics
 \item
-  calculate and return the sum of the yields over the number future
-  years you simulated.
+  calculate and return the average harvest and escapement over the
+  number future years you simulated.
 \end{enumerate}
 
 \begin{Shaded}
@@ -5243,12 +5261,12 @@ Use the function once:
 \NormalTok{params =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DataTypeTok{alpha =} \DecValTok{6}\NormalTok{, }\DataTypeTok{beta =} \FloatTok{1e-7}\NormalTok{, }\DataTypeTok{sigma =} \FloatTok{0.4}\NormalTok{)}
 \NormalTok{out =}\StringTok{ }\KeywordTok{ricker_sim}\NormalTok{(}\DataTypeTok{U =} \FloatTok{0.4}\NormalTok{, }\DataTypeTok{ny =} \DecValTok{20}\NormalTok{, }\DataTypeTok{params =}\NormalTok{ params)}
 \CommentTok{#average annual harvest (in millions)}
-\KeywordTok{round}\NormalTok{(out}\OperatorTok{$}\NormalTok{mean_S}\OperatorTok{/}\FloatTok{1e6}\NormalTok{, }\DataTypeTok{digits =} \DecValTok{2}\NormalTok{)}
+\KeywordTok{round}\NormalTok{(out}\OperatorTok{$}\NormalTok{mean_H}\OperatorTok{/}\FloatTok{1e6}\NormalTok{, }\DataTypeTok{digits =} \DecValTok{2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 13.54
+## [1] 8.52
 \end{verbatim}
 
 If you completed the stochastic power analysis example (Section
@@ -5257,8 +5275,10 @@ replicate applying a fixed policy many times to a random system. This is
 the Monte Carlo part of the analysis. The policy part is that you will
 compare the output from several candidate exploitation rates to inform a
 decision about which is best. This time, set up your analysis using
-\texttt{sapply} and \texttt{replicate} instead of performing a nested
-\texttt{for} loop as in previous examples:
+\texttt{sapply()} (to iterate over different values of \(U\)) and
+\texttt{replicate()} (to iterate over different random populations
+fished at each \(U\)) instead of performing a nested \texttt{for()} loop
+as in previous examples:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5272,9 +5292,9 @@ decision about which is best. This time, set up your analysis using
 \end{Highlighting}
 \end{Shaded}
 
-The nested \texttt{replicate} and \texttt{sapply} method is a bit
-cleaner than a nested \texttt{for} loop, but you have less control over
-the format of the output.
+The nested \texttt{replicate()} and \texttt{sapply()} method is a bit
+cleaner than a nested \texttt{for()} loop, but you have less control
+over the format of the output.
 
 Plot the output of your simulations using a boxplot. To make things
 easier, give \texttt{H\_out} column names representing the exploitation
@@ -5298,7 +5318,7 @@ it has been in recent history (75\% of approximately 13 million fish).
 They ask you to obtain the expected average annual escapement as well as
 harvest. You can simply re-run the code above, but extracting
 \texttt{S\_mean} rather than \texttt{H\_mean}. Call this output
-\texttt{S\_out} and plot it just like harvest (if your curious, this
+\texttt{S\_out} and plot it just like harvest (if you're curious, this
 blue color is \texttt{col\ =\ "skyblue"}):
 
 \begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-181-1} \end{center}
@@ -5332,6 +5352,7 @@ You plot this for your supervisor as follows:
 \CommentTok{# the U levels to highlight on plot}
 \NormalTok{plot_U =}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\FloatTok{0.4}\NormalTok{, }\FloatTok{0.6}\NormalTok{, }\FloatTok{0.05}\NormalTok{)}
 \CommentTok{# create an empty plot}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
 \KeywordTok{plot}\NormalTok{(p_Smeet }\OperatorTok{~}\StringTok{ }\NormalTok{p_Hmeet, }\DataTypeTok{type =} \StringTok{"n"}\NormalTok{,}
      \DataTypeTok{xlab =} \StringTok{"Probability of Meeting Harvest Criterion"}\NormalTok{,}
      \DataTypeTok{ylab =} \StringTok{"Probability of Meeting Escapement Criterion"}\NormalTok{)}
@@ -5480,7 +5501,7 @@ Notice the use of \texttt{replace\ =\ T} here: without this, there would
 be no bootstrap. You would just sample the same observations over and
 over, their order in the rows would just be shuffled. Next, write a
 function to fit the model (revisit Section \ref{nls} for more details on
-\texttt{nls}):
+\texttt{nls()}):
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5516,9 +5537,10 @@ introductional material\footnote{If you'd like more details, see Hadley
   Wickham's page on it:
   \url{http://adv-r.had.co.nz/Functions.html\#lexical-scoping}}.
 Basically, if an object with the same name as one defined in the
-function exists outside of the funciton, the function will use the one
-that is defined in it. If there is no object defined in the function
-with that name, it will look outside of the function for that object.
+function exists outside of the function, the function will use the one
+that is defined within the function. If there is no object defined in
+the function with that name, it will look outside of the function for
+that object.
 
 Now, use these three functions to perform one iteration:
 
@@ -5528,8 +5550,8 @@ Now, use these three functions to perform one iteration:
 \end{Highlighting}
 \end{Shaded}
 
-You can wrap this inside of a \texttt{replicate} call to perform step 4
-above:
+You can wrap this inside of a \texttt{replicate()} call to perform step
+4 above:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5691,7 +5713,7 @@ Use your function once:
 ## [1] -11.15
 \end{verbatim}
 
-Perform step 4 from the pseudocode by replicating the \texttt{perm}
+Perform step 4 from the pseudocode by replicating your \texttt{perm()}
 function many times:
 
 \begin{Shaded}
@@ -5762,18 +5784,18 @@ These questions are based on the material in Sections \ref{randomness} -
 \tightlist
 \item
   Simulate flipping an unfair coin (probability of heads = 0.6) 100
-  times using \texttt{rbinom}. Count the number of heads and tails.
+  times using \texttt{rbinom()}. Count the number of heads and tails.
 \item
-  Simulate flipping the same unfair coin 100 times, but suing
-  \texttt{sample} instead. Determine what fraction of the flips resulted
-  in heads.
+  Simulate flipping the same unfair coin 100 times, but using
+  \texttt{sample()} instead. Determine what fraction of the flips
+  resulted in heads.
 \item
-  Simulate rolling a fair 6-sided die 100 times using \texttt{sample}.
+  Simulate rolling a fair 6-sided die 100 times using \texttt{sample()}.
   Determine what fraction of the rolls resulted in an even number.
 \item
   Simulate rolling the same die 100 times, but use the function
-  \texttt{rmultinom} instead. Look at the help file for details on how
-  to use this function. Determin what fraction of the rolls resulted in
+  \texttt{rmultinom()} instead. Look at the help file for details on how
+  to use this function. Determine what fraction of the rolls resulted in
   an odd number.
 \end{enumerate}
 
@@ -5791,9 +5813,9 @@ These questions will require you to adapt the code written in Section
 \tightlist
 \item
   Adapt this example to investigate another univariate probability
-  distribution, like \texttt{-lnorm}, \texttt{-pois}, or \texttt{-beta}.
-  See the help files (e.g., \texttt{?rpois}) for details on how to use
-  each function.
+  distribution, like \texttt{-lnorm()}, \texttt{-pois()}, or
+  \texttt{-beta()}. See the help files (e.g., \texttt{?rpois}) for
+  details on how to use each function.
 \end{enumerate}
 
 \protect\hyperlink{ex4b-answers}{Solutions}
@@ -5820,7 +5842,7 @@ These questions will require you to adapt the code written in Section
 \item
   Your analysis takes a bit of time to run so you are interested in
   tracking its progress. Add a progress message to your nested
-  \texttt{for} loop that will print the sample size currently being
+  \texttt{for()} loop that will print the sample size currently being
   analyzed:
 \end{enumerate}
 
@@ -5848,24 +5870,24 @@ These questions will require you to adapt the code written in Section
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Add an argument to \texttt{ricker\_sim} that will give the user an
+  Add an argument to \texttt{ricker\_sim()} that will give the user an
   option to create a plot that shows the time series of recruitment,
   harvest, and escapement all on the same plot. Set the default to be to
   not plot the result, in case you forget to turn it off before
   performing the Monte Carlo analysis.
 \item
-  Add a \_error handler** to \texttt{ricker\_sim} that will cause the
-  function to return an error \texttt{if} the names of the vector passed
-  to the \texttt{param} argument aren't what the function is expecting.
-  You can use stop(``Error Message Goes Here'') to have your function
-  stop and return an error.
+  Add an \emph{error handler} to \texttt{ricker\_sim()} that will cause
+  the function to return an error \texttt{if()} the names of the vector
+  passed to the \texttt{param} argument aren't what the function is
+  expecting. You can use stop(``Error Message Goes Here'') to have your
+  function stop and return an error.
 \item
   How do the results of the trade-off analysis differ if the process
   error was larger (a larger value of \(\sigma\))?
 \item
   Add implementation error to the harvest policy. That is, if the target
   exploitation rate is \(U\), make the real exploitation rate in year
-  \(y\) be: \(U_y ~ Beta(a,b)\), where \(a = 100U\) and
+  \(y\) be: \(U_y \sim Beta(a,b)\), where \(a = 100U\) and
   \(b = 100(1-U)\). You can make there be more implementation error by
   inserting a smaller number other than 100 here. How does this affect
   the trade-off analysis?
@@ -5913,7 +5935,7 @@ These questions will require you to adapt the code written in Section
 \item
   Adapt the code to perform a permutation test for another data set used
   in this book where there are observations of both a categorical
-  variable and a continuous variable. The the data sets
+  variable and a continuous variable. The data sets
   \texttt{sockeye.csv}, \texttt{growth.csv}, or \texttt{creel.csv}
   should be good starting points.
 \item
@@ -5934,11 +5956,11 @@ Any data analyst will tell you that oftentimes the most difficult part
 of an analysis is simply getting the data in the proper format. Real
 data sets are messy: they have missing values, variables are often
 stored in multiple columns that would be better stored as rows, the same
-factor level may be coded as two or more different types\footnote{\texttt{"hatch"},
-  ``\texttt{Hatch}'', and \texttt{"HATCH"} are all treated differently
-  in R}, and the required data are in several separate files. You get
-the point: sometimes significant data-wrangling may be required before
-you perform an analysis.
+factor level may be coded as two or more different types\footnote{E.g.,
+  \texttt{"hatch"}, ``\texttt{Hatch}'', and \texttt{"HATCH"} are all
+  treated as different factor levels in R}, or the required data are in
+several separate files. You get the point: sometimes significant
+data-wrangling may be required before you perform an analysis.
 
 In this chapter, you will learn tricks to do more advanced data
 manipulation in R using two R \textbf{packages}:
@@ -6034,7 +6056,7 @@ escaped the fishery and will have a chance to spawn (this number is
 termed ``escapement''). The ultimate goal is to obtain annual totals of
 spawners and total run (catch + escapement) for the purpose of fitting a
 spawner recruit analysis. You will perform some other analyses along the
-way directed quantifying patterns in run timing.
+way directed at quantifying patterns in run timing.
 
 Read in the two data sets for this chapter (see the
 \protect\hyperlink{data-sets}{instructions} for details on acquiring
@@ -6092,13 +6114,13 @@ that were in the fishing grounds on day \texttt{d} passed the counting
 tower on day \texttt{d+1} if they were not harvested).
 
 \section{\texorpdfstring{Change format using
-\texttt{melt}}{Change format using melt}}\label{change-format-using-melt}
+\texttt{melt()}}{Change format using melt()}}\label{change-format-using-melt}
 
 These data are in what is called \textbf{wide} format: different levels
 of the \texttt{year} variable are stored as columns. A \textbf{long}
 format would have three columns: one for \texttt{doy}, \texttt{year},
 and \texttt{catch} or \texttt{esc}. Turn the \texttt{catch} data frame
-into long format using the \texttt{melt} function from
+into long format using the \texttt{melt()} function from
 \texttt{\{reshape2\}}:
 
 \begin{Shaded}
@@ -6166,12 +6188,26 @@ original data set match up to the new data set:
 The single \texttt{TRUE} indicates that every element matches up for
 2015 in the catch data, just like they should.
 
+To reverse this action (i.e., to go from long format to wide format),
+you would use the \texttt{dcast()} function from \texttt{\{reshape2\}}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dcast}\NormalTok{(long.catch, doy }\OperatorTok{~}\StringTok{ }\NormalTok{year, }\DataTypeTok{value.var =} \StringTok{"catch"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The formula specifies which variables are ID variables on the left-hand
+side, and which variable should get expanded to multiple columns. The
+\texttt{value.var} argument indicates which variable will be placed into
+the columns.
+
 \section{\texorpdfstring{Join Data Sets with
-\texttt{merge}}{Join Data Sets with merge}}\label{join-data-sets-with-merge}
+\texttt{merge()}}{Join Data Sets with merge()}}\label{join-data-sets-with-merge}
 
 You now have two long format data sets. You can turn them into one data
-set with the \texttt{merge} function (which is actually in the
-\texttt{\{base\}} package). \texttt{merge} takes two data frames and
+set with the \texttt{merge()} function (which is actually in the
+\texttt{\{base\}} package). \texttt{merge()} takes two data frames and
 joins them based on certain grouping variables. Here, you want to
 combine the data frames \texttt{long.catch} and \texttt{long.esc} into
 one data frame, and match the rows by the \texttt{doy} and \texttt{year}
@@ -6198,18 +6234,18 @@ for each unique pair:
 The \texttt{all\ =\ T} argument is important to specify here. It says
 that you wish to keep \textbf{all} of the unique records in the columns
 passed to \texttt{by} from both data frames. The \texttt{doy} in the
-catch data ranges from day 160 to day 209, whereas in escapement it
+catch data ranges from day 160 to day 209, whereas for escapement it
 ranges from day 161 to day 210. In this system, the fishery opens on the
 160\textsuperscript{th} day of every year, and the counting tower starts
-the 161\textsuperscript{st}. If you didn't use \texttt{all\ =\ T}, you
-would drop all the rows in each data set that do not have a match the
-other data set (you would lose day 160 and day 210 from every year).
+the 161\textsuperscript{st} day. If you didn't use \texttt{all\ =\ T},
+you would drop all the rows in each data set that do not have a match
+the other data set (you would lose day 160 and day 210 from every year).
 Notice that because no escapement observations were ever made one
 \texttt{doy} 160, the \texttt{esc} values on this day is \texttt{NA}.
 
 Notice how the data set is now ordered by \texttt{doy} instead of
 \texttt{year}. This is not a problem, but if you want to reorder the
-data frame by \texttt{year}, you can use the \texttt{arrange} function
+data frame by \texttt{year}, you can use the \texttt{arrange()} function
 from \texttt{\{dplyr\}}:
 
 \begin{Shaded}
@@ -6241,8 +6277,8 @@ from the fishing grounds. This means that the escapement counts are
 \textbf{lagged} relative to the catch counts. If you want the daily run
 (defined as the number in fishing grounds each day), you need to account
 for this lag. An easy way to think about the lag is to show it
-graphically. First, pull out one year of data using the \texttt{filter}
-function in \texttt{\{dplyr\}}:
+graphically. First, pull out one year of data using the
+\texttt{filter()} function in \texttt{\{dplyr\}}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6261,7 +6297,7 @@ function in \texttt{\{dplyr\}}:
 ## 6 165 y_2015 3486   379
 \end{verbatim}
 
-The \texttt{\{base\}} analog to the \texttt{filter} function is:
+The \texttt{\{base\}} analog to the \texttt{filter()} function is:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6271,7 +6307,7 @@ The \texttt{\{base\}} analog to the \texttt{filter} function is:
 \end{Highlighting}
 \end{Shaded}
 
-They take about the same amount of code to write, but \texttt{filter}
+They take about the same amount of code to write, but \texttt{filter()}
 has some advantages when used with other \texttt{\{dplyr\}} functions
 that will be discussed later. Now plot the daily catch and escapement
 (not cumulative yet) for 2015:
@@ -6286,15 +6322,15 @@ that will be discussed later. Now plot the daily catch and escapement
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-218-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-219-1} \end{center}
 
 Notice how the escapement counts are shifted to the right by one day.
-This is the lag. To account for it, you can use the \texttt{lag}
-function from \texttt{\{dplyr\}}. \texttt{lag} works by lagging some
+This is the lag. To account for it, you can use the \texttt{lag()}
+function from \texttt{\{dplyr\}}. \texttt{lag()} works by lagging some
 vector by \texttt{n} elements (it shifts every element in the vector to
 the right by one place by putting \texttt{n} \texttt{NAs} at the front
 and removing the last \texttt{n} elements from the original vector). One
-way to fix the lag problem would be to use \texttt{lag} on
+way to fix the lag problem would be to use \texttt{lag()} on
 \texttt{catch} to make the days match up with \texttt{esc} (don't lag
 \texttt{esc} because that would just lag it by \texttt{n} additional
 days):
@@ -6302,31 +6338,31 @@ days):
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{plot}\NormalTok{(}\KeywordTok{lag}\NormalTok{(catch, }\DataTypeTok{n =} \DecValTok{1}\NormalTok{) }\OperatorTok{~}\StringTok{ }\NormalTok{doy, }\DataTypeTok{data =}\NormalTok{ y15, }\DataTypeTok{type =} \StringTok{"b"}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{16}\NormalTok{, }\DataTypeTok{col =} \StringTok{"blue"}\NormalTok{,}
-     \DataTypeTok{xlab =} \StringTok{"DOY"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"Count"}\NormalTok{, }\DataTypeTok{main =} \StringTok{"With Lag(catch)"}\NormalTok{)}
+     \DataTypeTok{xlab =} \StringTok{"DOY"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"Count"}\NormalTok{, }\DataTypeTok{main =} \StringTok{"With lag(catch)"}\NormalTok{)}
 \KeywordTok{lines}\NormalTok{(esc }\OperatorTok{~}\StringTok{ }\NormalTok{doy, }\DataTypeTok{data =}\NormalTok{ y15, }\DataTypeTok{type =} \StringTok{"b"}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{16}\NormalTok{, }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{)}
 \KeywordTok{legend}\NormalTok{(}\StringTok{"topright"}\NormalTok{, }\DataTypeTok{legend =} \KeywordTok{c}\NormalTok{(}\StringTok{"Catch"}\NormalTok{, }\StringTok{"Escapement"}\NormalTok{),}
        \DataTypeTok{col =} \KeywordTok{c}\NormalTok{(}\StringTok{"blue"}\NormalTok{, }\StringTok{"red"}\NormalTok{), }\DataTypeTok{pch =} \DecValTok{16}\NormalTok{, }\DataTypeTok{lty =} \DecValTok{1}\NormalTok{, }\DataTypeTok{bty =} \StringTok{"n"}\NormalTok{, }\DataTypeTok{cex =} \FloatTok{0.8}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-219-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-220-1} \end{center}
 
 Notice how the two curves line up better now.
 
 \section{\texorpdfstring{Adding columns with
-\texttt{mutate}}{Adding columns with mutate}}\label{adding-columns-with-mutate}
+\texttt{mutate()}}{Adding columns with mutate()}}\label{adding-columns-with-mutate}
 
 Apply this same idea to the data set to get the total number of fish
 that were in the fishing grounds on each day (the daily run, what was
 harvested plus what was not). First, make a function to take two
 vectors, lag one, then sum them: this will give you the daily run.
 However, you don't need to move catch forward a day, you need to move
-escapement back a day. The opposite of \texttt{lag} is \texttt{lead}.
-The way to think of this is that \texttt{lag} lags a vector, and
-\texttt{lead} unlags a vector. \texttt{lead} shifts every element to the
-left by \texttt{n} elements by removing the first \texttt{n} elements of
-the original vector and adding \texttt{n} \texttt{NAs} to the end. This
-is what you want for your function:
+escapement back a day. The opposite of \texttt{lag()} is
+\texttt{lead()}. The way to think of this is that \texttt{lag()} lags a
+vector, and \texttt{lead()} unlags a vector. \texttt{lead()} shifts
+every element to the left by \texttt{n} elements by removing the first
+\texttt{n} elements of the original vector and adding \texttt{n}
+\texttt{NAs} to the end. This is what you want for your function:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6341,7 +6377,7 @@ Note the use of \texttt{na.rm\ =\ T} to specify that summing a number
 with an \texttt{NA} should still return a number. If two \texttt{NAs}
 are summed, the result will be a zero.
 
-Try out the \texttt{lag\_sum} function:
+Try out the \texttt{lag\_sum()} function:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6349,16 +6385,8 @@ Try out the \texttt{lag\_sum} function:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-##  [1]  5635  3966   149  5514  8566   639  4480  2985  1152  4330  6155
-## [12]  3472 11653 10742 14064 10630 15356 17494 18612 22040 20248 24865
-## [23] 22334 23447 16521 12781 10595 10675  6622 11428  2506  4916  8573
-## [34]  4685  1106   144  5966  3329   565  7670  7637  5095  8875  5180
-## [45]  4735  8784  3885  1733  9528  1481     0
-\end{verbatim}
-
 You will want to add this column to your data set. You add columns in
-\texttt{\{dplyr\}} using \texttt{mutate}:
+\texttt{\{dplyr\}} using \texttt{mutate()}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6366,7 +6394,7 @@ You will want to add this column to your data set. You add columns in
 \end{Highlighting}
 \end{Shaded}
 
-The \texttt{\{base\}} equivalent to \texttt{mutate} is:
+The \texttt{\{base\}} equivalent to \texttt{mutate()} is:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6374,13 +6402,13 @@ The \texttt{\{base\}} equivalent to \texttt{mutate} is:
 \end{Highlighting}
 \end{Shaded}
 
-\texttt{mutate} has advantages when used with other \texttt{\{dplyr\}}
+\texttt{mutate()} has advantages when used with other \texttt{\{dplyr\}}
 functions that will be shown soon. Use the new variable \texttt{run} to
 calculate two new variables: the cumulative run by day (\texttt{crun})
 and cumulative run proportion by day (\texttt{cprun}). Cumulative means
 that each new element is the value that occurred on that day plus all of
 the values that happened on days before it. You can use R's
-\texttt{cumsum} for this:
+\texttt{cumsum()} for this:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6388,22 +6416,22 @@ the values that happened on days before it. You can use R's
 \end{Highlighting}
 \end{Shaded}
 
-Here is one advantage of \texttt{mutate}: you can refer to a column you
-just created to make a new column within the same function. You would
-have to split this into two lines to do it in \texttt{\{base\}}. Indeed,
-you could have made \texttt{run}, \texttt{crun}, and \texttt{cprun} all
-in the same \texttt{mutate} call. Plot \texttt{cprun}\footnote{It
-  doesn't look like much, but this information is incredibly important
-  for fishery managers. It provides information on how much of the
-  annual run has passed on each day. You can see that the rate of change
-  is the fastest in the middle of the run, this corresponds to the major
-  hump in the plots you made earlier (which were raw numbers by day). Of
-  course during the run, the managers don't know what proportion of the
-  total run has passed because they don't know the total number of fish
-  that will come that season, but by characterizing the mean and
-  variability of the different run completion proportions on each day in
-  the past, they can have some idea of how much of the run to expect yet
-  to come on any given day.}:
+Here is one advantage of \texttt{mutate()}: you can refer to a variable
+you just created to make a new variable within the same function. You
+would have to split this into two lines to do it in \texttt{\{base\}}.
+Indeed, you could have made \texttt{run}, \texttt{crun}, and
+\texttt{cprun} all in the same \texttt{mutate()} call. Plot
+\texttt{cprun}\footnote{It doesn't look like much, but this information
+  is incredibly important for fishery managers. It provides information
+  on how much of the annual run has passed on each day. You can see that
+  the rate of change is the fastest in the middle of the run, this
+  corresponds to the major hump in the plots you made earlier (which
+  were raw numbers by day). Of course during the run, the managers don't
+  know what proportion of the total run has passed because they don't
+  know the total number of fish that will come that season, but by
+  characterizing the mean and variability of the different run
+  completion proportions on each day in the past, they can have some
+  idea of how much of the run to expect yet to come on any given day.}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6412,7 +6440,7 @@ in the same \texttt{mutate} call. Plot \texttt{cprun}\footnote{It
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-225-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-226-1} \end{center}
 
 \section{Apply to all years}\label{apply-to-all-years}
 
@@ -6436,14 +6464,25 @@ basic example of a pipe:
 The pipe took the result of \texttt{rnorm(10)} and passed it as the
 first argument to the \texttt{length} function. This allows you to
 string together commands so you aren't continuously making intermediate
-objects or nesting a ton of functions together.
+objects or nesting a ton of functions together. The pipe essentially
+does this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x =}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{); }\KeywordTok{length}\NormalTok{(x); }\KeywordTok{rm}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 10
+\end{verbatim}
 
 The reason piping works so well with \texttt{\{dplyr\}} is because its
 functions are designed to take a data frame as input as the first
 argument and return another data frame as output, which allows you to
 string them together with pipes. Do a more complex pipe: take your main
 data frame (\texttt{dat}), group it by \texttt{year}, and pass it to a
-\texttt{mutate} call that will add the new three columns to the entire
+\texttt{mutate()} call that will add the new three columns to the entire
 data set:
 
 \begin{Shaded}
@@ -6476,17 +6515,17 @@ data set:
 ## # ... with 2,540 more rows
 \end{verbatim}
 
-The \texttt{group\_by} function is spectacular: you grouped the data
-frame by \texttt{year}, which tells the next function to apply its
-commands to each year independently. With this function, you can group
-your data in any way you please and calculate statistics on a
-group-by-group basis. Note that in this example, it doesn't do much for
-you, because the data are so neat (all years have same number of days,
-\texttt{NAs} in all of the same places, etc.), but for data that are
-messier, this trick is very handy. Also note that the \texttt{dat}
-object looks a little different. When you print it, it only shows the
-first 10 rows. This is a \texttt{\{dplyr\}} feature that prevents you
-from printing a huge data set to the console.
+The \texttt{group\_by()} function is spectacular: you grouped the data
+frame by \texttt{year}, which tells the rest of the functions in the
+pipe to apply its commands to each year independently. With this
+function, you can group your data in any way you please and calculate
+statistics on a group-by-group basis. Note that in this example, it
+doesn't do much for you, because the data are so neat (all years have
+same number of days, \texttt{NAs} in all of the same places, etc.), but
+for data that are messier, this trick is very handy. Also note that the
+\texttt{dat} object looks a little different. When you print it, it only
+shows the first 10 rows. This is a \texttt{\{dplyr\}} feature that
+prevents you from printing a huge data set to the console.
 
 Now plot the cumulative run proportion by day for each year,
 highlighting 2015:
@@ -6507,21 +6546,21 @@ highlighting 2015:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-228-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-230-1} \end{center}
 
 \section{\texorpdfstring{Calculate Daily Means with
-\texttt{summarize}}{Calculate Daily Means with summarize}}\label{calculate-daily-means-with-summarize}
+\texttt{summarize()}}{Calculate Daily Means with summarize()}}\label{calculate-daily-means-with-summarize}
 
 Oftentimes, you want to calculate a statistic for a value across
 grouping variables, like year or site or day. Remember the
-\texttt{tapply} function does this in \texttt{\{base\}}. Here you want
+\texttt{tapply()} function does this in \texttt{\{base\}}. Here you want
 to calculate the mean cumulative run proportion for each day averaged
-across years. For this, you can make use of the \texttt{summarize}
+across years. For this, you can make use of the \texttt{summarize()}
 function in \texttt{\{dplyr\}}. Begin by ungrouping the data to remove
 the \texttt{year} groups and grouping the data by \texttt{doy}. This
 will allow you to calculate the mean proportion by day. You then pass
-this grouped data frame to \texttt{summarize} which will apply the
-\texttt{mean} function to the cumulative run proportions across all
+this grouped data frame to \texttt{summarize()} which will apply the
+\texttt{mean()} function to the cumulative run proportions across all
 years on a particular day. It will do this for all days:
 
 \begin{Shaded}
@@ -6546,7 +6585,7 @@ years on a particular day. It will do this for all days:
 ## 6   165 0.0579
 \end{verbatim}
 
-The way to do this in \texttt{\{base\}} is with \texttt{tapply}:
+The way to do this in \texttt{\{base\}} is with \texttt{tapply()}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6559,17 +6598,18 @@ The way to do this in \texttt{\{base\}} is with \texttt{tapply}:
 ## 0.009699779 0.019400196 0.029111609 0.038735562 0.049130566 0.057901058
 \end{verbatim}
 
-Note that you get the same result, only the output from \texttt{tapply}
-is a vector, and the output of \texttt{summarize} is a data frame.
+Note that you get the same result, only the output from
+\texttt{tapply()} is a vector, and the output of \texttt{summarize()} is
+a data frame.
 
-One disadvantage of the \texttt{summarize} function, however, is that it
-can only be used to apply functions that give one number as output
-(e.g., \texttt{mean}, \texttt{max}, \texttt{sd}, \texttt{length}, etc.).
-These are called aggregate functions: they take a bunch of numbers and
-aggregate them into one number. \texttt{tapply} does not have this
-constraint. Illustrate this by trying to use the \texttt{range} function
-(which combines the minimum and maximum values of some vector into
-another vector of length 2).
+One disadvantage of the \texttt{summarize()} function, however, is that
+it can only be used to apply functions that give one number as output
+(e.g., \texttt{mean()}, \texttt{max()}, \texttt{sd()},
+\texttt{length()}, etc.). These are called \textbf{aggregate} functions:
+they take a bunch of numbers and aggregate them into one number.
+\texttt{tapply()} does not have this constraint. Illustrate this by
+trying to use the \texttt{range()} function (which combines the minimum
+and maximum values of some vector into another vector of length 2).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6609,10 +6649,10 @@ another vector of length 2).
 ## [1] 0.01797648 0.08253284
 \end{verbatim}
 
-You can see that \texttt{tapply} allows you to do this (but gives a
-list), whereas \texttt{summarize} returns a short and informative error.
-However, you could very easily fix the problem by making minimum and
-maximum columns in the same \texttt{summarize} call:
+You can see that \texttt{tapply()} allows you to do this (but gives a
+list), whereas \texttt{summarize()} returns a short and informative
+error. However, you could very easily fix the problem by making minimum
+and maximum columns in the same \texttt{summarize()} call:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6623,16 +6663,22 @@ maximum columns in the same \texttt{summarize} call:
 \end{Highlighting}
 \end{Shaded}
 
-Add the mean cumulative run proportion to our plot (use \texttt{lines}
-just like before, add it after the \texttt{sapply} call).
+Add the mean cumulative run proportion to our plot (use \texttt{lines()}
+just like before, add it after the \texttt{sapply()} call):
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-233-1} \end{center}
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{lines}\NormalTok{(cprun }\OperatorTok{~}\StringTok{ }\NormalTok{doy, }\DataTypeTok{data =}\NormalTok{ mean_cprun, }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-236-1} \end{center}
 
 It looks like 2015 started like an average year but the peak of the run
 happened a couple days earlier than average.
 
 \section{\texorpdfstring{More
-\texttt{summarize}}{More summarize}}\label{more-summarize}
+\texttt{summarize()}}{More summarize()}}\label{more-summarize}
 
 Your colleagues have been talking lately about how the run has been
 getting earlier and earlier in recent years. To determine if their
@@ -6641,7 +6687,8 @@ which 50\% of the run has passed (the median run date) and plot it over
 time. If there is a downward trend, then the run has been getting
 earlier. First, you need to define another function to find the day that
 corresponds to 50\% of the run. If there were days where the cumulative
-run on that day equaled exactly 0.5, we could simply use \texttt{which}:
+run on that day equaled exactly 0.5, we could simply use
+\texttt{which()}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6650,7 +6697,7 @@ run on that day equaled exactly 0.5, we could simply use \texttt{which}:
 \end{Highlighting}
 \end{Shaded}
 
-The \texttt{which} function is useful: it returns the indices (element
+The \texttt{which()} function is useful: it returns the indices (element
 places) \emph{for which} the condition is \texttt{TRUE} However you need
 to do a workaround here, since the median day is likely not exactly 0.5
 (and it has to be for \texttt{==} to return a \texttt{TRUE}). We will
@@ -6691,11 +6738,11 @@ data only:
 ## 1 0.5023032
 \end{verbatim}
 
-The \texttt{select} function in \texttt{\{dplyr\}} extracts the
+The \texttt{select()} function in \texttt{\{dplyr\}} extracts the
 variables requested from the data frame. If there is a grouping variable
-set using \texttt{group\_by}, it will be returned as well. It looks like
-the function works. Now combine it with \texttt{summarize} to calculate
-the median day for every year:
+set using \texttt{group\_by()}, it will be returned as well. It looks
+like the function works. Now combine it with \texttt{summarize()} to
+calculate the median day for every year:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6740,7 +6787,7 @@ numeric variable:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-238-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-241-1} \end{center}
 
 It doesn't appear that there is a trend in either direction, but fit a
 regression line because you can (Section \ref{regression}):
@@ -6765,9 +6812,9 @@ regression line because you can (Section \ref{regression}):
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-239-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-242-1} \end{center}
 
-The results tell you that there is an 0.005 day decrease in median run
+The results tell you that there is a 0.005 day decrease in median run
 date for every 1 year that has gone by and that it is not significantly
 different from a zero day decrease per year.
 
@@ -6807,13 +6854,13 @@ total run:
 ## 6 y_1927 96622 243212.
 \end{verbatim}
 
-You didn't need to use \texttt{group\_by} here because the data were
+You didn't need to use \texttt{group\_by()} here because the data were
 still grouped from an earlier task. There is no harm in putting it in,
 and it would help make your code more readable if you were to include
 it.
 
 That is the main data manipulation you need to do in order to run the
-spawner-recruit analysis. You can fit the model using \texttt{nls}
+spawner-recruit analysis. You can fit the model using \texttt{nls()}
 (Section \ref{nls}). The model you will fit is called a \textbf{Ricker
 spawner-recruit model} and has the form:
 
@@ -6826,7 +6873,7 @@ where \(\alpha\) is a parameter representing the maximum recruits per
 spawner (obtained at very low spawner abundances) and \(\beta\) is a
 measure of the strength of \textbf{density-dependent mortality}. Notice
 that the error term is in the exponent, which makes
-\(e^{\varepsilon_t}\) lognormal. To get \texttt{nls} to fit this
+\(e^{\varepsilon_t}\) lognormal. To get \texttt{nls()} to fit this
 properly, we will need to fit to \(log(R_t)\) as the response variable.
 Write a function that will predict log recruitment from spawners given
 the two parameters (ignore the error term):
@@ -6839,12 +6886,12 @@ the two parameters (ignore the error term):
 \end{Highlighting}
 \end{Shaded}
 
-Fit the model to the data using \texttt{nls}. Before you fit it,
+Fit the model to the data using \texttt{nls()}. Before you fit it,
 however, you'll need to do another lag. This is because the run that
 comes back in one year was spawned by the escapement the previous odd
 year (you only have odd years in the data). This time extract the
-appropriate years ``by-hand'' rather than using the \texttt{lag} or
-\texttt{lead} functions as before:
+appropriate years ``by-hand'' rather than using the \texttt{lag()} or
+\texttt{lead()} functions as before:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6900,7 +6947,7 @@ Plot the recruits versus spawners and the fitted line:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-244-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-247-1} \end{center}
 
 The diagonal line is the \textbf{1:1 replacement line}: where 1 spawner
 would produce 1 recruit. The distance between this line and the curve is
@@ -6912,13 +6959,16 @@ reference points that might be used in harvest management are:
 && S_{MAX}=\frac{1}{\beta},\\
 && S_{eq}=log(\alpha) S_{MAX},\\
 && S_{MSY}=S_{eq} \left(0.5-0.07*log(\alpha)\right)
+\label{eq:ricker-brps}
 \end{eqnarray*}
 
 Where \(S_{MAX}\) is the spawner abundance expected to produce the
 maximum recruits, \(S_{eq}\) is the spawner abundance that should
 produce exactly replacement recruits, and \(S_{MSY}\) is the spawner
-abundance that is expected to produce the maximum surplus. You can
-calculate these from your parameter estimates:
+abundance that is expected to produce the maximum surplus (all under the
+assumption of no environmental variability). You can calculate the
+reference points given in Equation \eqref{eq:ricker-brps} from your
+parameter estimates:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6941,7 +6991,7 @@ Draw these reference points onto your plot and label them:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-247-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-250-1} \end{center}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -6949,41 +6999,42 @@ Draw these reference points onto your plot and label them:
 \addcontentsline{toc}{section}{Exercise 5}
 
 In this exercise, you will be working with another simulated salmon data
-set. This time, you have information on individual fish passing a
-\textbf{weir}. A weir is a blockade in a stream that biologists use to
-count fish as they pass by. Most of the day, the weir is closed and fish
-stack up waiting to pass. Then a couple times a day, biologists open a
-gate in the weir and count fish as they pass. Each year, the biologists
-sample a subset of fish that pass by to get age, sex, and length. There
-are concerns that by using large mesh gill nets, the fishery is
-selectively taking the larger fish and that this is causing a shift in
-the size-at-age, age composition, and sex composition. If this is the
-case, it could potentially mean a reduction in productivity since
-smaller fish have fewer eggs. You are tasked with analyzing these data
-to determine if these quantities have changed overtime. Note that
-documenting directional changes in these quantities over time and the
-co-occurrence of the use of large mesh gill nets does not imply
-causation.
+set (from an age-structured population this time, like Chinook salmon
+\emph{Oncorhynchus tshawytscha}). You have information on individual
+fish passing a \textbf{weir}. A weir is a blockade in a stream that
+biologists use to count fish as they pass by. Most of the day, the weir
+is closed and fish stack up waiting to pass. Then a couple times a day,
+biologists open a gate in the weir and count fish as they pass. Each
+year, the biologists sample a subset of fish that pass by to get age,
+sex, and length. There are concerns that by using large mesh gill nets,
+the fishery is selectively taking the larger fish and that this is
+causing a shift in the size-at-age, age composition, and sex
+composition. If this is the case, it could potentially mean a reduction
+in productivity since smaller fish have fewer eggs. You are tasked with
+analyzing these data to determine if these quantities have changed
+overtime. Note that documenting directional changes in these quantities
+over time and the co-occurrence of the use of large mesh gill nets does
+not imply causation.
 
 \emph{The solutions to this exercise are found at the end of this book
 (\protect\hyperlink{ex5-answers}{here}). You are \textbf{strongly
 recommended} to make a good attempt at completing this exercise on your
 own and only look at the solutions when you are truly stumped.}
 
-Download the data file \texttt{asl.csv} (\textbf{a}ge, \textbf{s}ex,
-\textbf{l}ength) from the
-\href{https://github.com/bstaton1/au-r-workshop-data}{GitHub repo} (or
-go \protect\hyperlink{data-sets}{here} for details) and save it in your
-working directory for this chapter. Create a new R script \texttt{Ex5.R}
-there. Open this script and read the data file into R. If this is a new
-session, load the \texttt{\{dplyr\}} package.
+Use the data found in \texttt{asl.csv} (\textbf{a}ge, \textbf{s}ex,
+\textbf{l}ength) (see the \protect\hyperlink{data-sets}{instructions}
+for details on acquiring the data files for this book). Create a new R
+script \texttt{Ex5.R} in your working directory. Open this script and
+read the data file into R. If this is a new session, load the
+\texttt{\{dplyr\}} package.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
+\tightlist
 \item
   Count the number of females that were sampled each year using the
-  \texttt{\{dplyr\}} function \texttt{n} within a \texttt{summarize}
-  call (\emph{Hint: \texttt{n} works just like length - it counts the
+  \texttt{\{dplyr\}} function \texttt{n()} within a \texttt{summarize()}
+  call (\emph{Hint: \texttt{n()} works just like length - it counts the
   number of records}).
 \item
   Calculate the proportion of females by year.
@@ -7005,13 +7056,14 @@ session, load the \texttt{\{dplyr\}} package.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
+\tightlist
 \item
   Calculate the age composition by sex and year (what proportion of all
   the males in a year were age 4, age 5, age 6, age 7, and same for
   females).
 \item
   Plot the time series of age composition by sex and year. Does it look
-  like age composition as changed over time?
+  like age composition has changed over time?
 \end{enumerate}
 
 \chapter{Mapping and Spatial Analysis}\label{ch6}
@@ -7161,12 +7213,13 @@ cell or delete its contents. You can do this easily by opening
 
 \textbf{1. Read in the data to R and assign it to an object.}
 
-After placing \texttt{ponds.csv} (and all of the other ) to your working
-directory and creating \texttt{Ex1B.R},
+After placing \texttt{ponds.csv} (and all of the other data files) in
+the location \texttt{C:/Users/YOU/Documents/R-Book/Data} and creating
+\texttt{Ex1B.R} in your working directory:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{dat =}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"..Data/ponds.csv"}\NormalTok{)}
+\NormalTok{dat =}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"../Data/ponds.csv"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -7447,9 +7500,6 @@ One way to do this:
 \end{Highlighting}
 \end{Shaded}
 
-\subsection*{EXERCISE 2 BONUS}\label{exercise-2-bonus-1}
-\addcontentsline{toc}{subsection}{EXERCISE 2 BONUS}
-
 \textbf{Bonus 1. Make a bar plot comparing the mean survival to eyed-egg
 stage for each type of fish (hatchery and wild). Add error bars that
 represent 95\% confidence intervals.}
@@ -7524,36 +7574,1059 @@ Place this line above your \texttt{barplot(...)} code:
 Solutions}\label{ex3-answers}}
 \addcontentsline{toc}{section}{Exercise 3 Solutions}
 
+\textbf{1. Perform the same analyses as conducted in Section \ref{lm}
+(simple linear regression, ANOVA, ANCOVA, ANCOVA with interaction),
+using \texttt{egg\_size} as the response variable. The predictor
+variables you should use are \texttt{type} (categorical) and
+\texttt{year}. You should plot the fit for each model separately and
+perform an AIC analysis. Practice interpretting the coefficient
+estimates.}
+
+First, read in the data:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dat =}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"../Data/sockeye.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# regression}
+\NormalTok{fit1 =}\StringTok{ }\KeywordTok{lm}\NormalTok{(egg_size }\OperatorTok{~}\StringTok{ }\NormalTok{year, }\DataTypeTok{data =}\NormalTok{ dat)}
+\CommentTok{# anova}
+\NormalTok{fit2 =}\StringTok{ }\KeywordTok{lm}\NormalTok{(egg_size }\OperatorTok{~}\StringTok{ }\NormalTok{type, }\DataTypeTok{data =}\NormalTok{ dat)}
+\CommentTok{# ancova}
+\NormalTok{fit3 =}\StringTok{ }\KeywordTok{lm}\NormalTok{(egg_size }\OperatorTok{~}\StringTok{ }\NormalTok{year }\OperatorTok{+}\StringTok{ }\NormalTok{type, }\DataTypeTok{data =}\NormalTok{ dat)}
+\CommentTok{# ancova with interaction}
+\NormalTok{fit4 =}\StringTok{ }\KeywordTok{lm}\NormalTok{(egg_size }\OperatorTok{~}\StringTok{ }\NormalTok{year }\OperatorTok{*}\StringTok{ }\NormalTok{type, }\DataTypeTok{data =}\NormalTok{ dat)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{2. Perform the same analyses as conducted in Section \ref{glms},
+this time using a success being having greater than 80\% survival to the
+eyed-egg stage. Use \texttt{egg\_size} and \texttt{type} as the
+predictor variables. You should plot the fitted lines for each model
+separately and perform an AIC analysis. Practice interpretting the
+coefficient estimates.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dat}\OperatorTok{$}\NormalTok{binary =}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(dat}\OperatorTok{$}\NormalTok{survival }\OperatorTok{<}\StringTok{ }\DecValTok{80}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+
+\NormalTok{fit1 =}\StringTok{ }\KeywordTok{glm}\NormalTok{(binary }\OperatorTok{~}\StringTok{ }\NormalTok{egg_size, }\DataTypeTok{data =}\NormalTok{ dat, }\DataTypeTok{family =}\NormalTok{ binomial)}
+\NormalTok{fit2 =}\StringTok{ }\KeywordTok{glm}\NormalTok{(binary }\OperatorTok{~}\StringTok{ }\NormalTok{type, }\DataTypeTok{data =}\NormalTok{ dat, }\DataTypeTok{family =}\NormalTok{ binomial)}
+\NormalTok{fit3 =}\StringTok{ }\KeywordTok{glm}\NormalTok{(binary }\OperatorTok{~}\StringTok{ }\NormalTok{egg_size }\OperatorTok{+}\StringTok{ }\NormalTok{type, }\DataTypeTok{data =}\NormalTok{ dat, }\DataTypeTok{family =}\NormalTok{ binomial)}
+\NormalTok{fit4 =}\StringTok{ }\KeywordTok{glm}\NormalTok{(binary }\OperatorTok{~}\StringTok{ }\NormalTok{egg_size }\OperatorTok{*}\StringTok{ }\NormalTok{type, }\DataTypeTok{data =}\NormalTok{ dat, }\DataTypeTok{family =}\NormalTok{ binomial)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{3. Make the same graphic as in Figure \ref{fig:norm-plots} with
+at least one of the other distributions listed in Table
+\ref{tab:dist-table-pdf} (other than the multinomial - being a
+multivariate distribution, it wouldn't work well with this code). Try
+thinking of a variable from your work that meets the uses of each
+distribution in Table \ref{tab:dist-table-pdf} (or one that's not
+listed). If you run into trouble, check out the help file for that
+distribution.}
+
+This example uses the lognormal distribution, with
+\texttt{meanlog\ =\ 10} and \texttt{sdlog\ =\ 0.25}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# parameters}
+\NormalTok{meanlog =}\StringTok{ }\DecValTok{10}\NormalTok{; sdlog =}\StringTok{ }\FloatTok{0.25}
+
+\CommentTok{# a sequence of possible random variables (fish lengths)}
+\NormalTok{lengths =}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{8e4}\NormalTok{, }\DataTypeTok{length =} \DecValTok{100}\NormalTok{)}
+
+\CommentTok{# a sequence of possible cumulative probabilities}
+\NormalTok{cprobs =}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DataTypeTok{length =} \DecValTok{100}\NormalTok{)}
+
+\NormalTok{densty =}\StringTok{ }\KeywordTok{dlnorm}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ lengths, meanlog, sdlog)  }\CommentTok{# takes specific lengths}
+\NormalTok{cuprob =}\StringTok{ }\KeywordTok{plnorm}\NormalTok{(}\DataTypeTok{q =}\NormalTok{ lengths, meanlog, sdlog)  }\CommentTok{# takes specific lengths}
+\NormalTok{quants =}\StringTok{ }\KeywordTok{qlnorm}\NormalTok{(}\DataTypeTok{p =}\NormalTok{ cprobs, meanlog, sdlog)   }\CommentTok{# takes specific probabilities}
+\NormalTok{random =}\StringTok{ }\KeywordTok{rlnorm}\NormalTok{(}\DataTypeTok{n =} \FloatTok{1e4}\NormalTok{, meanlog, sdlog)      }\CommentTok{# takes a number of random deviates to make}
+
+\CommentTok{# set up plotting region: see ?par for more details}
+\CommentTok{# notice the tricks to clean up the plot}
+\KeywordTok{par}\NormalTok{(}
+  \DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{),    }\CommentTok{# set up 2x2 regions}
+  \DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{),  }\CommentTok{# set narrower margins}
+  \DataTypeTok{xaxs =} \StringTok{"i"}\NormalTok{,        }\CommentTok{# remove "x-buffer"}
+  \DataTypeTok{yaxs =} \StringTok{"i"}\NormalTok{,        }\CommentTok{# remove "y-buffer"}
+  \DataTypeTok{mgp =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\FloatTok{0.4}\NormalTok{,}\DecValTok{0}\NormalTok{),  }\CommentTok{# bring in axis titles ([1]) and tick labels ([2])}
+  \DataTypeTok{tcl =} \OperatorTok{-}\FloatTok{0.25}        \CommentTok{# shorten tick marks}
+\NormalTok{)}
+
+\KeywordTok{plot}\NormalTok{(densty }\OperatorTok{~}\StringTok{ }\NormalTok{lengths, }\DataTypeTok{type =} \StringTok{"l"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{, }\DataTypeTok{main =} \StringTok{"dlnorm()"}\NormalTok{,}
+     \DataTypeTok{xlab =} \StringTok{"Random Variable"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"Density"}\NormalTok{, }\DataTypeTok{las =} \DecValTok{1}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(cuprob }\OperatorTok{~}\StringTok{ }\NormalTok{lengths, }\DataTypeTok{type =} \StringTok{"l"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{, }\DataTypeTok{main =} \StringTok{"plnorm()"}\NormalTok{,}
+     \DataTypeTok{xlab =} \StringTok{"Random Variable"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"Cumulative Probability"}\NormalTok{, }\DataTypeTok{las =} \DecValTok{1}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(quants }\OperatorTok{~}\StringTok{ }\NormalTok{cprobs, }\DataTypeTok{type =} \StringTok{"l"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{, }\DataTypeTok{main =} \StringTok{"qlnorm()"}\NormalTok{,}
+     \DataTypeTok{xlab =} \StringTok{"P"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"P Quantile Random Variable"}\NormalTok{, }\DataTypeTok{las =} \DecValTok{1}\NormalTok{)}
+\KeywordTok{hist}\NormalTok{(random, }\DataTypeTok{breaks =} \DecValTok{50}\NormalTok{, }\DataTypeTok{col =} \StringTok{"grey"}\NormalTok{, }\DataTypeTok{main =} \StringTok{"rlnorm()"}\NormalTok{,}
+     \DataTypeTok{xlab =} \StringTok{"Fish Length (mm)"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"Frequency"}\NormalTok{, }\DataTypeTok{las =} \DecValTok{1}\NormalTok{)}
+\KeywordTok{box}\NormalTok{() }\CommentTok{# add borders to the histogram}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-289-1} \end{center}
+
+\textbf{Bonus 1. Fit a von Bertalannfy growth model to the data found in
+the \texttt{growth.csv} data file. Visit Section \ref{boot-test-ex}
+(particularly Equation \eqref{eq:vonB}) for details on this model. Use the
+initial values: \texttt{linf\ =\ 600}, \texttt{k\ =\ 0.3},
+\texttt{t0\ =\ -0.2}. Plot the fitted line over top of the data.}
+
+Read in the data:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dat =}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"../Data/growth.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Fit the model:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fit =}\StringTok{ }\KeywordTok{nls}\NormalTok{(length }\OperatorTok{~}\StringTok{ }\NormalTok{linf }\OperatorTok{*}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{-}\StringTok{ }\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{k }\OperatorTok{*}\StringTok{ }\NormalTok{(age }\OperatorTok{-}\StringTok{ }\NormalTok{t0))),}
+          \DataTypeTok{data =}\NormalTok{ dat, }\DataTypeTok{start =} \KeywordTok{c}\NormalTok{(}\DataTypeTok{linf =} \DecValTok{600}\NormalTok{, }\DataTypeTok{k =} \FloatTok{0.3}\NormalTok{, }\DataTypeTok{t0 =} \OperatorTok{-}\FloatTok{0.2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Plot the fit:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ages =}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\KeywordTok{min}\NormalTok{(dat}\OperatorTok{$}\NormalTok{age), }\KeywordTok{max}\NormalTok{(dat}\OperatorTok{$}\NormalTok{age), }\DataTypeTok{length =} \DecValTok{100}\NormalTok{)}
+\NormalTok{pred_length =}\StringTok{ }\KeywordTok{predict}\NormalTok{(fit, }\DataTypeTok{newdata =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{age =}\NormalTok{ ages))}
+
+\KeywordTok{plot}\NormalTok{(length }\OperatorTok{~}\StringTok{ }\NormalTok{age, }\DataTypeTok{data =}\NormalTok{ dat)}
+\KeywordTok{lines}\NormalTok{(pred_length }\OperatorTok{~}\StringTok{ }\NormalTok{ages, }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-293-1} \end{center}
+
 \hypertarget{ex4a-answers}{\section*{Exercise 4A
 Solutions}\label{ex4a-answers}}
 \addcontentsline{toc}{section}{Exercise 4A Solutions}
+
+\textbf{1. Simulate flipping an unfair coin (probability of heads = 0.6)
+100 times using \texttt{rbinom()}. Count the number of heads and tails.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flips =}\StringTok{ }\KeywordTok{rbinom}\NormalTok{(}\DataTypeTok{n =} \DecValTok{100}\NormalTok{, }\DataTypeTok{size =} \DecValTok{1}\NormalTok{, }\DataTypeTok{prob =} \FloatTok{0.6}\NormalTok{)}
+\NormalTok{flips =}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(flips }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{, }\StringTok{"heads"}\NormalTok{, }\StringTok{"tails"}\NormalTok{)}
+\KeywordTok{table}\NormalTok{(flips)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{2. Simulate flipping the same unfair coin 100 times, but using
+\texttt{sample()} instead. Determine what fraction of the flips resulted
+in heads.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flips =}\StringTok{ }\KeywordTok{sample}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\StringTok{"heads"}\NormalTok{, }\StringTok{"tails"}\NormalTok{), }\DataTypeTok{size =} \DecValTok{100}\NormalTok{, }\DataTypeTok{replace =}\NormalTok{ T, }\DataTypeTok{prob =} \KeywordTok{c}\NormalTok{(}\FloatTok{0.6}\NormalTok{, }\FloatTok{0.4}\NormalTok{))}
+\KeywordTok{table}\NormalTok{(flips)[}\StringTok{"heads"}\NormalTok{]}\OperatorTok{/}\KeywordTok{length}\NormalTok{(flips)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{3. Simulate rolling a fair 6-sided die 100 times using
+\texttt{sample()}. Determine what fraction of the rolls resulted in an
+even number.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rolls =}\StringTok{ }\KeywordTok{sample}\NormalTok{(}\DataTypeTok{x =} \DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{, }\DataTypeTok{size =} \DecValTok{100}\NormalTok{, }\DataTypeTok{replace =}\NormalTok{ T)}
+\KeywordTok{mean}\NormalTok{(rolls }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{6}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{4. Simulate rolling the same die 100 times, but use the function
+\texttt{rmultinom()} instead. Look at the help file for details on how
+to use this function. Determine what fraction of the rolls resulted in
+an odd number.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rolls =}\StringTok{ }\KeywordTok{rmultinom}\NormalTok{(}\DataTypeTok{n =} \DecValTok{100}\NormalTok{, }\DataTypeTok{size =} \DecValTok{1}\NormalTok{, }\DataTypeTok{prob =} \KeywordTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{6}\NormalTok{))}
+\KeywordTok{dim}\NormalTok{(rolls) }\CommentTok{#  rows are different outcomes, columns are iterations}
+
+\CommentTok{# get the fraction of odd numbered outcomes}
+\KeywordTok{sum}\NormalTok{(rolls[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{5}\NormalTok{),])}\OperatorTok{/}\KeywordTok{sum}\NormalTok{(rolls)}
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{ex4b-answers}{\section*{Exercise 4B
 Solutions}\label{ex4b-answers}}
 \addcontentsline{toc}{section}{Exercise 4B Solutions}
 
+\textbf{1. Adapt this example to investigate another univariate
+probability distribution, like \texttt{-lnorm()}, \texttt{-pois()}, or
+\texttt{-beta()}. See the help files (e.g., \texttt{?rpois}) for details
+on how to use each function.}
+
+This solution uses the \texttt{rbeta()}, \texttt{qbeta()}, and
+\texttt{pbeta()} functions. These are for the beta distribution, which
+has random variables that are between zero and one.
+
+First, create the parameters of the distribution of interest:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mean_p =}\StringTok{ }\FloatTok{0.6}  \CommentTok{# the mean of the random variable}
+\NormalTok{B_sum =}\StringTok{ }\DecValTok{100}   \CommentTok{# controls the variance: bigger values are lower variance}
+
+\CommentTok{# get the shape parameters of the beta dist}
+\NormalTok{beta_shape =}\StringTok{ }\KeywordTok{c}\NormalTok{(mean_p }\OperatorTok{*}\StringTok{ }\NormalTok{B_sum, (}\DecValTok{1} \OperatorTok{-}\StringTok{ }\NormalTok{mean_p) }\OperatorTok{*}\StringTok{ }\NormalTok{B_sum)}
+\end{Highlighting}
+\end{Shaded}
+
+Then, generate random samples from this distribution:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{random =}\StringTok{ }\KeywordTok{rbeta}\NormalTok{(}\DecValTok{100}\NormalTok{, beta_shape[}\DecValTok{1}\NormalTok{], beta_shape[}\DecValTok{2}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+Then, test the \texttt{qbeta()} function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p =}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\FloatTok{0.01}\NormalTok{, }\FloatTok{0.99}\NormalTok{, }\FloatTok{0.01}\NormalTok{)}
+\NormalTok{random_q =}\StringTok{ }\KeywordTok{quantile}\NormalTok{(random, p)}
+\NormalTok{beta_q =}\StringTok{ }\KeywordTok{qbeta}\NormalTok{(p, beta_shape[}\DecValTok{1}\NormalTok{], beta_shape[}\DecValTok{2}\NormalTok{])}
+\KeywordTok{plot}\NormalTok{(beta_q }\OperatorTok{~}\StringTok{ }\NormalTok{random_q); }\KeywordTok{abline}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-302-1} \end{center}
+
+Then, test the `pbeta() function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{q =}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\FloatTok{0.05}\NormalTok{)}
+\NormalTok{random_cdf =}\StringTok{ }\KeywordTok{ecdf}\NormalTok{(random)}
+\NormalTok{random_p =}\StringTok{ }\KeywordTok{random_cdf}\NormalTok{(q)}
+\NormalTok{beta_p =}\StringTok{ }\KeywordTok{pbeta}\NormalTok{(q, beta_shape[}\DecValTok{1}\NormalTok{], beta_shape[}\DecValTok{2}\NormalTok{])}
+\KeywordTok{plot}\NormalTok{(beta_p }\OperatorTok{~}\StringTok{ }\NormalTok{q, }\DataTypeTok{type =} \StringTok{"l"}\NormalTok{, }\DataTypeTok{col =} \StringTok{"blue"}\NormalTok{)}
+\KeywordTok{points}\NormalTok{(random_p }\OperatorTok{~}\StringTok{ }\NormalTok{q, }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-303-1} \end{center}
+
 \hypertarget{ex4c-answers}{\section*{Exercise 4C
 Solutions}\label{ex4c-answers}}
 \addcontentsline{toc}{section}{Exercise 4C Solutions}
+
+\textbf{1. What sample size \texttt{n} do you need to have a power of
+0.8 of detecting a significant difference between the two tagging
+methods?}
+
+Simply increase the maximum sample size considered and re-run the whole
+analysis:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n_try =}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DecValTok{20}\NormalTok{, }\DecValTok{200}\NormalTok{, }\DecValTok{20}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-306-1} \end{center}
+
+It appears you need about 100 fish per treatment to be able to detect an
+effect of this size.
+
+\textbf{2. How do the inferences from the power analysis change if you
+are interested in \texttt{p\_new\ =\ 0.4} instead of
+\texttt{p\_new\ =\ 0.25}? Do you need to tag more or fewer fish in this
+case?}
+
+This is a argument to your function, so simply change its setting when
+you execute the analysis:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#...more code above this}
+\NormalTok{tmp =}\StringTok{ }\KeywordTok{sim_fit}\NormalTok{(}\DataTypeTok{n =}\NormalTok{ n_try[n], }\DataTypeTok{p_new =} \FloatTok{0.4}\NormalTok{)}
+\CommentTok{#more code after this...}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-308-1} \end{center}
+
+Because the effect is larger, it is easier to detect with fewer
+observations.
+
+\textbf{3. Your analysis takes a bit of time to run so you are
+interested in tracking its progress. Add a progress message to your
+nested \texttt{for()} loop that will print the sample size currently
+being analyzed.}
+
+Simply insert the \texttt{cat()} line in the appropriate place in your
+loop. This is a handy trick for long-running simulations.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{ (n }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{N) \{}
+  \KeywordTok{cat}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}r}\StringTok{"}\NormalTok{, }\StringTok{"Sample Size = "}\NormalTok{, n_try[n])}
+  \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{I) \{}
+\NormalTok{    ...}
+\NormalTok{  \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{ex4d-answers}{\section*{Exercise 4D
 Solutions}\label{ex4d-answers}}
 \addcontentsline{toc}{section}{Exercise 4D Solutions}
 
+\textbf{1. Add an argument to \texttt{ricker\_sim()} that will give the
+user an option to create a plot that shows the time series of
+recruitment, harvest, and escapement all on the same plot. Set the
+default to be to not plot the result, in case you forget to turn it off
+before performing the Monte Carlo analysis.}
+
+Change your function to look something like this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ricker_sim =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(ny, params, U, }\DataTypeTok{plot =}\NormalTok{ F) \{}
+  \CommentTok{# extract the parameters out by name:}
+\NormalTok{  alpha =}\StringTok{ }\NormalTok{params[}\StringTok{"alpha"}\NormalTok{]}
+\NormalTok{  beta =}\StringTok{ }\NormalTok{params[}\StringTok{"beta"}\NormalTok{]}
+\NormalTok{  sigma =}\StringTok{ }\NormalTok{params[}\StringTok{"sigma"}\NormalTok{]}
+  \CommentTok{# create containers:}
+  \CommentTok{# yep, you can do this}
+\NormalTok{  R =}\StringTok{ }\NormalTok{S =}\StringTok{ }\NormalTok{H =}\StringTok{ }\OtherTok{NULL}
+  \CommentTok{# initialize the population in the first year}
+    \CommentTok{# start the population at being fished at 40%}
+    \CommentTok{# with lognormal error}
+\NormalTok{  R[}\DecValTok{1}\NormalTok{] =}\StringTok{ }\KeywordTok{log}\NormalTok{(alpha }\OperatorTok{*}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{-}\StringTok{ }\FloatTok{0.4}\NormalTok{))}\OperatorTok{/}\NormalTok{(beta }\OperatorTok{*}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{-}\StringTok{ }\FloatTok{0.4}\NormalTok{)) }\OperatorTok{*}\StringTok{ }\KeywordTok{exp}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, sigma))}
+\NormalTok{  S[}\DecValTok{1}\NormalTok{] =}\StringTok{ }\NormalTok{R[}\DecValTok{1}\NormalTok{] }\OperatorTok{*}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{-}\StringTok{ }\NormalTok{U)}
+\NormalTok{  H[}\DecValTok{1}\NormalTok{] =}\StringTok{ }\NormalTok{R[}\DecValTok{1}\NormalTok{] }\OperatorTok{*}\StringTok{ }\NormalTok{U}
+  
+  \CommentTok{# carry simulation forward through time}
+  \ControlFlowTok{for}\NormalTok{ (y }\ControlFlowTok{in} \DecValTok{2}\OperatorTok{:}\NormalTok{ny) \{}
+    \CommentTok{# use the ricker function with random lognormal white noise}
+\NormalTok{    R[y] =}\StringTok{ }\NormalTok{S[y}\OperatorTok{-}\DecValTok{1}\NormalTok{] }\OperatorTok{*}\StringTok{ }\NormalTok{alpha }\OperatorTok{*}\StringTok{ }\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{beta }\OperatorTok{*}\StringTok{ }\NormalTok{S[y}\OperatorTok{-}\DecValTok{1}\NormalTok{] }\OperatorTok{+}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, sigma))}
+    \CommentTok{#harvest and spawners are the same as before}
+\NormalTok{    S[y] =}\StringTok{ }\NormalTok{R[y] }\OperatorTok{*}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{-}\StringTok{ }\NormalTok{U)}
+\NormalTok{    H[y] =}\StringTok{ }\NormalTok{R[y] }\OperatorTok{*}\StringTok{ }\NormalTok{U}
+\NormalTok{  \}}
+  
+  \ControlFlowTok{if}\NormalTok{ (plot) \{}
+    \CommentTok{# the I() lets you calculate a quantity within the plot call}
+    \KeywordTok{plot}\NormalTok{(}\KeywordTok{I}\NormalTok{(R}\OperatorTok{/}\FloatTok{1e6}\NormalTok{) }\OperatorTok{~}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,ny), }\DataTypeTok{type =} \StringTok{"l"}\NormalTok{, }\DataTypeTok{col =} \StringTok{"black"}\NormalTok{,}
+         \DataTypeTok{xlab =} \StringTok{"Year"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"State (millions of fish)"}\NormalTok{,}
+         \DataTypeTok{ylim =} \KeywordTok{range}\NormalTok{(}\KeywordTok{c}\NormalTok{(R, S, H)}\OperatorTok{/}\FloatTok{1e6}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FloatTok{0.2}\NormalTok{))}
+    \KeywordTok{lines}\NormalTok{(}\KeywordTok{I}\NormalTok{(S}\OperatorTok{/}\FloatTok{1e6}\NormalTok{) }\OperatorTok{~}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,ny), }\DataTypeTok{col =} \StringTok{"blue"}\NormalTok{)}
+    \KeywordTok{lines}\NormalTok{(}\KeywordTok{I}\NormalTok{(H}\OperatorTok{/}\FloatTok{1e6}\NormalTok{) }\OperatorTok{~}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,ny), }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{)}
+    \KeywordTok{legend}\NormalTok{(}\StringTok{"top"}\NormalTok{, }\DataTypeTok{legend =} \KeywordTok{c}\NormalTok{(}\StringTok{"R"}\NormalTok{, }\StringTok{"S"}\NormalTok{, }\StringTok{"H"}\NormalTok{), }\DataTypeTok{lty =} \DecValTok{1}\NormalTok{, }\DataTypeTok{bty =} \StringTok{"n"}\NormalTok{,}
+           \DataTypeTok{col =} \KeywordTok{c}\NormalTok{(}\StringTok{"black"}\NormalTok{, }\StringTok{"blue"}\NormalTok{, }\StringTok{"red"}\NormalTok{), }\DataTypeTok{horiz =}\NormalTok{ T)}
+\NormalTok{  \}}
+  
+  \CommentTok{# wrap output in a list object}
+  \KeywordTok{list}\NormalTok{(}
+    \DataTypeTok{mean_H =} \KeywordTok{mean}\NormalTok{(H),}
+    \DataTypeTok{mean_S =} \KeywordTok{mean}\NormalTok{(S)}
+\NormalTok{    )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Then use the function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ricker_sim}\NormalTok{(}\DataTypeTok{ny =} \DecValTok{20}\NormalTok{, }\DataTypeTok{params =} \KeywordTok{c}\NormalTok{(}\DataTypeTok{alpha =} \DecValTok{6}\NormalTok{,}
+                               \DataTypeTok{beta =} \FloatTok{1e-7}\NormalTok{,}
+                               \DataTypeTok{sigma =} \FloatTok{0.4}\NormalTok{),}
+           \DataTypeTok{U =} \FloatTok{0.4}\NormalTok{, }\DataTypeTok{plot =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-312-1} \end{center}
+
+\begin{verbatim}
+## $mean_H
+## [1] 8518251
+## 
+## $mean_S
+## [1] 12777376
+\end{verbatim}
+
+\textbf{2. Add an \emph{error handler} to \texttt{ricker\_sim()} that
+will cause the function to return an error \texttt{if()} the names of
+the vector passed to the \texttt{param} argument aren't what the
+function is expecting. You can use stop(``Error Message Goes Here'') to
+have your function stop and return an error.}
+
+Error handlers are useful: they catch common errors that someone might
+make when using your function and return and informative error. Insert
+this at the top of your function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\OperatorTok{!}\KeywordTok{all}\NormalTok{(}\KeywordTok{names}\NormalTok{(params) }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"alpha"}\NormalTok{, }\StringTok{"beta"}\NormalTok{, }\StringTok{"sigma"}\NormalTok{))) \{}
+  \KeywordTok{stop}\NormalTok{(}\StringTok{"the `params` argument must take a named vector}
+\StringTok{       with three elements: 'alpha', 'beta', and 'sigma'"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+This says, if not all of the names of the params argument are in the
+specified vector, then stop the execution of the function and return the
+error message.
+
+\textbf{3. How do the results of the trade-off analysis differ if the
+process error was larger (a larger value of \(\sigma\))?}
+
+Simply increase the process error variance term (the \texttt{sigma}
+element of \texttt{params}) to be 0.6 and re-run the analysis:
+
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-314-1} \end{center}
+
+The blue line is the higher process error scenario. It seems that if the
+process error was higher, you would need to sacrifice more in the
+escapement objective to obtain the same level of the harvest objective
+than in the case with lower process error. This makes sense: more
+variability means more iterations will have escapement less than the
+criterion.
+
+\textbf{4. Add implementation error to the harvest policy. That is, if
+the target exploitation rate is \(U\), make the real exploitation rate
+in year \(y\) be: \(U_y \sim Beta(a,b)\), where \(a = 100U\) and
+\(b = 100(1-U)\). You can make there be more implementation error by
+inserting a smaller number other than 100 here. How does this affect the
+trade-off analysis?}
+
+For this, add a \texttt{B\_sum} argument to your function (this
+represents the 100 value in the question) and use a different randomly
+generated exploitation rate each year according to the directions:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ricker_sim =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(ny, params, U, B_sum, }\DataTypeTok{plot =}\NormalTok{ F) \{}
+  
+  \ControlFlowTok{if}\NormalTok{ (}\OperatorTok{!}\KeywordTok{all}\NormalTok{(}\KeywordTok{names}\NormalTok{(params) }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"alpha"}\NormalTok{, }\StringTok{"beta"}\NormalTok{, }\StringTok{"sigma"}\NormalTok{))) \{}
+    \KeywordTok{stop}\NormalTok{(}\StringTok{"the `params` argument must take a named }
+\StringTok{         vector with three elements: 'alpha', 'beta', and 'sigma'"}\NormalTok{)}
+\NormalTok{  \}}
+  
+  \CommentTok{# obtain the actual exploitation rates each year}
+  \CommentTok{# managers shoot for U, but because of imperfect implementation}
+  \CommentTok{# and errors in abundance estimation, it varies}
+\NormalTok{  U_real =}\StringTok{ }\KeywordTok{rbeta}\NormalTok{(ny, }\DecValTok{100} \OperatorTok{*}\StringTok{ }\NormalTok{U, }\DecValTok{100} \OperatorTok{*}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{-}\StringTok{ }\NormalTok{U))}
+  
+  \CommentTok{# extract the parameters out by name:}
+\NormalTok{  alpha =}\StringTok{ }\NormalTok{params[}\StringTok{"alpha"}\NormalTok{]}
+\NormalTok{  beta =}\StringTok{ }\NormalTok{params[}\StringTok{"beta"}\NormalTok{]}
+\NormalTok{  sigma =}\StringTok{ }\NormalTok{params[}\StringTok{"sigma"}\NormalTok{]}
+  \CommentTok{# create containers:}
+  \CommentTok{# yep, you can do this}
+\NormalTok{  R =}\StringTok{ }\NormalTok{S =}\StringTok{ }\NormalTok{H =}\StringTok{ }\OtherTok{NULL}
+  \CommentTok{# initialize the population in the first year}
+    \CommentTok{# start the population at being fished at 40%}
+    \CommentTok{# with lognormal error}
+\NormalTok{  R[}\DecValTok{1}\NormalTok{] =}\StringTok{ }\KeywordTok{log}\NormalTok{(alpha }\OperatorTok{*}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{-}\StringTok{ }\FloatTok{0.4}\NormalTok{))}\OperatorTok{/}\NormalTok{(beta }\OperatorTok{*}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{-}\StringTok{ }\FloatTok{0.4}\NormalTok{)) }\OperatorTok{*}\StringTok{ }\KeywordTok{exp}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, sigma))}
+\NormalTok{  S[}\DecValTok{1}\NormalTok{] =}\StringTok{ }\NormalTok{R[}\DecValTok{1}\NormalTok{] }\OperatorTok{*}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{-}\StringTok{ }\NormalTok{U_real[}\DecValTok{1}\NormalTok{])}
+\NormalTok{  H[}\DecValTok{1}\NormalTok{] =}\StringTok{ }\NormalTok{R[}\DecValTok{1}\NormalTok{] }\OperatorTok{*}\StringTok{ }\NormalTok{U_real[}\DecValTok{1}\NormalTok{]}
+  
+  \CommentTok{# carry simulation forward through time}
+  \ControlFlowTok{for}\NormalTok{ (y }\ControlFlowTok{in} \DecValTok{2}\OperatorTok{:}\NormalTok{ny) \{}
+    \CommentTok{# use the ricker function with random lognormal white noise}
+\NormalTok{    R[y] =}\StringTok{ }\NormalTok{S[y}\OperatorTok{-}\DecValTok{1}\NormalTok{] }\OperatorTok{*}\StringTok{ }\NormalTok{alpha }\OperatorTok{*}\StringTok{ }\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{beta }\OperatorTok{*}\StringTok{ }\NormalTok{S[y}\OperatorTok{-}\DecValTok{1}\NormalTok{] }\OperatorTok{+}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, sigma))}
+    \CommentTok{#harvest and spawners are the same as before}
+\NormalTok{    S[y] =}\StringTok{ }\NormalTok{R[y] }\OperatorTok{*}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{-}\StringTok{ }\NormalTok{U_real[y])}
+\NormalTok{    H[y] =}\StringTok{ }\NormalTok{R[y] }\OperatorTok{*}\StringTok{ }\NormalTok{U_real[y]}
+\NormalTok{  \}}
+  
+  \ControlFlowTok{if}\NormalTok{ (plot) \{}
+    \KeywordTok{plot}\NormalTok{(}\KeywordTok{I}\NormalTok{(R}\OperatorTok{/}\FloatTok{1e6}\NormalTok{) }\OperatorTok{~}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,ny), }\DataTypeTok{type =} \StringTok{"l"}\NormalTok{, }\DataTypeTok{col =} \StringTok{"black"}\NormalTok{,}
+         \DataTypeTok{xlab =} \StringTok{"Year"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"State (millions of fish)"}\NormalTok{,}
+         \DataTypeTok{ylim =} \KeywordTok{range}\NormalTok{(}\KeywordTok{c}\NormalTok{(R, S, H)}\OperatorTok{/}\FloatTok{1e6}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FloatTok{0.2}\NormalTok{))}
+    \KeywordTok{lines}\NormalTok{(}\KeywordTok{I}\NormalTok{(S}\OperatorTok{/}\FloatTok{1e6}\NormalTok{) }\OperatorTok{~}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,ny), }\DataTypeTok{col =} \StringTok{"blue"}\NormalTok{)}
+    \KeywordTok{lines}\NormalTok{(}\KeywordTok{I}\NormalTok{(H}\OperatorTok{/}\FloatTok{1e6}\NormalTok{) }\OperatorTok{~}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,ny), }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{)}
+    \KeywordTok{legend}\NormalTok{(}\StringTok{"top"}\NormalTok{, }\DataTypeTok{legend =} \KeywordTok{c}\NormalTok{(}\StringTok{"R"}\NormalTok{, }\StringTok{"S"}\NormalTok{, }\StringTok{"H"}\NormalTok{), }\DataTypeTok{lty =} \DecValTok{1}\NormalTok{, }\DataTypeTok{bty =} \StringTok{"n"}\NormalTok{,}
+           \DataTypeTok{col =} \KeywordTok{c}\NormalTok{(}\StringTok{"black"}\NormalTok{, }\StringTok{"blue"}\NormalTok{, }\StringTok{"red"}\NormalTok{), }\DataTypeTok{horiz =}\NormalTok{ T)}
+\NormalTok{  \}}
+  
+  \CommentTok{# wrap output in a list object}
+  \KeywordTok{list}\NormalTok{(}
+    \DataTypeTok{mean_H =} \KeywordTok{mean}\NormalTok{(H),}
+    \DataTypeTok{mean_S =} \KeywordTok{mean}\NormalTok{(S)}
+\NormalTok{    )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-316-1} \end{center}
+
+The red line has \texttt{B\_sum\ =\ 100} and the black line has
+\texttt{B\_sum\ =\ 1e6} (really large \texttt{B\_sum} reduces the
+variance of \texttt{U\_real} around \texttt{U}). It appears that
+introducing random implementation errors has no effect on the trade-off
+analysis.
+
 \hypertarget{ex4e-answers}{\section*{Exercise 4E
 Solutions}\label{ex4e-answers}}
 \addcontentsline{toc}{section}{Exercise 4E Solutions}
+
+\textbf{1. Replicate the bootstrap analysis but adapted for the linear
+regression example in Section \ref{regression}. Stop at the step where
+you summarize the 95\% interval range.}
+
+First, read in the \texttt{sockeye.csv} data set:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dat =}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"../Data/sockeye.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Then, copy the three functions and change the model to be a linear
+regression for these data:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{randomize =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(dat) \{}
+  \CommentTok{# number of observed pairs}
+\NormalTok{  n =}\StringTok{ }\KeywordTok{nrow}\NormalTok{(dat)}
+  \CommentTok{# sample the rows to determine which will be kept}
+\NormalTok{  keep =}\StringTok{ }\KeywordTok{sample}\NormalTok{(}\DataTypeTok{x =} \DecValTok{1}\OperatorTok{:}\NormalTok{n, }\DataTypeTok{size =}\NormalTok{ n, }\DataTypeTok{replace =}\NormalTok{ T)}
+  \CommentTok{# retreive these rows from the data}
+\NormalTok{  dat[keep,]}
+\NormalTok{\}}
+
+\NormalTok{fit_lm =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(dat) \{}
+  \KeywordTok{lm}\NormalTok{(fecund }\OperatorTok{~}\StringTok{ }\NormalTok{weight, }\DataTypeTok{data =}\NormalTok{ dat)}
+\NormalTok{\}}
+
+\CommentTok{# create a vector of weights}
+\NormalTok{weights =}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\KeywordTok{min}\NormalTok{(dat}\OperatorTok{$}\NormalTok{weight, }\DataTypeTok{na.rm =}\NormalTok{ T),}
+              \KeywordTok{max}\NormalTok{(dat}\OperatorTok{$}\NormalTok{weight, }\DataTypeTok{na.rm =}\NormalTok{ T),}
+              \DataTypeTok{length =} \DecValTok{100}\NormalTok{)}
+\NormalTok{pred_lm =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(fit) \{}
+  \CommentTok{# extract the coefficients}
+\NormalTok{  ests =}\StringTok{ }\KeywordTok{coef}\NormalTok{(fit)}
+  \CommentTok{# predict length-at-age}
+\NormalTok{  ests[}\StringTok{"(Intercept)"}\NormalTok{] }\OperatorTok{+}\StringTok{ }\NormalTok{ests[}\StringTok{"weight"}\NormalTok{] }\OperatorTok{*}\StringTok{ }\NormalTok{weights}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Then perform the bootstrap by replicating these functions many times:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{out =}\StringTok{ }\KeywordTok{replicate}\NormalTok{(}\DataTypeTok{n =} \DecValTok{5000}\NormalTok{, }\DataTypeTok{expr =}\NormalTok{ \{}
+  \KeywordTok{pred_lm}\NormalTok{(}\DataTypeTok{fit =} \KeywordTok{fit_lm}\NormalTok{(}\DataTypeTok{dat =} \KeywordTok{randomize}\NormalTok{(}\DataTypeTok{dat =}\NormalTok{ dat)))}
+\NormalTok{\})}
+\end{Highlighting}
+\end{Shaded}
+
+Finally, summarize and plot them:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{summ =}\StringTok{ }\KeywordTok{apply}\NormalTok{(out, }\DecValTok{1}\NormalTok{, }\ControlFlowTok{function}\NormalTok{(x) }\KeywordTok{c}\NormalTok{(}\DataTypeTok{mean =} \KeywordTok{mean}\NormalTok{(x), }\KeywordTok{quantile}\NormalTok{(x, }\KeywordTok{c}\NormalTok{(}\FloatTok{0.025}\NormalTok{, }\FloatTok{0.975}\NormalTok{))))}
+
+\KeywordTok{plot}\NormalTok{(summ[}\StringTok{"mean"}\NormalTok{,] }\OperatorTok{~}\StringTok{ }\NormalTok{weights, }\DataTypeTok{type =} \StringTok{"l"}\NormalTok{, }\DataTypeTok{ylim =} \KeywordTok{range}\NormalTok{(summ))}
+\KeywordTok{lines}\NormalTok{(summ[}\StringTok{"2.5%"}\NormalTok{,] }\OperatorTok{~}\StringTok{ }\NormalTok{weights, }\DataTypeTok{col =} \StringTok{"grey"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(summ[}\StringTok{"97.5%"}\NormalTok{,] }\OperatorTok{~}\StringTok{ }\NormalTok{weights, }\DataTypeTok{col =} \StringTok{"grey"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{2. Compare the 95\% bootstrap confidence intervals to the
+intervals you get by running the \texttt{predict} function on the
+original data set with the argument \texttt{interval\ =\ "confidence"}
+set.}
+
+You can obtain these same intervals using the \texttt{predict()}
+function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pred =}\StringTok{ }\KeywordTok{predict}\NormalTok{(}\KeywordTok{lm}\NormalTok{(fecund }\OperatorTok{~}\StringTok{ }\NormalTok{weight, }\DataTypeTok{data =}\NormalTok{ dat),}
+               \DataTypeTok{newdata =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{weight =}\NormalTok{ weights),}
+               \DataTypeTok{interval =} \StringTok{"confidence"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Plot them over top of the bootstrap intervals to verify the bootstrap
+worked right:
+
+The intervals should look approximately correct.
 
 \hypertarget{ex4f-answers}{\section*{Exercise 4F
 Solutions}\label{ex4f-answers}}
 \addcontentsline{toc}{section}{Exercise 4F Solutions}
 
+\textbf{1. Adapt the code to perform a permutation test for the
+difference in each of the zooplankton densities between treatments.
+Don't forget to fix the missing value in the \texttt{chao} variable. See
+\protect\hyperlink{ex1b}{Exercise 2} for more details on this.}
+
+Read in the data:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dat =}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"../Data/ponds.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Calculate the difference in means between the treatments for each
+zooplankton taxon:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Dobs_daph =}\StringTok{ }\KeywordTok{mean}\NormalTok{(dat}\OperatorTok{$}\NormalTok{daph[dat}\OperatorTok{$}\NormalTok{treatment }\OperatorTok{==}\StringTok{ "Add"}\NormalTok{]) }\OperatorTok{-}\StringTok{ }
+\StringTok{  }\KeywordTok{mean}\NormalTok{(dat}\OperatorTok{$}\NormalTok{daph[dat}\OperatorTok{$}\NormalTok{treatment }\OperatorTok{==}\StringTok{ "Control"}\NormalTok{])}
+\NormalTok{Dobs_bosm =}\StringTok{ }\KeywordTok{mean}\NormalTok{(dat}\OperatorTok{$}\NormalTok{bosm[dat}\OperatorTok{$}\NormalTok{treatment }\OperatorTok{==}\StringTok{ "Add"}\NormalTok{]) }\OperatorTok{-}\StringTok{ }
+\StringTok{  }\KeywordTok{mean}\NormalTok{(dat}\OperatorTok{$}\NormalTok{bosm[dat}\OperatorTok{$}\NormalTok{treatment }\OperatorTok{==}\StringTok{ "Control"}\NormalTok{])}
+\NormalTok{Dobs_cope =}\StringTok{ }\KeywordTok{mean}\NormalTok{(dat}\OperatorTok{$}\NormalTok{cope[dat}\OperatorTok{$}\NormalTok{treatment }\OperatorTok{==}\StringTok{ "Add"}\NormalTok{]) }\OperatorTok{-}\StringTok{ }
+\StringTok{  }\KeywordTok{mean}\NormalTok{(dat}\OperatorTok{$}\NormalTok{cope[dat}\OperatorTok{$}\NormalTok{treatment }\OperatorTok{==}\StringTok{ "Control"}\NormalTok{])}
+\NormalTok{Dobs_chao =}\StringTok{ }\KeywordTok{mean}\NormalTok{(dat}\OperatorTok{$}\NormalTok{chao[dat}\OperatorTok{$}\NormalTok{treatment }\OperatorTok{==}\StringTok{ "Add"}\NormalTok{], }\DataTypeTok{na.rm =}\NormalTok{ T) }\OperatorTok{-}\StringTok{ }
+\StringTok{  }\KeywordTok{mean}\NormalTok{(dat}\OperatorTok{$}\NormalTok{chao[dat}\OperatorTok{$}\NormalTok{treatment }\OperatorTok{==}\StringTok{ "Control"}\NormalTok{], }\DataTypeTok{na.rm =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+You can use the same \texttt{perm()} function from the chapter to
+perform this analysis, except you should add an \texttt{na.rm} argument.
+All you need to change is the variables you pass to \texttt{y}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{perm =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, y, }\DataTypeTok{na.rm =}\NormalTok{ T) \{}
+  \CommentTok{# turn x to a character, easier to deal with}
+\NormalTok{  x =}\StringTok{ }\KeywordTok{as.character}\NormalTok{(x)}
+  \CommentTok{# shuffle the x values:}
+\NormalTok{  x_shuff =}\StringTok{ }\KeywordTok{sample}\NormalTok{(x)}
+  \CommentTok{# calculate the mean of each group:}
+\NormalTok{  x_bar_add =}\StringTok{ }\KeywordTok{mean}\NormalTok{(y[x_shuff }\OperatorTok{==}\StringTok{ "Add"}\NormalTok{], }\DataTypeTok{na.rm =}\NormalTok{ na.rm)}
+\NormalTok{  x_bar_ctl =}\StringTok{ }\KeywordTok{mean}\NormalTok{(y[x_shuff }\OperatorTok{==}\StringTok{ "Control"}\NormalTok{], }\DataTypeTok{na.rm =}\NormalTok{ na.rm)}
+  \CommentTok{# calculate the difference:}
+\NormalTok{  x_bar_add }\OperatorTok{-}\StringTok{ }\NormalTok{x_bar_ctl}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Then, run the permutation test on each taxon separately:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Dnull_daph =}\StringTok{ }\KeywordTok{replicate}\NormalTok{(}\DataTypeTok{n =} \DecValTok{5000}\NormalTok{, }\DataTypeTok{expr =} \KeywordTok{perm}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ dat}\OperatorTok{$}\NormalTok{treatment, }\DataTypeTok{y =}\NormalTok{ dat}\OperatorTok{$}\NormalTok{daph))}
+\NormalTok{Dnull_bosm =}\StringTok{ }\KeywordTok{replicate}\NormalTok{(}\DataTypeTok{n =} \DecValTok{5000}\NormalTok{, }\DataTypeTok{expr =} \KeywordTok{perm}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ dat}\OperatorTok{$}\NormalTok{treatment, }\DataTypeTok{y =}\NormalTok{ dat}\OperatorTok{$}\NormalTok{bosm))}
+\NormalTok{Dnull_cope =}\StringTok{ }\KeywordTok{replicate}\NormalTok{(}\DataTypeTok{n =} \DecValTok{5000}\NormalTok{, }\DataTypeTok{expr =} \KeywordTok{perm}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ dat}\OperatorTok{$}\NormalTok{treatment, }\DataTypeTok{y =}\NormalTok{ dat}\OperatorTok{$}\NormalTok{cope))}
+\NormalTok{Dnull_chao =}\StringTok{ }\KeywordTok{replicate}\NormalTok{(}\DataTypeTok{n =} \DecValTok{5000}\NormalTok{, }\DataTypeTok{expr =} \KeywordTok{perm}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ dat}\OperatorTok{$}\NormalTok{treatment, }\DataTypeTok{y =}\NormalTok{ dat}\OperatorTok{$}\NormalTok{chao, }\DataTypeTok{na.rm =}\NormalTok{ T))}
+\end{Highlighting}
+\end{Shaded}
+
+Then, create the histograms for each species showing the null
+distribution and the observed difference:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{4}\NormalTok{), }\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{0}\NormalTok{))}
+\KeywordTok{hist}\NormalTok{(Dnull_daph, }\DataTypeTok{col =} \StringTok{"skyblue"}\NormalTok{, }\DataTypeTok{main =} \StringTok{"DAPH"}\NormalTok{, }\DataTypeTok{yaxt =} \StringTok{"n"}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v =}\NormalTok{ Dobs_daph, }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{)}
+
+\KeywordTok{hist}\NormalTok{(Dnull_bosm, }\DataTypeTok{col =} \StringTok{"skyblue"}\NormalTok{, }\DataTypeTok{main =} \StringTok{"BOSM"}\NormalTok{, }\DataTypeTok{yaxt =} \StringTok{"n"}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v =}\NormalTok{ Dobs_bosm, }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{)}
+
+\KeywordTok{hist}\NormalTok{(Dnull_cope, }\DataTypeTok{col =} \StringTok{"skyblue"}\NormalTok{, }\DataTypeTok{main =} \StringTok{"COPE"}\NormalTok{, }\DataTypeTok{yaxt =} \StringTok{"n"}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v =}\NormalTok{ Dobs_cope, }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{)}
+
+\KeywordTok{hist}\NormalTok{(Dnull_chao, }\DataTypeTok{col =} \StringTok{"skyblue"}\NormalTok{, }\DataTypeTok{main =} \StringTok{"CHAO"}\NormalTok{, }\DataTypeTok{yaxt =} \StringTok{"n"}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v =}\NormalTok{ Dobs_chao, }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-331-1} \end{center}
+
+Finally, calculate the two-tailed hypothesis tests:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mean}\NormalTok{(}\KeywordTok{abs}\NormalTok{(Dnull_daph) }\OperatorTok{>=}\StringTok{ }\NormalTok{Dobs_daph)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mean}\NormalTok{(}\KeywordTok{abs}\NormalTok{(Dnull_bosm) }\OperatorTok{>=}\StringTok{ }\NormalTok{Dobs_bosm)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mean}\NormalTok{(}\KeywordTok{abs}\NormalTok{(Dnull_cope) }\OperatorTok{>=}\StringTok{ }\NormalTok{Dobs_cope)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mean}\NormalTok{(}\KeywordTok{abs}\NormalTok{(Dnull_chao) }\OperatorTok{>=}\StringTok{ }\NormalTok{Dobs_chao)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+It appears that the zooplankton densities differed significantly between
+treatments for each taxon.
+
+\textbf{2. Adapt the code to perform a permutation test for another data
+set used in this book where there are observations of both a categorical
+variable and a continuous variable. The data sets \texttt{sockeye.csv},
+\texttt{growth.csv}, or \texttt{creel.csv} should be good starting
+points.}
+
+This example will test the difference in mean length between age 3 and 4
+fish in the \texttt{growth.csv} data set.
+
+Read in the data and extract only age 3 and 4 fish:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dat =}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"../Data/growth.csv"}\NormalTok{)}
+\NormalTok{dat =}\StringTok{ }\NormalTok{dat[dat}\OperatorTok{$}\NormalTok{age }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{),]}
+\end{Highlighting}
+\end{Shaded}
+
+Calculate the observed difference in means (age 4 - age 3):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Dobs =}\StringTok{ }\KeywordTok{mean}\NormalTok{(dat}\OperatorTok{$}\NormalTok{length[dat}\OperatorTok{$}\NormalTok{age }\OperatorTok{==}\StringTok{ }\DecValTok{4}\NormalTok{]) }\OperatorTok{-}\StringTok{ }\KeywordTok{mean}\NormalTok{(dat}\OperatorTok{$}\NormalTok{length[dat}\OperatorTok{$}\NormalTok{age }\OperatorTok{==}\StringTok{ }\DecValTok{3}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+Adapt the \texttt{perm()} function for this example (no \texttt{na.rm}
+argument is needed):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{perm =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, y) \{}
+  \CommentTok{# shuffle the x values:}
+\NormalTok{  x_shuff =}\StringTok{ }\KeywordTok{sample}\NormalTok{(x)}
+  \CommentTok{# calculate the mean of each group:}
+\NormalTok{  x_bar_}\DecValTok{3}\NormalTok{ =}\StringTok{ }\KeywordTok{mean}\NormalTok{(y[x_shuff }\OperatorTok{==}\StringTok{ }\DecValTok{3}\NormalTok{])}
+\NormalTok{  x_bar_}\DecValTok{4}\NormalTok{ =}\StringTok{ }\KeywordTok{mean}\NormalTok{(y[x_shuff }\OperatorTok{==}\StringTok{ }\DecValTok{4}\NormalTok{])}
+  \CommentTok{# calculate the difference:}
+\NormalTok{  x_bar_}\DecValTok{4} \OperatorTok{-}\StringTok{ }\NormalTok{x_bar_}\DecValTok{3}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Then, use the function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Dnull =}\StringTok{ }\KeywordTok{replicate}\NormalTok{(}\DataTypeTok{n =} \DecValTok{5000}\NormalTok{, }\DataTypeTok{expr =} \KeywordTok{perm}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ dat}\OperatorTok{$}\NormalTok{age, }\DataTypeTok{y =}\NormalTok{ dat}\OperatorTok{$}\NormalTok{length))}
+\end{Highlighting}
+\end{Shaded}
+
+Plot the null distribution:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(Dnull, }\DataTypeTok{col =} \StringTok{"skyblue"}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v =}\NormalTok{ Dobs, }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-338-1} \end{center}
+
+Obtain the two-tailed p-value:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mean}\NormalTok{(}\KeywordTok{abs}\NormalTok{(Dnull) }\OperatorTok{>=}\StringTok{ }\NormalTok{Dobs)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.542
+\end{verbatim}
+
+Based on this, it appears there is no significant difference between the
+mean length of age 3 and 4 fish in this example.
+
+\textbf{3. Add a calculation of the p-value for a one-tailed test (i.e.,
+that the difference in means is greater or less than zero). Steps 1 - 4
+are the same: all you need is \texttt{Dnull} and \texttt{Dobs}. Don't be
+afraid to Google this if you are confused.}
+
+To calculate the p-value for a one-tailed test (null hypothesis is that
+the mean length of age 4 is less than or equal to the mean length of age
+3 fish):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mean}\NormalTok{(Dnull }\OperatorTok{>=}\StringTok{ }\NormalTok{Dobs)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.2714
+\end{verbatim}
+
+To test the opposite hypothesis (null hypothesis is that the mean length
+of age 4 fish is greater than or equal to the mean length of age 3
+fish):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mean}\NormalTok{(Dnull }\OperatorTok{<=}\StringTok{ }\NormalTok{Dobs)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.7306
+\end{verbatim}
+
 \hypertarget{ex5-answers}{\section*{Exercise 5
 Solutions}\label{ex5-answers}}
 \addcontentsline{toc}{section}{Exercise 5 Solutions}
 
+First, load \texttt{\{dplyr\}} and read in the data:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(dplyr)}
+\NormalTok{dat =}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"../Data/asl.csv"}\NormalTok{)}
+\KeywordTok{head}\NormalTok{(dat)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   year    sex age length
+## 1 1966   Male   4    570
+## 2 1966   Male   4    519
+## 3 1966   Male   4    518
+## 4 1966   Male   4    479
+## 5 1966 Female   4    529
+## 6 1966 Female   4    560
+\end{verbatim}
+
+\textbf{1. Count the number of females that were sampled each year using
+the \texttt{\{dplyr\}} function \texttt{n()} within a
+\texttt{summarize()} call (\emph{Hint: \texttt{n()} works just like
+length - it counts the number of records}).}
+
+Pipe \texttt{dat} to a \texttt{filter()} call to extract only females,
+then \texttt{group\_by()} year, then count the number of records:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n_female =}\StringTok{ }\NormalTok{dat }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(sex }\OperatorTok{==}\StringTok{ "Female"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(year) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{n_female =} \KeywordTok{n}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{2. Calculate the proportion of females by year.}
+
+Do a similar task as in the previous question, but count all individuals
+each year, regardless of sex:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n_tot =}\StringTok{ }\NormalTok{dat }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(year) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{n_tot =} \KeywordTok{n}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+Then merge these two data sets:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{samp_size =}\StringTok{ }\KeywordTok{merge}\NormalTok{(n_tot, n_female, }\DataTypeTok{by =} \StringTok{"year"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Finally, calculate the fraction that were females:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{samp_size =}\StringTok{ }\NormalTok{samp_size }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{p_female =}\NormalTok{ n_female}\OperatorTok{/}\NormalTok{n_tot)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{3. Plot percent females over time. Does it look like the sex
+composition has changed over time?}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(p_female }\OperatorTok{~}\StringTok{ }\NormalTok{year, }\DataTypeTok{data =}\NormalTok{ samp_size, }\DataTypeTok{type =} \StringTok{"b"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-349-1} \end{center}
+
+It seems that the proportion of females has varied randomly over time
+but has not systematically changed since the beginning of the data time
+series. Note that some of this variablility is introduced by sampling.
+
+\textbf{4. Calculate mean length by age, sex, and year.}
+
+\texttt{\{dplyr\}} makes this relatively complex calculation easy and
+returns an intuitive data frame as output:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mean_length =}\StringTok{ }\NormalTok{dat }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(year, age, sex) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{mean_length =} \KeywordTok{mean}\NormalTok{(length))}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{5. Come up with a way to plot a time series of mean
+length-at-age for both sexes. Does it look like mean length-at-age has
+changed over time for either sex?}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# set up a 2x2 plotting device with specialized margins}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{), }\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{), }\DataTypeTok{oma =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{))}
+
+\CommentTok{# extract the unique ages}
+\NormalTok{ages =}\StringTok{ }\KeywordTok{unique}\NormalTok{(mean_length}\OperatorTok{$}\NormalTok{age)}
+
+\CommentTok{# use sapply() to "loop" over ages}
+\KeywordTok{sapply}\NormalTok{(ages, }\ControlFlowTok{function}\NormalTok{(a) \{}
+  \CommentTok{# create an empty plot}
+  \KeywordTok{plot}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{, }\DataTypeTok{type =} \StringTok{"n"}\NormalTok{, }\DataTypeTok{ann =}\NormalTok{ F, }\DataTypeTok{xlim =} \KeywordTok{range}\NormalTok{(dat}\OperatorTok{$}\NormalTok{year),}
+       \DataTypeTok{ylim =} \KeywordTok{range}\NormalTok{(}\KeywordTok{filter}\NormalTok{(mean_length, age }\OperatorTok{==}\StringTok{ }\NormalTok{a)}\OperatorTok{$}\NormalTok{mean_length))}
+  
+  \CommentTok{# add a title}
+  \KeywordTok{title}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"Age"}\NormalTok{, a))}
+  
+  \CommentTok{# draw on the lines for each sex}
+  \KeywordTok{lines}\NormalTok{(mean_length }\OperatorTok{~}\StringTok{ }\NormalTok{year, }\DataTypeTok{type =} \StringTok{"b"}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{16}\NormalTok{,}
+        \DataTypeTok{data =} \KeywordTok{filter}\NormalTok{(mean_length, age }\OperatorTok{==}\StringTok{ }\NormalTok{a }\OperatorTok{&}\StringTok{ }\NormalTok{sex }\OperatorTok{==}\StringTok{ "Male"}\NormalTok{))}
+  \KeywordTok{lines}\NormalTok{(mean_length }\OperatorTok{~}\StringTok{ }\NormalTok{year, }\DataTypeTok{type =} \StringTok{"b"}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{1}\NormalTok{, }\DataTypeTok{lty =} \DecValTok{2}\NormalTok{,}
+        \DataTypeTok{data =} \KeywordTok{filter}\NormalTok{(mean_length, age }\OperatorTok{==}\StringTok{ }\NormalTok{a }\OperatorTok{&}\StringTok{ }\NormalTok{sex }\OperatorTok{==}\StringTok{ "Female"}\NormalTok{))}
+  
+  \CommentTok{# draw a legend if the age is 4}
+  \ControlFlowTok{if}\NormalTok{ (a }\OperatorTok{==}\StringTok{ }\DecValTok{4}\NormalTok{) \{}
+    \KeywordTok{legend}\NormalTok{(}\StringTok{"topright"}\NormalTok{, }\DataTypeTok{legend =} \KeywordTok{c}\NormalTok{(}\StringTok{"Male"}\NormalTok{, }\StringTok{"Female"}\NormalTok{),}
+           \DataTypeTok{lty =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{), }\DataTypeTok{pch =} \KeywordTok{c}\NormalTok{(}\DecValTok{16}\NormalTok{,}\DecValTok{1}\NormalTok{), }\DataTypeTok{bty =} \StringTok{"n"}\NormalTok{)}
+\NormalTok{  \}}
+\NormalTok{\})}
+
+\CommentTok{# add on margin text for the shared axes}
+\KeywordTok{mtext}\NormalTok{(}\DataTypeTok{side =} \DecValTok{1}\NormalTok{, }\DataTypeTok{outer =}\NormalTok{ T, }\StringTok{"Year"}\NormalTok{)}
+\KeywordTok{mtext}\NormalTok{(}\DataTypeTok{side =} \DecValTok{2}\NormalTok{, }\DataTypeTok{outer =}\NormalTok{ T, }\StringTok{"Mean Length (mm)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-351-1} \end{center}
+
+\textbf{Bonus 1. Calculate the age composition by sex and year (what
+proportion of all the males in a year were age 4, age 5, age 6, age 7,
+and same for females).}
+
+This follows a similar workflow as in the calculation of the proportion
+of females:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# get the number by age and sex each year}
+\NormalTok{n_age_samps =}\StringTok{ }\NormalTok{dat }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(year, age, sex) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{age_samps =} \KeywordTok{n}\NormalTok{())}
+
+\CommentTok{# get the number by sex each year}
+\NormalTok{n_tot_samps =}\StringTok{ }\NormalTok{dat }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(year, sex) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{tot_samps =} \KeywordTok{n}\NormalTok{())}
+
+\CommentTok{# merge the two:}
+\NormalTok{n_samps =}\StringTok{ }\KeywordTok{merge}\NormalTok{(n_age_samps, n_tot_samps, }\DataTypeTok{by =} \KeywordTok{c}\NormalTok{(}\StringTok{"year"}\NormalTok{, }\StringTok{"sex"}\NormalTok{))}
+
+\CommentTok{# calculate the proportion at each age and sex:}
+\NormalTok{n_samps =}\StringTok{ }\NormalTok{n_samps }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ungroup}\NormalTok{() }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{age_comp =}\NormalTok{ age_samps}\OperatorTok{/}\NormalTok{tot_samps)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Bonus 2. Plot the time series of age composition by sex and
+year. Does it look like age composition has changed over time?}
+
+Create the same plots as for Question 5, but with age composition
+instead of sex composition:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# set up a 2x2 plotting device with specialized margins}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{), }\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{), }\DataTypeTok{oma =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{))}
+
+\CommentTok{# extract the unique ages}
+\NormalTok{ages =}\StringTok{ }\KeywordTok{unique}\NormalTok{(n_samps}\OperatorTok{$}\NormalTok{age)}
+
+\CommentTok{# use sapply() to "loop" over ages}
+\KeywordTok{sapply}\NormalTok{(ages, }\ControlFlowTok{function}\NormalTok{(a) \{}
+  \CommentTok{# create an empty plot}
+  \KeywordTok{plot}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{, }\DataTypeTok{type =} \StringTok{"n"}\NormalTok{, }\DataTypeTok{ann =}\NormalTok{ F, }\DataTypeTok{xlim =} \KeywordTok{range}\NormalTok{(dat}\OperatorTok{$}\NormalTok{year),}
+       \DataTypeTok{ylim =} \KeywordTok{range}\NormalTok{(}\KeywordTok{filter}\NormalTok{(n_samps, age }\OperatorTok{==}\StringTok{ }\NormalTok{a)}\OperatorTok{$}\NormalTok{age_comp) }\OperatorTok{+}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{0.05}\NormalTok{))}
+  
+  \CommentTok{# add a title}
+  \KeywordTok{title}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"Age"}\NormalTok{, a))}
+  
+  \CommentTok{# draw on the lines for each sex}
+  \KeywordTok{lines}\NormalTok{(age_comp }\OperatorTok{~}\StringTok{ }\NormalTok{year, }\DataTypeTok{type =} \StringTok{"b"}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{16}\NormalTok{,}
+        \DataTypeTok{data =} \KeywordTok{filter}\NormalTok{(n_samps, age }\OperatorTok{==}\StringTok{ }\NormalTok{a }\OperatorTok{&}\StringTok{ }\NormalTok{sex }\OperatorTok{==}\StringTok{ "Male"}\NormalTok{))}
+  \KeywordTok{lines}\NormalTok{(age_comp }\OperatorTok{~}\StringTok{ }\NormalTok{year, }\DataTypeTok{type =} \StringTok{"b"}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{1}\NormalTok{, }\DataTypeTok{lty =} \DecValTok{2}\NormalTok{,}
+        \DataTypeTok{data =} \KeywordTok{filter}\NormalTok{(n_samps, age }\OperatorTok{==}\StringTok{ }\NormalTok{a }\OperatorTok{&}\StringTok{ }\NormalTok{sex }\OperatorTok{==}\StringTok{ "Female"}\NormalTok{))}
+  
+  \CommentTok{# draw a legend if the age is 4}
+  \ControlFlowTok{if}\NormalTok{ (a }\OperatorTok{==}\StringTok{ }\DecValTok{4}\NormalTok{) \{}
+    \KeywordTok{legend}\NormalTok{(}\StringTok{"topleft"}\NormalTok{, }\DataTypeTok{legend =} \KeywordTok{c}\NormalTok{(}\StringTok{"Male"}\NormalTok{, }\StringTok{"Female"}\NormalTok{),}
+           \DataTypeTok{lty =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{), }\DataTypeTok{pch =} \KeywordTok{c}\NormalTok{(}\DecValTok{16}\NormalTok{,}\DecValTok{1}\NormalTok{), }\DataTypeTok{bty =} \StringTok{"n"}\NormalTok{)}
+\NormalTok{  \}}
+\NormalTok{\})}
+
+\CommentTok{# add on margin text for the shared axes}
+\KeywordTok{mtext}\NormalTok{(}\DataTypeTok{side =} \DecValTok{1}\NormalTok{, }\DataTypeTok{outer =}\NormalTok{ T, }\StringTok{"Year"}\NormalTok{)}
+\KeywordTok{mtext}\NormalTok{(}\DataTypeTok{side =} \DecValTok{2}\NormalTok{, }\DataTypeTok{outer =}\NormalTok{ T, }\StringTok{"Age Composition by Sex"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-353-1} \end{center}
+
 \section*{Exercise 6 Solutions}\label{ex6-answers}
 \addcontentsline{toc}{section}{Exercise 6 Solutions}
+
+Henry's material will go here.
 
 \bibliography{book.bib,packages.bib}
 
