@@ -32,7 +32,7 @@ R's built-in statistical modeling framework is pretty intuitive and comprehensiv
 
 You should create a new directory and R script for your work in this Chapter. Create a new R script called `Ch3.R` and save it in the directory `C:/Users/YOU/Documents/R-Book/Chapter3`. Set your working directory to that location. Revisit the material in Sections \@ref(scripts) and \@ref(working-dir) for more details on these steps. 
 
-## The General Linear Model
+## The General Linear Model {#lm}
 
 Much of this chapter will focus on the general linear model, so it is important to become familiar with it. The general linear model is a family of models that allows you to determine the relationship (if any) between some continuous response variable ($y$) and some predictor variable(s) ($x_n$) and is often written as:
 
@@ -592,6 +592,14 @@ lines(cons_seq ~ prey_seq, lwd = 3)
 
 ## Exercise 3 {-}
 
+You should create a new R script called `Ex3.R` in your working directory for this chapter. You will again be using the `sockeye.csv` data found in @sockeye-cite. 
+
 _The solutions to this exercise are found at the end of this book ([here](#ex3-answers)). You are **strongly recommended** to make a good attempt at completing this exercise on your own and only look at the solutions when you are truly stumped._
 
-1.  Make the same graphic as in Figure \@ref(fig:norm-plots) with at least one of the other distributions listed in Table `r if(is_html_output()) "\\@ref(tab:dist-table-html)" else "\\@ref(tab:dist-table-pdf)"` (other than the multinomial - being a multivariate distribution, it wouldn't work well with this code). Try thinking of a variable from your work that meets the uses of each distribution in Table `r if(is_html_output()) "\\@ref(tab:dist-table-html)" else "\\@ref(tab:dist-table-pdf)"` (or one that's not listed). If you run into trouble, check out the help file for that distribution^[Executing `?rnorm` or any other of the `-norm()` functions will take you to a page with info on all four function types for that distribution]. 
+1.  Perform the same analyses as conducted in Section \@ref(lm) (simple linear regression, ANOVA, ANCOVA, ANCOVA with interaction), using `egg_size` as the response variable. The other variables you should use are `type` (categorical) and `year`. You should plot the fit for each model separately and perform an AIC analysis. Practice interpretting the coefficient estimates.
+2.  Perform the same analyses as conducted in Section \@ref(glms), this time using a success being having greater than 80% survival to the eyed-egg stage. Use `egg_size` and `type` as the predictor variables. You should plot the fitted lines for each model separately and perform an AIC analysis. Practice interpretting the coefficient estimates.
+3.  Make the same graphic as in Figure \@ref(fig:norm-plots) with at least one of the other distributions listed in Table `r if(is_html_output()) "\\@ref(tab:dist-table-html)" else "\\@ref(tab:dist-table-pdf)"` (other than the multinomial - being a multivariate distribution, it wouldn't work well with this code). Try thinking of a variable from your work that meets the uses of each distribution in Table `r if(is_html_output()) "\\@ref(tab:dist-table-html)" else "\\@ref(tab:dist-table-pdf)"` (or one that's not listed). If you run into trouble, check out the help file for that distribution^[Executing `?rnorm` or any other of the `-norm()` functions will take you to a page with info on all four function types for that distribution]. 
+
+### Exercise 3 Bonus {-}
+
+1.  Fit a von Bertalannfy growth model to the data found in the `growth.csv` data file. Visit Section \@ref(boot-test-ex) (particularly Equation \@ref(eq:vonB)) for details on this model. Use the initial values: `linf = 600`, `k = 0.3`, `t0 = -0.2`. Plot the fitted line over top of the data. 
