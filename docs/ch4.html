@@ -11,8 +11,8 @@
 
   <meta property="og:title" content="Introduction to R for Natural Resource Scientists" />
   <meta property="og:type" content="book" />
-  
-  <meta property="og:image" content="cover_image.png" />
+  <meta property="og:url" content="<a href="https://bstaton1.github.io/au-r-workshop/" class="uri">https://bstaton1.github.io/au-r-workshop/</a>" />
+  <meta property="og:image" content="<a href="https://bstaton1.github.io/au-r-workshop/" class="uri">https://bstaton1.github.io/au-r-workshop/</a>cover_image.png" />
   <meta property="og:description" content="This is a first course in R programming for natural resource scientists. It was developed and has been primarily instructed at Auburn University." />
   <meta name="github-repo" content="bstaton1/au-r-workshop" />
 
@@ -20,7 +20,7 @@
   <meta name="twitter:title" content="Introduction to R for Natural Resource Scientists" />
   
   <meta name="twitter:description" content="This is a first course in R programming for natural resource scientists. It was developed and has been primarily instructed at Auburn University." />
-  <meta name="twitter:image" content="cover_image.png" />
+  <meta name="twitter:image" content="<a href="https://bstaton1.github.io/au-r-workshop/" class="uri">https://bstaton1.github.io/au-r-workshop/</a>cover_image.png" />
 
 <meta name="author" content="Ben Staton">
 
@@ -311,7 +311,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>In Section <a href="ch3.html#dists">3.3</a>, you learned about using probability distributions in R. One of the uses was the <code>r-</code> family of distribution functions. These functions create random numbers following a random process specified by a probability distribution.</p>
 <p>Consider animal survival as an example. At the end of each year, each individual alive at the start can either live or die. There are two outcomes here, and suppose each animal has an 80% chance of surviving. The number of individuals that survive is the result of a <strong>binomial random process</strong> in which there were <span class="math inline">\(n\)</span> individuals alive at the start of this year and <span class="math inline">\(p\)</span> is the probability that any one individual survives to the next year. You can execute one binomial random process where <span class="math inline">\(p = 0.8\)</span> and <span class="math inline">\(n = 100\)</span> like this:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rbinom</span>(<span class="dt">n =</span> <span class="dv">1</span>, <span class="dt">size =</span> <span class="dv">100</span>, <span class="dt">prob =</span> <span class="fl">0.8</span>)</code></pre></div>
-<pre><code>## [1] 81</code></pre>
+<pre><code>## [1] 73</code></pre>
 <p>The result you get will almost certainly be different from the one printed here. That is the random component.</p>
 <p>You can execute many such binomial processes by changing the <code>n</code> argument. Plot the distribution of expected surviving individuals:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">survivors =<span class="st"> </span><span class="kw">rbinom</span>(<span class="dv">1000</span>, <span class="dv">100</span>, <span class="fl">0.8</span>)
@@ -326,10 +326,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3><span class="header-section-number">4.1.2</span> Resampling</h3>
 <p>Using random deviates works great for creating new random numbers, but what if you already have a set of numbers that you wish to introduce randomness to? For this, you can use <strong>resampling techniques</strong>. In R, the <code>sample()</code> function is used to sample <code>size</code> elements from the vector <code>x</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">size =</span> <span class="dv">5</span>)</code></pre></div>
-<pre><code>## [1] 6 2 9 7 8</code></pre>
+<pre><code>## [1]  7  4 10  1  5</code></pre>
 <p>You can sample with replacement (where it is possible to sample the same element two or more times):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>), <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">replace =</span> T)</code></pre></div>
-<pre><code>##  [1] &quot;c&quot; &quot;c&quot; &quot;b&quot; &quot;a&quot; &quot;c&quot; &quot;b&quot; &quot;a&quot; &quot;b&quot; &quot;b&quot; &quot;a&quot;</code></pre>
+<pre><code>##  [1] &quot;c&quot; &quot;b&quot; &quot;a&quot; &quot;c&quot; &quot;c&quot; &quot;b&quot; &quot;c&quot; &quot;c&quot; &quot;a&quot; &quot;c&quot;</code></pre>
 <p>You can set probabilities on the sampling of different elements<a href="#fn33" class="footnoteRef" id="fnref33"><sup>33</sup></a>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;live&quot;</span>, <span class="st">&quot;die&quot;</span>), <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">replace =</span> T,
        <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.8</span>, <span class="fl">0.2</span>))</code></pre></div>

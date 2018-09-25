@@ -4377,7 +4377,7 @@ random process where \(p = 0.8\) and \(n = 100\) like this:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 76
+## [1] 80
 \end{verbatim}
 
 The result you get will almost certainly be different from the one
@@ -4427,7 +4427,7 @@ elements from the vector \texttt{x}:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3 1 9 4 6
+## [1] 2 7 3 1 9
 \end{verbatim}
 
 You can sample with replacement (where it is possible to sample the same
@@ -4440,7 +4440,7 @@ element two or more times):
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "b" "a" "c" "b" "a" "c" "a" "b" "a" "a"
+##  [1] "b" "c" "c" "c" "a" "a" "b" "b" "c" "b"
 \end{verbatim}
 
 You can set probabilities on the sampling of different
@@ -4455,7 +4455,7 @@ elements\footnote{If \texttt{prob} doesn't sum to 1, then it will be
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "live" "live" "live" "die"  "die"  "live" "die"  "live" "die"  "live"
+##  [1] "die"  "live" "live" "live" "live" "die"  "live" "live" "live" "live"
 \end{verbatim}
 
 Notice that this is the same as the binomial random process above, but
@@ -7990,10 +7990,10 @@ Then use the function:
 
 \begin{verbatim}
 ## $mean_H
-## [1] 7825697
+## [1] 8118511
 ## 
 ## $mean_S
-## [1] 11738545
+## [1] 12177766
 \end{verbatim}
 
 \textbf{2. Add an \emph{error handler} to \texttt{ricker\_sim()} that
@@ -8324,7 +8324,7 @@ Finally, calculate the two-tailed hypothesis tests:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0
+## [1] 2e-04
 \end{verbatim}
 
 It appears that the zooplankton densities differed significantly between
@@ -8401,7 +8401,7 @@ Obtain the two-tailed p-value:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.5466
+## [1] 0.5476
 \end{verbatim}
 
 Based on this, it appears there is no significant difference between the
@@ -8423,7 +8423,7 @@ the mean length of age 4 is less than or equal to the mean length of age
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.2794
+## [1] 0.2704
 \end{verbatim}
 
 To test the opposite hypothesis (null hypothesis is that the mean length
@@ -8437,7 +8437,7 @@ fish):
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.722
+## [1] 0.7304
 \end{verbatim}
 
 \hypertarget{ex5-answers}{\section*{Exercise 5
@@ -8659,7 +8659,7 @@ instead of sex composition:
 
 Henry's material will go here.
 
-\bibliography{book.bib,packages.bib}
+\bibliography{book.bib}
 
 
 \end{document}
