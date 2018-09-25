@@ -521,7 +521,7 @@ Use the data found in `asl.csv` (**a**ge, **s**ex, **l**ength) (see the [instruc
 
 ---
 
-## Exercise 5 Bonus {-}
+### Exercise 5 Bonus {-}
 
 1. Calculate the age composition by sex and year (what proportion of all the males in a year were age 4, age 5, age 6, age 7, and same for females).
 2. Plot the time series of age composition by sex and year. Does it look like age composition has changed over time?

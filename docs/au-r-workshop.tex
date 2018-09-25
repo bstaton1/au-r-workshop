@@ -4377,7 +4377,7 @@ random process where \(p = 0.8\) and \(n = 100\) like this:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 81
+## [1] 76
 \end{verbatim}
 
 The result you get will almost certainly be different from the one
@@ -4427,7 +4427,7 @@ elements from the vector \texttt{x}:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 7 1 6 2 5
+## [1] 3 1 9 4 6
 \end{verbatim}
 
 You can sample with replacement (where it is possible to sample the same
@@ -4440,7 +4440,7 @@ element two or more times):
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "a" "a" "a" "a" "b" "c" "a" "c" "c" "c"
+##  [1] "b" "a" "c" "b" "a" "c" "a" "b" "a" "a"
 \end{verbatim}
 
 You can set probabilities on the sampling of different
@@ -4455,7 +4455,7 @@ elements\footnote{If \texttt{prob} doesn't sum to 1, then it will be
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "live" "live" "live" "die"  "live" "die"  "die"  "live" "live" "live"
+##  [1] "live" "live" "live" "die"  "die"  "live" "die"  "live" "die"  "live"
 \end{verbatim}
 
 Notice that this is the same as the binomial random process above, but
@@ -7082,8 +7082,8 @@ read the data file into R. If this is a new session, load the
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
-\section*{Exercise 5 Bonus}\label{exercise-5-bonus}
-\addcontentsline{toc}{section}{Exercise 5 Bonus}
+\subsection*{Exercise 5 Bonus}\label{exercise-5-bonus}
+\addcontentsline{toc}{subsection}{Exercise 5 Bonus}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -7990,10 +7990,10 @@ Then use the function:
 
 \begin{verbatim}
 ## $mean_H
-## [1] 9196111
+## [1] 7825697
 ## 
 ## $mean_S
-## [1] 13794167
+## [1] 11738545
 \end{verbatim}
 
 \textbf{2. Add an \emph{error handler} to \texttt{ricker\_sim()} that
@@ -8401,7 +8401,7 @@ Obtain the two-tailed p-value:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.5502
+## [1] 0.5466
 \end{verbatim}
 
 Based on this, it appears there is no significant difference between the
@@ -8423,7 +8423,7 @@ the mean length of age 4 is less than or equal to the mean length of age
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.2718
+## [1] 0.2794
 \end{verbatim}
 
 To test the opposite hypothesis (null hypothesis is that the mean length
@@ -8437,7 +8437,7 @@ fish):
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.73
+## [1] 0.722
 \end{verbatim}
 
 \hypertarget{ex5-answers}{\section*{Exercise 5

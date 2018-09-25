@@ -5,12 +5,13 @@ date: "with contributions from Henry Hershey"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
-bibliography: [book.bib, packages.bib]
+bibliography: [book.bib]
 biblio-style: apalike
 link-citations: true
 linkcolor: "blue"
 urlcolor: "blue"
 github-repo: bstaton1/au-r-workshop
+url: https://bstaton1.github.io/au-r-workshop/
 description: "This is a first course in R programming for natural resource scientists. It was developed and has been primarily instructed at Auburn University."
 cover-image: cover_image.png
 ---
