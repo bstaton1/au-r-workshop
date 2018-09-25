@@ -44,7 +44,7 @@
 \contentsline {section}{Chapter Overview}{31}{section*.22}
 \contentsline {section}{Before You Begin}{31}{section*.23}
 \contentsline {section}{\numberline {2.1}R Plotting Lingo}{32}{section.2.1}
-\contentsline {section}{\numberline {2.2}Lower Level Plotting Functions}{34}{section.2.2}
+\contentsline {section}{\numberline {2.2}Lower Level Plotting Functions}{33}{section.2.2}
 \contentsline {section}{\numberline {2.3}Other High-Level Plotting Functions}{37}{section.2.3}
 \contentsline {subsection}{\numberline {2.3.1}The Bar Graph}{37}{subsection.2.3.1}
 \contentsline {section}{\numberline {2.4}Box-and-Whisker Plots}{39}{section.2.4}
@@ -94,42 +94,42 @@
 \contentsline {subsection}{\numberline {4.6.1}Test \texttt {rnorm}}{81}{subsection.4.6.1}
 \contentsline {subsection}{\numberline {4.6.2}Stochastic Power Analysis}{83}{subsection.4.6.2}
 \contentsline {subsection}{\numberline {4.6.3}Harvest Policy Analysis}{87}{subsection.4.6.3}
-\contentsline {section}{\numberline {4.7}Resampling-Based Examples}{93}{section.4.7}
-\contentsline {subsection}{\numberline {4.7.1}The Bootstrap}{93}{subsection.4.7.1}
-\contentsline {subsection}{\numberline {4.7.2}Permutation Test}{97}{subsection.4.7.2}
-\contentsline {section}{\numberline {4.8}Exercise 4}{100}{section.4.8}
-\contentsline {subsection}{Exercise 4A: Required Material Only}{100}{section*.32}
-\contentsline {subsection}{Exercise 4B: Test \texttt {rnorm}}{100}{section*.33}
-\contentsline {subsection}{Exercise 4C: Stochastic Power Analysis}{100}{section*.34}
-\contentsline {subsection}{Exercise 4D: Harvest Policy Analysis}{101}{section*.35}
-\contentsline {subsection}{Exercise 4E: The Bootstrap}{101}{section*.36}
-\contentsline {subsection}{Exercise 4F: Permutation Tests}{101}{section*.37}
-\contentsline {chapter}{\numberline {5}Large Data Manipulation}{103}{chapter.5}
-\contentsline {section}{Chapter Overview}{103}{section*.38}
-\contentsline {section}{Before You Begin}{103}{section*.39}
-\contentsline {section}{\numberline {5.1}Aquiring and Loading Packages}{103}{section.5.1}
-\contentsline {section}{\numberline {5.2}The Data}{104}{section.5.2}
-\contentsline {section}{\numberline {5.3}Change format using \texttt {melt()}}{105}{section.5.3}
-\contentsline {section}{\numberline {5.4}Join Data Sets with \texttt {merge()}}{106}{section.5.4}
-\contentsline {section}{\numberline {5.5}Lagged vectors}{107}{section.5.5}
-\contentsline {section}{\numberline {5.6}Adding columns with \texttt {mutate()}}{109}{section.5.6}
-\contentsline {section}{\numberline {5.7}Apply to all years}{111}{section.5.7}
-\contentsline {section}{\numberline {5.8}Calculate Daily Means with \texttt {summarize()}}{112}{section.5.8}
-\contentsline {section}{\numberline {5.9}More \texttt {summarize()}}{114}{section.5.9}
-\contentsline {section}{\numberline {5.10}Fit the Model}{117}{section.5.10}
-\contentsline {section}{Exercise 5}{120}{section*.40}
-\contentsline {section}{Exercise 5 Bonus}{121}{section*.41}
-\contentsline {chapter}{\numberline {6}Mapping and Spatial Analysis}{123}{chapter.6}
-\contentsline {chapter}{Exercise Solutions}{125}{chapter*.42}
-\contentsline {section}{Exercise 1A Solutions}{125}{section*.43}
-\contentsline {section}{Exercise 1B Solutions}{126}{section*.44}
-\contentsline {section}{Exercise 2 Solutions}{128}{section*.45}
-\contentsline {section}{Exercise 3 Solutions}{130}{section*.46}
-\contentsline {section}{Exercise 4A Solutions}{132}{section*.47}
-\contentsline {section}{Exercise 4B Solutions}{133}{section*.48}
-\contentsline {section}{Exercise 4C Solutions}{135}{section*.49}
-\contentsline {section}{Exercise 4D Solutions}{137}{section*.50}
-\contentsline {section}{Exercise 4E Solutions}{142}{section*.51}
-\contentsline {section}{Exercise 4F Solutions}{143}{section*.52}
-\contentsline {section}{Exercise 5 Solutions}{147}{section*.53}
-\contentsline {section}{Exercise 6 Solutions}{151}{section*.54}
+\contentsline {section}{\numberline {4.7}Resampling-Based Examples}{92}{section.4.7}
+\contentsline {subsection}{\numberline {4.7.1}The Bootstrap}{92}{subsection.4.7.1}
+\contentsline {subsection}{\numberline {4.7.2}Permutation Test}{96}{subsection.4.7.2}
+\contentsline {section}{\numberline {4.8}Exercise 4}{99}{section.4.8}
+\contentsline {subsection}{Exercise 4A: Required Material Only}{99}{section*.32}
+\contentsline {subsection}{Exercise 4B: Test \texttt {rnorm}}{99}{section*.33}
+\contentsline {subsection}{Exercise 4C: Stochastic Power Analysis}{99}{section*.34}
+\contentsline {subsection}{Exercise 4D: Harvest Policy Analysis}{100}{section*.35}
+\contentsline {subsection}{Exercise 4E: The Bootstrap}{100}{section*.36}
+\contentsline {subsection}{Exercise 4F: Permutation Tests}{100}{section*.37}
+\contentsline {chapter}{\numberline {5}Large Data Manipulation}{101}{chapter.5}
+\contentsline {section}{Chapter Overview}{101}{section*.38}
+\contentsline {section}{Before You Begin}{101}{section*.39}
+\contentsline {section}{\numberline {5.1}Aquiring and Loading Packages}{101}{section.5.1}
+\contentsline {section}{\numberline {5.2}The Data}{102}{section.5.2}
+\contentsline {section}{\numberline {5.3}Change format using \texttt {melt()}}{103}{section.5.3}
+\contentsline {section}{\numberline {5.4}Join Data Sets with \texttt {merge()}}{104}{section.5.4}
+\contentsline {section}{\numberline {5.5}Lagged vectors}{105}{section.5.5}
+\contentsline {section}{\numberline {5.6}Adding columns with \texttt {mutate()}}{107}{section.5.6}
+\contentsline {section}{\numberline {5.7}Apply to all years}{109}{section.5.7}
+\contentsline {section}{\numberline {5.8}Calculate Daily Means with \texttt {summarize()}}{110}{section.5.8}
+\contentsline {section}{\numberline {5.9}More \texttt {summarize()}}{112}{section.5.9}
+\contentsline {section}{\numberline {5.10}Fit the Model}{115}{section.5.10}
+\contentsline {section}{Exercise 5}{118}{section*.40}
+\contentsline {section}{Exercise 5 Bonus}{119}{section*.41}
+\contentsline {chapter}{\numberline {6}Mapping and Spatial Analysis}{121}{chapter.6}
+\contentsline {chapter}{Exercise Solutions}{123}{chapter*.42}
+\contentsline {section}{Exercise 1A Solutions}{123}{section*.43}
+\contentsline {section}{Exercise 1B Solutions}{124}{section*.44}
+\contentsline {section}{Exercise 2 Solutions}{126}{section*.45}
+\contentsline {section}{Exercise 3 Solutions}{128}{section*.46}
+\contentsline {section}{Exercise 4A Solutions}{130}{section*.47}
+\contentsline {section}{Exercise 4B Solutions}{131}{section*.48}
+\contentsline {section}{Exercise 4C Solutions}{133}{section*.49}
+\contentsline {section}{Exercise 4D Solutions}{135}{section*.50}
+\contentsline {section}{Exercise 4E Solutions}{140}{section*.51}
+\contentsline {section}{Exercise 4F Solutions}{141}{section*.52}
+\contentsline {section}{Exercise 5 Solutions}{145}{section*.53}
+\contentsline {section}{Exercise 6 Solutions}{149}{section*.54}

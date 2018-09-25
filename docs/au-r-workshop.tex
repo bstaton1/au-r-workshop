@@ -132,6 +132,7 @@
     \date{with contributions from Henry Hershey}
 
 \usepackage{booktabs}
+\usepackage{pdfpages}
 \usepackage{amsthm}
 \makeatletter
 \def\thm@space@setup{%
@@ -139,6 +140,8 @@
   \thm@postskip=\thm@preskip
 }
 \makeatother
+\let\oldmaketitle\maketitle
+\AtBeginDocument{\let\maketitle\relax}
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{array}
@@ -170,6 +173,34 @@
 \newtheorem*{solution}{Solution}
 \begin{document}
 \maketitle
+
+% % \thispagestyle{empty}
+% \begin{center}
+% % {\Huge A BOOK}
+% \includegraphics{cover_image.png}
+% % {\huge by Me}
+% \end{center}
+% 
+% \let\maketitle\oldmaketitle
+% \maketitle
+
+% \cleardoublepage\newpage\thispagestyle{empty}\null
+% \cleardoublepage\newpage\thispagestyle{empty}\null
+% \cleardoublepage\newpage
+% \thispagestyle{empty}
+% \cleardoublepage\begin{center}
+% \newgeometry{left=0cm,right=0cm,top=0cm,bottom=0cm}
+% \includegraphics{cover_image.png}
+% \restoregeometry
+% \end{center}
+% \setlength{\abovedisplayskip}{-5pt}
+% \setlength{\abovedisplayshortskip}{-5pt}
+
+\includepdf[pages={1}]{Cover_Page.pdf}
+\thispagestyle{empty}
+\let\maketitle\oldmaketitle
+\maketitle
+\thispagestyle{empty}
 
 {
 \hypersetup{linkcolor=black}
@@ -334,7 +365,7 @@ Several parts of this book in this book make reference to keyboard
 shortcuts. They are never necessary, but can help you be more efficient
 if you commit them to muscle memory. This book assumes you are using a
 PC for the keyboard shortcuts. If you are using a Mac, they will be
-different\footnote{In for some keyboard shortcuts, you may just need to
+different\footnote{For some keyboard shortcuts, you may just need to
   swap out the \textbf{CTRL} keystroke for the \textbf{CMD} keystroke
   for a Mac computer}. For a complete list of RStudio's keyboard
 shortcuts specific to your operating system, go to \emph{Help
@@ -368,7 +399,7 @@ location when trying to remember how to use a skill. It also allowed for
 multiple formats to be published including both HTML and PDF versions.
 
 The book is hosted on \href{https://pages.github.com/}{GitHub Pages},
-and was last built on 09-24-2018.
+and was last built on 09-25-2018.
 
 \section*{About the Author}\label{about-the-author}
 \addcontentsline{toc}{section}{About the Author}
@@ -4346,7 +4377,7 @@ random process where \(p = 0.8\) and \(n = 100\) like this:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 79
+## [1] 81
 \end{verbatim}
 
 The result you get will almost certainly be different from the one
@@ -4396,7 +4427,7 @@ elements from the vector \texttt{x}:
 \end{Shaded}
 
 \begin{verbatim}
-## [1]  5  1  6 10  7
+## [1] 7 1 6 2 5
 \end{verbatim}
 
 You can sample with replacement (where it is possible to sample the same
@@ -4409,7 +4440,7 @@ element two or more times):
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "c" "a" "c" "a" "c" "c" "b" "c" "a" "b"
+##  [1] "a" "a" "a" "a" "b" "c" "a" "c" "c" "c"
 \end{verbatim}
 
 You can set probabilities on the sampling of different
@@ -4424,7 +4455,7 @@ elements\footnote{If \texttt{prob} doesn't sum to 1, then it will be
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "live" "live" "die"  "live" "die"  "live" "live" "live" "live" "live"
+##  [1] "live" "live" "live" "die"  "live" "die"  "die"  "live" "live" "live"
 \end{verbatim}
 
 Notice that this is the same as the binomial random process above, but
@@ -7959,10 +7990,10 @@ Then use the function:
 
 \begin{verbatim}
 ## $mean_H
-## [1] 8518251
+## [1] 9196111
 ## 
 ## $mean_S
-## [1] 12777376
+## [1] 13794167
 \end{verbatim}
 
 \textbf{2. Add an \emph{error handler} to \texttt{ricker\_sim()} that
@@ -8370,7 +8401,7 @@ Obtain the two-tailed p-value:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.542
+## [1] 0.5502
 \end{verbatim}
 
 Based on this, it appears there is no significant difference between the
@@ -8392,7 +8423,7 @@ the mean length of age 4 is less than or equal to the mean length of age
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.2714
+## [1] 0.2718
 \end{verbatim}
 
 To test the opposite hypothesis (null hypothesis is that the mean length
@@ -8406,7 +8437,7 @@ fish):
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.7306
+## [1] 0.73
 \end{verbatim}
 
 \hypertarget{ex5-answers}{\section*{Exercise 5

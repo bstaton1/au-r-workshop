@@ -14,9 +14,9 @@
 \fi}
 \global\let\hyper@last\relax 
 \gdef\HyperFirstAtBeginDocument#1{#1}
-\providecommand*\HyPL@Entry[1]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
 \bibstyle{apalike}
-\HyPL@Entry{0<</S/D>>}
 \newlabel{overview}{{}{7}{Overview}{chapter*.2}{}}
 \@writefile{toc}{\contentsline {chapter}{Overview}{7}{chapter*.2}}
 \newlabel{what-is-covered}{{}{7}{What is Covered?}{section*.3}{}}
@@ -120,8 +120,8 @@
 \newlabel{r-plotting-lingo}{{2.1}{32}{R Plotting Lingo}{section.2.1}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {2.1}{\ignorespaces Several of the key arguments to high- and low-level plotting functions}}{33}{table.2.1}}
 \newlabel{tab:plot-arg-table-pdf}{{2.1}{33}{Several of the key arguments to high- and low-level plotting functions}{table.2.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.2}Lower Level Plotting Functions}{34}{section.2.2}}
-\newlabel{lower-level-plotting-functions}{{2.2}{34}{Lower Level Plotting Functions}{section.2.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.2}Lower Level Plotting Functions}{33}{section.2.2}}
+\newlabel{lower-level-plotting-functions}{{2.2}{33}{Lower Level Plotting Functions}{section.2.2}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.3}Other High-Level Plotting Functions}{37}{section.2.3}}
 \newlabel{other-high-level-plotting-functions}{{2.3}{37}{Other High-Level Plotting Functions}{section.2.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3.1}The Bar Graph}{37}{subsection.2.3.1}}
@@ -246,92 +246,92 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.6.3}Harvest Policy Analysis}{87}{subsection.4.6.3}}
 \newlabel{harv-ex}{{4.6.3}{87}{Harvest Policy Analysis}{subsection.4.6.3}{}}
 \newlabel{eq:ricker-ch4}{{4.1}{87}{Harvest Policy Analysis}{equation.4.6.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.7}Resampling-Based Examples}{93}{section.4.7}}
-\newlabel{resample-examples}{{4.7}{93}{Resampling-Based Examples}{section.4.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.7.1}The Bootstrap}{93}{subsection.4.7.1}}
-\newlabel{boot-test-ex}{{4.7.1}{93}{The Bootstrap}{subsection.4.7.1}{}}
-\newlabel{eq:vonB}{{4.2}{93}{The Bootstrap}{equation.4.7.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.7.2}Permutation Test}{97}{subsection.4.7.2}}
-\newlabel{perm-test-ex}{{4.7.2}{97}{Permutation Test}{subsection.4.7.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.8}Exercise 4}{100}{section.4.8}}
-\newlabel{exercise-4}{{4.8}{100}{Exercise 4}{section.4.8}{}}
-\newlabel{exercise-4a-required-material-only}{{4.8}{100}{Exercise 4A: Required Material Only}{section*.32}{}}
-\@writefile{toc}{\contentsline {subsection}{Exercise 4A: Required Material Only}{100}{section*.32}}
-\newlabel{exercise-4b-test-rnorm}{{4.8}{100}{\texorpdfstring {Exercise 4B: Test \texttt {rnorm}}{Exercise 4B: Test rnorm}}{section*.33}{}}
-\@writefile{toc}{\contentsline {subsection}{Exercise 4B: Test \texttt  {rnorm}}{100}{section*.33}}
-\newlabel{exercise-4c-stochastic-power-analysis}{{4.8}{100}{Exercise 4C: Stochastic Power Analysis}{section*.34}{}}
-\@writefile{toc}{\contentsline {subsection}{Exercise 4C: Stochastic Power Analysis}{100}{section*.34}}
-\newlabel{exercise-4d-harvest-policy-analysis}{{4.8}{101}{Exercise 4D: Harvest Policy Analysis}{section*.35}{}}
-\@writefile{toc}{\contentsline {subsection}{Exercise 4D: Harvest Policy Analysis}{101}{section*.35}}
-\newlabel{exercise-4e-the-bootstrap}{{4.8}{101}{Exercise 4E: The Bootstrap}{section*.36}{}}
-\@writefile{toc}{\contentsline {subsection}{Exercise 4E: The Bootstrap}{101}{section*.36}}
-\newlabel{exercise-4f-permutation-tests}{{4.8}{101}{Exercise 4F: Permutation Tests}{section*.37}{}}
-\@writefile{toc}{\contentsline {subsection}{Exercise 4F: Permutation Tests}{101}{section*.37}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Large Data Manipulation}{103}{chapter.5}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.7}Resampling-Based Examples}{92}{section.4.7}}
+\newlabel{resample-examples}{{4.7}{92}{Resampling-Based Examples}{section.4.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7.1}The Bootstrap}{92}{subsection.4.7.1}}
+\newlabel{boot-test-ex}{{4.7.1}{92}{The Bootstrap}{subsection.4.7.1}{}}
+\newlabel{eq:vonB}{{4.2}{92}{The Bootstrap}{equation.4.7.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7.2}Permutation Test}{96}{subsection.4.7.2}}
+\newlabel{perm-test-ex}{{4.7.2}{96}{Permutation Test}{subsection.4.7.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.8}Exercise 4}{99}{section.4.8}}
+\newlabel{exercise-4}{{4.8}{99}{Exercise 4}{section.4.8}{}}
+\newlabel{exercise-4a-required-material-only}{{4.8}{99}{Exercise 4A: Required Material Only}{section*.32}{}}
+\@writefile{toc}{\contentsline {subsection}{Exercise 4A: Required Material Only}{99}{section*.32}}
+\newlabel{exercise-4b-test-rnorm}{{4.8}{99}{\texorpdfstring {Exercise 4B: Test \texttt {rnorm}}{Exercise 4B: Test rnorm}}{section*.33}{}}
+\@writefile{toc}{\contentsline {subsection}{Exercise 4B: Test \texttt  {rnorm}}{99}{section*.33}}
+\newlabel{exercise-4c-stochastic-power-analysis}{{4.8}{99}{Exercise 4C: Stochastic Power Analysis}{section*.34}{}}
+\@writefile{toc}{\contentsline {subsection}{Exercise 4C: Stochastic Power Analysis}{99}{section*.34}}
+\newlabel{exercise-4d-harvest-policy-analysis}{{4.8}{100}{Exercise 4D: Harvest Policy Analysis}{section*.35}{}}
+\@writefile{toc}{\contentsline {subsection}{Exercise 4D: Harvest Policy Analysis}{100}{section*.35}}
+\newlabel{exercise-4e-the-bootstrap}{{4.8}{100}{Exercise 4E: The Bootstrap}{section*.36}{}}
+\@writefile{toc}{\contentsline {subsection}{Exercise 4E: The Bootstrap}{100}{section*.36}}
+\newlabel{exercise-4f-permutation-tests}{{4.8}{100}{Exercise 4F: Permutation Tests}{section*.37}{}}
+\@writefile{toc}{\contentsline {subsection}{Exercise 4F: Permutation Tests}{100}{section*.37}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Large Data Manipulation}{101}{chapter.5}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{ch5}{{5}{103}{Large Data Manipulation}{chapter.5}{}}
-\newlabel{chapter-overview-4}{{5}{103}{Chapter Overview}{section*.38}{}}
-\@writefile{toc}{\contentsline {section}{Chapter Overview}{103}{section*.38}}
-\newlabel{before-you-begin-3}{{5}{103}{Before You Begin}{section*.39}{}}
-\@writefile{toc}{\contentsline {section}{Before You Begin}{103}{section*.39}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.1}Aquiring and Loading Packages}{103}{section.5.1}}
-\newlabel{aquiring-and-loading-packages}{{5.1}{103}{Aquiring and Loading Packages}{section.5.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.2}The Data}{104}{section.5.2}}
-\newlabel{the-data}{{5.2}{104}{The Data}{section.5.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.3}Change format using \texttt  {melt()}}{105}{section.5.3}}
-\newlabel{change-format-using-melt}{{5.3}{105}{\texorpdfstring {Change format using \texttt {melt()}}{Change format using melt()}}{section.5.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.4}Join Data Sets with \texttt  {merge()}}{106}{section.5.4}}
-\newlabel{join-data-sets-with-merge}{{5.4}{106}{\texorpdfstring {Join Data Sets with \texttt {merge()}}{Join Data Sets with merge()}}{section.5.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.5}Lagged vectors}{107}{section.5.5}}
-\newlabel{lagged-vectors}{{5.5}{107}{Lagged vectors}{section.5.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.6}Adding columns with \texttt  {mutate()}}{109}{section.5.6}}
-\newlabel{adding-columns-with-mutate}{{5.6}{109}{\texorpdfstring {Adding columns with \texttt {mutate()}}{Adding columns with mutate()}}{section.5.6}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.7}Apply to all years}{111}{section.5.7}}
-\newlabel{apply-to-all-years}{{5.7}{111}{Apply to all years}{section.5.7}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.8}Calculate Daily Means with \texttt  {summarize()}}{112}{section.5.8}}
-\newlabel{calculate-daily-means-with-summarize}{{5.8}{112}{\texorpdfstring {Calculate Daily Means with \texttt {summarize()}}{Calculate Daily Means with summarize()}}{section.5.8}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.9}More \texttt  {summarize()}}{114}{section.5.9}}
-\newlabel{more-summarize}{{5.9}{114}{\texorpdfstring {More \texttt {summarize()}}{More summarize()}}{section.5.9}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.10}Fit the Model}{117}{section.5.10}}
-\newlabel{fit-the-model}{{5.10}{117}{Fit the Model}{section.5.10}{}}
-\newlabel{eq:ricker-ch5}{{5.1}{118}{Fit the Model}{equation.5.10.1}{}}
-\newlabel{eq:ricker-brps}{{5.2}{119}{Fit the Model}{}{}}
-\newlabel{exercise-5}{{5.10}{120}{Exercise 5}{section*.40}{}}
-\@writefile{toc}{\contentsline {section}{Exercise 5}{120}{section*.40}}
-\newlabel{exercise-5-bonus}{{5.10}{121}{Exercise 5 Bonus}{section*.41}{}}
-\@writefile{toc}{\contentsline {section}{Exercise 5 Bonus}{121}{section*.41}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {6}Mapping and Spatial Analysis}{123}{chapter.6}}
+\newlabel{ch5}{{5}{101}{Large Data Manipulation}{chapter.5}{}}
+\newlabel{chapter-overview-4}{{5}{101}{Chapter Overview}{section*.38}{}}
+\@writefile{toc}{\contentsline {section}{Chapter Overview}{101}{section*.38}}
+\newlabel{before-you-begin-3}{{5}{101}{Before You Begin}{section*.39}{}}
+\@writefile{toc}{\contentsline {section}{Before You Begin}{101}{section*.39}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}Aquiring and Loading Packages}{101}{section.5.1}}
+\newlabel{aquiring-and-loading-packages}{{5.1}{101}{Aquiring and Loading Packages}{section.5.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}The Data}{102}{section.5.2}}
+\newlabel{the-data}{{5.2}{102}{The Data}{section.5.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.3}Change format using \texttt  {melt()}}{103}{section.5.3}}
+\newlabel{change-format-using-melt}{{5.3}{103}{\texorpdfstring {Change format using \texttt {melt()}}{Change format using melt()}}{section.5.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.4}Join Data Sets with \texttt  {merge()}}{104}{section.5.4}}
+\newlabel{join-data-sets-with-merge}{{5.4}{104}{\texorpdfstring {Join Data Sets with \texttt {merge()}}{Join Data Sets with merge()}}{section.5.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.5}Lagged vectors}{105}{section.5.5}}
+\newlabel{lagged-vectors}{{5.5}{105}{Lagged vectors}{section.5.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.6}Adding columns with \texttt  {mutate()}}{107}{section.5.6}}
+\newlabel{adding-columns-with-mutate}{{5.6}{107}{\texorpdfstring {Adding columns with \texttt {mutate()}}{Adding columns with mutate()}}{section.5.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.7}Apply to all years}{109}{section.5.7}}
+\newlabel{apply-to-all-years}{{5.7}{109}{Apply to all years}{section.5.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.8}Calculate Daily Means with \texttt  {summarize()}}{110}{section.5.8}}
+\newlabel{calculate-daily-means-with-summarize}{{5.8}{110}{\texorpdfstring {Calculate Daily Means with \texttt {summarize()}}{Calculate Daily Means with summarize()}}{section.5.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.9}More \texttt  {summarize()}}{112}{section.5.9}}
+\newlabel{more-summarize}{{5.9}{112}{\texorpdfstring {More \texttt {summarize()}}{More summarize()}}{section.5.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.10}Fit the Model}{115}{section.5.10}}
+\newlabel{fit-the-model}{{5.10}{115}{Fit the Model}{section.5.10}{}}
+\newlabel{eq:ricker-ch5}{{5.1}{116}{Fit the Model}{equation.5.10.1}{}}
+\newlabel{eq:ricker-brps}{{5.2}{117}{Fit the Model}{}{}}
+\newlabel{exercise-5}{{5.10}{118}{Exercise 5}{section*.40}{}}
+\@writefile{toc}{\contentsline {section}{Exercise 5}{118}{section*.40}}
+\newlabel{exercise-5-bonus}{{5.10}{119}{Exercise 5 Bonus}{section*.41}{}}
+\@writefile{toc}{\contentsline {section}{Exercise 5 Bonus}{119}{section*.41}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}Mapping and Spatial Analysis}{121}{chapter.6}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{ch6}{{6}{123}{Mapping and Spatial Analysis}{chapter.6}{}}
-\newlabel{exercise-solutions}{{6}{125}{Exercise Solutions}{chapter*.42}{}}
-\@writefile{toc}{\contentsline {chapter}{Exercise Solutions}{125}{chapter*.42}}
-\newlabel{ex1a-answers}{{6}{125}{Exercise 1A Solutions}{section*.43}{}}
-\@writefile{toc}{\contentsline {section}{Exercise 1A Solutions}{125}{section*.43}}
-\newlabel{ex1b-answers}{{6}{126}{Exercise 1B Solutions}{section*.44}{}}
-\@writefile{toc}{\contentsline {section}{Exercise 1B Solutions}{126}{section*.44}}
-\newlabel{ex2-answers}{{6}{128}{Exercise 2 Solutions}{section*.45}{}}
-\@writefile{toc}{\contentsline {section}{Exercise 2 Solutions}{128}{section*.45}}
-\newlabel{ex3-answers}{{6}{130}{Exercise 3 Solutions}{section*.46}{}}
-\@writefile{toc}{\contentsline {section}{Exercise 3 Solutions}{130}{section*.46}}
-\newlabel{ex4a-answers}{{6}{132}{Exercise 4A Solutions}{section*.47}{}}
-\@writefile{toc}{\contentsline {section}{Exercise 4A Solutions}{132}{section*.47}}
-\newlabel{ex4b-answers}{{6}{133}{Exercise 4B Solutions}{section*.48}{}}
-\@writefile{toc}{\contentsline {section}{Exercise 4B Solutions}{133}{section*.48}}
-\newlabel{ex4c-answers}{{6}{135}{Exercise 4C Solutions}{section*.49}{}}
-\@writefile{toc}{\contentsline {section}{Exercise 4C Solutions}{135}{section*.49}}
-\newlabel{ex4d-answers}{{6}{137}{Exercise 4D Solutions}{section*.50}{}}
-\@writefile{toc}{\contentsline {section}{Exercise 4D Solutions}{137}{section*.50}}
-\newlabel{ex4e-answers}{{6}{142}{Exercise 4E Solutions}{section*.51}{}}
-\@writefile{toc}{\contentsline {section}{Exercise 4E Solutions}{142}{section*.51}}
-\newlabel{ex4f-answers}{{6}{143}{Exercise 4F Solutions}{section*.52}{}}
-\@writefile{toc}{\contentsline {section}{Exercise 4F Solutions}{143}{section*.52}}
-\newlabel{ex5-answers}{{6}{147}{Exercise 5 Solutions}{section*.53}{}}
-\@writefile{toc}{\contentsline {section}{Exercise 5 Solutions}{147}{section*.53}}
+\newlabel{ch6}{{6}{121}{Mapping and Spatial Analysis}{chapter.6}{}}
+\newlabel{exercise-solutions}{{6}{123}{Exercise Solutions}{chapter*.42}{}}
+\@writefile{toc}{\contentsline {chapter}{Exercise Solutions}{123}{chapter*.42}}
+\newlabel{ex1a-answers}{{6}{123}{Exercise 1A Solutions}{section*.43}{}}
+\@writefile{toc}{\contentsline {section}{Exercise 1A Solutions}{123}{section*.43}}
+\newlabel{ex1b-answers}{{6}{124}{Exercise 1B Solutions}{section*.44}{}}
+\@writefile{toc}{\contentsline {section}{Exercise 1B Solutions}{124}{section*.44}}
+\newlabel{ex2-answers}{{6}{126}{Exercise 2 Solutions}{section*.45}{}}
+\@writefile{toc}{\contentsline {section}{Exercise 2 Solutions}{126}{section*.45}}
+\newlabel{ex3-answers}{{6}{128}{Exercise 3 Solutions}{section*.46}{}}
+\@writefile{toc}{\contentsline {section}{Exercise 3 Solutions}{128}{section*.46}}
+\newlabel{ex4a-answers}{{6}{130}{Exercise 4A Solutions}{section*.47}{}}
+\@writefile{toc}{\contentsline {section}{Exercise 4A Solutions}{130}{section*.47}}
+\newlabel{ex4b-answers}{{6}{131}{Exercise 4B Solutions}{section*.48}{}}
+\@writefile{toc}{\contentsline {section}{Exercise 4B Solutions}{131}{section*.48}}
+\newlabel{ex4c-answers}{{6}{133}{Exercise 4C Solutions}{section*.49}{}}
+\@writefile{toc}{\contentsline {section}{Exercise 4C Solutions}{133}{section*.49}}
+\newlabel{ex4d-answers}{{6}{135}{Exercise 4D Solutions}{section*.50}{}}
+\@writefile{toc}{\contentsline {section}{Exercise 4D Solutions}{135}{section*.50}}
+\newlabel{ex4e-answers}{{6}{140}{Exercise 4E Solutions}{section*.51}{}}
+\@writefile{toc}{\contentsline {section}{Exercise 4E Solutions}{140}{section*.51}}
+\newlabel{ex4f-answers}{{6}{141}{Exercise 4F Solutions}{section*.52}{}}
+\@writefile{toc}{\contentsline {section}{Exercise 4F Solutions}{141}{section*.52}}
+\newlabel{ex5-answers}{{6}{145}{Exercise 5 Solutions}{section*.53}{}}
+\@writefile{toc}{\contentsline {section}{Exercise 5 Solutions}{145}{section*.53}}
 \bibdata{book.bib,packages.bib}
-\newlabel{ex6-answers}{{6}{151}{Exercise 6 Solutions}{section*.54}{}}
-\@writefile{toc}{\contentsline {section}{Exercise 6 Solutions}{151}{section*.54}}
+\newlabel{ex6-answers}{{6}{149}{Exercise 6 Solutions}{section*.54}{}}
+\@writefile{toc}{\contentsline {section}{Exercise 6 Solutions}{149}{section*.54}}
 \bibcite{rmarkdown-cite}{{1}{2018}{{Allaire et~al.}}{{}}}
 \bibcite{aic-cite}{{2}{2000}{{Anderson et~al.}}{{}}}
 \bibcite{sockeye-cite}{{3}{2014}{{Kline and Flagg}}{{}}}
