@@ -11,14 +11,22 @@ link-citations: true
 linkcolor: "blue"
 urlcolor: "blue"
 github-repo: bstaton1/au-r-workshop
-url: https://bstaton1.github.io/au-r-workshop/
 description: "This is a first course in R programming for natural resource scientists. It was developed and has been primarily instructed at Auburn University."
-cover-image: cover_image.png
 ---
 
 # Overview{-}
 
-`r if(knitr::is_html_output()) '<a href="https://bstaton1.github.io/au-r-workshop/"><img src="cover_image.png" width="250" height="375" alt="Cover image" align="right" style="margin: 0 1em 0 1em" /></a>'`This book is intended to be a first course in R programming for natural resource professionals. It is by no means comprehensive (no book about R ever could be), but instead attempts to introduce the main topics needed to get a beginner up and running with applying R to their own work. It is intended to be a companion to in-person workshop sessions, in which each chapter is covered in a 2 hour session, however it can be used as "self-teach" manual as well. Although the examples shown have a natural resource/ecological theme, the general skills presented are general to R users across all scientific disciplines. 
+```{r, eval = !knitr::is_html_output(), echo = F}
+# knitr::include_graphics("cover_image.png")
+# cover-image: cover_image.png
+# url: https://bstaton1.github.io/au-r-workshop
+```
+
+```{r, eval = F, echo = F}
+# `r if(knitr::is_html_output()) '<a href="https://bstaton1.github.io/au-r-workshop/"><img src="cover_image.png" width="250" height="375" alt="Cover image" align="right" style="margin: 0 1em 0 1em" /></a>'` 
+```
+
+`r if(knitr::is_html_output()) '<a href="https://bstaton1.github.io/au-r-workshop/"><img src="cover_image.png" width="250" height="375" alt="Cover image" align="right" style="margin: 0 1em 0 1em" /></a>'` This book is intended to be a first course in R programming for natural resource professionals. It is by no means comprehensive (no book about R ever could be), but instead attempts to introduce the main topics needed to get a beginner up and running with applying R to their own work. It is intended to be a companion to in-person workshop sessions, in which each chapter is covered in a 2 hour session, however it can be used as "self-teach" manual as well. Although the examples shown have a natural resource/ecological theme, the general skills presented are general to R users across all scientific disciplines. 
 
 ## What is Covered? {-}
 
@@ -74,7 +82,7 @@ Some exercises have bonus questions. These are intended to challenge you with so
 *  **Bold** is intended to provide more emphasis to a word or topic. In general, new topics are introduced this way.
 *  [Links](#notation): this is a link to some other location in this book. External links are provided with a full URL.
 *  $Equations$: it is sometimes useful to describe concepts mathematically before showing how to do it in R.
-*  ^[This is a footnote]: a footnote containing more information.
+*  ^[This is a footnote. If your viewing this on GitHub Pages, click the arrow to the right to return to the text]: a footnote containing more information.
 
 ## Keyboard Shortcuts {-}
 

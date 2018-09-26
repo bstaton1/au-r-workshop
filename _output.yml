@@ -6,7 +6,7 @@ bookdown::gitbook:
       before: |
         <li><a href="./">Intro to R for Nat. Res. Sci.</a></li>
       after: |
-        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+        <li><a href="https://github.com/bstaton1/au-r-workshop-data" target="blank">Get the Data</a></li>
     download: ["pdf"]
     sharing: null
 bookdown::pdf_book:
