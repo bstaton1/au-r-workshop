@@ -713,7 +713,7 @@ if (!all(names(params) %in% c("alpha", "beta", "sigma"))) {
 }
 ```
 
-This says, if not all of the names of the params argument are in the specified vector, then stop the execution of the function and return the error message.
+This says, if not all of the names of the `params` argument are in the specified vector, then stop the execution of the function and return the error message.
 
 **3.  How do the results of the trade-off analysis differ if the process error was larger (a larger value of $\sigma$)?**
 
@@ -1198,7 +1198,7 @@ samp_size = samp_size %>%
 plot(p_female ~ year, data = samp_size, type = "b")
 ```
 
-It seems that the proportion of females has varied randomly over time but has not systematically changed since the beginning of the data time series. Note that some of this variablility is introduced by sampling.
+It seems that the proportion of females has varied randomly over time but has not systematically changed since the beginning of the data time series. Note that some of this variability is introduced by sampling.
 
 **4. Calculate mean length by age, sex, and year.**
 

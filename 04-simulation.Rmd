@@ -13,7 +13,7 @@ library(knitr)
 
 ## Chapter Overview{-}
 
-Simulation modeling is one of the primary reasons to move away from spreadsheet-type programs (like Microsoft Excel) and into a program like R. R allows you to replicate the same (possibly complex and detailed) calculations over and over with different random values. You can then summarize and plot the results of these replicated calculations all within the same program. Analyses of this type are **Monte Carlo methods**: they randomly sample from a set of quanities for the purpose of generating and summarizing a distribution of some statistic related to the sampled quantities. If this concept is confusing, hopefully this chapter will clarify. 
+Simulation modeling is one of the primary reasons to move away from spreadsheet-type programs (like Microsoft Excel) and into a program like R. R allows you to replicate the same (possibly complex and detailed) calculations over and over with different random values. You can then summarize and plot the results of these replicated calculations all within the same program. Analyses of this type are **Monte Carlo methods**: they randomly sample from a set of quantities for the purpose of generating and summarizing a distribution of some statistic related to the sampled quantities. If this concept is confusing, hopefully this chapter will clarify. 
 
 In this chapter, you will learn the basic skills needed for simulation (i.e., Monte Carlo) modeling in R including:
 
@@ -238,7 +238,7 @@ Use your function once using the same settings as before:
 pop_sim(100, 1.1, 0.1, 0.08, T)
 ```
 
-Now, you wish to replicate exectuing this function 1000 times. Use the `replicate()` function to do this:
+Now, you wish to replicate executing this function 1000 times. Use the `replicate()` function to do this:
 
 ```{r}
 out = replicate(n = 1000, expr = pop_sim(100, 1.1, 0.1, 0.08, F))
@@ -287,9 +287,9 @@ Notice how a user-defined function was passed to `apply()`. The range within the
 
 ### Frequencies
 
-Often you will want to count how many times something happened. In some cases, the fraction of times something happened can be interpretted as a probability.
+Often you will want to count how many times something happened. In some cases, the fraction of times something happened can be interpreted as a probability.
 
-The `table()` function is very useful for counting occurences of discrete events. Suppose you are interested in how many of your iterations resulted in fewer than 1000 individuals at year 10:
+The `table()` function is very useful for counting occurrences of discrete events. Suppose you are interested in how many of your iterations resulted in fewer than 1000 individuals at year 10:
 
 ```{r}
 out10 = ifelse(out[10,] < 1000, "less10", "greater10")
@@ -309,7 +309,7 @@ Now suppose you are interested in how these two metrics are related:
 table(out10, out20)
 ```
 
-As an example in iterpretting this output, most often populations that were greater than 1000 at year 10 were also greater than 1100 at year 20. If a population was less than 1000 at year 10, it was more likely to be less than 1100 at year 20 than to be greater than it.
+As an example in interpreting this output, most often populations that were greater than 1000 at year 10 were also greater than 1100 at year 20. If a population was less than 1000 at year 10, it was more likely to be less than 1100 at year 20 than to be greater than it.
 
 You can turn these into probabilities (if you believe your model represents reality) by dividing each cell by the total number of iterations:
 
@@ -344,9 +344,9 @@ normal_q = qnorm(p, mu, sig)
 plot(normal_q ~ random_q); abline(c(0,1))
 ```
 
-The fact that all the quantiles fall around the 1:1 line sugggests the `n` random samples samples are indeed from a normal distribution. Any variabilities you see are due to sampling errors. If you increase `n` to `n = 1e6` (one million), you'll see no deviations.  This is called a **q-q plot**, and is frequently used to assess the fit of data to a distribution.
+The fact that all the quantiles fall around the 1:1 line suggests the `n` random samples samples are indeed from a normal distribution. Any deviations you see are due to sampling errors. If you increase `n` to `n = 1e6` (one million), you'll see no deviations.  This is called a **q-q plot**, and is frequently used to assess the fit of data to a distribution.
 
-Now test the random values in their agreement with the `pnorm()` function. Plot the cumulative density functions for the truely normal curve and that approximated by the random deviates:
+Now test the random values in their agreement with the `pnorm()` function. Plot the cumulative density functions for the truly normal curve and that approximated by the random deviates:
 
 ```{r}
 q = seq(400, 600, 10)
@@ -419,7 +419,7 @@ for (n in 1:N) {
 }
 ```
 
-You now have a matrix of `TRUE` and `FALSE` elements that indicates whether a significant difference was found at the $\alpha = 0.05$ level if the effect was truely as large as you care about. You can obtain the proportion of all the replicates at each sample size that resulted in a significant difference using the `mean` function with `apply`:
+You now have a matrix of `TRUE` and `FALSE` elements that indicates whether a significant difference was found at the $\alpha = 0.05$ level if the effect was truly as large as you care about. You can obtain the proportion of all the replicates at each sample size that resulted in a significant difference using the `mean` function with `apply`:
 
 ```{r}
 plot(apply(out, 2, mean) ~ n_try, type = "l",
@@ -427,7 +427,7 @@ plot(apply(out, 2, mean) ~ n_try, type = "l",
      ylab = "Probability of Finding Effect (Power)")
 ```
 
-Even if you tagged `r n_try[N] * 2` fish total, you would only have a `r round(mean(out[,N]),2) * 100`% chance of saying the effect (which truely is there!) is present under the null hypothesis testing framework.
+Even if you tagged `r n_try[N] * 2` fish total, you would only have a `r round(mean(out[,N]),2) * 100`% chance of saying the effect (which truly is there!) is present under the null hypothesis testing framework.
 
 Suppose you and your colleagues aren't relying on p-values in this case, and are purely interested in how precisely the **effect size** would be estimated. Adapt your function to determine how frequently it is you would be able to estimate the true mortality probability of the new method within +/- 5% based on the point estimate only (the estimate for the tagging mortality of the new method must be between 0.2 and 0.3 for a successful study). Change your function to calculate this additional metric and re-run the analysis:
 
@@ -502,7 +502,7 @@ Based on historical data, your best understanding implies that the stock is driv
 
 where $\alpha$ is a parameter representing the maximum recruits per spawner (obtained at very low spawner abundances) and $\beta$ is a measure of the strength of density-dependent mortality. Notice that the error term is in the exponent, which makes $e^{\varepsilon_t}$ lognormal.
 
-You have estimates of the parameters^[In reality, these estimates would have substantial uncertainty that you would need to propogate through your harvest policy analysis. In this example, you will ignore this complication]:
+You have estimates of the parameters^[In reality, these estimates would have substantial uncertainty that you would need to propagate through your harvest policy analysis. In this example, you will ignore this complication]:
 
 *  $\alpha = 6$
 *  $\beta = 1 \times 10^{-7}$
@@ -648,11 +648,11 @@ Oftentimes, you'll have a fitted model that you wish to propagate the uncertaint
 
 where $L_i$ and $age_i$ are the observed length and age of individual $i$, respectively, and $L_{\infty}$, $k$, and $t_0$ are parameters to be estimated. The interpretations of the parameters are as follows:
 
-*  $L_{\infty}$: the maximum average length acheived
+*  $L_{\infty}$: the maximum average length achieved
 *  $k$: a growth coefficient linked to metabolic rate. It specifies the rate of increase in length as the fish ages early in life
 *  $t_0$: the theoretical age when length equals zero (the x-intercept).
 
-Use the data set `growth.csv` for this example (see the [instructions](#data-sets) on aquiring data files). Read in and plot the data:
+Use the data set `growth.csv` for this example (see the [instructions](#data-sets) on acquiring data files). Read in and plot the data:
 
 ```{r, eval = F}
 dat = read.csv("../Data/growth.csv")
@@ -670,7 +670,7 @@ Suppose you would like to obtain the probability that an average-sized fish of e
 
 Enter the **bootstrap**, which is a Monte Carlo analysis using an observed data set and a model. The **pseudocode** for a bootstrap analysis is:
 
-1.  Resample from the originial data (with replacement)
+1.  Resample from the original data (with replacement)
 2.  Fit a model of interest 
 3.  Derive some quantity of interest from the fitted model
 4.  Repeat steps 1 - 3 many times
@@ -715,7 +715,7 @@ pred_vonB = function(fit) {
 }
 ```
 
-Notice your function will use the object `ages` even though it was not defined in the function. This has to do with **lexical scoping** and **environments**, which are beyond the scope of this introductional material^[If you'd like more details, see Hadley Wickham's page on it: <http://adv-r.had.co.nz/Functions.html#lexical-scoping>]. Basically, if an object with the same name as one defined in the function exists outside of the function, the function will use the one that is defined within the function. If there is no object defined in the function with that name, it will look outside of the function for that object. 
+Notice your function will use the object `ages` even though it was not defined in the function. This has to do with **lexical scoping** and **environments**, which are beyond the scope of this introductory material. If you'd like more details, see the section in @adv-r-cite on it^[The section on **lexical scoping** is found here: <http://adv-r.had.co.nz/Functions.html#lexical-scoping>]. Basically, if an object with the same name as one defined in the function exists outside of the function, the function will use the one that is defined within the function. If there is no object defined in the function with that name, it will look outside of the function for that object. 
 
 Now, use these three functions to perform one iteration:
 
@@ -752,7 +752,7 @@ lines(summ["97.5%",] ~ ages, col = "grey")
 abline(h = 450, col = "blue")
 ```
 
-Obtain the fraction of iterations that resulted in the mean length-at-age being greater than 450 mm. This is interpretted as the probability that the average-sized fish of each age is mature:
+Obtain the fraction of iterations that resulted in the mean length-at-age being greater than 450 mm. This is interpreted as the probability that the average-sized fish of each age is mature:
 
 ```{r}
 p_mat = apply(out, 1, function(x) mean(x > 450))
@@ -774,7 +774,7 @@ The **pseudocode** for the permutation test is:
 4.  Repeat steps 2 - 3 many times. This builds the **null distribution**: the distribution of the test statistic (the difference) assuming the null hypothesis that there is not difference in means is true
 5.  Determine what fraction of the absolute differences were larger than the original difference. This constitutes a **two-tailed** p-value. One-tailed tests can also be derived using the same steps 1 - 4, which is left as an exercise.
 
-Use the data set `ponds.csv` for this example (see the [instructions](#data-sets) on aquiring data files). This is the same data set used for [Exercise 1B](#ex1b), revisit that exercise for details on this hypothetical data set. Read in and plot the data:
+Use the data set `ponds.csv` for this example (see the [instructions](#data-sets) on acquiring data files). This is the same data set used for [Exercise 1B](#ex1b), revisit that exercise for details on this hypothetical data set. Read in and plot the data:
 
 ```{r, eval = F}
 dat = read.csv("ponds.csv")
@@ -786,7 +786,7 @@ dat = read.csv("Data/ponds.csv")
 plot(chl.a ~ treatment, data = dat)
 ```
 
-It appears as though there is a relatively strong signal indicating a difference. Use the permutation test to determine if it is statistically significant. Step 1 from the pseudocode is to caluclate the observed difference between groups:
+It appears as though there is a relatively strong signal indicating a difference. Use the permutation test to determine if it is statistically significant. Step 1 from the pseudocode is to calculate the observed difference between groups:
 
 ```{r}
 Dobs = mean(dat$chl.a[dat$treatment == "Add"]) - mean(dat$chl.a[dat$treatment == "Control"])
@@ -836,7 +836,7 @@ Notice the null distribution is centered on zero: this is because the null hypot
 mean(abs(Dnull) >= Dobs)
 ```
 
-Very few (or zero) of the random data sets resulted in a difference greater than what was observed, indicating there is statisitcal support to the hypothesis that there is a non-zero difference between the two nutrient treatments.
+Very few (or zero) of the random data sets resulted in a difference greater than what was observed, indicating there is statistical support to the hypothesis that there is a non-zero difference between the two nutrient treatments.
 
 ---
 

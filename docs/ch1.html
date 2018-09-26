@@ -314,7 +314,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>These settings will prevent you from getting a bunch of useless files and dialog boxes every time you open and close R.</p>
 <div id="write-some-simple-code" class="section level3">
 <h3><span class="header-section-number">1.1.1</span> Write Some Simple Code</h3>
-<p>To start off, you will just use R as a calculator. Type these commands (not the lines with <code>##</code>, those are output<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a>) one at a time and hit <strong>CTRL + ENTER</strong> to run it. The spaces don’t matter at all, they are used here for clarity and for styling.<a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a></p>
+<p>To start off, you will just use R as a calculator. Type these commands (not the lines with <code>##</code>, those are output<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a>) one at a time and hit <strong>CTRL + ENTER</strong> to run it. The spaces don’t matter at all, they are used here for clarity and for styling. To learn more about standard R code styling, check out the section in <span class="citation">Wickham (<a href="#ref-adv-r-cite">2015</a>)</span> on it<a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span></code></pre></div>
 <pre><code>## [1] 6</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">12</span><span class="op">/</span><span class="dv">4</span></code></pre></div>
@@ -972,12 +972,18 @@ xs =<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span>
 </div>
 </div>
 </div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-adv-r-cite">
+<p>Wickham, Hadley. 2015. <em>Advanced R</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://adv-r.hadley.nz/" class="uri">https://adv-r.hadley.nz/</a>.</p>
+</div>
+</div>
 <div class="footnotes">
 <hr />
 <ol start="4">
 <li id="fn4"><p>While it is possible to run R on its own, it is clunky. You are strongly advised to use the RStudio IDE (integrated development environment) given its compactness, neat features, code tools (like syntax and parentheses highlighting). This workshop will assume you are using RStudio<a href="ch1.html#fnref4">↩</a></p></li>
 <li id="fn5"><p>The formatting used here includes <code>##</code> on output to denote code and output separately. You won’t see the <code>##</code> show up in your console.<a href="ch1.html#fnref5">↩</a></p></li>
-<li id="fn6"><p>To learn more about standard R code styling, check out Hadley Wickham’s great chapter on it: <a href="http://adv-r.had.co.nz/Style.html" class="uri">http://adv-r.had.co.nz/Style.html</a>.<a href="ch1.html#fnref6">↩</a></p></li>
+<li id="fn6"><p>Hadley Wickham’s R code style guide: <a href="http://adv-r.had.co.nz/Style.html" class="uri">http://adv-r.had.co.nz/Style.html</a><a href="ch1.html#fnref6">↩</a></p></li>
 <li id="fn7"><p>The <code>c</code> stands for <strong>concatenate</strong>, which basically means combine many smaller objects into one larger object<a href="ch1.html#fnref7">↩</a></p></li>
 <li id="fn8"><p><code>&quot; &quot;</code> or <code>' '</code> both work as long as you use the same on the front and end of the element<a href="ch1.html#fnref8">↩</a></p></li>
 <li id="fn9"><p>The coercion works this way because numbers can be expressed as characters, but a letter cannot be unambiguously be expressed as a number.<a href="ch1.html#fnref9">↩</a></p></li>

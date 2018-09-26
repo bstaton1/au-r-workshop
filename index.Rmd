@@ -90,7 +90,7 @@ Several parts of this book in this book make reference to keyboard shortcuts. Th
 
 ## Development of this Book {-}
 
-This book represents the third reincarnation of the Auburn R Workshop Series. The first version was written in Fall 2014 using Microsoft Word, but the author found that making even small changes was clunky - each change to code in the document required a copy-paste of code and output from R to Word. Individual session materials (i.e., handout, exercises, solutions, data) were created in separate documents, saved as pdfs and `.xlsx` files, and uploaded to a wordpress webpage. 
+This book represents the third reincarnation of the Auburn R Workshop Series. The first version was written in Fall 2014 using Microsoft Word, but the author found that making even small changes was clunky - each change to code in the document required a copy-paste of code and output from R to Word. Individual session materials (i.e., handout, exercises, solutions, data) were created in separate documents, saved as PDFs and `.xlsx` files, and uploaded to a wordpress webpage. 
 
 The second version was written through R and RStudio using the R packages `{rmarkdown}` [@rmarkdown-cite] and `{knitr}` [@knitr-cite], which allowed the integration of text, code, and output all into one output file. This version was completed in Fall 2015. Like the first version, individual session materials were created in separate documents, and replaced those previously found on the wordpress site. 
 

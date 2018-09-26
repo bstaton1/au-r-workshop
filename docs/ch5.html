@@ -281,7 +281,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1><span class="header-section-number">Chapter 5</span> Large Data Manipulation</h1>
 <div id="chapter-overview-4" class="section level2 unnumbered">
 <h2>Chapter Overview</h2>
-<p>Any data analyst will tell you that oftentimes the most difficult part of an analysis is simply getting the data in the proper format. Real data sets are messy: they have missing values, variables are often stored in multiple columns that would be better stored as rows, the same factor level may be coded as two or more different types<a href="#fn38" class="footnoteRef" id="fnref38"><sup>38</sup></a>, or the required data are in several separate files. You get the point: sometimes significant data-wrangling may be required before you perform an analysis.</p>
+<p>Any data analyst will tell you that oftentimes the most difficult part of an analysis is simply getting the data in the proper format. Real data sets are messy: they have missing values, variables are often stored in multiple columns that would be better stored as rows, the same factor level may be coded as two or more different types<a href="#fn37" class="footnoteRef" id="fnref37"><sup>37</sup></a>, or the required data are in several separate files. You get the point: sometimes significant data-wrangling may be required before you perform an analysis.</p>
 <p>In this chapter, you will learn tricks to do more advanced data manipulation in R using two R <strong>packages</strong>:</p>
 <ul>
 <li><code>{reshape2}</code>: used for changing data between formats (wide and long)</li>
@@ -392,7 +392,7 @@ esc =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">
 </div>
 <div id="lagged-vectors" class="section level2">
 <h2><span class="header-section-number">5.5</span> Lagged vectors</h2>
-<p>The present task is to the calculate daily cumulative run proportion<a href="#fn39" class="footnoteRef" id="fnref39"><sup>39</sup></a> in 2015 for comparison to the other years. Given the information you have, this task would be very cumbersome if not for the flexibility allowed by <code>{dplyr}</code>.</p>
+<p>The present task is to the calculate daily cumulative run proportion<a href="#fn38" class="footnoteRef" id="fnref38"><sup>38</sup></a> in 2015 for comparison to the other years. Given the information you have, this task would be very cumbersome if not for the flexibility allowed by <code>{dplyr}</code>.</p>
 <p>Remember the counting tower is an average one day swim for the salmon from the fishing grounds. This means that the escapement counts are <strong>lagged</strong> relative to the catch counts. If you want the daily run (defined as the number in fishing grounds each day), you need to account for this lag. An easy way to think about the lag is to show it graphically. First, pull out one year of data using the <code>filter()</code> function in <code>{dplyr}</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y15 =<span class="st"> </span><span class="kw">filter</span>(dat, year <span class="op">==</span><span class="st"> &quot;y_2015&quot;</span>)
 <span class="kw">head</span>(y15)</code></pre></div>
@@ -439,7 +439,7 @@ y15 =<span class="st"> </span><span class="kw">subset</span>(dat, year <span cla
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y15<span class="op">$</span>run =<span class="st"> </span><span class="kw">lag_sum</span>(y15<span class="op">$</span>esc, y15<span class="op">$</span>catch)</code></pre></div>
 <p><code>mutate()</code> has advantages when used with other <code>{dplyr}</code> functions that will be shown soon. Use the new variable <code>run</code> to calculate two new variables: the cumulative run by day (<code>crun</code>) and cumulative run proportion by day (<code>cprun</code>). Cumulative means that each new element is the value that occurred on that day plus all of the values that happened on days before it. You can use R’s <code>cumsum()</code> for this:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y15 =<span class="st"> </span><span class="kw">mutate</span>(y15, <span class="dt">crun =</span> <span class="kw">cumsum</span>(run), <span class="dt">cprun =</span> crun<span class="op">/</span><span class="kw">sum</span>(run, <span class="dt">na.rm =</span> T))</code></pre></div>
-<p>Here is one advantage of <code>mutate()</code>: you can refer to a variable you just created to make a new variable within the same function. You would have to split this into two lines to do it in <code>{base}</code>. Indeed, you could have made <code>run</code>, <code>crun</code>, and <code>cprun</code> all in the same <code>mutate()</code> call. Plot <code>cprun</code><a href="#fn40" class="footnoteRef" id="fnref40"><sup>40</sup></a>:</p>
+<p>Here is one advantage of <code>mutate()</code>: you can refer to a variable you just created to make a new variable within the same function. You would have to split this into two lines to do it in <code>{base}</code>. Indeed, you could have made <code>run</code>, <code>crun</code>, and <code>cprun</code> all in the same <code>mutate()</code> call. Plot <code>cprun</code><a href="#fn39" class="footnoteRef" id="fnref39"><sup>39</sup></a>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(cprun <span class="op">~</span><span class="st"> </span>doy, <span class="dt">data =</span> y15, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),
      <span class="dt">xlab =</span> <span class="st">&quot;DOY&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Cumulative Run Proportion&quot;</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)</code></pre></div>
 <p><img src="au-r-workshop_files/figure-html/unnamed-chunk-228-1.png" width="672" style="display: block; margin: auto;" /></p>
@@ -555,7 +555,7 @@ dat<span class="op">$</span>jday[ind]</code></pre></div>
   ind =<span class="st"> </span><span class="kw">which.min</span>(<span class="kw">abs</span>(p <span class="op">-</span><span class="st"> </span><span class="fl">0.5</span>))
   doy[ind]
 }</code></pre></div>
-<p>This function will take every element of <code>p</code>, subtract 0.5, take the absolute value of the results (make it positive, even if it is negative), and find the element number that is smallest. This will be the element with the value closest to 0.5. Note that you could find the first quartile (0.25) or third quartile (0.75) of the run by inserting these in for 0.5 above<a href="#fn41" class="footnoteRef" id="fnref41"><sup>41</sup></a>. Try your function on the 2015 data only:</p>
+<p>This function will take every element of <code>p</code>, subtract 0.5, take the absolute value of the results (make it positive, even if it is negative), and find the element number that is smallest. This will be the element with the value closest to 0.5. Note that you could find the first quartile (0.25) or third quartile (0.75) of the run by inserting these in for 0.5 above<a href="#fn40" class="footnoteRef" id="fnref40"><sup>40</sup></a>. Try your function on the 2015 data only:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># use function</span>
 med_doy15 =<span class="st"> </span><span class="kw">find_median_doy</span>(<span class="dt">p =</span> y15<span class="op">$</span>cprun, <span class="dt">doy =</span> y15<span class="op">$</span>doy)
 
@@ -708,11 +708,11 @@ brps =<span class="st"> </span><span class="kw">round</span>(<span class="kw">c<
 </div>
 <div class="footnotes">
 <hr />
-<ol start="38">
-<li id="fn38"><p>E.g., <code>&quot;hatch&quot;</code>, “<code>Hatch</code>”, and <code>&quot;HATCH&quot;</code> are all treated as different factor levels in R<a href="ch5.html#fnref38">↩</a></p></li>
-<li id="fn39"><p>This is the fraction of all fish that came back each year that did so on or before a given day<a href="ch5.html#fnref39">↩</a></p></li>
-<li id="fn40"><p>It doesn’t look like much, but this information is incredibly important for fishery managers. It provides information on how much of the annual run has passed on each day. You can see that the rate of change is the fastest in the middle of the run, this corresponds to the major hump in the plots you made earlier (which were raw numbers by day). Of course during the run, the managers don’t know what proportion of the total run has passed because they don’t know the total number of fish that will come that season, but by characterizing the mean and variability of the different run completion proportions on each day in the past, they can have some idea of how much of the run to expect yet to come on any given day.<a href="ch5.html#fnref40">↩</a></p></li>
-<li id="fn41"><p>This is the perfect kind of thing to make an argument to your function!<a href="ch5.html#fnref41">↩</a></p></li>
+<ol start="37">
+<li id="fn37"><p>E.g., <code>&quot;hatch&quot;</code>, “<code>Hatch</code>”, and <code>&quot;HATCH&quot;</code> are all treated as different factor levels in R<a href="ch5.html#fnref37">↩</a></p></li>
+<li id="fn38"><p>This is the fraction of all fish that came back each year that did so on or before a given day<a href="ch5.html#fnref38">↩</a></p></li>
+<li id="fn39"><p>It doesn’t look like much, but this information is incredibly important for fishery managers. It provides information on how much of the annual run has passed on each day. You can see that the rate of change is the fastest in the middle of the run, this corresponds to the major hump in the plots you made earlier (which were raw numbers by day). Of course during the run, the managers don’t know what proportion of the total run has passed because they don’t know the total number of fish that will come that season, but by characterizing the mean and variability of the different run completion proportions on each day in the past, they can have some idea of how much of the run to expect yet to come on any given day.<a href="ch5.html#fnref39">↩</a></p></li>
+<li id="fn40"><p>This is the perfect kind of thing to make an argument to your function!<a href="ch5.html#fnref40">↩</a></p></li>
 </ol>
 </div>
             </section>

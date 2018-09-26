@@ -15,7 +15,7 @@ library(knitr)
 
 In this chapter, you will get familiar with the basics of using R for making plots and figures. You will learn:
 
-*  how ot make various plots including:
+*  how to make various plots including:
     - scatterplots
     - line plots
     - bar plots
@@ -486,7 +486,7 @@ Notice four things:
 
 ## Exercise 2 {-#ex2}
 
-For this exercise, you will be making a few of plots and changing how they look to suit your taste. You will use a real dataset (`sockeye.csv`, see the [instructions](#data-sets) regarding acquiring the data files) this time from a sockeye salmon (_Oncorhynchus nerka_) population from the Columbia/Snake River system, and the data set was obtained from @sockeye-cite. This population spawns in Redfish Lake in Idaho, which feeds into the Salmon River which is a tributary of the Snake River. In order to reach the lake, the sockeye salmon must successfully pass through a total eight dams that have fish passage mechanisms in place. The Redfish Lake population is one of the most endangered sockeye populations in the U.S. and travels farther (1,448 km), higher (1,996 m), and is the southernmost population of all sockeye populations in the world [@sockeye-cite]. Given this uniqueness, a captive breeding program was initiated in 1991 to conserve the genes from this population. These data came from both hatchery-raised and wild fish and include average female spawner weight (g), fecundity (number of eggs), egg size (eggs/g), and % survival to the eyed-egg stage.
+For this exercise, you will be making a few of plots and changing how they look to suit your taste. You will use a real data set (`sockeye.csv`, see the [instructions](#data-sets) regarding acquiring the data files) this time from a sockeye salmon (_Oncorhynchus nerka_) population from the Columbia/Snake River system, and the data set was obtained from @sockeye-cite. This population spawns in Redfish Lake in Idaho, which feeds into the Salmon River which is a tributary of the Snake River. In order to reach the lake, the sockeye salmon must successfully pass through a total eight dams that have fish passage mechanisms in place. The Redfish Lake population is one of the most endangered sockeye populations in the U.S. and travels farther (1,448 km), higher (1,996 m), and is the southernmost population of all sockeye populations in the world [@sockeye-cite]. Given this uniqueness, a captive breeding program was initiated in 1991 to conserve the genes from this population. These data came from both hatchery-raised and wild fish and include average female spawner weight (g), fecundity (number of eggs), egg size (eggs/g), and % survival to the eyed-egg stage.
 
 _The solutions to this exercise are found at the end of this book ([here](#ex2-answers)). You are **strongly recommended** to make a good attempt at completing this exercise on your own and only look at the solutions when you are truly stumped._
 
@@ -496,7 +496,7 @@ _The solutions to this exercise are found at the end of this book ([here](#ex2-a
 4.	Add points that do the same thing but for hatchery fish. Use a different plotting character and a different color.
 5.	Add a legend to the plot to differentiate between the two types of fish.  
 6.	Make a multi-panel plot in a new window with box-and-whisker plots that compare (1) spawner weight, (2) fecundity, and (3) egg size between hatchery and wild fish. (_Hint: each comparison will be on its own panel_). Change the titles of each plot to reflect what you are comparing.
-7.	Save the plot as a .png file in your working directory with a file name of your choosing.
+7.	Save the plot as a `.png` file in your working directory with a file name of your choosing.
 
 ### EXERCISE 2 BONUS {-}
 

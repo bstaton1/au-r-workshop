@@ -42,7 +42,7 @@ These settings will prevent you from getting a bunch of useless files and dialog
 
 ### Write Some Simple Code
 
-To start off, you will just use R as a calculator. Type these commands (not the lines with `##`, those are output^[The formatting used here includes `##` on output to denote code and output separately. You won't see the `##` show up in your console.]) one at a time and hit **CTRL + ENTER** to run it. The spaces don't matter at all, they are used here for clarity and for styling.^[To learn more about standard R code styling, check out Hadley Wickham's great chapter on it: <http://adv-r.had.co.nz/Style.html>.]
+To start off, you will just use R as a calculator. Type these commands (not the lines with `##`, those are output^[The formatting used here includes `##` on output to denote code and output separately. You won't see the `##` show up in your console.]) one at a time and hit **CTRL + ENTER** to run it. The spaces don't matter at all, they are used here for clarity and for styling. To learn more about standard R code styling, check out the section in @adv-r-cite on it^[Hadley Wickham's R code style guide: <http://adv-r.had.co.nz/Style.html>].
 
 ```{r Calculator}
 3 + 3

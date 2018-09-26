@@ -13,7 +13,7 @@ library(knitr)
 
 ## Chapter Overview{-}
 
-In this chapter, you will get familiar with the basics of using R for the purpose it was designed: statisitical analysis. You will learn how to:
+In this chapter, you will get familiar with the basics of using R for the purpose it was designed: statistical analysis. You will learn how to:
 
 *  fit and interpret the output from various general linear models:
     - simple linear regression models
@@ -49,7 +49,7 @@ The model makes several assumptions about the residuals^[The residuals ($\vareps
   * be normally-distributed
   * have constant variance across range of the x-axis
 
-In R, the general linear model is fitted using the `lm()` function. Here's the basic syntax is `lm(y ~ x, data = dat)`^[This should look familar from Section \@ref(box-whisker)]; it says: "fit a model with `y` as the response variable and `x` as the sole predictor variable, look for the variables `x` and `y` in a data frame called `dat`". 
+In R, the general linear model is fitted using the `lm()` function. Here's the basic syntax is `lm(y ~ x, data = dat)`^[This should look familiar from Section \@ref(box-whisker)]; it says: "fit a model with `y` as the response variable and `x` as the sole predictor variable, look for the variables `x` and `y` in a data frame called `dat`". 
 
 ### Simple Linear Regression {#regression}
 
@@ -65,7 +65,7 @@ dat = read.csv("Data/sockeye.csv")
 head(dat)
 ```
 
-To fit a regression model using `lm()`, both `x` and `y` must be continous (numeric) variables. In the data set `dat`, two such variables are the `weight` and `fecund`. Fit a regression model where you link the average fecundity (number of eggs) of an individual year to the average weight (in grams) in that year. Ignore for now that the fish come from two sources: hatchery and wild origin. 
+To fit a regression model using `lm()`, both `x` and `y` must be continuous (numeric) variables. In the data set `dat`, two such variables are the `weight` and `fecund`. Fit a regression model where you link the average fecundity (number of eggs) of an individual year to the average weight (in grams) in that year. Ignore for now that the fish come from two sources: hatchery and wild origin. 
 
 ```{r}
 fit1 = lm(fecund ~ weight, data = dat)
@@ -84,7 +84,7 @@ This model looks like this:
 (\#eq:lin-reg)
 \end{equation}
 
-where $x_{i1}$ is `weight`. The coefficients are interpretted as:
+where $x_{i1}$ is `weight`. The coefficients are interpreted as:
 
 *  $\beta_0$: the y-intercept (mean `fecund` at zero `weight`)
 *  $\beta_1$: the slope (change in `fecund` for one unit increase in `weight`)
@@ -125,7 +125,7 @@ pairs = cbind(
 head(pairs); tail(pairs)
 ```
 
-The functions `as.character` and `as.numeric` are coersion functions: they attempt to change the way something is interpretted. Notice that the level `"hatch"` is assigned the order `1` because it comes before `"wild"` alphebetically. The first level is termed the **reference level** because it is the group that all other levels are compared to when fitting a model. You can change the reference level using `dat$type_rlvl = relevel(dat$type, ref = "wild")`.
+The functions `as.character()` and `as.numeric()` are coercion functions: they attempt to change the way something is interpreted. Notice that the level `"hatch"` is assigned the order `1` because it comes before `"wild"` alphabetically. The first level is termed the **reference level** because it is the group that all other levels are compared to when fitting a model. You can change the reference level using `dat$type_rlvl = relevel(dat$type, ref = "wild")`.
 
 You are now ready to fit the ANOVA model, which will measure the size of the difference in the mean `fecund` between different levels of the factor `type`: 
 
@@ -174,13 +174,13 @@ Now that you have seen that hatchery and wild fish tend to separate along the fe
 (\#eq:ancova)
 \end{equation}
 
-If $x_{i1}$ is `type` coded with 0's and 1's as in Section \@ref(anova) and $x_{i2}$ is `weight`, then the coefficients are interpretted as:
+If $x_{i1}$ is `type` coded with 0's and 1's as in Section \@ref(anova) and $x_{i2}$ is `weight`, then the coefficients are interpreted as:
 
 *  $\beta_0$: the y-intercept of the `"hatch"` level (the reference level)
 *  $\beta_1$: the difference in mean `fecund` at the same weight: `"wild"` - `"hatch"`
 *  $\beta_2$: the slope of the `fecund` _vs._ `weight` relationship (this model assumes the lines have common slopes, i.e., that the lines are parallel)
 
-You can fit this model and extract the coefficents table from the summary:
+You can fit this model and extract the coefficients table from the summary:
 
 ```{r}
 fit3 = lm(fecund ~ type + weight, data = dat)
@@ -207,7 +207,7 @@ Above, you have included an additional predictor variable (and parameter) in you
 (\#eq:ancova-interact)
 \end{equation}
 
-If $x_{i1}$ is `type` coded with 0's and 1's as in Section \@ref(anova) and $x_{i2}$ is `weight`, then the coefficients are interpretted as:
+If $x_{i1}$ is `type` coded with 0's and 1's as in Section \@ref(anova) and $x_{i2}$ is `weight`, then the coefficients are interpreted as:
 
 *  $\beta_0$: the y-intercept of the `"hatch"` level (the reference level)
 *  $\beta_1$: the difference in y-intercept between the `"wild"` level and the `"hatch"` level. 
@@ -246,14 +246,14 @@ It seems that fish of the different origins have approximately the same intercep
 
 ### AIC Model Selection
 
-You have now fitted four different models, each that makes different claims about how you can predict the fecundity of a given sockeye salmon at Redfish Lake. If you are interested in determining _which_ of these models you should use for prediction, you need to use **model selection**. Model selection attempts to find the model that is likely to have the smallest out-of-sample prediction error (i.e., future predictions will be close to what actually happens). One model selection metric is the AIC^[Akaike's Information Criterion. An excellent overview of AIC with ecological applications is given in @aic-cite]. Lower AIC values mean the model should have better predictive performance. Obtain a simple AIC table from your fitted model objects and sort the table by increasing values of AIC:
+You have now fitted four different models, each that makes different claims about how you can predict the fecundity of a given sockeye salmon at Redfish Lake. If you are interested in determining _which_ of these models you should use for prediction, you need to use **model selection**. Model selection attempts to find the model that is likely to have the smallest out-of-sample prediction error (i.e., future predictions will be close to what actually happens). One model selection metric is Akaike's Information Criterion (AIC), which is excellently described with ecological examples in @aic-cite. Lower AIC values mean the model should have better predictive performance. Obtain a simple AIC table from your fitted model objects and sort the table by increasing values of AIC:
 
 ```{r}
 tab = AIC(fit1, fit2, fit3, fit4)
 tab[order(tab$AIC),]
 ```
 
-In general, AIC values that are different by more than 2 units are interpretted as having importantly different predictive performance. Based on this very quick-and-dirty analysis, it seems that in predicting future fecundity, you would want to use the interactive ANCOVA model.
+In general, AIC values that are different by more than 2 units are interpreted as having importantly different predictive performance. Based on this very quick-and-dirty analysis, it seems that in predicting future fecundity, you would want to use the interactive ANCOVA model.
 
 ## The Generalized Linear Model {#glms}
 
@@ -315,7 +315,7 @@ fit1 = glm(binary ~ weight, data = dat, family = binomial)
 summary(fit1)$coef
 ```
 
-The coefficients are interpretted as (remember, "success" is defined as having at least 70% egg survival to the stage of interest):
+The coefficients are interpreted as (remember, "success" is defined as having at least 70% egg survival to the stage of interest):
 
 *  $\beta_0$: the log odds of success for a fish with zero weight (which is not all that important, let alone difficult to interpret). It can be transformed into more interpretable quantities: 
     *  $e^{\beta_0}$ is the odds of success for fish with zero weight and 
@@ -420,7 +420,7 @@ Oddly enough, the two best models are the simplest one and the most complex one,
 
 ## Probability Distributions {#dists}
 
-A probability distribution is a way of representing the probability of an event or value of a parameter and they are central to statistical theory. Some of the most commonly used distributions are summarized in Table `r if(is_html_output()) "\\@ref(tab:dist-table-html)" else "\\@ref(tab:dist-table-pdf)"`, along with the suffixes of the functions in R that correspond to each distribution^[For an excellent and ecologically-focused description of probability distributions, checkout Ben Bolker's book, _Ecological Models and Data in R_. There is a free proof version online: <https://ms.mcmaster.ca/~bolker/emdbook/book.pdf>]. 
+A probability distribution is a way of representing the probability of an event or value of a parameter and they are central to statistical theory. Some of the most commonly used distributions are summarized in Table `r if(is_html_output()) "\\@ref(tab:dist-table-html)" else "\\@ref(tab:dist-table-pdf)"`, along with the suffixes of the functions in R that correspond to each distribution. For an excellent and ecologically-focused description of probability distributions, checkout Chapter 4 in @emdbook-cite on them^[There is a free proof version online: <https://ms.mcmaster.ca/~bolker/emdbook/book.pdf>]. 
 
 ```{r dist-table-html, results = "asis", echo = F, eval = is_html_output()}
 
@@ -596,9 +596,9 @@ You should create a new R script called `Ex3.R` in your working directory for th
 
 _The solutions to this exercise are found at the end of this book ([here](#ex3-answers)). You are **strongly recommended** to make a good attempt at completing this exercise on your own and only look at the solutions when you are truly stumped._
 
-1.  Perform the same analyses as conducted in Section \@ref(lm) (simple linear regression, ANOVA, ANCOVA, ANCOVA with interaction), using `egg_size` as the response variable. The predictor variables you should use are `type` (categorical) and `year`. You should plot the fit for each model separately and perform an AIC analysis. Practice interpretting the coefficient estimates.
-2.  Perform the same analyses as conducted in Section \@ref(glms), this time using a success being having greater than 80% survival to the eyed-egg stage. Use `egg_size` and `type` as the predictor variables. You should plot the fitted lines for each model separately and perform an AIC analysis. Practice interpretting the coefficient estimates.
+1.  Perform the same analyses as conducted in Section \@ref(lm) (simple linear regression, ANOVA, ANCOVA, ANCOVA with interaction), using `egg_size` as the response variable. The predictor variables you should use are `type` (categorical) and `year`. You should plot the fit for each model separately and perform an AIC analysis. Practice interpreting the coefficient estimates.
+2.  Perform the same analyses as conducted in Section \@ref(glms), this time using a success being having greater than 80% survival to the eyed-egg stage. Use `egg_size` and `type` as the predictor variables. You should plot the fitted lines for each model separately and perform an AIC analysis. Practice interpreting the coefficient estimates.
 3.  Make the same graphic as in Figure \@ref(fig:norm-plots) with at least one of the other distributions listed in Table `r if(is_html_output()) "\\@ref(tab:dist-table-html)" else "\\@ref(tab:dist-table-pdf)"` (other than the multinomial - being a multivariate distribution, it wouldn't work well with this code). Try thinking of a variable from your work that meets the uses of each distribution in Table `r if(is_html_output()) "\\@ref(tab:dist-table-html)" else "\\@ref(tab:dist-table-pdf)"` (or one that's not listed). If you run into trouble, check out the help file for that distribution^[Executing `?rnorm` or any other of the `-norm()` functions will take you to a page with info on all four function types for that distribution]. 
 ### Exercise 3 Bonus {-}
 
-1.  Fit a von Bertalannfy growth model to the data found in the `growth.csv` data file. Visit Section \@ref(boot-test-ex) (particularly Equation \@ref(eq:vonB)) for details on this model. Use the initial values: `linf = 600`, `k = 0.3`, `t0 = -0.2`. Plot the fitted line over top of the data. 
+1.  Fit a von Bertalanffy growth model to the data found in the `growth.csv` data file. Visit Section \@ref(boot-test-ex) (particularly Equation \@ref(eq:vonB)) for details on this model. Use the initial values: `linf = 600`, `k = 0.3`, `t0 = -0.2`. Plot the fitted line over top of the data. 
