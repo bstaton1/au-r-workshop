@@ -642,10 +642,10 @@ tmp =<span class="st"> </span><span class="kw">sim_fit</span>(<span class="dt">n
            <span class="dt">U =</span> <span class="fl">0.4</span>, <span class="dt">plot =</span> T)</code></pre></div>
 <p><img src="au-r-workshop_files/figure-html/unnamed-chunk-314-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>## $mean_H
-## [1] 8194707
+## [1] 8655559
 ## 
 ## $mean_S
-## [1] 12292061</code></pre>
+## [1] 12983338</code></pre>
 <p><strong>2. Add an <em>error handler</em> to <code>ricker_sim()</code> that will cause the function to return an error <code>if()</code> the names of the vector passed to the <code>param</code> argument aren’t what the function is expecting. You can use stop(“Error Message Goes Here”) to have your function stop and return an error.</strong></p>
 <p>Error handlers are useful: they catch common errors that someone might make when using your function and return and informative error. Insert this at the top of your function:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="op">!</span><span class="kw">all</span>(<span class="kw">names</span>(params) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;alpha&quot;</span>, <span class="st">&quot;beta&quot;</span>, <span class="st">&quot;sigma&quot;</span>))) {
@@ -813,7 +813,7 @@ Dnull_chao =<span class="st"> </span><span class="kw">replicate</span>(<span cla
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(<span class="kw">abs</span>(Dnull_cope) <span class="op">&gt;=</span><span class="st"> </span>Dobs_cope)</code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(<span class="kw">abs</span>(Dnull_chao) <span class="op">&gt;=</span><span class="st"> </span>Dobs_chao)</code></pre></div>
-<pre><code>## [1] 2e-04</code></pre>
+<pre><code>## [1] 0</code></pre>
 <p>It appears that the zooplankton densities differed significantly between treatments for each taxon.</p>
 <p><strong>2. Adapt the code to perform a permutation test for another data set used in this book where there are observations of both a categorical variable and a continuous variable. The data sets <code>sockeye.csv</code>, <code>growth.csv</code>, or <code>creel.csv</code> should be good starting points.</strong></p>
 <p>This example will test the difference in mean length between age 3 and 4 fish in the <code>growth.csv</code> data set.</p>
@@ -840,15 +840,15 @@ dat =<span class="st"> </span>dat[dat<span class="op">$</span>age <span class="o
 <p><img src="au-r-workshop_files/figure-html/unnamed-chunk-340-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Obtain the two-tailed p-value:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(<span class="kw">abs</span>(Dnull) <span class="op">&gt;=</span><span class="st"> </span>Dobs)</code></pre></div>
-<pre><code>## [1] 0.5466</code></pre>
+<pre><code>## [1] 0.5438</code></pre>
 <p>Based on this, it appears there is no significant difference between the mean length of age 3 and 4 fish in this example.</p>
 <p><strong>3. Add a calculation of the p-value for a one-tailed test (i.e., that the difference in means is greater or less than zero). Steps 1 - 4 are the same: all you need is <code>Dnull</code> and <code>Dobs</code>. Don’t be afraid to Google this if you are confused.</strong></p>
 <p>To calculate the p-value for a one-tailed test (null hypothesis is that the mean length of age 4 is less than or equal to the mean length of age 3 fish):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(Dnull <span class="op">&gt;=</span><span class="st"> </span>Dobs)</code></pre></div>
-<pre><code>## [1] 0.265</code></pre>
+<pre><code>## [1] 0.2618</code></pre>
 <p>To test the opposite hypothesis (null hypothesis is that the mean length of age 4 fish is greater than or equal to the mean length of age 3 fish):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(Dnull <span class="op">&lt;=</span><span class="st"> </span>Dobs)</code></pre></div>
-<pre><code>## [1] 0.7366</code></pre>
+<pre><code>## [1] 0.7396</code></pre>
 </div>
 <div id="ex5-answers" class="section level2 unnumbered">
 <h2>Exercise 5 Solutions</h2>
