@@ -1,174 +1,305 @@
-# Chapter 6 Mapping and Spatial Analysis {#ch6}
+# Mapping and Spatial Analysis {#ch6}
+
+```{r}
+rm(list = ls(all = T))
+knitr::opts_chunk$set(fig.align = "center", message = F, warning = F)
+```
 
 ## Chapter Overview {#ch6overview} 
-R is a relatively underused tool for creating Geographic Information Systems. Most people use ArcGIS, QGIS, or Google Earth to display and analyze spatial data. However, R can do just about anything you might want to do in those programs, with the added benefit of allowing you to create a reproducible script file to share. Often times, workflows are difficult to replicate in GIS because of the point-click user interface. With R, anyone can replicate your geospatial analysis with your script file and data. In this lesson, we will learn how to create a GIS in R by working through a real-world problem. In Slovenia, a railroad connects the capitol Ljubljana with the coastal city of Koper, and passes right through brown bear country. We will use R to assess potential sites to build a wildlife overpass so that bears can safely cross the railroad.
+R is a relatively under-used tool for creating Geographic Information Systems. Most people use ArcGIS, QGIS, or Google Earth to display and analyze spatial data. However, R can do just about anything you might want to do in those programs, with the added benefit of allowing you to create a reproducible script file to share. Often times, workflows are difficult to replicate in GIS because of the point-click user interface. With R, anyone can replicate your geospatial analysis with your script file and data.
+
+In this chapter, you will learn the basics of:
+  
+*  creating a GIS in R
+*  mapping parts of your GIS
+*  "selecting by attribute" (A.K.A.`subset()` or `dplyr::filter()` in R)
+*  manipulating spatial objects
+
+You will map and analyze data from a study tracking brown bear (_Ursus arctos_) movements [@bears-cite]. In Slovenia, a railroad connects the capitol Ljubljana with the coastal city of Koper, and passes right through brown bear country. You will use R to assess potential sites to build a hypothetical wildlife overpass so that bears can safely cross the railroad.
+
+It is worth mentioning that if you are left wanting more geospatial analysis in R after this brief introduction, a much more thorough and dedicated description is presented for free in @geospatR-cite.
 
 ## Before You Begin {#ch6beforeyoubegin} 
 
-You should create a new directory and R script for your work in this chapter called `CH6.R` and save it in the directory `C:/Users/YOU/Documents/R-Workshop/Chapter3`. Set your working directory to that location. Revisit the material in Sections \@ref(1.2) and \@ref(1.3) for more details on these steps.
+You should create a new directory and R script for your work in this chapter called `Ch6.R` and save it in the directory `C:/Users/YOU/Documents/R-Book/Chapter6`. Set your working directory to that location. Revisit the material in Sections \@ref(scripts) and \@ref(working-dir) for more details on these steps.
 
-Install the following packages:
-```{r,eval=F}
-install.packages(c("sp","rgdal","maptools","rgeos","raster","scales","adehabitatHR","dplyr","dismo"))
+For this chapter, it will be helpful to have the data in your working directory. In the `Data/Ch6` folder (see the [instructions](#data-sets) on acquiring the data files), you'll find: 
+  
+  1.  a file named `bear.csv`,
+  2.  folders named `railways`, `states`, and `SVN_adm`, and
+  3.  an R script called `points_to_line.R`. 
+  
+Copy (or cut if you'd like) all of these files/folders from `Data/Ch6` into your working directory. 
+        
+Mapping in R requires many packages. Install **all** of the following packages:
+        
+```{r,eval = F}
+install.packages(
+  c("sp","rgdal","maptools",
+  "rgeos","raster","scales",
+  "adehabitatHR","dismo")
+)
+```
+        
+You will need `{dplyr}` as well, if you did not install it already for Chapter \@ref(ch5). 
+
+Rather than load all the packages at the top of the script (as is typically customary), this chapter will load and briefly describe each package immediately prior to using it for the first time.
+
+## Geospatial Data {#intro}
+
+There are two types of geospatial data: **vector** and **raster** data. R is able to handle both, but for the sake of simplicity, this chapter will mostly deal with vector data. There are three types of vector data that you should be familiar with (Figure \@ref(fig:vector-types)): 
+
+*  A **point** is a pair of coordinates (x = longitude, y = latitude) that represent the location of some observed object or event
+*  A **line** is a path between two or more ordered points. The endpoints of a line are called **vertices**.
+*  A **polygon** is an area bounded by vertices that are connected in order. In a polygon, the first and last vertex are the same. In this first section, you will learn how to load these different types of data and create spatial objects that you can manipulate and visualize in R.
+
+```{r vector-types, echo = F, fig.height = 3, fig.width = 9, fig.cap = "The three basic types of GIS vector data"}
+par(xaxs = "i", yaxs = "i", mfrow=c(1,3),mar = c(2,2,2,2), oma = c(2,2,0,0), cex.axis = 1.4, cex.main = 2)
+plot(c(2,4)~c(2,1),pch = 16, cex = 2.5, col = "grey", main="Points",xlim=c(0,5),ylim=c(0,5),xlab="x",ylab="y",las=1)
+plot(c(4,1,2,3)~c(1,2,3.5,4),pch = 16, col = "grey", cex = 2.5, xlim=c(0,5),ylim=c(0,5),main="Line",xlab="x",ylab="y",las=1)
+lines(c(4,1,2,3)~c(1,2,3.5,4))
+plot(NULL,xlim=c(0,5),ylim=c(0,5),xlab="x",ylab="y",main="Polygon",las=1)
+polygon(c(4,1,2,3.5),c(1,2,3,4),xlim=c(0,5),ylim=c(0,5),col = "grey90")
+points(c(4,1,2,3.5),c(1,2,3,4), col = "grey", pch = 16, cex = 2.5)
+lines(c(4,1,2,3.5),c(1,2,3,4))
+
+mtext(side = 1, "x (Longitude)", outer = T, line = 0.9)
+mtext(side = 2, "y (Latitude)", outer = T, line = 0.9)
 ```
 
-Download the data sets in the Chapter 6 folder from GitHub, and place them in your working directory. Some of these datasets are groups of files, as opposed to a single .csv. The folders you need are called`railways`,`states`, and `SVN_adm`. You will also need the csv file called `bear.csv`. Finally, download the script file called `points_to_line.R`. We will source this function later in the exercise.
+## Importing Geospatial Data {#Import}
 
-## Intro to Geospatial Data {#intro} 
-There are two types of geospatial data, vector and raster data. R is able to handle both, but for the sake of simplicity, this tutorial will mostly deal with vector data. There are three types of vector data that you should be familiar with: points, lines, and polygons. A point is a pair of x and y coordinates that represent the location of some observed object or event. A line is a path between two or more ordered points, which we call vertices. A polygon is an area bounded by vertices that are connected in order. In a polygon, the first and last vertex are the same. In this first section, you will learn how to load these different types of data and create spatial objects that you can manipulate and visualize in R.
+Begin by loading in coordinate data from `bears.csv` and creating a points layer from them. The points are from a telemetry study that tracked brown bear movements in south western Slovenia for a period of about 10 years [@bears-cite]. Each observation in this data set represents what is called a **relocation event** -  meaning a bear was detected again after it was initially tagged. The variables measured at each relocation event include a location, a time, and several other variables.
 
-```{r, echo=FALSE,fig.align='center',fig.height=3,fig.width=9}
-par(mfrow=c(1,3))
-plot(c(2,4)~c(2,1),main="Points",xlim=c(0,5),ylim=c(0,5),xlab="x",ylab="y")
-plot(c(4,1,2,3)~c(1,2,3.5,4),type="l",xlim=c(0,5),ylim=c(0,5),main="Line",xlab="x",ylab="y")
-points(c(4,1,2,3)~c(1,2,3.5,4))
-plot(NULL,xlim=c(0,5),ylim=c(0,5),xlab="x",ylab="y",main="Polygon")
-points(c(4,1,2,3.5),c(1,2,3,4))
-polygon(c(4,1,2,3.5),c(1,2,3,4),xlim=c(0,5),ylim=c(0,5))
-
-```
-
-## Importing Geospatial Data {#Import} 
-Begin by loading in coordinate data from a csv file and creating a points layer from them. The points are from a telemetry study that tracked brown bear movements in south western Slovenia for a period of about 10 years. Each observation in these data represents what is called a "relocation" event- meaning a bear was detected again after it was tagged. The variables measured at each relocation event include a location, a time, and several other variables.
-
-```{r}
-bear <- read.csv("bear.csv",stringsAsFactors = F)
+```{r, eval = F}
+bear = read.csv("bear.csv",stringsAsFactors = F)
 colnames(bear)
 ```
 
-There are a few variables in these data that are extraneous, so just keep the bare necessities: the date and time a bear was relocated, the name of the observed bear, and the x and y coordinates of its relocation. Also, omit the observations that have an NA value for any of those variables with `na.omit`.
-
-```{r}
-bear <- na.omit(bear[,c("timestamp","tag.local.identifier","location.long","location.lat")])
-colnames(bear) <- c("timestamp","ID","x","y")
-head(bear) 
-unique(bear$ID) #notice the bears have names! this attribute will be important later.
+```{r, echo = F}
+bear = read.csv("Data/Ch6/bear.csv", stringsAsFactors = F)
+colnames(bear)
 ```
 
-```{r, message = F, warning = F}
-#how many records of each bear are there?
+There are quite a few variables in these data that are extraneous, so just keep the bare necessities: the date and time a bear was relocated, the name of the observed bear, and the x and y coordinates of its relocation. Also, omit the observations that have an `NA` value for any of those variables with `na.omit()`:
+
+```{r}
+bear = na.omit(bear[,c("timestamp","tag.local.identifier",
+                        "location.long","location.lat")])
+colnames(bear) = c("timestamp","ID","x","y")
+head(bear)
+
+```
+
+Notice that the bears have names: `unique(bear$ID)`. Do some more simple data wrangling:
+
+```{r}
+# how many records of each bear are there?
 table(bear$ID)
 
-#bears that were relocated less than 5 times cannot be used in future analysis so filter them out
+# bears that were relocated fewer than 5 times 
+# cannot be used in future analysis so filter them out
 library(dplyr)
-bear<-bear %>%
+bear = bear %>%
   group_by(ID) %>%
   filter(n() >= 5)
 
-#now how many bears are there?
+# now how many bears are there?
 unique(bear$ID)
 ```
-Now, use the {sp} package to create a spatial object out of our dataframe. You can think of this object like a "layer" in GIS. {sp} lets you create layers with or without attribute tables, but if your spatial data have other attributes like an ID or a timestamp variable, you should always create a `SpatialPointsDataFrame` object to make sure those data are stored.
 
-In order to convert a dataframe into a `SpatialPointsDataFrame`, you need to specify four arguments: the dataframe being converted, the coordinates in that dataframe, the indices for those coordinate vectors, and the projected coordinate system of the data. You will use the WGS84 coordinate reference system. More on that later.^[ For more information on projected coordinate systems, follow this link: http://desktop.arcgis.com/en/arcmap/10.3/guide-books/map-projections/about-projected-coordinate-systems.htm]
+Now, use the `{sp}` package to create a spatial object out of your standard R data frame. You can think of this object like a **layer** in GIS. `{sp}` lets you create layers with or without attribute tables, but if your spatial data have other attributes like an ID or a timestamp variable, you should always create an object with class `SpatialPointsDataFrame` to make sure those variables/attributes are stored.
+
+In order to convert a data frame into a `SpatialPointsDataFrame`, you need to specify four arguments: 
+
+*  `data`: the data frame being converted, 
+*  `coords`: the coordinates in that dataframe, 
+*  `coords.nrs`: the indices for those coordinate vectors in the `data` data.frame, and 
+*  `proj4string`: the projected coordinate system of the data. You will use the WGS84 coordinate reference system. More on coordinate reference systems later in Section \@ref(crs)^[For more information on projected coordinate systems, follow this link: http://desktop.arcgis.com/en/arcmap/10.3/guide-books/map-projections/about-projected-coordinate-systems.htm].
 
 ```{r, message = F, warning = F}
 library(sp)
-bear <- SpatialPointsDataFrame(data=bear,coords=bear[,c("x","y")],coords.nrs=c(3,4),proj4string=CRS("+init=epsg:4326"))
+bear = SpatialPointsDataFrame(
+  data = bear,
+  coords = bear[,c("x","y")],
+  coords.nrs = c(3,4),
+  proj4string = CRS("+init=epsg:4326")
+  )
 
 ```
 
-Without any reference data, these points are essentially useless. Load some more spatial data to get some bearings. The package {rgdal} makes it very easy to load spatial data into the R environment. The function `readOGR` takes a standard shapefile, converts it into a spatial object, and automatically knows whether it's a points, lines, or polygons layer. It takes two arguments: the data source name (directory), and the layer name. When you download a shapefile from an open-source web portal, it will often have accompanying files that store the attribute data. Store all of these files in a folder with the same name as the shapefile. Now load in the shapefiles from the directory, so you can see where the brown bears were detected.
+Without any reference data these points are essentially useless. You will need to load some more spatial data to get your bearings. The `{rgdal}` package facilitates loading spatial data files (i.e., shapefiles) into R. The function `readOGR()` takes a standard shapefile (`.shp`), converts it into a spatial object, and automatically knows whether it's a points, lines, or polygons layer. It takes two arguments: the data source name (`dsn`, the directory), and the layer name (`layer`). When you download a shapefile from an open-source web portal, it will often have accompanying files that store the attribute data. Store all of these files in a folder with the same name as the shapefile. Now load in the shapefiles from the directory, so you can see where the brown bears were detected:
 
-```{r, message = F, warning = F,results="hide"}
-#load all the shapefiles for the background map. you'll learn how to add a basemap later
-
+```{r,results="hide", eval = F}
+#load all the shapefiles for the background map. 
+#you'll learn how to add a basemap later
 library(rgdal)
-slovenia <- readOGR(dsn="./SVN_adm",layer="SVN_adm0") #border of slovenia
-railways <- readOGR(dsn="./railways",layer="railways") #major railroads in slovenia
-stats <- readOGR(dsn="./SVN_adm",layer="SVN_adm1",stringsAsFactors = F) #statistical areas (states)
-
+#border of slovenia
+slovenia = readOGR(dsn="./SVN_adm",layer="SVN_adm0")
 ```
-Two important differences between `readOGR` and `read.csv`:
-*the directory shortening syntax is not the same. Notice the period in the data source names. 
-*when calling the layer name, the file extension is not required.
+
+```{r,results="hide", echo = F}
+library(rgdal)
+slovenia = readOGR(dsn="./Data/Ch6/SVN_adm",layer="SVN_adm0")
+```
+
+There are two important differences between `readOGR()` and `read.csv()`:
+
+1.  The directory shortening syntax is not the same. Notice the period in the data source names. This indicates your working directory.
+2.  When calling the layer name, the file extension `.shp` is not required.
+
+Notice the feature class of `slovenia` is a polygon:
+
+```{r}
+class(slovenia)
+```
+
+Now read in the remaining two shapefiles:
+
+```{r, eval = F}
+#major railroads in slovenia
+railways = readOGR(dsn = "./railways",
+                   layer = "railways") 
+#statistical areas (states)
+stats = readOGR(dsn = "./SVN_adm",
+                layer = "SVN_adm1", stringsAsFactors = F)  
+```
+
+```{r,results="hide", echo = F}
+#major railroads in slovenia
+railways = readOGR(dsn="./Data/Ch6/railways",layer="railways") 
+#statistical areas (states)
+stats = readOGR(dsn="./Data/Ch6/SVN_adm",layer="SVN_adm1",stringsAsFactors = F) 
+```
 
 ## Plotting {#SpatPlot} 
-Plotting spatial objects in R is a breeze. 
-What happens if you just plot the `bear` object?
-```{r, fig.align = "center"}
+Plotting spatial objects in R is a breeze. See what happens if you just plot the `bear` object:
+
+```{r, eval = F}
 plot(bear)
 ```
-Again, these points have no meaning without some reference data, so plot it together with the rest of the layers.
-```{r, fig.align= "center"}
+
+You can clean up your map a bit with many of the standard `{graphics}` arguments:
+
+```{r, eval = F}
+library(scales)
+plot(bear, col = alpha("grey", 0.5), pch = 16, axes = T)
+```
+
+```{r, echo = F, fig.height = 5, fig.width = 5}
+library(scales)
+par(mar = c(2,2,1,1))
+plot(bear, col = alpha("blue", 0.5), pch = 16, axes = T)
+```
+
+The `alpha()` function from the `{scales}` package allows you to plot with transparent colors, which is helpful for seeing the high- versus low-density clusters. Now, plot your reference layers to get your bearings:
+
+```{r, eval = F}
 #make a map of all the bear relocations and railways in slovenia
-plot(slovenia,lwd=3,axes=T)
-plot(stats,add=T)
-plot(railways,add=T,col="red",lty=1,lwd=3)
-points(bear,pch=16,cex=.5,col="blue")
-plot(railways,add=T,col="red",lty=1,lwd=3)
-box() #add a border to your map
+plot(stats, border = "grey", axes = T)
+plot(slovenia, lwd = 3, add = T)
+plot(railways, add = T, col = "red", lwd = 3)
+points(bear, pch = 16, cex = 0.5, col = alpha("blue", 0.5))
 ```
 
-###6.3.1 Zooming
-Zoom in on the part of Slovenia where the bears are. Zooming to a layer is very easy in GIS software, and it can be done almost as easily in R.
-Spatial objects in R have a slot^[slots are components of S4 class objects. more on that here https://stackoverflow.com/questions/4713968/r-what-are-slots/4714080#4714080] called `bbox` which is the "boundary box" of the data in that object. You can use the `bbox` to define the x and y limits of your plots very easily.
-
-```{r,fig.align='center'}
-bear@bbox #it's a matrix!
-plot(slovenia,xlim=bear@bbox[1,],ylim=bear@bbox[2,],xlab="Long",ylab="Lat",lwd=3) 
-  axis(1,at=seq(bear@bbox[1,1],bear@bbox[1,2],by=.1))
-  axis(2,at=seq(bear@bbox[2,1],bear@bbox[2,2],by=.1))
-  points(bear,pch=16,cex=.5,col="blue") 
-  lines(railways,lwd=2,col="red")
-  box()
+```{r, echo = F, fig.width = 5, fig.height = 5}
+par(mar = c(2,2,1,1))
+plot(stats, border = "grey", axes = T)
+plot(slovenia, lwd = 3, add = T)
+plot(railways, add = T, col = "red", lwd = 3)
+points(bear, pch = 16, cex = 0.5, col = alpha("blue", 0.5))
 ```
 
-###6.3.2 Plotting Individuals Separately
+### Zooming {#zoom}
 
-```{r,fig.align='center',eval=F}
-IDs <- unique(bear$ID) #store the bear names in a vector 
-#windows(record=T)
-for(i in 1:length(IDs)){ #loop through the bear names vector
-  plot(slovenia,xlim=map[,2],ylim=map[,1],xlab="Long",ylab="Lat",main=IDs[i],axes=T)
-  plot(railways,add=T,col="red",lty=1,lwd=3)
-  plot(bear[bear$ID==IDs[i],],add=T)
-  box()
-}
+You may want to zoom in on the part of Slovenia where the bears are. Spatial objects in R have a slot^[slots are components of S4 class objects. more on that here https://stackoverflow.com/questions/4713968/r-what-are-slots/4714080#4714080] called `bbox` which is the "boundary box" of the data in that object. You can use the `bbox` to specify what `xlim` and `ylim` should be:
+
+```{r, eval = F}
+plot(stats, border = "grey", axes = T,
+     xlim = bear@bbox[1,],  # access the boundary box using @
+     ylim = bear@bbox[2,])
+plot(slovenia, lwd = 3, add = T)
+points(bear, pch = 16, cex = 0.5, col = alpha("blue", 0.5))
+plot(railways, add = T, col = "red", lwd = 3)
 ```
 
-In the next section, you will learn how to manipulate a few aspects of spatial objects.
+```{r, echo = F, fig.width = 5, fig.height = 5}
+par(mar = c(2,2,1,1))
+plot(stats, border = "grey", axes = T,
+     xlim = bear@bbox[1,],  # access the boundary box using @
+     ylim = bear@bbox[2,])
+plot(slovenia, lwd = 3, add = T)
+points(bear, pch = 16, cex = 0.5, col = alpha("blue", 0.5))
+plot(railways, add = T, col = "red", lwd = 3)
+```
+
+### Plotting Selections
+
+In GIS, a subset is often called a **selection**: it is a smaller subset of your larger data layers. You may want to see the relocation events for each individual bear at a time. Use `sapply()` to apply a function to each bear's detected movement trajectory them separately. Wrap your code inside of a new PDF device (Section ) \@ref(file-devices)) so you can scroll through the plots separately:
+
+```{r, results = "hide", eval = F}
+pdf("Relocations.pdf", h = 5, w = 5)
+sapply(unique(bear$ID), function(id) {
+  par(mar = c(2,2,1,1))
+  plot(stats, border = "grey", axes = T,
+       xlim = bear@bbox[1,],  # access the boundary box using @
+       ylim = bear@bbox[2,], main = paste("Bear:", id))
+  plot(slovenia, lwd = 3, add = T)
+  points(bear[bear$ID == id,], type = "o", pch = 16, cex = 0.5, col = alpha("blue", 0.5))
+  plot(railways, add = T, col = "red", lwd = 3)
+})
+dev.off()
+```
+
+When you run this code, it will look like nothing happened. Go to your working directory and open the newly created file `Relocations.pdf` to see the output. Note that if you want to make changes to the PDF file by running `pdf(...); plot(...)`, you'll need to close the file in your PDF viewer beforehand^[This is not true of files created with `png()` or `jpeg()`].
 
 ## Manipulating Spatial Data {#ManipSpat} 
 
-Now that you have some data, and you've gotten a look at it, it's time to learn a few tricks for manipulating those data. Looking at your map, see that some of the bears were detected outside of Slovenia. (Bonus points if you can name the country they're in). Clip the bear data to the extent of Slovenia, because the Slovenian government can't build railroad crossings in other countries.
+Now that you have some data and you've taken a look at it, it's time to learn a few tricks for manipulating those data. Looking at your map, see that some of the bears were detected outside of Slovenia. (Bonus points if you can name the country they're in). Suppose the Slovenian government can't build wildlife crossings in other countries, so you want to clip the bear data to the extent of Slovenia.
 
-### Changing the CRS
+### Changing the CRS {#crs}
 
-Before you can manipulate any two related layers, you have to ensure that the two layers have identical coordinate systems. This can be done easily with the {sp} package's `spTransform` function. In order to find out what the coordinate reference system of a spatial object is, all you have to do is call `proj4string(Your_Spatial_Object)`.
+Before you can manipulate any two related layers (e.g., clipping), you have to ensure that the two layers have identical coordinate systems. This can be done easily with the `spTransform()` function in the `{sp}` package. In order to obtain the coordinate reference system of a spatial object like `bear`, all you have to do is call `proj4string(bear)`. You can pass this directly to `spTransform()` like this:
+
 ```{r}
-proj4string(bear)
-slovenia <- spTransform(slovenia, CRS("+init=epsg:4326")) #change the coordinate system of `slovenia` to the one you specified for the bear data earlier. It should be the WGS84 projection.
+slovenia = spTransform(slovenia, CRS(proj4string(bear))) 
 ```
+
 ### Clipping {#clip}
-Clipping in R is very easy, and uses standard subsetting syntax.
 
-```{r,fig.align='center'}
+Clipping is as simple as a standard subset in R. You can select the relocations that occured only in Slovenia using:
 
-#clip the bear data to the extent of slovenia. any points outside of the "slovenia" polygon will be rejected
-bear<- bear[slovenia,]
-
-plot(slovenia,xlim=bear@bbox[1,],ylim=bear@bbox[2,],xlab="Long",ylab="Lat",lwd=3) 
-  axis(1,at=seq(bear@bbox[1,1],bear@bbox[1,2],by=.1))
-  axis(2,at=seq(bear@bbox[2,1],bear@bbox[2,2],by=.1))
-  points(bear,pch=16,cex=.5,col="blue") 
-  lines(railways,lwd=2,col="red")
-  box() 
+```{r}
+bear = bear[slovenia,]
 ```
 
-### Adding attributes 
+Make the same plot as you did in Section \@ref(zoom)
+
+```{r, echo = F, fig.width = 5, fig.height = 5}
+par(mar = c(2,2,1,1))
+plot(stats, border = "grey", axes = T,
+     xlim = bear@bbox[1,],  # access the boundary box using @
+     ylim = bear@bbox[2,])
+plot(slovenia, lwd = 3, add = T)
+points(bear, pch = 16, cex = 0.5, col = alpha("blue", 0.5))
+plot(railways, add = T, col = "red", lwd = 3) 
+```
+
+### Adding Attributes
+
 What if you wanted to add an attribute to a points object, like which polygon it occurs in? In order to figure out how many bear relocations were documented in each statistical region of Slovenia, you'll have to merge the two objects.
 
+**DOES SOMETHING ELSE GO HERE??**
 
 ## Analysis {#Anal} 
 
 Now that you know how to import, plot, and manipulate your data, it's time to do some analysis. {rgeos} has a few tools for simple geometric calculations like finding the distance between two points, or the area of a polygon. However, more specialized analyses are often only available in other packages. One commonly used package in animal ecology is the {adehabitat} package suite. Use this package in conjunction with {rgeos} to determine where the tagged bears may have crossed the railroad.
 
-###6.5.1 Home Range Analysis {###6.5.1}
+### Home Range Analysis {#hr-Anal}
 
-If you look at the plots in Section \@ref(6.3.2), it looks like some bears live very close to the railroad, but do not cross it, some live very far away, and others may have crossed it multiple times. Which bears' home ranges are intersected by the railroad? In order to determine this, you will have to calculate the home range of each animal with the `mcp` function in the {adehabitat} package. 
+If you look at the plots in Section \@ref(), it looks like some bears live very close to the railroad, but do not cross it, some live very far away, and others may have crossed it multiple times. Which bears' home ranges are intersected by the railroad? In order to determine this, you will have to calculate the home range of each animal with the `mcp` function in the {adehabitat} package. 
 
-```{r, message = F, warning = F}
+```{r, message = F, warning = F, eval = F}
 library(adehabitatHR) #load the adehabitat home range calculation package. there are 5 different ways you can calculate the homerange of an animal, but mcp is the most common way.
 bear <- spTransform(bear,CRS("+proj=utm +north +zone=33 +ellps=WGS84")) #the mcp function requires coordinates be in the Universal Transverse Mercator system
 cp <- mcp(xy=bear[,2], percent=95,unin="m",unout="km2") 
@@ -177,7 +308,7 @@ cp <- mcp(xy=bear[,2], percent=95,unin="m",unout="km2")
 `mcp` calculates the minimum convex polygon bounded by the extent of the points which are within some percentile of closeness to the centroid of a group. Points that are very far away from the center are excluded. The standard percentile is 95%. `mcp` requires three other arguments: the grouping variable of the spatial points data frame, the units of the input, and the units of the output. (UTM is always in meters, and so is the `mcp` default). If you run `cp`, you'll see that the areas of each polygon are stored in the object in kilometers squared.
 
 Now, plot the homeranges of each bear, label them, and overlay the railroad on a map.
-```{r, message = F, warning = F, fig.align = "center"}
+```{r, message = F, warning = F, eval = F}
 library(scales) #scales has a nice feature called alpha that allows you to change the transparency of colors in plots
 library(rgeos) #rgeos has a few nice functions for plotting and spatial transformations
 
@@ -196,7 +327,7 @@ plot(cp,col=alpha('blue',.4))
 ###6.5.2 Finding Intersections Between Two Layers
 Now that you know which bears crossed the railroad, find out where. You'll need a home-made function called `points_to_line` which is stored as a script file in your directory. If you ever write a function, you can store it in a script file, and then call on it with the `source` function instead of copying and pasting all that code every time you want to use it in a new script. Save as many functions as you want in a single script, and they will all be added to your Global Environment when you source the file. 
 
-```{r, message = F, warning = F}
+```{r, message = F, warning = F, eval = F}
 
 library(maptools) #you'll need this package to run the next home-made function
 source("points_to_line.R") #load the home-made function from the directory 
@@ -215,7 +346,7 @@ Sys.time()-start
 ## Creating a Presentable Map {#PresentMap} 
 Now that you have a points object with the crossings stored,  make a map that you can present to policy makers.
 
-```{r, message = F, warning = F, fig.align = "center"}
+```{r, message = F, warning = F, fig.align = "center", eval = F}
 library(dismo)
 library(raster) #the basemap will be stored as a raster object.
 basemap <- gmap(bear,exp=1,type="terrain",lonlat = T)

@@ -389,7 +389,7 @@ There are two main ways to save plots.  First is a quick-and-dirty method that s
 
 All plots will be saved in the working directory by default. You can also just copy the plot to your clipboard (_File > Copy to the clipboard > bitmap_) and paste it where you want. You should saving one of the plots you made in this Chapter using this approach.
 
-### Use a function to place plot in a new file
+### Use a function to place plot in a new file {#file-devices}
 
 If you are producing plots for a final report or publication, you want the output to be as clean-looking as possible and you want them to be fully reproducible so when something changes with your data or analysis in review, you can reproduce the same figure with the new results. You can save high-resolution plots through R by using the following steps:
 
