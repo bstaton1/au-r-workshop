@@ -293,39 +293,52 @@ What if you wanted to add an attribute to a points object, like which polygon it
 
 ## Analysis {#Anal} 
 
-Now that you know how to import, plot, and manipulate your data, it's time to do some analysis. {rgeos} has a few tools for simple geometric calculations like finding the distance between two points, or the area of a polygon. However, more specialized analyses are often only available in other packages. One commonly used package in animal ecology is the {adehabitat} package suite. Use this package in conjunction with {rgeos} to determine where the tagged bears may have crossed the railroad.
+Now that you know how to import, plot, and manipulate your data, it's time to do some analysis. The `{rgeos}` package has a few tools for simple geometric calculations like finding the distance between two points, or the area of a polygon. However, more specialized analyses are often only available in other packages. One commonly used package in animal ecology is the `{adehabitat}` package suite. Use this package in conjunction with `{rgeos}` to determine where the tagged bears may have crossed the railroad.
 
 ### Home Range Analysis {#hr-Anal}
 
-If you look at the plots in Section \@ref(), it looks like some bears live very close to the railroad, but do not cross it, some live very far away, and others may have crossed it multiple times. Which bears' home ranges are intersected by the railroad? In order to determine this, you will have to calculate the home range of each animal with the `mcp` function in the {adehabitat} package. 
+If you look at the plots in Section \@ref(), it looks like some bears live very close to the railroad, but do not cross it, some live very far away, and others may have crossed it multiple times. Which bears' home ranges are intersected by the railroad? In order to determine this, you will have to calculate the home range of each animal with the `mcp` function in the `{adehabitat}` package. 
 
 ```{r, message = F, warning = F, eval = F}
-library(adehabitatHR) #load the adehabitat home range calculation package. there are 5 different ways you can calculate the homerange of an animal, but mcp is the most common way.
-bear <- spTransform(bear,CRS("+proj=utm +north +zone=33 +ellps=WGS84")) #the mcp function requires coordinates be in the Universal Transverse Mercator system
-cp <- mcp(xy=bear[,2], percent=95,unin="m",unout="km2") 
+library(adehabitatHR) 
+#the mcp function requires coordinates 
+#be in the Universal Transverse Mercator system
+bear = spTransform(bear,CRS("+proj=utm +north +zone=33 +ellps=WGS84"))
+# calculate the home range. mcp is one of 5 functions to do this
+cp = mcp(xy=bear[,2], percent=95,unin="m",unout="km2") 
 ```
 
-`mcp` calculates the minimum convex polygon bounded by the extent of the points which are within some percentile of closeness to the centroid of a group. Points that are very far away from the center are excluded. The standard percentile is 95%. `mcp` requires three other arguments: the grouping variable of the spatial points data frame, the units of the input, and the units of the output. (UTM is always in meters, and so is the `mcp` default). If you run `cp`, you'll see that the areas of each polygon are stored in the object in kilometers squared.
+`mcp` calculates the minimum convex polygon bounded by the extent of the points which are within some percentile of closeness to the centroid of a group. Points that are very far away from the center are excluded. The standard percentile is 95%. `mcp` requires three other arguments:
+
+*  `xy`: the grouping variable of the spatial points data frame,
+*  `unin`: the units of the input (meters is the default), and 
+*  the units of the output.
+
+If you run `cp`, you'll see that the areas of each polygon are stored in the object in square kilometers.
 
 Now, plot the homeranges of each bear, label them, and overlay the railroad on a map.
-```{r, message = F, warning = F, eval = F}
-library(scales) #scales has a nice feature called alpha that allows you to change the transparency of colors in plots
-library(rgeos) #rgeos has a few nice functions for plotting and spatial transformations
+
+```{r, results = "hide"}
+#rgeos has a few nice functions for plotting and spatial transformations
+library(rgeos) 
 
 #match the coordinate system of the home ranges object with the railways layer 
-cp <- spTransform(cp, CRS("+init=epsg:4326")) 
-railways<- spTransform(railways,CRS("+init=epsg:4326"))
-cp <- cp[railways,] #select only the homeranges that include some part of the railway
+cp = spTransform(cp, CRS(proj4string(slovenia)))
+railways = spTransform(railways, CRS(proj4string(slovenia)))
+#keep only the homeranges that include some part of the railway
+cp = cp[railways,] 
 
-plot(cp,col=alpha('blue',.4))
-  polygonsLabel(cp,labels=cp$id,method="buffer",col="white",doPlot=T) #rgeos has a bunch of neat functions like this one
-  lines(railways,lwd=3,col="red") #overlay the railway
-  box()
-
+plot(cp,col=alpha("blue", 0.5), axes = T)
+#rgeos has a bunch of neat functions like this one
+polygonsLabel(cp, labels = cp$id, method = "buffer",
+              col = "white", doPlot=T) 
+lines(railways, lwd = 3,col = "red")
+box()
 ```
 
-###6.5.2 Finding Intersections Between Two Layers
-Now that you know which bears crossed the railroad, find out where. You'll need a home-made function called `points_to_line` which is stored as a script file in your directory. If you ever write a function, you can store it in a script file, and then call on it with the `source` function instead of copying and pasting all that code every time you want to use it in a new script. Save as many functions as you want in a single script, and they will all be added to your Global Environment when you source the file. 
+### Finding Intersections Between Two Layers
+
+Now that you know which bears crossed the railroad, find out where. You'll need a user-defined function called `points_to_line()`, which is stored as a script file in your working directory. If you ever write a function, you can store it in a script file, and then bring it into your current session using the `source()` function. This prevents you from needing to paste all the function code every time you want to use it in a new script. Save as many functions as you want in a single script, and they will all be added to your Global Environment when you `source()` the file^[For projects with many user-defined functions, you may be better off creating a `./Functions` directory and housing multiple scripts there. Better yet, you can create your own package for personal use. Look into the `{devtools}` and `{roxygen2}` packages].
 
 ```{r, message = F, warning = F, eval = F}
 
