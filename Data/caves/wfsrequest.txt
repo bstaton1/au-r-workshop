@@ -1,1 +1,0 @@
-http://gis.arso.gov.si/geoserver/ows?SERVICE=WFS&REQUEST=GetFeature&VERSION=1.1.0&TYPENAME=arso:EPO_JAME&PROPERTYNAME=SHAPE,ID_STEV,IME&OUTPUTFORMAT=SHAPE-ZIP&format_options=charset:UTF-8
