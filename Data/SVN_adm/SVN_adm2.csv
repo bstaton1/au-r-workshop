@@ -1,0 +1,193 @@
+"OBJECTID","ID_0","ISO","NAME_0","ID_1","NAME_1","ID_2","NAME_2","TYPE_2","ENGTYPE_2","NL_NAME_2","VARNAME_2"
+1,208,"SVN","Slovenia",1,"Gorenjska",1,"Šencur","Opcine","Commune|Municipality",NA,NA
+2,208,"SVN","Slovenia",1,"Gorenjska",2,"Škofja Loka","Opcine","Commune|Municipality",NA,NA
+3,208,"SVN","Slovenia",1,"Gorenjska",3,"Železniki","Opcine","Commune|Municipality",NA,NA
+4,208,"SVN","Slovenia",1,"Gorenjska",4,"Žiri","Opcine","Commune|Municipality",NA,NA
+5,208,"SVN","Slovenia",1,"Gorenjska",5,"Žirovnica","Opcine","Commune|Municipality",NA,NA
+6,208,"SVN","Slovenia",1,"Gorenjska",6,"Bled","Opcine","Commune|Municipality",NA,NA
+7,208,"SVN","Slovenia",1,"Gorenjska",7,"Bohinj","Opcine","Commune|Municipality",NA,NA
+8,208,"SVN","Slovenia",1,"Gorenjska",8,"Cerklje na Gorenjskem","Opcine","Commune|Municipality",NA,NA
+9,208,"SVN","Slovenia",1,"Gorenjska",9,"Gorenja Vas-Poljane","Opcine","Commune|Municipality",NA,NA
+10,208,"SVN","Slovenia",1,"Gorenjska",10,"Jesenice","Opcine","Commune|Municipality",NA,NA
+11,208,"SVN","Slovenia",1,"Gorenjska",11,"Jezersko","Opcine","Commune|Municipality",NA,NA
+12,208,"SVN","Slovenia",1,"Gorenjska",12,"Kranj","Opcine","Commune|Municipality",NA,NA
+13,208,"SVN","Slovenia",1,"Gorenjska",13,"Kranjska Gora","Opcine","Commune|Municipality",NA,NA
+14,208,"SVN","Slovenia",1,"Gorenjska",14,"Naklo","Opcine","Commune|Municipality",NA,NA
+15,208,"SVN","Slovenia",1,"Gorenjska",15,"Preddvor","Opcine","Commune|Municipality",NA,NA
+16,208,"SVN","Slovenia",1,"Gorenjska",16,"Radovljica","Opcine","Commune|Municipality",NA,NA
+17,208,"SVN","Slovenia",1,"Gorenjska",17,"Tržic","Opcine","Commune|Municipality",NA,NA
+18,208,"SVN","Slovenia",2,"Goriška",18,"Šempeter-Vrtojba","Opcine","Commune|Municipality",NA,NA
+19,208,"SVN","Slovenia",2,"Goriška",19,"Ajdovšcina","Opcine","Commune|Municipality",NA,NA
+20,208,"SVN","Slovenia",2,"Goriška",20,"Bovec","Opcine","Commune|Municipality",NA,NA
+21,208,"SVN","Slovenia",2,"Goriška",21,"Brda","Opcine","Commune|Municipality",NA,NA
+22,208,"SVN","Slovenia",2,"Goriška",22,"Cerkno","Opcine","Commune|Municipality",NA,NA
+23,208,"SVN","Slovenia",2,"Goriška",23,"Idrija","Opcine","Commune|Municipality",NA,NA
+24,208,"SVN","Slovenia",2,"Goriška",24,"Kanal","Opcine","Commune|Municipality",NA,NA
+25,208,"SVN","Slovenia",2,"Goriška",25,"Kobarid","Opcine","Commune|Municipality",NA,NA
+26,208,"SVN","Slovenia",2,"Goriška",26,"Miren-Kostanjevica","Opcine","Commune|Municipality",NA,NA
+27,208,"SVN","Slovenia",2,"Goriška",27,"Nova Gorica","Opcine","Commune|Municipality",NA,NA
+28,208,"SVN","Slovenia",2,"Goriška",28,"Tolmin","Opcine","Commune|Municipality",NA,NA
+29,208,"SVN","Slovenia",2,"Goriška",29,"Vipava","Opcine","Commune|Municipality",NA,NA
+30,208,"SVN","Slovenia",3,"Jugovzhodna Slovenija",30,"Šentjernej","Opcine","Commune|Municipality",NA,NA
+31,208,"SVN","Slovenia",3,"Jugovzhodna Slovenija",31,"Škocjan","Opcine","Commune|Municipality",NA,NA
+32,208,"SVN","Slovenia",3,"Jugovzhodna Slovenija",32,"Žužemberk","Opcine","Commune|Municipality",NA,NA
+33,208,"SVN","Slovenia",3,"Jugovzhodna Slovenija",33,"Crnomelj","Opcine","Commune|Municipality",NA,NA
+34,208,"SVN","Slovenia",3,"Jugovzhodna Slovenija",34,"Dolenjske Toplice","Opcine","Commune|Municipality",NA,NA
+35,208,"SVN","Slovenia",3,"Jugovzhodna Slovenija",35,"Kocevje","Opcine","Commune|Municipality",NA,NA
+36,208,"SVN","Slovenia",3,"Jugovzhodna Slovenija",36,"Kostel","Opcine","Commune|Municipality",NA,NA
+37,208,"SVN","Slovenia",3,"Jugovzhodna Slovenija",37,"Loški Potok","Opcine","Commune|Municipality",NA,NA
+38,208,"SVN","Slovenia",3,"Jugovzhodna Slovenija",38,"Metlika","Opcine","Commune|Municipality",NA,NA
+39,208,"SVN","Slovenia",3,"Jugovzhodna Slovenija",39,"Mirna Pec","Opcine","Commune|Municipality",NA,NA
+40,208,"SVN","Slovenia",3,"Jugovzhodna Slovenija",40,"Novo Mesto","Opcine","Commune|Municipality",NA,NA
+41,208,"SVN","Slovenia",3,"Jugovzhodna Slovenija",41,"Osilnica","Opcine","Commune|Municipality",NA,NA
+42,208,"SVN","Slovenia",3,"Jugovzhodna Slovenija",42,"Ribnica","Opcine","Commune|Municipality",NA,NA
+43,208,"SVN","Slovenia",3,"Jugovzhodna Slovenija",43,"Semic","Opcine","Commune|Municipality",NA,NA
+44,208,"SVN","Slovenia",3,"Jugovzhodna Slovenija",44,"Sodražica","Opcine","Commune|Municipality",NA,NA
+45,208,"SVN","Slovenia",3,"Jugovzhodna Slovenija",45,"Trebnje","Opcine","Commune|Municipality",NA,NA
+46,208,"SVN","Slovenia",4,"Koroška",46,"Crna na Koroškem","Opcine","Commune|Municipality",NA,NA
+47,208,"SVN","Slovenia",4,"Koroška",47,"Dravograd","Opcine","Commune|Municipality",NA,NA
+48,208,"SVN","Slovenia",4,"Koroška",48,"Mežica","Opcine","Commune|Municipality",NA,NA
+49,208,"SVN","Slovenia",4,"Koroška",49,"Mislinja","Opcine","Commune|Municipality",NA,NA
+50,208,"SVN","Slovenia",4,"Koroška",50,"Muta","Opcine","Commune|Municipality",NA,NA
+51,208,"SVN","Slovenia",4,"Koroška",51,"Podvelka","Opcine","Commune|Municipality",NA,NA
+52,208,"SVN","Slovenia",4,"Koroška",52,"Prevalje","Opcine","Commune|Municipality",NA,NA
+53,208,"SVN","Slovenia",4,"Koroška",53,"Radlje ob Dravi","Opcine","Commune|Municipality",NA,NA
+54,208,"SVN","Slovenia",4,"Koroška",54,"Ravne na Koroškem","Opcine","Commune|Municipality",NA,NA
+55,208,"SVN","Slovenia",4,"Koroška",55,"Ribnica na Pohorju","Opcine","Commune|Municipality",NA,NA
+56,208,"SVN","Slovenia",4,"Koroška",56,"Slovenj Gradec","Opcine","Commune|Municipality",NA,NA
+57,208,"SVN","Slovenia",4,"Koroška",57,"Vuzenica","Opcine","Commune|Municipality",NA,NA
+58,208,"SVN","Slovenia",5,"Notranjsko-kraška",58,"Bloke","Opcine","Commune|Municipality",NA,NA
+59,208,"SVN","Slovenia",5,"Notranjsko-kraška",59,"Cerknica","Opcine","Commune|Municipality",NA,NA
+60,208,"SVN","Slovenia",5,"Notranjsko-kraška",60,"Ilirska Bistrica","Opcine","Commune|Municipality",NA,NA
+61,208,"SVN","Slovenia",5,"Notranjsko-kraška",61,"Loška Dolina","Opcine","Commune|Municipality",NA,NA
+62,208,"SVN","Slovenia",5,"Notranjsko-kraška",62,"Pivka","Opcine","Commune|Municipality",NA,NA
+63,208,"SVN","Slovenia",5,"Notranjsko-kraška",63,"Postojna","Opcine","Commune|Municipality",NA,NA
+64,208,"SVN","Slovenia",6,"Obalno-kraška",64,"Divaca","Opcine","Commune|Municipality",NA,NA
+65,208,"SVN","Slovenia",6,"Obalno-kraška",65,"Hrpelje-Kozina","Opcine","Commune|Municipality",NA,NA
+66,208,"SVN","Slovenia",6,"Obalno-kraška",66,"Izola","Opcine","Commune|Municipality",NA,NA
+67,208,"SVN","Slovenia",6,"Obalno-kraška",67,"Komen","Opcine","Commune|Municipality",NA,NA
+68,208,"SVN","Slovenia",6,"Obalno-kraška",68,"Koper","Opcine","Commune|Municipality",NA,"Capodistria"
+69,208,"SVN","Slovenia",6,"Obalno-kraška",69,"Piran","Opcine","Commune|Municipality",NA,"Pirano"
+70,208,"SVN","Slovenia",6,"Obalno-kraška",70,"Sežana","Opcine","Commune|Municipality",NA,NA
+71,208,"SVN","Slovenia",7,"Osrednjeslovenska",71,"Škofljica","Opcine","Commune|Municipality",NA,NA
+72,208,"SVN","Slovenia",7,"Osrednjeslovenska",72,"Borovnica","Opcine","Commune|Municipality",NA,NA
+73,208,"SVN","Slovenia",7,"Osrednjeslovenska",73,"Brezovica","Opcine","Commune|Municipality",NA,NA
+74,208,"SVN","Slovenia",7,"Osrednjeslovenska",74,"Dobrepolje","Opcine","Commune|Municipality",NA,NA
+75,208,"SVN","Slovenia",7,"Osrednjeslovenska",75,"Dobrova-Polhov Gradec","Opcine","Commune|Municipality",NA,"Dobrova-Horjul-Polhov Gradec"
+76,208,"SVN","Slovenia",7,"Osrednjeslovenska",76,"Dol pri Ljubljani","Opcine","Commune|Municipality",NA,NA
+77,208,"SVN","Slovenia",7,"Osrednjeslovenska",77,"Domžale","Opcine","Commune|Municipality",NA,NA
+78,208,"SVN","Slovenia",7,"Osrednjeslovenska",78,"Grosuplje","Opcine","Commune|Municipality",NA,NA
+79,208,"SVN","Slovenia",7,"Osrednjeslovenska",79,"Horjul","Opcine","Commune|Municipality",NA,NA
+80,208,"SVN","Slovenia",7,"Osrednjeslovenska",80,"Ig","Opcine","Commune|Municipality",NA,NA
+81,208,"SVN","Slovenia",7,"Osrednjeslovenska",81,"Ivancna Gorica","Opcine","Commune|Municipality",NA,NA
+82,208,"SVN","Slovenia",7,"Osrednjeslovenska",82,"Kamnik","Opcine","Commune|Municipality",NA,NA
+83,208,"SVN","Slovenia",7,"Osrednjeslovenska",83,"Komenda","Opcine","Commune|Municipality",NA,NA
+84,208,"SVN","Slovenia",7,"Osrednjeslovenska",84,"Litija","Opcine","Commune|Municipality",NA,NA
+85,208,"SVN","Slovenia",7,"Osrednjeslovenska",85,"Ljubljana","Opcine","Commune|Municipality",NA,NA
+86,208,"SVN","Slovenia",7,"Osrednjeslovenska",86,"Logatec","Opcine","Commune|Municipality",NA,NA
+87,208,"SVN","Slovenia",7,"Osrednjeslovenska",87,"Lukovica","Opcine","Commune|Municipality",NA,NA
+88,208,"SVN","Slovenia",7,"Osrednjeslovenska",88,"Medvode","Opcine","Commune|Municipality",NA,NA
+89,208,"SVN","Slovenia",7,"Osrednjeslovenska",89,"Mengeš","Opcine","Commune|Municipality",NA,NA
+90,208,"SVN","Slovenia",7,"Osrednjeslovenska",90,"Moravce","Opcine","Commune|Municipality",NA,NA
+91,208,"SVN","Slovenia",7,"Osrednjeslovenska",91,"Trzin","Opcine","Commune|Municipality",NA,NA
+92,208,"SVN","Slovenia",7,"Osrednjeslovenska",92,"Velike Lašce","Opcine","Commune|Municipality",NA,NA
+93,208,"SVN","Slovenia",7,"Osrednjeslovenska",93,"Vodice","Opcine","Commune|Municipality",NA,NA
+94,208,"SVN","Slovenia",7,"Osrednjeslovenska",94,"Vrhnika","Opcine","Commune|Municipality",NA,NA
+95,208,"SVN","Slovenia",8,"Podravska",95,"Šentilj","Opcine","Commune|Municipality",NA,NA
+96,208,"SVN","Slovenia",8,"Podravska",96,"Žetale","Opcine","Commune|Municipality",NA,NA
+97,208,"SVN","Slovenia",8,"Podravska",97,"Benedikt","Opcine","Commune|Municipality",NA,NA
+98,208,"SVN","Slovenia",8,"Podravska",98,"Cerkvenjak","Opcine","Commune|Municipality",NA,NA
+99,208,"SVN","Slovenia",8,"Podravska",99,"Destrnik","Opcine","Commune|Municipality",NA,NA
+100,208,"SVN","Slovenia",8,"Podravska",100,"Dornava","Opcine","Commune|Municipality",NA,NA
+101,208,"SVN","Slovenia",8,"Podravska",101,"Duplek","Opcine","Commune|Municipality",NA,NA
+102,208,"SVN","Slovenia",8,"Podravska",102,"Gorišnica","Opcine","Commune|Municipality",NA,NA
+103,208,"SVN","Slovenia",8,"Podravska",103,"Hajdina","Opcine","Commune|Municipality",NA,NA
+104,208,"SVN","Slovenia",8,"Podravska",104,"Hoce-Slivnica","Opcine","Commune|Municipality",NA,NA
+105,208,"SVN","Slovenia",8,"Podravska",105,"Juršinci","Opcine","Commune|Municipality",NA,NA
+106,208,"SVN","Slovenia",8,"Podravska",106,"Kidricevo","Opcine","Commune|Municipality",NA,NA
+107,208,"SVN","Slovenia",8,"Podravska",107,"Kungota","Opcine","Commune|Municipality",NA,NA
+108,208,"SVN","Slovenia",8,"Podravska",108,"Lenart","Opcine","Commune|Municipality",NA,NA
+109,208,"SVN","Slovenia",8,"Podravska",109,"Lovrenc na Pohorju","Opcine","Commune|Municipality",NA,NA
+110,208,"SVN","Slovenia",8,"Podravska",110,"Majšperk","Opcine","Commune|Municipality",NA,NA
+111,208,"SVN","Slovenia",8,"Podravska",111,"Maribor","Opcine","Commune|Municipality",NA,NA
+112,208,"SVN","Slovenia",8,"Podravska",112,"Markovci","Opcine","Commune|Municipality",NA,NA
+113,208,"SVN","Slovenia",8,"Podravska",113,"Miklavž na Dravskem Polju","Opcine","Commune|Municipality",NA,NA
+114,208,"SVN","Slovenia",8,"Podravska",114,"Oplotnica","Opcine","Commune|Municipality",NA,NA
+115,208,"SVN","Slovenia",8,"Podravska",115,"Ormož","Opcine","Commune|Municipality",NA,NA
+116,208,"SVN","Slovenia",8,"Podravska",116,"Pesnica","Opcine","Commune|Municipality",NA,NA
+117,208,"SVN","Slovenia",8,"Podravska",117,"Podlehnik","Opcine","Commune|Municipality",NA,NA
+118,208,"SVN","Slovenia",8,"Podravska",118,"Ptuj","Opcine","Commune|Municipality",NA,NA
+119,208,"SVN","Slovenia",8,"Podravska",119,"Race-Fram","Opcine","Commune|Municipality",NA,NA
+120,208,"SVN","Slovenia",8,"Podravska",120,"Ruše","Opcine","Commune|Municipality",NA,NA
+121,208,"SVN","Slovenia",8,"Podravska",121,"Selnica ob Dravi","Opcine","Commune|Municipality",NA,NA
+122,208,"SVN","Slovenia",8,"Podravska",122,"Slovenska Bistrica","Opcine","Commune|Municipality",NA,NA
+123,208,"SVN","Slovenia",8,"Podravska",123,"Starše","Opcine","Commune|Municipality",NA,NA
+124,208,"SVN","Slovenia",8,"Podravska",124,"Sveta Ana","Opcine","Commune|Municipality",NA,NA
+125,208,"SVN","Slovenia",8,"Podravska",125,"Sveti Andraž v Slovenskih Goricah","Opcine","Commune|Municipality",NA,NA
+126,208,"SVN","Slovenia",8,"Podravska",126,"Trnovska Vas","Opcine","Commune|Municipality",NA,NA
+127,208,"SVN","Slovenia",8,"Podravska",127,"Videm","Opcine","Commune|Municipality",NA,NA
+128,208,"SVN","Slovenia",8,"Podravska",128,"Zavrc","Opcine","Commune|Municipality",NA,NA
+129,208,"SVN","Slovenia",9,"Pomurska",129,"Šalovci","Opcine","Commune|Municipality",NA,NA
+130,208,"SVN","Slovenia",9,"Pomurska",130,"Crenšovci","Opcine","Commune|Municipality",NA,NA
+131,208,"SVN","Slovenia",9,"Pomurska",131,"Beltinci","Opcine","Commune|Municipality",NA,NA
+132,208,"SVN","Slovenia",9,"Pomurska",132,"Cankova","Opcine","Commune|Municipality",NA,NA
+133,208,"SVN","Slovenia",9,"Pomurska",133,"Dobrovnik","Opcine","Commune|Municipality",NA,"Dobronak"
+134,208,"SVN","Slovenia",9,"Pomurska",134,"Gornja Radgona","Opcine","Commune|Municipality",NA,NA
+135,208,"SVN","Slovenia",9,"Pomurska",135,"Gornji Petrovci","Opcine","Commune|Municipality",NA,NA
+136,208,"SVN","Slovenia",9,"Pomurska",136,"Grad","Opcine","Commune|Municipality",NA,NA
+137,208,"SVN","Slovenia",9,"Pomurska",137,"Hodoš","Opcine","Commune|Municipality",NA,NA
+138,208,"SVN","Slovenia",9,"Pomurska",138,"Kobilje","Opcine","Commune|Municipality",NA,NA
+139,208,"SVN","Slovenia",9,"Pomurska",139,"Križevci","Opcine","Commune|Municipality",NA,NA
+140,208,"SVN","Slovenia",9,"Pomurska",140,"Kuzma","Opcine","Commune|Municipality",NA,NA
+141,208,"SVN","Slovenia",9,"Pomurska",141,"Lendava","Opcine","Commune|Municipality",NA,"Lendva"
+142,208,"SVN","Slovenia",9,"Pomurska",142,"Ljutomer","Opcine","Commune|Municipality",NA,NA
+143,208,"SVN","Slovenia",9,"Pomurska",143,"Moravske Toplice","Opcine","Commune|Municipality",NA,NA
+144,208,"SVN","Slovenia",9,"Pomurska",144,"Murska Sobota","Opcine","Commune|Municipality",NA,NA
+145,208,"SVN","Slovenia",9,"Pomurska",145,"Odranci","Opcine","Commune|Municipality",NA,NA
+146,208,"SVN","Slovenia",9,"Pomurska",146,"Puconci","Opcine","Commune|Municipality",NA,NA
+147,208,"SVN","Slovenia",9,"Pomurska",147,"Radenci","Opcine","Commune|Municipality",NA,NA
+148,208,"SVN","Slovenia",9,"Pomurska",148,"Razkrižje","Opcine","Commune|Municipality",NA,NA
+149,208,"SVN","Slovenia",9,"Pomurska",149,"Rogašovci","Opcine","Commune|Municipality",NA,NA
+150,208,"SVN","Slovenia",9,"Pomurska",150,"Sveti Jurij","Opcine","Commune|Municipality",NA,NA
+151,208,"SVN","Slovenia",9,"Pomurska",151,"Tišina","Opcine","Commune|Municipality",NA,NA
+152,208,"SVN","Slovenia",9,"Pomurska",152,"Turnišce","Opcine","Commune|Municipality",NA,NA
+153,208,"SVN","Slovenia",9,"Pomurska",153,"Velika Polana","Opcine","Commune|Municipality",NA,NA
+154,208,"SVN","Slovenia",9,"Pomurska",154,"Veržej","Opcine","Commune|Municipality",NA,NA
+155,208,"SVN","Slovenia",10,"Savinjska",155,"Šentjur pri Celju","Opcine","Commune|Municipality",NA,NA
+156,208,"SVN","Slovenia",10,"Savinjska",156,"Šmarje pri Jelšah","Opcine","Commune|Municipality",NA,NA
+157,208,"SVN","Slovenia",10,"Savinjska",157,"Šmartno ob Paki","Opcine","Commune|Municipality",NA,NA
+158,208,"SVN","Slovenia",10,"Savinjska",158,"Šoštanj","Opcine","Commune|Municipality",NA,NA
+159,208,"SVN","Slovenia",10,"Savinjska",159,"Štore","Opcine","Commune|Municipality",NA,NA
+160,208,"SVN","Slovenia",10,"Savinjska",160,"Žalec","Opcine","Commune|Municipality",NA,NA
+161,208,"SVN","Slovenia",10,"Savinjska",161,"Bistrica ob Sotli","Opcine","Commune|Municipality",NA,NA
+162,208,"SVN","Slovenia",10,"Savinjska",162,"Braslovce","Opcine","Commune|Municipality",NA,NA
+163,208,"SVN","Slovenia",10,"Savinjska",163,"Celje","Opcine","Commune|Municipality",NA,NA
+164,208,"SVN","Slovenia",10,"Savinjska",164,"Dobje","Opcine","Commune|Municipality",NA,NA
+165,208,"SVN","Slovenia",10,"Savinjska",165,"Dobrna","Opcine","Commune|Municipality",NA,NA
+166,208,"SVN","Slovenia",10,"Savinjska",166,"Gornji Grad","Opcine","Commune|Municipality",NA,NA
+167,208,"SVN","Slovenia",10,"Savinjska",167,"Kozje","Opcine","Commune|Municipality",NA,NA
+168,208,"SVN","Slovenia",10,"Savinjska",168,"Laško","Opcine","Commune|Municipality",NA,NA
+169,208,"SVN","Slovenia",10,"Savinjska",169,"Ljubno","Opcine","Commune|Municipality",NA,NA
+170,208,"SVN","Slovenia",10,"Savinjska",170,"Luce","Opcine","Commune|Municipality",NA,NA
+171,208,"SVN","Slovenia",10,"Savinjska",171,"Mozirje","Opcine","Commune|Municipality",NA,NA
+172,208,"SVN","Slovenia",10,"Savinjska",172,"Nazarje","Opcine","Commune|Municipality",NA,NA
+173,208,"SVN","Slovenia",10,"Savinjska",173,"Podcetrtek","Opcine","Commune|Municipality",NA,NA
+174,208,"SVN","Slovenia",10,"Savinjska",174,"Polzela","Opcine","Commune|Municipality",NA,NA
+175,208,"SVN","Slovenia",10,"Savinjska",175,"Prebold","Opcine","Commune|Municipality",NA,NA
+176,208,"SVN","Slovenia",10,"Savinjska",176,"Radece","Opcine","Commune|Municipality",NA,NA
+177,208,"SVN","Slovenia",10,"Savinjska",177,"Rogaška Slatina","Opcine","Commune|Municipality",NA,NA
+178,208,"SVN","Slovenia",10,"Savinjska",178,"Rogatec","Opcine","Commune|Municipality",NA,NA
+179,208,"SVN","Slovenia",10,"Savinjska",179,"Slovenske Konjice","Opcine","Commune|Municipality",NA,NA
+180,208,"SVN","Slovenia",10,"Savinjska",180,"Solcava","Opcine","Commune|Municipality",NA,NA
+181,208,"SVN","Slovenia",10,"Savinjska",181,"Tabor","Opcine","Commune|Municipality",NA,NA
+182,208,"SVN","Slovenia",10,"Savinjska",182,"Velenje","Opcine","Commune|Municipality",NA,NA
+183,208,"SVN","Slovenia",10,"Savinjska",183,"Vitanje","Opcine","Commune|Municipality",NA,NA
+184,208,"SVN","Slovenia",10,"Savinjska",184,"Vojnik","Opcine","Commune|Municipality",NA,NA
+185,208,"SVN","Slovenia",10,"Savinjska",185,"Vransko","Opcine","Commune|Municipality",NA,NA
+186,208,"SVN","Slovenia",10,"Savinjska",186,"Zrece","Opcine","Commune|Municipality",NA,NA
+187,208,"SVN","Slovenia",11,"Spodnjeposavska",187,"Brežice","Opcine","Commune|Municipality",NA,NA
+188,208,"SVN","Slovenia",11,"Spodnjeposavska",188,"Krško","Opcine","Commune|Municipality",NA,NA
+189,208,"SVN","Slovenia",11,"Spodnjeposavska",189,"Sevnica","Opcine","Commune|Municipality",NA,NA
+190,208,"SVN","Slovenia",12,"Zasavska",190,"Hrastnik","Opcine","Commune|Municipality",NA,NA
+191,208,"SVN","Slovenia",12,"Zasavska",191,"Trbovlje","Opcine","Commune|Municipality",NA,NA
+192,208,"SVN","Slovenia",12,"Zasavska",192,"Zagorje ob Savi","Opcine","Commune|Municipality",NA,NA
