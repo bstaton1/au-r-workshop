@@ -9,6 +9,7 @@ knitr::opts_chunk$set(fig.align = "center")
 library(dplyr)
 library(kableExtra)
 library(knitr)
+I_power = 10
 ```
 
 ## Chapter Overview{-}
@@ -404,14 +405,26 @@ sim_fit = function(n, p_old = 0.10, p_new = 0.25) {
 }
 ```
 
-Next, for steps 4 and 5, set up a **nested `for` loop**. This will have two loops: one that loops over sample sizes for step 5 and one that loops over replicates of each sample size (step 4):
+Next, for steps 4 and 5, set up a **nested `for` loop**. This will have two loops: one that loops over sample sizes for step 5 and one that loops over replicates of each sample size (step 4). First, create the looping objects and containers:
 
-```{r}
+```{r, eval = F}
 I = 500  # the number of replicates at each sample size
 n_try = seq(10, 50, 10)  # the test sample sizes
 N = length(n_try)        # count them
 # container: 
 out = matrix(NA, I, N) # matrix with I rows and N columns
+```
+
+```{r, echo = F}
+I = I_power
+n_try = seq(10, 50, 10)  # the test sample sizes
+N = length(n_try)     
+out = matrix(NA, I, N) # matrix with I rows and N columns
+```
+
+Now perform the nested loop. The inner-loop over iterations will be completed form each element of `n` for the sequence `1:N`. The output (which is one element: `TRUE` or `FALSE` based on the significance of the p-value) is stored in the corresponding row and column for that iteration of that sample size.
+
+```{r}
 for (n in 1:N) {
   for (i in 1:I) {
     out[i,n] = sim_fit(n = n_try[n])
@@ -419,7 +432,7 @@ for (n in 1:N) {
 }
 ```
 
-You now have a matrix of `TRUE` and `FALSE` elements that indicates whether a significant difference was found at the $\alpha = 0.05$ level if the effect was truly as large as you care about. You can obtain the proportion of all the replicates at each sample size that resulted in a significant difference using the `mean` function with `apply`:
+You now have a matrix of `TRUE` and `FALSE` elements that indicates whether a significant difference was found at the $\alpha = 0.05$ level if the effect was truly as large as you care about. You can obtain the proportion of all the replicates at each sample size that resulted in a significant difference using the `mean()` function with `apply()`:
 
 ```{r}
 plot(apply(out, 2, mean) ~ n_try, type = "l",
@@ -457,11 +470,6 @@ sim_fit = function(n, p_old = 0.10, p_new = 0.25) {
   # return a vector with these two elements
   c(sig_pval = sig_pval, prc_est = unname(prc_est))
 }
-
-# run the analysis
-I = 500  # the number of replicates at each sample size
-n_try = seq(10, 50, 10)  # the test sample sizes
-N = length(n_try)      # count them
 
 # containers: 
 out_sig = matrix(NA, I, N) # matrix with I rows and N columns
