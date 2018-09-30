@@ -248,7 +248,7 @@ plot(railways, add = T, col = "red", lwd = 3)
 
 ### Plotting Selections {#plot-selections}
 
-In GIS, a subset is often called a **selection**: it is a smaller subset of your larger data layers. You may want to see the relocation events for each individual bear at a time. Use `sapply()` to apply a function to plot each bear's detected movement trajectory on a separate map. Wrap your code inside of a new PDF device (described in Section \@ref(file-devices)) so you can scroll through the plots separately:
+In GIS, a subset is often called a **selection**: it is a smaller subset of your larger data layers. You may want to see the relocation events for each individual bear at a time. Use `sapply()` to apply a function to plot each bear's track on a separate map. Wrap your code inside of a new PDF device (described in Section \@ref(file-devices)) so you can scroll through the plots separately:
 
 ```{r, results = "hide", eval = F}
 pdf("Relocations.pdf", h = 5, w = 5)
@@ -268,7 +268,7 @@ When you run this code, it will look like nothing happened. Go to your working d
 
 ## Manipulating Spatial Data {#ManipSpat} 
 
-Now that you have some data and you've taken a look at it, it's time to learn a few tricks for manipulating them. Looking at your map, see that some of the bears were detected outside of Slovenia. (Bonus points if you can name the country they're in). Suppose the Slovenian government can't build wildlife crossings in other countries, so you want to clip the bear data to the extent of Slovenia.
+Now that you have some data and you've taken a look at it, it's time to learn a few tricks for manipulating them. Looking at your map, see that some of the bears were detected outside of Slovenia. (Bonus points if you can name the country they're in). Suppose the Slovenian government can't build wildlife crossings in other countries, so you want to clip the bear data to the boundary of Slovenia.
 
 ### Changing the CRS {#crs}
 
@@ -300,9 +300,14 @@ plot(railways, add = T, col = "red", lwd = 3)
 
 ### Adding Attributes
 
-What if you wanted to add an attribute to a points object, like which polygon it occurs in? In order to figure out how many bear relocations were documented in each statistical region of Slovenia, you'll have to merge the two objects.
+What if you wanted to add an attribute to a points object, like which polygon it occurs in? Say you wanted to know what statistical region each bear relocation happened in. You can find this by extracting the attribute values of one layer (a target) at locations of another layer (a source) with the over() function from {sp}. Then, you can recombine those attribute values with spCbind. In this case, the target is the stats layer, and the source is bear layer. the source always comes before the target. The return value is an aggregated dataframe, which we will call bearstats.
 
-**DOES SOMETHING ELSE GO HERE??**
+```{r}
+bearstats <- over(bear,stats)
+head(bearstats)
+bear <- spCbind(bearstats$NAME_1,bear) #the names of the statistcal regions are in the NAME_1 column.
+table(bear$NAME_1) #how many relocations occurred in each statistical region?
+```
 
 ## Analysis {#Anal} 
 
@@ -375,12 +380,13 @@ bearlines = points_to_line(
   id_field="ID", sort_field = "timestamp")
 ```
 
-Now that your points have been turned into tracks for each bear, see where they intersect using the `gIntersection()` function from the `{rgeos}` package. Hang on though, this will take your computer a while to run (between 5 and 20 minutes). You can start a timer as well:
+Now that your points have been turned into tracks for each bear, see where they intersect using the `gIntersection()` function from the `{rgeos}` package. Hang on though, this will take your computer a while to run (between 5 and 20 minutes). You can start a timer with a beeper that goes off when it finishes running:
 
 ```{r, eval = F}
+library(beepr)
 start = Sys.time()
 crossings = gIntersection(bearlines, railways) 
-Sys.time() - start
+Sys.time() - start; beep(10)
 ```
 
 ```{r, echo = F}
@@ -471,14 +477,15 @@ leaflet() %>%
 2.  How many caves are there?
 3.  How many caves are in each statistical area?
 4.  Which bear has the most caves in its homerange?
+5.  How far from the centroid of their homerange are the caves? (Hint: 
 
 ## Exercise 6 Bonus
 
-1.  use the...
+1.  Use the 
 
 2.  Find some data online for a system you are interested in and do similar activities as shown in this chapter. Good examples for obtaining open access spatial data are: 
 
-*  <HELPFUL.WEBSITE.#1>
-*  <HELPFUL.WEBSITE.#2>
-*  <HELPFUL.WEBSITE.#3>
+*  <GADM for administrative boundaries>
+*  <movebank for animal tracking data>
+*  <USGS>
 *  <HELPFUL.WEBSITE.#4>
