@@ -47,6 +47,21 @@
 
 
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.2/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.1.17/leaflet-providers.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.2/leaflet-providers-plugin.js"></script>
+<link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.css" rel="stylesheet" />
+<link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.Default.css" rel="stylesheet" />
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.js"></script>
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.freezable.js"></script>
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.layersupport.js"></script>
 
 
 <style type="text/css">
@@ -163,7 +178,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.9" data-path="ch2.html"><a href="ch2.html#legends"><i class="fa fa-check"></i><b>2.9</b> Legends</a></li>
 <li class="chapter" data-level="2.10" data-path="ch2.html"><a href="ch2.html#exporting-plots"><i class="fa fa-check"></i><b>2.10</b> Exporting Plots</a><ul>
 <li class="chapter" data-level="2.10.1" data-path="ch2.html"><a href="ch2.html#click-save"><i class="fa fa-check"></i><b>2.10.1</b> Click Save</a></li>
-<li class="chapter" data-level="2.10.2" data-path="ch2.html"><a href="ch2.html#use-a-function-to-place-plot-in-a-new-file"><i class="fa fa-check"></i><b>2.10.2</b> Use a function to place plot in a new file</a></li>
+<li class="chapter" data-level="2.10.2" data-path="ch2.html"><a href="ch2.html#file-devices"><i class="fa fa-check"></i><b>2.10.2</b> Use a function to place plot in a new file</a></li>
 </ul></li>
 <li class="chapter" data-level="2.11" data-path="ch2.html"><a href="ch2.html#error-bars"><i class="fa fa-check"></i><b>2.11</b> Bonus Topic: Error Bars</a></li>
 <li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#ex2"><i class="fa fa-check"></i>Exercise 2</a><ul>
@@ -242,7 +257,35 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="ch5.html"><a href="ch5.html#exercise-5-bonus"><i class="fa fa-check"></i>Exercise 5 Bonus</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="ch6.html"><a href="ch6.html"><i class="fa fa-check"></i><b>6</b> Mapping and Spatial Analysis</a></li>
+<li class="chapter" data-level="6" data-path="ch6.html"><a href="ch6.html"><i class="fa fa-check"></i><b>6</b> Mapping and Spatial Analysis</a><ul>
+<li class="chapter" data-level="6.1" data-path="ch6.html"><a href="ch6.html#ch6overview"><i class="fa fa-check"></i><b>6.1</b> Chapter Overview</a></li>
+<li class="chapter" data-level="6.2" data-path="ch6.html"><a href="ch6.html#ch6beforeyoubegin"><i class="fa fa-check"></i><b>6.2</b> Before You Begin</a></li>
+<li class="chapter" data-level="6.3" data-path="ch6.html"><a href="ch6.html#intro"><i class="fa fa-check"></i><b>6.3</b> Geospatial Data</a></li>
+<li class="chapter" data-level="6.4" data-path="ch6.html"><a href="ch6.html#Import"><i class="fa fa-check"></i><b>6.4</b> Importing Geospatial Data</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="ch6.html"><a href="ch6.html#csv-files-1"><i class="fa fa-check"></i><b>6.4.1</b> <code>.csv</code> files</a></li>
+<li class="chapter" data-level="6.4.2" data-path="ch6.html"><a href="ch6.html#shp-files"><i class="fa fa-check"></i><b>6.4.2</b> <code>.shp</code> files</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="ch6.html"><a href="ch6.html#SpatPlot"><i class="fa fa-check"></i><b>6.5</b> Plotting</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="ch6.html"><a href="ch6.html#zoom"><i class="fa fa-check"></i><b>6.5.1</b> Zooming</a></li>
+<li class="chapter" data-level="6.5.2" data-path="ch6.html"><a href="ch6.html#plot-selections"><i class="fa fa-check"></i><b>6.5.2</b> Plotting Selections</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="ch6.html"><a href="ch6.html#ManipSpat"><i class="fa fa-check"></i><b>6.6</b> Manipulating Spatial Data</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="ch6.html"><a href="ch6.html#crs"><i class="fa fa-check"></i><b>6.6.1</b> Changing the CRS</a></li>
+<li class="chapter" data-level="6.6.2" data-path="ch6.html"><a href="ch6.html#clip"><i class="fa fa-check"></i><b>6.6.2</b> Clipping</a></li>
+<li class="chapter" data-level="6.6.3" data-path="ch6.html"><a href="ch6.html#adding-attributes"><i class="fa fa-check"></i><b>6.6.3</b> Adding Attributes</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="ch6.html"><a href="ch6.html#Anal"><i class="fa fa-check"></i><b>6.7</b> Analysis</a><ul>
+<li class="chapter" data-level="6.7.1" data-path="ch6.html"><a href="ch6.html#hr-Anal"><i class="fa fa-check"></i><b>6.7.1</b> Home Range Analysis</a></li>
+<li class="chapter" data-level="6.7.2" data-path="ch6.html"><a href="ch6.html#finding-intersections-between-two-layers"><i class="fa fa-check"></i><b>6.7.2</b> Finding Intersections Between Two Layers</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="ch6.html"><a href="ch6.html#PresentMap"><i class="fa fa-check"></i><b>6.8</b> Creating a Presentable Map</a></li>
+<li class="chapter" data-level="6.9" data-path="ch6.html"><a href="ch6.html#other-r-mapping-packages"><i class="fa fa-check"></i><b>6.9</b> Other R Mapping Packages</a><ul>
+<li class="chapter" data-level="6.9.1" data-path="ch6.html"><a href="ch6.html#ggmap"><i class="fa fa-check"></i><b>6.9.1</b> <code>{ggmap}</code></a></li>
+<li class="chapter" data-level="6.9.2" data-path="ch6.html"><a href="ch6.html#leaflet"><i class="fa fa-check"></i><b>6.9.2</b> <code>{leaflet}</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch6.html"><a href="ch6.html#ex6"><i class="fa fa-check"></i>Exercise 6</a></li>
+<li class="chapter" data-level="6.10" data-path="ch6.html"><a href="ch6.html#exercise-6-bonus"><i class="fa fa-check"></i><b>6.10</b> Exercise 6 Bonus</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="exercise-solutions.html"><a href="exercise-solutions.html"><i class="fa fa-check"></i>Exercise Solutions</a><ul>
 <li class="chapter" data-level="" data-path="exercise-solutions.html"><a href="exercise-solutions.html#ex1a-answers"><i class="fa fa-check"></i>Exercise 1A Solutions</a></li>
 <li class="chapter" data-level="" data-path="exercise-solutions.html"><a href="exercise-solutions.html#ex1b-answers"><i class="fa fa-check"></i>Exercise 1B Solutions</a></li>
@@ -621,7 +664,7 @@ n_hrs =<span class="st"> </span><span class="kw">sort</span>(dat<span class="op"
 </ul>
 <p>All plots will be saved in the working directory by default. You can also just copy the plot to your clipboard (<em>File &gt; Copy to the clipboard &gt; bitmap</em>) and paste it where you want. You should saving one of the plots you made in this Chapter using this approach.</p>
 </div>
-<div id="use-a-function-to-place-plot-in-a-new-file" class="section level3">
+<div id="file-devices" class="section level3">
 <h3><span class="header-section-number">2.10.2</span> Use a function to place plot in a new file</h3>
 <p>If you are producing plots for a final report or publication, you want the output to be as clean-looking as possible and you want them to be fully reproducible so when something changes with your data or analysis in review, you can reproduce the same figure with the new results. You can save high-resolution plots through R by using the following steps:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># step 1: Make a pixels per inch object</span>

@@ -33,7 +33,7 @@ For this chapter, it will be helpful to have the data in your working directory.
   
   1.  a file named `bear.csv`,
   2.  folders named `railways`, `states`, and `SVN_adm`, and
-  3.  an R script called `points_to_line.R`. 
+  3.  an R script called `points_to_line.R` [@points-line-cite]. 
   
 Copy (or cut if you'd like) all of these files/folders from `Data/Ch6` into your working directory. 
         
@@ -351,7 +351,7 @@ lines(railways, lwd = 3,col = "red")
 
 ### Finding Intersections Between Two Layers
 
-Now that you know which bears crossed the railroad, find out where. You'll need a user-defined function called `points_to_line()`, which is stored as a script file in your working directory. If you ever write a function, you can store it in a script file, and then bring it into your current session using the `source()` function. This prevents you from needing to paste all the function code every time you want to use it in a new script. Save as many functions as you want in a single script, and they will all be added to your Global Environment when you `source()` the file^[For projects with many user-defined functions, you may be better off creating a `./Functions` directory and housing multiple scripts there. Better yet, you can create your own package for personal use. Look into the `{devtools}` and `{roxygen2}` packages].
+Now that you know which bears crossed the railroad, find out where. You'll need a user-defined function called `points_to_line()`, which is stored as a script file in your working directory [@points-line-cite]. If you ever write a function, you can store it in a script file, and then bring it into your current session using the `source()` function. This prevents you from needing to paste all the function code every time you want to use it in a new script. Save as many functions as you want in a single script, and they will all be added to your Global Environment when you `source()` the file^[For projects with many user-defined functions, you may be better off creating a `./Functions` directory and housing multiple scripts there. Better yet, you can create your own package for personal use. Look into the `{devtools}` and `{roxygen2}` packages].
 
 ```{r, eval = F}
 source("points_to_line.R")
@@ -429,7 +429,7 @@ plot(crossings, add = T, pch = 17, col = "blue")
 
 ## Other R Mapping Packages
 
-This chapter has covered many of R's basic mapping capabilities using the built-in `plot()` functionality, but there are certainly other frameworks in R. Here are a few examples. 
+This chapter has covered many of R's basic mapping capabilities using the built-in `plot()` functionality, but there are certainly other frameworks in R. Here are a few examples, and a quick Google search should provide you with plenty of information to get up and running.
 
 ### `{ggmap}`
 
@@ -445,9 +445,9 @@ qmap(location = "boston university")
 
 ### `{leaflet}` {#leaflet}
 
-This package allows you to make interactive maps. This will only work if your output is HTML-based^[If you're viewing this in PDF format, go to: <https://bstaton1.github.io/au-r-workshop/ch6.html#leaflet> to view the interactive version]
+This package allows you to make interactive maps. This will only work if your output is HTML-based^[If you're viewing this in PDF format, go to: <https://bstaton1.github.io/au-r-workshop/ch6.html#leaflet> to view the interactive version. Better yet, install `{leaflet}`, and try it yourself!]
 
-```{r}
+```{r, eval = knitr::is_html_output()}
 library(leaflet)
 leaflet() %>%
   #add a basemap

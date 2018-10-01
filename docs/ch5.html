@@ -47,6 +47,21 @@
 
 
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.2/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.1.17/leaflet-providers.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.2/leaflet-providers-plugin.js"></script>
+<link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.css" rel="stylesheet" />
+<link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.Default.css" rel="stylesheet" />
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.js"></script>
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.freezable.js"></script>
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.layersupport.js"></script>
 
 
 <style type="text/css">
@@ -163,7 +178,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.9" data-path="ch2.html"><a href="ch2.html#legends"><i class="fa fa-check"></i><b>2.9</b> Legends</a></li>
 <li class="chapter" data-level="2.10" data-path="ch2.html"><a href="ch2.html#exporting-plots"><i class="fa fa-check"></i><b>2.10</b> Exporting Plots</a><ul>
 <li class="chapter" data-level="2.10.1" data-path="ch2.html"><a href="ch2.html#click-save"><i class="fa fa-check"></i><b>2.10.1</b> Click Save</a></li>
-<li class="chapter" data-level="2.10.2" data-path="ch2.html"><a href="ch2.html#use-a-function-to-place-plot-in-a-new-file"><i class="fa fa-check"></i><b>2.10.2</b> Use a function to place plot in a new file</a></li>
+<li class="chapter" data-level="2.10.2" data-path="ch2.html"><a href="ch2.html#file-devices"><i class="fa fa-check"></i><b>2.10.2</b> Use a function to place plot in a new file</a></li>
 </ul></li>
 <li class="chapter" data-level="2.11" data-path="ch2.html"><a href="ch2.html#error-bars"><i class="fa fa-check"></i><b>2.11</b> Bonus Topic: Error Bars</a></li>
 <li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#ex2"><i class="fa fa-check"></i>Exercise 2</a><ul>
@@ -242,7 +257,35 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="ch5.html"><a href="ch5.html#exercise-5-bonus"><i class="fa fa-check"></i>Exercise 5 Bonus</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="ch6.html"><a href="ch6.html"><i class="fa fa-check"></i><b>6</b> Mapping and Spatial Analysis</a></li>
+<li class="chapter" data-level="6" data-path="ch6.html"><a href="ch6.html"><i class="fa fa-check"></i><b>6</b> Mapping and Spatial Analysis</a><ul>
+<li class="chapter" data-level="6.1" data-path="ch6.html"><a href="ch6.html#ch6overview"><i class="fa fa-check"></i><b>6.1</b> Chapter Overview</a></li>
+<li class="chapter" data-level="6.2" data-path="ch6.html"><a href="ch6.html#ch6beforeyoubegin"><i class="fa fa-check"></i><b>6.2</b> Before You Begin</a></li>
+<li class="chapter" data-level="6.3" data-path="ch6.html"><a href="ch6.html#intro"><i class="fa fa-check"></i><b>6.3</b> Geospatial Data</a></li>
+<li class="chapter" data-level="6.4" data-path="ch6.html"><a href="ch6.html#Import"><i class="fa fa-check"></i><b>6.4</b> Importing Geospatial Data</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="ch6.html"><a href="ch6.html#csv-files-1"><i class="fa fa-check"></i><b>6.4.1</b> <code>.csv</code> files</a></li>
+<li class="chapter" data-level="6.4.2" data-path="ch6.html"><a href="ch6.html#shp-files"><i class="fa fa-check"></i><b>6.4.2</b> <code>.shp</code> files</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="ch6.html"><a href="ch6.html#SpatPlot"><i class="fa fa-check"></i><b>6.5</b> Plotting</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="ch6.html"><a href="ch6.html#zoom"><i class="fa fa-check"></i><b>6.5.1</b> Zooming</a></li>
+<li class="chapter" data-level="6.5.2" data-path="ch6.html"><a href="ch6.html#plot-selections"><i class="fa fa-check"></i><b>6.5.2</b> Plotting Selections</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="ch6.html"><a href="ch6.html#ManipSpat"><i class="fa fa-check"></i><b>6.6</b> Manipulating Spatial Data</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="ch6.html"><a href="ch6.html#crs"><i class="fa fa-check"></i><b>6.6.1</b> Changing the CRS</a></li>
+<li class="chapter" data-level="6.6.2" data-path="ch6.html"><a href="ch6.html#clip"><i class="fa fa-check"></i><b>6.6.2</b> Clipping</a></li>
+<li class="chapter" data-level="6.6.3" data-path="ch6.html"><a href="ch6.html#adding-attributes"><i class="fa fa-check"></i><b>6.6.3</b> Adding Attributes</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="ch6.html"><a href="ch6.html#Anal"><i class="fa fa-check"></i><b>6.7</b> Analysis</a><ul>
+<li class="chapter" data-level="6.7.1" data-path="ch6.html"><a href="ch6.html#hr-Anal"><i class="fa fa-check"></i><b>6.7.1</b> Home Range Analysis</a></li>
+<li class="chapter" data-level="6.7.2" data-path="ch6.html"><a href="ch6.html#finding-intersections-between-two-layers"><i class="fa fa-check"></i><b>6.7.2</b> Finding Intersections Between Two Layers</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="ch6.html"><a href="ch6.html#PresentMap"><i class="fa fa-check"></i><b>6.8</b> Creating a Presentable Map</a></li>
+<li class="chapter" data-level="6.9" data-path="ch6.html"><a href="ch6.html#other-r-mapping-packages"><i class="fa fa-check"></i><b>6.9</b> Other R Mapping Packages</a><ul>
+<li class="chapter" data-level="6.9.1" data-path="ch6.html"><a href="ch6.html#ggmap"><i class="fa fa-check"></i><b>6.9.1</b> <code>{ggmap}</code></a></li>
+<li class="chapter" data-level="6.9.2" data-path="ch6.html"><a href="ch6.html#leaflet"><i class="fa fa-check"></i><b>6.9.2</b> <code>{leaflet}</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch6.html"><a href="ch6.html#ex6"><i class="fa fa-check"></i>Exercise 6</a></li>
+<li class="chapter" data-level="6.10" data-path="ch6.html"><a href="ch6.html#exercise-6-bonus"><i class="fa fa-check"></i><b>6.10</b> Exercise 6 Bonus</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="exercise-solutions.html"><a href="exercise-solutions.html"><i class="fa fa-check"></i>Exercise Solutions</a><ul>
 <li class="chapter" data-level="" data-path="exercise-solutions.html"><a href="exercise-solutions.html#ex1a-answers"><i class="fa fa-check"></i>Exercise 1A Solutions</a></li>
 <li class="chapter" data-level="" data-path="exercise-solutions.html"><a href="exercise-solutions.html#ex1b-answers"><i class="fa fa-check"></i>Exercise 1B Solutions</a></li>
@@ -413,14 +456,14 @@ y15 =<span class="st"> </span><span class="kw">subset</span>(dat, year <span cla
 <span class="kw">lines</span>(esc <span class="op">~</span><span class="st"> </span>doy, <span class="dt">data =</span> y15, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)
 <span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;Catch&quot;</span>, <span class="st">&quot;Escapement&quot;</span>), 
        <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>), <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">lty =</span> <span class="dv">1</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">cex =</span> <span class="fl">0.8</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-221-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-223-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Notice how the escapement counts are shifted to the right by one day. This is the lag. To account for it, you can use the <code>lag()</code> function from <code>{dplyr}</code>. <code>lag()</code> works by lagging some vector by <code>n</code> elements (it shifts every element in the vector to the right by one place by putting <code>n</code> <code>NAs</code> at the front and removing the last <code>n</code> elements from the original vector). One way to fix the lag problem would be to use <code>lag()</code> on <code>catch</code> to make the days match up with <code>esc</code> (don’t lag <code>esc</code> because that would just lag it by <code>n</code> additional days):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">lag</span>(catch, <span class="dt">n =</span> <span class="dv">1</span>) <span class="op">~</span><span class="st"> </span>doy, <span class="dt">data =</span> y15, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>,
      <span class="dt">xlab =</span> <span class="st">&quot;DOY&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Count&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;With lag(catch)&quot;</span>)
 <span class="kw">lines</span>(esc <span class="op">~</span><span class="st"> </span>doy, <span class="dt">data =</span> y15, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)
 <span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;Catch&quot;</span>, <span class="st">&quot;Escapement&quot;</span>),
        <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>), <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">lty =</span> <span class="dv">1</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">cex =</span> <span class="fl">0.8</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-222-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-224-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Notice how the two curves line up better now.</p>
 </div>
 <div id="adding-columns-with-mutate" class="section level2">
@@ -442,7 +485,7 @@ y15 =<span class="st"> </span><span class="kw">subset</span>(dat, year <span cla
 <p>Here is one advantage of <code>mutate()</code>: you can refer to a variable you just created to make a new variable within the same function. You would have to split this into two lines to do it in <code>{base}</code>. Indeed, you could have made <code>run</code>, <code>crun</code>, and <code>cprun</code> all in the same <code>mutate()</code> call. Plot <code>cprun</code><a href="#fn39" class="footnoteRef" id="fnref39"><sup>39</sup></a>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(cprun <span class="op">~</span><span class="st"> </span>doy, <span class="dt">data =</span> y15, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),
      <span class="dt">xlab =</span> <span class="st">&quot;DOY&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Cumulative Run Proportion&quot;</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-228-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-230-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="apply-to-all-years" class="section level2">
 <h2><span class="header-section-number">5.7</span> Apply to all years</h2>
@@ -488,7 +531,7 @@ tmp =<span class="st"> </span><span class="kw">sapply</span>(years, <span class=
   <span class="kw">lines</span>(cprun <span class="op">~</span><span class="st"> </span>doy, <span class="dt">data =</span> <span class="kw">filter</span>(dat, year <span class="op">==</span><span class="st"> </span>x),
         <span class="dt">col =</span> <span class="kw">ifelse</span>(x <span class="op">==</span><span class="st"> &quot;y_2015&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;grey&quot;</span>))
 })</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-232-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-234-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="calculate-daily-means-with-summarize" class="section level2">
 <h2><span class="header-section-number">5.8</span> Calculate Daily Means with <code>summarize()</code></h2>
@@ -542,7 +585,7 @@ dat <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">min =</span> <span class="kw">min</span>(cprun), <span class="dt">max =</span> <span class="kw">max</span>(cprun))</code></pre></div>
 <p>Add the mean cumulative run proportion to our plot (use <code>lines()</code> just like before, add it after the <code>sapply()</code> call):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lines</span>(cprun <span class="op">~</span><span class="st"> </span>doy, <span class="dt">data =</span> mean_cprun, <span class="dt">lwd =</span> <span class="dv">3</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-238-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-240-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>It looks like 2015 started like an average year but the peak of the run happened a couple days earlier than average.</p>
 </div>
 <div id="more-summarize" class="section level2">
@@ -592,7 +635,7 @@ med_doy<span class="op">$</span>year =<span class="st"> </span>
 <span class="st">  </span>as.integer
 
 <span class="kw">plot</span>(doy <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> med_doy, <span class="dt">pch =</span> <span class="dv">16</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-243-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-245-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>It doesn’t appear that there is a trend in either direction, but fit a regression line because you can (Section <a href="ch3.html#regression">3.1.1</a>):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit =<span class="st"> </span><span class="kw">lm</span>(doy <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> med_doy)
 <span class="kw">summary</span>(fit)<span class="op">$</span>coef</code></pre></div>
@@ -601,7 +644,7 @@ med_doy<span class="op">$</span>year =<span class="st"> </span>
 ## year         -0.005138055  0.01414108 -0.3633424 7.179445e-01</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(doy <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> med_doy, <span class="dt">pch =</span> <span class="dv">16</span>)
 <span class="kw">abline</span>(fit, <span class="dt">lty =</span> <span class="dv">2</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-244-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-246-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The results tell you that there is a 0.005 day decrease in median run date for every 1 year that has gone by and that it is not significantly different from a zero day decrease per year.</p>
 </div>
 <div id="fit-the-model" class="section level2">
@@ -661,7 +704,7 @@ R_line =<span class="st"> </span><span class="kw">exp</span>(<span class="kw">ri
 <span class="kw">lines</span>(R_line <span class="op">~</span><span class="st"> </span>S_line, <span class="dt">lwd =</span><span class="dv">3</span>)
 <span class="co"># draw the 1:1 line</span>
 <span class="kw">abline</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dt">lty =</span> <span class="dv">2</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-249-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-251-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The diagonal line is the <strong>1:1 replacement line</strong>: where 1 spawner would produce 1 recruit. The distance between this line and the curve is the theoretical <strong>harvestable surplus</strong> available at each spawner abundance that would keep the stock at a fixed abundance. The biological reference points that might be used in harvest management are:</p>
 <span class="math display" id="eq:ricker-brps">\[\begin{eqnarray*}
 &amp;&amp; S_{MAX}=\frac{1}{\beta},\\
@@ -680,7 +723,7 @@ brps =<span class="st"> </span><span class="kw">round</span>(<span class="kw">c<
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">abline</span>(<span class="dt">v =</span> brps, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)
 <span class="kw">text</span>(<span class="dt">x =</span> brps, <span class="dt">y =</span> <span class="kw">max</span>(R_fit) <span class="op">*</span><span class="st"> </span><span class="fl">1.08</span>, 
      <span class="dt">labels =</span> <span class="kw">names</span>(brps), <span class="dt">xpd =</span> T, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-252-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-254-1.png" width="672" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 <div id="exercise-5" class="section level2 unnumbered">

@@ -46,6 +46,22 @@
 
 
 
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.2/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.1.17/leaflet-providers.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.2/leaflet-providers-plugin.js"></script>
+<link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.css" rel="stylesheet" />
+<link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.Default.css" rel="stylesheet" />
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.js"></script>
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.freezable.js"></script>
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.layersupport.js"></script>
 
 
 <style type="text/css">
@@ -185,9 +201,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="ch3.html"><a href="ch3.html#dists"><i class="fa fa-check"></i><b>3.3</b> Probability Distributions</a></li>
 <li class="chapter" data-level="3.4" data-path="ch3.html"><a href="ch3.html#nls"><i class="fa fa-check"></i><b>3.4</b> Bonus Topic: Non-linear Regression</a></li>
-<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#exercise-3"><i class="fa fa-check"></i>Exercise 3</a><ul>
-<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#exercise-3-bonus"><i class="fa fa-check"></i>Exercise 3 Bonus</a></li>
-</ul></li>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#exercise-3"><i class="fa fa-check"></i>Exercise 3</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="ch4.html"><a href="ch4.html"><i class="fa fa-check"></i><b>4</b> Monte Carlo Methods</a><ul>
 <li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#chapter-overview-3"><i class="fa fa-check"></i>Chapter Overview</a></li>
@@ -313,7 +327,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p><strong>1. Create a new file in your working directory called <code>Ex1A.R</code>.</strong></p>
 <p>Go to <em>File &gt; New File &gt; R Script</em>. This will create an untitled R script. Go the <em>File &gt; Save</em>, give it the appropriate name and click <em>Save</em>. If your working directory is already set to <code>C:/Users/YOU/Documents/R-Book/Chapter1</code>, then the file will be saved there by default.</p>
 <p>You can create a new script using <strong>CTRL + SHIFT + N</strong> as well.</p>
-<p><strong>2. Enter these data (found in Table <a href="#tab:ex-1-table-html"><strong>??</strong></a>) into vectors. Call the vectors whatever you would like. Should you enter the data as vectors by rows, or by columns? (Hint: remember the properties of vectors).</strong></p>
+<p><strong>2. Enter these data (found in Table <a href="ch1.html#tab:ex-1-table-html">1.1</a>) into vectors. Call the vectors whatever you would like. Should you enter the data as vectors by rows, or by columns? (Hint: remember the properties of vectors).</strong></p>
 <p>Because you have both numeric and character data classes for a single row, you should enter them by columns:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Lake =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Big&quot;</span>, <span class="st">&quot;Small&quot;</span>, <span class="st">&quot;Square&quot;</span>, <span class="st">&quot;Circle&quot;</span>)
 Area =<span class="st"> </span><span class="kw">c</span>(<span class="dv">100</span>, <span class="dv">25</span>, <span class="dv">45</span>, <span class="dv">30</span>)
@@ -424,7 +438,7 @@ df<span class="op">$</span>Fish[<span class="kw">c</span>(<span class="dv">1</sp
      <span class="dt">pch =</span> <span class="dv">17</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">cex =</span> <span class="fl">1.5</span>,
      <span class="dt">xlab =</span> <span class="st">&quot;Weight (g)&quot;</span>, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">600</span>, <span class="dv">3000</span>),
      <span class="dt">ylab =</span> <span class="st">&quot;Fecundity (#eggs)&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">3500</span>))</code></pre></div>
-<p>All of these arguments are found in Table <a href="#tab:plot-arg-table-html"><strong>??</strong></a>.</p>
+<p>All of these arguments are found in Table <a href="ch2.html#tab:plot-arg-table-html">2.1</a>.</p>
 <p><strong>4. Add points that do the same thing but for hatchery fish. Use a different plotting character and a different color.</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">points</span>(fecund <span class="op">~</span><span class="st"> </span>weight, <span class="dt">data =</span> dat[dat<span class="op">$</span>type <span class="op">==</span><span class="st"> &quot;wild&quot;</span>,],
        <span class="dt">pch =</span> <span class="dv">15</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">cex =</span> <span class="fl">1.5</span>)</code></pre></div>
@@ -499,7 +513,7 @@ fit1 =<span class="st"> </span><span class="kw">glm</span>(binary <span class="o
 fit2 =<span class="st"> </span><span class="kw">glm</span>(binary <span class="op">~</span><span class="st"> </span>type, <span class="dt">data =</span> dat, <span class="dt">family =</span> binomial)
 fit3 =<span class="st"> </span><span class="kw">glm</span>(binary <span class="op">~</span><span class="st"> </span>egg_size <span class="op">+</span><span class="st"> </span>type, <span class="dt">data =</span> dat, <span class="dt">family =</span> binomial)
 fit4 =<span class="st"> </span><span class="kw">glm</span>(binary <span class="op">~</span><span class="st"> </span>egg_size <span class="op">*</span><span class="st"> </span>type, <span class="dt">data =</span> dat, <span class="dt">family =</span> binomial)</code></pre></div>
-<p><strong>3. Make the same graphic as in Figure <a href="#fig:norm-plots"><strong>??</strong></a> with at least one of the other distributions listed in Table <a href="#tab:dist-table-html"><strong>??</strong></a> (other than the multinomial - being a multivariate distribution, it wouldn’t work well with this code). Try thinking of a variable from your work that meets the uses of each distribution in Table <a href="#tab:dist-table-html"><strong>??</strong></a> (or one that’s not listed). If you run into trouble, check out the help file for that distribution.</strong></p>
+<p><strong>3. Make the same graphic as in Figure <a href="ch3.html#fig:norm-plots">3.1</a> with at least one of the other distributions listed in Table <a href="ch3.html#tab:dist-table-html">3.1</a> (other than the multinomial - being a multivariate distribution, it wouldn’t work well with this code). Try thinking of a variable from your work that meets the uses of each distribution in Table <a href="ch3.html#tab:dist-table-html">3.1</a> (or one that’s not listed). If you run into trouble, check out the help file for that distribution.</strong></p>
 <p>This example uses the lognormal distribution, with <code>meanlog = 10</code> and <code>sdlog = 0.25</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># parameters</span>
 meanlog =<span class="st"> </span><span class="dv">10</span>; sdlog =<span class="st"> </span><span class="fl">0.25</span>
@@ -535,8 +549,8 @@ random =<span class="st"> </span><span class="kw">rlnorm</span>(<span class="dt"
 <span class="kw">hist</span>(random, <span class="dt">breaks =</span> <span class="dv">50</span>, <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;rlnorm()&quot;</span>,
      <span class="dt">xlab =</span> <span class="st">&quot;Fish Length (mm)&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Frequency&quot;</span>, <span class="dt">las =</span> <span class="dv">1</span>)
 <span class="kw">box</span>() <span class="co"># add borders to the histogram</span></code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-39-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p><strong>Bonus 1. Fit a von Bertalannfy growth model to the data found in the <code>growth.csv</code> data file. Visit Section <a href="ch4.html#boot-test-ex">4.7.1</a> (particularly Equation <a href="#eq:vonB">(<strong>??</strong>)</a>) for details on this model. Use the initial values: <code>linf = 600</code>, <code>k = 0.3</code>, <code>t0 = -0.2</code>. Plot the fitted line over top of the data.</strong></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-325-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><strong>Bonus 1. Fit a von Bertalannfy growth model to the data found in the <code>growth.csv</code> data file. Visit Section <a href="ch4.html#boot-test-ex">4.7.1</a> (particularly Equation <a href="ch4.html#eq:vonB">(4.2)</a>) for details on this model. Use the initial values: <code>linf = 600</code>, <code>k = 0.3</code>, <code>t0 = -0.2</code>. Plot the fitted line over top of the data.</strong></p>
 <p>Read in the data:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../Data/growth.csv&quot;</span>)</code></pre></div>
 <p>Fit the model:</p>
@@ -548,7 +562,7 @@ pred_length =<span class="st"> </span><span class="kw">predict</span>(fit, <span
 
 <span class="kw">plot</span>(length <span class="op">~</span><span class="st"> </span>age, <span class="dt">data =</span> dat)
 <span class="kw">lines</span>(pred_length <span class="op">~</span><span class="st"> </span>ages, <span class="dt">lwd =</span> <span class="dv">3</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-43-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-329-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="ex4a-answers" class="section level2 unnumbered">
 <h2>Exercise 4A Solutions</h2>
@@ -586,7 +600,7 @@ beta_shape =<span class="st"> </span><span class="kw">c</span>(mean_p <span clas
 random_q =<span class="st"> </span><span class="kw">quantile</span>(random, p)
 beta_q =<span class="st"> </span><span class="kw">qbeta</span>(p, beta_shape[<span class="dv">1</span>], beta_shape[<span class="dv">2</span>])
 <span class="kw">plot</span>(beta_q <span class="op">~</span><span class="st"> </span>random_q); <span class="kw">abline</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-52-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-338-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Then, test the `pbeta() function:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">q =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.05</span>)
 random_cdf =<span class="st"> </span><span class="kw">ecdf</span>(random)
@@ -594,21 +608,21 @@ random_p =<span class="st"> </span><span class="kw">random_cdf</span>(q)
 beta_p =<span class="st"> </span><span class="kw">pbeta</span>(q, beta_shape[<span class="dv">1</span>], beta_shape[<span class="dv">2</span>])
 <span class="kw">plot</span>(beta_p <span class="op">~</span><span class="st"> </span>q, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)
 <span class="kw">points</span>(random_p <span class="op">~</span><span class="st"> </span>q, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-53-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-339-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="ex4c-answers" class="section level2 unnumbered">
 <h2>Exercise 4C Solutions</h2>
 <p><strong>1. What sample size <code>n</code> do you need to have a power of 0.8 of detecting a significant difference between the two tagging methods?</strong></p>
 <p>Simply increase the maximum sample size considered and re-run the whole analysis:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n_try =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">20</span>, <span class="dv">200</span>, <span class="dv">20</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-56-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-342-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>It appears you need about 100 fish per treatment to be able to detect an effect of this size.</p>
 <p><strong>2. How do the inferences from the power analysis change if you are interested in <code>p_new = 0.4</code> instead of <code>p_new = 0.25</code>? Do you need to tag more or fewer fish in this case?</strong></p>
 <p>This is a argument to your function, so simply change its setting when you execute the analysis:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#...more code above this</span>
 tmp =<span class="st"> </span><span class="kw">sim_fit</span>(<span class="dt">n =</span> n_try[n], <span class="dt">p_new =</span> <span class="fl">0.4</span>)
 <span class="co">#more code after this...</span></code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-58-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-344-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Because the effect is larger, it is easier to detect with fewer observations.</p>
 <p><strong>3. Your analysis takes a bit of time to run so you are interested in tracking its progress. Add a progress message to your nested <code>for()</code> loop that will print the sample size currently being analyzed.</strong></p>
 <p>Simply insert the <code>cat()</code> line in the appropriate place in your loop. This is a handy trick for long-running simulations.</p>
@@ -670,12 +684,12 @@ tmp =<span class="st"> </span><span class="kw">sim_fit</span>(<span class="dt">n
                       <span class="dt">beta =</span> <span class="fl">1e-7</span>,
                       <span class="dt">sigma =</span> <span class="fl">0.4</span>),
            <span class="dt">U =</span> <span class="fl">0.4</span>, <span class="dt">plot =</span> T)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-62-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-348-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>## $mean_H
-## [1] 8540183
+## [1] 8145890
 ## 
 ## $mean_S
-## [1] 12810275</code></pre>
+## [1] 12218835</code></pre>
 <p><strong>2. Add an <em>error handler</em> to <code>ricker_sim()</code> that will cause the function to return an error <code>if()</code> the names of the vector passed to the <code>param</code> argument aren’t what the function is expecting. You can use stop(“Error Message Goes Here”) to have your function stop and return an error.</strong></p>
 <p>Error handlers are useful: they catch common errors that someone might make when using your function and return and informative error. Insert this at the top of your function:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="op">!</span><span class="kw">all</span>(<span class="kw">names</span>(params) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;alpha&quot;</span>, <span class="st">&quot;beta&quot;</span>, <span class="st">&quot;sigma&quot;</span>))) {
@@ -685,7 +699,7 @@ tmp =<span class="st"> </span><span class="kw">sim_fit</span>(<span class="dt">n
 <p>This says, if not all of the names of the <code>params</code> argument are in the specified vector, then stop the execution of the function and return the error message.</p>
 <p><strong>3. How do the results of the trade-off analysis differ if the process error was larger (a larger value of <span class="math inline">\(\sigma\)</span>)?</strong></p>
 <p>Simply increase the process error variance term (the <code>sigma</code> element of <code>params</code>) to be 0.6 and re-run the analysis:</p>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-64-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-350-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The blue line is the higher process error scenario. It seems that if the process error was higher, you would need to sacrifice more in the escapement objective to obtain the same level of the harvest objective than in the case with lower process error. This makes sense: more variability means more iterations will have escapement less than the criterion.</p>
 <p><strong>4. Add implementation error to the harvest policy. That is, if the target exploitation rate is <span class="math inline">\(U\)</span>, make the real exploitation rate in year <span class="math inline">\(y\)</span> be: <span class="math inline">\(U_y \sim Beta(a,b)\)</span>, where <span class="math inline">\(a = 50U\)</span> and <span class="math inline">\(b = 50(1-U)\)</span>. You can make there be more implementation error by inserting a smaller number other than 50 here. How does this affect the trade-off analysis?</strong></p>
 <p>For this, add a <code>B_sum</code> argument to your function (this represents the 50 value in the question) and use a different randomly generated exploitation rate each year according to the directions:</p>
@@ -697,7 +711,7 @@ U_real =<span class="st"> </span><span class="kw">rbeta</span>(ny, Bsum <span cl
 S[y] =<span class="st"> </span>R[y] <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>U_real[y])
 H[y] =<span class="st"> </span>R[y] <span class="op">*</span><span class="st"> </span>U_real[y]
 <span class="co"># end of a loop...</span></code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-68-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-354-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The red line has <code>B_sum = 50</code> and the black line has <code>B_sum = 1e6</code> (really large <code>B_sum</code> reduces the variance of <code>U_real</code> around <code>U</code>). It appears that introducing random implementation errors has a similar effect as increasing the process variance. To acheive the same harvest utility as the case with no implementation error, you need to be willing to sacrifice more in terms of escapement utility.</p>
 <p>See what happens if you increase or decrease the amount of implementation error the management system has in acheiving a target exploitation rate.</p>
 <p><strong>5. Visually show how variable beta random variable is with <code>B_sum = 50</code>.</strong></p>
@@ -707,13 +721,14 @@ B_sum =<span class="st"> </span><span class="dv">50</span>
 out =<span class="st"> </span><span class="kw">sapply</span>(U_try, <span class="cf">function</span>(x) {
   <span class="kw">rbeta</span>(<span class="dt">n =</span> <span class="dv">1000</span>, x <span class="op">*</span><span class="st"> </span>B_sum, B_sum <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>x))
 })
-<span class="kw">boxplot</span>(out, <span class="dt">outline =</span> F)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-69-1.png" width="672" style="display: block; margin: auto;" /></p>
+<span class="kw">colnames</span>(out) =<span class="st"> </span>U_try
+<span class="kw">boxplot</span>(out, <span class="dt">outline =</span> F, <span class="dt">col =</span> <span class="st">&quot;goldenrod1&quot;</span>)</code></pre></div>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-355-1.png" width="672" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># a time series at one level of U target</span>
 U =<span class="st"> </span><span class="fl">0.50</span>
 <span class="kw">plot</span>(<span class="kw">rbeta</span>(<span class="dv">20</span>, U <span class="op">*</span><span class="st"> </span>B_sum, B_sum <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>U)), <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">pch =</span> <span class="dv">15</span>)
 <span class="kw">abline</span>(<span class="dt">h =</span> U, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">lty =</span> <span class="dv">2</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-69-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-355-2.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="ex4e-answers" class="section level2 unnumbered">
 <h2>Exercise 4E Solutions</h2>
@@ -806,12 +821,12 @@ Dnull_chao =<span class="st"> </span><span class="kw">replicate</span>(<span cla
 
 <span class="kw">hist</span>(Dnull_chao, <span class="dt">col =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;CHAO&quot;</span>, <span class="dt">yaxt =</span> <span class="st">&quot;n&quot;</span>)
 <span class="kw">abline</span>(<span class="dt">v =</span> Dobs_chao, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">lwd =</span> <span class="dv">3</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-84-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-370-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Finally, calculate the two-tailed hypothesis tests:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(<span class="kw">abs</span>(Dnull_daph) <span class="op">&gt;=</span><span class="st"> </span>Dobs_daph)</code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(<span class="kw">abs</span>(Dnull_bosm) <span class="op">&gt;=</span><span class="st"> </span>Dobs_bosm)</code></pre></div>
-<pre><code>## [1] 0</code></pre>
+<pre><code>## [1] 2e-04</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(<span class="kw">abs</span>(Dnull_cope) <span class="op">&gt;=</span><span class="st"> </span>Dobs_cope)</code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(<span class="kw">abs</span>(Dnull_chao) <span class="op">&gt;=</span><span class="st"> </span>Dobs_chao)</code></pre></div>
@@ -839,18 +854,18 @@ dat =<span class="st"> </span>dat[dat<span class="op">$</span>age <span class="o
 <p>Plot the null distribution:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(Dnull, <span class="dt">col =</span> <span class="st">&quot;skyblue&quot;</span>)
 <span class="kw">abline</span>(<span class="dt">v =</span> Dobs, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">lwd =</span> <span class="dv">3</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-91-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-377-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Obtain the two-tailed p-value:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(<span class="kw">abs</span>(Dnull) <span class="op">&gt;=</span><span class="st"> </span>Dobs)</code></pre></div>
-<pre><code>## [1] 0.5488</code></pre>
+<pre><code>## [1] 0.556</code></pre>
 <p>Based on this, it appears there is no significant difference between the mean length of age 3 and 4 fish in this example.</p>
 <p><strong>3. Add a calculation of the p-value for a one-tailed test (i.e., that the difference in means is greater or less than zero). Steps 1 - 4 are the same: all you need is <code>Dnull</code> and <code>Dobs</code>. Don’t be afraid to Google this if you are confused.</strong></p>
 <p>To calculate the p-value for a one-tailed test (null hypothesis is that the mean length of age 4 is less than or equal to the mean length of age 3 fish):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(Dnull <span class="op">&gt;=</span><span class="st"> </span>Dobs)</code></pre></div>
-<pre><code>## [1] 0.271</code></pre>
+<pre><code>## [1] 0.2706</code></pre>
 <p>To test the opposite hypothesis (null hypothesis is that the mean length of age 4 fish is greater than or equal to the mean length of age 3 fish):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(Dnull <span class="op">&lt;=</span><span class="st"> </span>Dobs)</code></pre></div>
-<pre><code>## [1] 0.7304</code></pre>
+<pre><code>## [1] 0.7308</code></pre>
 </div>
 <div id="ex5-answers" class="section level2 unnumbered">
 <h2>Exercise 5 Solutions</h2>
@@ -883,7 +898,7 @@ dat =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">p_female =</span> n_female<span class="op">/</span>n_tot)</code></pre></div>
 <p><strong>3. Plot percent females over time. Does it look like the sex composition has changed over time?</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(p_female <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> samp_size, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-102-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-388-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>It seems that the proportion of females has varied randomly over time but has not systematically changed since the beginning of the data time series. Note that some of this variability is introduced by sampling.</p>
 <p><strong>4. Calculate mean length by age, sex, and year.</strong></p>
 <p><code>{dplyr}</code> makes this relatively complex calculation easy and returns an intuitive data frame as output:</p>
@@ -922,7 +937,7 @@ ages =<span class="st"> </span><span class="kw">unique</span>(mean_length<span c
 <span class="co"># add on margin text for the shared axes</span>
 <span class="kw">mtext</span>(<span class="dt">side =</span> <span class="dv">1</span>, <span class="dt">outer =</span> T, <span class="st">&quot;Year&quot;</span>)
 <span class="kw">mtext</span>(<span class="dt">side =</span> <span class="dv">2</span>, <span class="dt">outer =</span> T, <span class="st">&quot;Mean Length (mm)&quot;</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-104-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-390-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p><strong>Bonus 1. Calculate the age composition by sex and year (what proportion of all the males in a year were age 4, age 5, age 6, age 7, and same for females).</strong></p>
 <p>This follows a similar workflow as in the calculation of the proportion of females:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># get the number by age and sex each year</span>
@@ -975,14 +990,102 @@ ages =<span class="st"> </span><span class="kw">unique</span>(n_samps<span class
 <span class="co"># add on margin text for the shared axes</span>
 <span class="kw">mtext</span>(<span class="dt">side =</span> <span class="dv">1</span>, <span class="dt">outer =</span> T, <span class="st">&quot;Year&quot;</span>)
 <span class="kw">mtext</span>(<span class="dt">side =</span> <span class="dv">2</span>, <span class="dt">outer =</span> T, <span class="st">&quot;Age Composition by Sex&quot;</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-106-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-392-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="ex6-answers" class="section level2 unnumbered">
 <h2>Exercise 6 Solutions</h2>
 <p>Henry’s material will go here.</p>
 
+<div id="refs" class="references">
+<div>
+<p>Allaire, JJ, Yihui Xie, Jonathan McPherson, Javier Luraschi, Kevin Ushey, Aron Atkins, Hadley Wickham, Joe Cheng, and Winston Chang. 2018. <em>Rmarkdown: Dynamic Documents for R</em>. <a href="https://CRAN.R-project.org/package=rmarkdown" class="uri">https://CRAN.R-project.org/package=rmarkdown</a>.</p>
+</div>
+<div>
+<p>Anderson, David R., Kenneth P. Burnham, and William L. Thompson. 2000. “Null Hypothesis Testing: Problems, Prevalence, and an Alternative.” <em>The Journal of Wildlife Management</em> 64 (4): 912–23. <a href="http://www.jstor.org/stable/3803199" class="uri">http://www.jstor.org/stable/3803199</a>.</p>
+</div>
+<div>
+<p>Bolker, B.M. 2008. <em>Ecological Models and Data in R</em>. Princeton University Press. <a href="https://ms.mcmaster.ca/~bolker/emdbook/" class="uri">https://ms.mcmaster.ca/~bolker/emdbook/</a>.</p>
+</div>
+<div>
+<p>Boundaries, Global Administrative. 2018. “Slovenia Geopackage [Computer File].” <a href="https://biogeo.ucdavis.edu/data/gadm3.6/gpkg/gadm36_SVN_gpkg.zip" class="uri">https://biogeo.ucdavis.edu/data/gadm3.6/gpkg/gadm36_SVN_gpkg.zip</a>.</p>
+</div>
+<div>
+<p>Kaczensky, P., F. Knauer, M. Jonozovic, and M. Blazic. 1999. “Slovenian Brown Bear 1993-1999 Telemetry Data Set.” <a href="https://www.movebank.org/panel_embedded_movebank_webapp?destination=panel_embedded_movebank_webapp" class="uri">https://www.movebank.org/panel_embedded_movebank_webapp?destination=panel_embedded_movebank_webapp</a>.</p>
+</div>
+<div>
+<p>Kline, Paul A., and Thomas A. Flagg. 2014. “Putting the Red Back in Redfish Lake, 20 Years of Progress Toward Saving the Pacific Northwest’s Most Endangered Salmon Population.” <em>Fisheries</em> 39 (11): 488–500. doi:<a href="https://doi.org/10.1080/03632415.2014.966087">10.1080/03632415.2014.966087</a>.</p>
+</div>
+<div>
+<p>Lovelace, R., J. Nowosad, and J. Muenchow. 2018. <em>Geocomputation with R</em>. 1st ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://geocompr.robinlovelace.net/" class="uri">https://geocompr.robinlovelace.net/</a>.</p>
+</div>
+<div>
+<p>MapCruzin. 2018. “Slovenia Railways [Computer File].” <a href="http://www.mapcruzin.com/download-shapefile/slovenia-railways-shape.zip" class="uri">http://www.mapcruzin.com/download-shapefile/slovenia-railways-shape.zip</a>.</p>
+</div>
+<div>
+<p>Republic of Slovenia, Environmental Agency of the. 2018. “Ecologically Important Areas (Caves).” <a href="http://gis.arso.gov.si/geoserver/ows?SERVICE=WFS&amp;REQUEST=GetFeature&amp;VERSION=1.1.0&amp;TYPENAME=arso:EPO_JAME&amp;PROPERTYNAME=SHAPE,ID_STEV,IME&amp;OUTPUTFORMAT=SHAPE-ZIP&amp;format_options=charset:UTF-8" class="uri">http://gis.arso.gov.si/geoserver/ows?SERVICE=WFS&amp;REQUEST=GetFeature&amp;VERSION=1.1.0&amp;TYPENAME=arso:EPO_JAME&amp;PROPERTYNAME=SHAPE,ID_STEV,IME&amp;OUTPUTFORMAT=SHAPE-ZIP&amp;format_options=charset:UTF-8</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley. 2015. <em>Advanced R</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://adv-r.hadley.nz/" class="uri">https://adv-r.hadley.nz/</a>.</p>
+</div>
+<div>
+<p>Xie, Yihui. 2015. <em>Dynamic Documents with R and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.name/knitr/" class="uri">http://yihui.name/knitr/</a>.</p>
+</div>
+<div>
+<p>———. 2016. <em>Bookdown: Authoring Books and Technical Documents with R Markdown</em>. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://github.com/rstudio/bookdown" class="uri">https://github.com/rstudio/bookdown</a>.</p>
 </div>
 </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             </section>
 
           </div>

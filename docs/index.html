@@ -47,6 +47,21 @@
 
 
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.2/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.1.17/leaflet-providers.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.2/leaflet-providers-plugin.js"></script>
+<link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.css" rel="stylesheet" />
+<link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.Default.css" rel="stylesheet" />
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.js"></script>
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.freezable.js"></script>
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.layersupport.js"></script>
 
 
 <style type="text/css">
@@ -163,7 +178,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.9" data-path="ch2.html"><a href="ch2.html#legends"><i class="fa fa-check"></i><b>2.9</b> Legends</a></li>
 <li class="chapter" data-level="2.10" data-path="ch2.html"><a href="ch2.html#exporting-plots"><i class="fa fa-check"></i><b>2.10</b> Exporting Plots</a><ul>
 <li class="chapter" data-level="2.10.1" data-path="ch2.html"><a href="ch2.html#click-save"><i class="fa fa-check"></i><b>2.10.1</b> Click Save</a></li>
-<li class="chapter" data-level="2.10.2" data-path="ch2.html"><a href="ch2.html#use-a-function-to-place-plot-in-a-new-file"><i class="fa fa-check"></i><b>2.10.2</b> Use a function to place plot in a new file</a></li>
+<li class="chapter" data-level="2.10.2" data-path="ch2.html"><a href="ch2.html#file-devices"><i class="fa fa-check"></i><b>2.10.2</b> Use a function to place plot in a new file</a></li>
 </ul></li>
 <li class="chapter" data-level="2.11" data-path="ch2.html"><a href="ch2.html#error-bars"><i class="fa fa-check"></i><b>2.11</b> Bonus Topic: Error Bars</a></li>
 <li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#ex2"><i class="fa fa-check"></i>Exercise 2</a><ul>
@@ -242,7 +257,35 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="ch5.html"><a href="ch5.html#exercise-5-bonus"><i class="fa fa-check"></i>Exercise 5 Bonus</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="ch6.html"><a href="ch6.html"><i class="fa fa-check"></i><b>6</b> Mapping and Spatial Analysis</a></li>
+<li class="chapter" data-level="6" data-path="ch6.html"><a href="ch6.html"><i class="fa fa-check"></i><b>6</b> Mapping and Spatial Analysis</a><ul>
+<li class="chapter" data-level="6.1" data-path="ch6.html"><a href="ch6.html#ch6overview"><i class="fa fa-check"></i><b>6.1</b> Chapter Overview</a></li>
+<li class="chapter" data-level="6.2" data-path="ch6.html"><a href="ch6.html#ch6beforeyoubegin"><i class="fa fa-check"></i><b>6.2</b> Before You Begin</a></li>
+<li class="chapter" data-level="6.3" data-path="ch6.html"><a href="ch6.html#intro"><i class="fa fa-check"></i><b>6.3</b> Geospatial Data</a></li>
+<li class="chapter" data-level="6.4" data-path="ch6.html"><a href="ch6.html#Import"><i class="fa fa-check"></i><b>6.4</b> Importing Geospatial Data</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="ch6.html"><a href="ch6.html#csv-files-1"><i class="fa fa-check"></i><b>6.4.1</b> <code>.csv</code> files</a></li>
+<li class="chapter" data-level="6.4.2" data-path="ch6.html"><a href="ch6.html#shp-files"><i class="fa fa-check"></i><b>6.4.2</b> <code>.shp</code> files</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="ch6.html"><a href="ch6.html#SpatPlot"><i class="fa fa-check"></i><b>6.5</b> Plotting</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="ch6.html"><a href="ch6.html#zoom"><i class="fa fa-check"></i><b>6.5.1</b> Zooming</a></li>
+<li class="chapter" data-level="6.5.2" data-path="ch6.html"><a href="ch6.html#plot-selections"><i class="fa fa-check"></i><b>6.5.2</b> Plotting Selections</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="ch6.html"><a href="ch6.html#ManipSpat"><i class="fa fa-check"></i><b>6.6</b> Manipulating Spatial Data</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="ch6.html"><a href="ch6.html#crs"><i class="fa fa-check"></i><b>6.6.1</b> Changing the CRS</a></li>
+<li class="chapter" data-level="6.6.2" data-path="ch6.html"><a href="ch6.html#clip"><i class="fa fa-check"></i><b>6.6.2</b> Clipping</a></li>
+<li class="chapter" data-level="6.6.3" data-path="ch6.html"><a href="ch6.html#adding-attributes"><i class="fa fa-check"></i><b>6.6.3</b> Adding Attributes</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="ch6.html"><a href="ch6.html#Anal"><i class="fa fa-check"></i><b>6.7</b> Analysis</a><ul>
+<li class="chapter" data-level="6.7.1" data-path="ch6.html"><a href="ch6.html#hr-Anal"><i class="fa fa-check"></i><b>6.7.1</b> Home Range Analysis</a></li>
+<li class="chapter" data-level="6.7.2" data-path="ch6.html"><a href="ch6.html#finding-intersections-between-two-layers"><i class="fa fa-check"></i><b>6.7.2</b> Finding Intersections Between Two Layers</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="ch6.html"><a href="ch6.html#PresentMap"><i class="fa fa-check"></i><b>6.8</b> Creating a Presentable Map</a></li>
+<li class="chapter" data-level="6.9" data-path="ch6.html"><a href="ch6.html#other-r-mapping-packages"><i class="fa fa-check"></i><b>6.9</b> Other R Mapping Packages</a><ul>
+<li class="chapter" data-level="6.9.1" data-path="ch6.html"><a href="ch6.html#ggmap"><i class="fa fa-check"></i><b>6.9.1</b> <code>{ggmap}</code></a></li>
+<li class="chapter" data-level="6.9.2" data-path="ch6.html"><a href="ch6.html#leaflet"><i class="fa fa-check"></i><b>6.9.2</b> <code>{leaflet}</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch6.html"><a href="ch6.html#ex6"><i class="fa fa-check"></i>Exercise 6</a></li>
+<li class="chapter" data-level="6.10" data-path="ch6.html"><a href="ch6.html#exercise-6-bonus"><i class="fa fa-check"></i><b>6.10</b> Exercise 6 Bonus</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="exercise-solutions.html"><a href="exercise-solutions.html"><i class="fa fa-check"></i>Exercise Solutions</a><ul>
 <li class="chapter" data-level="" data-path="exercise-solutions.html"><a href="exercise-solutions.html#ex1a-answers"><i class="fa fa-check"></i>Exercise 1A Solutions</a></li>
 <li class="chapter" data-level="" data-path="exercise-solutions.html"><a href="exercise-solutions.html#ex1b-answers"><i class="fa fa-check"></i>Exercise 1B Solutions</a></li>
@@ -351,7 +394,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>This book represents the third reincarnation of the Auburn R Workshop Series. The first version was written in Fall 2014 using Microsoft Word, but the author found that making even small changes was clunky - each change to code in the document required a copy-paste of code and output from R to Word. Individual session materials (i.e., handout, exercises, solutions, data) were created in separate documents, saved as PDFs and <code>.xlsx</code> files, and uploaded to a wordpress webpage.</p>
 <p>The second version was written through R and RStudio using the R packages <code>{rmarkdown}</code> <span class="citation">(Allaire et al. <a href="#ref-rmarkdown-cite">2018</a>)</span> and <code>{knitr}</code> <span class="citation">(Xie <a href="#ref-knitr-cite">2015</a>)</span>, which allowed the integration of text, code, and output all into one output file. This version was completed in Fall 2015. Like the first version, individual session materials were created in separate documents, and replaced those previously found on the wordpress site.</p>
 <p>This third version was written through R and RStudio but used the R package <code>{bookdown}</code> <span class="citation">(Xie <a href="#ref-bookdown-cite">2016</a>)</span> which allowed for the individual sessions to be combined into one “book” by turning each session into a chapter. This facilitated cross-references to topics covered in previous chapters and allows the reader to only refer to one location when trying to remember how to use a skill. It also allowed for multiple formats to be published including both HTML and PDF versions.</p>
-<p>The book is hosted on <a href="https://pages.github.com/">GitHub Pages</a>, and was last built on 09-26-2018.</p>
+<p>The book is hosted on <a href="https://pages.github.com/">GitHub Pages</a>, and was last built on 10-01-2018.</p>
 </div>
 <div id="about-the-author" class="section level2 unnumbered">
 <h2>About the Author</h2>
