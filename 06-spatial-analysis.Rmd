@@ -300,13 +300,35 @@ plot(railways, add = T, col = "red", lwd = 3)
 
 ### Adding Attributes
 
-What if you wanted to add an attribute to a points object, like which polygon it occurs in? Say you wanted to know what statistical region each bear relocation happened in. You can find this by extracting the attribute values of one layer (a target) at locations of another layer (a source) with the over() function from {sp}. Then, you can recombine those attribute values with spCbind. In this case, the target is the stats layer, and the source is bear layer. the source always comes before the target. The return value is an aggregated dataframe, which we will call bearstats.
+What if you wanted to add an attribute to a points object, like which polygon it occurs in? Say you wanted to know what statistical region each bear relocation happened in. You can find this by extracting the attribute values of one layer (a **target**) at locations of another layer (a **source**) with the `over()` function from the `{sp}` package. In this case, the target is the `stats` layer, and the source is `bear` layer. These two layers will need to be in the same projection, and the result will be stored in the column `bearstats$NAME_1`:
 
 ```{r}
-bearstats <- over(bear,stats)
+# get in same projection
+stats = spTransform(stats, proj4string(bear))
+# determine which polygon of stat each bear relocation occured in
+bearstats = over(bear,stats)
 head(bearstats)
-bear <- spCbind(bearstats$NAME_1,bear) #the names of the statistcal regions are in the NAME_1 column.
-table(bear$NAME_1) #how many relocations occurred in each statistical region?
+```
+
+Extract just the column you care about and see how relocations occurred in each state:
+
+```{r}
+bearstats = data.frame(stat = bearstats$NAME_1)
+table(bearstats$stat) 
+```
+
+Then, you can recombine your calculated attribute values (in `bearstats`) to your original layer (`bear`) with `spCbind()` from the `{maptools}` package:
+
+```{r, error = T}
+library(maptools)
+bear = spCbind(bear, bearstats$stat)
+head(bear@data)
+```
+
+Now determine how many times each bear was relocated in each state:
+
+```{r, eval = F}
+table(bear$ID, bear$bearstats.stat)
 ```
 
 ## Analysis {#Anal} 
@@ -404,7 +426,7 @@ Now that you have a points object with the crossings stored, make a map that you
 
 **THIS PART DOESN'T WORK FOR ME, SEE THE ISSUE**
 
-```{r, message = F, warning = F, fig.align = "center", eval = F}
+```{r, eval = F}
 library(dismo)
 library(raster) #the basemap will be stored as a raster object.
 basemap = gmap(bear, exp=1, type="terrain", lonlat = T)
@@ -443,7 +465,7 @@ Just like for `{ggplot2}`, many R users find the `{ggmap}` package more intuitiv
 
 **THIS PART DOESN'T WORK FOR ME, SEE THE ISSUE**
 
-```{r, eval = F}
+```{r, error = T}
 library(ggmap)
 geocode("United States")
 qmap(location = "boston university")
