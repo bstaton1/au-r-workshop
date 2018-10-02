@@ -1,0 +1,18 @@
+library(raster)
+library(dplyr)
+#set your working directory to a folder with the four raster files named elev2, 4, 5, and 8
+
+rasters <- lapply(list.files("."),raster)
+rasters.mosaicargs <- rasters
+rasters.mosaicargs$fun <- max
+mosaic1 <- do.call(mosaic, rasters.mosaicargs) #this takes for fucking ever bu tit works
+
+plot(mosaic1)
+bear<-spTransform(bear,mosaic1@crs)
+points(bear)
+
+bearalt <- extract(mosaic1,bear) #assigns an elevation to each bear point (pretty fucking slick)
+bear <- spCbind(bear,bearalt)
+tapply(bear$bearalt,bear$ID,mean) #mean elevations of each bear's track.
+
+writeRaster(mosaic1,"elevation",format="GTiff") #this doesn't work for me, even though it should. :(
