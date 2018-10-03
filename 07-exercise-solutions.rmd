@@ -1315,5 +1315,29 @@ mtext(side = 2, outer = T, "Age Composition by Sex")
 ```{r, echo = F}
 rm(list = ls(all = T))
 ```
+**Load the cave shapefile from the directory. Add the data to the map.**
+```{r, echo = F}
+caves <- readOGR(dsn="./caves",layer="EPO_JAMEPoint")
+plot(caves, add=T)
+```
+**How many caves are there?**
+```{r,echo=F}
+length(caves) 
+```
+**How many caves are in each statistical area?**
+```{r,echo=F}
+library(maptools)
+caves<-spTransform(caves,proj4string(stats))
+cavestats <- over(caves,stats)
+caves <- spCbind(caves,cavestats$NAME_1) # remember the names of the statistcal regions are in the NAME_1 column.
+table(caves$cavestats.NAME_1) #the new column in the caves layer object is called "cavestats.Name_1". click on the caves object in your global environment to see
+```
+**Which bear has the most caves in its homerange?**
+```{r,echo=F}
+homecaves <- over(caves,cp,returnList = T) #you have to use the return list = true argument to get all the polygons that each point is in.
+table(unlist(sapply(homecaves,rownames))) #the bears' names are the names of the cp polygons, so just count how many times each name occurs in the homecaves list.
+#the table says srecko has the most caves in his home range. you can also check the plot from section 6.5.1
+```
+
 
 Henry's material will go here.
