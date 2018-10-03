@@ -5,7 +5,7 @@ date: "with contributions from Henry Hershey"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
-bibliography: [book.bib]
+bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: true
 linkcolor: "blue"
@@ -92,9 +92,9 @@ Several parts of this book in this book make reference to keyboard shortcuts. Th
 
 This book represents the third reincarnation of the Auburn R Workshop Series. The first version was written in Fall 2014 using Microsoft Word, but the author found that making even small changes was clunky - each change to code in the document required a copy-paste of code and output from R to Word. Individual session materials (i.e., handout, exercises, solutions, data) were created in separate documents, saved as PDFs and `.xlsx` files, and uploaded to a wordpress webpage. 
 
-The second version was written through R and RStudio using the R packages `{rmarkdown}` [@rmarkdown-cite] and `{knitr}` [@knitr-cite], which allowed the integration of text, code, and output all into one output file. This version was completed in Fall 2015. Like the first version, individual session materials were created in separate documents, and replaced those previously found on the wordpress site. 
+The second version was written through R [@R-base] and RStudio using the R packages `{rmarkdown}` [@R-rmarkdown] and `{knitr}` [@R-knitr; @knitr-cite], which allowed the integration of text, code, and output all into one output file. This version was completed in Fall 2015. Like the first version, individual session materials were created in separate documents, and replaced those previously found on the wordpress site. 
 
-This third version was written through R and RStudio but used the R package `{bookdown}` [@bookdown-cite] which allowed for the individual sessions to be combined into one "book" by turning each session into a chapter. This facilitated cross-references to topics covered in previous chapters and allows the reader to only refer to one location when trying to remember how to use a skill. It also allowed for multiple formats to be published including both HTML and PDF versions.
+This third version was written through R and RStudio but used the R package `{bookdown}` [@R-bookdown] which allowed for the individual sessions to be combined into one "book" by turning each session into a chapter. This facilitated cross-references to topics covered in previous chapters and allows the reader to only refer to one location when trying to remember how to use a skill. It also allowed for multiple formats to be published including both HTML and PDF versions.
 
 The book is hosted on [GitHub Pages](https://pages.github.com/), and was last built on `r format(Sys.time(), format = "%m-%d-%Y")`.
 

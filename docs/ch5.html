@@ -46,22 +46,6 @@
 
 
 
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
-<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-1.3.1/leaflet.js"></script>
-<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
-<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
-<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
-<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.0.2/leaflet.js"></script>
-<script src="libs/leaflet-providers-1.1.17/leaflet-providers.js"></script>
-<script src="libs/leaflet-providers-plugin-2.0.2/leaflet-providers-plugin.js"></script>
-<link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.css" rel="stylesheet" />
-<link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.Default.css" rel="stylesheet" />
-<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.js"></script>
-<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.freezable.js"></script>
-<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.layersupport.js"></script>
 
 
 <style type="text/css">
@@ -201,7 +185,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="ch3.html"><a href="ch3.html#dists"><i class="fa fa-check"></i><b>3.3</b> Probability Distributions</a></li>
 <li class="chapter" data-level="3.4" data-path="ch3.html"><a href="ch3.html#nls"><i class="fa fa-check"></i><b>3.4</b> Bonus Topic: Non-linear Regression</a></li>
-<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#exercise-3"><i class="fa fa-check"></i>Exercise 3</a></li>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#exercise-3"><i class="fa fa-check"></i>Exercise 3</a><ul>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#exercise-3-bonus"><i class="fa fa-check"></i>Exercise 3 Bonus</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="ch4.html"><a href="ch4.html"><i class="fa fa-check"></i><b>4</b> Monte Carlo Methods</a><ul>
 <li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#chapter-overview-3"><i class="fa fa-check"></i>Chapter Overview</a></li>
@@ -324,11 +310,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1><span class="header-section-number">Chapter 5</span> Large Data Manipulation</h1>
 <div id="chapter-overview-4" class="section level2 unnumbered">
 <h2>Chapter Overview</h2>
-<p>Any data analyst will tell you that oftentimes the most difficult part of an analysis is simply getting the data in the proper format. Real data sets are messy: they have missing values, variables are often stored in multiple columns that would be better stored as rows, the same factor level may be coded as two or more different types<a href="#fn37" class="footnoteRef" id="fnref37"><sup>37</sup></a>, or the required data are in several separate files. You get the point: sometimes significant data-wrangling may be required before you perform an analysis.</p>
+<p>Any data analyst will tell you that oftentimes the most difficult part of an analysis is simply getting the data in the proper format. Real data sets are messy: they have missing values, variables are often stored in multiple columns that would be better stored as rows, the same factor level may be coded as two or more different types<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>, or the required data are in several separate files. You get the point: sometimes significant data-wrangling may be required before you perform an analysis.</p>
 <p>In this chapter, you will learn tricks to do more advanced data manipulation in R using two R <strong>packages</strong>:</p>
 <ul>
-<li><code>{reshape2}</code>: used for changing data between formats (wide and long)</li>
-<li><code>{dplyr}</code>: used for large data manipulations with a consistent and readable format.</li>
+<li><code>{reshape2}</code> <span class="citation">(Wickham <a href="#ref-R-reshape2">2007</a>)</span>: used for changing data between formats (wide and long)</li>
+<li><code>{dplyr}</code> <span class="citation">(Wickham et al. <a href="#ref-R-dplyr">2017</a>)</span>: used for large data manipulations with a consistent and readable format.</li>
 </ul>
 <p>You will be turning daily observations of harvest and escapement (fish that are not harvested) into annual totals for the purpose of fitting a <strong>spawner-recruit analysis</strong> on a hypothetical pink salmon (<em>Oncorhynchus gorbuscha</em>) data set. More details and context on these terms and topics will be provided later.</p>
 <p><strong>IMPORTANT NOTE</strong>: If you did not attend the sessions corresponding to Chapters <a href="ch1.html#ch1">1</a> or <a href="ch2.html#ch2">2</a>, you are recommended to walk through the material found in those chapters before proceeding to this material. Additionally, you will find the material in Section <a href="ch3.html#nls">3.4</a> helpful for the end of this chapter. Remember that if you are confused about a topic, you can use <strong>CTRL + F</strong> to find previous cases where that topic has been discussed in this book.</p>
@@ -345,8 +331,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="kw">install.packages</span>(<span class="st">&quot;reshape2&quot;</span>)</code></pre></div>
 <p>This requires an internet connection. You will see some text display in the console telling you the packages are being installed. This only needs to be done once for each version of R you have. If you install a new version of R, you will likely need to update your packages (i.e., re-install them).</p>
 <p>Now that the packages are on your computer, you will need to load them into the current session:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
-<span class="kw">library</span>(reshape2)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)</code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(reshape2)</code></pre></div>
 <p>These messages are telling you that there are functions in the <code>{dplyr}</code> package that have the same names as those already being used in the <code>{stats}</code> and <code>{base}</code> R packages. This is fine so long as you don’t want to use the original functions. If you wish to use the <code>{base}</code> version of the <code>filter()</code> function rather than the <code>{dplyr}</code> version, use it like this: <code>base::filter()</code>. Each time you close and reopen R, you will need to load any packages you want to use using <code>library()</code> again.</p>
 </div>
 <div id="the-data" class="section level2">
@@ -435,7 +429,7 @@ esc =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">
 </div>
 <div id="lagged-vectors" class="section level2">
 <h2><span class="header-section-number">5.5</span> Lagged vectors</h2>
-<p>The present task is to the calculate daily cumulative run proportion<a href="#fn38" class="footnoteRef" id="fnref38"><sup>38</sup></a> in 2015 for comparison to the other years. Given the information you have, this task would be very cumbersome if not for the flexibility allowed by <code>{dplyr}</code>.</p>
+<p>The present task is to the calculate daily cumulative run proportion<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> in 2015 for comparison to the other years. Given the information you have, this task would be very cumbersome if not for the flexibility allowed by <code>{dplyr}</code>.</p>
 <p>Remember the counting tower is an average one day swim for the salmon from the fishing grounds. This means that the escapement counts are <strong>lagged</strong> relative to the catch counts. If you want the daily run (defined as the number in fishing grounds each day), you need to account for this lag. An easy way to think about the lag is to show it graphically. First, pull out one year of data using the <code>filter()</code> function in <code>{dplyr}</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y15 =<span class="st"> </span><span class="kw">filter</span>(dat, year <span class="op">==</span><span class="st"> &quot;y_2015&quot;</span>)
 <span class="kw">head</span>(y15)</code></pre></div>
@@ -456,14 +450,14 @@ y15 =<span class="st"> </span><span class="kw">subset</span>(dat, year <span cla
 <span class="kw">lines</span>(esc <span class="op">~</span><span class="st"> </span>doy, <span class="dt">data =</span> y15, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)
 <span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;Catch&quot;</span>, <span class="st">&quot;Escapement&quot;</span>), 
        <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>), <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">lty =</span> <span class="dv">1</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">cex =</span> <span class="fl">0.8</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-223-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Notice how the escapement counts are shifted to the right by one day. This is the lag. To account for it, you can use the <code>lag()</code> function from <code>{dplyr}</code>. <code>lag()</code> works by lagging some vector by <code>n</code> elements (it shifts every element in the vector to the right by one place by putting <code>n</code> <code>NAs</code> at the front and removing the last <code>n</code> elements from the original vector). One way to fix the lag problem would be to use <code>lag()</code> on <code>catch</code> to make the days match up with <code>esc</code> (don’t lag <code>esc</code> because that would just lag it by <code>n</code> additional days):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">lag</span>(catch, <span class="dt">n =</span> <span class="dv">1</span>) <span class="op">~</span><span class="st"> </span>doy, <span class="dt">data =</span> y15, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>,
      <span class="dt">xlab =</span> <span class="st">&quot;DOY&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Count&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;With lag(catch)&quot;</span>)
 <span class="kw">lines</span>(esc <span class="op">~</span><span class="st"> </span>doy, <span class="dt">data =</span> y15, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)
 <span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;Catch&quot;</span>, <span class="st">&quot;Escapement&quot;</span>),
        <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>), <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">lty =</span> <span class="dv">1</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">cex =</span> <span class="fl">0.8</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-224-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Notice how the two curves line up better now.</p>
 </div>
 <div id="adding-columns-with-mutate" class="section level2">
@@ -482,10 +476,10 @@ y15 =<span class="st"> </span><span class="kw">subset</span>(dat, year <span cla
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y15<span class="op">$</span>run =<span class="st"> </span><span class="kw">lag_sum</span>(y15<span class="op">$</span>esc, y15<span class="op">$</span>catch)</code></pre></div>
 <p><code>mutate()</code> has advantages when used with other <code>{dplyr}</code> functions that will be shown soon. Use the new variable <code>run</code> to calculate two new variables: the cumulative run by day (<code>crun</code>) and cumulative run proportion by day (<code>cprun</code>). Cumulative means that each new element is the value that occurred on that day plus all of the values that happened on days before it. You can use R’s <code>cumsum()</code> for this:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y15 =<span class="st"> </span><span class="kw">mutate</span>(y15, <span class="dt">crun =</span> <span class="kw">cumsum</span>(run), <span class="dt">cprun =</span> crun<span class="op">/</span><span class="kw">sum</span>(run, <span class="dt">na.rm =</span> T))</code></pre></div>
-<p>Here is one advantage of <code>mutate()</code>: you can refer to a variable you just created to make a new variable within the same function. You would have to split this into two lines to do it in <code>{base}</code>. Indeed, you could have made <code>run</code>, <code>crun</code>, and <code>cprun</code> all in the same <code>mutate()</code> call. Plot <code>cprun</code><a href="#fn39" class="footnoteRef" id="fnref39"><sup>39</sup></a>:</p>
+<p>Here is one advantage of <code>mutate()</code>: you can refer to a variable you just created to make a new variable within the same function. You would have to split this into two lines to do it in <code>{base}</code>. Indeed, you could have made <code>run</code>, <code>crun</code>, and <code>cprun</code> all in the same <code>mutate()</code> call. Plot <code>cprun</code><a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(cprun <span class="op">~</span><span class="st"> </span>doy, <span class="dt">data =</span> y15, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),
      <span class="dt">xlab =</span> <span class="st">&quot;DOY&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Cumulative Run Proportion&quot;</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-230-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-24-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="apply-to-all-years" class="section level2">
 <h2><span class="header-section-number">5.7</span> Apply to all years</h2>
@@ -531,7 +525,7 @@ tmp =<span class="st"> </span><span class="kw">sapply</span>(years, <span class=
   <span class="kw">lines</span>(cprun <span class="op">~</span><span class="st"> </span>doy, <span class="dt">data =</span> <span class="kw">filter</span>(dat, year <span class="op">==</span><span class="st"> </span>x),
         <span class="dt">col =</span> <span class="kw">ifelse</span>(x <span class="op">==</span><span class="st"> &quot;y_2015&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;grey&quot;</span>))
 })</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-234-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-28-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="calculate-daily-means-with-summarize" class="section level2">
 <h2><span class="header-section-number">5.8</span> Calculate Daily Means with <code>summarize()</code></h2>
@@ -585,7 +579,7 @@ dat <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">min =</span> <span class="kw">min</span>(cprun), <span class="dt">max =</span> <span class="kw">max</span>(cprun))</code></pre></div>
 <p>Add the mean cumulative run proportion to our plot (use <code>lines()</code> just like before, add it after the <code>sapply()</code> call):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lines</span>(cprun <span class="op">~</span><span class="st"> </span>doy, <span class="dt">data =</span> mean_cprun, <span class="dt">lwd =</span> <span class="dv">3</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-240-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-34-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>It looks like 2015 started like an average year but the peak of the run happened a couple days earlier than average.</p>
 </div>
 <div id="more-summarize" class="section level2">
@@ -598,7 +592,7 @@ dat<span class="op">$</span>jday[ind]</code></pre></div>
   ind =<span class="st"> </span><span class="kw">which.min</span>(<span class="kw">abs</span>(p <span class="op">-</span><span class="st"> </span><span class="fl">0.5</span>))
   doy[ind]
 }</code></pre></div>
-<p>This function will take every element of <code>p</code>, subtract 0.5, take the absolute value of the results (make it positive, even if it is negative), and find the element number that is smallest. This will be the element with the value closest to 0.5. Note that you could find the first quartile (0.25) or third quartile (0.75) of the run by inserting these in for 0.5 above<a href="#fn40" class="footnoteRef" id="fnref40"><sup>40</sup></a>. Try your function on the 2015 data only:</p>
+<p>This function will take every element of <code>p</code>, subtract 0.5, take the absolute value of the results (make it positive, even if it is negative), and find the element number that is smallest. This will be the element with the value closest to 0.5. Note that you could find the first quartile (0.25) or third quartile (0.75) of the run by inserting these in for 0.5 above<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>. Try your function on the 2015 data only:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># use function</span>
 med_doy15 =<span class="st"> </span><span class="kw">find_median_doy</span>(<span class="dt">p =</span> y15<span class="op">$</span>cprun, <span class="dt">doy =</span> y15<span class="op">$</span>doy)
 
@@ -635,7 +629,7 @@ med_doy<span class="op">$</span>year =<span class="st"> </span>
 <span class="st">  </span>as.integer
 
 <span class="kw">plot</span>(doy <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> med_doy, <span class="dt">pch =</span> <span class="dv">16</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-245-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-39-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>It doesn’t appear that there is a trend in either direction, but fit a regression line because you can (Section <a href="ch3.html#regression">3.1.1</a>):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit =<span class="st"> </span><span class="kw">lm</span>(doy <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> med_doy)
 <span class="kw">summary</span>(fit)<span class="op">$</span>coef</code></pre></div>
@@ -644,7 +638,7 @@ med_doy<span class="op">$</span>year =<span class="st"> </span>
 ## year         -0.005138055  0.01414108 -0.3633424 7.179445e-01</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(doy <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> med_doy, <span class="dt">pch =</span> <span class="dv">16</span>)
 <span class="kw">abline</span>(fit, <span class="dt">lty =</span> <span class="dv">2</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-246-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-40-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The results tell you that there is a 0.005 day decrease in median run date for every 1 year that has gone by and that it is not significantly different from a zero day decrease per year.</p>
 </div>
 <div id="fit-the-model" class="section level2">
@@ -704,7 +698,7 @@ R_line =<span class="st"> </span><span class="kw">exp</span>(<span class="kw">ri
 <span class="kw">lines</span>(R_line <span class="op">~</span><span class="st"> </span>S_line, <span class="dt">lwd =</span><span class="dv">3</span>)
 <span class="co"># draw the 1:1 line</span>
 <span class="kw">abline</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dt">lty =</span> <span class="dv">2</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-251-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-45-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The diagonal line is the <strong>1:1 replacement line</strong>: where 1 spawner would produce 1 recruit. The distance between this line and the curve is the theoretical <strong>harvestable surplus</strong> available at each spawner abundance that would keep the stock at a fixed abundance. The biological reference points that might be used in harvest management are:</p>
 <span class="math display" id="eq:ricker-brps">\[\begin{eqnarray*}
 &amp;&amp; S_{MAX}=\frac{1}{\beta},\\
@@ -723,7 +717,7 @@ brps =<span class="st"> </span><span class="kw">round</span>(<span class="kw">c<
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">abline</span>(<span class="dt">v =</span> brps, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)
 <span class="kw">text</span>(<span class="dt">x =</span> brps, <span class="dt">y =</span> <span class="kw">max</span>(R_fit) <span class="op">*</span><span class="st"> </span><span class="fl">1.08</span>, 
      <span class="dt">labels =</span> <span class="kw">names</span>(brps), <span class="dt">xpd =</span> T, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-254-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-48-1.png" width="672" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 <div id="exercise-5" class="section level2 unnumbered">
@@ -749,13 +743,22 @@ brps =<span class="st"> </span><span class="kw">round</span>(<span class="kw">c<
 </div>
 </div>
 </div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-R-reshape2">
+<p>Wickham, Hadley. 2007. “Reshaping Data with the reshape Package.” <em>Journal of Statistical Software</em> 21 (12): 1–20. <a href="http://www.jstatsoft.org/v21/i12/" class="uri">http://www.jstatsoft.org/v21/i12/</a>.</p>
+</div>
+<div id="ref-R-dplyr">
+<p>Wickham, Hadley, Romain Francois, Lionel Henry, and Kirill Müller. 2017. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr" class="uri">https://CRAN.R-project.org/package=dplyr</a>.</p>
+</div>
+</div>
 <div class="footnotes">
 <hr />
-<ol start="37">
-<li id="fn37"><p>E.g., <code>&quot;hatch&quot;</code>, “<code>Hatch</code>”, and <code>&quot;HATCH&quot;</code> are all treated as different factor levels in R<a href="ch5.html#fnref37">↩</a></p></li>
-<li id="fn38"><p>This is the fraction of all fish that came back each year that did so on or before a given day<a href="ch5.html#fnref38">↩</a></p></li>
-<li id="fn39"><p>It doesn’t look like much, but this information is incredibly important for fishery managers. It provides information on how much of the annual run has passed on each day. You can see that the rate of change is the fastest in the middle of the run, this corresponds to the major hump in the plots you made earlier (which were raw numbers by day). Of course during the run, the managers don’t know what proportion of the total run has passed because they don’t know the total number of fish that will come that season, but by characterizing the mean and variability of the different run completion proportions on each day in the past, they can have some idea of how much of the run to expect yet to come on any given day.<a href="ch5.html#fnref39">↩</a></p></li>
-<li id="fn40"><p>This is the perfect kind of thing to make an argument to your function!<a href="ch5.html#fnref40">↩</a></p></li>
+<ol start="1">
+<li id="fn1"><p>E.g., <code>&quot;hatch&quot;</code>, “<code>Hatch</code>”, and <code>&quot;HATCH&quot;</code> are all treated as different factor levels in R<a href="ch5.html#fnref1">↩</a></p></li>
+<li id="fn2"><p>This is the fraction of all fish that came back each year that did so on or before a given day<a href="ch5.html#fnref2">↩</a></p></li>
+<li id="fn3"><p>It doesn’t look like much, but this information is incredibly important for fishery managers. It provides information on how much of the annual run has passed on each day. You can see that the rate of change is the fastest in the middle of the run, this corresponds to the major hump in the plots you made earlier (which were raw numbers by day). Of course during the run, the managers don’t know what proportion of the total run has passed because they don’t know the total number of fish that will come that season, but by characterizing the mean and variability of the different run completion proportions on each day in the past, they can have some idea of how much of the run to expect yet to come on any given day.<a href="ch5.html#fnref3">↩</a></p></li>
+<li id="fn4"><p>This is the perfect kind of thing to make an argument to your function!<a href="ch5.html#fnref4">↩</a></p></li>
 </ol>
 </div>
             </section>

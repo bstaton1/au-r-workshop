@@ -26,7 +26,7 @@ In this chapter, you will get familiar with the basics of using R for making plo
 *  the basics of the `par` function
 *  how to save your plot to an external file
 
-R's base `{graphics}` plotting package is incredibly versatile, and as you will see, it doesn't take much to get started making professional-looking graphs. It is worth mentioning that there are other R packages^[An **R package** is a bunch of code that somebody has written and placed on the web for you to install, their use is first introduced in Chapter \@ref(ch5)] for plotting (e.g. `{ggplot2}` and `{lattice}`) that have nice features. They can be more complex to learn at first than the base R plotting capabilities and look a bit different.
+R's base `{graphics}` plotting package is incredibly versatile, and as you will see, it doesn't take much to get started making professional-looking graphs. It is worth mentioning that there are other R packages^[An **R package** is a bunch of code that somebody has written and placed on the web for you to install, their use is first introduced in Chapter \@ref(ch5)] for plotting that have nice features. The R packages `{ggplot2}` [@R-ggplot2] and `{lattice}` [@R-lattice] are good examples. However, they can be more complex to learn at first than the base R plotting capabilities and look a bit different.
 
 **IMPORTANT NOTE**: If you did not attend the sessions corresponding to Chapter \@ref(ch1), you are recommended to walk through the material found in that chapter before proceeding to this material. Also note that if you are confused about a topic, you can use **CTRL + F** to find previous cases where that topic has been discussed in this book. 
 

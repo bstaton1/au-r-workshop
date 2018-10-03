@@ -4,14 +4,13 @@ _This chapter was contributed by Henry Hershey_
 
 ```{r, echo = F}
 rm(list = ls(all = T))
-knitr::opts_chunk$set(fig.align = "center", message = F, warning = F)
-```
-
-```{r bear, echo = F, fig.cap = "Henry, you want to draw a picture to go here?"}
-knitr::include_graphics("bear.jpg")
+knitr::opts_chunk$set(fig.align = "center", 
+                      fig.width = 5, fig.height = 5,
+                      message = F, warning = F)
 ```
 
 ## Chapter Overview {#ch6overview} 
+
 R is a relatively under-used tool for creating Geographic Information Systems (GIS). Most people use ArcGIS, QGIS, or Google Earth to display and analyze spatial data. However, R can do much of what you might want to do in those programs, with the added benefit of allowing you to create a reproducible script file to share. Often times, workflows are difficult to replicate in GIS because of the point-click user interface. With R, anyone can replicate your geospatial analysis with your script file and data.
 
 In this chapter, you will learn the basics of:
@@ -43,11 +42,11 @@ Mapping in R requires many packages. Install **all** of the following packages:
 install.packages(
   c("sp","rgdal","maptools",
   "rgeos","raster","scales",
-  "adehabitatHR","dismo")
+  "adehabitatHR","dismo", "prettymapr")
 )
 ```
         
-You will need `{dplyr}` as well, if you did not install it already for Chapter \@ref(ch5). 
+You will need `{dplyr}` [@R-dplyr] as well, if you did not install it already for Chapter \@ref(ch5). 
 
 Rather than load all the packages at the top of the script (as is typically customary), this chapter will load and briefly describe each package immediately prior to using it for the first time.
 
@@ -123,7 +122,7 @@ bear = bear %>%
 unique(bear$ID)
 ```
 
-Now, use the `{sp}` package to create a spatial object out of your standard R data frame. You can think of this object like a **layer** in GIS. `{sp}` lets you create layers with or without attribute tables, but if your spatial data have other attributes like an ID or a timestamp variable, you should always create an object with class `SpatialPointsDataFrame` to make sure those variables/attributes are stored.
+Now, use the `{sp}` package [@R-sp] to create a spatial object out of your standard R data frame. You can think of this object like a **layer** in GIS. `{sp}` lets you create layers with or without attribute tables, but if your spatial data have other attributes like an ID or a timestamp variable, you should always create an object with class `SpatialPointsDataFrame` to make sure those variables/attributes are stored.
 
 In order to convert a data frame into a `SpatialPointsDataFrame`, you need to specify four arguments: 
 
@@ -143,13 +142,11 @@ bear = SpatialPointsDataFrame(
 
 ```
 
-
-
 Without any reference data these points are essentially useless. You will need to load some more spatial data to get your bearings. You have more spatial data, but they are in a different format.
 
 ### `.shp` files
 
-The `{rgdal}` package facilitates loading spatial data files (i.e., shapefiles) into R. The function `readOGR()` takes a standard shapefile (`.shp`), and converts it into a the correct spatial object (e.g., points vs. polygons). It takes two arguments: the data source name (`dsn`, the directory), and the layer name (`layer`). When you download a shapefile from an open-source web portal, it will often have accompanying files that store the attribute data. Store all of these files in a folder with the same name as the shapefile. Now load in the shapefile that contains a polygon for the boundary of Slovenia [@svn-cite] from the directory, so you can see where in the country the brown bears were detected:
+The `{rgdal}` package [@R-rgdal] facilitates loading spatial data files (i.e., shapefiles) into R. The function `readOGR()` takes a standard shapefile (`.shp`), and converts it into a the correct spatial object (e.g., points vs. polygons). It takes two arguments: the data source name (`dsn`, the directory), and the layer name (`layer`). When you download a shapefile from an open-source web portal, it will often have accompanying files that store the attribute data. Store all of these files in a folder with the same name as the shapefile. Now load in the shapefile that contains a polygon for the boundary of Slovenia [@svn-cite] from the directory, so you can see where in the country the brown bears were detected:
 
 ```{r,results="hide", eval = F}
 #load all the shapefiles for the background map. 
@@ -211,7 +208,7 @@ par(mar = c(2,2,1,1))
 plot(bear, col = alpha("blue", 0.5), pch = 16, axes = T)
 ```
 
-The `alpha()` function from the `{scales}` package allows you to plot with transparent colors, which is helpful for seeing the high- versus low-density clusters. Now, plot your reference layers to get your bearings:
+The `alpha()` function from the `{scales}` package [@R-scales] allows you to plot with transparent colors, which is helpful for seeing the high- versus low-density clusters. Now, plot your reference layers to get your bearings:
 
 ```{r, fig.width = 5, fig.height = 5}
 #make a map of all the bear relocations and railways in slovenia
@@ -317,7 +314,7 @@ bearstats = data.frame(stat = bearstats$NAME_1)
 table(bearstats$stat) 
 ```
 
-Then, you can recombine your calculated attribute values (in `bearstats`) to your original layer (`bear`) with `spCbind()` from the `{maptools}` package:
+Then, you can recombine your calculated attribute values (in `bearstats`) to your original layer (`bear`) with `spCbind()` from the `{maptools}` package [@R-maptools]:
 
 ```{r, error = T}
 library(maptools)
@@ -333,11 +330,16 @@ table(bear$ID, bear$bearstats.stat)
 
 ## Analysis {#Anal} 
 
-Now that you know how to import, plot, and manipulate your data, it's time to do some analysis. The `{rgeos}` package has a few tools for simple geometric calculations like finding the distance between two points, or the area of a polygon. However, more specialized analyses are often only available in other packages. One commonly used package in animal ecology is the `{adehabitat}` package suite. Use this package in conjunction with `{rgeos}` to determine where the tagged bears may have crossed the railroad.
+Now that you know how to import, plot, and manipulate your data, it's time to do some analysis. The `{rgeos}` package [@R-rgeos] has a few tools for simple geometric calculations like finding the distance between two points, or the area of a polygon. However, more specialized analyses are often only available in other packages. Two common analytical tasks in animial tracking are:
+
+*  Calculating the **home range** of an animal, i.e., finding a polygon that describes where most of the relocations occurred.
+*  Finding **intersections** between tracks and some other line (e.g., river, state boundary, or railroad). 
+
+In this section, you will use the `{rgeos}` package and another specialized package to do these tasks.
 
 ### Home Range Analysis {#hr-Anal}
 
-If you look at the plots in Section \@ref(plot-selections), it looks like some bears live very close to the railroad, but do not cross it, some live very far away, and others may have crossed it multiple times. Which bears' home ranges are intersected by the railroad? In order to determine this, you will have to calculate the home range of each animal with the `mcp` function in the `{adehabitatHR}` package. 
+If you look at the plots in Section \@ref(plot-selections), it looks like some bears live very close to the railroad, but do not cross it, some live very far away, and others may have crossed it multiple times. Which bears' home ranges are intersected by the railroad? In order to determine this, you will have to calculate the home range of each animal with the `mcp` function in the `{adehabitatHR}` package [@R-adehabitatHR]. 
 
 ```{r}
 library(adehabitatHR) 
@@ -356,10 +358,9 @@ cp = mcp(xy=bear[,2], percent=95,unin="m",unout="km2")
 
 If you run `cp`, you'll see that the areas of each polygon are stored in the object in square kilometers.
 
-Now, plot the homeranges of each bear, label them, and overlay the railroad on a map.
+Now, plot the homeranges of each bear, label them using the `{rgeos}` package, and overlay the railroad on a map.
 
 ```{r, results = "hide", fig.width = 5, fig.height = 5}
-#rgeos has a few nice functions for plotting and spatial transformations
 library(rgeos) 
 #match the coordinate system of the home ranges object with the railways layer 
 cp = spTransform(cp, CRS(proj4string(slovenia)))
@@ -378,7 +379,7 @@ lines(railways, lwd = 3,col = "red")
 
 ### Finding Intersections Between Two Layers
 
-Now that you know which bears crossed the railroad, find out where. You'll need a user-defined function called `points_to_line()`, which is stored as a script file in your working directory [@points-line-cite]. If you ever write a function, you can store it in a script file, and then bring it into your current session using the `source()` function. This prevents you from needing to paste all the function code every time you want to use it in a new script. Save as many functions as you want in a single script, and they will all be added to your Global Environment when you `source()` the file^[For projects with many user-defined functions, you may be better off creating a `./Functions` directory and housing multiple scripts there. Better yet, you can create your own package for personal use. Look into the `{devtools}` and `{roxygen2}` packages].
+Now that you know which bears crossed the railroad, find out where. You'll need a user-defined function called `points_to_line()`, which is stored as a script file in your working directory [@points-line-cite]. If you ever write a function, you can store it in a script file, and then bring it into your current session using the `source()` function. This prevents you from needing to paste all the function code every time you want to use it in a new script. Save as many functions as you want in a single script, and they will all be added to your Global Environment when you `source()` the file^[For projects with many user-defined functions, you may be better off creating a `./Functions` directory and housing multiple scripts there. Better yet, you can create your own package for personal use. Look into the `{devtools}` [@R-devtools] and `{roxygen2}` [@R-roxygen2] packages].
 
 ```{r, eval = F}
 source("points_to_line.R")
@@ -402,7 +403,7 @@ bearlines = points_to_line(
   id_field="ID", sort_field = "timestamp")
 ```
 
-Now that your points have been turned into tracks for each bear, see where they intersect using the `gIntersection()` function from the `{rgeos}` package. Hang on though, this will take your computer a while to run (between 5 and 20 minutes). You can start a timer with a beeper that goes off when it finishes running:
+Now that your points have been turned into tracks for each bear, see where they intersect using the `gIntersection()` function from the `{rgeos}` package. Hang on though, this will take your computer a while to run (between 5 and 20 minutes). Optionally, you can start a timer and have the `{beepr}` package [@R-beepr] make a sound when the geoprocessing calculations are completed:
 
 ```{r, eval = F}
 library(beepr)
@@ -420,40 +421,56 @@ if(exists("crossings")) {
 }
 ```
 
-## Creating a Presentable Map {#PresentMap}
+## Creating a Presentable Map {#base-maps}
 
 Now that you have a points object with the crossings stored, make a map that you can present to policy makers.
 
-**THIS PART DOESN'T WORK FOR ME, SEE THE ISSUE**
+First, you should get a nicer basemap than a R's blank slate. Use the `{dismo}` [@R-dismo] and `{raster}` [@R-raster] packages to get one:
 
 ```{r, eval = F}
-library(dismo)
-library(raster) #the basemap will be stored as a raster object.
-basemap = gmap(bear, exp=1, type="terrain", lonlat = T)
-plot(basemap)
-#reproject each layer to the coordinate system of the basemap.
-bear <- spTransform(bear, basemap@crs)
-railways <- spTransform(railways, basemap@crs)
-slovenia <- spTransform(slovenia, basemap@crs)
-proj4string(crossings) <- basemap@crs
-points(bear,col="white",pch=15,cex=.5)
-railways <- crop(railways,basemap)
-plot(railways,add=T,lwd=4,col="yellow")
-plot(crossings,add=T,col="red",cex=1,pch=16)
-box()
-#scalebar(5000,xy=click(),col="white")
-#legend?
-#labels?
-#arrows?
+library(dismo); library(raster)
+base = gmap(bear, type = "terrain", lonlat = T)
+plot(base)
 ```
 
-Where are bears crossing the railroad? It looks like there are two areas of the railroad that get the most bear activity. Add arrows pointing to where you think the crossings should go.
+Now, put the rest of the layers in the same projection as the basemap:
 
-```{r}
-plot(slovenia)
-plot(railways, add = T, col = "red")
-plot(crossings, add = T, pch = 17, col = "blue")
+```{r, eval = F}
+# put the other layers in the same crs as the basemap
+bear = spTransform(bear, basemap@crs)
+railways = spTransform(railways, base@crs)
+slovenia = spTransform(slovenia, base@crs)
+proj4string(crossings) = base@crs
 ```
+
+Now, plot the crossings in blue on top of the basemap with the railroad in red. Don't forget the scale bar and north arrow using the `{prettymapr}` [@R-prettymapr] package!
+
+```{r, eval = F}
+# plot the basemap
+plot(base)
+
+# draw on the railways and crossing events
+lines(railways, lwd = 10, col = "red")
+points(crossings, col = alpha("blue", 0.5), cex = 5, pch = 16)
+
+# draw on a legend
+legend("bottom", legend = c("Railway", "Crossing Events"),
+       lty = c(1,NA), col = c("red", alpha("blue", 0.5)),
+       pch = c(NA, 16), lwd = 10, cex = 5, horiz = T, bty = "n")
+
+# draw on other map components: scale bar and north arrow
+look at maptools
+addscalebar(plotunit = "latlon", htin = 0.5,
+            label.cex = 5, padin = c(0.5,0.5))
+addnortharrow(pos = "topleft", scale = 5, padin = c(2, 2.5))
+
+```
+
+```{r, echo = F, fig.height = 5, fig.width = 5}
+knitr::include_graphics("MakePNG/FinalMap.png")
+```
+
+Where are bears crossing the railroad? It looks like there are two areas of the railroad that get the most bear activity. 
 
 ## Other R Mapping Packages
 
@@ -461,19 +478,11 @@ This chapter has covered many of R's basic mapping capabilities using the built-
 
 ### `{ggmap}`
 
-Just like for `{ggplot2}`, many R users find the `{ggmap}` package more intuitive than creating maps with `plot()` like you have done in this chapter. Here's an example:
-
-**THIS PART DOESN'T WORK FOR ME, SEE THE ISSUE**
-
-```{r, error = T}
-library(ggmap)
-geocode("United States")
-qmap(location = "boston university")
-```
+Just like for `{ggplot2}` [@R-ggplot2], many R users find the `{ggmap}` [@R-ggmap] package more intuitive than creating maps with `plot()` like you have done in this chapter. If you have messed around with `{ggplot2}` or would like a slightly different plotting workflow, look into it more. 
 
 ### `{leaflet}` {#leaflet}
 
-This package allows you to make interactive maps. This will only work if your output is HTML-based^[If you're viewing this in PDF format, go to: <https://bstaton1.github.io/au-r-workshop/ch6.html#leaflet> to view the interactive version. Better yet, install `{leaflet}`, and try it yourself!]
+The `{leaflet}` package [@R-leaflet] allows you to make interactive maps. This will only work if your output is HTML-based^[If you're viewing this in PDF format, go to: <https://bstaton1.github.io/au-r-workshop/ch6.html#leaflet> to view the interactive version. Better yet, install `{leaflet}`, and try it yourself!]
 
 ```{r, eval = knitr::is_html_output()}
 library(leaflet)
@@ -495,19 +504,22 @@ leaflet() %>%
 
 ## Exercise 6 {-#ex6} 
 
-1.  Load the `caves.shp` shapefile from your working directory [@caves-cite]. Add the data to one of the maps of Slovenia you created in this chapter.
+
+1.  Load the `caves.shp` shapefile [@caves-cite] from your working directory. Add the data to one of the maps of Slovenia you created in this chapter.
 2.  How many caves are there?
 3.  How many caves are in each statistical area?
 4.  Which bear has the most caves in its homerange?
-5.  How far from the centroid of their homerange are the caves? (Hint: 
+5.  How far from the centroid of their homerange are the caves? (_Hint:_)
+6.  Place arrows on the final map you made in Section \@ref(base-maps) pointing to the two areas with the most crossing activity. Style the arrows as you like. (_Hint: look back to Section \@ref(error-bars) for how arrows can be drawn._)
 
-## Exercise 6 Bonus
+## Exercise 6 Bonus {-}
 
-1.  Use the 
-
-2.  Find some data online for a system you are interested in and do similar activities as shown in this chapter. Good examples for obtaining open access spatial data are: 
+1.  Find some data online for a system you are interested in and do similar activities as shown in this chapter. Good examples for obtaining open access spatial data are: 
 
 *  <GADM for administrative boundaries>
 *  <movebank for animal tracking data>
 *  <USGS>
-*  <HELPFUL.WEBSITE.#4>
+   * Topomaps
+   * Hydrography
+   * Bathymetry
+   
