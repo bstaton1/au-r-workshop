@@ -4,10 +4,10 @@
 \contentsline {subsection}{Prepare Your Computer}{7}{section*.5}
 \contentsline {subsection}{Data Sets}{8}{section*.6}
 \contentsline {section}{Exercises}{8}{section*.7}
-\contentsline {section}{Text Conventions}{8}{section*.8}
+\contentsline {section}{Text Conventions}{9}{section*.8}
 \contentsline {section}{Keyboard Shortcuts}{9}{section*.9}
 \contentsline {section}{Development of this Book}{9}{section*.10}
-\contentsline {section}{About the Author}{9}{section*.11}
+\contentsline {section}{About the Author}{10}{section*.11}
 \contentsline {chapter}{\numberline {1}Introduction to the R Environment}{11}{chapter.1}
 \contentsline {section}{Chapter Overview}{11}{section*.12}
 \contentsline {section}{Before You Begin: Install R and RStudio}{11}{section*.13}
@@ -122,36 +122,38 @@
 \contentsline {chapter}{\numberline {6}Mapping and Spatial Analysis}{121}{chapter.6}
 \contentsline {section}{\numberline {6.1}Chapter Overview}{121}{section.6.1}
 \contentsline {section}{\numberline {6.2}Before You Begin}{121}{section.6.2}
-\contentsline {section}{\numberline {6.3}Geospatial Data}{123}{section.6.3}
-\contentsline {section}{\numberline {6.4}Importing Geospatial Data}{123}{section.6.4}
-\contentsline {subsection}{\numberline {6.4.1}\texttt {.csv} files}{123}{subsection.6.4.1}
-\contentsline {subsection}{\numberline {6.4.2}\texttt {.shp} files}{125}{subsection.6.4.2}
-\contentsline {section}{\numberline {6.5}Plotting}{126}{section.6.5}
-\contentsline {subsection}{\numberline {6.5.1}Zooming}{127}{subsection.6.5.1}
-\contentsline {subsection}{\numberline {6.5.2}Plotting Selections}{128}{subsection.6.5.2}
-\contentsline {section}{\numberline {6.6}Manipulating Spatial Data}{129}{section.6.6}
-\contentsline {subsection}{\numberline {6.6.1}Changing the CRS}{129}{subsection.6.6.1}
-\contentsline {subsection}{\numberline {6.6.2}Clipping}{129}{subsection.6.6.2}
-\contentsline {subsection}{\numberline {6.6.3}Adding Attributes}{130}{subsection.6.6.3}
+\contentsline {section}{\numberline {6.3}Geospatial Data}{122}{section.6.3}
+\contentsline {section}{\numberline {6.4}Importing Geospatial Data}{122}{section.6.4}
+\contentsline {subsection}{\numberline {6.4.1}\texttt {.csv} files}{122}{subsection.6.4.1}
+\contentsline {subsection}{\numberline {6.4.2}\texttt {.shp} files}{124}{subsection.6.4.2}
+\contentsline {section}{\numberline {6.5}Plotting}{125}{section.6.5}
+\contentsline {subsection}{\numberline {6.5.1}Zooming}{126}{subsection.6.5.1}
+\contentsline {subsection}{\numberline {6.5.2}Plotting Selections}{127}{subsection.6.5.2}
+\contentsline {section}{\numberline {6.6}Manipulating Spatial Data}{128}{section.6.6}
+\contentsline {subsection}{\numberline {6.6.1}Changing the CRS}{128}{subsection.6.6.1}
+\contentsline {subsection}{\numberline {6.6.2}Clipping}{128}{subsection.6.6.2}
+\contentsline {subsection}{\numberline {6.6.3}Adding Attributes}{129}{subsection.6.6.3}
 \contentsline {section}{\numberline {6.7}Analysis}{130}{section.6.7}
 \contentsline {subsection}{\numberline {6.7.1}Home Range Analysis}{130}{subsection.6.7.1}
 \contentsline {subsection}{\numberline {6.7.2}Finding Intersections Between Two Layers}{132}{subsection.6.7.2}
 \contentsline {section}{\numberline {6.8}Creating a Presentable Map}{133}{section.6.8}
-\contentsline {section}{\numberline {6.9}Other R Mapping Packages}{134}{section.6.9}
-\contentsline {subsection}{\numberline {6.9.1}\texttt {\{ggmap\}}}{134}{subsection.6.9.1}
-\contentsline {subsection}{\numberline {6.9.2}\texttt {\{leaflet\}}}{134}{subsection.6.9.2}
-\contentsline {section}{Exercise 6}{135}{section*.42}
-\contentsline {section}{\numberline {6.10}Exercise 6 Bonus}{135}{section.6.10}
-\contentsline {chapter}{Exercise Solutions}{137}{chapter*.43}
-\contentsline {section}{Exercise 1A Solutions}{137}{section*.44}
-\contentsline {section}{Exercise 1B Solutions}{138}{section*.45}
-\contentsline {section}{Exercise 2 Solutions}{140}{section*.46}
-\contentsline {section}{Exercise 3 Solutions}{142}{section*.47}
-\contentsline {section}{Exercise 4A Solutions}{144}{section*.48}
-\contentsline {section}{Exercise 4B Solutions}{145}{section*.49}
-\contentsline {section}{Exercise 4C Solutions}{147}{section*.50}
-\contentsline {section}{Exercise 4D Solutions}{149}{section*.51}
-\contentsline {section}{Exercise 4E Solutions}{155}{section*.52}
-\contentsline {section}{Exercise 4F Solutions}{156}{section*.53}
-\contentsline {section}{Exercise 5 Solutions}{160}{section*.54}
-\contentsline {section}{Exercise 6 Solutions}{164}{section*.55}
+\contentsline {section}{\numberline {6.9}Other R Mapping Packages}{136}{section.6.9}
+\contentsline {subsection}{\numberline {6.9.1}\texttt {\{ggmap\}}}{136}{subsection.6.9.1}
+\contentsline {subsection}{\numberline {6.9.2}\texttt {\{leaflet\}}}{136}{subsection.6.9.2}
+\contentsline {section}{Exercise 6}{136}{section*.42}
+\contentsline {section}{Exercise 6 Bonus}{137}{section*.43}
+\contentsline {chapter}{Exercise Solutions}{139}{chapter*.44}
+\contentsline {section}{Exercise 1 Solutions}{139}{section*.45}
+\contentsline {subsection}{Exercise 1A Solutions}{139}{section*.46}
+\contentsline {subsection}{Exercise 1B Solutions}{140}{section*.47}
+\contentsline {section}{Exercise 2 Solutions}{142}{section*.48}
+\contentsline {section}{Exercise 3 Solutions}{144}{section*.49}
+\contentsline {section}{Exercise 4 Solutions}{147}{section*.50}
+\contentsline {subsection}{Exercise 4A Solutions}{147}{section*.51}
+\contentsline {subsection}{Exercise 4B Solutions}{148}{section*.52}
+\contentsline {subsection}{Exercise 4C Solutions}{150}{section*.53}
+\contentsline {subsection}{Exercise 4D Solutions}{152}{section*.54}
+\contentsline {subsection}{Exercise 4E Solutions}{158}{section*.55}
+\contentsline {subsection}{Exercise 4F Solutions}{159}{section*.56}
+\contentsline {section}{Exercise 5 Solutions}{164}{section*.57}
+\contentsline {section}{Exercise 6 Solutions}{168}{section*.58}

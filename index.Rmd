@@ -1,7 +1,7 @@
 --- 
 title: "Introduction to R for Natural Resource Scientists"
 author: "Ben Staton"
-date: "with contributions from Henry Hershey"
+date: "with contributions by Henry Hershey"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -16,17 +16,7 @@ description: "This is a first course in R programming for natural resource scien
 
 # Overview{-}
 
-```{r, eval = !knitr::is_html_output(), echo = F}
-# knitr::include_graphics("cover_image.png")
-# cover-image: cover_image.png
-# url: https://bstaton1.github.io/au-r-workshop
-```
-
-```{r, eval = F, echo = F}
-# `r if(knitr::is_html_output()) '<a href="https://github.com/bstaton1/au-r-workshop/"><img src="cover_image.png" width="250" height="375" alt="Cover image" align="right" style="margin: 0 1em 0 1em" /></a>'` 
-```
-
-`r if(knitr::is_html_output()) '<a href="https://github.com/bstaton1/au-r-workshop/"><img src="cover_image.png" width="250" height="375" alt="Cover image" align="right" style="margin: 0 1em 0 1em" /></a>' `This book is intended to be a first course in R programming for natural resource professionals. It is by no means comprehensive (no book about R ever could be), but instead attempts to introduce the main topics needed to get a beginner up and running with applying R to their own work. It is intended to be a companion to in-person workshop sessions, in which each chapter is covered in a 2 hour session, however it can be used as "self-teach" manual as well. Although the examples shown have a natural resource/ecological theme, the general skills presented are general to R users across all scientific disciplines. 
+`r if(knitr::is_html_output()) '<a href="https://github.com/bstaton1/au-r-workshop/"><img src="img/cover_image.png" width="250" height="375" alt="Cover image" align="right" style="margin: 0 1em 0 1em" /></a>' `This book is intended to be a first course in R programming for natural resource professionals. It is by no means comprehensive (no book about R ever could be), but instead attempts to introduce the main topics needed to get a beginner up and running with applying R to their own work. It is intended to be a companion to in-person workshop sessions, in which each chapter is covered in a 2 hour session, however it can be used as "self-teach" manual as well. Although the examples shown have a natural resource/ecological theme, the general skills presented are general to R users across all scientific disciplines. 
 
 ## What is Covered? {-}
 
@@ -49,9 +39,7 @@ There are, however, some tasks you'll need to complete before using this book, w
 
 You will install R and RStudio as the first step in Chapter 1. See [here](#install) for the links to get these programs.
 
-You should create a devoted folder on your computer for this book. All examples will assume this folder is located here: `C:/Users/YOU/Documents/R-Book`.
-
-Change `YOU` to be specific for your computer.
+You should create a devoted folder on your computer for this book. All examples will assume this folder is located here: `C:/Users/YOU/Documents/R-Book`. Change `YOU` to be specific for your computer.
 
 ### Data Sets {-#data-sets}
 
@@ -64,6 +52,27 @@ To acquire the data for this book, you should:
   2.  click the green _Clone or download_ button at the top right,
   3.  click _Download ZIP_
   4.  unzip the contents of this folder into the location: `C:/Users/YOU/Documents/R-Book/Data`
+
+File organization will be very important for your success in learning to use R. This book will assume your `R-Book` directory is organized as shown below. Notice that there is a separate folder for the data downloaded from GitHub as well as one for each chapter that will house the R code for that chapter. Do not worry about making all of these folders now, you will do this at the appropriate time as you work your way through this book. For now, just make sure there is a `Data` folder that contains all of the unzipped contents from the GitHub repository your main `R-Book` directory.
+
+```{r, echo = F}
+path = c(
+  "R-Book/Data/asl.csv",
+  "R-Book/Data/...",
+  "R-Book/Data/Ch6",
+  "R-Book/Chapter1/Ch1.R",
+  "R-Book/Chapter1/Ex1A.R",
+  "R-Book/Chapter1/Ex1B.R",
+  "R-Book/Chapter2/Ch2.R",
+  "R-Book/Chapter2/Ex2.R",
+  "R-Book/Chapter3",
+  "R-Book/Chapter4",
+  "R-Book/Chapter5",
+  "R-Book/Chapter6"
+)
+
+data.tree::as.Node(data.frame(pathString = path))
+```
 
 ## Exercises {-}
 

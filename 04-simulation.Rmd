@@ -9,7 +9,8 @@ knitr::opts_chunk$set(fig.align = "center")
 library(dplyr)
 library(kableExtra)
 library(knitr)
-I_power = 10
+I_power = 500
+sra_n_rep = 2000
 ```
 
 ## Chapter Overview{-}
@@ -568,15 +569,26 @@ round(out$mean_H/1e6, digits = 2)
 
 If you completed the stochastic power analysis example (Section \@ref(power-ex)), you might see where this is going. You are going to replicate applying a fixed policy many times to a random system. This is the Monte Carlo part of the analysis. The policy part is that you will compare the output from several candidate exploitation rates to inform a decision about which is best. This time, set up your analysis using `sapply()` (to iterate over different values of $U$) and `replicate()` (to iterate over different random populations fished at each $U$) instead of performing a nested `for()` loop as in previous examples:
 
-```{r}
+```{r, eval = F}
 U_try = seq(0.4, 0.6, 0.01)
-n_rep = 500
+n_rep = 2000
 H_out = sapply(U_try, function(u) {
   replicate(n = n_rep, expr = {
     ricker_sim(U = u, ny = 20, params = params)$mean_H/1e6
   })
 })
 ```
+
+```{r, echo = F}
+U_try = seq(0.4, 0.6, 0.01)
+n_rep = sra_n_rep
+H_out = sapply(U_try, function(u) {
+  replicate(n = n_rep, expr = {
+    ricker_sim(U = u, ny = 20, params = params)$mean_H/1e6
+  })
+})
+```
+
 
 The nested `replicate()` and `sapply()` method is a bit cleaner than a nested `for()` loop, but you have less control over the format of the output.
 

@@ -295,7 +295,7 @@ points(bear, pch = 16, cex = 0.5, col = alpha("blue", 0.5))
 plot(railways, add = T, col = "red", lwd = 3) 
 ```
 
-### Adding Attributes
+### Adding Attributes{#add-attr}
 
 What if you wanted to add an attribute to a points object, like which polygon it occurs in? Say you wanted to know what statistical region each bear relocation happened in. You can find this by extracting the attribute values of one layer (a **target**) at locations of another layer (a **source**) with the `over()` function from the `{sp}` package. In this case, the target is the `stats` layer, and the source is `bear` layer. These two layers will need to be in the same projection, and the result will be stored in the column `bearstats$NAME_1`:
 
@@ -379,7 +379,7 @@ lines(railways, lwd = 3,col = "red")
 
 ### Finding Intersections Between Two Layers
 
-Now that you know which bears crossed the railroad, find out where. You'll need a user-defined function called `points_to_line()`, which is stored as a script file in your working directory [@points-line-cite]. If you ever write a function, you can store it in a script file, and then bring it into your current session using the `source()` function. This prevents you from needing to paste all the function code every time you want to use it in a new script. Save as many functions as you want in a single script, and they will all be added to your Global Environment when you `source()` the file^[For projects with many user-defined functions, you may be better off creating a `./Functions` directory and housing multiple scripts there. Better yet, you can create your own package for personal use. Look into the `{devtools}` [@R-devtools] and `{roxygen2}` [@R-roxygen2] packages].
+Now that you know which bears crossed the railroad, find out where. You'll need a user-defined function called `points_to_line()`, which is stored as a script file in your working directory [@points-line-cite]. If you ever write a function, you can store it in a script file, and then bring it into your current session using the `source()` function. This prevents you from needing to paste all the function code every time you want to use it in a new script. Save as many functions as you want in a single script, and they will all be added to your Global Environment when you `source()` the file^[For projects with many user-defined functions, you may be better off creating a `./Functions` directory and housing multiple scripts there. Better yet, you can create your own package for personal use.].
 
 ```{r, eval = F}
 source("points_to_line.R")
@@ -463,11 +463,10 @@ look at maptools
 addscalebar(plotunit = "latlon", htin = 0.5,
             label.cex = 5, padin = c(0.5,0.5))
 addnortharrow(pos = "topleft", scale = 5, padin = c(2, 2.5))
-
 ```
 
 ```{r, echo = F, fig.height = 5, fig.width = 5}
-knitr::include_graphics("MakePNG/FinalMap.png")
+knitr::include_graphics("img/FinalMap.png")
 ```
 
 Where are bears crossing the railroad? It looks like there are two areas of the railroad that get the most bear activity. 
@@ -504,22 +503,16 @@ leaflet() %>%
 
 ## Exercise 6 {-#ex6} 
 
-
 1.  Load the `caves.shp` shapefile [@caves-cite] from your working directory. Add the data to one of the maps of Slovenia you created in this chapter.
 2.  How many caves are there?
 3.  How many caves are in each statistical area?
 4.  Which bear has the most caves in its homerange?
-5.  How far from the centroid of their homerange are the caves? (_Hint:_)
-6.  Place arrows on the final map you made in Section \@ref(base-maps) pointing to the two areas with the most crossing activity. Style the arrows as you like. (_Hint: look back to Section \@ref(error-bars) for how arrows can be drawn._)
 
 ## Exercise 6 Bonus {-}
 
 1.  Find some data online for a system you are interested in and do similar activities as shown in this chapter. Good examples for obtaining open access spatial data are: 
 
-*  <GADM for administrative boundaries>
-*  <movebank for animal tracking data>
-*  <USGS>
-   * Topomaps
-   * Hydrography
-   * Bathymetry
+*  **Administrative boundaries:** <https://gadm.org/>
+*  **Animal tracking data sets:** <https://www.movebank.org/>
+*  **US Geological Survey:** <https://www.usgs.gov/products/maps/gis-data>
    

@@ -129,7 +129,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{with contributions from Henry Hershey}
+    \date{with contributions by Henry Hershey}
 
 \usepackage{booktabs}
 \usepackage{pdfpages}
@@ -180,7 +180,7 @@
 % \includegraphics{cover_image.png}
 % % {\huge by Me}
 % \end{center}
-% 
+%
 % \let\maketitle\oldmaketitle
 % \maketitle
 
@@ -196,7 +196,7 @@
 % \setlength{\abovedisplayskip}{-5pt}
 % \setlength{\abovedisplayshortskip}{-5pt}
 
-\includepdf[pages={1}]{Cover_Page.pdf}
+\includepdf[pages={1}]{img/cover_image.pdf}
 \thispagestyle{empty}
 \let\maketitle\oldmaketitle
 \maketitle
@@ -274,9 +274,8 @@ You will install R and RStudio as the first step in Chapter 1. See
 
 You should create a devoted folder on your computer for this book. All
 examples will assume this folder is located here:
-\texttt{C:/Users/YOU/Documents/R-Book}.
-
-Change \texttt{YOU} to be specific for your computer.
+\texttt{C:/Users/YOU/Documents/R-Book}. Change \texttt{YOU} to be
+specific for your computer.
 
 \hypertarget{data-sets}{\subsection*{Data Sets}\label{data-sets}}
 \addcontentsline{toc}{subsection}{Data Sets}
@@ -304,6 +303,36 @@ To acquire the data for this book, you should:
   unzip the contents of this folder into the location:
   \texttt{C:/Users/YOU/Documents/R-Book/Data}
 \end{enumerate}
+
+File organization will be very important for your success in learning to
+use R. This book will assume your \texttt{R-Book} directory is organized
+as shown below. Notice that there is a separate folder for the data
+downloaded from GitHub as well as one for each chapter that will house
+the R code for that chapter. Do not worry about making all of these
+folders now, you will do this at the appropriate time as you work your
+way through this book. For now, just make sure there is a \texttt{Data}
+folder that contains all of the unzipped contents from the GitHub
+repository your main \texttt{R-Book} directory.
+
+\begin{verbatim}
+##          levelName
+## 1  R-Book         
+## 2   ¦--Data       
+## 3   ¦   ¦--asl.csv
+## 4   ¦   ¦--...    
+## 5   ¦   °--Ch6    
+## 6   ¦--Chapter1   
+## 7   ¦   ¦--Ch1.R  
+## 8   ¦   ¦--Ex1A.R 
+## 9   ¦   °--Ex1B.R 
+## 10  ¦--Chapter2   
+## 11  ¦   ¦--Ch2.R  
+## 12  ¦   °--Ex2.R  
+## 13  ¦--Chapter3   
+## 14  ¦--Chapter4   
+## 15  ¦--Chapter5   
+## 16  °--Chapter6
+\end{verbatim}
 
 \section*{Exercises}\label{exercises}
 \addcontentsline{toc}{section}{Exercises}
@@ -384,24 +413,24 @@ from R to Word. Individual session materials (i.e., handout, exercises,
 solutions, data) were created in separate documents, saved as PDFs and
 \texttt{.xlsx} files, and uploaded to a wordpress webpage.
 
-The second version was written through R and RStudio using the R
-packages \texttt{\{rmarkdown\}} \citep{rmarkdown-cite} and
-\texttt{\{knitr\}} \citep{knitr-cite}, which allowed the integration of
-text, code, and output all into one output file. This version was
-completed in Fall 2015. Like the first version, individual session
-materials were created in separate documents, and replaced those
+The second version was written through R \citep{R-base} and RStudio
+using the R packages \texttt{\{rmarkdown\}} \citep{R-rmarkdown} and
+\texttt{\{knitr\}} \citep{R-knitr, knitr-cite}, which allowed the
+integration of text, code, and output all into one output file. This
+version was completed in Fall 2015. Like the first version, individual
+session materials were created in separate documents, and replaced those
 previously found on the wordpress site.
 
 This third version was written through R and RStudio but used the R
-package \texttt{\{bookdown\}} \citep{bookdown-cite} which allowed for
-the individual sessions to be combined into one ``book'' by turning each
+package \texttt{\{bookdown\}} \citep{R-bookdown} which allowed for the
+individual sessions to be combined into one ``book'' by turning each
 session into a chapter. This facilitated cross-references to topics
 covered in previous chapters and allows the reader to only refer to one
 location when trying to remember how to use a skill. It also allowed for
 multiple formats to be published including both HTML and PDF versions.
 
 The book is hosted on \href{https://pages.github.com/}{GitHub Pages},
-and was last built on 10-01-2018.
+and was last built on 10-04-2018.
 
 \section*{About the Author}\label{about-the-author}
 \addcontentsline{toc}{section}{About the Author}
@@ -2336,9 +2365,10 @@ and as you will see, it doesn't take much to get started making
 professional-looking graphs. It is worth mentioning that there are other
 R packages\footnote{An \textbf{R package} is a bunch of code that
   somebody has written and placed on the web for you to install, their
-  use is first introduced in Chapter \ref{ch5}} for plotting (e.g.
-\texttt{\{ggplot2\}} and \texttt{\{lattice\}}) that have nice features.
-They can be more complex to learn at first than the base R plotting
+  use is first introduced in Chapter \ref{ch5}} for plotting that have
+nice features. The R packages \texttt{\{ggplot2\}} \citep{R-ggplot2} and
+\texttt{\{lattice\}} \citep{R-lattice} are good examples. However, they
+can be more complex to learn at first than the base R plotting
 capabilities and look a bit different.
 
 \textbf{IMPORTANT NOTE}: If you did not attend the sessions
@@ -2387,7 +2417,7 @@ system:
 
 Here is an example of a basic R plot:
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-76-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-75-1} \end{center}
 
 There are a few components:
 
@@ -2492,7 +2522,7 @@ sure your device is showing a plot first):
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-79-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-78-1} \end{center}
 
 Here, \texttt{points()} acted like a low-level plotting function because
 it added points to a plot you already made. Many of the arguments shown
@@ -2507,7 +2537,7 @@ also \texttt{lines()}:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-81-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-80-1} \end{center}
 
 You can add text to the plotting region:
 
@@ -2517,7 +2547,7 @@ You can add text to the plotting region:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-83-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-82-1} \end{center}
 
 The text is centered on the coordinates you provide. You can also
 provide vectors of coordinates and text to write different things at
@@ -2540,7 +2570,7 @@ You can see that the text is centered on the coordinates
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-85-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-84-1} \end{center}
 
 If you accidentally add a plot element that you don't want using a
 low-level plotting function, the only way to remove it is by re-running
@@ -2569,7 +2599,7 @@ group. Create a vector and plot it:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-86-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-85-1} \end{center}
 
 Notice that there are no group names on the bars (if \texttt{x1} had
 names, there would be). You can add names by using the argument
@@ -2592,7 +2622,7 @@ another vector and combine it with the old data:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-88-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-87-1} \end{center}
 
 To add multiple bars per group, R needs a matrix like you just made. The
 \textbf{columns} store the heights of the bars that will be placed
@@ -2650,7 +2680,7 @@ automatically assume you want to make a box-and-whisker plot:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-91-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-90-1} \end{center}
 
 In the box-and-whisker plot above, the heavy line is the median, the
 ends of the boxes are the 25\textsuperscript{th} and
@@ -2692,7 +2722,7 @@ anglers fished this year:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-93-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-92-1} \end{center}
 
 Notice the subset that extracts hours fished for tournament anglers only
 before plotting.
@@ -2713,7 +2743,7 @@ bins you want to plot:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-94-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-93-1} \end{center}
 
 \section{\texorpdfstring{The \texttt{par}
 Function}{The par Function}}\label{the-par-function}
@@ -2728,7 +2758,7 @@ this command:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-95-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-94-1} \end{center}
 
 Here, you changed the graphical parameters of the graphics device by
 using the \texttt{par()} function. Once you change the settings in
@@ -2790,7 +2820,7 @@ fishery:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-97-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-96-1} \end{center}
 
 Here, \texttt{sapply()} applied a user-defined function that plots a
 histogram for a given fishery type to each of the fishery types
@@ -2825,7 +2855,7 @@ made, add the legend:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-98-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-97-1} \end{center}
 
 The box can be removed using the \texttt{bty\ =\ "n"} argument and the
 size can be changed using \texttt{cex}. The position can be specified
@@ -2856,7 +2886,7 @@ Here is a more complex example:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-99-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-98-1} \end{center}
 
 Notice that you need to be careful about the order of how you specify
 which \texttt{lty} and \texttt{pch} settings match up with the elements
@@ -2965,7 +2995,7 @@ works, revisit Section \ref{data-summaries}) and plot them:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-101-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-100-1} \end{center}
 
 You wish to add error bars that represent 95\% confidence intervals on
 the mean. You can create a 95\% confidence interval using this basic
@@ -3027,7 +3057,7 @@ Then draw them on using the \texttt{arrows()} function:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-105-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-104-1} \end{center}
 
 Notice four things:
 
@@ -3379,7 +3409,7 @@ function. Make a new plot and add the fitted regression line:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-113-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-112-1} \end{center}
 
 It fits, but not very well. It seems there are two groups: one with data
 points mostly above the line and one with data points mostly below the
@@ -3599,7 +3629,7 @@ intercept and \texttt{b} is the slope.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-120-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-119-1} \end{center}
 
 \subsection{Interactions}\label{interactions}
 
@@ -3667,7 +3697,7 @@ decipher the two \texttt{abline()} commands.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-122-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-121-1} \end{center}
 
 Based on the coefficients table:
 
@@ -3881,7 +3911,7 @@ You can plot the fitted model:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-129-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-128-1} \end{center}
 
 Fit another model comparing the probability of success between hatchery
 and wild fish (analogous to the ANOVA model in Section \ref{anova}):
@@ -3949,14 +3979,14 @@ and obtain/plot the fitted probabilities for each group:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-133-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-132-1} \end{center}
 
 Look for an interaction (all the code is the same except use
 \texttt{glm(binary\ \textasciitilde{}\ type\ *\ weight)} instead of
 \texttt{glm(binary\ \textasciitilde{}\ type\ +\ weight)} and change
 everything to \texttt{fit4} instead of \texttt{fit3}).
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-134-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-133-1} \end{center}
 
 \subsection{AIC Model Selection}\label{aic-model-selection-1}
 
@@ -4167,7 +4197,7 @@ Plot the data:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-140-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-139-1} \end{center}
 
 You can see a distinct non-linearity to the relationship. The Holling
 Type II functional response\footnote{This function rises quickly at low
@@ -4226,7 +4256,7 @@ Despite these differences, you can obtain similar output as from
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-142-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-141-1} \end{center}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -4378,7 +4408,7 @@ random process where \(p = 0.8\) and \(n = 100\) like this:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 77
+## [1] 84
 \end{verbatim}
 
 The result you get will almost certainly be different from the one
@@ -4394,7 +4424,7 @@ argument. Plot the distribution of expected surviving individuals:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-146-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-145-1} \end{center}
 
 Another random process is the \textbf{lognormal process}: it generates
 random numbers such that the log of the values are normally-distributed
@@ -4407,7 +4437,7 @@ with mean equal to \texttt{logmean} and standard deviation equal to
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-147-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-146-1} \end{center}
 
 There are many random processes you can use in R. Checkout Table
 \ref{tab:dist-table-pdf} for more examples as well as the help files for
@@ -4428,7 +4458,7 @@ elements from the vector \texttt{x}:
 \end{Shaded}
 
 \begin{verbatim}
-## [1]  2  6 10  7  4
+## [1]  3 10  8  6  2
 \end{verbatim}
 
 You can sample with replacement (where it is possible to sample the same
@@ -4441,7 +4471,7 @@ element two or more times):
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "b" "b" "a" "c" "b" "a" "a" "a" "a" "b"
+##  [1] "a" "a" "b" "b" "c" "c" "c" "c" "c" "c"
 \end{verbatim}
 
 You can set probabilities on the sampling of different
@@ -4456,7 +4486,7 @@ elements\footnote{If \texttt{prob} doesn't sum to 1, then it will be
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "live" "live" "live" "live" "live" "live" "live" "live" "live" "live"
+##  [1] "die"  "live" "live" "live" "live" "live" "live" "live" "live" "live"
 \end{verbatim}
 
 Notice that this is the same as the binomial random process above, but
@@ -4678,7 +4708,7 @@ abundance at the end of the year for 100 years:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-161-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-160-1} \end{center}
 
 Examples of the other three utilities are shown in the example cases.
 
@@ -4735,7 +4765,7 @@ Use your function once using the same settings as before:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-163-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-162-1} \end{center}
 
 Now, you wish to replicate executing this function 1000 times. Use the
 \texttt{replicate()} function to do this:
@@ -4821,7 +4851,7 @@ easily using the \texttt{quantile()} function:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-166-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-165-1} \end{center}
 
 Notice how a user-defined function was passed to \texttt{apply()}. The
 range within the two dashed lines represents the range that encompassed
@@ -4946,7 +4976,7 @@ quantities fall below, both for random numbers and from the
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-173-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-172-1} \end{center}
 
 The fact that all the quantiles fall around the 1:1 line suggests the
 \texttt{n} random samples samples are indeed from a normal distribution.
@@ -4970,7 +5000,7 @@ curve and that approximated by the random deviates:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-174-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-173-1} \end{center}
 
 The \texttt{ecdf()} function obtains the empirical cumulative density
 function (which is just \texttt{pnorm()} for a sample). It allows you to
@@ -5116,9 +5146,9 @@ sample size that resulted in a significant difference using the
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-179-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-178-1} \end{center}
 
-Even if you tagged 100 fish total, you would only have a 50\% chance of
+Even if you tagged 100 fish total, you would only have a 47\% chance of
 saying the effect (which truly is there!) is present under the null
 hypothesis testing framework.
 
@@ -5180,10 +5210,10 @@ additional metric and re-run the analysis:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-180-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-179-1} \end{center}
 
 It seems that even if you tagged 50 fish per treatment, you would have a
-60\% chance of estimating that the mortality rate is between 0.2 and 0.3
+59\% chance of estimating that the mortality rate is between 0.2 and 0.3
 if it was truly 0.25.
 
 You and your colleagues consider these results and determine that you
@@ -5305,7 +5335,7 @@ Use the function once:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 9.02
+## [1] 8.52
 \end{verbatim}
 
 If you completed the stochastic power analysis example (Section
@@ -5322,7 +5352,7 @@ as in previous examples:
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{U_try =}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\FloatTok{0.4}\NormalTok{, }\FloatTok{0.6}\NormalTok{, }\FloatTok{0.01}\NormalTok{)}
-\NormalTok{n_rep =}\StringTok{ }\DecValTok{500}
+\NormalTok{n_rep =}\StringTok{ }\DecValTok{2000}
 \NormalTok{H_out =}\StringTok{ }\KeywordTok{sapply}\NormalTok{(U_try, }\ControlFlowTok{function}\NormalTok{(u) \{}
   \KeywordTok{replicate}\NormalTok{(}\DataTypeTok{n =}\NormalTok{ n_rep, }\DataTypeTok{expr =}\NormalTok{ \{}
     \KeywordTok{ricker_sim}\NormalTok{(}\DataTypeTok{U =}\NormalTok{ u, }\DataTypeTok{ny =} \DecValTok{20}\NormalTok{, }\DataTypeTok{params =}\NormalTok{ params)}\OperatorTok{$}\NormalTok{mean_H}\OperatorTok{/}\FloatTok{1e6}
@@ -6008,11 +6038,11 @@ manipulation in R using two R \textbf{packages}:
 \begin{itemize}
 \tightlist
 \item
-  \texttt{\{reshape2\}}: used for changing data between formats (wide
-  and long)
+  \texttt{\{reshape2\}} \citep{R-reshape2}: used for changing data
+  between formats (wide and long)
 \item
-  \texttt{\{dplyr\}}: used for large data manipulations with a
-  consistent and readable format.
+  \texttt{\{dplyr\}} \citep{R-dplyr}: used for large data manipulations
+  with a consistent and readable format.
 \end{itemize}
 
 You will be turning daily observations of harvest and escapement (fish
@@ -7110,15 +7140,6 @@ read the data file into R. If this is a new session, load the
 
 \emph{This chapter was contributed by Henry Hershey}
 
-\begin{figure}
-
-{\centering \includegraphics[width=11.24in]{bear} 
-
-}
-
-\caption{Henry, you want to draw a picture to go here?}\label{fig:bear}
-\end{figure}
-
 \section{Chapter Overview}\label{ch6overview}
 
 R is a relatively under-used tool for creating Geographic Information
@@ -7179,7 +7200,8 @@ files), you'll find:
   folders named \texttt{railways}, \texttt{states}, and
   \texttt{SVN\_adm}, and
 \item
-  an R script called \texttt{points\_to\_line.R}.
+  an R script called \texttt{points\_to\_line.R}
+  \citep{points-line-cite}.
 \end{enumerate}
 
 Copy (or cut if you'd like) all of these files/folders from
@@ -7193,13 +7215,13 @@ following packages:
 \KeywordTok{install.packages}\NormalTok{(}
   \KeywordTok{c}\NormalTok{(}\StringTok{"sp"}\NormalTok{,}\StringTok{"rgdal"}\NormalTok{,}\StringTok{"maptools"}\NormalTok{,}
   \StringTok{"rgeos"}\NormalTok{,}\StringTok{"raster"}\NormalTok{,}\StringTok{"scales"}\NormalTok{,}
-  \StringTok{"adehabitatHR"}\NormalTok{,}\StringTok{"dismo"}\NormalTok{)}
+  \StringTok{"adehabitatHR"}\NormalTok{,}\StringTok{"dismo"}\NormalTok{, }\StringTok{"prettymapr"}\NormalTok{)}
 \NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-You will need \texttt{\{dplyr\}} as well, if you did not install it
-already for Chapter \ref{ch5}.
+You will need \texttt{\{dplyr\}} \citep{R-dplyr} as well, if you did not
+install it already for Chapter \ref{ch5}.
 
 Rather than load all the packages at the top of the script (as is
 typically customary), this chapter will load and briefly describe each
@@ -7336,12 +7358,12 @@ more simple data wrangling:
 ## [15] "nejc"   "polona" "srecko" "urosh"  "vanja"  "vera"   "vinko"
 \end{verbatim}
 
-Now, use the \texttt{\{sp\}} package to create a spatial object out of
-your standard R data frame. You can think of this object like a
-\textbf{layer} in GIS. \texttt{\{sp\}} lets you create layers with or
-without attribute tables, but if your spatial data have other attributes
-like an ID or a timestamp variable, you should always create an object
-with class \texttt{SpatialPointsDataFrame} to make sure those
+Now, use the \texttt{\{sp\}} package \citep{R-sp} to create a spatial
+object out of your standard R data frame. You can think of this object
+like a \textbf{layer} in GIS. \texttt{\{sp\}} lets you create layers
+with or without attribute tables, but if your spatial data have other
+attributes like an ID or a timestamp variable, you should always create
+an object with class \texttt{SpatialPointsDataFrame} to make sure those
 variables/attributes are stored.
 
 In order to convert a data frame into a \texttt{SpatialPointsDataFrame},
@@ -7383,17 +7405,18 @@ more spatial data, but they are in a different format.
 \subsection{\texorpdfstring{\texttt{.shp}
 files}{.shp files}}\label{shp-files}
 
-The \texttt{\{rgdal\}} package facilitates loading spatial data files
-(i.e., shapefiles) into R. The function \texttt{readOGR()} takes a
-standard shapefile (\texttt{.shp}), and converts it into a the correct
-spatial object (e.g., points vs.~polygons). It takes two arguments: the
-data source name (\texttt{dsn}, the directory), and the layer name
-(\texttt{layer}). When you download a shapefile from an open-source web
-portal, it will often have accompanying files that store the attribute
-data. Store all of these files in a folder with the same name as the
-shapefile. Now load in the shapefile that contains a polygon for the
-boundary of Slovenia \citep{svn-cite} from the directory, so you can see
-where in the country the brown bears were detected:
+The \texttt{\{rgdal\}} package \citep{R-rgdal} facilitates loading
+spatial data files (i.e., shapefiles) into R. The function
+\texttt{readOGR()} takes a standard shapefile (\texttt{.shp}), and
+converts it into a the correct spatial object (e.g., points
+vs.~polygons). It takes two arguments: the data source name
+(\texttt{dsn}, the directory), and the layer name (\texttt{layer}). When
+you download a shapefile from an open-source web portal, it will often
+have accompanying files that store the attribute data. Store all of
+these files in a folder with the same name as the shapefile. Now load in
+the shapefile that contains a polygon for the boundary of Slovenia
+\citep{svn-cite} from the directory, so you can see where in the country
+the brown bears were detected:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7479,9 +7502,9 @@ You can clean up your map a bit with many of the standard
 \begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-268-1} \end{center}
 
 The \texttt{alpha()} function from the \texttt{\{scales\}} package
-allows you to plot with transparent colors, which is helpful for seeing
-the high- versus low-density clusters. Now, plot your reference layers
-to get your bearings:
+\citep{R-scales} allows you to plot with transparent colors, which is
+helpful for seeing the high- versus low-density clusters. Now, plot your
+reference layers to get your bearings:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7525,10 +7548,9 @@ and \texttt{ylim} of your map should be:
 In GIS, a subset is often called a \textbf{selection}: it is a smaller
 subset of your larger data layers. You may want to see the relocation
 events for each individual bear at a time. Use \texttt{sapply()} to
-apply a function to plot each bear's detected movement trajectory on a
-separate map. Wrap your code inside of a new PDF device (described in
-Section \ref{file-devices}) so you can scroll through the plots
-separately:
+apply a function to plot each bear's track on a separate map. Wrap your
+code inside of a new PDF device (described in Section
+\ref{file-devices}) so you can scroll through the plots separately:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7561,7 +7583,7 @@ learn a few tricks for manipulating them. Looking at your map, see that
 some of the bears were detected outside of Slovenia. (Bonus points if
 you can name the country they're in). Suppose the Slovenian government
 can't build wildlife crossings in other countries, so you want to clip
-the bear data to the extent of Slovenia.
+the bear data to the boundary of Slovenia.
 
 \subsection{Changing the CRS}\label{crs}
 
@@ -7594,25 +7616,115 @@ Make the same plot as you did in Section \ref{zoom}
 
 \begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-275-1} \end{center}
 
-\subsection{Adding Attributes}\label{adding-attributes}
+\subsection{Adding Attributes}\label{add-attr}
 
 What if you wanted to add an attribute to a points object, like which
-polygon it occurs in? In order to figure out how many bear relocations
-were documented in each statistical region of Slovenia, you'll have to
-merge the two objects.
+polygon it occurs in? Say you wanted to know what statistical region
+each bear relocation happened in. You can find this by extracting the
+attribute values of one layer (a \textbf{target}) at locations of
+another layer (a \textbf{source}) with the \texttt{over()} function from
+the \texttt{\{sp\}} package. In this case, the target is the
+\texttt{stats} layer, and the source is \texttt{bear} layer. These two
+layers will need to be in the same projection, and the result will be
+stored in the column \texttt{bearstats\$NAME\_1}:
 
-\textbf{DOES SOMETHING ELSE GO HERE??}
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# get in same projection}
+\NormalTok{stats =}\StringTok{ }\KeywordTok{spTransform}\NormalTok{(stats, }\KeywordTok{proj4string}\NormalTok{(bear))}
+\CommentTok{# determine which polygon of stat each bear relocation occured in}
+\NormalTok{bearstats =}\StringTok{ }\KeywordTok{over}\NormalTok{(bear,stats)}
+\KeywordTok{head}\NormalTok{(bearstats)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   ID_0 ISO   NAME_0 ID_1             NAME_1             TYPE_1
+## 1  208 SVN Slovenia    7  Osrednjeslovenska Statisticna Regije
+## 2  208 SVN Slovenia    7  Osrednjeslovenska Statisticna Regije
+## 3  208 SVN Slovenia    5 Notranjsko-kraÅ¡ka Statisticna Regije
+## 4  208 SVN Slovenia    7  Osrednjeslovenska Statisticna Regije
+## 5  208 SVN Slovenia    7  Osrednjeslovenska Statisticna Regije
+## 6  208 SVN Slovenia    7  Osrednjeslovenska Statisticna Regije
+##            ENGTYPE_1 NL_NAME_1        VARNAME_1
+## 1 Statistical Region      <NA>        Ljubljana
+## 2 Statistical Region      <NA>        Ljubljana
+## 3 Statistical Region      <NA> KraÅ¡ka, Notranj
+## 4 Statistical Region      <NA>        Ljubljana
+## 5 Statistical Region      <NA>        Ljubljana
+## 6 Statistical Region      <NA>        Ljubljana
+\end{verbatim}
+
+Extract just the column you care about and see how relocations occurred
+in each state:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bearstats =}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{stat =}\NormalTok{ bearstats}\OperatorTok{$}\NormalTok{NAME_}\DecValTok{1}\NormalTok{)}
+\KeywordTok{table}\NormalTok{(bearstats}\OperatorTok{$}\NormalTok{stat) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##              GoriÅ¡ka Jugovzhodna Slovenija    Notranjsko-kraÅ¡ka 
+##                    65                     2                   823 
+##     Osrednjeslovenska 
+##                   978
+\end{verbatim}
+
+Then, you can recombine your calculated attribute values (in
+\texttt{bearstats}) to your original layer (\texttt{bear}) with
+\texttt{spCbind()} from the \texttt{\{maptools\}} package
+\citep{R-maptools}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(maptools)}
+\NormalTok{bear =}\StringTok{ }\KeywordTok{spCbind}\NormalTok{(bear, bearstats}\OperatorTok{$}\NormalTok{stat)}
+\KeywordTok{head}\NormalTok{(bear}\OperatorTok{@}\NormalTok{data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             timestamp    ID        x        y     bearstats.stat
+## 1 1994-04-23 22-00-00 ancka 14.32837 45.88914  Osrednjeslovenska
+## 2 1994-04-24 16-40-00 ancka 14.37175 45.87072  Osrednjeslovenska
+## 3 1994-04-25 14-45-00 ancka 14.39852 45.86659 Notranjsko-kraÅ¡ka
+## 4 1994-04-26 12-30-00 ancka 14.41215 45.88695  Osrednjeslovenska
+## 5 1994-04-28 12-00-00 ancka 14.41260 45.87476  Osrednjeslovenska
+## 6 1994-04-29 09-30-00 ancka 14.40471 45.88957  Osrednjeslovenska
+\end{verbatim}
+
+Now determine how many times each bear was relocated in each state:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(bear}\OperatorTok{$}\NormalTok{ID, bear}\OperatorTok{$}\NormalTok{bearstats.stat)}
+\end{Highlighting}
+\end{Shaded}
 
 \section{Analysis}\label{Anal}
 
 Now that you know how to import, plot, and manipulate your data, it's
-time to do some analysis. The \texttt{\{rgeos\}} package has a few tools
-for simple geometric calculations like finding the distance between two
-points, or the area of a polygon. However, more specialized analyses are
-often only available in other packages. One commonly used package in
-animal ecology is the \texttt{\{adehabitat\}} package suite. Use this
-package in conjunction with \texttt{\{rgeos\}} to determine where the
-tagged bears may have crossed the railroad.
+time to do some analysis. The \texttt{\{rgeos\}} package \citep{R-rgeos}
+has a few tools for simple geometric calculations like finding the
+distance between two points, or the area of a polygon. However, more
+specialized analyses are often only available in other packages. Two
+common analytical tasks in animial tracking are:
+
+\begin{itemize}
+\tightlist
+\item
+  Calculating the \textbf{home range} of an animal, i.e., finding a
+  polygon that describes where most of the relocations occurred.
+\item
+  Finding \textbf{intersections} between tracks and some other line
+  (e.g., river, state boundary, or railroad).
+\end{itemize}
+
+In this section, you will use the \texttt{\{rgeos\}} package and another
+specialized package to do these tasks.
 
 \subsection{Home Range Analysis}\label{hr-Anal}
 
@@ -7621,7 +7733,8 @@ some bears live very close to the railroad, but do not cross it, some
 live very far away, and others may have crossed it multiple times. Which
 bears' home ranges are intersected by the railroad? In order to
 determine this, you will have to calculate the home range of each animal
-with the \texttt{mcp} function in the \texttt{\{adehabitatHR\}} package.
+with the \texttt{mcp} function in the \texttt{\{adehabitatHR\}} package
+\citep{R-adehabitatHR}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7654,12 +7767,11 @@ other arguments:
 If you run \texttt{cp}, you'll see that the areas of each polygon are
 stored in the object in square kilometers.
 
-Now, plot the homeranges of each bear, label them, and overlay the
-railroad on a map.
+Now, plot the homeranges of each bear, label them using the
+\texttt{\{rgeos\}} package, and overlay the railroad on a map.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{#rgeos has a few nice functions for plotting and spatial transformations}
 \KeywordTok{library}\NormalTok{(rgeos) }
 \CommentTok{#match the coordinate system of the home ranges object with the railways layer }
 \NormalTok{cp =}\StringTok{ }\KeywordTok{spTransform}\NormalTok{(cp, }\KeywordTok{CRS}\NormalTok{(}\KeywordTok{proj4string}\NormalTok{(slovenia)))}
@@ -7677,24 +7789,24 @@ railroad on a map.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-277-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-281-1} \end{center}
 
 \subsection{Finding Intersections Between Two
 Layers}\label{finding-intersections-between-two-layers}
 
 Now that you know which bears crossed the railroad, find out where.
 You'll need a user-defined function called \texttt{points\_to\_line()},
-which is stored as a script file in your working directory. If you ever
-write a function, you can store it in a script file, and then bring it
-into your current session using the \texttt{source()} function. This
-prevents you from needing to paste all the function code every time you
-want to use it in a new script. Save as many functions as you want in a
-single script, and they will all be added to your Global Environment
-when you \texttt{source()} the file\footnote{For projects with many
-  user-defined functions, you may be better off creating a
-  \texttt{./Functions} directory and housing multiple scripts there.
-  Better yet, you can create your own package for personal use. Look
-  into the \texttt{\{devtools\}} and \texttt{\{roxygen2\}} packages}.
+which is stored as a script file in your working directory
+\citep{points-line-cite}. If you ever write a function, you can store it
+in a script file, and then bring it into your current session using the
+\texttt{source()} function. This prevents you from needing to paste all
+the function code every time you want to use it in a new script. Save as
+many functions as you want in a single script, and they will all be
+added to your Global Environment when you \texttt{source()} the
+file\footnote{For projects with many user-defined functions, you may be
+  better off creating a \texttt{./Functions} directory and housing
+  multiple scripts there. Better yet, you can create your own package
+  for personal use.}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7728,60 +7840,78 @@ runs it, without you ever having to open the script.
 Now that your points have been turned into tracks for each bear, see
 where they intersect using the \texttt{gIntersection()} function from
 the \texttt{\{rgeos\}} package. Hang on though, this will take your
-computer a while to run (between 5 and 20 minutes). You can start a
-timer as well:
+computer a while to run (between 5 and 20 minutes). Optionally, you can
+start a timer and have the \texttt{\{beepr\}} package \citep{R-beepr}
+make a sound when the geoprocessing calculations are completed:
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(beepr)}
 \NormalTok{start =}\StringTok{ }\KeywordTok{Sys.time}\NormalTok{()}
 \NormalTok{crossings =}\StringTok{ }\KeywordTok{gIntersection}\NormalTok{(bearlines, railways) }
-\KeywordTok{Sys.time}\NormalTok{() }\OperatorTok{-}\StringTok{ }\NormalTok{start}
+\KeywordTok{Sys.time}\NormalTok{() }\OperatorTok{-}\StringTok{ }\NormalTok{start; }\KeywordTok{beep}\NormalTok{(}\DecValTok{10}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\section{Creating a Presentable Map}\label{PresentMap}
+\section{Creating a Presentable Map}\label{base-maps}
 
 Now that you have a points object with the crossings stored, make a map
 that you can present to policy makers.
 
-\textbf{THIS PART DOESN'T WORK FOR ME, SEE THE ISSUE}
+First, you should get a nicer basemap than a R's blank slate. Use the
+\texttt{\{dismo\}} \citep{R-dismo} and \texttt{\{raster\}}
+\citep{R-raster} packages to get one:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(dismo)}
-\KeywordTok{library}\NormalTok{(raster) }\CommentTok{#the basemap will be stored as a raster object.}
-\NormalTok{basemap =}\StringTok{ }\KeywordTok{gmap}\NormalTok{(bear, }\DataTypeTok{exp=}\DecValTok{1}\NormalTok{, }\DataTypeTok{type=}\StringTok{"terrain"}\NormalTok{, }\DataTypeTok{lonlat =}\NormalTok{ T)}
-\KeywordTok{plot}\NormalTok{(basemap)}
-\CommentTok{#reproject each layer to the coordinate system of the basemap.}
-\NormalTok{bear <-}\StringTok{ }\KeywordTok{spTransform}\NormalTok{(bear, basemap}\OperatorTok{@}\NormalTok{crs)}
-\NormalTok{railways <-}\StringTok{ }\KeywordTok{spTransform}\NormalTok{(railways, basemap}\OperatorTok{@}\NormalTok{crs)}
-\NormalTok{slovenia <-}\StringTok{ }\KeywordTok{spTransform}\NormalTok{(slovenia, basemap}\OperatorTok{@}\NormalTok{crs)}
-\KeywordTok{proj4string}\NormalTok{(crossings) <-}\StringTok{ }\NormalTok{basemap}\OperatorTok{@}\NormalTok{crs}
-\KeywordTok{points}\NormalTok{(bear,}\DataTypeTok{col=}\StringTok{"white"}\NormalTok{,}\DataTypeTok{pch=}\DecValTok{15}\NormalTok{,}\DataTypeTok{cex=}\NormalTok{.}\DecValTok{5}\NormalTok{)}
-\NormalTok{railways <-}\StringTok{ }\KeywordTok{crop}\NormalTok{(railways,basemap)}
-\KeywordTok{plot}\NormalTok{(railways,}\DataTypeTok{add=}\NormalTok{T,}\DataTypeTok{lwd=}\DecValTok{4}\NormalTok{,}\DataTypeTok{col=}\StringTok{"yellow"}\NormalTok{)}
-\KeywordTok{plot}\NormalTok{(crossings,}\DataTypeTok{add=}\NormalTok{T,}\DataTypeTok{col=}\StringTok{"red"}\NormalTok{,}\DataTypeTok{cex=}\DecValTok{1}\NormalTok{,}\DataTypeTok{pch=}\DecValTok{16}\NormalTok{)}
-\KeywordTok{box}\NormalTok{()}
-\CommentTok{#scalebar(5000,xy=click(),col="white")}
-\CommentTok{#legend?}
-\CommentTok{#labels?}
-\CommentTok{#arrows?}
+\KeywordTok{library}\NormalTok{(dismo); }\KeywordTok{library}\NormalTok{(raster)}
+\NormalTok{base =}\StringTok{ }\KeywordTok{gmap}\NormalTok{(bear, }\DataTypeTok{type =} \StringTok{"terrain"}\NormalTok{, }\DataTypeTok{lonlat =}\NormalTok{ T)}
+\KeywordTok{plot}\NormalTok{(base)}
 \end{Highlighting}
 \end{Shaded}
+
+Now, put the rest of the layers in the same projection as the basemap:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# put the other layers in the same crs as the basemap}
+\NormalTok{bear =}\StringTok{ }\KeywordTok{spTransform}\NormalTok{(bear, basemap}\OperatorTok{@}\NormalTok{crs)}
+\NormalTok{railways =}\StringTok{ }\KeywordTok{spTransform}\NormalTok{(railways, base}\OperatorTok{@}\NormalTok{crs)}
+\NormalTok{slovenia =}\StringTok{ }\KeywordTok{spTransform}\NormalTok{(slovenia, base}\OperatorTok{@}\NormalTok{crs)}
+\KeywordTok{proj4string}\NormalTok{(crossings) =}\StringTok{ }\NormalTok{base}\OperatorTok{@}\NormalTok{crs}
+\end{Highlighting}
+\end{Shaded}
+
+Now, plot the crossings in blue on top of the basemap with the railroad
+in red. Don't forget the scale bar and north arrow using the
+\texttt{\{prettymapr\}} \citep{R-prettymapr} package!
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# plot the basemap}
+\KeywordTok{plot}\NormalTok{(base)}
+
+\CommentTok{# draw on the railways and crossing events}
+\KeywordTok{lines}\NormalTok{(railways, }\DataTypeTok{lwd =} \DecValTok{10}\NormalTok{, }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{)}
+\KeywordTok{points}\NormalTok{(crossings, }\DataTypeTok{col =} \KeywordTok{alpha}\NormalTok{(}\StringTok{"blue"}\NormalTok{, }\FloatTok{0.5}\NormalTok{), }\DataTypeTok{cex =} \DecValTok{5}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{16}\NormalTok{)}
+
+\CommentTok{# draw on a legend}
+\KeywordTok{legend}\NormalTok{(}\StringTok{"bottom"}\NormalTok{, }\DataTypeTok{legend =} \KeywordTok{c}\NormalTok{(}\StringTok{"Railway"}\NormalTok{, }\StringTok{"Crossing Events"}\NormalTok{),}
+       \DataTypeTok{lty =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\OtherTok{NA}\NormalTok{), }\DataTypeTok{col =} \KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\KeywordTok{alpha}\NormalTok{(}\StringTok{"blue"}\NormalTok{, }\FloatTok{0.5}\NormalTok{)),}
+       \DataTypeTok{pch =} \KeywordTok{c}\NormalTok{(}\OtherTok{NA}\NormalTok{, }\DecValTok{16}\NormalTok{), }\DataTypeTok{lwd =} \DecValTok{10}\NormalTok{, }\DataTypeTok{cex =} \DecValTok{5}\NormalTok{, }\DataTypeTok{horiz =}\NormalTok{ T, }\DataTypeTok{bty =} \StringTok{"n"}\NormalTok{)}
+
+\CommentTok{# draw on other map components: scale bar and north arrow}
+\NormalTok{look at maptools}
+\KeywordTok{addscalebar}\NormalTok{(}\DataTypeTok{plotunit =} \StringTok{"latlon"}\NormalTok{, }\DataTypeTok{htin =} \FloatTok{0.5}\NormalTok{,}
+            \DataTypeTok{label.cex =} \DecValTok{5}\NormalTok{, }\DataTypeTok{padin =} \KeywordTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{,}\FloatTok{0.5}\NormalTok{))}
+\KeywordTok{addnortharrow}\NormalTok{(}\DataTypeTok{pos =} \StringTok{"topleft"}\NormalTok{, }\DataTypeTok{scale =} \DecValTok{5}\NormalTok{, }\DataTypeTok{padin =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\FloatTok{2.5}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=41.67in]{img/FinalMap} \end{center}
 
 Where are bears crossing the railroad? It looks like there are two areas
-of the railroad that get the most bear activity. Add arrows pointing to
-where you think the crossings should go.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{plot}\NormalTok{(slovenia)}
-\KeywordTok{plot}\NormalTok{(railways, }\DataTypeTok{add =}\NormalTok{ T, }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{)}
-\KeywordTok{plot}\NormalTok{(crossings, }\DataTypeTok{add =}\NormalTok{ T, }\DataTypeTok{pch =} \DecValTok{17}\NormalTok{, }\DataTypeTok{col =} \StringTok{"blue"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-284-1} \end{center}
+of the railroad that get the most bear activity.
 
 \section{Other R Mapping Packages}\label{other-r-mapping-packages}
 
@@ -7793,25 +7923,17 @@ running.
 
 \subsection{\texorpdfstring{\texttt{\{ggmap\}}}{\{ggmap\}}}\label{ggmap}
 
-Just like for \texttt{\{ggplot2\}}, many R users find the
-\texttt{\{ggmap\}} package more intuitive than creating maps with
-\texttt{plot()} like you have done in this chapter. Here's an example:
-
-\textbf{THIS PART DOESN'T WORK FOR ME, SEE THE ISSUE}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(ggmap)}
-\KeywordTok{geocode}\NormalTok{(}\StringTok{"United States"}\NormalTok{)}
-\KeywordTok{qmap}\NormalTok{(}\DataTypeTok{location =} \StringTok{"boston university"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+Just like for \texttt{\{ggplot2\}} \citep{R-ggplot2}, many R users find
+the \texttt{\{ggmap\}} \citep{R-ggmap} package more intuitive than
+creating maps with \texttt{plot()} like you have done in this chapter.
+If you have messed around with \texttt{\{ggplot2\}} or would like a
+slightly different plotting workflow, look into it more.
 
 \subsection{\texorpdfstring{\texttt{\{leaflet\}}}{\{leaflet\}}}\label{leaflet}
 
-This package allows you to make interactive maps. This will only work if
-your output is HTML-based\footnote{If you're viewing this in PDF format,
-  go to:
+The \texttt{\{leaflet\}} package \citep{R-leaflet} allows you to make
+interactive maps. This will only work if your output is
+HTML-based\footnote{If you're viewing this in PDF format, go to:
   \url{https://bstaton1.github.io/au-r-workshop/ch6.html\#leaflet} to
   view the interactive version. Better yet, install
   \texttt{\{leaflet\}}, and try it yourself!}
@@ -7843,8 +7965,8 @@ your output is HTML-based\footnote{If you're viewing this in PDF format,
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Load the \texttt{caves.shp} shapefile from your working directory
-  \citep{caves-cite}. Add the data to one of the maps of Slovenia you
+  Load the \texttt{caves.shp} shapefile \citep{caves-cite} from your
+  working directory. Add the data to one of the maps of Slovenia you
   created in this chapter.
 \item
   How many caves are there?
@@ -7854,12 +7976,12 @@ your output is HTML-based\footnote{If you're viewing this in PDF format,
   Which bear has the most caves in its homerange?
 \end{enumerate}
 
-\section{Exercise 6 Bonus}\label{exercise-6-bonus}
+\section*{Exercise 6 Bonus}\label{exercise-6-bonus}
+\addcontentsline{toc}{section}{Exercise 6 Bonus}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
-\item
-  use the\ldots{}
+\tightlist
 \item
   Find some data online for a system you are interested in and do
   similar activities as shown in this chapter. Good examples for
@@ -7869,21 +7991,24 @@ your output is HTML-based\footnote{If you're viewing this in PDF format,
 \begin{itemize}
 \tightlist
 \item
-  \textless{}HELPFUL.WEBSITE.\#1\textgreater{}
+  \textbf{Administrative boundaries:} \url{https://gadm.org/}
 \item
-  \textless{}HELPFUL.WEBSITE.\#2\textgreater{}
+  \textbf{Animal tracking data sets:} \url{https://www.movebank.org/}
 \item
-  \textless{}HELPFUL.WEBSITE.\#3\textgreater{}
-\item
-  \textless{}HELPFUL.WEBSITE.\#4\textgreater{}
+  \textbf{US Geological Survey:}
+  \url{https://www.usgs.gov/products/maps/gis-data}
 \end{itemize}
 
 \chapter*{Exercise Solutions}\label{exercise-solutions}
 \addcontentsline{toc}{chapter}{Exercise Solutions}
 
-\hypertarget{ex1a-answers}{\section*{Exercise 1A
+\hypertarget{ex2-answers}{\section*{Exercise 1
+Solutions}\label{ex2-answers}}
+\addcontentsline{toc}{section}{Exercise 1 Solutions}
+
+\hypertarget{ex1a-answers}{\subsection*{Exercise 1A
 Solutions}\label{ex1a-answers}}
-\addcontentsline{toc}{section}{Exercise 1A Solutions}
+\addcontentsline{toc}{subsection}{Exercise 1A Solutions}
 
 \textbf{1. Create a new file in your working directory called
 \texttt{Ex1A.R}.}
@@ -8009,9 +8134,9 @@ see that it was saved}.
 
 \emph{File \textgreater{} Save} or \textbf{CTRL + S}
 
-\hypertarget{ex1b-answers}{\section*{Exercise 1B
+\hypertarget{ex1b-answers}{\subsection*{Exercise 1B
 Solutions}\label{ex1b-answers}}
-\addcontentsline{toc}{section}{Exercise 1B Solutions}
+\addcontentsline{toc}{subsection}{Exercise 1B Solutions}
 
 First, did you find the error? It is the \texttt{\#VALUE!} entry in the
 \texttt{chao} column. You should have R treat this as an \texttt{NA}.
@@ -8480,7 +8605,7 @@ This example uses the lognormal distribution, with
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-325-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-330-1} \end{center}
 
 \textbf{Bonus 1. Fit a von Bertalannfy growth model to the data found in
 the \texttt{growth.csv} data file. Visit Section \ref{boot-test-ex}
@@ -8517,11 +8642,14 @@ Plot the fit:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-329-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-334-1} \end{center}
 
-\hypertarget{ex4a-answers}{\section*{Exercise 4A
+\section*{Exercise 4 Solutions}\label{ex4-answers}
+\addcontentsline{toc}{section}{Exercise 4 Solutions}
+
+\hypertarget{ex4a-answers}{\subsection*{Exercise 4A
 Solutions}\label{ex4a-answers}}
-\addcontentsline{toc}{section}{Exercise 4A Solutions}
+\addcontentsline{toc}{subsection}{Exercise 4A Solutions}
 
 \textbf{1. Simulate flipping an unfair coin (probability of heads = 0.6)
 100 times using \texttt{rbinom()}. Count the number of heads and tails.}
@@ -8571,9 +8699,9 @@ an odd number.}
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{ex4b-answers}{\section*{Exercise 4B
+\hypertarget{ex4b-answers}{\subsection*{Exercise 4B
 Solutions}\label{ex4b-answers}}
-\addcontentsline{toc}{section}{Exercise 4B Solutions}
+\addcontentsline{toc}{subsection}{Exercise 4B Solutions}
 
 \textbf{1. Adapt this example to investigate another univariate
 probability distribution, like \texttt{-lnorm()}, \texttt{-pois()}, or
@@ -8615,7 +8743,7 @@ Then, test the \texttt{qbeta()} function:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-338-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-343-1} \end{center}
 
 Then, test the `pbeta() function:
 
@@ -8630,11 +8758,11 @@ Then, test the `pbeta() function:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-339-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-344-1} \end{center}
 
-\hypertarget{ex4c-answers}{\section*{Exercise 4C
+\hypertarget{ex4c-answers}{\subsection*{Exercise 4C
 Solutions}\label{ex4c-answers}}
-\addcontentsline{toc}{section}{Exercise 4C Solutions}
+\addcontentsline{toc}{subsection}{Exercise 4C Solutions}
 
 \textbf{1. What sample size \texttt{n} do you need to have a power of
 0.8 of detecting a significant difference between the two tagging
@@ -8649,7 +8777,7 @@ analysis:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-342-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-347-1} \end{center}
 
 It appears you need about 100 fish per treatment to be able to detect an
 effect of this size.
@@ -8670,7 +8798,7 @@ you execute the analysis:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-344-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-349-1} \end{center}
 
 Because the effect is larger, it is easier to detect with fewer
 observations.
@@ -8694,9 +8822,9 @@ loop. This is a handy trick for long-running simulations.
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{ex4d-answers}{\section*{Exercise 4D
+\hypertarget{ex4d-answers}{\subsection*{Exercise 4D
 Solutions}\label{ex4d-answers}}
-\addcontentsline{toc}{section}{Exercise 4D Solutions}
+\addcontentsline{toc}{subsection}{Exercise 4D Solutions}
 
 \textbf{1. Add an argument to \texttt{ricker\_sim()} that will give the
 user an option to create a plot that shows the time series of
@@ -8764,7 +8892,7 @@ Then use the function:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-348-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-353-1} \end{center}
 
 \begin{verbatim}
 ## $mean_H
@@ -8803,7 +8931,7 @@ process error was larger (a larger value of \(\sigma\))?}
 Simply increase the process error variance term (the \texttt{sigma}
 element of \texttt{params}) to be 0.6 and re-run the analysis:
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-350-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-355-1} \end{center}
 
 The blue line is the higher process error scenario. It seems that if the
 process error was higher, you would need to sacrifice more in the
@@ -8843,7 +8971,7 @@ example:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-354-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-359-1} \end{center}
 
 The red line has \texttt{B\_sum\ =\ 50} and the black line has
 \texttt{B\_sum\ =\ 1e6} (really large \texttt{B\_sum} reduces the
@@ -8874,7 +9002,7 @@ Here are two ways that come to mind:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-355-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-360-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8885,11 +9013,11 @@ Here are two ways that come to mind:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-355-2} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-360-2} \end{center}
 
-\hypertarget{ex4e-answers}{\section*{Exercise 4E
+\hypertarget{ex4e-answers}{\subsection*{Exercise 4E
 Solutions}\label{ex4e-answers}}
-\addcontentsline{toc}{section}{Exercise 4E Solutions}
+\addcontentsline{toc}{subsection}{Exercise 4E Solutions}
 
 \textbf{1. Replicate the bootstrap analysis but adapted for the linear
 regression example in Section \ref{regression}. Stop at the step where
@@ -8977,9 +9105,9 @@ worked right:
 
 The intervals should look approximately correct.
 
-\hypertarget{ex4f-answers}{\section*{Exercise 4F
+\hypertarget{ex4f-answers}{\subsection*{Exercise 4F
 Solutions}\label{ex4f-answers}}
-\addcontentsline{toc}{section}{Exercise 4F Solutions}
+\addcontentsline{toc}{subsection}{Exercise 4F Solutions}
 
 \textbf{1. Adapt the code to perform a permutation test for the
 difference in each of the zooplankton densities between treatments.
@@ -9061,7 +9189,7 @@ distribution and the observed difference:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-370-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-375-1} \end{center}
 
 Finally, calculate the two-tailed hypothesis tests:
 
@@ -9082,7 +9210,7 @@ Finally, calculate the two-tailed hypothesis tests:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2e-04
+## [1] 0
 \end{verbatim}
 
 \begin{Shaded}
@@ -9168,7 +9296,7 @@ Plot the null distribution:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-377-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-382-1} \end{center}
 
 Obtain the two-tailed p-value:
 
@@ -9179,7 +9307,7 @@ Obtain the two-tailed p-value:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.556
+## [1] 0.5374
 \end{verbatim}
 
 Based on this, it appears there is no significant difference between the
@@ -9201,7 +9329,7 @@ the mean length of age 4 is less than or equal to the mean length of age
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.2706
+## [1] 0.2654
 \end{verbatim}
 
 To test the opposite hypothesis (null hypothesis is that the mean length
@@ -9215,7 +9343,7 @@ fish):
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.7308
+## [1] 0.7362
 \end{verbatim}
 
 \hypertarget{ex5-answers}{\section*{Exercise 5
@@ -9298,7 +9426,7 @@ composition has changed over time?}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-388-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-393-1} \end{center}
 
 It seems that the proportion of females has varied randomly over time
 but has not systematically changed since the beginning of the data time
@@ -9357,7 +9485,7 @@ changed over time for either sex?}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-390-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-395-1} \end{center}
 
 \textbf{Bonus 1. Calculate the age composition by sex and year (what
 proportion of all the males in a year were age 4, age 5, age 6, age 7,
@@ -9430,14 +9558,139 @@ instead of sex composition:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-392-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-397-1} \end{center}
 
 \section*{Exercise 6 Solutions}\label{ex6-answers}
 \addcontentsline{toc}{section}{Exercise 6 Solutions}
 
-Henry's material will go here.
+\textbf{Note}: these solutions assume you have the layers \texttt{bear},
+\texttt{stat}, \texttt{slovenia}, \texttt{railways}, and \texttt{cp} as
+well as all of the packages used in Chapter \ref{ch6} already loaded
+into your workspace.
 
-\bibliography{book.bib}
+\begin{verbatim}
+## OGR data source with driver: ESRI Shapefile 
+## Source: "C:\Users\bas0041\Dropbox\au-r-workshop\Data\Ch6\SVN_adm", layer: "SVN_adm0"
+## with 1 features
+## It has 70 fields
+## Integer64 fields read as strings:  ID_0 OBJECTID_1
+\end{verbatim}
+
+\begin{verbatim}
+## OGR data source with driver: ESRI Shapefile 
+## Source: "C:\Users\bas0041\Dropbox\au-r-workshop\Data\Ch6\railways", layer: "railways"
+## with 214 features
+## It has 3 fields
+## Integer64 fields read as strings:  osm_id
+\end{verbatim}
+
+\begin{verbatim}
+## OGR data source with driver: ESRI Shapefile 
+## Source: "C:\Users\bas0041\Dropbox\au-r-workshop\Data\Ch6\SVN_adm", layer: "SVN_adm1"
+## with 12 features
+## It has 9 fields
+## Integer64 fields read as strings:  ID_0 ID_1
+\end{verbatim}
+
+\textbf{1. Load the \texttt{caves.shp} shapefile \citep{caves-cite} from
+your working directory. Add the data to one of the maps of Slovenia you
+created in this chapter.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# load the caves file}
+\NormalTok{caves =}\StringTok{ }\KeywordTok{readOGR}\NormalTok{(}\DataTypeTok{dsn=}\StringTok{"./caves"}\NormalTok{,}\DataTypeTok{layer=}\StringTok{"EPO_JAMEPoint"}\NormalTok{)}
+\CommentTok{# put all layers the same projection as bear data}
+\NormalTok{caves =}\StringTok{ }\KeywordTok{spTransform}\NormalTok{(caves, }\KeywordTok{CRS}\NormalTok{(}\KeywordTok{proj4string}\NormalTok{(bear)))}
+\NormalTok{stats =}\StringTok{ }\KeywordTok{spTransform}\NormalTok{(stats, }\KeywordTok{CRS}\NormalTok{(}\KeywordTok{proj4string}\NormalTok{(bear)))}
+\NormalTok{slovenia =}\StringTok{ }\KeywordTok{spTransform}\NormalTok{(slovenia, }\KeywordTok{CRS}\NormalTok{(}\KeywordTok{proj4string}\NormalTok{(bear)))}
+\NormalTok{railways =}\StringTok{ }\KeywordTok{spTransform}\NormalTok{(railways, }\KeywordTok{CRS}\NormalTok{(}\KeywordTok{proj4string}\NormalTok{(bear)))}
+\CommentTok{# make the plot}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(stats, }\DataTypeTok{border =} \StringTok{"grey"}\NormalTok{, }\DataTypeTok{axes =}\NormalTok{ T,}
+     \DataTypeTok{xlim =}\NormalTok{ bear}\OperatorTok{@}\NormalTok{bbox[}\DecValTok{1}\NormalTok{,],  }\CommentTok{# access the boundary box using @}
+     \DataTypeTok{ylim =}\NormalTok{ bear}\OperatorTok{@}\NormalTok{bbox[}\DecValTok{2}\NormalTok{,])}
+\KeywordTok{plot}\NormalTok{(slovenia, }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{, }\DataTypeTok{add =}\NormalTok{ T)}
+\KeywordTok{points}\NormalTok{(bear, }\DataTypeTok{pch =} \DecValTok{16}\NormalTok{, }\DataTypeTok{cex =} \FloatTok{0.5}\NormalTok{, }\DataTypeTok{col =} \KeywordTok{alpha}\NormalTok{(}\StringTok{"blue"}\NormalTok{, }\FloatTok{0.5}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(railways, }\DataTypeTok{add =}\NormalTok{ T, }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{)}
+\CommentTok{# add the caves layer}
+\KeywordTok{plot}\NormalTok{(caves, }\DataTypeTok{add=}\NormalTok{T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## OGR data source with driver: ESRI Shapefile 
+## Source: "C:\Users\bas0041\Dropbox\au-r-workshop\Data\Ch6\caves", layer: "EPO_JAMEPoint"
+## with 32 features
+## It has 2 fields
+\end{verbatim}
+
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-401-1} \end{center}
+
+\textbf{2. How many caves are there?}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{nrow}\NormalTok{(caves)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 32
+\end{verbatim}
+
+\textbf{3. How many caves are in each statistical area?}
+
+For this, you will need to add a field to your attribute table. Look
+back to Section \ref{add-attr} for details on how to do this.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(maptools)}
+\NormalTok{caves =}\StringTok{ }\KeywordTok{spTransform}\NormalTok{(caves, }\KeywordTok{proj4string}\NormalTok{(stats))}
+\NormalTok{cavestats =}\StringTok{ }\KeywordTok{over}\NormalTok{(caves, stats)}
+\NormalTok{caves =}\StringTok{ }\KeywordTok{spCbind}\NormalTok{(caves,cavestats}\OperatorTok{$}\NormalTok{NAME_}\DecValTok{1}\NormalTok{)}
+\KeywordTok{table}\NormalTok{(caves}\OperatorTok{$}\NormalTok{cavestats.NAME_}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##              GoriÅ¡ka Jugovzhodna Slovenija    Notranjsko-kraÅ¡ka 
+##                     1                     5                    12 
+##        Obalno-kraÅ¡ka     Osrednjeslovenska 
+##                     2                    11
+\end{verbatim}
+
+\textbf{4. Which bear has the most caves in its homerange?}
+
+First, use the \texttt{over()} function to determine which homeranges
+have which caves (the \texttt{returnList\ =\ T} argument will show all
+of the polygons each point falls in).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cp =}\StringTok{ }\KeywordTok{spTransform}\NormalTok{(cp, }\KeywordTok{CRS}\NormalTok{(}\KeywordTok{proj4string}\NormalTok{(caves)))}
+\NormalTok{homecaves =}\StringTok{ }\KeywordTok{over}\NormalTok{(caves, cp, }\DataTypeTok{returnList =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+Now just count how many caves were in each bear's homerange (the bear
+names are the rownames of \texttt{homecaves}).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(}\KeywordTok{unlist}\NormalTok{(}\KeywordTok{sapply}\NormalTok{(homecaves,rownames)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##   jana   nejc srecko 
+##      5      2      7
+\end{verbatim}
+
+\bibliography{book.bib,packages.bib}
 
 
 \end{document}

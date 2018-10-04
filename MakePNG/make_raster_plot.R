@@ -42,7 +42,7 @@ slovenia = spTransform(slovenia, base@crs)
 proj4string(crossings) = base@crs
 
 ppi = 600
-png("MakePNG/FinalMap.png", h =  5 * ppi, w = 5 * ppi, res = "ppi")
+png("img/FinalMap.png", h =  5 * ppi, w = 5 * ppi, res = "ppi")
 # plot the basemap
 plot(base)
 
