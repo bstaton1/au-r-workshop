@@ -47,6 +47,21 @@
 
 
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.2/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.1.17/leaflet-providers.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.2/leaflet-providers-plugin.js"></script>
+<link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.css" rel="stylesheet" />
+<link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.Default.css" rel="stylesheet" />
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.js"></script>
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.freezable.js"></script>
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.layersupport.js"></script>
 
 
 <style type="text/css">
@@ -163,7 +178,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.9" data-path="ch2.html"><a href="ch2.html#legends"><i class="fa fa-check"></i><b>2.9</b> Legends</a></li>
 <li class="chapter" data-level="2.10" data-path="ch2.html"><a href="ch2.html#exporting-plots"><i class="fa fa-check"></i><b>2.10</b> Exporting Plots</a><ul>
 <li class="chapter" data-level="2.10.1" data-path="ch2.html"><a href="ch2.html#click-save"><i class="fa fa-check"></i><b>2.10.1</b> Click Save</a></li>
-<li class="chapter" data-level="2.10.2" data-path="ch2.html"><a href="ch2.html#use-a-function-to-place-plot-in-a-new-file"><i class="fa fa-check"></i><b>2.10.2</b> Use a function to place plot in a new file</a></li>
+<li class="chapter" data-level="2.10.2" data-path="ch2.html"><a href="ch2.html#file-devices"><i class="fa fa-check"></i><b>2.10.2</b> Use a function to place plot in a new file</a></li>
 </ul></li>
 <li class="chapter" data-level="2.11" data-path="ch2.html"><a href="ch2.html#error-bars"><i class="fa fa-check"></i><b>2.11</b> Bonus Topic: Error Bars</a></li>
 <li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#ex2"><i class="fa fa-check"></i>Exercise 2</a><ul>
@@ -242,18 +257,50 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="ch5.html"><a href="ch5.html#exercise-5-bonus"><i class="fa fa-check"></i>Exercise 5 Bonus</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="ch6.html"><a href="ch6.html"><i class="fa fa-check"></i><b>6</b> Mapping and Spatial Analysis</a></li>
+<li class="chapter" data-level="6" data-path="ch6.html"><a href="ch6.html"><i class="fa fa-check"></i><b>6</b> Mapping and Spatial Analysis</a><ul>
+<li class="chapter" data-level="6.1" data-path="ch6.html"><a href="ch6.html#ch6overview"><i class="fa fa-check"></i><b>6.1</b> Chapter Overview</a></li>
+<li class="chapter" data-level="6.2" data-path="ch6.html"><a href="ch6.html#ch6beforeyoubegin"><i class="fa fa-check"></i><b>6.2</b> Before You Begin</a></li>
+<li class="chapter" data-level="6.3" data-path="ch6.html"><a href="ch6.html#intro"><i class="fa fa-check"></i><b>6.3</b> Geospatial Data</a></li>
+<li class="chapter" data-level="6.4" data-path="ch6.html"><a href="ch6.html#Import"><i class="fa fa-check"></i><b>6.4</b> Importing Geospatial Data</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="ch6.html"><a href="ch6.html#csv-files-1"><i class="fa fa-check"></i><b>6.4.1</b> <code>.csv</code> files</a></li>
+<li class="chapter" data-level="6.4.2" data-path="ch6.html"><a href="ch6.html#shp-files"><i class="fa fa-check"></i><b>6.4.2</b> <code>.shp</code> files</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="ch6.html"><a href="ch6.html#SpatPlot"><i class="fa fa-check"></i><b>6.5</b> Plotting</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="ch6.html"><a href="ch6.html#zoom"><i class="fa fa-check"></i><b>6.5.1</b> Zooming</a></li>
+<li class="chapter" data-level="6.5.2" data-path="ch6.html"><a href="ch6.html#plot-selections"><i class="fa fa-check"></i><b>6.5.2</b> Plotting Selections</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="ch6.html"><a href="ch6.html#ManipSpat"><i class="fa fa-check"></i><b>6.6</b> Manipulating Spatial Data</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="ch6.html"><a href="ch6.html#crs"><i class="fa fa-check"></i><b>6.6.1</b> Changing the CRS</a></li>
+<li class="chapter" data-level="6.6.2" data-path="ch6.html"><a href="ch6.html#clip"><i class="fa fa-check"></i><b>6.6.2</b> Clipping</a></li>
+<li class="chapter" data-level="6.6.3" data-path="ch6.html"><a href="ch6.html#add-attr"><i class="fa fa-check"></i><b>6.6.3</b> Adding Attributes</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="ch6.html"><a href="ch6.html#Anal"><i class="fa fa-check"></i><b>6.7</b> Analysis</a><ul>
+<li class="chapter" data-level="6.7.1" data-path="ch6.html"><a href="ch6.html#hr-Anal"><i class="fa fa-check"></i><b>6.7.1</b> Home Range Analysis</a></li>
+<li class="chapter" data-level="6.7.2" data-path="ch6.html"><a href="ch6.html#finding-intersections-between-two-layers"><i class="fa fa-check"></i><b>6.7.2</b> Finding Intersections Between Two Layers</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="ch6.html"><a href="ch6.html#base-maps"><i class="fa fa-check"></i><b>6.8</b> Creating a Presentable Map</a></li>
+<li class="chapter" data-level="6.9" data-path="ch6.html"><a href="ch6.html#other-r-mapping-packages"><i class="fa fa-check"></i><b>6.9</b> Other R Mapping Packages</a><ul>
+<li class="chapter" data-level="6.9.1" data-path="ch6.html"><a href="ch6.html#ggmap"><i class="fa fa-check"></i><b>6.9.1</b> <code>{ggmap}</code></a></li>
+<li class="chapter" data-level="6.9.2" data-path="ch6.html"><a href="ch6.html#leaflet"><i class="fa fa-check"></i><b>6.9.2</b> <code>{leaflet}</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch6.html"><a href="ch6.html#ex6"><i class="fa fa-check"></i>Exercise 6</a></li>
+<li class="chapter" data-level="" data-path="ch6.html"><a href="ch6.html#exercise-6-bonus"><i class="fa fa-check"></i>Exercise 6 Bonus</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="exercise-solutions.html"><a href="exercise-solutions.html"><i class="fa fa-check"></i>Exercise Solutions</a><ul>
+<li class="chapter" data-level="" data-path="exercise-solutions.html"><a href="exercise-solutions.html#ex2-answers"><i class="fa fa-check"></i>Exercise 1 Solutions</a><ul>
 <li class="chapter" data-level="" data-path="exercise-solutions.html"><a href="exercise-solutions.html#ex1a-answers"><i class="fa fa-check"></i>Exercise 1A Solutions</a></li>
 <li class="chapter" data-level="" data-path="exercise-solutions.html"><a href="exercise-solutions.html#ex1b-answers"><i class="fa fa-check"></i>Exercise 1B Solutions</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="exercise-solutions.html"><a href="exercise-solutions.html#ex2-answers"><i class="fa fa-check"></i>Exercise 2 Solutions</a></li>
 <li class="chapter" data-level="" data-path="exercise-solutions.html"><a href="exercise-solutions.html#ex3-answers"><i class="fa fa-check"></i>Exercise 3 Solutions</a></li>
+<li class="chapter" data-level="" data-path="exercise-solutions.html"><a href="exercise-solutions.html#ex4-answers"><i class="fa fa-check"></i>Exercise 4 Solutions</a><ul>
 <li class="chapter" data-level="" data-path="exercise-solutions.html"><a href="exercise-solutions.html#ex4a-answers"><i class="fa fa-check"></i>Exercise 4A Solutions</a></li>
 <li class="chapter" data-level="" data-path="exercise-solutions.html"><a href="exercise-solutions.html#ex4b-answers"><i class="fa fa-check"></i>Exercise 4B Solutions</a></li>
 <li class="chapter" data-level="" data-path="exercise-solutions.html"><a href="exercise-solutions.html#ex4c-answers"><i class="fa fa-check"></i>Exercise 4C Solutions</a></li>
 <li class="chapter" data-level="" data-path="exercise-solutions.html"><a href="exercise-solutions.html#ex4d-answers"><i class="fa fa-check"></i>Exercise 4D Solutions</a></li>
 <li class="chapter" data-level="" data-path="exercise-solutions.html"><a href="exercise-solutions.html#ex4e-answers"><i class="fa fa-check"></i>Exercise 4E Solutions</a></li>
 <li class="chapter" data-level="" data-path="exercise-solutions.html"><a href="exercise-solutions.html#ex4f-answers"><i class="fa fa-check"></i>Exercise 4F Solutions</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="exercise-solutions.html"><a href="exercise-solutions.html#ex5-answers"><i class="fa fa-check"></i>Exercise 5 Solutions</a></li>
 <li class="chapter" data-level="" data-path="exercise-solutions.html"><a href="exercise-solutions.html#ex6-answers"><i class="fa fa-check"></i>Exercise 6 Solutions</a></li>
 </ul></li>
@@ -280,11 +327,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="header">
 <h1 class="title">Introduction to R for Natural Resource Scientists</h1>
 <h4 class="author"><em>Ben Staton</em></h4>
-<h4 class="date"><em>with contributions from Henry Hershey</em></h4>
+<h4 class="date"><em>with contributions by Henry Hershey</em></h4>
 </div>
 <div id="overview" class="section level1 unnumbered">
 <h1>Overview</h1>
-<p><a href="https://github.com/bstaton1/au-r-workshop/"><img src="cover_image.png" width="250" height="375" alt="Cover image" align="right" style="margin: 0 1em 0 1em" /></a>This book is intended to be a first course in R programming for natural resource professionals. It is by no means comprehensive (no book about R ever could be), but instead attempts to introduce the main topics needed to get a beginner up and running with applying R to their own work. It is intended to be a companion to in-person workshop sessions, in which each chapter is covered in a 2 hour session, however it can be used as “self-teach” manual as well. Although the examples shown have a natural resource/ecological theme, the general skills presented are general to R users across all scientific disciplines.</p>
+<p><a href="https://github.com/bstaton1/au-r-workshop/"><img src="img/cover_image.png" width="250" height="375" alt="Cover image" align="right" style="margin: 0 1em 0 1em" /></a>This book is intended to be a first course in R programming for natural resource professionals. It is by no means comprehensive (no book about R ever could be), but instead attempts to introduce the main topics needed to get a beginner up and running with applying R to their own work. It is intended to be a companion to in-person workshop sessions, in which each chapter is covered in a 2 hour session, however it can be used as “self-teach” manual as well. Although the examples shown have a natural resource/ecological theme, the general skills presented are general to R users across all scientific disciplines.</p>
 <div id="what-is-covered" class="section level2 unnumbered">
 <h2>What is Covered?</h2>
 <p>The book is composed of six chapters intended to cover a suite of topics in introductory R programming. In general, the material builds in complexity from chapter to chapter and earlier chapters can be seen as prerequisites for later chapters.</p>
@@ -305,8 +352,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="comp-prep" class="section level3 unnumbered">
 <h3>Prepare Your Computer</h3>
 <p>You will install R and RStudio as the first step in Chapter 1. See <a href="#install">here</a> for the links to get these programs.</p>
-<p>You should create a devoted folder on your computer for this book. All examples will assume this folder is located here: <code>C:/Users/YOU/Documents/R-Book</code>.</p>
-<p>Change <code>YOU</code> to be specific for your computer.</p>
+<p>You should create a devoted folder on your computer for this book. All examples will assume this folder is located here: <code>C:/Users/YOU/Documents/R-Book</code>. Change <code>YOU</code> to be specific for your computer.</p>
 </div>
 <div id="data-sets" class="section level3 unnumbered">
 <h3>Data Sets</h3>
@@ -318,6 +364,24 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>click <em>Download ZIP</em></li>
 <li>unzip the contents of this folder into the location: <code>C:/Users/YOU/Documents/R-Book/Data</code></li>
 </ol>
+<p>File organization will be very important for your success in learning to use R. This book will assume your <code>R-Book</code> directory is organized as shown below. Notice that there is a separate folder for the data downloaded from GitHub as well as one for each chapter that will house the R code for that chapter. Do not worry about making all of these folders now, you will do this at the appropriate time as you work your way through this book. For now, just make sure there is a <code>Data</code> folder that contains all of the unzipped contents from the GitHub repository your main <code>R-Book</code> directory.</p>
+<pre><code>##          levelName
+## 1  R-Book         
+## 2   ¦--Data       
+## 3   ¦   ¦--asl.csv
+## 4   ¦   ¦--...    
+## 5   ¦   °--Ch6    
+## 6   ¦--Chapter1   
+## 7   ¦   ¦--Ch1.R  
+## 8   ¦   ¦--Ex1A.R 
+## 9   ¦   °--Ex1B.R 
+## 10  ¦--Chapter2   
+## 11  ¦   ¦--Ch2.R  
+## 12  ¦   °--Ex2.R  
+## 13  ¦--Chapter3   
+## 14  ¦--Chapter4   
+## 15  ¦--Chapter5   
+## 16  °--Chapter6</code></pre>
 </div>
 </div>
 <div id="exercises" class="section level2 unnumbered">
@@ -349,9 +413,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="development-of-this-book" class="section level2 unnumbered">
 <h2>Development of this Book</h2>
 <p>This book represents the third reincarnation of the Auburn R Workshop Series. The first version was written in Fall 2014 using Microsoft Word, but the author found that making even small changes was clunky - each change to code in the document required a copy-paste of code and output from R to Word. Individual session materials (i.e., handout, exercises, solutions, data) were created in separate documents, saved as PDFs and <code>.xlsx</code> files, and uploaded to a wordpress webpage.</p>
-<p>The second version was written through R and RStudio using the R packages <code>{rmarkdown}</code> <span class="citation">(Allaire et al. <a href="#ref-rmarkdown-cite">2018</a>)</span> and <code>{knitr}</code> <span class="citation">(Xie <a href="#ref-knitr-cite">2015</a>)</span>, which allowed the integration of text, code, and output all into one output file. This version was completed in Fall 2015. Like the first version, individual session materials were created in separate documents, and replaced those previously found on the wordpress site.</p>
-<p>This third version was written through R and RStudio but used the R package <code>{bookdown}</code> <span class="citation">(Xie <a href="#ref-bookdown-cite">2016</a>)</span> which allowed for the individual sessions to be combined into one “book” by turning each session into a chapter. This facilitated cross-references to topics covered in previous chapters and allows the reader to only refer to one location when trying to remember how to use a skill. It also allowed for multiple formats to be published including both HTML and PDF versions.</p>
-<p>The book is hosted on <a href="https://pages.github.com/">GitHub Pages</a>, and was last built on 09-26-2018.</p>
+<p>The second version was written through R <span class="citation">(R Core Team <a href="#ref-R-base">2018</a>)</span> and RStudio using the R packages <code>{rmarkdown}</code> <span class="citation">(Allaire et al. <a href="#ref-R-rmarkdown">2018</a>)</span> and <code>{knitr}</code> <span class="citation">(Xie <a href="#ref-R-knitr">2018</a><a href="#ref-R-knitr">b</a>; Xie <a href="#ref-knitr-cite">2015</a>)</span>, which allowed the integration of text, code, and output all into one output file. This version was completed in Fall 2015. Like the first version, individual session materials were created in separate documents, and replaced those previously found on the wordpress site.</p>
+<p>This third version was written through R and RStudio but used the R package <code>{bookdown}</code> <span class="citation">(Xie <a href="#ref-R-bookdown">2018</a><a href="#ref-R-bookdown">a</a>)</span> which allowed for the individual sessions to be combined into one “book” by turning each session into a chapter. This facilitated cross-references to topics covered in previous chapters and allows the reader to only refer to one location when trying to remember how to use a skill. It also allowed for multiple formats to be published including both HTML and PDF versions.</p>
+<p>The book is hosted on <a href="https://pages.github.com/">GitHub Pages</a>, and was last built on 10-04-2018.</p>
 </div>
 <div id="about-the-author" class="section level2 unnumbered">
 <h2>About the Author</h2>
@@ -361,14 +425,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <h3>References</h3>
 <div id="refs" class="references">
-<div id="ref-rmarkdown-cite">
+<div id="ref-R-base">
+<p>R Core Team. 2018. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a>.</p>
+</div>
+<div id="ref-R-rmarkdown">
 <p>Allaire, JJ, Yihui Xie, Jonathan McPherson, Javier Luraschi, Kevin Ushey, Aron Atkins, Hadley Wickham, Joe Cheng, and Winston Chang. 2018. <em>Rmarkdown: Dynamic Documents for R</em>. <a href="https://CRAN.R-project.org/package=rmarkdown" class="uri">https://CRAN.R-project.org/package=rmarkdown</a>.</p>
+</div>
+<div id="ref-R-knitr">
+<p>Xie, Yihui. 2018b. <em>Knitr: A General-Purpose Package for Dynamic Report Generation in R</em>. <a href="https://CRAN.R-project.org/package=knitr" class="uri">https://CRAN.R-project.org/package=knitr</a>.</p>
 </div>
 <div id="ref-knitr-cite">
 <p>Xie, Yihui. 2015. <em>Dynamic Documents with R and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.name/knitr/" class="uri">http://yihui.name/knitr/</a>.</p>
 </div>
-<div id="ref-bookdown-cite">
-<p>Xie, Yihui. 2016. <em>Bookdown: Authoring Books and Technical Documents with R Markdown</em>. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://github.com/rstudio/bookdown" class="uri">https://github.com/rstudio/bookdown</a>.</p>
+<div id="ref-R-bookdown">
+<p>Xie, Yihui. 2018a. <em>Bookdown: Authoring Books and Technical Documents with R Markdown</em>. <a href="https://CRAN.R-project.org/package=bookdown" class="uri">https://CRAN.R-project.org/package=bookdown</a>.</p>
 </div>
 </div>
 <div class="footnotes">

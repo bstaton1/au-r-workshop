@@ -16,8 +16,8 @@ Any data analyst will tell you that oftentimes the most difficult part of an ana
 
 In this chapter, you will learn tricks to do more advanced data manipulation in R using two R **packages**:
 
-*  `{reshape2}`: used for changing data between formats (wide and long)
-*  `{dplyr}`: used for large data manipulations with a consistent and readable format.
+*  `{reshape2}` [@R-reshape2]: used for changing data between formats (wide and long)
+*  `{dplyr}` [@R-dplyr]: used for large data manipulations with a consistent and readable format.
 
 You will be turning daily observations of harvest and escapement (fish that are not harvested) into annual totals for the purpose of fitting a **spawner-recruit analysis** on a hypothetical pink salmon (_Oncorhynchus gorbuscha_) data set. More details and context on these terms and topics will be provided later. 
 
