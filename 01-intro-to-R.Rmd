@@ -51,7 +51,7 @@ To start off, you will just use R as a calculator. Type these commands (not the 
 
 Notice that when you run each line, it prints the command and the output to the console. 
 
-R is an **object oriented language**, which means that you fill objects with data do things with them. Make an object called `x` that stores the result of the calculation `3 + 3` (type this and run using **CTRL + ENTER**):
+R is an **object oriented language**, which means that you fill objects with data and do things with them. Make an object called `x` that stores the result of the calculation `3 + 3` (type this and run using **CTRL + ENTER**):
 
 ```{r}
 x = 3 + 3
@@ -86,6 +86,7 @@ z = y - x
 *  Object names must start with a letter, not a number or symbol and cannot contain spaces
 *  As a general rule, avoid naming your objects things that already have names in R, e.g., `data()`, `mean()`, `sum()`, `sd()`, etc.
 *  Capitalization matters: `A` and `a` are two different objects
+*  Keep your names short with abbreviations or shorthand
 
 ## Saving Your Code: Scripts {#scripts}
 
@@ -95,7 +96,7 @@ If you closed R at this moment, your work would be lost. Running code in the con
 
 Keeping things organized is essential to efficient use of R. For this book, you should have a separate subfolder for your scripts in each chapter. Create a subfolder called `C:/Users/YOU/Documents/R-Book/Chapter1` and save your `Ch1.R` script there. 
 
-Part of keeping your work organized in R is making sure you know where R is looking for your files. One way to facilitate this is to use a **working directory**. This is the location (i.e., folder) on your computer where your current R session will "talk to" by default. The working directory is where R will read files from and write files to by default. Because you'll likely be visiting it often, it should probably be somewhere that is easy to remember and not too deeply buried in your computer's file system. 
+Part of keeping your work organized in R is making sure you know where R is looking for your files. One way to facilitate this is to use a **working directory**. This is the location (i.e., folder) on your computer that your current R session will "talk to" by default. R will read files from and write files to the working directory by default. Because you'll likely be visiting it often, it should probably be somewhere that is easy to remember and not too deeply buried in your computer's file system. 
 
 To set the working directory to `C:/Users/YOU/Documents/R-Book/Chapter1`, you have three options:
 
@@ -103,7 +104,7 @@ To set the working directory to `C:/Users/YOU/Documents/R-Book/Chapter1`, you ha
 
 2. **Go to Session > Set Working Directory > Choose Directory**. This will open an interactive file selection window to allow you to navigate to the desired directory.
 
-3. **Use code**. In the console, you can type `setwd("C:/Users/YOU/Documents/R-Book/Chapter1")`. If at any point you want to know where your current working directory is set to, you can either look at the top of the console pane, which shows the full path or by running `getwd()` in the console. Note the use of `/` rather than `\` for file paths in R.
+3. **Use code**. In the console, you can type `setwd("C:/Users/YOU/Documents/R-Book/Chapter1")`. If at any point you want to know where your current working directory is set to, you can either look at the top of the console pane, which shows the full path or by running `getwd()` in the console. Note the use of `/` rather than `\` for file paths in R. If you are using a Mac, omit  `C:` from your directory name.
 
 **The main benefits of using a working directory are**:
 
@@ -163,7 +164,7 @@ day = seq(from = 1, to = 9, by = 2); day
 year = rep(2018, 5); year
 ```
 
-The `[1]` that shows up is a element position, more on this later (see Section \@ref(sub)). If you wish to know how many elements are in a vector, use `length()`:
+The `[1]` that shows up is an element position, more on this later (see Section \@ref(sub)). If you wish to know how many elements are in a vector, use `length()`:
 
 ```{r}
 length(year)
@@ -179,7 +180,7 @@ number = c(4, 7, 8, 10, 15); number
 pond = c("F11", "S28", "S30", "S8", 'S11'); pond
 ```
 
-Note the difference between the numeric and character vectors. The the terms "numeric" and "character"" represent **data classes**, which specify the type of data the vector is holding:
+Note the difference between the numeric and character vectors. The terms "numeric" and "character"" represent **data classes**, which specify the type of data the vector is holding:
 
 *  A **numeric vector** stores numbers. You can do math with numeric vectors
 *  A **character vector** stores what are essentially letters. You can't do math with letters. A character vector is easy to spot because the elements will be wrapped with quotes^[`" "` or `' '` both work as long as you use the same on the front and end of the element]. 
@@ -190,7 +191,7 @@ A vector can only hold one data class at a time:
 v = c(1,2,3,"a"); v
 ```
 
-Notice how all the elements now have quotes around them. The numbers have been **coerced** to characters^[The coercion works this way because numbers can be expressed as characters, but a letter cannot be unambiguously be expressed as a number.]. If you attempt to calculate the sum of your vector:
+Notice how all the elements now have quotes around them. The numbers have been **coerced** to characters^[The coercion works this way because numbers can be expressed as characters, but a letter cannot be unambiguously expressed as a number.]. If you attempt to calculate the sum of your vector:
 
 ```{r, error=T}
 sum(v)
@@ -200,7 +201,7 @@ you would find that it is impossible in its current form.
 
 ### Matrices {#matrices}
 
-Matrices act just like vectors, but they are in two dimensions, i.e., they have both rows and columns. An easy way to make a matrix is by combining vectors you have already made:
+Matrices act just like vectors, but they have two dimensions, i.e., they have both rows and columns. An easy way to make a matrix is by combining vectors you have already made:
 
 ```{r}
 # combine vectors by column (each vector will become a column)
@@ -228,7 +229,7 @@ df1 = data.frame(month, day, year, number, pond); df1
 
 Notice the lack of quotation marks which indicates that all variables (i.e., columns) are stored as their original data class. 
 
-It is important to know what kind of object type you are using, since R treats them differently. For example, some functions can only use a certain object type. The same holds true for data classes (numeric vs. character).You can quickly determine what kind of object you are dealing with by using the `class()` function:
+It is important to know what kind of object type you are using, since R treats them differently. For example, some functions can only use a certain object type. The same holds true for data classes (numeric vs. character). You can quickly determine what kind of object you are dealing with by using the `class()` function:
 
 ```{r}
 class(day); class(pond); class(m1); class(df1)
@@ -267,7 +268,7 @@ will result in character vectors remaining that way as opposed to being coerced 
 
 ## Vector Math {#vector-math}
 
-R does vectorized calculations. This means that if supplied with two numeric vectors of equal length and a mathematical operator, R will perform the calculation on each pair of elements. For example, if you wanted to add the two vectors vector `day` and `month`, then you would just run:
+R does vectorized calculations. This means that if supplied with two numeric vectors of equal length and a mathematical operator, R will perform the calculation on each pair of elements. For example, if you wanted to add the two vectors `day` and `month`, then you would just run:
 
 ```{r}
 dm = day + month; dm
@@ -283,9 +284,9 @@ dm/2
 
 ## Data Subsets/Queries {#sub}
 
-This perhaps the most important and versatile skills to know in R. So you have an object with data in it and you want to use it for analysis. But you don't want the whole data set: just a few rows or just a few columns, or perhaps you need just a single element from a vector. This section is devoted to ways you can extract certain parts of data objects (the terms **query** and **subset** are often used interchangeably to describe this task). There are three main methods:
+This is perhaps the most important and versatile skill to know in R. Say you have an object with data in it and you want to use it for analysis, but you don't want the whole data set: just a few rows or just a few columns, or perhaps you need just a single element from a vector. This section is devoted to ways you can extract certain parts of data objects (the terms **query** and **subset** are often used interchangeably to describe this task). There are three main methods:
 
-1.  **By Index** -- This method allows you to pull out specific rows/columns by their location in an object. However, you must know exactly where in the object the desired data are. An **index** is a location of a element in a data object, like the element position or the position of a specific row or column. The syntax for subsetting a vector by index is `vector[element]` and for a matrix it is `matrix[row,column]`. Here are some examples:
+1.  **By Index** -- This method allows you to pull out specific rows/columns by their location in an object. However, you must know exactly where in the object the desired data are. An **index** is a location of an element in a data object, like the element position or the position of a specific row or column. The syntax for subsetting a vector by index is `vector[element]` and for a matrix it is `matrix[row,column]`. Here are some examples:
 
 ```{r}
 # show all of day, then subset the third element
@@ -379,7 +380,7 @@ The syntax for reading in a `.csv` file is:
 dat = read.csv("Path/To/FileName.csv")
 ```
 
-Make sure your working directory is set to the location of your current file, which should be in the location `C:/Users/YOU/Documents/R-Book/Chapter 1`. According the [instructions](#data-sets) on acquiring the data, you should have placed all of the data files for this book (downloaded from the [GitHub repository]()) in the location `C:/Users/YOU/Documents/R-Book/Data`. If you have done this already and your working directory is set to the location of the `Ch1.R` script, you can simply run:
+Make sure your working directory is set to the location of your current file, which should be in the location `C:/Users/YOU/Documents/R-Book/Chapter 1`. According to the [instructions](#data-sets) on acquiring the data, you should have placed all of the data files for this book (downloaded from the [GitHub repository]()) in the location `C:/Users/YOU/Documents/R-Book/Data`. If you have done this already and your working directory is set to the location of the `Ch1.R` script, you can simply run:
 
 ```{r, eval = F}
 dat = read.csv("../Data/streams.csv")
@@ -478,13 +479,13 @@ which is the same as (i.e., the definition of the mean with the `NA` removed):
 sum(dat$flow, na.rm = T)/(nrow(dat) - 1)
 ```
 
-What if you need apply a function to more than one variable at a time? One of the easiest ways to do this (though as with most things in R, there are many) is by using the `apply()` function. This function applies the same summary function to individual subsets of a data object at a time then returns the individual summaries all at once:
+What if you need to apply a function to more than one variable at a time? One of the easiest ways to do this (though as with most things in R, there are many) is by using the `apply()` function. This function applies the same summary function to individual subsets of a data object at a time then returns the individual summaries all at once:
 
 ```{r}
 apply(dat[,c("stream_width", "flow")], 2, FUN = var, na.rm = T)
 ```
 
-The first argument is the data object you want to apply the function to. The second argument (the number `2`) specifies that you want to apply the function to columns, `1` would tell R to apply it to rows. The `FUN` argument specifies what function you wish to apply to each of the columns; here you are calculating the variance which takes the `na.rm = T` argument. This use of `apply()` alone is very powerful and can help you get around having to write the dreaded `for()` loop (introduced in Chapter \@ref(ch4)).
+The first argument is the data object to which you want to apply the function. The second argument (the number `2`) specifies that you want to apply the function to columns, `1` would tell R to apply it to rows. The `FUN` argument specifies what function you wish to apply to each of the columns; here you are calculating the variance which takes the `na.rm = T` argument. This use of `apply()` alone is very powerful and can help you get around having to write the dreaded `for()` loop (introduced in Chapter \@ref(ch4)).
 
 There is a whole family of `-apply()` functions, the base `apply()` is the most basic but a more sophisticated one is `tapply()`, which applies a function based on some grouping variable (a factor). Calculate the mean stream width **separated by state**:
 
@@ -492,7 +493,7 @@ There is a whole family of `-apply()` functions, the base `apply()` is the most 
 tapply(dat$stream_width, dat$state, mean)
 ```
 
-The first argument is the variable you want to apply the `mean` function to, the second is the grouping variable, and the third is what function you wish to apply. Try to commit this command to memory given this is a pretty common task.
+The first argument is the variable to which you want to apply the `mean` function, the second is the grouping variable, and the third is what function you wish to apply. Try to commit this command to memory given this is a pretty common task.
 
 If you want a data frame as output, you can use the `aggregate` function to do the same thing:
 
@@ -594,6 +595,12 @@ To extract all of the data from Alabama, you would run:
 dat[dat$state == "Alabama",]
 ```
 
+To exclude all of the data from Alabama, you would run:
+
+```{r}
+dat[!dat$state == "Alabama",]
+```
+
 You will be frequently revisiting this skill throughout the workshop.
 
 ## `if()`, `else`, and `ifelse()`
@@ -664,7 +671,7 @@ cbind(
 )
 ```
 
-Use `ifelse()` to create a new variable in `dat` that indicates whether a stream is big or small depending whether `stream_width` is greater or less than 50:
+Use `ifelse()` to create a new variable in `dat` that indicates whether a stream is big or small depending on whether `stream_width` is greater or less than 50:
 
 ```{r}
 dat$size_cat = ifelse(dat$stream_width > 50, "big", "small"); head(dat)
