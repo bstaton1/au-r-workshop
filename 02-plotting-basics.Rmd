@@ -40,7 +40,7 @@ Learning some terminology will help you get used to the base R graphics system:
 
 *  A **high-level plotting function** is one that is used to make a new graph. Examples of higher level plotting functions are the general `plot()` and the `barplot()` functions. When-a high level plotting function is executed, the currently displayed plot (if any) is written over.
 *  A **low-level plotting function** is one that is used to modify a plot that has already been created. You must already have made a plot using a higher level plotting function before you use lower level plotting functions. Examples include `text()`, `points()`, and `lines()`. When a low-level plotting function is executed, the output is simply added to an existing plot. 
-*  The **graphics device** is the area that a plot shows up. RStudio has a built in graphics device in its interface (lower right by default in the "Plots" tab), or you can create a new device. R will plot on the active device, which is the most recently created device. There can only be one active device at a time.
+*  The **graphics device** is the area in which a plot is displayed. RStudio has a built in graphics device in its interface (lower right by default in the "Plots" tab), or you can create a new device. R will plot on the active device, which is the most recently created device. There can only be one active device at a time.
 
 Here is an example of a basic R plot:
 
@@ -310,7 +310,7 @@ The `par()` function is central to fine-tuning your graphics. Here, the `xaxs = 
 
 ## New Temporary Devices
 
-If you are using RStudio, then likely all of the plots you have made thus far have shown up in the lower right-hand corner or your RStudio window. You have been using RStudio's built-in plotting device. If you wish to open a new plotting device (maybe to put it on a separate monitor), you can use the following commands, depending on your operating system:
+If you are using RStudio, then likely all of the plots you have made thus far have shown up in the lower right-hand corner or your RStudio window. You have been using RStudio's built-in plotting device. If you want to open a new plotting device (maybe to put it on a separate monitor), you can use the following commands, depending on your operating system:
 
 *  **Windows Users** -- just run `windows()` to open up a new plotting device. It will become the active device.
 *  **Mac Users** -- similarly, you can run `quartz()` to open a new device.
@@ -320,7 +320,7 @@ If you are using RStudio, then likely all of the plots you have made thus far ha
 
 Sometimes you want to display more than one plot at a time. You can make a multi-panel plot which allows for multiple plotting regions to show up simultaneously within the same plotting device. First, you need to change the layout of the plotting region. The easiest way to set up the device for multi-panel plotting is by using the `mfrow` argument in the `par()` function.
 
-Below, the code says "set up the graphical parameters so that there is 1 row and 3 columns of plotting regions within the device". Every time you make a new plot, it will go in the next available plotting region. Make 3 histograms, each that represents a different sector of the fishery:
+Below, the code says "set up the graphical parameters so that there is 1 row and 3 columns of plotting regions within the device". Every time you make a new plot, it will go in the next available plotting region (regions fill from left to right, and from top to bottom). Make 3 histograms, each that represents a different sector of the fishery:
 
 ```{r, eval = F}
 par(mfrow = c(1,3))
@@ -341,7 +341,7 @@ Here, `sapply()` applied a user-defined function that plots a histogram for a gi
 
 ## Legends
 
-Oftentimes you will want to add a legend to plots to help people interpret what it is showing. You can add legends to R plots using the low-level plotting function `legend()`. Add a legend to the bar plot you made earlier with two groups. First, re-make the plot by running the high-level `barplot()` function, but change the colors of the bars to be shades of blue and red. Once you have the plot made, add the legend:
+Oftentimes you will want to add a legend to a plot to help people interpret what it is showing. You can add legends to R plots using the low-level plotting function `legend()`. Add a legend to the bar plot you made earlier with two groups. First, re-make the plot by running the high-level `barplot()` function, but change the colors of the bars to be shades of blue and red. Once you have the plot made, add the legend:
 
 ```{r}
 barplot(x3, beside = T, 
@@ -356,7 +356,7 @@ The box can be removed using the `bty = "n"` argument and the size can be change
 Here is a more complex example:
 
 ```{r}
-# 1) extract and sort the hours for two fisheries from fewest hours
+# 1) extract and sort the hours for two fisheries from fewest to most hours fished
 t_hrs = sort(dat$hours[dat$fishery == "Tournament"])
 n_hrs = sort(dat$hours[dat$fishery == "Non.Tournament"])
 
@@ -376,18 +376,18 @@ legend("topleft", legend = c("Tournament", "Non-Tournament"),
        lty = c(2,1), pch = c(1, 16), bty = "n")
 ```
 
-Notice that you need to be careful about the order of how you specify which `lty` and `pch` settings match up with the elements of the `legend` argument. In the `plot()` code, you specified that the `lty = 2` but didn't specify what `pch` should be (it defaults to `1`). So when you put the "Tournament" group first the the `legend` argument vector, you must be sure to use the corresponding plotting codes. The first element of the `lty` argument matches up with the first element of `legend`, and so on. Note the other plotting tricks used in the code above: changing the margins using `par(mar)` and the rotation of y-axis tick mark labels using `las = 1`.
+Notice that you need to be careful about the order of how you specify which `lty` and `pch` settings match up with the elements of the `legend` argument. In the `plot()` code, you specified that the `lty = 2` but didn't specify what `pch` should be (it defaults to `1`). So when you put the "Tournament" group first in the `legend` argument vector, you must be sure to use the corresponding plotting codes. The first element of the `lty` argument matches up with the first element of `legend`, and so on. Note the other plotting tricks used in the code above: changing the margins using `par(mar)` (the margins are always in this order: `c("bottom", "left", "top", "right")`) and the rotation of y-axis tick mark labels using `las = 1`.
 
 ## Exporting Plots
 
-There are two main ways to save plots.  First is a quick-and-dirty method that saves the plots, but they are not high-resolution and you can't automate this process. The second method produces cleaner-looking high-resolution plots with code that can be embedded in your script, ensuring the same exact plot will be created each time the code is executed
+There are two main ways to save plots.  First is a quick-and-dirty point-and-click method that saves the plots in low-resolution. Because you have to point and click, this cannot be automated. The second method produces cleaner-looking high-resolution plots with code that can be embedded in your script, ensuring the same exact plot will be created each time the code is executed.
 
 ### Click Save
 
 *  If your plot is in the RStudio built-in graphics device: Right above the plot, click _Export > Save as Image_.  Change the name, dimensions and file type.
 *  If your plot is in a plotting device window (opened with `windows()` or `quartz()`: Simply go to _File > Save_. 
 
-All plots will be saved in the working directory by default. You can also just copy the plot to your clipboard (_File > Copy to the clipboard > bitmap_) and paste it where you want. You should saving one of the plots you made in this Chapter using this approach.
+All plots will be saved in the working directory by default. You can also just copy the plot to your clipboard (_File > Copy to the clipboard > bitmap_) and paste it where you want. You should save one of the plots you made in this Chapter using this approach.
 
 ### Use a function to place plot in a new file {#file-devices}
 
@@ -407,7 +407,7 @@ png("TestFigure.png", h = 8 * ppi, w = 8 * ppi, res = ppi)
 dev.off()
 ```
 
-A plot will be saved in your working directory containing the plot made by the code in step 3 above. The `ppi` object is pixels-per-inch. When you specify `h = 8 * ppi`, you are saying "make a plot with height equal to 8 inches". There are similar functions to make PDFs, tiff files, jpegs, etc. You should try saving one of the plots you made in this Chapter using this approach. 
+A file will be saved in your working directory containing the plot made by the code in step 3 above. The `ppi` object is pixels-per-inch. When you specify `h = 8 * ppi`, you are saying "make a plot with height equal to 8 inches". There are similar functions to make PDFs, tiff files, jpegs, etc. You should save one of the plots you made in this Chapter using this approach. 
 
 ## Bonus Topic: Error Bars {#error-bars}
 
@@ -416,14 +416,14 @@ Rarely should you ever present estimates without some measure of uncertainty. Th
 *  Vectors of the `x` and `y` coordinates of the lower bound of the error bars
 *  Vectors of the `x` and `y` coordinates of the upper bound of the error bars
 
-The syntax for `arrows()` is as follows: `arrows(x0, y0, x1, y1, ...)`, where `x0` and `y0` are the coordinates you are drawing "from" (e.g., lower limits) and the `x1` and `y1` are the coordinates you are drawing "to" (e.g., upper limits). The `...` represents other arguments to change how the error bars look. Calculate the mean of the different fishery sectors (if you don't remember how `tapply()` works, revisit Section \@ref(data-summaries)) and plot them:
+The syntax for `arrows()` is as follows: `arrows(x0, y0, x1, y1, ...)`, where `x0` and `y0` are the coordinates you are drawing "from" (e.g., lower limits) and the `x1` and `y1` are the coordinates you are drawing "to" (e.g., upper limits). The `...` represents other arguments to change how the error bars look. Calculate the means of the hours fished in each fishery sector and plot them. (If you don't remember how `tapply()` works, revisit Section \@ref(data-summaries)). 
 
 ```{r}
 x_bar = tapply(dat$hours, dat$fishery, mean)
 barplot(x_bar)
 ```
 
-You wish to add error bars that represent 95% confidence intervals on the mean. You can create a 95% confidence interval using this basic formula:
+Say you want to add error bars that represent 95% confidence intervals on the mean. You can create a 95% confidence interval using this basic formula:
 
 \begin{equation}
   \bar{x} \pm 1.96 * SE(\bar{x}),
@@ -452,13 +452,13 @@ calc_se = function(x) {
 }
 ```
 
-Then calculate the standard errors for each fishery type:
+Then calculate the standard errors for each fishery sector:
 
 ```{r}
 se = tapply(dat$hours, dat$fishery, calc_se)
 ```
 
-Then calculate the lower and upper limits of your bars:
+Then calculate the lower and upper limits of your error bars:
 
 ```{r}
 lwr = x_bar - 1.96 * se
@@ -475,7 +475,7 @@ arrows(x0 = mp, y0 = lwr, x1 = mp, y1 = upr, length = 0.1, angle = 90, code = 3)
 Notice four things:
 
 1.  The use of `mp` to specify the `x` coordinates. If you do `mp = barplot(...)`, `mp` will contain the `x` coordinates of the midpoint of each bar.
-2.  `x0` and `x1` are the same: you wish to have vertical bars, so these must be the same while `y1` and `y2` differ.
+2.  `x0` and `x1` are the same: you want to have vertical bars, so these must be the same while `y1` and `y2` differ.
 3.  The use of `ylim = range(c(0, upr))`: you want the y-axis to show the full range of all the error bars.
 4.  The three arguments at the end of `arrows`:
     - `length = 0.1`: the length of the arrow heads, fiddle with this until you like it.
@@ -486,14 +486,14 @@ Notice four things:
 
 ## Exercise 2 {-#ex2}
 
-For this exercise, you will be making a few of plots and changing how they look to suit your taste. You will use a real data set (`sockeye.csv`, see the [instructions](#data-sets) regarding acquiring the data files) this time from a sockeye salmon (_Oncorhynchus nerka_) population from the Columbia/Snake River system, and the data set was obtained from @sockeye-cite. This population spawns in Redfish Lake in Idaho, which feeds into the Salmon River which is a tributary of the Snake River. In order to reach the lake, the sockeye salmon must successfully pass through a total eight dams that have fish passage mechanisms in place. The Redfish Lake population is one of the most endangered sockeye populations in the U.S. and travels farther (1,448 km), higher (1,996 m), and is the southernmost population of all sockeye populations in the world [@sockeye-cite]. Given this uniqueness, a captive breeding program was initiated in 1991 to conserve the genes from this population. These data came from both hatchery-raised and wild fish and include average female spawner weight (g), fecundity (number of eggs), egg size (eggs/g), and % survival to the eyed-egg stage.
+For this exercise, you will be making a few plots and changing how they look to suit your taste. You will use a real data set (`sockeye.csv`, see the [instructions](#data-sets) on how to acquire the data files) from a sockeye salmon (_Oncorhynchus nerka_) population from the Columbia/Snake River system, obtained from @sockeye-cite. This population spawns in Redfish Lake in Idaho, which feeds into the Salmon River, which is a tributary of the Snake River. In order to reach the lake, the sockeye salmon must successfully pass through a total of eight dams that have fish passage mechanisms in place. The Redfish Lake population is one of the most endangered sockeye populations in the U.S. and travels farther (1,448 km), higher (1,996 m), and is the southernmost population of all sockeye populations in the world [@sockeye-cite]. Given this uniqueness, a captive breeding program was initiated in 1991 to conserve the genes from this population. These data came from both hatchery-raised and wild fish and include average female spawner weight (g), fecundity (number of eggs), egg size (eggs/g), and % survival to the eyed-egg stage.
 
 _The solutions to this exercise are found at the end of this book ([here](#ex2-answers)). You are **strongly recommended** to make a good attempt at completing this exercise on your own and only look at the solutions when you are truly stumped._
 
 1.  Create a new R script called `Ex2.R` and save it in the `Chapter2` directory. Read in the data set `sockeye.csv`. Produce a basic summary of the data and take note of the data classes, missing values (`NA`), and the relative ranges for each variable.
 2.	Make a histogram of fish weights for only hatchery-origin fish. Set `breaks = 10` so you can see the distribution more clearly.
-3.	Make a scatter plot of the fecundity of females as a function of their body weight for wild fish only. Use whichever plotting character (`pch`) and color (`col`) you wish. Change the main title and axes labels to reflect what they mean. Change the x-axis limits to be 600 to 3000 and the y-axis limits to be 0 to 3500. (_Hint: The `NAs` will not cause a problem. R will only use points where there are paired records for both `x` and `y` and ignore otherwise_).
-4.	Add points that do the same thing but for hatchery fish. Use a different plotting character and a different color.
+3.	Make a scatter plot of the fecundity of females as a function of their body weight for wild fish only. Use whichever plotting character (`pch`) and color (`col`) you want. Change the main title and axes labels to reflect what they mean. Change the x-axis limits to be 600 to 3000 and the y-axis limits to be 0 to 3500. (_Hint: The `NAs` will not cause a problem. R will only use points where there are paired records for both `x` and `y` and ignore otherwise_).
+4.	Add points for the same variables, but from hatchery fish. Use a different plotting character and a different color.
 5.	Add a legend to the plot to differentiate between the two types of fish.  
 6.	Make a multi-panel plot in a new window with box-and-whisker plots that compare (1) spawner weight, (2) fecundity, and (3) egg size between hatchery and wild fish. (_Hint: each comparison will be on its own panel_). Change the titles of each plot to reflect what you are comparing.
 7.	Save the plot as a `.png` file in your working directory with a file name of your choosing.
