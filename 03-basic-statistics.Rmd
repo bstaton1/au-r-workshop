@@ -24,7 +24,7 @@ In this chapter, you will get familiar with the basics of using R for the purpos
 *  fit basic GLMs: the logistic regression model
 *  Bonus topic: fitting non-linear regression models using `nls()`
 
-R's built-in statistical modeling framework is pretty intuitive and comprehensive. R has gained  popularity as a statistics software and is commonly used both in academia and governmental resource agencies.  This popularity is likely a result of its power, flexibility, intuitive nature, and price (free!). For many students, this chapter may be the one that is most immediately useful. 
+R has gained popularity as a statistics software and is commonly used both in academia and governmental resource agencies. This popularity is likely a result of its power, flexibility, intuitive nature, and price (free!). For many students, this chapter may be the one that is most immediately useful. 
 
 **IMPORTANT NOTE**: If you did not attend the sessions corresponding to Chapters \@ref(ch1) or \@ref(ch2), you are recommended to walk through the material found in those chapters before proceeding to this material. Also note that if you are confused about a topic, you can use **CTRL + F** to find previous cases where that topic has been discussed in this book. 
 
@@ -41,7 +41,7 @@ Much of this chapter will focus on the general linear model, so it is important 
 (\#eq:lin-mod)
 \end{equation}
 
-where the subscript $i$ represents an individual observation. The predictor variable(s) can be either categorical (i.e., grouping variables used in ANOVA, t-test, etc.), continuous (regression), or a combination of categorical and continuous (ANCOVA). The main focus is to estimate the coefficients ($\beta$), and in some cases it is to determine if their values are "significantly" different from the value assumed by some null hypothesis.
+where the subscript $i$ represents an individual observation. The predictor variable(s) can be either categorical (i.e., grouping variables used in ANOVA, t-test, etc.), continuous (regression), or a combination of categorical and continuous (ANCOVA). The main purpose of fitting a linear model is to estimate the coefficients ($\beta$), and in some cases to determine if their values are "significantly" different from the value assumed by some null hypothesis.
 
 The model makes several assumptions about the residuals^[The residuals ($\varepsilon_i$) are the difference between the data point $y_i$ and the model prediction $\hat{y}_i$: $\varepsilon_i=y_i-\hat{y}_i$] to obtain estimates of the coefficients. For reliable inference, the residuals must:
 
@@ -49,7 +49,7 @@ The model makes several assumptions about the residuals^[The residuals ($\vareps
   * be normally-distributed
   * have constant variance across range of the x-axis
 
-In R, the general linear model is fitted using the `lm()` function. Here's the basic syntax is `lm(y ~ x, data = dat)`^[This should look familiar from Section \@ref(box-whisker)]; it says: "fit a model with `y` as the response variable and `x` as the sole predictor variable, look for the variables `x` and `y` in a data frame called `dat`". 
+In R, the general linear model is fitted using the `lm()` function. The basic syntax is `lm(y ~ x, data = dat)`^[This should look familiar from Section \@ref(box-whisker)]; it says: "fit a model with `y` as the response variable and `x` as the sole predictor variable, look for those variables  in a data frame called `dat`". 
 
 ### Simple Linear Regression {#regression}
 
@@ -65,7 +65,7 @@ dat = read.csv("Data/sockeye.csv")
 head(dat)
 ```
 
-To fit a regression model using `lm()`, both `x` and `y` must be continuous (numeric) variables. In the data set `dat`, two such variables are the `weight` and `fecund`. Fit a regression model where you link the average fecundity (number of eggs) of an individual year to the average weight (in grams) in that year. Ignore for now that the fish come from two sources: hatchery and wild origin. 
+To fit a regression model using `lm()`, both `x` and `y` must be continuous (numeric) variables. In the data set `dat`, two such variables are called `weight` and `fecund`. Fit a regression model where you link the average fecundity (number of eggs) of fish sampled in an individual year to the average weight (in grams) for that year. Ignore for now that the fish come from two sources: hatchery and wild origin. 
 
 ```{r}
 fit1 = lm(fecund ~ weight, data = dat)
@@ -77,7 +77,7 @@ If you run just the `fit1` object, you will see the model you ran along with the
 fit1
 ```
 
-This model looks like this:
+The mathematical formula for this model looks like this:
 
 \begin{equation}
   y_i=\beta_0 + \beta_1 x_{i1} + \varepsilon_i, \varepsilon_i \sim N(0,\sigma),
@@ -104,7 +104,7 @@ plot(fecund ~ weight, data = dat, col = "grey", pch = 16, cex = 1.5)
 abline(fit1)
 ```
 
-It fits, but not very well. It seems there are two groups: one with data points mostly above the line and one with data points mostly below the line. You'll now run a new model to get at this.
+It fits, but not very well. It seems there are two groups: one with data points mostly above the line and one with data points mostly below the line. You'll now run a new model to test whether those clusters of points are random or due to actual differences between groups.
 
 ### ANOVA: Categorical predictors {#anova}
 
@@ -114,7 +114,7 @@ ANOVA models attempt to determine if the means of different groups are different
 class(dat$type); levels(dat$type)
 ```
 
-tells you the `type` variable is a factor. It has levels of `"hatch"` and `"wild"` which indicate the origin of the adult spawning fish sampled each year. If you pass `lm()` a predictor variable with a factor class, R will automatically fit it as an ANOVA model. See Section \@ref(factors) for more details on factors. Factors have an explicit ordering of the levels. By default, this ordering happens alphabetically: if your factor has levels `"a"`, `"b"`, and `"c"`, they will be assigned the order of `1`, `2` and `3`, respectively. You can always see how R is ordering your factor by doing something similar to this:
+tells you the `type` variable is a factor. It has levels of `"hatch"` and `"wild"` which indicate the origin of the adult spawning fish sampled each year. If you pass `lm()` a predictor variable with a factor class, R will automatically fit it as an ANOVA model. See Section \@ref(factors) for more details on factors. Factors have levels that are explicitly ordered. By default, this ordering happens alphabetically: if your factor has levels `"a"`, `"b"`, and `"c"`, they will be assigned the order of `1`, `2` and `3`, respectively. You can always see how R is ordering your factor by doing something similar to this:
 
 ```{r}
 pairs = cbind(
@@ -187,7 +187,7 @@ fit3 = lm(fecund ~ type + weight, data = dat)
 summary(fit3)$coef
 ```
 
-And you can plot the fit. Study this code to make sure you know what each is doing. Use what you know about the meanings of the three coefficients to decipher the two `abline()` commands. Remember that `abline()` takes takes two arguments: `a` is the intercept and `b` is the slope.
+And you can plot the fit. Study this code to make sure you know what each line is doing. Use what you know about the meanings of the three coefficients to decipher the two `abline()` commands. Remember that `abline()` takes takes two arguments: `a` is the intercept and `b` is the slope.
 
 ```{r}
 plot(fecund ~ weight, data = dat, col = "grey",
@@ -257,25 +257,25 @@ In general, AIC values that are different by more than 2 units are interpreted a
 
 ## The Generalized Linear Model {#glms}
 
-The models you fitted above were called "general linear models". They all made the assumption that the residuals ($\varepsilon_i$) are normally-distributed and that the response variable and the predictor variables are linearly related. Oftentimes data and analyses do not follow this assumption. For these cases you should often move to the broader family of statistical models known as **generalized linear models**^[General linear models are a member of this family].
+The models you fitted above are called "general linear models". They all make the assumption that the residuals ($\varepsilon_i$) are normally-distributed and that the response variable and the predictor variables are linearly related. Oftentimes data and analyses do not follow this assumption. For such cases you should use the broader family of statistical models known as **generalized linear models**^[General linear models are a member of this family].
 
 ### Logistic Regression {#logis-regression}
 
-One example is in the case of **binary** data. Binary data have two outcomes, e.g., success/failure, lived/died, male/female, spawned/gravid, happy/sad, etc. If you wish to predict how the probability of one outcome over the other changes depending on some other variable, then you need to use the **logistic regression model**, which is written as:
+One example is in the case of **binary** data. Binary data have two opposite outcomes, e.g., success/failure, lived/died, male/female, spawned/gravid, happy/sad, etc. If you want to predict how the probability of one outcome over its opposite changes depending on some other variable, then you need to use the **logistic regression model**, which is written as:
 
 \begin{equation}
   logit(p_i)=\beta_0 + \beta_1 x_{i1} + ... + \beta_j x_{ij}+ ... + \beta_n x_{in}, y_i \sim Bernoulli(p_i)
 (\#eq:logis-reg)
 \end{equation}
 
-Where $p_i$ is the probability of success for trial $i$ ($y_i = 1$) at the values of the predictor variables $x_{ij}$. The $logit(p_i)$ is the **link function** that links the linear parameter scale to the data scale. It constrains the value of $p_i$ to be between 0 and 1 regardless of the values of the $\beta$ coefficients. The logit link function does this:
+Where $p_i$ is the probability of success for trial $i$ ($y_i = 1$) at the values of the predictor variables $x_{ij}$. The $logit(p_i)$ is the **link function** that links the linear parameter scale to the data scale. It constrains the value of $p_i$ to be between 0 and 1 regardless of the values of the $\beta$ coefficients. The logit link function can be expressed as:
 
 \begin{equation}
   logit(p_i) = log\left(\frac{p_i}{1-p_i}\right)
 (\#eq:logit)
 \end{equation}
 
-which is the natural logarithm of the **odds**, a measure of how likely the event is to happen relative to it not happening. Make an R function to calculate the logit transformation:
+which is the **log odds** - the natural logarithm of the **odds**, which is a measure of how likely the event is to happen relative to it not happening. (Odds are commonly expressed as a ratio. For example, if there is a 75% chance of rain, the odds of it raining are 3 to 1. In other words, the outcome of rain is three times as likely as its opposite: not raining.) Make an R function to calculate the transformation performed by the link function:
 
 ```{r}
 logit = function(p) {
@@ -283,32 +283,31 @@ logit = function(p) {
 }
 ```
 
-If you have the result of `logit(p[i])` (which is given by the $\beta$ coefficients and the $x_{ij}$ data in Equation \@ref(eq:logis-reg)) and need to get `p[i]`, you can apply the inverse logit function:
+The generalized linear model calculates the log odds of an outcome: `logit(p[i])` (which is given by the $\beta$ coefficients and the $x_{ij}$ data in Equation \@ref(eq:logis-reg)), so if you want to know the odds ratio of the outcome, you can simply take the inverse log. But, if you want to know the probability of the outcome `p[i]`, you have to apply the inverse logit function:
 
 \begin{equation}
   expit(lp_i)=\frac{e^{lp_i}}{1 + e^{lp_i}}
 (\#eq:expit)
 \end{equation}
 
-where $lp_i = logit(p_i)$. Make a function for the inverse logit transformation:
+where $lp_i = logit(p_i)$. Make an R function to perform the inverse logit transformation to the probability scale:
 
 ```{r}
 expit = function(lp) {  # lp stands for logit(p)
   exp(lp)/(1 + exp(lp))
 }
 ```
+Because all of the fitted beta coefficients are on the log scale, you cannot make easy interpretations about the relationships between the predictor variables and the observed outcomes without making these transformations. The following example will take you through the steps to fit a logistic regression model and how to interpret the model outputs using these functions.
 
-Because of the logit link function, the coefficients have different interpretations than in the general linear models you fitted in the previous section: they are expressed in terms of **log odds**.
-
-Fit a logistic regression model to the sockeye salmon data. None of the variables of interest are binary, but you can create one. Look at the variable `dat$survival`. This is the average % survival of all eggs laid that make it to the "eye-egg" stage. Create a new variable `binary` which takes on a 0 if `dat$survival` is less than 70% and a 1 otherwise:
+Fit a logistic regression model to the sockeye salmon data. None of the variables of interest are binary, but you can create one. Look at the variable `dat$survival`. This is the average % survival of all eggs laid that make it to the "eyed-egg" stage. Any year with over 70% egg survival we will consider a successful year, so create a new variable `binary` which takes on a 0 if `dat$survival` is less than 70% and a 1 otherwise. 
 
 ```{r}
 dat$binary = ifelse(dat$survival < 70, 0, 1)
 ```
 
-This will be your response variable and your model will estimate how the probability of `binary` being a `1` changes (or doesn't) depending on the value of other variables.
+This will be your response variable and your model will estimate how the probability of `binary` being a `1` changes (or doesn't) depending on the value of other variables. 
 
-Analogous to the simple linear regression model (Section \@ref(regression)), estimate how $p$ changes with `weight`:
+Analogous to the simple linear regression model (Section \@ref(regression)), estimate how $p$ changes with `weight`: (How does the probability of having a successful clutch relate to the weight of the fish?) 
 
 ```{r}
 fit1 = glm(binary ~ weight, data = dat, family = binomial)
@@ -317,12 +316,12 @@ summary(fit1)$coef
 
 The coefficients are interpreted as (remember, "success" is defined as having at least 70% egg survival to the stage of interest):
 
-*  $\beta_0$: the log odds of success for a fish with zero weight (which is not all that important, let alone difficult to interpret). It can be transformed into more interpretable quantities: 
-    *  $e^{\beta_0}$ is the odds of success for fish with zero weight and 
-    *  $expit(e^{\beta_0})$ is the probability of success for fish with zero weight. 
+*  $\beta_0$: the log odds of success for a year in which average fish weight was 0 (which is not all that important, let alone difficult to interpret). It can be transformed into more interpretable quantities: 
+    *  $e^{\beta_0}$ is the odds of success for a year in which average fish weight was 0 and 
+    *  $expit(e^{\beta_0})$ is the probability of success for a year in which average fish weight was 0. 
 
 *  $\beta_1$: the additive effect of fish weight on the log odds of success. More interpretable expressions are:
-    *  $e^{\beta_1}$ is the ratio of the odds of success at two consective weights (e.g., 1500 and 1501) and Claims about $e^{\beta_1}$ are made as "for every one gram increase in weight, success became        *  $e^{\beta_1}$ times as likely to happen".
+    *  $e^{\beta_1}$ is the ratio of the odds of success at two consective weights (e.g., 1500 and 1501) and Claims about $e^{\beta_1}$ are made as "for every one gram increase in average weight, success became        *  $e^{\beta_1}$ times as likely to happen".
 
 * You can predict the probability of success at any weight using $expit(\beta_0 + \beta_1 weight)$
 
@@ -520,7 +519,7 @@ hist(random, breaks = 50, col = "grey", main = "rnorm()",
 box() # add borders to the histogram
 ```
 
-Notice that `pnorm()` and `qnorm()` are inverses of one another: if you put the output of one into the output of the other, you get the original input back:
+Notice that `pnorm()` and `qnorm()` are inverses of one another: if you put the output of one into the input of the other, you get the original input back:
 
 ```{r}
 qnorm(pnorm(0))
@@ -597,7 +596,7 @@ You should create a new R script called `Ex3.R` in your working directory for th
 _The solutions to this exercise are found at the end of this book ([here](#ex3-answers)). You are **strongly recommended** to make a good attempt at completing this exercise on your own and only look at the solutions when you are truly stumped._
 
 1.  Perform the same analyses as conducted in Section \@ref(lm) (simple linear regression, ANOVA, ANCOVA, ANCOVA with interaction), using `egg_size` as the response variable. The predictor variables you should use are `type` (categorical) and `year`. You should plot the fit for each model separately and perform an AIC analysis. Practice interpreting the coefficient estimates.
-2.  Perform the same analyses as conducted in Section \@ref(glms), this time using a success being having greater than 80% survival to the eyed-egg stage. Use `egg_size` and `type` as the predictor variables. You should plot the fitted lines for each model separately and perform an AIC analysis. Practice interpreting the coefficient estimates.
+2.  Perform the same analyses as conducted in Section \@ref(glms), this time using a success threshold of 80% survival to the eyed-egg stage (instead of 75%). Use `egg_size` and `type` as the predictor variables. You should plot the fitted lines for each model separately and perform an AIC analysis. Practice interpreting the coefficient estimates.
 3.  Make the same graphic as in Figure \@ref(fig:norm-plots) with at least one of the other distributions listed in Table `r if(is_html_output()) "\\@ref(tab:dist-table-html)" else "\\@ref(tab:dist-table-pdf)"` (other than the multinomial - being a multivariate distribution, it wouldn't work well with this code). Try thinking of a variable from your work that meets the uses of each distribution in Table `r if(is_html_output()) "\\@ref(tab:dist-table-html)" else "\\@ref(tab:dist-table-pdf)"` (or one that's not listed). If you run into trouble, check out the help file for that distribution^[Executing `?rnorm` or any other of the `-norm()` functions will take you to a page with info on all four function types for that distribution]. 
 ### Exercise 3 Bonus {-}
 
