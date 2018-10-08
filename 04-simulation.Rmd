@@ -20,7 +20,7 @@ Simulation modeling is one of the primary reasons to move away from spreadsheet-
 In this chapter, you will learn the basic skills needed for simulation (i.e., Monte Carlo) modeling in R including:
 
 *  introduce randomness to a model
-*  repeat calculations many times
+*  repeat calculations many times with `replicate()` and `for()` loops
 *  summarization of many values from a distribution
 *  more advanced function writing
 
@@ -162,7 +162,7 @@ for (i in 1:5) {
 }
 ```
 
-Nothing is printed to the console. R did the calculation, but did not show you or store the result Often, you'll need to store the results of the calculation in a **container object**:
+Nothing is printed to the console. R did the calculation, but did not show you or store the result. Often, you'll need to store the results of the calculation in a **container object**:
 
 ```{r}
 results = numeric(5)
@@ -177,7 +177,7 @@ for (i in 1:5) {
 results
 ```
 
-When `i^2` is calculated, it will be placed in the element `results[i]`. This was a trivial example, because you should do things like this using R's vectorized calculation framework: `(1:5)^2` (see Section \@ref(vector-math)). 
+When `i^2` is calculated, it will be placed in the element `results[i]`. This was a trivial example, because you would never use a `for()` loop to do things as simple as vectorized calculation. The expression `(1:5)^2` would give the same result in significantly less code (see Section \@ref(vector-math)). 
 
 However, there are times where it is advantageous to use a loop. Particularly in cases where:
 
@@ -234,27 +234,27 @@ This function takes five inputs:
 
 It returns one output: the vector of population abundance.
 
-Use your function once using the same settings as before:
+Execute your simulation function once using the same settings as before:
 
 ```{r, results = "hide"}
 pop_sim(100, 1.1, 0.1, 0.08, T)
 ```
 
-Now, you wish to replicate executing this function 1000 times. Use the `replicate()` function to do this:
+Now, you wish to replicate this simulation 1000 times. Use the `replicate()` function to do this:
 
 ```{r}
 out = replicate(n = 1000, expr = pop_sim(100, 1.1, 0.1, 0.08, F))
 ```
 
-If you do `dim(out)`, you'll see that rows are stored as years (there are `r nrow(out)` of them) and columns are stored as replicates (there are `r ncol(out)` of them). Notice how wrapping the code in the function made the `replicate()` call easy. 
+If you do `dim(out)`, you'll see that years are stored as rows (there are `r nrow(out)` of them) and replicates are stored as columns (there are `r ncol(out)` of them). Notice how wrapping the code in the function made the `replicate()` call easy. 
 
 **Here are some advantages of wrapping code like this into a function**:
 
 *  If you do the same task over and over, you don't need to type all of the code to perform the task, just the function call. 
-*  If you need to change the way the function behaves (i.e., the function body), you only need to change it one place: in the function definition.
-*  You can easily change the settings of the code (e.g., whether you want to see the plot) in one place
-*  Function writing **can** lead to shorter scripts
-*  Function writing **can** lead to more readable code (if people know what your functions do)
+*  If you need to change the way the function behaves (i.e., the function body), you only need to change it in one place: in the function definition.
+*  You can easily change the settings of the code (e.g., whether or not you want to see the plot) in one place
+*  Function writing can lead to shorter scripts
+*  Function writing can lead to more readable code (if people know what your functions do)
 
 ## Summarization {#mc-summaries}
 
@@ -311,7 +311,7 @@ Now suppose you are interested in how these two metrics are related:
 table(out10, out20)
 ```
 
-As an example in interpreting this output, most often populations that were greater than 1000 at year 10 were also greater than 1100 at year 20. If a population was less than 1000 at year 10, it was more likely to be less than 1100 at year 20 than to be greater than it.
+One example of an interpretation of this output might be that populations that were greater than 1000 at year 10 were commonly greater than 1100 at year 20. Also, if a population was less than 1000 at year 10, it was more likely to be less than 1100 at year 20 than to be greater than it.
 
 You can turn these into probabilities (if you believe your model represents reality) by dividing each cell by the total number of iterations:
 
