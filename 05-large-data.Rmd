@@ -29,16 +29,16 @@ You should create a new directory and R script for your work in this Chapter. Cr
 
 ## Aquiring and Loading Packages
 
-An **R package** is a bunch of code, documentation, and data that someone has written and bundled into a consistent format that allows other R users to install and use in their R sessions. R packages make R incredibly flexible and extensible. If you are trying to do a specialized analysis that is not included in the base R distribution, it is likely that someone has already written a package that will allow you to do it!
+An **R package** is a bunch of code, documentation, and data that someone has written and bundled into a consistent format for other R users to install and use in their R sessions. Packages make R incredibly flexible and extensible. If you are trying to do a specialized analysis that is not included in the base R distribution, it is likely that someone has already written a package that will allow you to do it!
 
-You will be using some new packages that you likely don't already have on your computer, so you will need to install them first:
+In this chapter, you will be using some new packages that you likely don't already have on your computer, so you will need to install them first:
 
 ```{r, eval = F}
 install.packages("dplyr")
 install.packages("reshape2")
 ```
 
-This requires an internet connection. You will see some text display in the console telling you the packages are being installed. This only needs to be done once for each version of R you have. If you install a new version of R, you will likely need to update your packages (i.e., re-install them).
+This requires an internet connection. You will see some text display in the console telling you the packages are being installed. Once the packages are installed, you need not re-install them in future sessions. However, if you install a new version of R, you will likely need to update your packages (i.e., re-install them).
 
 Now that the packages are on your computer, you will need to load them into the current session:
 
@@ -51,7 +51,7 @@ These messages are telling you that there are functions in the `{dplyr}` package
 
 ## The Data
 
-You have daily observations of catch and escapement for every other year between 1917 and 2015. Pink salmon have a simple life history where fish spawned in one odd year return as adults to spawn in the next odd year. There is a commercial fishery in this system located at the river mouth which harvests fish as they enter the river. A counting tower is located upstream of the fishing grounds that counts the number of fish that escaped the fishery and will have a chance to spawn (this number is termed "escapement"). The ultimate goal is to obtain annual totals of spawners and total run (catch + escapement) for the purpose of fitting a spawner recruit analysis. You will perform some other analyses along the way directed at quantifying patterns in run timing.
+You have daily observations of catch and escapement for every other year between 1917 and 2015. Pink salmon have a simple life history where fish that spawned in an odd year return as adults to spawn in the next odd year. There is a commercial fishery in this system located at the river mouth which harvests fish as they enter the river. A counting tower is located upstream of the fishing grounds that counts the number of fish that escaped the fishery and will have a chance to spawn (this number is termed "escapement"). The ultimate goal is to obtain annual totals of spawners and total run (catch + escapement) for the purpose of fitting a spawner recruit analysis. You will perform some other analyses along the way directed at quantifying patterns in run timing.
 
 Read in the two data sets for this chapter (see the [instructions](#data-sets) for details on acquiring data files):
 
@@ -71,7 +71,7 @@ Look at the first 6 rows and columns of the `catch` data:
 catch[1:6,1:6]
 ```
 
-The column `doy` is the day of the year that record corresponds to, and each column represents a different year. Notice the format of the `esc` data is the same:
+The column `doy` is the day of the year that each record corresponds to, and each column represents a different year. Notice the format of the `esc` data is the same:
 
 ```{r}
 esc[1:6,1:6]
@@ -125,7 +125,7 @@ dat = merge(x = long.esc, y = long.catch,
 head(dat)
 ```
 
-The `all = T` argument is important to specify here. It says that you wish to keep **all** of the unique records in the columns passed to `by` from both data frames. The `doy` in the catch data ranges from day `r min(long.catch$doy)` to day `r max(long.catch$doy)`, whereas for escapement it ranges from day `r min(long.esc$doy)` to day `r max(long.esc$doy)`. In this system, the fishery opens on the 160^th^ day of every year, and the counting tower starts the 161^st^ day. If you didn't use `all = T`, you would drop all the rows in each data set that do not have a match the other data set (you would lose day `r min(long.catch$doy)` and day `r max(long.esc$doy)` from every year). Notice that because no escapement observations were ever made one `doy` `r min(long.catch$doy)`, the `esc` values on this day is `NA`.
+The `all = T` argument is important to specify here. It says that you wish to keep **all** of the unique records in the columns passed to `by` from both data frames. The `doy` in the catch data ranges from day `r min(long.catch$doy)` to day `r max(long.catch$doy)`, whereas for escapement it ranges from day `r min(long.esc$doy)` to day `r max(long.esc$doy)`. In this system, the fishery opens on the 160^th^ day of every year, and the counting tower starts the 161^st^ day. If you didn't use `all = T`, you would drop all the rows in each data set that do not have a match in the other data set (you would lose day `r min(long.catch$doy)` and day `r max(long.esc$doy)` from every year). Notice that because no escapement observations were ever made on `doy` `r min(long.catch$doy)`, the `esc` value on this day is `NA`.
 
 Notice how the data set is now ordered by `doy` instead of `year`. This is not a problem, but if you want to reorder the data frame by `year`, you can use the `arrange()` function from `{dplyr}`:
 
@@ -137,7 +137,7 @@ head(arrange(dat, year))
 
 The present task is to the calculate daily cumulative run proportion^[This is the fraction of all fish that came back each year that did so on or before a given day] in 2015 for comparison to the other years. Given the information you have, this task would be very cumbersome if not for the flexibility allowed by `{dplyr}`. 
 
-Remember the counting tower is an average one day swim for the salmon from the fishing grounds. This means that the escapement counts are **lagged** relative to the catch counts. If you want the daily run (defined as the number in fishing grounds each day), you need to account for this lag. An easy way to think about the lag is to show it graphically. First, pull out one year of data using the `filter()` function in `{dplyr}`:
+Remember the counting tower is an average one day swim for the salmon from the fishing grounds. This means that the escapement counts are **lagged** relative to the catch counts. If you want the daily run (defined as the number of fish in the fishing grounds each day), you need to account for this lag. An easy way to think about the lag is to show it graphically. First, pull out one year of data using the `filter()` function in `{dplyr}`:
 
 ```{r}
 y15 = filter(dat, year == "y_2015")
@@ -162,7 +162,7 @@ legend("topright", legend = c("Catch", "Escapement"),
        col = c("blue", "red"), pch = 16, lty = 1, bty = "n", cex = 0.8)
 ```
 
-Notice how the escapement counts are shifted to the right by one day. This is the lag. To account for it, you can use the `lag()` function from `{dplyr}`. `lag()` works by lagging some vector by `n` elements (it shifts every element in the vector to the right by one place by putting `n` `NAs` at the front and removing the last `n` elements from the original vector). One way to fix the lag problem would be to use `lag()` on `catch` to make the days match up with `esc` (don't lag `esc` because that would just lag it by `n` additional days):
+Notice how the escapement counts are shifted to the right by one day. This is the lag. To account for it, you can use the `lag()` function from `{dplyr}`. `lag()` works by lagging some vector by `n` elements (it shifts every element in the vector `n` places to the right by putting `n` `NAs` at the front and removing the last `n` elements from the original vector). One way to fix the lag problem would be to use `lag()` on `catch` to make the days match up with `esc` (don't lag `esc` because that would just lag it by `n` additional days):
 
 ```{r}
 plot(lag(catch, n = 1) ~ doy, data = y15, type = "b", pch = 16, col = "blue",
@@ -176,7 +176,7 @@ Notice how the two curves line up better now.
 
 ## Adding columns with `mutate()`
 
-Apply this same idea to the data set to get the total number of fish that were in the fishing grounds on each day (the daily run, what was harvested plus what was not). First, make a function to take two vectors, lag one, then sum them: this will give you the daily run. However, you don't need to move catch forward a day, you need to move escapement back a day. The opposite of `lag()` is `lead()`. The way to think of this is that `lag()` lags a vector, and `lead()` unlags a vector. `lead()` shifts every element to the left by `n` elements by removing the first `n` elements of the original vector and adding `n` `NAs` to the end. This is what you want for your function:
+Apply this same idea to get the total daily run (what was harvested plus what was not). Make a function to take the two vectors (catch and escapement), lag one, and then sum them. Howevery, you don't want to move catch forward a day; you need to move escapement back a day. The opposite of `lag()` is `lead()`. The way to think of this is that `lag()` lags a vector, and `lead()` unlags a vector. `lead()` shifts every element to the left by `n` elements by removing the first `n` elements of the original vector and adding `n` `NAs` to the end. This is what your function should look like:
 
 ```{r}
 lag_sum = function(x, y, n = 1){
@@ -193,7 +193,7 @@ Try out the `lag_sum()` function:
 lag_sum(y15$esc, y15$catch)
 ```
 
-You will want to add this column to your data set. You add columns in `{dplyr}` using `mutate()`:
+Add this column to your data set. You add columns in `{dplyr}` using `mutate()`:
 
 ```{r}
 y15 = mutate(y15, run = lag_sum(esc, catch))
@@ -220,7 +220,7 @@ plot(cprun ~ doy, data = y15, type = "l", ylim = c(0, 1),
 
 ## Apply to all years
 
-You have just obtained the daily and cumulative run for one year (2015), but `{dplyr}` makes it easy to apply these same manipulations to all years. To really see the advantage, you'll need to learn to use piping. A code **pipe** is one that takes the result of one function and inserts it into the input of another function. Here is a basic example of a pipe:
+You have just obtained the daily and cumulative run for one year (2015), but `{dplyr}` makes it easy to apply these same manipulations to all years. To really see the advantage of `{dplyr}`, you'll need to learn to use piping. A code **pipe** is one that takes the result of one function and inserts it into the input of another function. Here is a basic example of a pipe:
 
 ```{r}
 rnorm(10) %>% length
@@ -233,7 +233,7 @@ x = rnorm(10); length(x); rm(x)
 ```
 
 
-The reason piping works so well with `{dplyr}` is because its functions are designed to take a data frame as input as the first argument and return another data frame as output, which allows you to string them together with pipes. Do a more complex pipe: take your main data frame (`dat`), group it by `year`, and pass it to a `mutate()` call that will add the new three columns to the entire data set:
+The reason piping works so well with `{dplyr}` is because its functions are designed to take a data frame as input as the first argument and return another data frame as output. This allows you to string them together with pipes. Do a more complex pipe: take your main data frame (`dat`), group it by `year`, and pass it to a `mutate()` call that will add the new three columns to the entire data set:
 
 ```{r}
 dat = dat %>%
@@ -245,7 +245,7 @@ dat = dat %>%
 arrange(dat, year)
 ```
  
-The `group_by()` function is spectacular: you grouped the data frame by `year`, which tells the rest of the functions in the pipe to apply its commands to each year independently. With this function, you can group your data in any way you please and calculate statistics on a group-by-group basis. Note that in this example, it doesn't do much for you, because the data are so neat (all years have same number of days, `NAs` in all of the same places, etc.), but for data that are messier, this trick is very handy. Also note that the `dat` object looks a little different. When you print it, it only shows the first 10 rows. This is a `{dplyr}` feature that prevents you from printing a huge data set to the console.
+The `group_by()` function is spectacular: you grouped the data frame by `year`, which tells the rest of the functions in the pipe to apply its commands to each year independently. With this function, you can group your data in any way you please and calculate statistics on a group-by-group basis. Note that in this example, it doesn't do much for you, because the data are so neat (all years have the same number of days, and `NAs` in all of the same places, etc.), but for data that are messier, this trick is very handy. Also note that the `dat` object looks a little different. When you print it, it only shows the first 10 rows. This is a `{dplyr}` feature that prevents you from printing a huge data set to the console.
 
 Now plot the cumulative run proportion by day for each year, highlighting 2015:
 
@@ -296,7 +296,7 @@ dat %>%
 tapply(dat$cprun, dat$doy, range)[1:5]
 ```
 
-You can see that `tapply()` allows you to do this (but gives a list), whereas `summarize()` returns a short and informative error. However, you could very easily fix the problem by making minimum and maximum columns in the same `summarize()` call:
+You can see that `tapply()` allows you to do this (but gives a list), whereas `summarize()` returns a short and informative error. You could very easily fix the problem by making minimum and maximum columns in the same `summarize()` call:
 
 ```{r, eval = F}
 dat %>%
@@ -330,14 +330,14 @@ It looks like 2015 started like an average year but the peak of the run happened
 
 ## More `summarize()`
 
-Your colleagues have been talking lately about how the run has been getting earlier and earlier in recent years. To determine if their claims are correct, you decide to develop a method to find the day on which 50% of the run has passed (the median run date) and plot it over time. If there is a downward trend, then the run has been getting earlier. First, you need to define another function to find the day that corresponds to 50% of the run. If there were days where the cumulative run on that day equaled exactly 0.5, we could simply use `which()`:
+Your colleagues have been talking lately about how the run has been getting earlier and earlier in recent years. To determine if their claims are correct, you decide to develop a method to find the day on which 50% of the run has passed (the median run date) and plot it over time. If there is a downward trend, then the run has been getting earlier. First, you need to define another function to find the day that corresponds to 50% of the run. If there were days when the cumulative run on that day equaled exactly 0.5, we could simply use `which()`:
 
 ```{r, eval = F}
 ind = which(dat$cprun == 0.5)
 dat$jday[ind]
 ```
 
-The `which()` function is useful: it returns the indices (element places) _for which_ the condition is `TRUE` However you need to do a workaround here, since the median day is likely not exactly 0.5 (and it has to be for `==` to return a `TRUE`). We will give the function two vectors and it will look for a value that is closest to 0.5 in one vector and pull out the corresponding value in the second vector:
+The `which()` function is useful: it returns the indices (element places) _for which_ the condition is `TRUE`. However, you need to do a workaround here, since the median day is likely not exactly 0.5, and it must be .5 in order for `==` to return a `TRUE`). You will give the function two vectors and it will look for a value that is closest to 0.5 in one vector and pull out the corresponding value in the second vector:
 
 ```{r}
 find_median_doy = function(p,doy) {
@@ -346,7 +346,7 @@ find_median_doy = function(p,doy) {
 }
 ```
 
-This function will take every element of `p`, subtract 0.5, take the absolute value of the results (make it positive, even if it is negative), and find the element number that is smallest. This will be the element with the value closest to 0.5. Note that you could find the first quartile (0.25) or third quartile (0.75) of the run by inserting these in for 0.5 above^[This is the perfect kind of thing to make an argument to your function!]. Try your function on the 2015 data only:
+This function will take every element of `p`, subtract 0.5, take the absolute value of the results (make it positive, even if it is negative), and find the element number that is smallest. This will be the element with the value closest to 0.5. Note that you could find the first quartile (0.25) or third quartile (0.75) of the run by inserting these in for 0.5 above^[This is the perfect kind of thing to make an argument for in your function!]. Try your function on the 2015 data only:
 
 ```{r}
 # use function
@@ -394,11 +394,11 @@ plot(doy ~ year, data = med_doy, pch = 16)
 abline(fit, lty = 2)
 ```
 
-The results tell you that there is a `r abs(round(coef(summary(fit))[2,1], 3))` day decrease in median run date for every 1 year that has gone by and that it is not significantly different from a zero day decrease per year. 
+The results tell you that there is a `r abs(round(coef(summary(fit))[2,1], 3))` day decrease in median run date for every 1 year that has gone by and that it is not significantly different from a zero day decrease per year. The statistical evidence does not support your colleagues' speculations.
 
 ## Fit the Model
 
-You have done some neat data exploration exercises (and hopefully learned `{dplyr}` and piping along the way!), but you ultimate task with this data set is to run a spawner-recruit analysis on all the data. A **spawner-recruit analysis** is one that links the number of total fish produced (the recruits) by a given number of spawners (the escapement). This is done in an attempt to describe the productivity and carrying capacity of the population and to obtain **biological reference points** off of which harvest policies can be set. You will need to summarize the daily data into annual totals of escapement and total run:
+You have done some neat data exploration exercises (and hopefully learned `{dplyr}` and piping along the way!), but your ultimate task with this data set is to run a spawner-recruit analysis on all the data. A **spawner-recruit analysis** is one that links the number of total fish produced in a year (the recruits) to the total number of fish that produced them (the spawners). This is done in an attempt to describe the productivity and carrying capacity of the population and to obtain **biological reference points** off of which harvest policies can be set. You will need to summarize the daily data into annual totals of escapement and total run:
 
 ```{r}
 sr_dat = 
@@ -409,7 +409,7 @@ sr_dat =
 head(sr_dat)
 ```
 
-You didn't need to use `group_by()` here because the data were still grouped from an earlier task. There is no harm in putting it in, and it would help make your code more readable if you were to include it.
+You didn't need to use `group_by()` here because the data were still grouped from an earlier task. But, there is no harm in putting it in, and it would help make your code more readable if you were to include it.
 
 That is the main data manipulation you need to do in order to run the spawner-recruit analysis. You can fit the model using `nls()` (Section \@ref(nls)). The model you will fit is called a **Ricker spawner-recruit model** and has the form:
 
@@ -507,7 +507,7 @@ text(x = brps, y = max(R_fit) * 1.08,
 
 ## Exercise 5 {-}
 
-In this exercise, you will be working with another simulated salmon data set (from an age-structured population this time, like Chinook salmon _Oncorhynchus tshawytscha_). You have information on individual fish passing a **weir**. A weir is a blockade in a stream that biologists use to count fish as they pass by. Most of the day, the weir is closed and fish stack up waiting to pass. Then a couple times a day, biologists open a gate in the weir and count fish as they pass. Each year, the biologists sample a subset of fish that pass by to get age, sex, and length. There are concerns that by using large mesh gill nets, the fishery is selectively taking the larger fish and that this is causing a shift in the size-at-age, age composition, and sex composition. If this is the case, it could potentially mean a reduction in productivity since smaller fish have fewer eggs. You are tasked with analyzing these data to determine if these quantities have changed overtime. Note that documenting directional changes in these quantities over time and the co-occurrence of the use of large mesh gill nets does not imply causation.
+In this exercise, you will be working with another simulated salmon data set (from an age-structured population this time, like Chinook salmon _Oncorhynchus tshawytscha_). You have information on individual fish passing a **weir**. A weir is a blockade in a stream that biologists use to count fish as they pass through. Most of the day, the weir is closed and fish stack up waiting to pass. Then a couple times a day, biologists open a gate in the weir and count fish as they swim through. Each year, the biologists sample a subset of fish that pass to get age, sex, and length. There are concerns that by using large mesh gill nets, the fishery is selectively taking the larger fish and that this is causing a shift in the size-at-age, age composition, and sex composition. If this is the case, it could potentially mean a reduction in productivity since smaller fish have fewer eggs. You are tasked with analyzing these data to determine if these quantities have changed overtime. Note that documenting directional changes in these quantities over time and the co-occurrence of the use of large mesh gill nets does not imply causation.
 
 _The solutions to this exercise are found at the end of this book ([here](#ex5-answers)). You are **strongly recommended** to make a good attempt at completing this exercise on your own and only look at the solutions when you are truly stumped._
 
