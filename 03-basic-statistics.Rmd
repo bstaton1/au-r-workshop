@@ -275,7 +275,7 @@ Where $p_i$ is the probability of success for trial $i$ ($y_i = 1$) at the value
 (\#eq:logit)
 \end{equation}
 
-which is the **log odds** - the natural logarithm of the **odds**, which is a measure of how likely the event is to happen relative to it not happening. (Odds are commonly expressed as a ratio. For example, if there is a 75% chance of rain, the odds of it raining are 3 to 1. In other words, the outcome of rain is three times as likely as its opposite: not raining.) Make an R function to calculate the transformation performed by the link function:
+which is the **log odds** - the natural logarithm of the **odds**, which is a measure of how likely the event is to happen relative to it not happening^[Odds are commonly expressed as a ratio. For example, if there is a 75% chance of rain, the odds of it raining are 3 to 1. In other words, the outcome of rain is three times as likely as its opposite: not raining]. Make an R function to calculate the transformation performed by the link function:
 
 ```{r}
 logit = function(p) {
@@ -596,7 +596,7 @@ You should create a new R script called `Ex3.R` in your working directory for th
 _The solutions to this exercise are found at the end of this book ([here](#ex3-answers)). You are **strongly recommended** to make a good attempt at completing this exercise on your own and only look at the solutions when you are truly stumped._
 
 1.  Perform the same analyses as conducted in Section \@ref(lm) (simple linear regression, ANOVA, ANCOVA, ANCOVA with interaction), using `egg_size` as the response variable. The predictor variables you should use are `type` (categorical) and `year`. You should plot the fit for each model separately and perform an AIC analysis. Practice interpreting the coefficient estimates.
-2.  Perform the same analyses as conducted in Section \@ref(glms), this time using a success threshold of 80% survival to the eyed-egg stage (instead of 75%). Use `egg_size` and `type` as the predictor variables. You should plot the fitted lines for each model separately and perform an AIC analysis. Practice interpreting the coefficient estimates.
+2.  Perform the same analyses as conducted in Section \@ref(glms), this time using a success threshold of 80% survival to the eyed-egg stage (instead of 70%). Use `egg_size` and `type` as the predictor variables. You should plot the fitted lines for each model separately and perform an AIC analysis. Practice interpreting the coefficient estimates.
 3.  Make the same graphic as in Figure \@ref(fig:norm-plots) with at least one of the other distributions listed in Table `r if(is_html_output()) "\\@ref(tab:dist-table-html)" else "\\@ref(tab:dist-table-pdf)"` (other than the multinomial - being a multivariate distribution, it wouldn't work well with this code). Try thinking of a variable from your work that meets the uses of each distribution in Table `r if(is_html_output()) "\\@ref(tab:dist-table-html)" else "\\@ref(tab:dist-table-pdf)"` (or one that's not listed). If you run into trouble, check out the help file for that distribution^[Executing `?rnorm` or any other of the `-norm()` functions will take you to a page with info on all four function types for that distribution]. 
 ### Exercise 3 Bonus {-}
 
