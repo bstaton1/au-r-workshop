@@ -341,7 +341,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>fit basic GLMs: the logistic regression model</li>
 <li>Bonus topic: fitting non-linear regression models using <code>nls()</code></li>
 </ul>
-<p>R’s built-in statistical modeling framework is pretty intuitive and comprehensive. R has gained popularity as a statistics software and is commonly used both in academia and governmental resource agencies. This popularity is likely a result of its power, flexibility, intuitive nature, and price (free!). For many students, this chapter may be the one that is most immediately useful.</p>
+<p>R has gained popularity as a statistics software and is commonly used both in academia and governmental resource agencies. This popularity is likely a result of its power, flexibility, intuitive nature, and price (free!). For many students, this chapter may be the one that is most immediately useful.</p>
 <p><strong>IMPORTANT NOTE</strong>: If you did not attend the sessions corresponding to Chapters <a href="ch1.html#ch1">1</a> or <a href="ch2.html#ch2">2</a>, you are recommended to walk through the material found in those chapters before proceeding to this material. Also note that if you are confused about a topic, you can use <strong>CTRL + F</strong> to find previous cases where that topic has been discussed in this book.</p>
 </div>
 <div id="before-you-begin-1" class="section level2 unnumbered">
@@ -355,14 +355,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   y_i=\beta_0 + \beta_1 x_{i1} + ... + \beta_j x_{ij}+ ... + \beta_n x_{in} + \varepsilon_i, \varepsilon_i \sim N(0,\sigma),
 \tag{3.1}
 \end{equation}\]</span>
-<p>where the subscript <span class="math inline">\(i\)</span> represents an individual observation. The predictor variable(s) can be either categorical (i.e., grouping variables used in ANOVA, t-test, etc.), continuous (regression), or a combination of categorical and continuous (ANCOVA). The main focus is to estimate the coefficients (<span class="math inline">\(\beta\)</span>), and in some cases it is to determine if their values are “significantly” different from the value assumed by some null hypothesis.</p>
+<p>where the subscript <span class="math inline">\(i\)</span> represents an individual observation. The predictor variable(s) can be either categorical (i.e., grouping variables used in ANOVA, t-test, etc.), continuous (regression), or a combination of categorical and continuous (ANCOVA). The main purpose of fitting a linear model is to estimate the coefficients (<span class="math inline">\(\beta\)</span>), and in some cases to determine if their values are “significantly” different from the value assumed by some null hypothesis.</p>
 <p>The model makes several assumptions about the residuals<a href="#fn24" class="footnoteRef" id="fnref24"><sup>24</sup></a> to obtain estimates of the coefficients. For reliable inference, the residuals must:</p>
 <ul>
 <li>be independent</li>
 <li>be normally-distributed</li>
 <li>have constant variance across range of the x-axis</li>
 </ul>
-<p>In R, the general linear model is fitted using the <code>lm()</code> function. Here’s the basic syntax is <code>lm(y ~ x, data = dat)</code><a href="#fn25" class="footnoteRef" id="fnref25"><sup>25</sup></a>; it says: “fit a model with <code>y</code> as the response variable and <code>x</code> as the sole predictor variable, look for the variables <code>x</code> and <code>y</code> in a data frame called <code>dat</code>”.</p>
+<p>In R, the general linear model is fitted using the <code>lm()</code> function. The basic syntax is <code>lm(y ~ x, data = dat)</code><a href="#fn25" class="footnoteRef" id="fnref25"><sup>25</sup></a>; it says: “fit a model with <code>y</code> as the response variable and <code>x</code> as the sole predictor variable, look for those variables in a data frame called <code>dat</code>”.</p>
 <div id="regression" class="section level3">
 <h3><span class="header-section-number">3.1.1</span> Simple Linear Regression</h3>
 <p>Read the data found in <code>sockeye.csv</code> (see in the <a href="index.html#data-sets">instructions</a> for help with acquiring the data) into R. This is the same data set you used in <a href="ch2.html#ex2">Exercise 2</a> - revisit this section for more details on the meaning of the variables. These are real data and are presented in <span class="citation">Kline and Flagg (<a href="#ref-sockeye-cite">2014</a>)</span>.</p>
@@ -375,7 +375,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## 4 1994 hatch   1681   2134     7.92    50.98
 ## 5 1995 hatch   2630   1576    21.61    68.06
 ## 6 1996 hatch   2165   2171     8.74    63.43</code></pre>
-<p>To fit a regression model using <code>lm()</code>, both <code>x</code> and <code>y</code> must be continuous (numeric) variables. In the data set <code>dat</code>, two such variables are the <code>weight</code> and <code>fecund</code>. Fit a regression model where you link the average fecundity (number of eggs) of an individual year to the average weight (in grams) in that year. Ignore for now that the fish come from two sources: hatchery and wild origin.</p>
+<p>To fit a regression model using <code>lm()</code>, both <code>x</code> and <code>y</code> must be continuous (numeric) variables. In the data set <code>dat</code>, two such variables are called <code>weight</code> and <code>fecund</code>. Fit a regression model where you link the average fecundity (number of eggs) of fish sampled in an individual year to the average weight (in grams) for that year. Ignore for now that the fish come from two sources: hatchery and wild origin.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit1 =<span class="st"> </span><span class="kw">lm</span>(fecund <span class="op">~</span><span class="st"> </span>weight, <span class="dt">data =</span> dat)</code></pre></div>
 <p>If you run just the <code>fit1</code> object, you will see the model you ran along with the coefficient estimates of the intercept (<span class="math inline">\(\beta_0\)</span>) and the slope (<span class="math inline">\(\beta_1\)</span>):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit1</code></pre></div>
@@ -386,7 +386,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## Coefficients:
 ## (Intercept)       weight  
 ##   1874.6496       0.2104</code></pre>
-<p>This model looks like this:</p>
+<p>The mathematical formula for this model looks like this:</p>
 <span class="math display" id="eq:lin-reg">\[\begin{equation}
   y_i=\beta_0 + \beta_1 x_{i1} + \varepsilon_i, \varepsilon_i \sim N(0,\sigma),
 \tag{3.2}
@@ -421,8 +421,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>You can easily see the model fit by using the <code>abline()</code> function. Make a new plot and add the fitted regression line:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(fecund <span class="op">~</span><span class="st"> </span>weight, <span class="dt">data =</span> dat, <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">cex =</span> <span class="fl">1.5</span>)
 <span class="kw">abline</span>(fit1)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-112-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>It fits, but not very well. It seems there are two groups: one with data points mostly above the line and one with data points mostly below the line. You’ll now run a new model to get at this.</p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-113-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>It fits, but not very well. It seems there are two groups: one with data points mostly above the line and one with data points mostly below the line. You’ll now run a new model to test whether those clusters of points are random or due to actual differences between groups.</p>
 </div>
 <div id="anova" class="section level3">
 <h3><span class="header-section-number">3.1.2</span> ANOVA: Categorical predictors</h3>
@@ -430,7 +430,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(dat<span class="op">$</span>type); <span class="kw">levels</span>(dat<span class="op">$</span>type)</code></pre></div>
 <pre><code>## [1] &quot;factor&quot;</code></pre>
 <pre><code>## [1] &quot;hatch&quot; &quot;wild&quot;</code></pre>
-<p>tells you the <code>type</code> variable is a factor. It has levels of <code>&quot;hatch&quot;</code> and <code>&quot;wild&quot;</code> which indicate the origin of the adult spawning fish sampled each year. If you pass <code>lm()</code> a predictor variable with a factor class, R will automatically fit it as an ANOVA model. See Section <a href="ch1.html#factors">1.5</a> for more details on factors. Factors have an explicit ordering of the levels. By default, this ordering happens alphabetically: if your factor has levels <code>&quot;a&quot;</code>, <code>&quot;b&quot;</code>, and <code>&quot;c&quot;</code>, they will be assigned the order of <code>1</code>, <code>2</code> and <code>3</code>, respectively. You can always see how R is ordering your factor by doing something similar to this:</p>
+<p>tells you the <code>type</code> variable is a factor. It has levels of <code>&quot;hatch&quot;</code> and <code>&quot;wild&quot;</code> which indicate the origin of the adult spawning fish sampled each year. If you pass <code>lm()</code> a predictor variable with a factor class, R will automatically fit it as an ANOVA model. See Section <a href="ch1.html#factors">1.5</a> for more details on factors. Factors have levels that are explicitly ordered. By default, this ordering happens alphabetically: if your factor has levels <code>&quot;a&quot;</code>, <code>&quot;b&quot;</code>, and <code>&quot;c&quot;</code>, they will be assigned the order of <code>1</code>, <code>2</code> and <code>3</code>, respectively. You can always see how R is ordering your factor by doing something similar to this:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pairs =<span class="st"> </span><span class="kw">cbind</span>(
   <span class="kw">as.character</span>(dat<span class="op">$</span>type),
   <span class="kw">as.numeric</span>(dat<span class="op">$</span>type)
@@ -500,14 +500,14 @@ m[<span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>m
 ## (Intercept) 1039.6417645 175.0992184 5.937444 1.038268e-06
 ## typewild     866.9909998  96.2473387 9.007948 1.578239e-10
 ## weight         0.5173716   0.1051039 4.922477 2.164460e-05</code></pre>
-<p>And you can plot the fit. Study this code to make sure you know what each is doing. Use what you know about the meanings of the three coefficients to decipher the two <code>abline()</code> commands. Remember that <code>abline()</code> takes takes two arguments: <code>a</code> is the intercept and <code>b</code> is the slope.</p>
+<p>And you can plot the fit. Study this code to make sure you know what each line is doing. Use what you know about the meanings of the three coefficients to decipher the two <code>abline()</code> commands. Remember that <code>abline()</code> takes takes two arguments: <code>a</code> is the intercept and <code>b</code> is the slope.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(fecund <span class="op">~</span><span class="st"> </span>weight, <span class="dt">data =</span> dat, <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>,
      <span class="dt">pch =</span> <span class="kw">ifelse</span>(dat<span class="op">$</span>type <span class="op">==</span><span class="st"> &quot;hatch&quot;</span>, <span class="dv">1</span>, <span class="dv">16</span>), <span class="dt">cex =</span> <span class="fl">1.5</span>)
 <span class="kw">abline</span>(<span class="kw">coef</span>(fit3)[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)], <span class="dt">lty =</span> <span class="dv">2</span>)
 <span class="kw">abline</span>(<span class="kw">sum</span>(<span class="kw">coef</span>(fit3)[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)]), <span class="kw">coef</span>(fit3)[<span class="dv">3</span>])
 <span class="kw">legend</span>(<span class="st">&quot;bottom&quot;</span>, <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;Hatchery&quot;</span>, <span class="st">&quot;Wild&quot;</span>), <span class="dt">pch =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">16</span>), <span class="dt">lty =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>),
        <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>, <span class="dt">pt.cex =</span> <span class="fl">1.5</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">horiz =</span> T)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-119-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-120-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="interactions" class="section level3">
 <h3><span class="header-section-number">3.1.4</span> Interactions</h3>
@@ -536,7 +536,7 @@ m[<span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>m
 <span class="kw">abline</span>(<span class="kw">sum</span>(<span class="kw">coef</span>(fit4)[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)]), <span class="kw">sum</span>(<span class="kw">coef</span>(fit4)[<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">4</span>)]))
 <span class="kw">legend</span>(<span class="st">&quot;bottom&quot;</span>, <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;Hatchery&quot;</span>, <span class="st">&quot;Wild&quot;</span>), <span class="dt">pch =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">16</span>), <span class="dt">lty =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>),
        <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>, <span class="dt">pt.cex =</span> <span class="fl">1.5</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">horiz =</span> T)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-121-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-122-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Based on the coefficients table:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(fit4)<span class="op">$</span>coef</code></pre></div>
 <pre><code>##                     Estimate Std. Error    t value     Pr(&gt;|t|)
@@ -561,37 +561,37 @@ tab[<span class="kw">order</span>(tab<span class="op">$</span>AIC),]</code></pre
 </div>
 <div id="glms" class="section level2">
 <h2><span class="header-section-number">3.2</span> The Generalized Linear Model</h2>
-<p>The models you fitted above were called “general linear models”. They all made the assumption that the residuals (<span class="math inline">\(\varepsilon_i\)</span>) are normally-distributed and that the response variable and the predictor variables are linearly related. Oftentimes data and analyses do not follow this assumption. For these cases you should often move to the broader family of statistical models known as <strong>generalized linear models</strong><a href="#fn26" class="footnoteRef" id="fnref26"><sup>26</sup></a>.</p>
+<p>The models you fitted above are called “general linear models”. They all make the assumption that the residuals (<span class="math inline">\(\varepsilon_i\)</span>) are normally-distributed and that the response variable and the predictor variables are linearly related. Oftentimes data and analyses do not follow this assumption. For such cases you should use the broader family of statistical models known as <strong>generalized linear models</strong><a href="#fn26" class="footnoteRef" id="fnref26"><sup>26</sup></a>.</p>
 <div id="logis-regression" class="section level3">
 <h3><span class="header-section-number">3.2.1</span> Logistic Regression</h3>
-<p>One example is in the case of <strong>binary</strong> data. Binary data have two outcomes, e.g., success/failure, lived/died, male/female, spawned/gravid, happy/sad, etc. If you wish to predict how the probability of one outcome over the other changes depending on some other variable, then you need to use the <strong>logistic regression model</strong>, which is written as:</p>
+<p>One example is in the case of <strong>binary</strong> data. Binary data have two opposite outcomes, e.g., success/failure, lived/died, male/female, spawned/gravid, happy/sad, etc. If you want to predict how the probability of one outcome over its opposite changes depending on some other variable, then you need to use the <strong>logistic regression model</strong>, which is written as:</p>
 <span class="math display" id="eq:logis-reg">\[\begin{equation}
   logit(p_i)=\beta_0 + \beta_1 x_{i1} + ... + \beta_j x_{ij}+ ... + \beta_n x_{in}, y_i \sim Bernoulli(p_i)
 \tag{3.6}
 \end{equation}\]</span>
-<p>Where <span class="math inline">\(p_i\)</span> is the probability of success for trial <span class="math inline">\(i\)</span> (<span class="math inline">\(y_i = 1\)</span>) at the values of the predictor variables <span class="math inline">\(x_{ij}\)</span>. The <span class="math inline">\(logit(p_i)\)</span> is the <strong>link function</strong> that links the linear parameter scale to the data scale. It constrains the value of <span class="math inline">\(p_i\)</span> to be between 0 and 1 regardless of the values of the <span class="math inline">\(\beta\)</span> coefficients. The logit link function does this:</p>
+<p>Where <span class="math inline">\(p_i\)</span> is the probability of success for trial <span class="math inline">\(i\)</span> (<span class="math inline">\(y_i = 1\)</span>) at the values of the predictor variables <span class="math inline">\(x_{ij}\)</span>. The <span class="math inline">\(logit(p_i)\)</span> is the <strong>link function</strong> that links the linear parameter scale to the data scale. It constrains the value of <span class="math inline">\(p_i\)</span> to be between 0 and 1 regardless of the values of the <span class="math inline">\(\beta\)</span> coefficients. The logit link function can be expressed as:</p>
 <span class="math display" id="eq:logit">\[\begin{equation}
   logit(p_i) = log\left(\frac{p_i}{1-p_i}\right)
 \tag{3.7}
 \end{equation}\]</span>
-<p>which is the natural logarithm of the <strong>odds</strong>, a measure of how likely the event is to happen relative to it not happening. Make an R function to calculate the logit transformation:</p>
+<p>which is the <strong>log odds</strong> - the natural logarithm of the <strong>odds</strong>, which is a measure of how likely the event is to happen relative to it not happening<a href="#fn27" class="footnoteRef" id="fnref27"><sup>27</sup></a>. Make an R function to calculate the transformation performed by the link function:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">logit =<span class="st"> </span><span class="cf">function</span>(p) {
   <span class="kw">log</span>(p<span class="op">/</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>p))
 }</code></pre></div>
-<p>If you have the result of <code>logit(p[i])</code> (which is given by the <span class="math inline">\(\beta\)</span> coefficients and the <span class="math inline">\(x_{ij}\)</span> data in Equation <a href="ch3.html#eq:logis-reg">(3.6)</a>) and need to get <code>p[i]</code>, you can apply the inverse logit function:</p>
+<p>The generalized linear model calculates the log odds of an outcome: <code>logit(p[i])</code> (which is given by the <span class="math inline">\(\beta\)</span> coefficients and the <span class="math inline">\(x_{ij}\)</span> data in Equation <a href="ch3.html#eq:logis-reg">(3.6)</a>), so if you want to know the odds ratio of the outcome, you can simply take the inverse log. But, if you want to know the probability of the outcome <code>p[i]</code>, you have to apply the inverse logit function:</p>
 <span class="math display" id="eq:expit">\[\begin{equation}
   expit(lp_i)=\frac{e^{lp_i}}{1 + e^{lp_i}}
 \tag{3.8}
 \end{equation}\]</span>
-<p>where <span class="math inline">\(lp_i = logit(p_i)\)</span>. Make a function for the inverse logit transformation:</p>
+<p>where <span class="math inline">\(lp_i = logit(p_i)\)</span>. Make an R function to perform the inverse logit transformation to the probability scale:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">expit =<span class="st"> </span><span class="cf">function</span>(lp) {  <span class="co"># lp stands for logit(p)</span>
   <span class="kw">exp</span>(lp)<span class="op">/</span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="kw">exp</span>(lp))
 }</code></pre></div>
-<p>Because of the logit link function, the coefficients have different interpretations than in the general linear models you fitted in the previous section: they are expressed in terms of <strong>log odds</strong>.</p>
-<p>Fit a logistic regression model to the sockeye salmon data. None of the variables of interest are binary, but you can create one. Look at the variable <code>dat$survival</code>. This is the average % survival of all eggs laid that make it to the “eye-egg” stage. Create a new variable <code>binary</code> which takes on a 0 if <code>dat$survival</code> is less than 70% and a 1 otherwise:</p>
+<p>Because all of the fitted beta coefficients are on the log scale, you cannot make easy interpretations about the relationships between the predictor variables and the observed outcomes without making these transformations. The following example will take you through the steps to fit a logistic regression model and how to interpret the model outputs using these functions.</p>
+<p>Fit a logistic regression model to the sockeye salmon data. None of the variables of interest are binary, but you can create one. Look at the variable <code>dat$survival</code>. This is the average % survival of all eggs laid that make it to the “eyed-egg” stage. Any year with over 70% egg survival we will consider a successful year, so create a new variable <code>binary</code> which takes on a 0 if <code>dat$survival</code> is less than 70% and a 1 otherwise.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat<span class="op">$</span>binary =<span class="st"> </span><span class="kw">ifelse</span>(dat<span class="op">$</span>survival <span class="op">&lt;</span><span class="st"> </span><span class="dv">70</span>, <span class="dv">0</span>, <span class="dv">1</span>)</code></pre></div>
 <p>This will be your response variable and your model will estimate how the probability of <code>binary</code> being a <code>1</code> changes (or doesn’t) depending on the value of other variables.</p>
-<p>Analogous to the simple linear regression model (Section <a href="ch3.html#regression">3.1.1</a>), estimate how <span class="math inline">\(p\)</span> changes with <code>weight</code>:</p>
+<p>Analogous to the simple linear regression model (Section <a href="ch3.html#regression">3.1.1</a>), estimate how <span class="math inline">\(p\)</span> changes with <code>weight</code>: (How does the probability of having a successful clutch relate to the weight of the fish?)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit1 =<span class="st"> </span><span class="kw">glm</span>(binary <span class="op">~</span><span class="st"> </span>weight, <span class="dt">data =</span> dat, <span class="dt">family =</span> binomial)
 <span class="kw">summary</span>(fit1)<span class="op">$</span>coef</code></pre></div>
 <pre><code>##                 Estimate Std. Error   z value   Pr(&gt;|z|)
@@ -599,14 +599,14 @@ tab[<span class="kw">order</span>(tab<span class="op">$</span>AIC),]</code></pre
 ## weight      -0.002819271 0.00125243 -2.251040 0.02438303</code></pre>
 <p>The coefficients are interpreted as (remember, “success” is defined as having at least 70% egg survival to the stage of interest):</p>
 <ul>
-<li><span class="math inline">\(\beta_0\)</span>: the log odds of success for a fish with zero weight (which is not all that important, let alone difficult to interpret). It can be transformed into more interpretable quantities:
+<li><span class="math inline">\(\beta_0\)</span>: the log odds of success for a year in which average fish weight was 0 (which is not all that important, let alone difficult to interpret). It can be transformed into more interpretable quantities:
 <ul>
-<li><span class="math inline">\(e^{\beta_0}\)</span> is the odds of success for fish with zero weight and</li>
-<li><span class="math inline">\(expit(e^{\beta_0})\)</span> is the probability of success for fish with zero weight.</li>
+<li><span class="math inline">\(e^{\beta_0}\)</span> is the odds of success for a year in which average fish weight was 0 and</li>
+<li><span class="math inline">\(expit(e^{\beta_0})\)</span> is the probability of success for a year in which average fish weight was 0.</li>
 </ul></li>
 <li><span class="math inline">\(\beta_1\)</span>: the additive effect of fish weight on the log odds of success. More interpretable expressions are:
 <ul>
-<li><span class="math inline">\(e^{\beta_1}\)</span> is the ratio of the odds of success at two consective weights (e.g., 1500 and 1501) and Claims about <span class="math inline">\(e^{\beta_1}\)</span> are made as “for every one gram increase in weight, success became * <span class="math inline">\(e^{\beta_1}\)</span> times as likely to happen”.</li>
+<li><span class="math inline">\(e^{\beta_1}\)</span> is the ratio of the odds of success at two consective weights (e.g., 1500 and 1501) and Claims about <span class="math inline">\(e^{\beta_1}\)</span> are made as “for every one gram increase in average weight, success became * <span class="math inline">\(e^{\beta_1}\)</span> times as likely to happen”.</li>
 </ul></li>
 <li>You can predict the probability of success at any weight using <span class="math inline">\(expit(\beta_0 + \beta_1 weight)\)</span></li>
 </ul>
@@ -621,7 +621,7 @@ p =<span class="st"> </span><span class="kw">expit</span>(<span class="kw">coef<
 
 <span class="co"># plot the relationship</span>
 <span class="kw">plot</span>(p <span class="op">~</span><span class="st"> </span>wt_seq, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">las =</span> <span class="dv">1</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-128-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-129-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Fit another model comparing the probability of success between hatchery and wild fish (analogous to the ANOVA model in Section <a href="ch3.html#anova">3.1.2</a>):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit2 =<span class="st"> </span><span class="kw">glm</span>(binary <span class="op">~</span><span class="st"> </span>type, <span class="dt">data =</span> dat, <span class="dt">family =</span> binomial)
 <span class="kw">summary</span>(fit2)<span class="op">$</span>coef</code></pre></div>
@@ -654,9 +654,9 @@ p_wild =<span class="st"> </span><span class="kw">predict</span>(
 <span class="kw">lines</span>(p_hatch <span class="op">~</span><span class="st"> </span>wt_seq, <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">lty =</span> <span class="dv">2</span>)
 <span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;Hatchery&quot;</span>, <span class="st">&quot;Wild&quot;</span>),
        <span class="dt">lty =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>), <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-132-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>Look for an interaction (all the code is the same except use <code>glm(binary ~ type * weight)</code> instead of <code>glm(binary ~ type + weight)</code> and change everything to <code>fit4</code> instead of <code>fit3</code>).</p>
 <p><img src="au-r-workshop_files/figure-html/unnamed-chunk-133-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Look for an interaction (all the code is the same except use <code>glm(binary ~ type * weight)</code> instead of <code>glm(binary ~ type + weight)</code> and change everything to <code>fit4</code> instead of <code>fit3</code>).</p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-134-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="aic-model-selection-1" class="section level3">
 <h3><span class="header-section-number">3.2.2</span> AIC Model Selection</h3>
@@ -673,7 +673,7 @@ tab[<span class="kw">order</span>(tab<span class="op">$</span>AIC),]</code></pre
 </div>
 <div id="dists" class="section level2">
 <h2><span class="header-section-number">3.3</span> Probability Distributions</h2>
-<p>A probability distribution is a way of representing the probability of an event or value of a parameter and they are central to statistical theory. Some of the most commonly used distributions are summarized in Table <a href="ch3.html#tab:dist-table-html">3.1</a>, along with the suffixes of the functions in R that correspond to each distribution. For an excellent and ecologically-focused description of probability distributions, checkout Chapter 4 in <span class="citation">Bolker (<a href="#ref-emdbook-cite">2008</a>)</span> on them<a href="#fn27" class="footnoteRef" id="fnref27"><sup>27</sup></a>.</p>
+<p>A probability distribution is a way of representing the probability of an event or value of a parameter and they are central to statistical theory. Some of the most commonly used distributions are summarized in Table <a href="ch3.html#tab:dist-table-html">3.1</a>, along with the suffixes of the functions in R that correspond to each distribution. For an excellent and ecologically-focused description of probability distributions, checkout Chapter 4 in <span class="citation">Bolker (<a href="#ref-emdbook-cite">2008</a>)</span> on them<a href="#fn28" class="footnoteRef" id="fnref28"><sup>28</sup></a>.</p>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:dist-table-html">Table 3.1: </span>A brief description of probability distributions commonly used in ecological problems, including the function suffix in R.
@@ -787,7 +787,7 @@ Used for count data in cases where the variance and mean are roughly equal
 <li><strong>The quantile function</strong> (<code>-q</code>): what value of the random variable do <code>p</code>% fall below?</li>
 <li><strong>The random deviates function</strong> (<code>-r</code>): generates random variables from the distribution in proportion to their probability density.</li>
 </ul>
-<p>Suppose that <span class="math inline">\(x\)</span> represents the length of individual age 6 largemouth bass in your private fishing pond. Assume that <span class="math inline">\(x \sim N(\mu=500, \sigma=50)\)</span><a href="#fn28" class="footnoteRef" id="fnref28"><sup>28</sup></a>. Here is the usage of each of the distribution functions and a plot illustrating them:</p>
+<p>Suppose that <span class="math inline">\(x\)</span> represents the length of individual age 6 largemouth bass in your private fishing pond. Assume that <span class="math inline">\(x \sim N(\mu=500, \sigma=50)\)</span><a href="#fn29" class="footnoteRef" id="fnref29"><sup>29</sup></a>. Here is the usage of each of the distribution functions and a plot illustrating them:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># parameters</span>
 mu =<span class="st"> </span><span class="dv">500</span>; sig =<span class="st"> </span><span class="dv">50</span>
 
@@ -830,7 +830,7 @@ random =<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">
 Figure 3.1: The four <code>-norm</code> functions with input (x-axis) and output (y-axis) displayed.
 </p>
 </div>
-<p>Notice that <code>pnorm()</code> and <code>qnorm()</code> are inverses of one another: if you put the output of one into the output of the other, you get the original input back:</p>
+<p>Notice that <code>pnorm()</code> and <code>qnorm()</code> are inverses of one another: if you put the output of one into the input of the other, you get the original input back:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qnorm</span>(<span class="kw">pnorm</span>(<span class="dv">0</span>))</code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <p><code>pnorm(0)</code> asks R to find the probability that <span class="math inline">\(x\)</span> is less than zero for the standard normal distribution (<span class="math inline">\(N(0,1)\)</span> - this is the default if you don’t specify <code>mean</code> and <code>sig</code>). <code>qnorm(pnorm(0))</code> asks R to find the value of <span class="math inline">\(x\)</span> that <code>pnorm(0)</code> * 100% of the possible values fall below. If the nesting is confusing, this line is the same as:</p>
@@ -849,11 +849,11 @@ Figure 3.1: The four <code>-norm</code> functions with input (x-axis) and output
 ##  Mean   :25.08   Mean   : 9.92  
 ##  3rd Qu.:37.75   3rd Qu.:13.00  
 ##  Max.   :49.00   Max.   :15.00</code></pre>
-<p>These are hypothetical data from an experiment in which you were interested in quantifying the functional feeding response<a href="#fn29" class="footnoteRef" id="fnref29"><sup>29</sup></a> of a fish predator on zooplankton in an aquarium. You experimentally manipulated the prey density (<code>prey</code>) and counted how many prey items were consumed (<code>cons</code>).</p>
+<p>These are hypothetical data from an experiment in which you were interested in quantifying the functional feeding response<a href="#fn30" class="footnoteRef" id="fnref30"><sup>30</sup></a> of a fish predator on zooplankton in an aquarium. You experimentally manipulated the prey density (<code>prey</code>) and counted how many prey items were consumed (<code>cons</code>).</p>
 <p>Plot the data:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(cons <span class="op">~</span><span class="st"> </span>prey, <span class="dt">data =</span> dat, <span class="dt">cex =</span> <span class="fl">1.5</span>, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-139-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>You can see a distinct non-linearity to the relationship. The Holling Type II functional response<a href="#fn30" class="footnoteRef" id="fnref30"><sup>30</sup></a> has this functional form:</p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-140-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>You can see a distinct non-linearity to the relationship. The Holling Type II functional response<a href="#fn31" class="footnoteRef" id="fnref31"><sup>31</sup></a> has this functional form:</p>
 <span class="math display" id="eq:func-resp">\[\begin{equation}
   y_i=\frac{ax_i}{1+ahx_i} + \varepsilon_i, \varepsilon_i \sim N(0, \sigma)
 \tag{3.9}
@@ -874,7 +874,7 @@ cons_seq =<span class="st"> </span><span class="kw">predict</span>(fit, <span cl
 
 <span class="kw">plot</span>(cons <span class="op">~</span><span class="st"> </span>prey, <span class="dt">data =</span> dat, <span class="dt">cex =</span> <span class="fl">1.5</span>, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>)
 <span class="kw">lines</span>(cons_seq <span class="op">~</span><span class="st"> </span>prey_seq, <span class="dt">lwd =</span> <span class="dv">3</span>)</code></pre></div>
-<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-141-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="au-r-workshop_files/figure-html/unnamed-chunk-142-1.png" width="672" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 <div id="exercise-3" class="section level2 unnumbered">
@@ -883,8 +883,8 @@ cons_seq =<span class="st"> </span><span class="kw">predict</span>(fit, <span cl
 <p><em>The solutions to this exercise are found at the end of this book (<a href="exercise-solutions.html#ex3-answers">here</a>). You are <strong>strongly recommended</strong> to make a good attempt at completing this exercise on your own and only look at the solutions when you are truly stumped.</em></p>
 <ol style="list-style-type: decimal">
 <li>Perform the same analyses as conducted in Section <a href="ch3.html#lm">3.1</a> (simple linear regression, ANOVA, ANCOVA, ANCOVA with interaction), using <code>egg_size</code> as the response variable. The predictor variables you should use are <code>type</code> (categorical) and <code>year</code>. You should plot the fit for each model separately and perform an AIC analysis. Practice interpreting the coefficient estimates.</li>
-<li>Perform the same analyses as conducted in Section <a href="ch3.html#glms">3.2</a>, this time using a success being having greater than 80% survival to the eyed-egg stage. Use <code>egg_size</code> and <code>type</code> as the predictor variables. You should plot the fitted lines for each model separately and perform an AIC analysis. Practice interpreting the coefficient estimates.</li>
-<li><p>Make the same graphic as in Figure <a href="ch3.html#fig:norm-plots">3.1</a> with at least one of the other distributions listed in Table <a href="ch3.html#tab:dist-table-html">3.1</a> (other than the multinomial - being a multivariate distribution, it wouldn’t work well with this code). Try thinking of a variable from your work that meets the uses of each distribution in Table <a href="ch3.html#tab:dist-table-html">3.1</a> (or one that’s not listed). If you run into trouble, check out the help file for that distribution<a href="#fn31" class="footnoteRef" id="fnref31"><sup>31</sup></a>. ### Exercise 3 Bonus {-}</p></li>
+<li>Perform the same analyses as conducted in Section <a href="ch3.html#glms">3.2</a>, this time using a success threshold of 80% survival to the eyed-egg stage (instead of 70%). Use <code>egg_size</code> and <code>type</code> as the predictor variables. You should plot the fitted lines for each model separately and perform an AIC analysis. Practice interpreting the coefficient estimates.</li>
+<li><p>Make the same graphic as in Figure <a href="ch3.html#fig:norm-plots">3.1</a> with at least one of the other distributions listed in Table <a href="ch3.html#tab:dist-table-html">3.1</a> (other than the multinomial - being a multivariate distribution, it wouldn’t work well with this code). Try thinking of a variable from your work that meets the uses of each distribution in Table <a href="ch3.html#tab:dist-table-html">3.1</a> (or one that’s not listed). If you run into trouble, check out the help file for that distribution<a href="#fn32" class="footnoteRef" id="fnref32"><sup>32</sup></a>. ### Exercise 3 Bonus {-}</p></li>
 <li><p>Fit a von Bertalanffy growth model to the data found in the <code>growth.csv</code> data file. Visit Section <a href="ch4.html#boot-test-ex">4.7.1</a> (particularly Equation <a href="ch4.html#eq:vonB">(4.2)</a>) for details on this model. Use the initial values: <code>linf = 600</code>, <code>k = 0.3</code>, <code>t0 = -0.2</code>. Plot the fitted line over top of the data.</p></li>
 </ol>
 
@@ -908,11 +908,12 @@ cons_seq =<span class="st"> </span><span class="kw">predict</span>(fit, <span cl
 <li id="fn24"><p>The residuals (<span class="math inline">\(\varepsilon_i\)</span>) are the difference between the data point <span class="math inline">\(y_i\)</span> and the model prediction <span class="math inline">\(\hat{y}_i\)</span>: <span class="math inline">\(\varepsilon_i=y_i-\hat{y}_i\)</span><a href="ch3.html#fnref24">↩</a></p></li>
 <li id="fn25"><p>This should look familiar from Section <a href="ch2.html#box-whisker">2.4</a><a href="ch3.html#fnref25">↩</a></p></li>
 <li id="fn26"><p>General linear models are a member of this family<a href="ch3.html#fnref26">↩</a></p></li>
-<li id="fn27"><p>There is a free proof version online: <a href="https://ms.mcmaster.ca/~bolker/emdbook/book.pdf" class="uri">https://ms.mcmaster.ca/~bolker/emdbook/book.pdf</a><a href="ch3.html#fnref27">↩</a></p></li>
-<li id="fn28"><p>English: <span class="math inline">\(x\)</span> is a normal random variable with mean equal to 500 and standard deviation equal to 50<a href="ch3.html#fnref28">↩</a></p></li>
-<li id="fn29"><p>A functional response is the number of prey consumed by a predator at various prey densities<a href="ch3.html#fnref29">↩</a></p></li>
-<li id="fn30"><p>This function rises quickly at low prey densities, but saturates at high densities<a href="ch3.html#fnref30">↩</a></p></li>
-<li id="fn31"><p>Executing <code>?rnorm</code> or any other of the <code>-norm()</code> functions will take you to a page with info on all four function types for that distribution<a href="ch3.html#fnref31">↩</a></p></li>
+<li id="fn27"><p>Odds are commonly expressed as a ratio. For example, if there is a 75% chance of rain, the odds of it raining are 3 to 1. In other words, the outcome of rain is three times as likely as its opposite: not raining<a href="ch3.html#fnref27">↩</a></p></li>
+<li id="fn28"><p>There is a free proof version online: <a href="https://ms.mcmaster.ca/~bolker/emdbook/book.pdf" class="uri">https://ms.mcmaster.ca/~bolker/emdbook/book.pdf</a><a href="ch3.html#fnref28">↩</a></p></li>
+<li id="fn29"><p>English: <span class="math inline">\(x\)</span> is a normal random variable with mean equal to 500 and standard deviation equal to 50<a href="ch3.html#fnref29">↩</a></p></li>
+<li id="fn30"><p>A functional response is the number of prey consumed by a predator at various prey densities<a href="ch3.html#fnref30">↩</a></p></li>
+<li id="fn31"><p>This function rises quickly at low prey densities, but saturates at high densities<a href="ch3.html#fnref31">↩</a></p></li>
+<li id="fn32"><p>Executing <code>?rnorm</code> or any other of the <code>-norm()</code> functions will take you to a page with info on all four function types for that distribution<a href="ch3.html#fnref32">↩</a></p></li>
 </ol>
 </div>
             </section>

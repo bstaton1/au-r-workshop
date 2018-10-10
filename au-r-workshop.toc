@@ -33,9 +33,9 @@
 \contentsline {subsubsection}{And}{24}{section*.18}
 \contentsline {subsubsection}{Or}{24}{section*.19}
 \contentsline {section}{\numberline {1.11}Logical Subsetting}{25}{section.1.11}
-\contentsline {section}{\numberline {1.12}\texttt {if()}, \texttt {else}, and \texttt {ifelse()}}{25}{section.1.12}
-\contentsline {section}{\numberline {1.13}Writing Output Files}{27}{section.1.13}
-\contentsline {subsection}{\numberline {1.13.1}\texttt {.csv} Files}{27}{subsection.1.13.1}
+\contentsline {section}{\numberline {1.12}\texttt {if()}, \texttt {else}, and \texttt {ifelse()}}{26}{section.1.12}
+\contentsline {section}{\numberline {1.13}Writing Output Files}{28}{section.1.13}
+\contentsline {subsection}{\numberline {1.13.1}\texttt {.csv} Files}{28}{subsection.1.13.1}
 \contentsline {subsection}{\numberline {1.13.2}Saving R Objects}{28}{subsection.1.13.2}
 \contentsline {section}{\numberline {1.14}User-Defined Functions}{28}{section.1.14}
 \contentsline {section}{Exercise 1B}{29}{section*.20}
@@ -44,7 +44,7 @@
 \contentsline {section}{Chapter Overview}{31}{section*.22}
 \contentsline {section}{Before You Begin}{31}{section*.23}
 \contentsline {section}{\numberline {2.1}R Plotting Lingo}{32}{section.2.1}
-\contentsline {section}{\numberline {2.2}Lower Level Plotting Functions}{33}{section.2.2}
+\contentsline {section}{\numberline {2.2}Lower Level Plotting Functions}{34}{section.2.2}
 \contentsline {section}{\numberline {2.3}Other High-Level Plotting Functions}{37}{section.2.3}
 \contentsline {subsection}{\numberline {2.3.1}The Bar Graph}{37}{subsection.2.3.1}
 \contentsline {section}{\numberline {2.4}Box-and-Whisker Plots}{39}{section.2.4}
@@ -70,10 +70,10 @@
 \contentsline {subsection}{\numberline {3.1.5}AIC Model Selection}{59}{subsection.3.1.5}
 \contentsline {section}{\numberline {3.2}The Generalized Linear Model}{59}{section.3.2}
 \contentsline {subsection}{\numberline {3.2.1}Logistic Regression}{59}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}AIC Model Selection}{63}{subsection.3.2.2}
-\contentsline {section}{\numberline {3.3}Probability Distributions}{63}{section.3.3}
-\contentsline {section}{\numberline {3.4}Bonus Topic: Non-linear Regression}{65}{section.3.4}
-\contentsline {section}{Exercise 3}{68}{section*.28}
+\contentsline {subsection}{\numberline {3.2.2}AIC Model Selection}{64}{subsection.3.2.2}
+\contentsline {section}{\numberline {3.3}Probability Distributions}{64}{section.3.3}
+\contentsline {section}{\numberline {3.4}Bonus Topic: Non-linear Regression}{66}{section.3.4}
+\contentsline {section}{Exercise 3}{69}{section*.28}
 \contentsline {chapter}{\numberline {4}Monte Carlo Methods}{71}{chapter.4}
 \contentsline {section}{Chapter Overview}{71}{section*.29}
 \contentsline {section}{Before You Begin}{71}{section*.30}

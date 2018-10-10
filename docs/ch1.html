@@ -367,7 +367,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">12</span><span class="op">/</span><span class="dv">4</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
 <p>Notice that when you run each line, it prints the command and the output to the console.</p>
-<p>R is an <strong>object oriented language</strong>, which means that you fill objects with data do things with them. Make an object called <code>x</code> that stores the result of the calculation <code>3 + 3</code> (type this and run using <strong>CTRL + ENTER</strong>):</p>
+<p>R is an <strong>object oriented language</strong>, which means that you fill objects with data and do things with them. Make an object called <code>x</code> that stores the result of the calculation <code>3 + 3</code> (type this and run using <strong>CTRL + ENTER</strong>):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x =<span class="st"> </span><span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span></code></pre></div>
 <p>Notice that running this line did not return a value as before. This is because in that line you are <strong>assigning</strong> a value to the object <code>x</code>. You can view the contents of <code>x</code> by typing its name alone and running just that:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x</code></pre></div>
@@ -388,6 +388,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>Object names must start with a letter, not a number or symbol and cannot contain spaces</li>
 <li>As a general rule, avoid naming your objects things that already have names in R, e.g., <code>data()</code>, <code>mean()</code>, <code>sum()</code>, <code>sd()</code>, etc.</li>
 <li>Capitalization matters: <code>A</code> and <code>a</code> are two different objects</li>
+<li>Keep your names short with abbreviations or shorthand</li>
 </ul>
 </div>
 </div>
@@ -398,12 +399,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="working-dir" class="section level2">
 <h2><span class="header-section-number">1.3</span> The Working Directory</h2>
 <p>Keeping things organized is essential to efficient use of R. For this book, you should have a separate subfolder for your scripts in each chapter. Create a subfolder called <code>C:/Users/YOU/Documents/R-Book/Chapter1</code> and save your <code>Ch1.R</code> script there.</p>
-<p>Part of keeping your work organized in R is making sure you know where R is looking for your files. One way to facilitate this is to use a <strong>working directory</strong>. This is the location (i.e., folder) on your computer where your current R session will “talk to” by default. The working directory is where R will read files from and write files to by default. Because you’ll likely be visiting it often, it should probably be somewhere that is easy to remember and not too deeply buried in your computer’s file system.</p>
+<p>Part of keeping your work organized in R is making sure you know where R is looking for your files. One way to facilitate this is to use a <strong>working directory</strong>. This is the location (i.e., folder) on your computer that your current R session will “talk to” by default. R will read files from and write files to the working directory by default. Because you’ll likely be visiting it often, it should probably be somewhere that is easy to remember and not too deeply buried in your computer’s file system.</p>
 <p>To set the working directory to <code>C:/Users/YOU/Documents/R-Book/Chapter1</code>, you have three options:</p>
 <ol style="list-style-type: decimal">
 <li><p><strong>Go to Session &gt; Set Working Directory &gt; Source File Location</strong>. This will set the working directory to the location of the file that is currently open in your source pane.</p></li>
 <li><p><strong>Go to Session &gt; Set Working Directory &gt; Choose Directory</strong>. This will open an interactive file selection window to allow you to navigate to the desired directory.</p></li>
-<li><p><strong>Use code</strong>. In the console, you can type <code>setwd(&quot;C:/Users/YOU/Documents/R-Book/Chapter1&quot;)</code>. If at any point you want to know where your current working directory is set to, you can either look at the top of the console pane, which shows the full path or by running <code>getwd()</code> in the console. Note the use of <code>/</code> rather than <code>\</code> for file paths in R.</p></li>
+<li><p><strong>Use code</strong>. In the console, you can type <code>setwd(&quot;C:/Users/YOU/Documents/R-Book/Chapter1&quot;)</code>. If at any point you want to know where your current working directory is set to, you can either look at the top of the console pane, which shows the full path or by running <code>getwd()</code> in the console. Note the use of <code>/</code> rather than <code>\</code> for file paths in R. If you are using a Mac, omit <code>C:</code> from your directory name.</p></li>
 </ol>
 <p><strong>The main benefits of using a working directory are</strong>:</p>
 <ul>
@@ -445,7 +446,7 @@ day =<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># repeat the same number (repeat 2018 5 times)</span>
 year =<span class="st"> </span><span class="kw">rep</span>(<span class="dv">2018</span>, <span class="dv">5</span>); year</code></pre></div>
 <pre><code>## [1] 2018 2018 2018 2018 2018</code></pre>
-<p>The <code>[1]</code> that shows up is a element position, more on this later (see Section <a href="ch1.html#sub">1.7</a>). If you wish to know how many elements are in a vector, use <code>length()</code>:</p>
+<p>The <code>[1]</code> that shows up is an element position, more on this later (see Section <a href="ch1.html#sub">1.7</a>). If you wish to know how many elements are in a vector, use <code>length()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(year)</code></pre></div>
 <pre><code>## [1] 5</code></pre>
 <p>You can also create a vector “by-hand” using the <code>c()</code> function<a href="#fn7" class="footnoteRef" id="fnref7"><sup>7</sup></a>:</p>
@@ -455,7 +456,7 @@ number =<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</s
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># a character vector</span>
 pond =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;F11&quot;</span>, <span class="st">&quot;S28&quot;</span>, <span class="st">&quot;S30&quot;</span>, <span class="st">&quot;S8&quot;</span>, <span class="st">&#39;S11&#39;</span>); pond</code></pre></div>
 <pre><code>## [1] &quot;F11&quot; &quot;S28&quot; &quot;S30&quot; &quot;S8&quot;  &quot;S11&quot;</code></pre>
-<p>Note the difference between the numeric and character vectors. The the terms “numeric” and “character”&quot; represent <strong>data classes</strong>, which specify the type of data the vector is holding:</p>
+<p>Note the difference between the numeric and character vectors. The terms “numeric” and “character”&quot; represent <strong>data classes</strong>, which specify the type of data the vector is holding:</p>
 <ul>
 <li>A <strong>numeric vector</strong> stores numbers. You can do math with numeric vectors</li>
 <li>A <strong>character vector</strong> stores what are essentially letters. You can’t do math with letters. A character vector is easy to spot because the elements will be wrapped with quotes<a href="#fn8" class="footnoteRef" id="fnref8"><sup>8</sup></a>.</li>
@@ -470,7 +471,7 @@ pond =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;
 </div>
 <div id="matrices" class="section level3">
 <h3><span class="header-section-number">1.4.3</span> Matrices</h3>
-<p>Matrices act just like vectors, but they are in two dimensions, i.e., they have both rows and columns. An easy way to make a matrix is by combining vectors you have already made:</p>
+<p>Matrices act just like vectors, but they have two dimensions, i.e., they have both rows and columns. An easy way to make a matrix is by combining vectors you have already made:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># combine vectors by column (each vector will become a column)</span>
 m1 =<span class="st"> </span><span class="kw">cbind</span>(month, day, year, number); m1</code></pre></div>
 <pre><code>##      month day year number
@@ -507,7 +508,7 @@ m2 =<span class="st"> </span><span class="kw">rbind</span>(month, day, year, num
 ## 4     5   7 2018     10   S8
 ## 5     6   9 2018     15  S11</code></pre>
 <p>Notice the lack of quotation marks which indicates that all variables (i.e., columns) are stored as their original data class.</p>
-<p>It is important to know what kind of object type you are using, since R treats them differently. For example, some functions can only use a certain object type. The same holds true for data classes (numeric vs. character).You can quickly determine what kind of object you are dealing with by using the <code>class()</code> function:</p>
+<p>It is important to know what kind of object type you are using, since R treats them differently. For example, some functions can only use a certain object type. The same holds true for data classes (numeric vs. character). You can quickly determine what kind of object you are dealing with by using the <code>class()</code> function:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(day); <span class="kw">class</span>(pond); <span class="kw">class</span>(m1); <span class="kw">class</span>(df1)</code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
 <pre><code>## [1] &quot;character&quot;</code></pre>
@@ -535,7 +536,7 @@ m2 =<span class="st"> </span><span class="kw">rbind</span>(month, day, year, num
 </div>
 <div id="vector-math" class="section level2">
 <h2><span class="header-section-number">1.6</span> Vector Math</h2>
-<p>R does vectorized calculations. This means that if supplied with two numeric vectors of equal length and a mathematical operator, R will perform the calculation on each pair of elements. For example, if you wanted to add the two vectors vector <code>day</code> and <code>month</code>, then you would just run:</p>
+<p>R does vectorized calculations. This means that if supplied with two numeric vectors of equal length and a mathematical operator, R will perform the calculation on each pair of elements. For example, if you wanted to add the two vectors <code>day</code> and <code>month</code>, then you would just run:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dm =<span class="st"> </span>day <span class="op">+</span><span class="st"> </span>month; dm</code></pre></div>
 <pre><code>## [1]  3  6  9 12 15</code></pre>
 <p>Look at the contents of both <code>day</code> and <code>month</code> again to make sure you see what R did. You typically should ensure that the vectors you are doing math with are of equal lengths.</p>
@@ -545,9 +546,9 @@ m2 =<span class="st"> </span><span class="kw">rbind</span>(month, day, year, num
 </div>
 <div id="sub" class="section level2">
 <h2><span class="header-section-number">1.7</span> Data Subsets/Queries</h2>
-<p>This perhaps the most important and versatile skills to know in R. So you have an object with data in it and you want to use it for analysis. But you don’t want the whole data set: just a few rows or just a few columns, or perhaps you need just a single element from a vector. This section is devoted to ways you can extract certain parts of data objects (the terms <strong>query</strong> and <strong>subset</strong> are often used interchangeably to describe this task). There are three main methods:</p>
+<p>This is perhaps the most important and versatile skill to know in R. Say you have an object with data in it and you want to use it for analysis, but you don’t want the whole data set: just a few rows or just a few columns, or perhaps you need just a single element from a vector. This section is devoted to ways you can extract certain parts of data objects (the terms <strong>query</strong> and <strong>subset</strong> are often used interchangeably to describe this task). There are three main methods:</p>
 <ol style="list-style-type: decimal">
-<li><strong>By Index</strong> – This method allows you to pull out specific rows/columns by their location in an object. However, you must know exactly where in the object the desired data are. An <strong>index</strong> is a location of a element in a data object, like the element position or the position of a specific row or column. The syntax for subsetting a vector by index is <code>vector[element]</code> and for a matrix it is <code>matrix[row,column]</code>. Here are some examples:</li>
+<li><strong>By Index</strong> – This method allows you to pull out specific rows/columns by their location in an object. However, you must know exactly where in the object the desired data are. An <strong>index</strong> is a location of an element in a data object, like the element position or the position of a specific row or column. The syntax for subsetting a vector by index is <code>vector[element]</code> and for a matrix it is <code>matrix[row,column]</code>. Here are some examples:</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># show all of day, then subset the third element</span>
 day; day[<span class="dv">3</span>]</code></pre></div>
@@ -714,7 +715,7 @@ Circle
 <p>It is rare that you will enter data by hand as you did in Exercise 1A. Often, you have a data set that you wish to analyze or manipulate that is stored in a spreadsheet. R has several ways to read information from data files and in this workshop, we will be using a common and simple method: reading in <code>.csv</code> files. <code>.csv</code> files are data files that separate columns with commas<a href="#fn10" class="footnoteRef" id="fnref10"><sup>10</sup></a>. If your data are in a Microsoft Excel spreadsheet, you can save your spreadsheet file as a <code>.csv</code> file (<em>File &gt; Save As &gt; Save as Type&gt; CSV (Comma Delimited)</em>). Several dialog boxes will open asking if you are sure you want to save it as a <code>.csv</code> file.</p>
 <p>The syntax for reading in a <code>.csv</code> file is:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;Path/To/FileName.csv&quot;</span>)</code></pre></div>
-<p>Make sure your working directory is set to the location of your current file, which should be in the location <code>C:/Users/YOU/Documents/R-Book/Chapter 1</code>. According the <a href="index.html#data-sets">instructions</a> on acquiring the data, you should have placed all of the data files for this book (downloaded from the <a href="">GitHub repository</a>) in the location <code>C:/Users/YOU/Documents/R-Book/Data</code>. If you have done this already and your working directory is set to the location of the <code>Ch1.R</code> script, you can simply run:</p>
+<p>Make sure your working directory is set to the location of your current file, which should be in the location <code>C:/Users/YOU/Documents/R-Book/Chapter 1</code>. According to the <a href="index.html#data-sets">instructions</a> on acquiring the data, you should have placed all of the data files for this book (downloaded from the <a href="">GitHub repository</a>) in the location <code>C:/Users/YOU/Documents/R-Book/Data</code>. If you have done this already and your working directory is set to the location of the <code>Ch1.R</code> script, you can simply run:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../Data/streams.csv&quot;</span>)</code></pre></div>
 <p>The <code>../</code> tells R to look up one directory from the working directory for a folder called <code>Data</code>, then within that, look for a file called <code>streams.csv</code>.</p>
 <p>If you do not get an error, congratulations! However, if you get an error that looks like this:</p>
@@ -783,16 +784,16 @@ Circle
 <p>which is the same as (i.e., the definition of the mean with the <code>NA</code> removed):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(dat<span class="op">$</span>flow, <span class="dt">na.rm =</span> T)<span class="op">/</span>(<span class="kw">nrow</span>(dat) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)</code></pre></div>
 <pre><code>## [1] 91.49053</code></pre>
-<p>What if you need apply a function to more than one variable at a time? One of the easiest ways to do this (though as with most things in R, there are many) is by using the <code>apply()</code> function. This function applies the same summary function to individual subsets of a data object at a time then returns the individual summaries all at once:</p>
+<p>What if you need to apply a function to more than one variable at a time? One of the easiest ways to do this (though as with most things in R, there are many) is by using the <code>apply()</code> function. This function applies the same summary function to individual subsets of a data object at a time then returns the individual summaries all at once:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(dat[,<span class="kw">c</span>(<span class="st">&quot;stream_width&quot;</span>, <span class="st">&quot;flow&quot;</span>)], <span class="dv">2</span>, <span class="dt">FUN =</span> var, <span class="dt">na.rm =</span> T)</code></pre></div>
 <pre><code>## stream_width         flow 
 ##     581.1693    1337.3853</code></pre>
-<p>The first argument is the data object you want to apply the function to. The second argument (the number <code>2</code>) specifies that you want to apply the function to columns, <code>1</code> would tell R to apply it to rows. The <code>FUN</code> argument specifies what function you wish to apply to each of the columns; here you are calculating the variance which takes the <code>na.rm = T</code> argument. This use of <code>apply()</code> alone is very powerful and can help you get around having to write the dreaded <code>for()</code> loop (introduced in Chapter <a href="ch4.html#ch4">4</a>).</p>
+<p>The first argument is the data object to which you want to apply the function. The second argument (the number <code>2</code>) specifies that you want to apply the function to columns, <code>1</code> would tell R to apply it to rows. The <code>FUN</code> argument specifies what function you wish to apply to each of the columns; here you are calculating the variance which takes the <code>na.rm = T</code> argument. This use of <code>apply()</code> alone is very powerful and can help you get around having to write the dreaded <code>for()</code> loop (introduced in Chapter <a href="ch4.html#ch4">4</a>).</p>
 <p>There is a whole family of <code>-apply()</code> functions, the base <code>apply()</code> is the most basic but a more sophisticated one is <code>tapply()</code>, which applies a function based on some grouping variable (a factor). Calculate the mean stream width <strong>separated by state</strong>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tapply</span>(dat<span class="op">$</span>stream_width, dat<span class="op">$</span>state, mean)</code></pre></div>
 <pre><code>##   Alabama   Florida   Georgia Tennessee 
 ##    53.664    63.588    54.996    71.290</code></pre>
-<p>The first argument is the variable you want to apply the <code>mean</code> function to, the second is the grouping variable, and the third is what function you wish to apply. Try to commit this command to memory given this is a pretty common task.</p>
+<p>The first argument is the variable to which you want to apply the <code>mean</code> function, the second is the grouping variable, and the third is what function you wish to apply. Try to commit this command to memory given this is a pretty common task.</p>
 <p>If you want a data frame as output, you can use the <code>aggregate</code> function to do the same thing:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">aggregate</span>(dat<span class="op">$</span>stream_width, <span class="dt">by =</span> <span class="kw">list</span>(<span class="dt">state =</span> dat<span class="op">$</span>state), mean)</code></pre></div>
 <pre><code>##       state      x
@@ -874,6 +875,24 @@ dat<span class="op">$</span>flow[dat<span class="op">$</span>stream_width <span 
 ## 3 Alabama        48.32  73.38
 ## 4 Alabama        31.63  46.55
 ## 5 Alabama        48.93  80.91</code></pre>
+<p>To exclude all of the data from Alabama, you would run:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat[<span class="op">!</span>dat<span class="op">$</span>state <span class="op">==</span><span class="st"> &quot;Alabama&quot;</span>,]</code></pre></div>
+<pre><code>##        state stream_width   flow
+## 6    Georgia        39.42  57.63
+## 7    Georgia        79.04 123.78
+## 8    Georgia        17.65  31.90
+## 9    Georgia        73.02  95.64
+## 10   Georgia        65.85  95.82
+## 11 Tennessee        54.83  82.30
+## 12 Tennessee        57.38     NA
+## 13 Tennessee        75.93 120.06
+## 14 Tennessee        94.65 135.63
+## 15 Tennessee        73.66 120.61
+## 16   Florida        30.62  28.75
+## 17   Florida        20.43  46.88
+## 18   Florida        80.24 111.34
+## 19   Florida        94.15 149.54
+## 20   Florida        92.50 131.22</code></pre>
 <p>You will be frequently revisiting this skill throughout the workshop.</p>
 </div>
 <div id="if-else-and-ifelse" class="section level2">
@@ -930,7 +949,7 @@ xs =<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span>
 ##  [8,] &quot;3&quot;  &quot;positive&quot;
 ##  [9,] &quot;4&quot;  &quot;positive&quot;
 ## [10,] &quot;5&quot;  &quot;positive&quot;</code></pre>
-<p>Use <code>ifelse()</code> to create a new variable in <code>dat</code> that indicates whether a stream is big or small depending whether <code>stream_width</code> is greater or less than 50:</p>
+<p>Use <code>ifelse()</code> to create a new variable in <code>dat</code> that indicates whether a stream is big or small depending on whether <code>stream_width</code> is greater or less than 50:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat<span class="op">$</span>size_cat =<span class="st"> </span><span class="kw">ifelse</span>(dat<span class="op">$</span>stream_width <span class="op">&gt;</span><span class="st"> </span><span class="dv">50</span>, <span class="st">&quot;big&quot;</span>, <span class="st">&quot;small&quot;</span>); <span class="kw">head</span>(dat)</code></pre></div>
 <pre><code>##     state stream_width   flow size_cat
 ## 1 Alabama        81.68 120.48      big
@@ -1033,7 +1052,7 @@ xs =<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span>
 <li id="fn6"><p>Hadley Wickham’s R code style guide: <a href="http://adv-r.had.co.nz/Style.html" class="uri">http://adv-r.had.co.nz/Style.html</a><a href="ch1.html#fnref6">↩</a></p></li>
 <li id="fn7"><p>The <code>c</code> stands for <strong>concatenate</strong>, which basically means combine many smaller objects into one larger object<a href="ch1.html#fnref7">↩</a></p></li>
 <li id="fn8"><p><code>&quot; &quot;</code> or <code>' '</code> both work as long as you use the same on the front and end of the element<a href="ch1.html#fnref8">↩</a></p></li>
-<li id="fn9"><p>The coercion works this way because numbers can be expressed as characters, but a letter cannot be unambiguously be expressed as a number.<a href="ch1.html#fnref9">↩</a></p></li>
+<li id="fn9"><p>The coercion works this way because numbers can be expressed as characters, but a letter cannot be unambiguously expressed as a number.<a href="ch1.html#fnref9">↩</a></p></li>
 <li id="fn10"><p>Note that if your computer is configured for a Spanish-speaking country, Microsoft Excel might convert decimals to commas. This can really mess with reading in data - I would suggest changing the language of Excel if you find this to be the case.<a href="ch1.html#fnref10">↩</a></p></li>
 <li id="fn11"><p>You can nest <strong>ALL</strong> R functions, by the way.<a href="ch1.html#fnref11">↩</a></p></li>
 </ol>
