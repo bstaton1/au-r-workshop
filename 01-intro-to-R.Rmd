@@ -19,30 +19,17 @@ In this first chapter, you will get familiar with the basics of using R. You wil
 *  how to write out data
 *  how to write your own functions
 
-## Before You Begin: Install R and RStudio {-}
+## Before You Begin {-}
 
-First off, you will need to get R and RStudio^[While it is possible to run R on its own, it is clunky. You are strongly advised to use the RStudio IDE (integrated development environment) given its compactness, neat features, code tools (like syntax and parentheses highlighting). This workshop will assume you are using RStudio] onto your computer. Go to:
-
-*  <https://cran.rstudio.com/> to get R and
-*  <https://www.rstudio.com/products/rstudio/download/> to get RStudio Desktop.
-
-Download the appropriate installation file for your operating system and run that file. All default settings should be fine. 
+Before you start this chapter, you should make sure you have read and done everything in the [Overview](#overview) pertaining to [preparing your computer](#comp-prep) for working through this book.
 
 ## The R Studio Interface
 
-Once you open up RStudio for the first time, you will see three panes: the left hand side is the **console** where results from executed commands are printed, and the two panes on the right are for additional information to help you code more efficiently - don't worry too much about what these are at the moment. For now, focus your attention on the console.
-
-As a matter of personal preference, you are recommended to configure a few settings. Go to _Tools > Global Options_, and in the section listed "General":
-
-*  Make sure “Restore .RData into workspace at startup” is _unchecked_
-*  Make sure “Save workspace to .RData on exit” is set to _Never_
-*  Make sure “Always save history (even when not saving .RData)” is _unchecked_
-
-These settings will prevent you from getting a bunch of useless files and dialog boxes every time you open and close R.
+When you open up RStudio for the first time, you will see three panes: the left-hand side is the **console** where results from executed commands are printed, and the two panes on the right are for additional information to help you code more efficiently - don't worry too much about what these are at the moment. For now, focus your attention on the console.
 
 ### Write Some Simple Code
 
-To start off, you will just use R as a calculator. Type these commands (not the lines with `##`, those are output^[The formatting used here includes `##` on output to denote code and output separately. You won't see the `##` show up in your console.]) one at a time and hit **CTRL + ENTER** to run it. The spaces don't matter at all, they are used here for clarity and for styling. To learn more about standard R code styling, check out the section in @adv-r-cite on it^[Hadley Wickham's R code style guide: <http://adv-r.had.co.nz/Style.html>].
+To start off, you will use R as a simple calculator. Type these commands (not the lines with `##`, those are output^[The formatting used here includes `##` on output to denote code and output separately. You won't see the `##` show up in your console.]) one at a time and hit **CTRL + ENTER** to run it. The spaces don't matter at all, they are used here for clarity and for styling. To learn more about standard R code styling, check out the section in @adv-r-cite on it^[Hadley Wickham's R code style guide: <http://adv-r.had.co.nz/Style.html>].
 
 ```{r Calculator}
 3 + 3
@@ -109,7 +96,7 @@ To set the working directory to `C:/Users/YOU/Documents/R-Book/Chapter1`, you ha
 **The main benefits of using a working directory are**:
 
 *  Files are read from and written to a consistent and predictable place every time
-*  Everything for your analysis is organized into one place
+*  Everything for your analysis is organized into one place on your computer
 *  You don't have to continuously type file paths to your work. If `file.txt` is a file in your current working directory, you can reference it your R session using `"file.txt"` rather than with `"C:/Users/YOU/Documents/R-Book/Chapter1/file.txt"` each time.
 
 Note that while it is generally good practice to keep your data in the working directory, this is not recommended for this book. You will be using the same data files in multiple chapters, so it will help if they are all stored in one location. More details on this later (Section \@ref(read)).
@@ -128,7 +115,7 @@ fun(arg1 = value1, arg2 = value2)
 
 Here, `fun()` is the **function name** and `arg1` and `arg2` are called **arguments**. Functions take input in the form of the arguments, do some task with them, then return some output. The parentheses are a sure sign that `fun()` is a function.
 
-We have passed the function two arguments by name: all functions have arguments, all arguments have names, and there is always a default order to the arguments. If you memorize the argument order of functions you use frequently, you don't have to specify the argument name:
+The syntax above passes the function two arguments by name: all functions have arguments, all arguments have names, and there is always a default order to the arguments. If you memorize the argument order of functions you use frequently, you don't have to specify the argument names:
 
 ```{r, eval = F}
 fun(value1, value2)
@@ -142,9 +129,9 @@ Here's a real example:
 print(x = z)
 ```
 
-The function is `print()`, the argument is `x`, and the value we have supplied the argument is the object `z`. The task that `print()` does is to print the value of `z` to the console.
+The function is `print()`, the argument is `x`, and the value you have supplied the argument is the object `z`. The task that `print()` does is to print the value of `z` to the console.
 
-R has a ton of built-in documentation to help you learn how to use a function. Take a look at the help file for the mean function. Run `?mean` in the console: a window on the right-hand side of the R Studio interface should open. The help file tells you what goes into a function and what comes out. For more complex functions it also tells you what all of the options (i.e., arguments) can do. Help files can be a bit intimidating to interpret at first, but they are all organized the same and once you learn their layout you will know where to go to find the information you're looking for.
+R has a ton of built-in documentation to help you learn how to use a function. Take a look at the help file for the `mean()` function. Run `?mean` in the console: a window on the right-hand side of the R Studio interface should open. The help file tells you what goes into a function and what comes out. For more complex functions it also tells you what all of the options (i.e., arguments) can do. Help files can be a bit intimidating to interpret at first, but they are all organized the same and once you learn their layout you will know where to go to find the information you're looking for.
 
 ### Vectors
 
@@ -372,7 +359,7 @@ kable(data.frame(Lake, Area, Time, Fish), "latex",
 
 ## Read External Data Files {#read}
 
-It is rare that you will enter data by hand as you did in Exercise 1A. Often, you have a data set that you wish to analyze or manipulate that is stored in a spreadsheet. R has several ways to read information from data files and in this workshop, we will be using a common and simple method: reading in `.csv` files. `.csv` files are data files that separate columns with commas^[Note that if your computer is configured for a Spanish-speaking country, Microsoft Excel might convert decimals to commas. This can really mess with reading in data - I would suggest changing the language of Excel if you find this to be the case.]. If your data are in a Microsoft Excel spreadsheet, you can save your spreadsheet file as a `.csv` file (_File > Save As > Save as Type> CSV (Comma Delimited)_). Several dialog boxes will open asking if you are sure you want to save it as a `.csv` file. 
+It is rare that you will enter data by hand as you did in Exercise 1A. Often, you have a data set that you wish to analyze or manipulate that is stored in a spreadsheet. R has several ways to read information from data files and in this book, you will be using a common and simple method: reading in `.csv` files. `.csv` files are data files that separate columns with commas^[Note that if your computer is configured for a Spanish-speaking country, Microsoft Excel might convert decimals to commas. This can really mess with reading in data - I would suggest changing the language of Excel if you find this to be the case.]. If your data are in a Microsoft Excel spreadsheet, you can save your spreadsheet file as a `.csv` file (_File > Save As > Save as Type> CSV (Comma Delimited)_). Several dialog boxes will open asking if you are sure you want to save it as a `.csv` file. 
 
 The syntax for reading in a `.csv` file is:
 
@@ -409,8 +396,8 @@ If you did not get any errors, then the data are in the object you named (`dat`)
 *  If there is a space in one of the header cells, a `"."` will be inserted. For example, the column header `Total Length` would become `Total.Length`. 
 *  R brings in `.csv` files in as data frames by default.
 *  If a record (i.e., cell) is truly missing and you want R to treat it that way (i.e., as an `NA`), you have three options:
-    - Hard code an `NA` into that cell in Excel
-    - Leave that cell completely empty
+    - Hard code an `NA` into that cell in your `.csv` file
+    - Leave that cell completely empty in your `.csv` file
     - Enter in some other character (e.g., `"."`) alone in all cells that are meant to be coded as `NA` in R and use the `na.strings = "."` argument of `read.csv()`.
 *  If at some point you did "Clear Contents" in Microsoft Excel to delete rows or columns from your `.csv` file, these "deleted" rows/columns will be read in as all `NAs`, which can be annoying. To remove this problem, open the `.csv` file in Excel, then highlight and **delete** the rows/columns in question and save the file. Read it back into R again using `read.csv()`.
 *  If even a single character is found in a numeric column in `FileName.csv`, the _entire column_ will be coerced to a character/factor data class after it is read in (i.e., no more math with data on that column until you remove the character). A common error is to have a `#VALUE!` record left over from an invalid Excel function result. You must remove all of these occurrences in order to use that column as numeric. Characters include anything other than a number ([0-9]) and a period when used as a decimal. None of these characters: `!?[]\/@#$%^&*()<>_-+=[a-z];[A-Z]` should never be found in a column you wish to do math with (e.g., take the mean of that column). **This is an incredibly common problem!**
@@ -443,7 +430,7 @@ Note that R counts missing values as elements as well:
 length(dat$flow)
 ```
 
-To get the dimensions of an object with more than one dimension (i.e., a data frame or matrix) we can use the `dim()` function. This returns a vector with two elements: the first number is the number of rows and the second is the number of columns. If you only want one of these, use the `nrow()` or `ncol()` functions (but remember, only for objects with more than one dimension; vectors don't have rows or columns!).
+To get the dimensions of an object with more than one dimension (i.e., a data frame or matrix) you can use the `dim()` function. This returns a vector with two elements: the first number is the number of rows and the second is the number of columns. If you only want one of these, use the `nrow()` or `ncol()` functions (but remember, only for objects with more than one dimension; vectors don't have rows or columns!).
 
 ```{r}
 dim(dat); nrow(dat); ncol(dat)
@@ -505,7 +492,7 @@ aggregate(dat$stream_width, by = list(state = dat$state), mean)
 
 To be an efficient and capable programmer in any language, you will need to become familiar with how to implement numerical logic, i.e., the Boolean operators.  These are very useful because they always return a `TRUE` or a `FALSE`, off of which program-based decisions can be made (e.g., whether to operate a given subroutine, whether to keep certain rows, whether to print the output, etc.).
 
-Define a simple object: `x = 5` `r x = 5`. Note that this will write over what was previously stored in the object `x`. We wish to ask some questions of the new `x`, and the answer will be printed to the console as a `TRUE` for "yes" and a `FALSE` for "no". Below are the common Boolean operators.
+Define a simple object: `x = 5` `r x = 5`. Note that this will write over what was previously stored in the object `x`. Suppose you want to ask some questions of the new object `x` and have the answer printed to the console as a `TRUE` for "yes" and a `FALSE` for "no". Below are the common Boolean operators and their usage in R.
 
 #### Equality {-}
 
@@ -515,7 +502,7 @@ To ask if `x` is exactly equal to 5, you run:
 x == 5
 ```
 
-Note the use of the double `==` to denote equality as opposed to the single `=` as used in assignment (`x = 5`). 
+Note the use of the double `==` to denote equality as opposed to the single `=` as used in assignment (e.g., `x = 5`) or in argument specification (e.g., `mean(dat$flow, na.rm = T)`). 
 
 #### Inequalities {-}
 
@@ -524,6 +511,8 @@ To ask if `x` is not equal to 5, you run:
 ```{r}
 x != 5
 ```
+
+The `!` is the logical **not** in R, and can be used to flip the direction of any `T` to a `F` or _vice versa_.
 
 To ask if `x` is less than 5, you run:
 
@@ -597,8 +586,8 @@ dat[dat$state == "Alabama",]
 
 To exclude all of the data from Alabama, you would run:
 
-```{r}
-dat[!dat$state == "Alabama",]
+```{r, eval = F}
+dat[dat$state != "Alabama",]
 ```
 
 You will be frequently revisiting this skill throughout the workshop.
@@ -617,7 +606,9 @@ This says "if `x` equals 5, then print the phrase 'x is equal to 5' to the conso
 if (x != 5) print("x is equal to 5")
 ```
 
-We can tell R to do multiple things if the logical is `TRUE` by using curly braces:
+Notice that because `x` does equal 5, running this line has no effect.
+
+You can tell R to do multiple things if the logical is `TRUE` by using curly braces:
 
 ```{r}
 if (x == 5) {

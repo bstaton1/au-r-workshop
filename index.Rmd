@@ -14,7 +14,7 @@ github-repo: bstaton1/au-r-workshop
 description: "This is a first course in R programming for natural resource scientists. It was developed and has been primarily instructed at Auburn University."
 ---
 
-# Overview{-}
+# Overview{-#overview}
 
 `r if(knitr::is_html_output()) '<a href="https://github.com/bstaton1/au-r-workshop/"><img src="img/cover_image.png" width="250" height="375" alt="Cover image" align="right" style="margin: 0 1em 0 1em" /></a>' `This book is intended to be a first course in R programming for natural resource professionals. It is by no means comprehensive (no book about R ever could be), but instead attempts to introduce the main topics needed to get a beginner up and running with applying R to their own work. It is intended to be a companion to in-person workshop sessions, in which each chapter is covered in a 2 hour session, however it can be used as "self-teach" manual as well. Although the examples shown have a natural resource/ecological theme, the general skills presented are general to R users across all scientific disciplines. 
 
@@ -37,11 +37,30 @@ There are, however, some tasks you'll need to complete before using this book, w
 
 ### Prepare Your Computer {-#comp-prep}
 
-You will install R and RStudio as the first step in Chapter 1. See [here](#install) for the links to get these programs.
+#### Installation {-#install}
+
+First off, you will need to get R and RStudio^[While it is possible to run R on its own, it is clunky. You are strongly advised to use the RStudio IDE (integrated development environment) given its compactness, neat features, code tools (like syntax and parentheses highlighting). This workshop will assume you are using RStudio] onto your computer. Go to:
+
+*  <https://cran.rstudio.com/> to get R and
+*  <https://www.rstudio.com/products/rstudio/download/> to get RStudio Desktop.
+
+Download the appropriate installation file for your operating system and run that file. All default settings should be fine. 
+
+#### Optional Configuration {-}
+
+As a matter of personal preference, you are recommended to configure a few settings. Open up RStudio and go to _Tools > Global Options_, and in the section listed "General":
+
+*  Make sure _Restore .RData into workspace at startup_ is **unchecked**
+*  Make sure _Save workspace to .RData on exit_ is set to **Never**
+*  Make sure _Always save history (even when not saving .RData)_ is **unchecked**.
+
+These settings will prevent you from getting a bunch of useless files and dialog boxes every time you open and close R.
+
+#### Create a Book Directory {-}
 
 You should create a devoted folder on your computer for this book. All examples will assume this folder is located here: `C:/Users/YOU/Documents/R-Book`. Change `YOU` to be specific for your computer.
 
-### Data Sets {-#data-sets}
+#### Data Sets {-#data-sets}
 
 The data sets^[Many of the data sets used in this book were simulated by the author. Cases in which the data set used was not simulated are noted and a citation to the data source is provided. More details on the individual data sets can be found on the GitHub repository.]
  used in this book are hosted on a GitHub repository maintained by the author. It is located here: <https://github.com/bstaton1/au-r-workshop-data>.
