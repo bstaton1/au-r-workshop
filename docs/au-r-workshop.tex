@@ -207,7 +207,7 @@
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-\chapter*{Overview}\label{overview}
+\hypertarget{overview}{\chapter*{Overview}\label{overview}}
 \addcontentsline{toc}{chapter}{Overview}
 
 This book is intended to be a first course in R programming for natural
@@ -266,19 +266,65 @@ would be helpful but not strictly essential.
 There are, however, some tasks you'll need to complete before using this
 book, which are described in the two sections that follow.
 
-\subsection*{Prepare Your Computer}\label{comp-prep}
+\hypertarget{comp-prep}{\subsection*{Prepare Your
+Computer}\label{comp-prep}}
 \addcontentsline{toc}{subsection}{Prepare Your Computer}
 
-You will install R and RStudio as the first step in Chapter 1. See
-\protect\hyperlink{install}{here} for the links to get these programs.
+\subsubsection*{Installation}\label{install}
+\addcontentsline{toc}{subsubsection}{Installation}
+
+First off, you will need to get R and RStudio\footnote{While it is
+  possible to run R on its own, it is clunky. You are strongly advised
+  to use the RStudio IDE (integrated development environment) given its
+  compactness, neat features, code tools (like syntax and parentheses
+  highlighting). This workshop will assume you are using RStudio} onto
+your computer. Go to:
+
+\begin{itemize}
+\tightlist
+\item
+  \url{https://cran.rstudio.com/} to get R and
+\item
+  \url{https://www.rstudio.com/products/rstudio/download/} to get
+  RStudio Desktop.
+\end{itemize}
+
+Download the appropriate installation file for your operating system and
+run that file. All default settings should be fine.
+
+\subsubsection*{Optional Configuration}\label{optional-configuration}
+\addcontentsline{toc}{subsubsection}{Optional Configuration}
+
+As a matter of personal preference, you are recommended to configure a
+few settings. Open up RStudio and go to \emph{Tools \textgreater{}
+Global Options}, and in the section listed ``General'':
+
+\begin{itemize}
+\tightlist
+\item
+  Make sure \emph{Restore .RData into workspace at startup} is
+  \textbf{unchecked}
+\item
+  Make sure \emph{Save workspace to .RData on exit} is set to
+  \textbf{Never}
+\item
+  Make sure \emph{Always save history (even when not saving .RData)} is
+  \textbf{unchecked}.
+\end{itemize}
+
+These settings will prevent you from getting a bunch of useless files
+and dialog boxes every time you open and close R.
+
+\subsubsection*{Create a Book Directory}\label{create-a-book-directory}
+\addcontentsline{toc}{subsubsection}{Create a Book Directory}
 
 You should create a devoted folder on your computer for this book. All
 examples will assume this folder is located here:
 \texttt{C:/Users/YOU/Documents/R-Book}. Change \texttt{YOU} to be
 specific for your computer.
 
-\hypertarget{data-sets}{\subsection*{Data Sets}\label{data-sets}}
-\addcontentsline{toc}{subsection}{Data Sets}
+\hypertarget{data-sets}{\subsubsection*{Data Sets}\label{data-sets}}
+\addcontentsline{toc}{subsubsection}{Data Sets}
 
 The data sets\footnote{Many of the data sets used in this book were
   simulated by the author. Cases in which the data set used was not
@@ -384,7 +430,7 @@ or no help, that means you have mastered that chapter's material!
   \(Equations\): it is sometimes useful to describe concepts
   mathematically before showing how to do it in R.
 \item
-  \footnote{This is a footnote. If your viewing this on GitHub Pages,
+  \footnote{This is a footnote. If you're viewing this on GitHub Pages,
     click the arrow to the right to return to the text}: a footnote
   containing more information.
 \end{itemize}
@@ -430,7 +476,7 @@ location when trying to remember how to use a skill. It also allowed for
 multiple formats to be published including both HTML and PDF versions.
 
 The book is hosted on \href{https://pages.github.com/}{GitHub Pages},
-and was last built on 10-10-2018.
+and was last built on 10-17-2018.
 
 \section*{About the Author}\label{about-the-author}
 \addcontentsline{toc}{section}{About the Author}
@@ -472,60 +518,26 @@ You will learn:
   how to write your own functions
 \end{itemize}
 
-\section*{Before You Begin: Install R and
-RStudio}\label{before-you-begin-install-r-and-rstudio}
-\addcontentsline{toc}{section}{Before You Begin: Install R and RStudio}
+\section*{Before You Begin}\label{before-you-begin}
+\addcontentsline{toc}{section}{Before You Begin}
 
-First off, you will need to get R and RStudio\footnote{While it is
-  possible to run R on its own, it is clunky. You are strongly advised
-  to use the RStudio IDE (integrated development environment) given its
-  compactness, neat features, code tools (like syntax and parentheses
-  highlighting). This workshop will assume you are using RStudio} onto
-your computer. Go to:
-
-\begin{itemize}
-\tightlist
-\item
-  \url{https://cran.rstudio.com/} to get R and
-\item
-  \url{https://www.rstudio.com/products/rstudio/download/} to get
-  RStudio Desktop.
-\end{itemize}
-
-Download the appropriate installation file for your operating system and
-run that file. All default settings should be fine.
+Before you start this chapter, you should make sure you have read and
+done everything in the \protect\hyperlink{overview}{Overview} pertaining
+to \protect\hyperlink{comp-prep}{preparing your computer} for working
+through this book.
 
 \section{The R Studio Interface}\label{the-r-studio-interface}
 
-Once you open up RStudio for the first time, you will see three panes:
-the left hand side is the \textbf{console} where results from executed
+When you open up RStudio for the first time, you will see three panes:
+the left-hand side is the \textbf{console} where results from executed
 commands are printed, and the two panes on the right are for additional
 information to help you code more efficiently - don't worry too much
 about what these are at the moment. For now, focus your attention on the
 console.
 
-As a matter of personal preference, you are recommended to configure a
-few settings. Go to \emph{Tools \textgreater{} Global Options}, and in
-the section listed ``General'':
-
-\begin{itemize}
-\tightlist
-\item
-  Make sure ``Restore .RData into workspace at startup'' is
-  \emph{unchecked}
-\item
-  Make sure ``Save workspace to .RData on exit'' is set to \emph{Never}
-\item
-  Make sure ``Always save history (even when not saving .RData)'' is
-  \emph{unchecked}
-\end{itemize}
-
-These settings will prevent you from getting a bunch of useless files
-and dialog boxes every time you open and close R.
-
 \subsection{Write Some Simple Code}\label{write-some-simple-code}
 
-To start off, you will just use R as a calculator. Type these commands
+To start off, you will use R as a simple calculator. Type these commands
 (not the lines with \texttt{\#\#}, those are output\footnote{The
   formatting used here includes \texttt{\#\#} on output to denote code
   and output separately. You won't see the \texttt{\#\#} show up in your
@@ -702,7 +714,8 @@ To set the working directory to
   Files are read from and written to a consistent and predictable place
   every time
 \item
-  Everything for your analysis is organized into one place
+  Everything for your analysis is organized into one place on your
+  computer
 \item
   You don't have to continuously type file paths to your work. If
   \texttt{file.txt} is a file in your current working directory, you can
@@ -737,10 +750,11 @@ Here, \texttt{fun()} is the \textbf{function name} and \texttt{arg1} and
 form of the arguments, do some task with them, then return some output.
 The parentheses are a sure sign that \texttt{fun()} is a function.
 
-We have passed the function two arguments by name: all functions have
-arguments, all arguments have names, and there is always a default order
-to the arguments. If you memorize the argument order of functions you
-use frequently, you don't have to specify the argument name:
+The syntax above passes the function two arguments by name: all
+functions have arguments, all arguments have names, and there is always
+a default order to the arguments. If you memorize the argument order of
+functions you use frequently, you don't have to specify the argument
+names:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -764,19 +778,19 @@ Here's a real example:
 \end{verbatim}
 
 The function is \texttt{print()}, the argument is \texttt{x}, and the
-value we have supplied the argument is the object \texttt{z}. The task
+value you have supplied the argument is the object \texttt{z}. The task
 that \texttt{print()} does is to print the value of \texttt{z} to the
 console.
 
 R has a ton of built-in documentation to help you learn how to use a
-function. Take a look at the help file for the mean function. Run
-\texttt{?mean} in the console: a window on the right-hand side of the R
-Studio interface should open. The help file tells you what goes into a
-function and what comes out. For more complex functions it also tells
-you what all of the options (i.e., arguments) can do. Help files can be
-a bit intimidating to interpret at first, but they are all organized the
-same and once you learn their layout you will know where to go to find
-the information you're looking for.
+function. Take a look at the help file for the \texttt{mean()} function.
+Run \texttt{?mean} in the console: a window on the right-hand side of
+the R Studio interface should open. The help file tells you what goes
+into a function and what comes out. For more complex functions it also
+tells you what all of the options (i.e., arguments) can do. Help files
+can be a bit intimidating to interpret at first, but they are all
+organized the same and once you learn their layout you will know where
+to go to find the information you're looking for.
 
 \subsection{Vectors}\label{vectors}
 
@@ -1370,7 +1384,7 @@ Circle & 30 & 1600 & 15\\
 It is rare that you will enter data by hand as you did in Exercise 1A.
 Often, you have a data set that you wish to analyze or manipulate that
 is stored in a spreadsheet. R has several ways to read information from
-data files and in this workshop, we will be using a common and simple
+data files and in this book, you will be using a common and simple
 method: reading in \texttt{.csv} files. \texttt{.csv} files are data
 files that separate columns with commas\footnote{Note that if your
   computer is configured for a Spanish-speaking country, Microsoft Excel
@@ -1471,9 +1485,9 @@ are able to get \texttt{read.csv} to run successfully.
   \begin{itemize}
   \tightlist
   \item
-    Hard code an \texttt{NA} into that cell in Excel
+    Hard code an \texttt{NA} into that cell in your \texttt{.csv} file
   \item
-    Leave that cell completely empty
+    Leave that cell completely empty in your \texttt{.csv} file
   \item
     Enter in some other character (e.g., \texttt{"."}) alone in all
     cells that are meant to be coded as \texttt{NA} in R and use the
@@ -1563,7 +1577,7 @@ Note that R counts missing values as elements as well:
 \end{verbatim}
 
 To get the dimensions of an object with more than one dimension (i.e., a
-data frame or matrix) we can use the \texttt{dim()} function. This
+data frame or matrix) you can use the \texttt{dim()} function. This
 returns a vector with two elements: the first number is the number of
 rows and the second is the number of columns. If you only want one of
 these, use the \texttt{nrow()} or \texttt{ncol()} functions (but
@@ -1737,10 +1751,11 @@ can be made (e.g., whether to operate a given subroutine, whether to
 keep certain rows, whether to print the output, etc.).
 
 Define a simple object: \texttt{x\ =\ 5} . Note that this will write
-over what was previously stored in the object \texttt{x}. We wish to ask
-some questions of the new \texttt{x}, and the answer will be printed to
-the console as a \texttt{TRUE} for ``yes'' and a \texttt{FALSE} for
-``no''. Below are the common Boolean operators.
+over what was previously stored in the object \texttt{x}. Suppose you
+want to ask some questions of the new object \texttt{x} and have the
+answer printed to the console as a \texttt{TRUE} for ``yes'' and a
+\texttt{FALSE} for ``no''. Below are the common Boolean operators and
+their usage in R.
 
 \subsubsection*{Equality}\label{equality}
 \addcontentsline{toc}{subsubsection}{Equality}
@@ -1758,7 +1773,9 @@ To ask if \texttt{x} is exactly equal to 5, you run:
 \end{verbatim}
 
 Note the use of the double \texttt{==} to denote equality as opposed to
-the single \texttt{=} as used in assignment (\texttt{x\ =\ 5}).
+the single \texttt{=} as used in assignment (e.g., \texttt{x\ =\ 5}) or
+in argument specification (e.g.,
+\texttt{mean(dat\$flow,\ na.rm\ =\ T)}).
 
 \subsubsection*{Inequalities}\label{inequalities}
 \addcontentsline{toc}{subsubsection}{Inequalities}
@@ -1774,6 +1791,9 @@ To ask if \texttt{x} is not equal to 5, you run:
 \begin{verbatim}
 ## [1] FALSE
 \end{verbatim}
+
+The \texttt{!} is the logical \textbf{not} in R, and can be used to flip
+the direction of any \texttt{T} to a \texttt{F} or \emph{vice versa}.
 
 To ask if \texttt{x} is less than 5, you run:
 
@@ -1937,28 +1957,9 @@ To exclude all of the data from Alabama, you would run:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{dat[}\OperatorTok{!}\NormalTok{dat}\OperatorTok{$}\NormalTok{state }\OperatorTok{==}\StringTok{ "Alabama"}\NormalTok{,]}
+\NormalTok{dat[dat}\OperatorTok{$}\NormalTok{state }\OperatorTok{!=}\StringTok{ "Alabama"}\NormalTok{,]}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-##        state stream_width   flow
-## 6    Georgia        39.42  57.63
-## 7    Georgia        79.04 123.78
-## 8    Georgia        17.65  31.90
-## 9    Georgia        73.02  95.64
-## 10   Georgia        65.85  95.82
-## 11 Tennessee        54.83  82.30
-## 12 Tennessee        57.38     NA
-## 13 Tennessee        75.93 120.06
-## 14 Tennessee        94.65 135.63
-## 15 Tennessee        73.66 120.61
-## 16   Florida        30.62  28.75
-## 17   Florida        20.43  46.88
-## 18   Florida        80.24 111.34
-## 19   Florida        94.15 149.54
-## 20   Florida        92.50 131.22
-\end{verbatim}
 
 You will be frequently revisiting this skill throughout the workshop.
 
@@ -1989,7 +1990,10 @@ command does nothing. To see this, change the \texttt{==} to a
 \end{Highlighting}
 \end{Shaded}
 
-We can tell R to do multiple things if the logical is \texttt{TRUE} by
+Notice that because \texttt{x} does equal 5, running this line has no
+effect.
+
+You can tell R to do multiple things if the logical is \texttt{TRUE} by
 using curly braces:
 
 \begin{Shaded}
@@ -2379,12 +2383,21 @@ making plots and figures. You will learn:
     histograms
   \end{itemize}
 \item
-  the basics of how to change plot features like the text displayed, the
-  size of points, and the type of points
+  the basics of how to change plot features like:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    the text displayed on axes labels
+  \item
+    the size and type of point symbols
+  \item
+    the color of features
+  \end{itemize}
 \item
   the basics of multi-panel plotting
 \item
-  the basics of the \texttt{par} function
+  the basics of the \texttt{par()} function
 \item
   how to save your plot to an external file
 \end{itemize}
@@ -2407,7 +2420,7 @@ Also note that if you are confused about a topic, you can use
 \textbf{CTRL + F} to find previous cases where that topic has been
 discussed in this book.
 
-\section*{Before You Begin}\label{before-you-begin}
+\section*{Before You Begin}\label{before-you-begin-1}
 \addcontentsline{toc}{section}{Before You Begin}
 
 You should create a new directory and R script for your work in this
@@ -2427,15 +2440,15 @@ system:
   A \textbf{high-level plotting function} is one that is used to make a
   new graph. Examples of higher level plotting functions are the general
   \texttt{plot()} and the \texttt{barplot()} functions. When-a high
-  level plotting function is executed, the currently displayed plot (if
+  level plotting function is executed, the currently-displayed plot (if
   any) is written over.
 \item
   A \textbf{low-level plotting function} is one that is used to modify a
   plot that has already been created. You must already have made a plot
-  using a higher level plotting function before you use lower level
-  plotting functions. Examples include \texttt{text()},
-  \texttt{points()}, and \texttt{lines()}. When a low-level plotting
-  function is executed, the output is simply added to an existing plot.
+  using a high-level plotting function before you use low-level plotting
+  functions. Examples include \texttt{text()}, \texttt{points()}, and
+  \texttt{lines()}. When a low-level plotting function is executed, the
+  output is simply added to an existing plot.
 \item
   The \textbf{graphics device} is the area in which a plot is displayed.
   RStudio has a built in graphics device in its interface (lower right
@@ -2490,7 +2503,7 @@ the arguments \texttt{xlab}, \texttt{ylab}, and \texttt{main} all
 receive a character vector of length 1 as input.
 
 Table \ref{tab:plot-arg-table-pdf} shows information on just a handful
-of them to get you started.
+of the plotting settings to get you started.
 
 \begin{table}
 
@@ -2584,10 +2597,11 @@ once.
 
 The easiest way to add a straight line to a plot is with
 \texttt{abline()}. By default it takes two arguments: \texttt{a} and
-\texttt{b} which are the intercept and slope, respectively, e.g.,
-\texttt{abline(c(0,1))} will draw a 1:1 line. You can also do
-\texttt{abline(h\ =\ 5)} to draw a horizontal line at 5 or
-\texttt{abline(v\ =\ 5)} to draw a vertical line at \texttt{5}.
+\texttt{b} which are the y-intercept and slope, respectively, e.g.,
+\texttt{abline(0,1)} will draw a 1:1 line, as will
+\texttt{abline(c(0,1))}. You can also do \texttt{abline(h\ =\ 5)} to
+draw a horizontal line at 5 or \texttt{abline(v\ =\ 5)} to draw a
+vertical line at \texttt{5}.
 
 You can see that the text is centered on the coordinates
 \texttt{x\ =\ 5} and \texttt{y\ =\ 80} using \texttt{abline()}:
@@ -2611,12 +2625,12 @@ in your device.
 \section{Other High-Level Plotting
 Functions}\label{other-high-level-plotting-functions}
 
-You have just seen the basics of making two dimensional scatter plots
+You have just seen the basics of making two-dimensional scatter plots
 and line plots. You will now explore other types of graphs you can make.
 
 \subsection{The Bar Graph}\label{the-bar-graph}
 
-Another very common graph is a bar graph. R has a \texttt{bargraph()}
+Another very common graph is a bar graph. R has a \texttt{barplot()}
 function, and again, it has lots of arguments. Here you will just make
 two common variations: single bars per group and multiple bars per
 group. Create a vector and plot it:
@@ -2628,7 +2642,7 @@ group. Create a vector and plot it:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-86-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-87-1} \end{center}
 
 Notice that there are no group names on the bars (if \texttt{x1} had
 names, there would be). You can add names by using the argument
@@ -2651,7 +2665,7 @@ another vector and combine it with the old data:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-88-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-90-1} \end{center}
 
 To add multiple bars per group, R needs a matrix like you just made. The
 \textbf{columns} store the heights of the bars that will be placed
@@ -2709,7 +2723,7 @@ automatically assume you want to make a box-and-whisker plot:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-91-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-94-1} \end{center}
 
 In the box-and-whisker plot above, the heavy line is the median, the
 ends of the boxes are the 25\textsuperscript{th} and
@@ -2751,7 +2765,7 @@ anglers fished this year:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-93-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-97-1} \end{center}
 
 Notice the subset that extracts hours fished for tournament anglers only
 before plotting.
@@ -2772,22 +2786,22 @@ bins you want to plot:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-94-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-99-1} \end{center}
 
-\section{\texorpdfstring{The \texttt{par}
-Function}{The par Function}}\label{the-par-function}
+\section{\texorpdfstring{The \texttt{par()}
+Function}{The par() Function}}\label{the-par-function}
 
 If it bothers you that the axes are ``floating'', you can fix this using
 this command:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{par}\NormalTok{(}\DataTypeTok{xaxs =} \StringTok{"i"}\NormalTok{, }\DataTypeTok{yaxs =} \StringTok{"i"}\NormalTok{)}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{xaxs =} \StringTok{"i"}\NormalTok{, }\DataTypeTok{yaxs =} \StringTok{"i"}\NormalTok{, }\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{))}
 \KeywordTok{hist}\NormalTok{(t_hrs, }\DataTypeTok{breaks =}\NormalTok{ breaks, }\DataTypeTok{main =} \StringTok{"Tournament"}\NormalTok{, }\DataTypeTok{col =} \StringTok{"grey"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-95-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-100-1} \end{center}
 
 Here, you changed the graphical parameters of the graphics device by
 using the \texttt{par()} function. Once you change the settings in
@@ -2803,6 +2817,13 @@ be passed to high- and low-level plotting functions (like those in Table
 out the help file (\texttt{?par}) to see everything it can do. If you
 want to start over with fresh \texttt{par()} settings, start a new
 device.
+
+The \texttt{mar} argument controls how many lines of margin text are on
+each side of the plotting region: \texttt{mar{[}1{]}} is the bottom
+margin, \texttt{mar{[}2{]}} is left, \texttt{mar{[}3{]}} is top, and
+\texttt{mar{[}4{]}} is right. There is also \texttt{par(oma\ =\ c())}
+for outer margins. You can specify these in inch units instead of margin
+lines using the \texttt{mai} or \texttt{omi} arguments.
 
 \section{New Temporary Devices}\label{new-temporary-devices}
 
@@ -2837,32 +2858,39 @@ in the \texttt{par()} function.
 Below, the code says ``set up the graphical parameters so that there is
 1 row and 3 columns of plotting regions within the device''. Every time
 you make a new plot, it will go in the next available plotting region
-(regions fill from left to right, and from top to bottom). Make 3
+(regions fill from left to right, and from top to bottom; use
+\texttt{mfcol} if you wish to fill columns before rows). Make 3
 histograms, each that represents a different sector of the fishery:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{))}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{), }\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{), }\DataTypeTok{oma =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{))}
 \KeywordTok{sapply}\NormalTok{(}\KeywordTok{levels}\NormalTok{(dat}\OperatorTok{$}\NormalTok{fishery), }\ControlFlowTok{function}\NormalTok{(f) \{}
   \KeywordTok{hist}\NormalTok{(dat}\OperatorTok{$}\NormalTok{hours[dat}\OperatorTok{$}\NormalTok{fishery }\OperatorTok{==}\StringTok{ }\NormalTok{f], }\DataTypeTok{main =}\NormalTok{ f, }\DataTypeTok{xlab =} \StringTok{""}\NormalTok{)}
 \NormalTok{\})}
+\KeywordTok{mtext}\NormalTok{(}\DataTypeTok{side =} \DecValTok{2}\NormalTok{, }\DataTypeTok{outer =}\NormalTok{ T, }\DataTypeTok{line =} \FloatTok{1.5}\NormalTok{, }\StringTok{"Frequency"}\NormalTok{, }\DataTypeTok{cex =} \FloatTok{0.8}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-97-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-101-1} \end{center}
 
 Here, \texttt{sapply()} applied a user-defined function that plots a
 histogram for a given fishery type to each of the fishery types
 separately\footnote{\texttt{sapply()} works like \texttt{apply()},
   except on vectors only so you don't need to supply it with a
   \texttt{1} or \texttt{2} for rows or columns}, which allowed you to
-only need to type the \texttt{hist()} code once. There are other ways to
-make multi-panel plots, however, they are beyond the scope of this
-introductory material. See \texttt{?layout} for details. With this
-function you can change the size of certain plots and make them have
-different shapes (i.e., some squares, some rectangles, etc.), but it
-takes some pretty involved (though not impossible, by any means)
-specification of how you want the device to be split up into regions.
+only need to type the \texttt{hist()} code once. Notice the
+\texttt{par(oma)} setting to add outer margins on the left and the
+\texttt{mtext()} function to add a common y-axis label to all the
+figures.
+
+There are other ways to make multi-panel plots, however, they are beyond
+the scope of this introductory material. See \texttt{?layout} for
+details. With this function you can change the size of certain plots and
+make them have different shapes (i.e., some squares, some rectangles,
+etc.), but it takes some pretty involved (though not impossible, by any
+means) specification of how you want the device to be split up into
+regions.
 
 \section{Legends}\label{legends}
 
@@ -2876,6 +2904,7 @@ made, add the legend:
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{))}
 \KeywordTok{barplot}\NormalTok{(x3, }\DataTypeTok{beside =}\NormalTok{ T, }
         \DataTypeTok{names.arg =} \KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"c"}\NormalTok{),}
         \DataTypeTok{col =} \KeywordTok{c}\NormalTok{(}\StringTok{"skyblue2"}\NormalTok{, }\StringTok{"tomato2"}\NormalTok{))}
@@ -2884,7 +2913,7 @@ made, add the legend:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-98-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-102-1} \end{center}
 
 The box can be removed using the \texttt{bty\ =\ "n"} argument and the
 size can be changed using \texttt{cex}. The position can be specified
@@ -2915,7 +2944,7 @@ Here is a more complex example:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-99-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-103-1} \end{center}
 
 Notice that you need to be careful about the order of how you specify
 which \texttt{lty} and \texttt{pch} settings match up with the elements
@@ -2925,20 +2954,19 @@ specified that the \texttt{lty\ =\ 2} but didn't specify what
 ``Tournament'' group first in the \texttt{legend} argument vector, you
 must be sure to use the corresponding plotting codes. The first element
 of the \texttt{lty} argument matches up with the first element of
-\texttt{legend}, and so on. Note the other plotting tricks used in the
-code above: changing the margins using \texttt{par(mar)} (the margins
-are always in this order:
-\texttt{c("bottom",\ "left",\ "top",\ "right")}) and the rotation of
-y-axis tick mark labels using \texttt{las\ =\ 1}.
+\texttt{legend}, and so on. Note the other new plotting trick used in
+the code above: the rotation of y-axis tick mark labels using
+\texttt{las\ =\ 1}.
 
 \section{Exporting Plots}\label{exporting-plots}
 
-There are two main ways to save plots. First is a quick-and-dirty
-point-and-click method that saves the plots in low-resolution. Because
-you have to point and click, this cannot be automated. The second method
-produces cleaner-looking high-resolution plots with code that can be
-embedded in your script, ensuring the same exact plot will be created
-each time the code is executed.
+There are two main ways to save static permanent copies of your R plots.
+The first is a quick-and-dirty point-and-click method that saves the
+plots in low-resolution. Because you have to point and click, this
+cannot be automated. The second method produces cleaner-looking
+high-resolution plots with code that can be embedded in your script,
+ensuring the same exact plot will be created each time the code is
+executed.
 
 \subsection{Click Save}\label{click-save}
 
@@ -2967,7 +2995,7 @@ If you are producing plots for a final report or publication, you want
 the output to be as clean-looking as possible and you want them to be
 fully reproducible so when something changes with your data or analysis
 in review, you can reproduce the same figure with the new results. You
-can save high-resolution plots through R by using the following steps:
+can save high-resolution plots using the following steps:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2989,8 +3017,10 @@ A file will be saved in your working directory containing the plot made
 by the code in step 3 above. The \texttt{ppi} object is pixels-per-inch.
 When you specify \texttt{h\ =\ 8\ *\ ppi}, you are saying ``make a plot
 with height equal to 8 inches''. There are similar functions to make
-PDFs, tiff files, jpegs, etc. You should save one of the plots you made
-in this Chapter using this approach.
+PDFs, tiff files, jpegs, etc. If you use \texttt{pdf()}, simply specify
+\texttt{h} and \texttt{w} without the \texttt{ppi} and no \texttt{res}
+argument. You should save one of the plots you made in this Chapter
+using this approach.
 
 \section{Bonus Topic: Error Bars}\label{error-bars}
 
@@ -3023,11 +3053,12 @@ remember how \texttt{tapply()} works, revisit Section
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{x_bar =}\StringTok{ }\KeywordTok{tapply}\NormalTok{(dat}\OperatorTok{$}\NormalTok{hours, dat}\OperatorTok{$}\NormalTok{fishery, mean)}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
 \KeywordTok{barplot}\NormalTok{(x_bar)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-101-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-105-1} \end{center}
 
 Say you want to add error bars that represent 95\% confidence intervals
 on the mean. You can create a 95\% confidence interval using this basic
@@ -3084,12 +3115,13 @@ Then draw them on using the \texttt{arrows()} function:
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
 \NormalTok{mp =}\StringTok{ }\KeywordTok{barplot}\NormalTok{(x_bar, }\DataTypeTok{ylim =} \KeywordTok{range}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, upr)))}
 \KeywordTok{arrows}\NormalTok{(}\DataTypeTok{x0 =}\NormalTok{ mp, }\DataTypeTok{y0 =}\NormalTok{ lwr, }\DataTypeTok{x1 =}\NormalTok{ mp, }\DataTypeTok{y1 =}\NormalTok{ upr, }\DataTypeTok{length =} \FloatTok{0.1}\NormalTok{, }\DataTypeTok{angle =} \DecValTok{90}\NormalTok{, }\DataTypeTok{code =} \DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-105-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-109-1} \end{center}
 
 Notice four things:
 
@@ -3108,7 +3140,7 @@ Notice four things:
   The use of \texttt{ylim\ =\ range(c(0,\ upr))}: you want the y-axis to
   show the full range of all the error bars.
 \item
-  The three arguments at the end of \texttt{arrows}:
+  The three arguments at the end of \texttt{arrows()}:
 
   \begin{itemize}
   \tightlist
@@ -3141,7 +3173,7 @@ the lake, the sockeye salmon must successfully pass through a total of
 eight dams that have fish passage mechanisms in place. The Redfish Lake
 population is one of the most endangered sockeye populations in the U.S.
 and travels farther (1,448 km), higher (1,996 m), and is the
-southernmost population of all sockeye populations in the world
+southernmost breeding population of all sockeye populations in the world
 \citep{sockeye-cite}. Given this uniqueness, a captive breeding program
 was initiated in 1991 to conserve the genes from this population. These
 data came from both hatchery-raised and wild fish and include average
@@ -3228,7 +3260,7 @@ to:
   \item
     simple linear regression models
   \item
-    T-tests (also ANOVA)
+    ANOVA (same as \(t\)-test but with only two groups)
   \item
     ANCOVA models
   \item
@@ -3246,7 +3278,7 @@ R has gained popularity as a statistics software and is commonly used
 both in academia and governmental resource agencies. This popularity is
 likely a result of its power, flexibility, intuitive nature, and price
 (free!). For many students, this chapter may be the one that is most
-immediately useful.
+immediately useful for applying R to their own work.
 
 \textbf{IMPORTANT NOTE}: If you did not attend the sessions
 corresponding to Chapters \ref{ch1} or \ref{ch2}, you are recommended to
@@ -3255,7 +3287,7 @@ this material. Also note that if you are confused about a topic, you can
 use \textbf{CTRL + F} to find previous cases where that topic has been
 discussed in this book.
 
-\section*{Before You Begin}\label{before-you-begin-1}
+\section*{Before You Begin}\label{before-you-begin-2}
 \addcontentsline{toc}{section}{Before You Begin}
 
 You should create a new directory and R script for your work in this
@@ -3279,10 +3311,10 @@ variable(s) (\(x_n\)) and is often written as:
 
 where the subscript \(i\) represents an individual observation. The
 predictor variable(s) can be either categorical (i.e., grouping
-variables used in ANOVA, t-test, etc.), continuous (regression), or a
-combination of categorical and continuous (ANCOVA). The main purpose of
-fitting a linear model is to estimate the coefficients (\(\beta\)), and
-in some cases to determine if their values are ``significantly''
+variables used in ANOVA, \(t\)-test, etc.), continuous (regression), or
+a combination of categorical and continuous (ANCOVA). The main purpose
+of fitting a linear model is to estimate the coefficients (\(\beta\)),
+and in some cases to determine if their values are ``significantly''
 different from the value assumed by some null hypothesis.
 
 The model makes several assumptions about the residuals\footnote{The
@@ -3298,7 +3330,7 @@ coefficients. For reliable inference, the residuals must:
 \item
   be normally-distributed
 \item
-  have constant variance across range of the x-axis
+  have constant variance across the range that \(x_n\) was observed
 \end{itemize}
 
 In R, the general linear model is fitted using the \texttt{lm()}
@@ -3306,7 +3338,7 @@ function. The basic syntax is
 \texttt{lm(y\ \textasciitilde{}\ x,\ data\ =\ dat)}\footnote{This should
   look familiar from Section \ref{box-whisker}}; it says: ``fit a model
 with \texttt{y} as the response variable and \texttt{x} as the sole
-predictor variable, look for those variables in a data frame called
+predictor variable, and look for those variables in a data frame called
 \texttt{dat}''.
 
 \subsection{Simple Linear Regression}\label{regression}
@@ -3440,7 +3472,7 @@ function. Make a new plot and add the fitted regression line:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-113-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-118-1} \end{center}
 
 It fits, but not very well. It seems there are two groups: one with data
 points mostly above the line and one with data points mostly below the
@@ -3622,7 +3654,7 @@ interpreted as:
   \(\beta_1\): the difference in mean \texttt{fecund} at the same
   weight: \texttt{"wild"} - \texttt{"hatch"}
 \item
-  \(\beta_2\): the slope of the \texttt{fecund} \emph{vs.}
+  \(\beta_2\): the slope of the \texttt{fecund} \emph{versus}
   \texttt{weight} relationship (this model assumes the lines have common
   slopes, i.e., that the lines are parallel)
 \end{itemize}
@@ -3644,11 +3676,7 @@ summary:
 ## weight         0.5173716   0.1051039 4.922477 2.164460e-05
 \end{verbatim}
 
-And you can plot the fit. Study this code to make sure you know what
-each line is doing. Use what you know about the meanings of the three
-coefficients to decipher the two \texttt{abline()} commands. Remember
-that \texttt{abline()} takes takes two arguments: \texttt{a} is the
-intercept and \texttt{b} is the slope.
+And you can plot the fit:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3661,7 +3689,13 @@ intercept and \texttt{b} is the slope.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-120-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-126-1} \end{center}
+
+Study this code to make sure you know what each line is doing. Use what
+you know about the meanings of the three coefficients to decipher the
+two \texttt{abline()} commands. Remember that \texttt{abline()} takes
+takes two arguments: \texttt{a} is the intercept and \texttt{b} is the
+slope.
 
 \subsection{Interactions}\label{interactions}
 
@@ -3729,7 +3763,7 @@ decipher the two \texttt{abline()} commands.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-122-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-129-1} \end{center}
 
 Based on the coefficients table:
 
@@ -3781,16 +3815,17 @@ and sort the table by increasing values of AIC:
 \end{verbatim}
 
 In general, AIC values that are different by more than 2 units are
-interpreted as having importantly different predictive performance.
-Based on this very quick-and-dirty analysis, it seems that in predicting
-future fecundity, you would want to use the interactive ANCOVA model.
+interpreted as having importantly different predictive performance
+\citep{aic-cite}. Based on this very quick-and-dirty analysis, it seems
+that in predicting future fecundity, you would want to use the
+interactive ANCOVA model.
 
 \section{The Generalized Linear Model}\label{glms}
 
 The models you fitted above are called ``general linear models''. They
 all make the assumption that the residuals (\(\varepsilon_i\)) are
 normally-distributed and that the response variable and the predictor
-variables are linearly related. Oftentimes data and analyses do not
+variables are linearly-related. Oftentimes data and analyses do not
 follow this assumption. For such cases you should use the broader family
 of statistical models known as \textbf{generalized linear
 models}\footnote{General linear models are a member of this family}.
@@ -3845,23 +3880,23 @@ log. But, if you want to know the probability of the outcome
 \texttt{p{[}i{]}}, you have to apply the inverse logit function:
 
 \begin{equation}
-  expit(lp_i)=\frac{e^{lp_i}}{1 + e^{lp_i}}
+  expit(\eta_i)=\frac{e^{\eta_i}}{1 + e^{\eta_i}}
 \label{eq:expit}
 \end{equation}
 
-where \(lp_i = logit(p_i)\). Make an R function to perform the inverse
+where \(\eta_i = logit(p_i)\). Make an R function to perform the inverse
 logit transformation to the probability scale:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{expit =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(lp) \{  }\CommentTok{# lp stands for logit(p)}
-  \KeywordTok{exp}\NormalTok{(lp)}\OperatorTok{/}\NormalTok{(}\DecValTok{1} \OperatorTok{+}\StringTok{ }\KeywordTok{exp}\NormalTok{(lp))}
+\NormalTok{expit =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(eta) \{  }\CommentTok{# lp stands for logit(p)}
+  \KeywordTok{exp}\NormalTok{(eta)}\OperatorTok{/}\NormalTok{(}\DecValTok{1} \OperatorTok{+}\StringTok{ }\KeywordTok{exp}\NormalTok{(eta))}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
-Because all of the fitted beta coefficients are on the log scale, you
-cannot make easy interpretations about the relationships between the
+Because all of the fitted \(\beta\) coefficients are on the log scale,
+you cannot make easy interpretations about the relationships between the
 predictor variables and the observed outcomes without making these
 transformations. The following example will take you through the steps
 to fit a logistic regression model and how to interpret the model
@@ -3870,8 +3905,8 @@ outputs using these functions.
 Fit a logistic regression model to the sockeye salmon data. None of the
 variables of interest are binary, but you can create one. Look at the
 variable \texttt{dat\$survival}. This is the average \% survival of all
-eggs laid that make it to the ``eyed-egg'' stage. Any year with over
-70\% egg survival we will consider a successful year, so create a new
+eggs laid that make it to the ``eyed-egg'' stage. Suppose any year with
+over 70\% egg survival is considered a successful year, so create a new
 variable \texttt{binary} which takes on a 0 if \texttt{dat\$survival} is
 less than 70\% and a 1 otherwise.
 
@@ -3881,9 +3916,10 @@ less than 70\% and a 1 otherwise.
 \end{Highlighting}
 \end{Shaded}
 
-This will be your response variable and your model will estimate how the
-probability of \texttt{binary} being a \texttt{1} changes (or doesn't)
-depending on the value of other variables.
+This will be your response variable (\(y\)) and your model will estimate
+how the probability (\(p\)) of \texttt{binary} being a \texttt{1}
+changes (or doesn't) depending on the value of other variables
+(\(x_{n}\)).
 
 Analogous to the simple linear regression model (Section
 \ref{regression}), estimate how \(p\) changes with \texttt{weight}: (How
@@ -3932,15 +3968,12 @@ having at least 70\% egg survival to the stage of interest):
     \(e^{\beta_1}\) is the ratio of the odds of success at two
     consective weights (e.g., 1500 and 1501) and Claims about
     \(e^{\beta_1}\) are made as ``for every one gram increase in average
-    weight, success became * \(e^{\beta_1}\) times as likely to
-    happen''.
+    weight, success became \(e^{\beta_1}\) times as likely to happen''.
   \end{itemize}
 \item
   You can predict the probability of success at any weight using
-  \(expit(\beta_0 + \beta_1 weight)\)
+  \(expit(\beta_0 + \beta_1 weight)\):
 \end{itemize}
-
-You can plot the fitted model:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3951,13 +3984,18 @@ You can plot the fitted model:
 
 \CommentTok{# extract the coefficients and get p}
 \NormalTok{p =}\StringTok{ }\KeywordTok{expit}\NormalTok{(}\KeywordTok{coef}\NormalTok{(fit1)[}\DecValTok{1}\NormalTok{] }\OperatorTok{+}\StringTok{ }\KeywordTok{coef}\NormalTok{(fit1)[}\DecValTok{2}\NormalTok{] }\OperatorTok{*}\StringTok{ }\NormalTok{wt_seq)}
+\end{Highlighting}
+\end{Shaded}
 
-\CommentTok{# plot the relationship}
+You can plot the fitted model:
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \KeywordTok{plot}\NormalTok{(p }\OperatorTok{~}\StringTok{ }\NormalTok{wt_seq, }\DataTypeTok{type =} \StringTok{"l"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{, }\DataTypeTok{ylim =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{), }\DataTypeTok{las =} \DecValTok{1}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-129-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-138-1} \end{center}
 
 Fit another model comparing the probability of success between hatchery
 and wild fish (analogous to the ANOVA model in Section \ref{anova}):
@@ -4002,7 +4040,7 @@ Incorporate the origin type into your original model:
 \end{Highlighting}
 \end{Shaded}
 
-and obtain/plot the fitted probabilities for each group:
+and obtain the fitted probabilities for each group at each weight:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4014,7 +4052,13 @@ and obtain/plot the fitted probabilities for each group:
 \NormalTok{  fit3, }\DataTypeTok{newdata =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{type =} \StringTok{"wild"}\NormalTok{, }\DataTypeTok{weight =}\NormalTok{ wt_seq),}
   \DataTypeTok{type =} \StringTok{"response"}
 \NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
+and plot them:
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \KeywordTok{plot}\NormalTok{(p_wild }\OperatorTok{~}\StringTok{ }\NormalTok{wt_seq, }\DataTypeTok{type =} \StringTok{"l"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{, }\DataTypeTok{lty =} \DecValTok{1}\NormalTok{,}
      \DataTypeTok{ylim =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{), }\DataTypeTok{las =}\DecValTok{1}\NormalTok{,}
      \DataTypeTok{xlab =} \StringTok{"Weight (g)"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"Pr(>70% Egg Survival)"}
@@ -4025,14 +4069,26 @@ and obtain/plot the fitted probabilities for each group:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-133-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-144-1} \end{center}
 
 Look for an interaction (all the code is the same except use
 \texttt{glm(binary\ \textasciitilde{}\ type\ *\ weight)} instead of
 \texttt{glm(binary\ \textasciitilde{}\ type\ +\ weight)} and change
 everything to \texttt{fit4} instead of \texttt{fit3}).
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-134-1} \end{center}
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(p_wild }\OperatorTok{~}\StringTok{ }\NormalTok{wt_seq, }\DataTypeTok{type =} \StringTok{"l"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{, }\DataTypeTok{lty =} \DecValTok{1}\NormalTok{,}
+     \DataTypeTok{ylim =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{), }\DataTypeTok{las =}\DecValTok{1}\NormalTok{,}
+     \DataTypeTok{xlab =} \StringTok{"Weight (g)"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"Pr(>70% Egg Survival)"}
+\NormalTok{     )}
+\KeywordTok{lines}\NormalTok{(p_hatch }\OperatorTok{~}\StringTok{ }\NormalTok{wt_seq, }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{, }\DataTypeTok{lty =} \DecValTok{2}\NormalTok{)}
+\KeywordTok{legend}\NormalTok{(}\StringTok{"topright"}\NormalTok{, }\DataTypeTok{legend =} \KeywordTok{c}\NormalTok{(}\StringTok{"Hatchery"}\NormalTok{, }\StringTok{"Wild"}\NormalTok{),}
+       \DataTypeTok{lty =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{), }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{, }\DataTypeTok{bty =} \StringTok{"n"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-147-1} \end{center}
 
 \subsection{AIC Model Selection}\label{aic-model-selection-1}
 
@@ -4129,13 +4185,11 @@ plot illustrating them:
 \begin{Highlighting}[]
 \CommentTok{# parameters}
 \NormalTok{mu =}\StringTok{ }\DecValTok{500}\NormalTok{; sig =}\StringTok{ }\DecValTok{50}
-
 \CommentTok{# a sequence of possible random variables (fish lengths)}
 \NormalTok{lengths =}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DecValTok{200}\NormalTok{, }\DecValTok{700}\NormalTok{, }\DataTypeTok{length =} \DecValTok{100}\NormalTok{)}
-
 \CommentTok{# a sequence of possible cumulative probabilities}
 \NormalTok{cprobs =}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DataTypeTok{length =} \DecValTok{100}\NormalTok{)}
-
+\CommentTok{# use the four functions}
 \NormalTok{densty =}\StringTok{ }\KeywordTok{dnorm}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ lengths, }\DataTypeTok{mean =}\NormalTok{ mu, }\DataTypeTok{sd =}\NormalTok{ sig)  }\CommentTok{# takes specific lengths}
 \NormalTok{cuprob =}\StringTok{ }\KeywordTok{pnorm}\NormalTok{(}\DataTypeTok{q =}\NormalTok{ lengths, }\DataTypeTok{mean =}\NormalTok{ mu, }\DataTypeTok{sd =}\NormalTok{ sig)  }\CommentTok{# takes specific lengths}
 \NormalTok{quants =}\StringTok{ }\KeywordTok{qnorm}\NormalTok{(}\DataTypeTok{p =}\NormalTok{ cprobs, }\DataTypeTok{mean =}\NormalTok{ mu, }\DataTypeTok{sd =}\NormalTok{ sig)   }\CommentTok{# takes specific probabilities}
@@ -4151,7 +4205,6 @@ plot illustrating them:
   \DataTypeTok{mgp =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\FloatTok{0.4}\NormalTok{,}\DecValTok{0}\NormalTok{),  }\CommentTok{# bring in axis titles ([1]) and tick labels ([2])}
   \DataTypeTok{tcl =} \OperatorTok{-}\FloatTok{0.25}        \CommentTok{# shorten tick marks}
 \NormalTok{)}
-
 \KeywordTok{plot}\NormalTok{(densty }\OperatorTok{~}\StringTok{ }\NormalTok{lengths, }\DataTypeTok{type =} \StringTok{"l"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{, }\DataTypeTok{main =} \StringTok{"dnorm()"}\NormalTok{,}
      \DataTypeTok{xlab =} \StringTok{"Fish Length (mm)"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"Density"}\NormalTok{, }\DataTypeTok{las =} \DecValTok{1}\NormalTok{,}
      \DataTypeTok{yaxt =} \StringTok{"n"}\NormalTok{) }\CommentTok{# turns off y-axis}
@@ -4191,7 +4244,7 @@ get the original input back:
 
 \texttt{pnorm(0)} asks R to find the probability that \(x\) is less than
 zero for the standard normal distribution (\(N(0,1)\) - this is the
-default if you don't specify \texttt{mean} and \texttt{sig}).
+default if you don't specify \texttt{mean} and \texttt{sd}).
 \texttt{qnorm(pnorm(0))} asks R to find the value of \(x\) that
 \texttt{pnorm(0)} * 100\% of the possible values fall below. If the
 nesting is confusing, this line is the same as:
@@ -4243,7 +4296,7 @@ Plot the data:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-140-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-154-1} \end{center}
 
 You can see a distinct non-linearity to the relationship. The Holling
 Type II functional response\footnote{This function rises quickly at low
@@ -4290,19 +4343,25 @@ however there are a few differences:
 
 Despite these differences, you can obtain similar output as from
 \texttt{lm()} by using the \texttt{summary()}, \texttt{coef()}, and
-\texttt{predict()} functions. Draw the fitted line over top of the data:
+\texttt{predict()} functions.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{prey_seq =}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\KeywordTok{min}\NormalTok{(dat}\OperatorTok{$}\NormalTok{prey), }\KeywordTok{max}\NormalTok{(dat}\OperatorTok{$}\NormalTok{prey), }\DataTypeTok{length =} \DecValTok{100}\NormalTok{)}
 \NormalTok{cons_seq =}\StringTok{ }\KeywordTok{predict}\NormalTok{(fit, }\DataTypeTok{newdata =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{prey =}\NormalTok{ prey_seq))}
+\end{Highlighting}
+\end{Shaded}
 
+Draw the fitted line over top of the data:
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \KeywordTok{plot}\NormalTok{(cons }\OperatorTok{~}\StringTok{ }\NormalTok{prey, }\DataTypeTok{data =}\NormalTok{ dat, }\DataTypeTok{cex =} \FloatTok{1.5}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{16}\NormalTok{, }\DataTypeTok{col =} \StringTok{"grey"}\NormalTok{)}
 \KeywordTok{lines}\NormalTok{(cons_seq }\OperatorTok{~}\StringTok{ }\NormalTok{prey_seq, }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-142-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-158-1} \end{center}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -4320,6 +4379,7 @@ own and only look at the solutions when you are truly stumped.}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
+\tightlist
 \item
   Perform the same analyses as conducted in Section \ref{lm} (simple
   linear regression, ANOVA, ANCOVA, ANCOVA with interaction), using
@@ -4344,8 +4404,15 @@ own and only look at the solutions when you are truly stumped.}
   listed). If you run into trouble, check out the help file for that
   distribution\footnote{Executing \texttt{?rnorm} or any other of the
     \texttt{-norm()} functions will take you to a page with info on all
-    four function types for that distribution}. \#\#\# Exercise 3 Bonus
-  \{-\}
+    four function types for that distribution}.
+\end{enumerate}
+
+\subsection*{Exercise 3 Bonus}\label{exercise-3-bonus}
+\addcontentsline{toc}{subsection}{Exercise 3 Bonus}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
 \item
   Fit a von Bertalanffy growth model to the data found in the
   \texttt{growth.csv} data file. Visit Section \ref{boot-test-ex}
@@ -4364,11 +4431,11 @@ spreadsheet-type programs (like Microsoft Excel) and into a program like
 R. R allows you to replicate the same (possibly complex and detailed)
 calculations over and over with different random values. You can then
 summarize and plot the results of these replicated calculations all
-within the same program. Analyses of this type are \textbf{Monte Carlo
-methods}: they randomly sample from a set of quantities for the purpose
-of generating and summarizing a distribution of some statistic related
-to the sampled quantities. If this concept is confusing, hopefully this
-chapter will clarify.
+within the same program. Analyses of this type are called \textbf{Monte
+Carlo methods}: they randomly sample from a set of quantities for the
+purpose of generating and summarizing a distribution of some statistic
+related to the sampled quantities. If this concept is confusing,
+hopefully this chapter will clarify.
 
 In this chapter, you will learn the basic skills needed for simulation
 (i.e., Monte Carlo) modeling in R including:
@@ -4393,7 +4460,7 @@ proceeding to this material. Remember that if you are confused about a
 topic, you can use \textbf{CTRL + F} to find previous cases where that
 topic has been discussed in this book.
 
-\section*{Before You Begin}\label{before-you-begin-2}
+\section*{Before You Begin}\label{before-you-begin-3}
 \addcontentsline{toc}{section}{Before You Begin}
 
 You should create a new directory and R script for your work in this
@@ -4455,7 +4522,7 @@ random process where \(p = 0.8\) and \(n = 100\) like this:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 83
+## [1] 85
 \end{verbatim}
 
 The result you get will almost certainly be different from the one
@@ -4471,7 +4538,7 @@ argument. Plot the distribution of expected surviving individuals:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-146-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-163-1} \end{center}
 
 Another random process is the \textbf{lognormal process}: it generates
 random numbers such that the log of the values are normally-distributed
@@ -4484,7 +4551,7 @@ with mean equal to \texttt{logmean} and standard deviation equal to
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-147-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-165-1} \end{center}
 
 There are many random processes you can use in R. Checkout Table
 \ref{tab:dist-table-pdf} for more examples as well as the help files for
@@ -4505,7 +4572,7 @@ elements from the vector \texttt{x}:
 \end{Shaded}
 
 \begin{verbatim}
-## [1]  1  2 10  7  8
+## [1] 4 5 8 9 6
 \end{verbatim}
 
 You can sample with replacement (where it is possible to sample the same
@@ -4518,7 +4585,7 @@ element two or more times):
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "c" "c" "c" "b" "a" "a" "a" "c" "a" "a"
+##  [1] "b" "c" "b" "c" "a" "c" "b" "b" "c" "c"
 \end{verbatim}
 
 You can set probabilities on the sampling of different
@@ -4533,7 +4600,7 @@ elements\footnote{If \texttt{prob} doesn't sum to 1, then it will be
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "live" "live" "live" "live" "live" "die"  "live" "live" "live" "live"
+##  [1] "live" "live" "die"  "live" "live" "live" "live" "live" "live" "live"
 \end{verbatim}
 
 Notice that this is the same as the binomial random process above, but
@@ -4696,7 +4763,7 @@ store the output of your loop calculations in \texttt{results}:
 \begin{Shaded}
 \begin{Highlighting}[]
 \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{) \{}
-\NormalTok{  results[i]=i}\OperatorTok{^}\DecValTok{2}
+\NormalTok{  results[i] =}\StringTok{ }\NormalTok{i}\OperatorTok{^}\DecValTok{2}
 \NormalTok{\}}
 \NormalTok{results}
 \end{Highlighting}
@@ -4710,7 +4777,7 @@ When \texttt{i\^{}2} is calculated, it will be placed in the element
 \texttt{results{[}i{]}}. This was a trivial example, because you would
 never use a \texttt{for()} loop to do things as simple as vectorized
 calculation. The expression \texttt{(1:5)\^{}2} would give the same
-result in significantly less code (see Section \ref{vector-math}).
+result with significantly less code (see Section \ref{vector-math}).
 
 However, there are times where it is advantageous to use a loop.
 Particularly in cases where:
@@ -4736,8 +4803,8 @@ and death processes result in a growth rate of 10\%) before harvest. The
 growth rate varies randomly, however. Each year, the 1.1 growth factor
 has variability introduced by small changes in survival and reproductive
 process. Model these variations as lognormal random variables. After
-production, 8\% of the population is harvested. Simulate and plot the
-abundance at the end of the year for 100 years:
+production, 8\% of the population is harvested. Simulate the abundance
+at the end of the year for 100 years:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4750,26 +4817,34 @@ abundance at the end of the year for 100 years:
     \CommentTok{# randomness * fraction that survive harvest}
 \NormalTok{  N[t] =}\StringTok{ }\NormalTok{(N[t}\OperatorTok{-}\DecValTok{1}\NormalTok{] }\OperatorTok{*}\StringTok{ }\FloatTok{1.1} \OperatorTok{*}\StringTok{ }\KeywordTok{rlnorm}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\FloatTok{0.1}\NormalTok{)) }\OperatorTok{*}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{-}\StringTok{ }\FloatTok{0.08}\NormalTok{)}
 \NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
 
-\CommentTok{# plot}
+Plot the abundance time series:
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \KeywordTok{plot}\NormalTok{(N, }\DataTypeTok{type =} \StringTok{"l"}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{15}\NormalTok{, }\DataTypeTok{xlab =} \StringTok{"Year"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"Abundance"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-161-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-181-1} \end{center}
 
-Examples of the other three utilities are shown in the example cases.
+Examples of the other three utilities of using \texttt{for()} loops over
+replicate are shown in the example cases and exercises.
 
 \section{Function Writing}\label{adv-funcs}
 
 In Monte Carlo analyses, it is often useful to wrap code into functions.
-This makes them easy to be replicated and have the settings adjusted. As
-an example, turn the population model shown above into a function:
+This allows for easy replication and setting adjustment (e.g., if you
+wanted to compare the growth trajectories of two populations with
+differing growth rates). As an example, turn the population model shown
+above into a function:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{pop_sim =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(nt, grow, sd_grow, U, }\DataTypeTok{plot =}\NormalTok{ F) \{}
-\NormalTok{  N =}\StringTok{ }\OtherTok{NULL} 
+\NormalTok{  N =}\StringTok{ }\OtherTok{NULL} \CommentTok{# empty flexible vector container}
 \NormalTok{  N[}\DecValTok{1}\NormalTok{] =}\StringTok{ }\DecValTok{1000}
   \ControlFlowTok{for}\NormalTok{ (t }\ControlFlowTok{in} \DecValTok{2}\OperatorTok{:}\NormalTok{nt) \{}
 \NormalTok{    N[t] =}\StringTok{ }\NormalTok{(N[t}\OperatorTok{-}\DecValTok{1}\NormalTok{] }\OperatorTok{*}\StringTok{ }\NormalTok{grow }\OperatorTok{*}\StringTok{ }\KeywordTok{rlnorm}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, sd_grow)) }\OperatorTok{*}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{-}\StringTok{ }\NormalTok{U)}
@@ -4813,7 +4888,7 @@ Execute your simulation function once using the same settings as before:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-163-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-183-1} \end{center}
 
 Now, you wish to replicate this simulation 1000 times. Use the
 \texttt{replicate()} function to do this:
@@ -4835,8 +4910,9 @@ function}:
 \begin{itemize}
 \tightlist
 \item
-  If you do the same task over and over, you don't need to type all of
-  the code to perform the task, just the function call.
+  If you do the same task at multiple places in your script, you don't
+  need to type all of the code to perform the task, just the function
+  call.
 \item
   If you need to change the way the function behaves (i.e., the function
   body), you only need to change it in one place: in the function
@@ -4847,8 +4923,9 @@ function}:
 \item
   Function writing can lead to shorter scripts
 \item
-  Function writing can lead to more readable code (if people know what
-  your functions do)
+  Function writing can lead to more readable code (if it is easy for
+  readers to interpret what your functions do - informative function and
+  argument names, as well as documentation can help here)
 \end{itemize}
 
 \section{Summarization}\label{mc-summaries}
@@ -4891,27 +4968,33 @@ easily using the \texttt{quantile()} function:
 \begin{Highlighting}[]
 \CommentTok{# obtain the 10% and 90% quantiles each year across iterations}
 \NormalTok{N_quants =}\StringTok{ }\KeywordTok{apply}\NormalTok{(out, }\DecValTok{1}\NormalTok{, }\ControlFlowTok{function}\NormalTok{(x) }\KeywordTok{quantile}\NormalTok{(x, }\KeywordTok{c}\NormalTok{(}\FloatTok{0.1}\NormalTok{, }\FloatTok{0.9}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
 
-\CommentTok{# plot them as a time series with the mean}
+Notice how a user-defined function was passed to \texttt{apply()}. Now
+plot the summary of the randomized abundances as a time series like
+before:
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \KeywordTok{plot}\NormalTok{(N_mean, }\DataTypeTok{type =} \StringTok{"l"}\NormalTok{, }\DataTypeTok{ylim =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{10000}\NormalTok{))}
 \KeywordTok{lines}\NormalTok{(N_quants[}\DecValTok{1}\NormalTok{,], }\DataTypeTok{lty =} \DecValTok{2}\NormalTok{)}
 \KeywordTok{lines}\NormalTok{(N_quants[}\DecValTok{2}\NormalTok{,], }\DataTypeTok{lty =} \DecValTok{2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-166-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-188-1} \end{center}
 
-Notice how a user-defined function was passed to \texttt{apply()}. The
-range within the two dashed lines represents the range that encompassed
-the central 80\% of the random abundances each year.
+The range within the two dashed lines represents the range that
+encompassed the central 80\% of the random abundances each year.
 
 \subsection{Frequencies}\label{frequencies}
 
 Often you will want to count how many times something happened. In some
 cases, the fraction of times something happened can be interpreted as a
-probability.
+probability of that event occuring.
 
-The \texttt{table()} function is very useful for counting occurrences of
+The \texttt{table()} function is useful for counting occurrences of
 discrete events. Suppose you are interested in how many of your
 iterations resulted in fewer than 1000 individuals at year 10:
 
@@ -5025,7 +5108,7 @@ quantities fall below, both for random numbers and from the
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-173-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-196-1} \end{center}
 
 The fact that all the quantiles fall around the 1:1 line suggests the
 \texttt{n} random samples are indeed from a normal distribution. Any
@@ -5049,7 +5132,7 @@ curve and the one approximated by the random deviates:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-174-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-198-1} \end{center}
 
 The \texttt{ecdf()} function obtains the empirical cumulative density
 function (which is just \texttt{pnorm()} for a sample). It allows you to
@@ -5060,13 +5143,14 @@ less than it.
 
 A \textbf{power analysis} is one where the analyst wishes to determine
 how much power they will have to detect an effect. Power is inversely
-related to the probability of making a type two error: failing to reject
-a false null hypothesis. In other words, having high power means that
+related to the probability of making a Type II Error: failing to reject
+a false null hypothesis\footnote{English: concluding there is no effect
+  when there truly is one}. In other words, having high power means that
 you have a high chance of detecting an effect if an effect truly exists.
-Normally, power depends on the effect size, and the sample size
-\texttt{n}. Strong effects are easier to detect than weak ones, and more
-samples increase the test's sensitivity (the ability to detect weak
-effects).
+Power is a function of the effect size, the sample size \texttt{n}, and
+the variability in the data. Strong effects are easier to detect than
+weak ones, more samples increase the test's sensitivity (the ability to
+detect weak effects), and lower variability results in more power.
 
 You can conduct a power analysis using stochastic simulation (i.e., a
 Monte Carlo analysis). Here, you will write a power analysis to
@@ -5082,7 +5166,7 @@ determine if it will have a meaningful impact on the reliability of the
 study or on the ability of the crew to tag enough individuals that will
 survive long enough to be useful. You and your colleagues determine that
 if the mortality rate of the new tagging method reaches 25\%, then gains
-in time and cost efficiency would be offset by needing to tag more fish
+in time and cost-efficiency would be offset by needing to tag more fish
 (because more will die). You have decided to perform a small-scale study
 to determine if using the new method could result in 25\% or more
 mortality. The study will tag \texttt{n} individuals using both methods
@@ -5200,7 +5284,7 @@ sample size that resulted in a significant difference using the
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-179-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-204-1} \end{center}
 
 Even if you tagged 100 fish total, you would only have a 47\% chance of
 saying the effect (which truly is there!) is present under the null
@@ -5254,17 +5338,17 @@ re-run the analysis:
 \NormalTok{  \}}
 \NormalTok{\}}
 
-\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{), }\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{))}
 \KeywordTok{plot}\NormalTok{(}\KeywordTok{apply}\NormalTok{(out_sig, }\DecValTok{2}\NormalTok{, mean) }\OperatorTok{~}\StringTok{ }\NormalTok{n_try, }\DataTypeTok{type =} \StringTok{"l"}\NormalTok{,}
      \DataTypeTok{xlab =} \StringTok{"Tagged Fish per Treatment"}\NormalTok{,}
      \DataTypeTok{ylab =} \StringTok{"Probability of Finding Effect (Power)"}\NormalTok{)}
 \KeywordTok{plot}\NormalTok{(}\KeywordTok{apply}\NormalTok{(out_prc, }\DecValTok{2}\NormalTok{, mean) }\OperatorTok{~}\StringTok{ }\NormalTok{n_try, }\DataTypeTok{type =} \StringTok{"l"}\NormalTok{,}
      \DataTypeTok{xlab =} \StringTok{"Tagged Fish per Treatment"}\NormalTok{,}
-     \DataTypeTok{ylab =} \StringTok{"Probability of A Precise Estimate"}\NormalTok{)}
+     \DataTypeTok{ylab =} \StringTok{"Probability of a Precise Estimate"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-180-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-205-1} \end{center}
 
 It seems that even if you tagged 50 fish per treatment, you would have a
 59\% chance of estimating that the mortality rate is between 0.2 and 0.3
@@ -5434,7 +5518,7 @@ rate:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-185-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-211-1} \end{center}
 
 It appears the stock could produce more harvest than its current 8.5
 million fish per year if it was fished harder. However, your supervisors
@@ -5446,7 +5530,7 @@ harvest. You can simply re-run the code above, but extracting
 \texttt{S\_out} and plot it just like harvest (if you're curious, this
 blue color is \texttt{col\ =\ "skyblue"}):
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-186-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-212-1} \end{center}
 
 After seeing this information, your supervisor realizes they are faced
 with a trade-off: the stock could produce more with high exploitation
@@ -5477,7 +5561,7 @@ You plot this for your supervisor as follows:
 \CommentTok{# the U levels to highlight on plot}
 \NormalTok{plot_U =}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\FloatTok{0.4}\NormalTok{, }\FloatTok{0.6}\NormalTok{, }\FloatTok{0.05}\NormalTok{)}
 \CommentTok{# create an empty plot}
-\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
 \KeywordTok{plot}\NormalTok{(p_Smeet }\OperatorTok{~}\StringTok{ }\NormalTok{p_Hmeet, }\DataTypeTok{type =} \StringTok{"n"}\NormalTok{,}
      \DataTypeTok{xlab =} \StringTok{"Probability of Meeting Harvest Criterion"}\NormalTok{,}
      \DataTypeTok{ylab =} \StringTok{"Probability of Meeting Escapement Criterion"}\NormalTok{)}
@@ -5494,7 +5578,7 @@ You plot this for your supervisor as follows:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-188-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-214-1} \end{center}
 
 Equipped with this analysis, your supervisor plans to go to the
 policy-makers with the recommendation of adjusting the exploitation rate
@@ -5563,7 +5647,7 @@ Read in and plot the data:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-190-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-216-1} \end{center}
 
 Due to a large amount of variability in individual growth rates, the
 relationship looks pretty noisy. Notice how you have mostly young fish
@@ -5718,7 +5802,7 @@ which all fish are assumed to be mature (450 mm)
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-197-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-224-1} \end{center}
 
 Obtain the fraction of iterations that resulted in the mean
 length-at-age being greater than 450 mm. This is interpreted as the
@@ -5732,7 +5816,7 @@ probability that the average-sized fish of each age is mature:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-198-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-226-1} \end{center}
 
 This \textbf{maturity schedule} can be used by fishery managers in
 attempting to decide which ages should be allowed to be harvested and
@@ -5788,7 +5872,7 @@ Read in and plot the data:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-200-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-228-1} \end{center}
 
 It appears as though there is a relatively strong signal indicating a
 difference. Use the permutation test to determine if it is statistically
@@ -5858,7 +5942,7 @@ the originally-observed difference falls:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-205-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-234-1} \end{center}
 
 Notice the null distribution is centered on zero: this is because the
 null hypothesis is that there is no difference. The observation (blue
@@ -6005,8 +6089,8 @@ These questions will require you to adapt the code written in Section
   Add an \emph{error handler} to \texttt{ricker\_sim()} that will cause
   the function to return an error \texttt{if()} the names of the vector
   passed to the \texttt{param} argument aren't what the function is
-  expecting. You can use stop(``Error Message Goes Here'') to have your
-  function stop and return an error.
+  expecting. You can use \texttt{stop("Error\ Message\ Goes\ Here")} to
+  have your function stop and return an error.
 \item
   How do the results of the trade-off analysis differ if the process
   error was larger (a larger value of \(\sigma\))?
@@ -6037,8 +6121,8 @@ These questions will require you to adapt the code written in Section
   you summarize the 95\% interval range.
 \item
   Compare the 95\% bootstrap confidence intervals to the intervals you
-  get by running the \texttt{predict} function on the original data set
-  with the argument \texttt{interval\ =\ "confidence"}.
+  get by running the \texttt{predict()} function on the original data
+  set with the argument \texttt{interval\ =\ "confidence"}.
 \end{enumerate}
 
 \protect\hyperlink{ex4e-answers}{Solutions}
@@ -6089,7 +6173,7 @@ several separate files. You get the point: sometimes significant
 data-wrangling may be required before you perform an analysis.
 
 In this chapter, you will learn tricks to do more advanced data
-manipulation in R using two R \textbf{packages}:
+manipulation in R using two \textbf{R packages}:
 
 \begin{itemize}
 \tightlist
@@ -6115,7 +6199,7 @@ this material. Additionally, you will find the material in Section
 confused about a topic, you can use \textbf{CTRL + F} to find previous
 cases where that topic has been discussed in this book.
 
-\section*{Before You Begin}\label{before-you-begin-3}
+\section*{Before You Begin}\label{before-you-begin-4}
 \addcontentsline{toc}{section}{Before You Begin}
 
 You should create a new directory and R script for your work in this
@@ -6448,7 +6532,7 @@ that will be discussed later. Now plot the daily catch and escapement
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-224-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-254-1} \end{center}
 
 Notice how the escapement counts are shifted to the right by one day.
 This is the lag. To account for it, you can use the \texttt{lag()}
@@ -6471,7 +6555,7 @@ days):
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-225-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-256-1} \end{center}
 
 Notice how the two curves line up better now.
 
@@ -6565,7 +6649,7 @@ Indeed, you could have made \texttt{run}, \texttt{crun}, and
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-231-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-263-1} \end{center}
 
 \section{Apply to all years}\label{apply-to-all-years}
 
@@ -6655,8 +6739,11 @@ feature that prevents you from printing a huge data set to the console.
 Now plot the cumulative run proportion by day for each year,
 highlighting 2015:
 
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-267-1} \end{center}
+
 \begin{Shaded}
 \begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(sp)}
 \CommentTok{# make an empty plot}
 \KeywordTok{plot}\NormalTok{(}\DataTypeTok{x =} \DecValTok{0}\NormalTok{, }\DataTypeTok{y =} \DecValTok{0}\NormalTok{, }\DataTypeTok{type =} \StringTok{"n"}\NormalTok{, }\DataTypeTok{xlim =} \KeywordTok{range}\NormalTok{(dat}\OperatorTok{$}\NormalTok{doy), }\DataTypeTok{ylim =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}
      \DataTypeTok{xlab =} \StringTok{"DOY"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"Cumulative Run Proportion"}\NormalTok{)}
@@ -6670,8 +6757,6 @@ highlighting 2015:
 \NormalTok{\})}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-235-1} \end{center}
 
 \section{\texorpdfstring{Calculate Daily Means with
 \texttt{summarize()}}{Calculate Daily Means with summarize()}}\label{calculate-daily-means-with-summarize}
@@ -6797,7 +6882,7 @@ just like before, add it after the \texttt{sapply()} call):
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-241-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-274-1} \end{center}
 
 It looks like 2015 started like an average year but the peak of the run
 happened a couple days earlier than average.
@@ -6907,12 +6992,18 @@ numeric variable:
 \StringTok{  }\KeywordTok{gsub}\NormalTok{(}\DataTypeTok{pattern =} \StringTok{"y_"}\NormalTok{, }\DataTypeTok{replacement =} \StringTok{""}\NormalTok{) }\OperatorTok{%>%}
 \StringTok{  }\CommentTok{# turn to a integer vector}
 \StringTok{  }\NormalTok{as.integer}
+\end{Highlighting}
+\end{Shaded}
 
+Now plot the median run dates as a time series:
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \KeywordTok{plot}\NormalTok{(doy }\OperatorTok{~}\StringTok{ }\NormalTok{year, }\DataTypeTok{data =}\NormalTok{ med_doy, }\DataTypeTok{pch =} \DecValTok{16}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-246-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-281-1} \end{center}
 
 It doesn't appear that there is a trend in either direction, but fit a
 regression line because you can (Section \ref{regression}):
@@ -6921,6 +7012,9 @@ regression line because you can (Section \ref{regression}):
 \begin{Highlighting}[]
 \NormalTok{fit =}\StringTok{ }\KeywordTok{lm}\NormalTok{(doy }\OperatorTok{~}\StringTok{ }\NormalTok{year, }\DataTypeTok{data =}\NormalTok{ med_doy)}
 \KeywordTok{summary}\NormalTok{(fit)}\OperatorTok{$}\NormalTok{coef}
+
+\KeywordTok{plot}\NormalTok{(doy }\OperatorTok{~}\StringTok{ }\NormalTok{year, }\DataTypeTok{data =}\NormalTok{ med_doy, }\DataTypeTok{pch =} \DecValTok{16}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(fit, }\DataTypeTok{lty =} \DecValTok{2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6930,14 +7024,7 @@ regression line because you can (Section \ref{regression}):
 ## year         -0.005138055  0.01414108 -0.3633424 7.179445e-01
 \end{verbatim}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{plot}\NormalTok{(doy }\OperatorTok{~}\StringTok{ }\NormalTok{year, }\DataTypeTok{data =}\NormalTok{ med_doy, }\DataTypeTok{pch =} \DecValTok{16}\NormalTok{)}
-\KeywordTok{abline}\NormalTok{(fit, }\DataTypeTok{lty =} \DecValTok{2}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-247-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-283-1} \end{center}
 
 The results tell you that there is a 0.005 day decrease in median run
 date for every 1 year that has gone by and that it is not significantly
@@ -7073,7 +7160,7 @@ Plot the recruits versus spawners and the fitted line:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-252-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-289-1} \end{center}
 
 The diagonal line is the \textbf{1:1 replacement line}: where 1 spawner
 would produce 1 recruit. The distance between this line and the curve is
@@ -7117,7 +7204,7 @@ Draw these reference points onto your plot and label them:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-255-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-292-1} \end{center}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -7202,10 +7289,10 @@ R is a relatively under-used tool for creating Geographic Information
 Systems (GIS). Most people use ArcGIS, QGIS, or Google Earth to display
 and analyze spatial data. However, R can do much of what you might want
 to do in those programs, with the added benefit of allowing you to
-create a reproducible script file to share. Often times, workflows are
-difficult to replicate in GIS because of the point-click user interface.
-With R, anyone can replicate your geospatial analysis with your script
-file and data.
+create a reproducible script file to share. Workflows can be difficult
+to replicate in ArcGIS because of the point-click user interface. With
+R, anyone can replicate your geospatial analysis with your script file
+and data.
 
 In this chapter, you will learn the basics of:
 
@@ -7222,16 +7309,16 @@ In this chapter, you will learn the basics of:
   manipulating spatial objects
 \end{itemize}
 
-You will map and analyze data from a study tracking brown bear
-(\emph{Ursus arctos}) movements \citep{bears-cite}. In Slovenia, a
-railroad connects the capitol Ljubljana with the coastal city of Koper,
-and passes right through brown bear country. You will use R to assess
-potential sites to build a hypothetical wildlife overpass so that bears
-can safely cross the railroad.
+You will map and analyze data from a brown bear (\emph{Ursus arctos})
+tracking study \citep{bears-cite}. In Slovenia, a railroad connects the
+capitol Ljubljana with the coastal city of Koper, and passes right
+through brown bear country. You will use R to assess potential sites to
+build a hypothetical wildlife overpass so that bears can safely cross
+the railroad.
 
 It is worth mentioning that if you are left wanting more information
-about geospatial analysis in R after this brief introduction, a much
-more thorough and dedicated description is presented for free in
+about geospatial analysis in R after this brief introduction, a thorough
+description of more advanced techniques is presented for free in
 \citet{geospatR-cite}.
 
 \section{Before You Begin}\label{ch6beforeyoubegin}
@@ -7285,7 +7372,8 @@ package immediately prior to using it for the first time.
 
 \section{Geospatial Data}\label{intro}
 
-There are two types of geospatial data: \textbf{vector} and
+There are two types of geospatial data: \textbf{vector}\footnote{this
+  term should not be confused with the vector data type in R} and
 \textbf{raster} data. R is able to handle both, but for the sake of
 simplicity, this chapter will mostly deal with vector data. There are
 three types of vector data that you should be familiar with (Figure
@@ -7302,11 +7390,12 @@ three types of vector data that you should be familiar with (Figure
   endpoints of a line are called \textbf{vertices}.
 \item
   A \textbf{polygon} is an area bounded by vertices that are connected
-  in order. In a polygon, the first and last vertex are the same. In
-  this first section, you will learn how to load these different types
-  of data and create spatial objects that you can manipulate and
-  visualize in R.
+  in order. In a polygon, the first and last vertex are the same.
 \end{itemize}
+
+In this first section, you will learn how to load these different types
+of data and create spatial objects that you can manipulate and visualize
+in R.
 
 \begin{figure}
 
@@ -7464,8 +7553,8 @@ files}{.shp files}}\label{shp-files}
 The \texttt{\{rgdal\}} package \citep{R-rgdal} facilitates loading
 spatial data files (i.e., shapefiles) into R. The function
 \texttt{readOGR()} takes a standard shapefile (\texttt{.shp}), and
-converts it into a the correct spatial object (e.g., points
-vs.~polygons). It takes two arguments: the data source name
+converts it into a spatial object of the appropriate class (e.g., points
+or polygons). It takes two arguments: the data source name
 (\texttt{dsn}, the directory), and the layer name (\texttt{layer}). When
 you download a shapefile from an open-source web portal, it will often
 have accompanying files that store the attribute data. Store all of
@@ -7517,9 +7606,10 @@ Now read in two other shapefiles:
 \begin{itemize}
 \tightlist
 \item
-  one showing the statistical areas within Slovenia \citep{svn-cite}
+  one showing the statistical regions (aka states) of Slovenia
+  \citep{svn-cite}
 \item
-  one showing the railways located in Slovenia \citep{rail-cite}
+  one showing the railways in Slovenia \citep{rail-cite}
 \end{itemize}
 
 \begin{Shaded}
@@ -7544,8 +7634,8 @@ plot the \texttt{bear} object:
 \end{Highlighting}
 \end{Shaded}
 
-You can clean up your map a bit with many of the standard
-\texttt{\{graphics\}} arguments:
+You can clean up your map a bit with standard \texttt{\{graphics\}}
+arguments:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7555,7 +7645,7 @@ You can clean up your map a bit with many of the standard
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-269-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-306-1} \end{center}
 
 The \texttt{alpha()} function from the \texttt{\{scales\}} package
 \citep{R-scales} allows you to plot with transparent colors, which is
@@ -7574,7 +7664,7 @@ reference layers to get your bearings:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-270-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-307-1} \end{center}
 
 \subsection{Zooming}\label{zoom}
 
@@ -7597,16 +7687,16 @@ and \texttt{ylim} of your map should be:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-272-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-309-1} \end{center}
 
 \subsection{Plotting Selections}\label{plot-selections}
 
-In GIS, a subset is often called a \textbf{selection}: it is a smaller
-subset of your larger data layers. You may want to see the relocation
-events for each individual bear at a time. Use \texttt{sapply()} to
-apply a function to plot each bear's track on a separate map. Wrap your
-code inside of a new PDF device (described in Section
-\ref{file-devices}) so you can scroll through the plots separately:
+In GIS, a subset is often called a \textbf{selection}; it is a smaller
+subset of a larger data layer. Say you want to see the relocation events
+for each individual bear at a time. Use \texttt{sapply()} to apply a
+function to plot each bear's track on a separate map. Wrap your code
+inside of a new PDF device (described in Section \ref{file-devices}) so
+you can scroll through the plots separately:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7638,7 +7728,7 @@ Now that you have some data and you've taken a look at it, it's time to
 learn a few tricks for manipulating them. Looking at your map, see that
 some of the bears were detected outside of Slovenia. (Bonus points if
 you can name the country they're in). Suppose the Slovenian government
-can't build wildlife crossings in other countries, so you want to clip
+can't build wildlife crossings in other countries, so you have to clip
 the bear data to the boundary of Slovenia.
 
 \subsection{Changing the CRS}\label{crs}
@@ -7668,21 +7758,22 @@ relocations that occured only in Slovenia using:
 \end{Highlighting}
 \end{Shaded}
 
-Make the same plot as you did in Section \ref{zoom}
+Make the same plot as you did in Section \ref{zoom} with the clipped
+bear points.
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-276-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-313-1} \end{center}
 
 \subsection{Adding Attributes}\label{add-attr}
 
-What if you wanted to add an attribute to a points object, like which
-polygon it occurs in? Say you wanted to know what statistical region
-each bear relocation happened in. You can find this by extracting the
+What if you wanted to add an attribute to a points object, like the name
+of the polygon it occurs in? You can find this by extracting the
 attribute values of one layer (a \textbf{target}) at locations of
 another layer (a \textbf{source}) with the \texttt{over()} function from
-the \texttt{\{sp\}} package. In this case, the target is the
-\texttt{stats} layer, and the source is \texttt{bear} layer. These two
-layers will need to be in the same projection, and the result will be
-stored in the column \texttt{bearstats\$NAME\_1}:
+the \texttt{\{sp\}} package. For example, say you wanted to know what
+statistical region each bear relocation happened in. In this case, the
+target is the \texttt{stats} layer, and the source is \texttt{bear}
+layer. These two layers will need to be in the same projection, and the
+result will be stored in the column \texttt{bearstats\$NAME\_1}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7711,8 +7802,8 @@ stored in the column \texttt{bearstats\$NAME\_1}:
 ## 6 Statistical Region      <NA>        Ljubljana
 \end{verbatim}
 
-Extract just the column you care about and see how relocations occurred
-in each state:
+Extract just the column you care about and see how many relocations
+occurred in each state:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7729,7 +7820,7 @@ in each state:
 ##                   978
 \end{verbatim}
 
-Then, you can recombine your calculated attribute values (in
+Then, you can recombine your extracted attribute values (in
 \texttt{bearstats}) to your original layer (\texttt{bear}) with
 \texttt{spCbind()} from the \texttt{\{maptools\}} package
 \citep{R-maptools}:
@@ -7772,8 +7863,8 @@ common analytical tasks in animial tracking are:
 \begin{itemize}
 \tightlist
 \item
-  Calculating the \textbf{home range} of an animal, i.e., finding a
-  polygon that describes where most of the relocations occurred.
+  Calculating the \textbf{home range} of an animal, i.e., defining the
+  area where most of the relocations occurred.
 \item
   Finding \textbf{intersections} between tracks and some other line
   (e.g., river, state boundary, or railroad).
@@ -7845,7 +7936,7 @@ Now, plot the homeranges of each bear, label them using the
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-282-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-319-1} \end{center}
 
 \subsection{Finding Intersections Between Two
 Layers}\label{finding-intersections-between-two-layers}
@@ -7894,11 +7985,12 @@ runs it, without you ever having to open the script.
 \end{Shaded}
 
 Now that your points have been turned into tracks for each bear, see
-where they intersect using the \texttt{gIntersection()} function from
-the \texttt{\{rgeos\}} package. Hang on though, this will take your
-computer a while to run (between 5 and 20 minutes). Optionally, you can
-start a timer and have the \texttt{\{beepr\}} package \citep{R-beepr}
-make a sound when the geoprocessing calculations are completed:
+where they intersect the railroad using the \texttt{gIntersection()}
+function from the \texttt{\{rgeos\}} package. Hang on though, this will
+take your computer a while to run (between 5 and 20 minutes).
+Optionally, you can start a timer and have the \texttt{\{beepr\}}
+package \citep{R-beepr} make a sound when the geoprocessing calculations
+are completed:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7914,7 +8006,7 @@ make a sound when the geoprocessing calculations are completed:
 Now that you have a points object with the crossings stored, make a map
 that you can present to policy makers.
 
-First, you should get a nicer basemap than a R's blank slate. Use the
+First, you should get a nicer basemap than R's blank slate. Use the
 \texttt{\{dismo\}} \citep{R-dismo} and \texttt{\{raster\}}
 \citep{R-raster} packages to get one:
 
@@ -7931,7 +8023,7 @@ Now, put the rest of the layers in the same projection as the basemap:
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# put the other layers in the same crs as the basemap}
-\NormalTok{bear =}\StringTok{ }\KeywordTok{spTransform}\NormalTok{(bear, basemap}\OperatorTok{@}\NormalTok{crs)}
+\NormalTok{bear =}\StringTok{ }\KeywordTok{spTransform}\NormalTok{(bear, basemap}\OperatorTok{@}\NormalTok{crs) }\CommentTok{#note that the method for getting the crs is different for raster objects}
 \NormalTok{railways =}\StringTok{ }\KeywordTok{spTransform}\NormalTok{(railways, base}\OperatorTok{@}\NormalTok{crs)}
 \NormalTok{slovenia =}\StringTok{ }\KeywordTok{spTransform}\NormalTok{(slovenia, base}\OperatorTok{@}\NormalTok{crs)}
 \KeywordTok{proj4string}\NormalTok{(crossings) =}\StringTok{ }\NormalTok{base}\OperatorTok{@}\NormalTok{crs}
@@ -7939,7 +8031,7 @@ Now, put the rest of the layers in the same projection as the basemap:
 \end{Shaded}
 
 Now, plot the crossings in blue on top of the basemap with the railroad
-in red. Don't forget the scale bar and north arrow using the
+in red. You can add a scale bar and north arrow using the
 \texttt{\{prettymapr\}} \citep{R-prettymapr} package!
 
 \begin{Shaded}
@@ -7966,8 +8058,11 @@ in red. Don't forget the scale bar and north arrow using the
 
 \begin{center}\includegraphics[width=41.67in]{img/FinalMap} \end{center}
 
-Where are bears crossing the railroad? It looks like there are two areas
-of the railroad that get the most bear activity.
+Where are the bears crossing the railroad? It looks like there are two
+areas of the railroad that get the most bear activity. One in the
+hairpin turn, and one that's more spread out between Logatec and Unec.
+Perhaps there should be wildlife crossings in those areas to protect the
+more ``adventurous'' bears.
 
 \section{Other R Mapping Packages}\label{other-r-mapping-packages}
 
@@ -8661,7 +8756,7 @@ This example uses the lognormal distribution, with
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-331-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-368-1} \end{center}
 
 \textbf{Bonus 1. Fit a von Bertalannfy growth model to the data found in
 the \texttt{growth.csv} data file. Visit Section \ref{boot-test-ex}
@@ -8698,7 +8793,7 @@ Plot the fit:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-335-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-372-1} \end{center}
 
 \section*{Exercise 4 Solutions}\label{ex4-answers}
 \addcontentsline{toc}{section}{Exercise 4 Solutions}
@@ -8799,7 +8894,7 @@ Then, test the \texttt{qbeta()} function:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-344-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-381-1} \end{center}
 
 Then, test the `pbeta() function:
 
@@ -8814,7 +8909,7 @@ Then, test the `pbeta() function:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-345-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-382-1} \end{center}
 
 \hypertarget{ex4c-answers}{\subsection*{Exercise 4C
 Solutions}\label{ex4c-answers}}
@@ -8833,7 +8928,7 @@ analysis:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-348-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-385-1} \end{center}
 
 It appears you need about 100 fish per treatment to be able to detect an
 effect of this size.
@@ -8854,7 +8949,7 @@ you execute the analysis:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-350-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-387-1} \end{center}
 
 Because the effect is larger, it is easier to detect with fewer
 observations.
@@ -8948,7 +9043,7 @@ Then use the function:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-354-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-391-1} \end{center}
 
 \begin{verbatim}
 ## $mean_H
@@ -8987,7 +9082,7 @@ process error was larger (a larger value of \(\sigma\))?}
 Simply increase the process error variance term (the \texttt{sigma}
 element of \texttt{params}) to be 0.6 and re-run the analysis:
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-356-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-393-1} \end{center}
 
 The blue line is the higher process error scenario. It seems that if the
 process error was higher, you would need to sacrifice more in the
@@ -9027,7 +9122,7 @@ example:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-360-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-397-1} \end{center}
 
 The red line has \texttt{B\_sum\ =\ 50} and the black line has
 \texttt{B\_sum\ =\ 1e6} (really large \texttt{B\_sum} reduces the
@@ -9058,7 +9153,7 @@ Here are two ways that come to mind:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-361-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-398-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9069,7 +9164,7 @@ Here are two ways that come to mind:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-361-2} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-398-2} \end{center}
 
 \hypertarget{ex4e-answers}{\subsection*{Exercise 4E
 Solutions}\label{ex4e-answers}}
@@ -9245,7 +9340,7 @@ distribution and the observed difference:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-376-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-413-1} \end{center}
 
 Finally, calculate the two-tailed hypothesis tests:
 
@@ -9352,7 +9447,7 @@ Plot the null distribution:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-383-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-420-1} \end{center}
 
 Obtain the two-tailed p-value:
 
@@ -9482,7 +9577,7 @@ composition has changed over time?}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-394-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-431-1} \end{center}
 
 It seems that the proportion of females has varied randomly over time
 but has not systematically changed since the beginning of the data time
@@ -9541,7 +9636,7 @@ changed over time for either sex?}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-396-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-433-1} \end{center}
 
 \textbf{Bonus 1. Calculate the age composition by sex and year (what
 proportion of all the males in a year were age 4, age 5, age 6, age 7,
@@ -9614,7 +9709,7 @@ instead of sex composition:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-398-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-435-1} \end{center}
 
 \section*{Exercise 6 Solutions}\label{ex6-answers}
 \addcontentsline{toc}{section}{Exercise 6 Solutions}
@@ -9681,7 +9776,7 @@ created in this chapter.}
 ## It has 2 fields
 \end{verbatim}
 
-\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-402-1} \end{center}
+\begin{center}\includegraphics{au-r-workshop_files/figure-latex/unnamed-chunk-439-1} \end{center}
 
 \textbf{2. How many caves are there?}
 
