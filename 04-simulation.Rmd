@@ -13,10 +13,10 @@ sp = par(no.readonly = T)
 library(dplyr)
 library(kableExtra)
 library(knitr)
-# I_power = 500
-# sra_n_rep = 2000
-I_power = 10
-sra_n_rep = 100
+I_power = 500
+sra_n_rep = 2000
+# I_power = 10
+# sra_n_rep = 100
 ```
 
 ## Chapter Overview{-}

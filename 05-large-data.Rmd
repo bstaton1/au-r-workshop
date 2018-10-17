@@ -3,6 +3,10 @@
 ```{r, include = F}
 rm(list = ls(all = T))
 knitr::opts_chunk$set(fig.align = "center")
+
+op = par(no.readonly = T)
+par(mar = c(4,4,2,1))
+sp = par(no.readonly = T)
 ```
 
 ```{r, echo = F, warning = F, message = F}
@@ -14,7 +18,7 @@ library(knitr)
 
 Any data analyst will tell you that oftentimes the most difficult part of an analysis is simply getting the data in the proper format. Real data sets are messy: they have missing values, variables are often stored in multiple columns that would be better stored as rows, the same factor level may be coded as two or more different types^[E.g., `"hatch"`, "`Hatch`", and `"HATCH"` are all treated as different factor levels in R], or the required data are in several separate files. You get the point: sometimes significant data-wrangling may be required before you perform an analysis.
 
-In this chapter, you will learn tricks to do more advanced data manipulation in R using two R **packages**:
+In this chapter, you will learn tricks to do more advanced data manipulation in R using two **R packages**:
 
 *  `{reshape2}` [@R-reshape2]: used for changing data between formats (wide and long)
 *  `{dplyr}` [@R-dplyr]: used for large data manipulations with a consistent and readable format.
@@ -154,7 +158,16 @@ y15 = subset(dat, year == "y_2015")
 
 They take about the same amount of code to write, but `filter()` has some advantages when used with other `{dplyr}` functions that will be discussed later. Now plot the daily catch and escapement (not cumulative yet) for 2015:
 
-```{r}
+```{r, eval = F}
+plot(catch ~ doy, data = y15, type = "b", pch = 16, col = "blue",
+     xlab = "DOY", ylab = "Count", main = "Raw Data")
+lines(esc ~ doy, data = y15, type = "b", pch = 16, col = "red")
+legend("topright", legend = c("Catch", "Escapement"), 
+       col = c("blue", "red"), pch = 16, lty = 1, bty = "n", cex = 0.8)
+```
+
+```{r, echo = F}
+par(sp)
 plot(catch ~ doy, data = y15, type = "b", pch = 16, col = "blue",
      xlab = "DOY", ylab = "Count", main = "Raw Data")
 lines(esc ~ doy, data = y15, type = "b", pch = 16, col = "red")
@@ -164,7 +177,16 @@ legend("topright", legend = c("Catch", "Escapement"),
 
 Notice how the escapement counts are shifted to the right by one day. This is the lag. To account for it, you can use the `lag()` function from `{dplyr}`. `lag()` works by lagging some vector by `n` elements (it shifts every element in the vector `n` places to the right by putting `n` `NAs` at the front and removing the last `n` elements from the original vector). One way to fix the lag problem would be to use `lag()` on `catch` to make the days match up with `esc` (don't lag `esc` because that would just lag it by `n` additional days):
 
-```{r}
+```{r, eval = F}
+plot(lag(catch, n = 1) ~ doy, data = y15, type = "b", pch = 16, col = "blue",
+     xlab = "DOY", ylab = "Count", main = "With lag(catch)")
+lines(esc ~ doy, data = y15, type = "b", pch = 16, col = "red")
+legend("topright", legend = c("Catch", "Escapement"),
+       col = c("blue", "red"), pch = 16, lty = 1, bty = "n", cex = 0.8)
+```
+
+```{r, echo = F}
+par(sp)
 plot(lag(catch, n = 1) ~ doy, data = y15, type = "b", pch = 16, col = "blue",
      xlab = "DOY", ylab = "Count", main = "With lag(catch)")
 lines(esc ~ doy, data = y15, type = "b", pch = 16, col = "red")
@@ -213,7 +235,13 @@ y15 = mutate(y15, crun = cumsum(run), cprun = crun/sum(run, na.rm = T))
 
 Here is one advantage of `mutate()`: you can refer to a variable you just created to make a new variable within the same function. You would have to split this into two lines to do it in `{base}`. Indeed, you could have made `run`, `crun`, and `cprun` all in the same `mutate()` call.  Plot `cprun`^[It doesn't look like much, but this information is incredibly important for fishery managers. It provides information on how much of the annual run has passed on each day. You can see that the rate of change is the fastest in the middle of the run, this corresponds to the major hump in the plots you made earlier (which were raw numbers by day). Of course during the run, the managers don't know what proportion of the total run has passed because they don't know the total number of fish that will come that season, but by characterizing the mean and variability of the different run completion proportions on each day in the past, they can have some idea of how much of the run to expect yet to come on any given day.]:
 
-```{r}
+```{r, eval = F}
+plot(cprun ~ doy, data = y15, type = "l", ylim = c(0, 1),
+     xlab = "DOY", ylab = "Cumulative Run Proportion", lwd = 2)
+```
+
+```{r, echo = F}
+par(sp)
 plot(cprun ~ doy, data = y15, type = "l", ylim = c(0, 1),
      xlab = "DOY", ylab = "Cumulative Run Proportion", lwd = 2)
 ```
@@ -232,7 +260,6 @@ The pipe took the result of `rnorm(10)` and passed it as the first argument to t
 x = rnorm(10); length(x); rm(x)
 ```
 
-
 The reason piping works so well with `{dplyr}` is because its functions are designed to take a data frame as input as the first argument and return another data frame as output. This allows you to string them together with pipes. Do a more complex pipe: take your main data frame (`dat`), group it by `year`, and pass it to a `mutate()` call that will add the new three columns to the entire data set:
 
 ```{r}
@@ -249,7 +276,22 @@ The `group_by()` function is spectacular: you grouped the data frame by `year`, 
 
 Now plot the cumulative run proportion by day for each year, highlighting 2015:
 
-```{r}
+```{r, echo = F}
+# make an empty plot
+plot(x = 0, y = 0, type = "n", xlim = range(dat$doy), ylim = c(0,1),
+     xlab = "DOY", ylab = "Cumulative Run Proportion")
+
+years = levels(dat$year)
+
+# use sapply to "loop" through years, drawing lines for each
+tmp = sapply(years, function(x) {
+  lines(cprun ~ doy, data = filter(dat, year == x),
+        col = ifelse(x == "y_2015", "blue", "grey"))
+})
+```
+
+```{r, eval = F}
+par(sp)
 # make an empty plot
 plot(x = 0, y = 0, type = "n", xlim = range(dat$doy), ylim = c(0,1),
      xlab = "DOY", ylab = "Cumulative Run Proportion")
@@ -312,6 +354,7 @@ lines(cprun ~ doy, data = mean_cprun, lwd = 3)
 ```
 
 ```{r, echo = F}
+par(sp)
 # make an empty plot
 plot(x = 0, y = 0, type = "n", xlim = range(dat$doy), ylim = c(0,1),
      xlab = "DOY", ylab = "Cumulative Run Proportion")
@@ -380,16 +423,34 @@ med_doy$year =
   gsub(pattern = "y_", replacement = "") %>%
   # turn to a integer vector
   as.integer
+```
 
+Now plot the median run dates as a time series:
+
+```{r, eval = F}
+plot(doy ~ year, data = med_doy, pch = 16)
+```
+
+```{r, echo = F}
+par(sp)
 plot(doy ~ year, data = med_doy, pch = 16)
 ```
 
 It doesn't appear that there is a trend in either direction, but fit a regression line because you can (Section \@ref(regression)):
 
-```{r}
+```{r, eval = F}
 fit = lm(doy ~ year, data = med_doy)
 summary(fit)$coef
 
+plot(doy ~ year, data = med_doy, pch = 16)
+abline(fit, lty = 2)
+```
+
+```{r, echo = F}
+fit = lm(doy ~ year, data = med_doy)
+summary(fit)$coef
+
+par(sp)
 plot(doy ~ year, data = med_doy, pch = 16)
 abline(fit, lty = 2)
 ```
@@ -449,7 +510,24 @@ Given that the true values for these data were: $\alpha = 6$, $\beta = 8\times10
 
 Plot the recruits versus spawners and the fitted line:
 
-```{r}
+```{r, eval = F}
+# plot the S-R pairs
+plot(R_fit ~ S_fit, pch = 16, col = "grey", cex = 1.5,
+     xlim = c(0, max(S_fit)), ylim = c(0, max(R_fit)))
+# extract the estimates
+ests = coef(fit)
+# obtain and draw on a fitted line
+S_line = seq(0, max(S_fit), length = 100)
+R_line = exp(ricker(S = S_line,
+                alpha = ests["alpha"],
+                beta = ests["beta"]))
+lines(R_line ~ S_line, lwd =3)
+# draw the 1:1 line
+abline(0, 1, lty = 2)
+```
+
+```{r, echo = F}
+par(sp)
 # plot the S-R pairs
 plot(R_fit ~ S_fit, pch = 16, col = "grey", cex = 1.5,
      xlim = c(0, max(S_fit)), ylim = c(0, max(R_fit)))
@@ -494,6 +572,7 @@ text(x = brps, y = max(R_fit) * 1.08,
 ```
 
 ```{r, echo = F}
+par(sp)
 plot(R_fit ~ S_fit, pch = 16, col = "grey", cex = 1.5,
      xlim = c(0, max(S_fit)), ylim = c(0, max(R_fit)))
 lines(R_line ~ S_line, lwd =3)
