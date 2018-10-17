@@ -3,19 +3,25 @@
 ```{r, include = F}
 rm(list = ls(all = T))
 knitr::opts_chunk$set(fig.align = "center")
+
+op = par(no.readonly = T)
+par(mar = c(4,4,2,1))
+sp = par(no.readonly = T)
 ```
 
 ```{r, echo = F, warning = F, message = F}
 library(dplyr)
 library(kableExtra)
 library(knitr)
-I_power = 500
-sra_n_rep = 2000
+# I_power = 500
+# sra_n_rep = 2000
+I_power = 10
+sra_n_rep = 100
 ```
 
 ## Chapter Overview{-}
 
-Simulation modeling is one of the primary reasons to move away from spreadsheet-type programs (like Microsoft Excel) and into a program like R. R allows you to replicate the same (possibly complex and detailed) calculations over and over with different random values. You can then summarize and plot the results of these replicated calculations all within the same program. Analyses of this type are **Monte Carlo methods**: they randomly sample from a set of quantities for the purpose of generating and summarizing a distribution of some statistic related to the sampled quantities. If this concept is confusing, hopefully this chapter will clarify. 
+Simulation modeling is one of the primary reasons to move away from spreadsheet-type programs (like Microsoft Excel) and into a program like R. R allows you to replicate the same (possibly complex and detailed) calculations over and over with different random values. You can then summarize and plot the results of these replicated calculations all within the same program. Analyses of this type are called **Monte Carlo methods**: they randomly sample from a set of quantities for the purpose of generating and summarizing a distribution of some statistic related to the sampled quantities. If this concept is confusing, hopefully this chapter will clarify. 
 
 In this chapter, you will learn the basic skills needed for simulation (i.e., Monte Carlo) modeling in R including:
 
@@ -56,14 +62,25 @@ The result you get will almost certainly be different from the one printed here.
 
 You can execute many such binomial processes by changing the `n` argument. Plot the distribution of expected surviving individuals:
 
-```{r}
+```{r, eval = F}
+survivors = rbinom(1000, 100, 0.8)
+hist(survivors, col = "skyblue")
+```
+
+```{r, echo = F}
+par(sp)
 survivors = rbinom(1000, 100, 0.8)
 hist(survivors, col = "skyblue")
 ```
 
 Another random process is the **lognormal process**: it generates random numbers such that the log of the values are normally-distributed with mean equal to `logmean` and standard deviation equal to `logsd`:
 
-```{r}
+```{r, eval = F}
+hist(rlnorm(1000, 0, 0.1), col = "skyblue")
+```
+
+```{r, echo = F}
+par(sp)
 hist(rlnorm(1000, 0, 0.1), col = "skyblue")
 ```
 
@@ -172,12 +189,12 @@ This makes an empty numeric vector of length 5 that are all 0's. You can store t
 
 ```{r}
 for (i in 1:5) {
-  results[i]=i^2
+  results[i] = i^2
 }
 results
 ```
 
-When `i^2` is calculated, it will be placed in the element `results[i]`. This was a trivial example, because you would never use a `for()` loop to do things as simple as vectorized calculation. The expression `(1:5)^2` would give the same result in significantly less code (see Section \@ref(vector-math)). 
+When `i^2` is calculated, it will be placed in the element `results[i]`. This was a trivial example, because you would never use a `for()` loop to do things as simple as vectorized calculation. The expression `(1:5)^2` would give the same result with significantly less code (see Section \@ref(vector-math)). 
 
 However, there are times where it is advantageous to use a loop. Particularly in cases where:
 
@@ -186,7 +203,7 @@ However, there are times where it is advantageous to use a loop. Particularly in
 3.  you wish to store multiple results
 4.  you wish to track the progress of your calculations
 
-As an illustration for item (1) above, build a (very) basic population model. At the start of the first year, the population abundance is 1000 individuals and grows by an average factor of 1.1 per year (reproduction and death processes result in a growth rate of 10%) before harvest. The growth rate varies randomly, however. Each year, the 1.1 growth factor has variability introduced by small changes in survival and reproductive process. Model these variations as lognormal random variables. After production, 8% of the population is harvested. Simulate and plot the abundance at the end of the year for 100 years:
+As an illustration for item (1) above, build a (very) basic population model. At the start of the first year, the population abundance is 1000 individuals and grows by an average factor of 1.1 per year (reproduction and death processes result in a growth rate of 10%) before harvest. The growth rate varies randomly, however. Each year, the 1.1 growth factor has variability introduced by small changes in survival and reproductive process. Model these variations as lognormal random variables. After production, 8% of the population is harvested. Simulate the abundance at the end of the year for 100 years:
 
 ```{r}
 nt = 100       # number of years
@@ -198,19 +215,27 @@ for (t in 2:nt) {
     # randomness * fraction that survive harvest
   N[t] = (N[t-1] * 1.1 * rlnorm(1, 0, 0.1)) * (1 - 0.08)
 }
+```
 
-# plot
+Plot the abundance time series:
+
+```{r, eval = F}
 plot(N, type = "l", pch = 15, xlab = "Year", ylab = "Abundance")
 ```
 
-Examples of the other three utilities are shown in the example cases.
+```{r, echo = F}
+par(sp)
+plot(N, type = "l", pch = 15, xlab = "Year", ylab = "Abundance")
+```
+
+Examples of the other three utilities of using `for()` loops over replicate are shown in the example cases and exercises.
 
 ## Function Writing {#adv-funcs}
-In Monte Carlo analyses, it is often useful to wrap code into functions. This makes them easy to be replicated and have the settings adjusted. As an example, turn the population model shown above into a function:
+In Monte Carlo analyses, it is often useful to wrap code into functions. This allows for easy replication and setting adjustment (e.g., if you wanted to compare the growth trajectories of two populations with differing growth rates). As an example, turn the population model shown above into a function:
 
 ```{r}
 pop_sim = function(nt, grow, sd_grow, U, plot = F) {
-  N = NULL 
+  N = NULL # empty flexible vector container
   N[1] = 1000
   for (t in 2:nt) {
     N[t] = (N[t-1] * grow * rlnorm(1, 0, sd_grow)) * (1 - U)
@@ -250,11 +275,11 @@ If you do `dim(out)`, you'll see that years are stored as rows (there are `r nro
 
 **Here are some advantages of wrapping code like this into a function**:
 
-*  If you do the same task over and over, you don't need to type all of the code to perform the task, just the function call. 
+*  If you do the same task at multiple places in your script, you don't need to type all of the code to perform the task, just the function call. 
 *  If you need to change the way the function behaves (i.e., the function body), you only need to change it in one place: in the function definition.
 *  You can easily change the settings of the code (e.g., whether or not you want to see the plot) in one place
 *  Function writing can lead to shorter scripts
-*  Function writing can lead to more readable code (if people know what your functions do)
+*  Function writing can lead to more readable code (if it is easy for readers to interpret what your functions do - informative function and argument names, as well as documentation can help here)
 
 ## Summarization {#mc-summaries}
 
@@ -278,20 +303,30 @@ One of the primary reasons to conduct a Monte Carlo analysis is to obtain estima
 ```{r}
 # obtain the 10% and 90% quantiles each year across iterations
 N_quants = apply(out, 1, function(x) quantile(x, c(0.1, 0.9)))
+```
 
-# plot them as a time series with the mean
+Notice how a user-defined function was passed to `apply()`. Now plot the summary of the randomized abundances as a time series like before:
+
+```{r, eval = F}
 plot(N_mean, type = "l", ylim = c(0, 10000))
 lines(N_quants[1,], lty = 2)
 lines(N_quants[2,], lty = 2)
 ```
 
-Notice how a user-defined function was passed to `apply()`. The range within the two dashed lines represents the range that encompassed the central 80% of the random abundances each year.
+```{r, echo = F}
+par(sp)
+plot(N_mean, type = "l", ylim = c(0, 10000))
+lines(N_quants[1,], lty = 2)
+lines(N_quants[2,], lty = 2)
+```
+
+The range within the two dashed lines represents the range that encompassed the central 80% of the random abundances each year.
 
 ### Frequencies
 
-Often you will want to count how many times something happened. In some cases, the fraction of times something happened can be interpreted as a probability.
+Often you will want to count how many times something happened. In some cases, the fraction of times something happened can be interpreted as a probability of that event occuring.
 
-The `table()` function is very useful for counting occurrences of discrete events. Suppose you are interested in how many of your iterations resulted in fewer than 1000 individuals at year 10:
+The `table()` function is useful for counting occurrences of discrete events. Suppose you are interested in how many of your iterations resulted in fewer than 1000 individuals at year 10:
 
 ```{r}
 out10 = ifelse(out[10,] < 1000, "less10", "greater10")
@@ -339,7 +374,15 @@ random = rnorm(100, mu, sig)
 
 Test the quantiles (obtain the values that `p` * 100% of the quantities fall below, both for random numbers and from the `qnorm()` function):
 
-```{r}
+```{r, eval = F}
+p = seq(0.01, 0.99, 0.01)
+random_q = quantile(random, p)
+normal_q = qnorm(p, mu, sig)
+plot(normal_q ~ random_q); abline(c(0,1))
+```
+
+```{r, echo = F}
+par(sp)
 p = seq(0.01, 0.99, 0.01)
 random_q = quantile(random, p)
 normal_q = qnorm(p, mu, sig)
@@ -350,7 +393,17 @@ The fact that all the quantiles fall around the 1:1 line suggests the `n` random
 
 Now test the random values in their agreement with the `pnorm()` function. Plot the cumulative density functions for the truly normal curve and the one approximated by the random deviates:
 
-```{r}
+```{r, eval = F}
+q = seq(400, 600, 10)
+random_cdf = ecdf(random)
+random_p = random_cdf(q)
+normal_p = pnorm(q, mu, sig)
+plot(normal_p ~ q, type = "l", col = "blue")
+points(random_p ~ q, col = "red")
+```
+
+```{r, echo = F}
+par(sp)
 q = seq(400, 600, 10)
 random_cdf = ecdf(random)
 random_p = random_cdf(q)
@@ -363,11 +416,11 @@ The `ecdf()` function obtains the empirical cumulative density function (which i
 
 ### Stochastic Power Analysis {#power-ex}
 
-A **power analysis** is one where the analyst wishes to determine how much power they will have to detect an effect. Power is inversely related to the probability of making a type two error: failing to reject a false null hypothesis. In other words, having high power means that you have a high chance of detecting an effect if an effect truly exists. Normally, power depends on the effect size, and the sample size `n`. Strong effects are easier to detect than weak ones, and more samples increase the test's sensitivity (the ability to detect weak effects).
+A **power analysis** is one where the analyst wishes to determine how much power they will have to detect an effect. Power is inversely related to the probability of making a Type II Error: failing to reject a false null hypothesis^[English: concluding there is no effect when there truly is one]. In other words, having high power means that you have a high chance of detecting an effect if an effect truly exists. Power is a function of the effect size, the sample size `n`, and the variability in the data. Strong effects are easier to detect than weak ones, more samples increase the test's sensitivity (the ability to detect weak effects), and lower variability results in more power.
 
 You can conduct a power analysis using stochastic simulation (i.e., a Monte Carlo analysis). Here, you will write a power analysis to determine how likely are you to be able to correctly identify what you deem to be a biologically-meaningful difference in survival between two tagging procedures. 
 
-You know one tagging procedure has approximately a 10% mortality rate (10% of tagged fish die within the first 12 hours as result of the tagging process). Another cheaper, and less labor-intensive method has been proposed, but before implementing it, your agency wishes to determine if it will have a meaningful impact on the reliability of the study or on the ability of the crew to tag enough individuals that will survive long enough to be useful. You and your colleagues determine that if the mortality rate of the new tagging method reaches 25%, then gains in time and cost efficiency would be offset by needing to tag more fish (because more will die). You have decided to perform a small-scale study to determine if using the new method could result in 25% or more mortality. The study will tag `n` individuals using both methods (new and old) and track the fraction that survived after 12 hours. Before performing the study however, you deem it important to determine how large `n` needs to be to answer this question. You decide to use a stochastic power analysis to help your research group. The small-scale study can tag a total of at most 100 fish with the currently available resources. Could you tag fewer than 100 total individuals and still have a high probability of detecting a statistically significant difference in mortality?
+You know one tagging procedure has approximately a 10% mortality rate (10% of tagged fish die within the first 12 hours as result of the tagging process). Another cheaper, and less labor-intensive method has been proposed, but before implementing it, your agency wishes to determine if it will have a meaningful impact on the reliability of the study or on the ability of the crew to tag enough individuals that will survive long enough to be useful. You and your colleagues determine that if the mortality rate of the new tagging method reaches 25%, then gains in time and cost-efficiency would be offset by needing to tag more fish (because more will die). You have decided to perform a small-scale study to determine if using the new method could result in 25% or more mortality. The study will tag `n` individuals using both methods (new and old) and track the fraction that survived after 12 hours. Before performing the study however, you deem it important to determine how large `n` needs to be to answer this question. You decide to use a stochastic power analysis to help your research group. The small-scale study can tag a total of at most 100 fish with the currently available resources. Could you tag fewer than 100 total individuals and still have a high probability of detecting a statistically significant difference in mortality?
 
 The stochastic power analysis approach works like this (this is called **psuedocode**):
 
@@ -436,7 +489,14 @@ for (n in 1:N) {
 
 You now have a matrix of `TRUE` and `FALSE` elements that indicates whether a significant difference was found at the $\alpha = 0.05$ level if the effect was truly as large as you care about. You can obtain the proportion of all the replicates at each sample size that resulted in a significant difference using the `mean()` function with `apply()`:
 
-```{r}
+```{r, eval = F}
+plot(apply(out, 2, mean) ~ n_try, type = "l",
+     xlab = "Tagged Fish per Treatment",
+     ylab = "Probability of Finding Effect (Power)")
+```
+
+```{r, echo = F}
+par(sp)
 plot(apply(out, 2, mean) ~ n_try, type = "l",
      xlab = "Tagged Fish per Treatment",
      ylab = "Probability of Finding Effect (Power)")
@@ -446,7 +506,7 @@ Even if you tagged `r n_try[N] * 2` fish total, you would only have a `r round(m
 
 Suppose you and your colleagues aren't relying on p-values in this case, and are purely interested in how precisely the **effect size** would be estimated. Adapt your function to determine how frequently you would be able to estimate the true mortality of the new method within +/- 5% based on the point estimate only (the estimate for the tagging mortality of the new method must be between 0.2 and 0.3 for a successful study). Change your function to calculate this additional metric and re-run the analysis:
 
-```{r}
+```{r, fig.height = 4}
 sim_fit = function(n, p_old = 0.10, p_new = 0.25) {
   # create the data
   dead_old = rbinom(n, size = 1, prob = p_old)
@@ -484,13 +544,13 @@ for (n in 1:N) {
   }
 }
 
-par(mfrow = c(1,2))
+par(mfrow = c(1,2), mar = c(4,4,1,0))
 plot(apply(out_sig, 2, mean) ~ n_try, type = "l",
      xlab = "Tagged Fish per Treatment",
      ylab = "Probability of Finding Effect (Power)")
 plot(apply(out_prc, 2, mean) ~ n_try, type = "l",
      xlab = "Tagged Fish per Treatment",
-     ylab = "Probability of A Precise Estimate")
+     ylab = "Probability of a Precise Estimate")
 ```
 
 It seems that even if you tagged `r n_try[N]` fish per treatment, you would have a `r round(mean(out_prc[,N]),2) * 100`% chance of estimating that the mortality rate is between 0.2 and 0.3 if it was truly 0.25.
@@ -594,7 +654,15 @@ The nested `replicate()` and `sapply()` method is a bit cleaner than a nested `f
 
 Plot the output of your simulations using a boxplot. To make things easier, give `H_out` column names representing the exploitation rate:
 
-```{r}
+```{r, eval = F}
+colnames(H_out) = U_try
+boxplot(H_out, outline = F,
+        xlab = "U", ylab = "Harvest (Millions of Fish)",
+        col = "tomato", las = 1)
+```
+
+```{r, echo = F}
+par(sp)
 colnames(H_out) = U_try
 boxplot(H_out, outline = F,
         xlab = "U", ylab = "Harvest (Millions of Fish)",
@@ -610,6 +678,7 @@ S_out = sapply(U_try, function(u) {
   })
 })
 
+par(sp)
 colnames(S_out) = U_try
 boxplot(S_out, outline = F,
         xlab = "U", ylab = "Escapement (Millions of Fish)",
@@ -635,7 +704,7 @@ You plot this for your supervisor as follows:
 # the U levels to highlight on plot
 plot_U = seq(0.4, 0.6, 0.05)
 # create an empty plot
-par(mar = c(4,5,1,1))
+par(mar = c(4,4,1,1))
 plot(p_Smeet ~ p_Hmeet, type = "n",
      xlab = "Probability of Meeting Harvest Criterion",
      ylab = "Probability of Meeting Escapement Criterion")
@@ -681,6 +750,7 @@ plot(length ~ age, data = dat, pch = 16, col = "grey")
 
 ```{r, echo = F}
 dat = read.csv("Data/growth.csv")
+par(sp)
 plot(length ~ age, data = dat, pch = 16, col = "grey")
 ```
 
@@ -762,7 +832,18 @@ summ = apply(out, 1, function(x) c(mean = mean(x), quantile(x, c(0.025, 0.975)))
 
 Plot the data, the summarized ranges of mean lengths, and the length at which all fish are assumed to be mature (450 mm)
 
-```{r}
+```{r, eval = F}
+plot(length ~ age, data = dat, col = "grey", pch = 16,
+     ylim = c(0, max(dat$length, summ["97.5%",])),
+     ylab = "Length (mm)", xlab = "Age (years)")
+lines(summ["mean",] ~ ages, lwd = 2)
+lines(summ["2.5%",] ~ ages, col = "grey")
+lines(summ["97.5%",] ~ ages, col = "grey")
+abline(h = 450, col = "blue")
+```
+
+```{r, echo = F}
+par(sp)
 plot(length ~ age, data = dat, col = "grey", pch = 16,
      ylim = c(0, max(dat$length, summ["97.5%",])),
      ylab = "Length (mm)", xlab = "Age (years)")
@@ -774,7 +855,14 @@ abline(h = 450, col = "blue")
 
 Obtain the fraction of iterations that resulted in the mean length-at-age being greater than 450 mm. This is interpreted as the probability that the average-sized fish of each age is mature:
 
-```{r}
+```{r, eval = F}
+p_mat = apply(out, 1, function(x) mean(x > 450))
+plot(p_mat ~ ages, type = "b", pch = 17,
+     xlab = "Age (years)", ylab = "Probability of Average Fish Mature")
+```
+
+```{r, echo = F}
+par(sp)
 p_mat = apply(out, 1, function(x) mean(x > 450))
 plot(p_mat ~ ages, type = "b", pch = 17,
      xlab = "Age (years)", ylab = "Probability of Average Fish Mature")
@@ -803,6 +891,7 @@ plot(chl.a ~ treatment, data = dat)
 
 ```{r, echo = F}
 dat = read.csv("Data/ponds.csv")
+par(sp)
 plot(chl.a ~ treatment, data = dat)
 ```
 
@@ -845,7 +934,13 @@ Dnull = replicate(n = 5000, expr = perm(x = dat$treatment, y = dat$chl.a))
 
 Plot the distribution of the null test statistic and draw a line where the originally-observed difference falls:
 
-```{r}
+```{r, eval = F}
+hist(Dnull, col = "grey")
+abline(v = Dobs, col = "blue", lwd = 3, lty = 2)
+```
+
+```{r, echo = F}
+par(sp)
 hist(Dnull, col = "grey")
 abline(v = Dobs, col = "blue", lwd = 3, lty = 2)
 ```
@@ -909,7 +1004,7 @@ for (n in 1:N) {
 These questions will require you to adapt the code written in Section \@ref(harv-ex)
 
 1.  Add an argument to `ricker_sim()` that will give the user an option to create a plot that shows the time series of recruitment, harvest, and escapement all on the same plot. Set the default to be to not plot the result, in case you forget to turn it off before performing the Monte Carlo analysis. 
-2.  Add an _error handler_ to `ricker_sim()` that will cause the function to return an error `if()` the names of the vector passed to the `param` argument aren't what the function is expecting. You can use stop("Error Message Goes Here") to have your function stop and return an error.
+2.  Add an _error handler_ to `ricker_sim()` that will cause the function to return an error `if()` the names of the vector passed to the `param` argument aren't what the function is expecting. You can use `stop("Error Message Goes Here")` to have your function stop and return an error.
 3.  How do the results of the trade-off analysis differ if the process error was larger (a larger value of $\sigma$)?
 4.  Add implementation error to the harvest policy. That is, if the target exploitation rate is $U$, make the real exploitation rate in year $y$ be: $U_y \sim Beta(a,b)$, where $a = 100U$ and $b = 100(1-U)$. You can make there be more implementation error by inserting a smaller number other than 100 here. How does this affect the trade-off analysis?
 
@@ -920,7 +1015,7 @@ These questions will require you to adapt the code written in Section \@ref(harv
 These questions will require you to adapt the code written in Section \@ref(boot-test-ex)
 
 1.  Replicate the bootstrap analysis, but adapt it for the linear regression example in Section \@ref(regression). Stop at the step where you summarize the 95% interval range.
-2.  Compare the 95% bootstrap confidence intervals to the intervals you get by running the `predict` function on the original data set with the argument `interval = "confidence"`.
+2.  Compare the 95% bootstrap confidence intervals to the intervals you get by running the `predict()` function on the original data set with the argument `interval = "confidence"`.
 
 [Solutions](#ex4e-answers)
 
