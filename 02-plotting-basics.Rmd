@@ -2,7 +2,12 @@
 
 ```{r include = F}
 rm(list = ls(all = T))
-knitr::opts_chunk$set(fig.align = "center")
+knitr::opts_chunk$set(fig.align = "center",
+                      global.par = T)
+
+op = par(no.readonly = T)
+par(mar = c(4,4,2,1))
+sp = par(no.readonly = T)
 ```
 
 ```{r, echo = F, warning = F, message = F}
@@ -23,7 +28,7 @@ In this chapter, you will get familiar with the basics of using R for making plo
     *  histograms
 *  the basics of how to change plot features like:
     *  the text displayed on axes labels
-    *  the size and type of point symbols,
+    *  the size and type of point symbols
     *  the color of features
 *  the basics of multi-panel plotting
 *  the basics of the `par()` function
@@ -41,13 +46,14 @@ You should create a new directory and R script for your work in this Chapter. Cr
 
 Learning some terminology will help you get used to the base R graphics system:
 
-*  A **high-level plotting function** is one that is used to make a new graph. Examples of higher level plotting functions are the general `plot()` and the `barplot()` functions. When-a high level plotting function is executed, the currently displayed plot (if any) is written over.
-*  A **low-level plotting function** is one that is used to modify a plot that has already been created. You must already have made a plot using a higher level plotting function before you use lower level plotting functions. Examples include `text()`, `points()`, and `lines()`. When a low-level plotting function is executed, the output is simply added to an existing plot. 
+*  A **high-level plotting function** is one that is used to make a new graph. Examples of higher level plotting functions are the general `plot()` and the `barplot()` functions. When-a high level plotting function is executed, the currently-displayed plot (if any) is written over.
+*  A **low-level plotting function** is one that is used to modify a plot that has already been created. You must already have made a plot using a high-level plotting function before you use low-level plotting functions. Examples include `text()`, `points()`, and `lines()`. When a low-level plotting function is executed, the output is simply added to an existing plot. 
 *  The **graphics device** is the area in which a plot is displayed. RStudio has a built in graphics device in its interface (lower right by default in the "Plots" tab), or you can create a new device. R will plot on the active device, which is the most recently created device. There can only be one active device at a time.
 
 Here is an example of a basic R plot:
 
 ```{r, echo = F}
+par(sp)
 x = 0:10
 y = x^2
 plot(x = x, y = y,
@@ -64,7 +70,7 @@ There are a few components:
 
 You can change just about everything there is about this plot to suit your tastes. Duplicate this plot, but make the x-axis, y-axis, and main titles something other than the placeholders shown here:
 
-```{r eval = F}
+```{r, eval = F}
 # plot dummy data
 x = 0:10
 y = x^2
@@ -76,7 +82,7 @@ plot(x = x, y = y,
 
 Note that the first two arguments, `x` and `y`, specify the coordinates of the points (i.e., the first point is placed at coordinates `x[1]`,`y[1]`). `plot()` has _tons_ of arguments (or _graphical parameters_ as the help file found using `?plot` or `?par` calls them) that change how the plot looks. Note that when you want something displayed verbatim on the plotting device, you must wrap that code in `" "`, i.e., the arguments `xlab`, `ylab`, and `main` all receive a character vector of length 1 as input. 
 
-Table `r if(is_html_output()) "\\@ref(tab:plot-arg-table-html)" else "\\@ref(tab:plot-arg-table-pdf)"` shows information on just a handful of them to get you started.
+Table `r if(is_html_output()) "\\@ref(tab:plot-arg-table-html)" else "\\@ref(tab:plot-arg-table-pdf)"` shows information on just a handful of the plotting settings to get you started.
 
 ```{r plot-arg-table-html, echo = F, results = "asis", eval = is_html_output()}
 pars = c("`xlab`", "`ylab`", "`main`", "`cex`", "`pch`", "`xlim`", "`ylim`", "`type`",
@@ -160,6 +166,7 @@ points(x = rev(x), y = y, col = "blue", pch = 16)
 ```
 
 ```{r, echo = F}
+par(sp)
 plot(x = x, y = y, xlab = "x-axis label goes here", ylab = "y-axis label goes here",
       main = "Main Plot Title Goes Here")
 points(x = rev(x), y = y, col = "blue", pch = 16)
@@ -172,6 +179,7 @@ lines(x = x, y = x, lty = 2, col = "red")
 ```
 
 ```{r, eval = T, echo = F}
+par(sp)
 plot(x = x, y = y, xlab = "x-axis label goes here",
      ylab = "y-axis label goes here", main = "Main Plot Title Goes Here")
 points(x = rev(x), y = y, col = "blue", pch = 16)
@@ -185,6 +193,7 @@ text(x = 5, y = 80, "This is Text", cex = 1.5, col = "grey", font = 4)
 ```
 
 ```{r, eval = T, echo = F}
+par(sp)
 plot(x = x, y = y, xlab = "x-axis label goes here", ylab = "y-axis label goes here",
       main = "Main Plot Title Goes Here")
 points(x = rev(x), y = y, col = "blue", pch = 16)
@@ -194,7 +203,7 @@ text(x = 5, y = 80, "This is Text", cex = 1.5, col = "grey", font = 4)
 
 The text is centered on the coordinates you provide. You can also provide vectors of coordinates and text to write different things at once.
 
-The easiest way to add a straight line to a plot is with `abline()`. By default it takes two arguments: `a` and `b` which are the intercept and slope, respectively, e.g., `abline(c(0,1))` will draw a 1:1 line. You can also do `abline(h = 5)` to draw a horizontal line at 5 or `abline(v = 5)` to draw a vertical line at `5`.
+The easiest way to add a straight line to a plot is with `abline()`. By default it takes two arguments: `a` and `b` which are the y-intercept and slope, respectively, e.g., `abline(0,1)` will draw a 1:1 line, as will `abline(c(0,1))`. You can also do `abline(h = 5)` to draw a horizontal line at 5 or `abline(v = 5)` to draw a vertical line at `5`.
 
 You can see that the text is centered on the coordinates `x = 5` and `y = 80` using `abline()`:
 
@@ -204,6 +213,7 @@ abline(v = 5, col = "grey")
 ```
 
 ```{r, eval = T, echo = F}
+par(sp)
 plot(x = x, y = y, xlab = "x-axis label goes here", ylab = "y-axis label goes here",
       main = "Main Plot Title Goes Here")
 points(x = rev(x), y = y, col = "blue", pch = 16)
@@ -216,12 +226,18 @@ If you accidentally add a plot element that you don't want using a low-level plo
 
 ## Other High-Level Plotting Functions
 
-You have just seen the basics of making two dimensional scatter plots and line plots. You will now explore other types of graphs you can make. 
+You have just seen the basics of making two-dimensional scatter plots and line plots. You will now explore other types of graphs you can make. 
 
 ### The Bar Graph
-Another very common graph is a bar graph.  R has a `bargraph()` function, and again, it has lots of arguments. Here you will just make two common variations: single bars per group and multiple bars per group. Create a vector and plot it:
+Another very common graph is a bar graph.  R has a `barplot()` function, and again, it has lots of arguments. Here you will just make two common variations: single bars per group and multiple bars per group. Create a vector and plot it:
 
-```{r}
+```{r, eval = F}
+x1 = c(2,4,6)
+barplot(x1)
+```
+
+```{r, echo = F}
+par(sp)
 x1 = c(2,4,6)
 barplot(x1)
 ```
@@ -234,7 +250,14 @@ barplot(x1, names.arg = c("a", "b", "c"))
 
 Add some more information by including two bars per group. Create another vector and combine it with the old data:
 
-```{r}
+```{r, eval = F}
+x2 = c(3,5,7)
+x3 = rbind(x1, x2)
+barplot(x3, names.arg = c("a", "b", "c"), beside = T)
+```
+
+```{r, echo = F}
+par(sp)
 x2 = c(3,5,7)
 x3 = rbind(x1, x2)
 barplot(x3, names.arg = c("a", "b", "c"), beside = T)
@@ -262,7 +285,12 @@ summary(dat)
 
 This data set contains some simulated (i.e., fake) continuous and categorical data that represent 300 anglers who were creel surveyed^[A creel survey is a sampling program where fishers are asked questions about their fishing behavior in order to estimate effort and harvest.]. In the data set, there are three categories (levels to the factor `fishery`) and the continuous variable is how many hours each angler fished this year. If you supply the generic `plot()` function with a continuous response (`y`) variable and a categorical predictor (`x`) variable, it will automatically assume you want to make a box-and-whisker plot:
 
-```{r}
+```{r, eval = F}
+plot(x = dat$fishery, y = dat$hours)
+```
+
+```{r, echo = F}
+par(sp)
 plot(x = dat$fishery, y = dat$hours)
 ```
 
@@ -280,7 +308,12 @@ Instead of saying `plot(x = x.var, y = y.var)`, this expression says `plot(y.var
 
 Another way to show the distribution of a variable is with histograms. These figures show the relative frequencies of observations in different discrete bins. Make a histogram for the hours the surveyed tournament anglers fished this year:
 
-```{r}
+```{r, eval = F}
+hist(dat$hours[dat$fishery == "Tournament"])
+```
+
+```{r, echo = F}
+par(sp)
 hist(dat$hours[dat$fishery == "Tournament"])
 ```
 
@@ -288,7 +321,7 @@ Notice the subset that extracts hours fished for tournament anglers only before 
 
 `hist()` automatically selects the number of bins based on the range and resolution of the data. You can specify how many evenly-sized bins you want to plot:
 
-```{r}
+```{r, eval = F}
 # extract the hours for tournament anglers
 t_hrs = dat$hours[dat$fishery == "Tournament"]
 
@@ -298,18 +331,31 @@ breaks = seq(from = min(t_hrs), to = max(t_hrs), length = nbins + 1)
 hist(t_hrs, breaks = breaks, main = "Tournament", col = "grey")
 ```
 
-## The `par` Function
+```{r, echo = F}
+# extract the hours for tournament anglers
+t_hrs = dat$hours[dat$fishery == "Tournament"]
+
+# create the bin endpoints
+nbins = 20
+breaks = seq(from = min(t_hrs), to = max(t_hrs), length = nbins + 1)
+par(sp)
+hist(t_hrs, breaks = breaks, main = "Tournament", col = "grey")
+```
+
+## The `par()` Function
 
 If it bothers you that the axes are "floating", you can fix this using this command:
 
 ```{r}
-par(xaxs = "i", yaxs = "i")
+par(xaxs = "i", yaxs = "i", mar = c(4,4,2,1))
 hist(t_hrs, breaks = breaks, main = "Tournament", col = "grey")
 ```
 
-Here, you changed the graphical parameters of the graphics device by using the `par()` function. Once you change the settings in `par()`, they will remain that way until you start a new device. 
+Here, you changed the graphical parameters of the graphics device by using the `par()` function. Once you change the settings in `par()`, they will remain that way until you start a new device.
 
 The `par()` function is central to fine-tuning your graphics. Here, the `xaxs = "i"` and `yaxs = "i"` arguments essentially removed the buffer between the data and the axes. `par()` has options to change the size of the margins, add outer margins, change colors, etc. Some of the graphical parameters that can be passed to high- and low-level plotting functions (like those in Table `r if(is_html_output()) "\\@ref(tab:plot-arg-table-html)" else "\\@ref(tab:plot-arg-table-pdf)"`) can also be passed `par()`. Check out the help file (`?par`) to see everything it can do. If you want to start over with fresh `par()` settings, start a new device.
+
+The `mar` argument controls how many lines of margin text are on each side of the plotting region: `mar[1]` is the bottom margin, `mar[2]` is left, `mar[3]` is top, and `mar[4]` is right. There is also `par(oma = c())` for outer margins. You can specify these in inch units instead of margin lines using the `mai` or `omi` arguments.
 
 ## New Temporary Devices
 
@@ -323,30 +369,26 @@ If you are using RStudio, then likely all of the plots you have made thus far ha
 
 Sometimes you want to display more than one plot at a time. You can make a multi-panel plot which allows for multiple plotting regions to show up simultaneously within the same plotting device. First, you need to change the layout of the plotting region. The easiest way to set up the device for multi-panel plotting is by using the `mfrow` argument in the `par()` function.
 
-Below, the code says "set up the graphical parameters so that there is 1 row and 3 columns of plotting regions within the device". Every time you make a new plot, it will go in the next available plotting region (regions fill from left to right, and from top to bottom). Make 3 histograms, each that represents a different sector of the fishery:
+Below, the code says "set up the graphical parameters so that there is 1 row and 3 columns of plotting regions within the device". Every time you make a new plot, it will go in the next available plotting region (regions fill from left to right, and from top to bottom; use `mfcol` if you wish to fill columns before rows). Make 3 histograms, each that represents a different sector of the fishery:
 
-```{r, eval = F}
-par(mfrow = c(1,3))
+```{r, eval = T, fig.height = 3, results = "hide"}
+par(mfrow = c(1,3), mar = c(4,1,2,1), oma = c(0,3,0,0))
 sapply(levels(dat$fishery), function(f) {
   hist(dat$hours[dat$fishery == f], main = f, xlab = "")
 })
+mtext(side = 2, outer = T, line = 1.5, "Frequency", cex = 0.8)
 ```
 
-```{r, echo = F, fig.height = 3}
-par(mfrow = c(1,3))
-out = sapply(levels(dat$fishery), function(f) {
-  hist(dat$hours[dat$fishery == f], main = f, xlab = "")
-}); rm(out)
-```
+Here, `sapply()` applied a user-defined function that plots a histogram for a given fishery type to each of the fishery types separately^[`sapply()` works like `apply()`, except on vectors only so you don't need to supply it with a `1` or `2` for rows or columns], which allowed you to only need to type the `hist()` code once. Notice the `par(oma)` setting to add outer margins on the left and the `mtext()` function to add a common y-axis label to all the figures.
 
-
-Here, `sapply()` applied a user-defined function that plots a histogram for a given fishery type to each of the fishery types separately^[`sapply()` works like `apply()`, except on vectors only so you don't need to supply it with a `1` or `2` for rows or columns], which allowed you to only need to type the `hist()` code once. There are other ways to make multi-panel plots, however, they are beyond the scope of this introductory material. See `?layout` for details. With this function you can change the size of certain plots and make them have different shapes (i.e., some squares, some rectangles, etc.), but it takes some pretty involved (though not impossible, by any means) specification of how you want the device to be split up into regions.
+There are other ways to make multi-panel plots, however, they are beyond the scope of this introductory material. See `?layout` for details. With this function you can change the size of certain plots and make them have different shapes (i.e., some squares, some rectangles, etc.), but it takes some pretty involved (though not impossible, by any means) specification of how you want the device to be split up into regions.
 
 ## Legends
 
 Oftentimes you will want to add a legend to a plot to help people interpret what it is showing. You can add legends to R plots using the low-level plotting function `legend()`. Add a legend to the bar plot you made earlier with two groups. First, re-make the plot by running the high-level `barplot()` function, but change the colors of the bars to be shades of blue and red. Once you have the plot made, add the legend:
 
 ```{r}
+par(mar = c(4,4,2,1))
 barplot(x3, beside = T, 
         names.arg = c("a", "b", "c"),
         col = c("skyblue2", "tomato2"))
@@ -379,11 +421,11 @@ legend("topleft", legend = c("Tournament", "Non-Tournament"),
        lty = c(2,1), pch = c(1, 16), bty = "n")
 ```
 
-Notice that you need to be careful about the order of how you specify which `lty` and `pch` settings match up with the elements of the `legend` argument. In the `plot()` code, you specified that the `lty = 2` but didn't specify what `pch` should be (it defaults to `1`). So when you put the "Tournament" group first in the `legend` argument vector, you must be sure to use the corresponding plotting codes. The first element of the `lty` argument matches up with the first element of `legend`, and so on. Note the other plotting tricks used in the code above: changing the margins using `par(mar)` (the margins are always in this order: `c("bottom", "left", "top", "right")`) and the rotation of y-axis tick mark labels using `las = 1`.
+Notice that you need to be careful about the order of how you specify which `lty` and `pch` settings match up with the elements of the `legend` argument. In the `plot()` code, you specified that the `lty = 2` but didn't specify what `pch` should be (it defaults to `1`). So when you put the "Tournament" group first in the `legend` argument vector, you must be sure to use the corresponding plotting codes. The first element of the `lty` argument matches up with the first element of `legend`, and so on. Note the other new plotting trick used in the code above: the rotation of y-axis tick mark labels using `las = 1`.
 
 ## Exporting Plots
 
-There are two main ways to save plots.  First is a quick-and-dirty point-and-click method that saves the plots in low-resolution. Because you have to point and click, this cannot be automated. The second method produces cleaner-looking high-resolution plots with code that can be embedded in your script, ensuring the same exact plot will be created each time the code is executed.
+There are two main ways to save static permanent copies of your R plots.  The first is a quick-and-dirty point-and-click method that saves the plots in low-resolution. Because you have to point and click, this cannot be automated. The second method produces cleaner-looking high-resolution plots with code that can be embedded in your script, ensuring the same exact plot will be created each time the code is executed.
 
 ### Click Save
 
@@ -394,7 +436,7 @@ All plots will be saved in the working directory by default. You can also just c
 
 ### Use a function to place plot in a new file {#file-devices}
 
-If you are producing plots for a final report or publication, you want the output to be as clean-looking as possible and you want them to be fully reproducible so when something changes with your data or analysis in review, you can reproduce the same figure with the new results. You can save high-resolution plots through R by using the following steps:
+If you are producing plots for a final report or publication, you want the output to be as clean-looking as possible and you want them to be fully reproducible so when something changes with your data or analysis in review, you can reproduce the same figure with the new results. You can save high-resolution plots using the following steps:
 
 ```{r, eval = F}
 # step 1: Make a pixels per inch object
@@ -410,7 +452,7 @@ png("TestFigure.png", h = 8 * ppi, w = 8 * ppi, res = ppi)
 dev.off()
 ```
 
-A file will be saved in your working directory containing the plot made by the code in step 3 above. The `ppi` object is pixels-per-inch. When you specify `h = 8 * ppi`, you are saying "make a plot with height equal to 8 inches". There are similar functions to make PDFs, tiff files, jpegs, etc. You should save one of the plots you made in this Chapter using this approach. 
+A file will be saved in your working directory containing the plot made by the code in step 3 above. The `ppi` object is pixels-per-inch. When you specify `h = 8 * ppi`, you are saying "make a plot with height equal to 8 inches". There are similar functions to make PDFs, tiff files, jpegs, etc. If you use `pdf()`, simply specify `h` and `w` without the `ppi` and no `res` argument. You should save one of the plots you made in this Chapter using this approach. 
 
 ## Bonus Topic: Error Bars {#error-bars}
 
@@ -423,6 +465,7 @@ The syntax for `arrows()` is as follows: `arrows(x0, y0, x1, y1, ...)`, where `x
 
 ```{r}
 x_bar = tapply(dat$hours, dat$fishery, mean)
+par(mar = c(4,4,1,1))
 barplot(x_bar)
 ```
 
@@ -471,6 +514,7 @@ upr = x_bar + 1.96 * se
 Then draw them on using the `arrows()` function:
 
 ```{r}
+par(mar = c(4,4,1,1))
 mp = barplot(x_bar, ylim = range(c(0, upr)))
 arrows(x0 = mp, y0 = lwr, x1 = mp, y1 = upr, length = 0.1, angle = 90, code = 3)
 ```
@@ -480,7 +524,7 @@ Notice four things:
 1.  The use of `mp` to specify the `x` coordinates. If you do `mp = barplot(...)`, `mp` will contain the `x` coordinates of the midpoint of each bar.
 2.  `x0` and `x1` are the same: you want to have vertical bars, so these must be the same while `y1` and `y2` differ.
 3.  The use of `ylim = range(c(0, upr))`: you want the y-axis to show the full range of all the error bars.
-4.  The three arguments at the end of `arrows`:
+4.  The three arguments at the end of `arrows()`:
     - `length = 0.1`: the length of the arrow heads, fiddle with this until you like it.
     - `angle = 90`: the angle of the arrow heads, you want 90 here for the error bars.
     - `code = 3`: indicates that arrow heads should be drawn on both ends of the arrow.
@@ -489,7 +533,7 @@ Notice four things:
 
 ## Exercise 2 {-#ex2}
 
-For this exercise, you will be making a few plots and changing how they look to suit your taste. You will use a real data set (`sockeye.csv`, see the [instructions](#data-sets) on how to acquire the data files) from a sockeye salmon (_Oncorhynchus nerka_) population from the Columbia/Snake River system, obtained from @sockeye-cite. This population spawns in Redfish Lake in Idaho, which feeds into the Salmon River, which is a tributary of the Snake River. In order to reach the lake, the sockeye salmon must successfully pass through a total of eight dams that have fish passage mechanisms in place. The Redfish Lake population is one of the most endangered sockeye populations in the U.S. and travels farther (1,448 km), higher (1,996 m), and is the southernmost population of all sockeye populations in the world [@sockeye-cite]. Given this uniqueness, a captive breeding program was initiated in 1991 to conserve the genes from this population. These data came from both hatchery-raised and wild fish and include average female spawner weight (g), fecundity (number of eggs), egg size (eggs/g), and % survival to the eyed-egg stage.
+For this exercise, you will be making a few plots and changing how they look to suit your taste. You will use a real data set (`sockeye.csv`, see the [instructions](#data-sets) on how to acquire the data files) from a sockeye salmon (_Oncorhynchus nerka_) population from the Columbia/Snake River system, obtained from @sockeye-cite. This population spawns in Redfish Lake in Idaho, which feeds into the Salmon River, which is a tributary of the Snake River. In order to reach the lake, the sockeye salmon must successfully pass through a total of eight dams that have fish passage mechanisms in place. The Redfish Lake population is one of the most endangered sockeye populations in the U.S. and travels farther (1,448 km), higher (1,996 m), and is the southernmost breeding population of all sockeye populations in the world [@sockeye-cite]. Given this uniqueness, a captive breeding program was initiated in 1991 to conserve the genes from this population. These data came from both hatchery-raised and wild fish and include average female spawner weight (g), fecundity (number of eggs), egg size (eggs/g), and % survival to the eyed-egg stage.
 
 _The solutions to this exercise are found at the end of this book ([here](#ex2-answers)). You are **strongly recommended** to make a good attempt at completing this exercise on your own and only look at the solutions when you are truly stumped._
 
