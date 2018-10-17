@@ -11,7 +11,7 @@ knitr::opts_chunk$set(fig.align = "center",
 
 ## Chapter Overview {#ch6overview} 
 
-R is a relatively under-used tool for creating Geographic Information Systems (GIS). Most people use ArcGIS, QGIS, or Google Earth to display and analyze spatial data. However, R can do much of what you might want to do in those programs, with the added benefit of allowing you to create a reproducible script file to share. Workflows can be difficult to replicate in GIS because of the point-click user interface. With R, anyone can replicate your geospatial analysis with your script file and data.
+R is a relatively under-used tool for creating Geographic Information Systems (GIS). Most people use ArcGIS, QGIS, or Google Earth to display and analyze spatial data. However, R can do much of what you might want to do in those programs, with the added benefit of allowing you to create a reproducible script file to share. Workflows can be difficult to replicate in ArcGIS because of the point-click user interface. With R, anyone can replicate your geospatial analysis with your script file and data.
 
 In this chapter, you will learn the basics of:
   
