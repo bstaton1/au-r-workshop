@@ -2,7 +2,11 @@
 
 ```{r, include = F}
 rm(list = ls(all = T))
-knitr::opts_chunk$set(fig.align = "center", global.par = T)
+knitr::opts_chunk$set(fig.align = "center")
+
+op = par(no.readonly = T)
+par(mar = c(4,4,2,1))
+sp = par(no.readonly = T)
 ```
 
 ```{r, echo = F, warning = F, message = F}
@@ -17,14 +21,14 @@ In this chapter, you will get familiar with the basics of using R for the purpos
 
 *  fit and interpret the output from various general linear models:
     - simple linear regression models
-    - T-tests (also ANOVA)
+    - ANOVA (same as $t$-test but with only two groups)
     - ANCOVA models
     - Interactions
 *  conduct basic model selection
 *  fit basic GLMs: the logistic regression model
 *  Bonus topic: fitting non-linear regression models using `nls()`
 
-R has gained popularity as a statistics software and is commonly used both in academia and governmental resource agencies. This popularity is likely a result of its power, flexibility, intuitive nature, and price (free!). For many students, this chapter may be the one that is most immediately useful. 
+R has gained popularity as a statistics software and is commonly used both in academia and governmental resource agencies. This popularity is likely a result of its power, flexibility, intuitive nature, and price (free!). For many students, this chapter may be the one that is most immediately useful for applying R to their own work. 
 
 **IMPORTANT NOTE**: If you did not attend the sessions corresponding to Chapters \@ref(ch1) or \@ref(ch2), you are recommended to walk through the material found in those chapters before proceeding to this material. Also note that if you are confused about a topic, you can use **CTRL + F** to find previous cases where that topic has been discussed in this book. 
 
@@ -41,15 +45,15 @@ Much of this chapter will focus on the general linear model, so it is important 
 (\#eq:lin-mod)
 \end{equation}
 
-where the subscript $i$ represents an individual observation. The predictor variable(s) can be either categorical (i.e., grouping variables used in ANOVA, t-test, etc.), continuous (regression), or a combination of categorical and continuous (ANCOVA). The main purpose of fitting a linear model is to estimate the coefficients ($\beta$), and in some cases to determine if their values are "significantly" different from the value assumed by some null hypothesis.
+where the subscript $i$ represents an individual observation. The predictor variable(s) can be either categorical (i.e., grouping variables used in ANOVA, $t$-test, etc.), continuous (regression), or a combination of categorical and continuous (ANCOVA). The main purpose of fitting a linear model is to estimate the coefficients ($\beta$), and in some cases to determine if their values are "significantly" different from the value assumed by some null hypothesis.
 
 The model makes several assumptions about the residuals^[The residuals ($\varepsilon_i$) are the difference between the data point $y_i$ and the model prediction $\hat{y}_i$: $\varepsilon_i=y_i-\hat{y}_i$] to obtain estimates of the coefficients. For reliable inference, the residuals must:
 
   * be independent
   * be normally-distributed
-  * have constant variance across range of the x-axis
+  * have constant variance across the range that $x_n$ was observed
 
-In R, the general linear model is fitted using the `lm()` function. The basic syntax is `lm(y ~ x, data = dat)`^[This should look familiar from Section \@ref(box-whisker)]; it says: "fit a model with `y` as the response variable and `x` as the sole predictor variable, look for those variables  in a data frame called `dat`". 
+In R, the general linear model is fitted using the `lm()` function. The basic syntax is `lm(y ~ x, data = dat)`^[This should look familiar from Section \@ref(box-whisker)]; it says: "fit a model with `y` as the response variable and `x` as the sole predictor variable, and look for those variables  in a data frame called `dat`". 
 
 ### Simple Linear Regression {#regression}
 
@@ -99,7 +103,13 @@ Again the coefficient estimates are shown, but now you see the uncertainty on th
 
 You can easily see the model fit by using the `abline()` function. Make a new plot and add the fitted regression line:
 
-```{r}
+```{r, eval = F}
+plot(fecund ~ weight, data = dat, col = "grey", pch = 16, cex = 1.5)
+abline(fit1)
+```
+
+```{r, echo = F}
+par(sp)
 plot(fecund ~ weight, data = dat, col = "grey", pch = 16, cex = 1.5)
 abline(fit1)
 ```
@@ -178,7 +188,7 @@ If $x_{i1}$ is `type` coded with 0's and 1's as in Section \@ref(anova) and $x_{
 
 *  $\beta_0$: the y-intercept of the `"hatch"` level (the reference level)
 *  $\beta_1$: the difference in mean `fecund` at the same weight: `"wild"` - `"hatch"`
-*  $\beta_2$: the slope of the `fecund` _vs._ `weight` relationship (this model assumes the lines have common slopes, i.e., that the lines are parallel)
+*  $\beta_2$: the slope of the `fecund` _versus_ `weight` relationship (this model assumes the lines have common slopes, i.e., that the lines are parallel)
 
 You can fit this model and extract the coefficients table from the summary:
 
@@ -187,9 +197,9 @@ fit3 = lm(fecund ~ type + weight, data = dat)
 summary(fit3)$coef
 ```
 
-And you can plot the fit. Study this code to make sure you know what each line is doing. Use what you know about the meanings of the three coefficients to decipher the two `abline()` commands. Remember that `abline()` takes takes two arguments: `a` is the intercept and `b` is the slope.
+And you can plot the fit:
 
-```{r}
+```{r, eval = F}
 plot(fecund ~ weight, data = dat, col = "grey",
      pch = ifelse(dat$type == "hatch", 1, 16), cex = 1.5)
 abline(coef(fit3)[c(1,3)], lty = 2)
@@ -197,6 +207,18 @@ abline(sum(coef(fit3)[c(1,2)]), coef(fit3)[3])
 legend("bottom", legend = c("Hatchery", "Wild"), pch = c(1,16), lty = c(2,1),
        col = "grey", pt.cex = 1.5, bty = "n", horiz = T)
 ```
+
+```{r, echo = F}
+par(sp)
+plot(fecund ~ weight, data = dat, col = "grey",
+     pch = ifelse(dat$type == "hatch", 1, 16), cex = 1.5)
+abline(coef(fit3)[c(1,3)], lty = 2)
+abline(sum(coef(fit3)[c(1,2)]), coef(fit3)[3])
+legend("bottom", legend = c("Hatchery", "Wild"), pch = c(1,16), lty = c(2,1),
+       col = "grey", pt.cex = 1.5, bty = "n", horiz = T)
+```
+
+Study this code to make sure you know what each line is doing. Use what you know about the meanings of the three coefficients to decipher the two `abline()` commands. Remember that `abline()` takes takes two arguments: `a` is the intercept and `b` is the slope.
 
 ### Interactions
 
@@ -227,7 +249,17 @@ The first option above is more clear in its statement, but both do the same thin
 
 Plot the fit. Study these lines to make sure you know what each is doing. Use what you know about the meanings of the four coefficients to decipher the two `abline()` commands.
 
-```{r}
+```{r, eval = F}
+plot(fecund ~ weight, data = dat, col = "grey",
+     pch = ifelse(dat$type == "hatch", 1, 16), cex = 1.5)
+abline(coef(fit4)[c(1,3)], lty = 2)
+abline(sum(coef(fit4)[c(1,2)]), sum(coef(fit4)[c(3,4)]))
+legend("bottom", legend = c("Hatchery", "Wild"), pch = c(1,16), lty = c(2,1),
+       col = "grey", pt.cex = 1.5, bty = "n", horiz = T)
+```
+
+```{r, echo = F}
+par(sp)
 plot(fecund ~ weight, data = dat, col = "grey",
      pch = ifelse(dat$type == "hatch", 1, 16), cex = 1.5)
 abline(coef(fit4)[c(1,3)], lty = 2)
@@ -253,11 +285,11 @@ tab = AIC(fit1, fit2, fit3, fit4)
 tab[order(tab$AIC),]
 ```
 
-In general, AIC values that are different by more than 2 units are interpreted as having importantly different predictive performance. Based on this very quick-and-dirty analysis, it seems that in predicting future fecundity, you would want to use the interactive ANCOVA model.
+In general, AIC values that are different by more than 2 units are interpreted as having importantly different predictive performance [@aic-cite]. Based on this very quick-and-dirty analysis, it seems that in predicting future fecundity, you would want to use the interactive ANCOVA model.
 
 ## The Generalized Linear Model {#glms}
 
-The models you fitted above are called "general linear models". They all make the assumption that the residuals ($\varepsilon_i$) are normally-distributed and that the response variable and the predictor variables are linearly related. Oftentimes data and analyses do not follow this assumption. For such cases you should use the broader family of statistical models known as **generalized linear models**^[General linear models are a member of this family].
+The models you fitted above are called "general linear models". They all make the assumption that the residuals ($\varepsilon_i$) are normally-distributed and that the response variable and the predictor variables are linearly-related. Oftentimes data and analyses do not follow this assumption. For such cases you should use the broader family of statistical models known as **generalized linear models**^[General linear models are a member of this family].
 
 ### Logistic Regression {#logis-regression}
 
@@ -286,26 +318,27 @@ logit = function(p) {
 The generalized linear model calculates the log odds of an outcome: `logit(p[i])` (which is given by the $\beta$ coefficients and the $x_{ij}$ data in Equation \@ref(eq:logis-reg)), so if you want to know the odds ratio of the outcome, you can simply take the inverse log. But, if you want to know the probability of the outcome `p[i]`, you have to apply the inverse logit function:
 
 \begin{equation}
-  expit(lp_i)=\frac{e^{lp_i}}{1 + e^{lp_i}}
+  expit(\eta_i)=\frac{e^{\eta_i}}{1 + e^{\eta_i}}
 (\#eq:expit)
 \end{equation}
 
-where $lp_i = logit(p_i)$. Make an R function to perform the inverse logit transformation to the probability scale:
+where $\eta_i = logit(p_i)$. Make an R function to perform the inverse logit transformation to the probability scale:
 
 ```{r}
-expit = function(lp) {  # lp stands for logit(p)
-  exp(lp)/(1 + exp(lp))
+expit = function(eta) {  # lp stands for logit(p)
+  exp(eta)/(1 + exp(eta))
 }
 ```
-Because all of the fitted beta coefficients are on the log scale, you cannot make easy interpretations about the relationships between the predictor variables and the observed outcomes without making these transformations. The following example will take you through the steps to fit a logistic regression model and how to interpret the model outputs using these functions.
 
-Fit a logistic regression model to the sockeye salmon data. None of the variables of interest are binary, but you can create one. Look at the variable `dat$survival`. This is the average % survival of all eggs laid that make it to the "eyed-egg" stage. Any year with over 70% egg survival we will consider a successful year, so create a new variable `binary` which takes on a 0 if `dat$survival` is less than 70% and a 1 otherwise. 
+Because all of the fitted $\beta$ coefficients are on the log scale, you cannot make easy interpretations about the relationships between the predictor variables and the observed outcomes without making these transformations. The following example will take you through the steps to fit a logistic regression model and how to interpret the model outputs using these functions.
+
+Fit a logistic regression model to the sockeye salmon data. None of the variables of interest are binary, but you can create one. Look at the variable `dat$survival`. This is the average % survival of all eggs laid that make it to the "eyed-egg" stage. Suppose any year with over 70% egg survival is considered a successful year, so create a new variable `binary` which takes on a 0 if `dat$survival` is less than 70% and a 1 otherwise. 
 
 ```{r}
 dat$binary = ifelse(dat$survival < 70, 0, 1)
 ```
 
-This will be your response variable and your model will estimate how the probability of `binary` being a `1` changes (or doesn't) depending on the value of other variables. 
+This will be your response variable ($y$) and your model will estimate how the probability ($p$) of `binary` being a `1` changes (or doesn't) depending on the value of other variables ($x_{n}$). 
 
 Analogous to the simple linear regression model (Section \@ref(regression)), estimate how $p$ changes with `weight`: (How does the probability of having a successful clutch relate to the weight of the fish?) 
 
@@ -319,13 +352,9 @@ The coefficients are interpreted as (remember, "success" is defined as having at
 *  $\beta_0$: the log odds of success for a year in which average fish weight was 0 (which is not all that important, let alone difficult to interpret). It can be transformed into more interpretable quantities: 
     *  $e^{\beta_0}$ is the odds of success for a year in which average fish weight was 0 and 
     *  $expit(e^{\beta_0})$ is the probability of success for a year in which average fish weight was 0. 
-
 *  $\beta_1$: the additive effect of fish weight on the log odds of success. More interpretable expressions are:
-    *  $e^{\beta_1}$ is the ratio of the odds of success at two consective weights (e.g., 1500 and 1501) and Claims about $e^{\beta_1}$ are made as "for every one gram increase in average weight, success became        *  $e^{\beta_1}$ times as likely to happen".
-
-* You can predict the probability of success at any weight using $expit(\beta_0 + \beta_1 weight)$
-
-You can plot the fitted model:
+    *  $e^{\beta_1}$ is the ratio of the odds of success at two consective weights (e.g., 1500 and 1501) and Claims about $e^{\beta_1}$ are made as "for every one gram increase in average weight, success became $e^{\beta_1}$ times as likely to happen".
+*  You can predict the probability of success at any weight using $expit(\beta_0 + \beta_1 weight)$:
 
 ```{r}
 # create a sequence of weights to predict at
@@ -336,7 +365,16 @@ wt_seq = seq(min(dat$weight, na.rm = T),
 # extract the coefficients and get p
 p = expit(coef(fit1)[1] + coef(fit1)[2] * wt_seq)
 
-# plot the relationship
+```
+
+You can plot the fitted model:
+
+```{r, eval = F}
+plot(p ~ wt_seq, type = "l", lwd = 3, ylim = c(0,1), las = 1)
+```
+
+```{r, echo = F}
+par(sp)
 plot(p ~ wt_seq, type = "l", lwd = 3, ylim = c(0,1), las = 1)
 ```
 
@@ -363,7 +401,7 @@ Incorporate the origin type into your original model:
 fit3 = glm(binary ~ type + weight, data = dat)
 ```
 
-and obtain/plot the fitted probabilities for each group:
+and obtain the fitted probabilities for each group at each weight:
 
 ```{r}
 p_hatch = predict(
@@ -374,7 +412,22 @@ p_wild = predict(
   fit3, newdata = data.frame(type = "wild", weight = wt_seq),
   type = "response"
 )
+```
 
+and plot them:
+
+```{r, eval = F}
+plot(p_wild ~ wt_seq, type = "l", lwd = 3, lty = 1,
+     ylim = c(0,1), las =1,
+     xlab = "Weight (g)", ylab = "Pr(>70% Egg Survival)"
+     )
+lines(p_hatch ~ wt_seq, lwd = 3, lty = 2)
+legend("topright", legend = c("Hatchery", "Wild"),
+       lty = c(2,1), lwd = 3, bty = "n")
+```
+
+```{r, echo = F}
+par(sp)
 plot(p_wild ~ wt_seq, type = "l", lwd = 3, lty = 1,
      ylim = c(0,1), las =1,
      xlab = "Weight (g)", ylab = "Pr(>70% Egg Survival)"
@@ -396,7 +449,20 @@ p_wild = predict(
   fit4, newdata = data.frame(type = "wild", weight = wt_seq),
   type = "response"
 )
+```
 
+```{r, eval = F}
+plot(p_wild ~ wt_seq, type = "l", lwd = 3, lty = 1,
+     ylim = c(0,1), las =1,
+     xlab = "Weight (g)", ylab = "Pr(>70% Egg Survival)"
+     )
+lines(p_hatch ~ wt_seq, lwd = 3, lty = 2)
+legend("topright", legend = c("Hatchery", "Wild"),
+       lty = c(2,1), lwd = 3, bty = "n")
+```
+
+```{r, echo = F}
+par(sp)
 plot(p_wild ~ wt_seq, type = "l", lwd = 3, lty = 1,
      ylim = c(0,1), las =1,
      xlab = "Weight (g)", ylab = "Pr(>70% Egg Survival)"
@@ -483,13 +549,11 @@ Suppose that $x$ represents the length of individual age 6 largemouth bass in yo
 ```{r norm-plots, fig.height = 6.5, fig.width = 6.5, fig.cap="The four `-norm` functions with input (x-axis) and output (y-axis) displayed."}
 # parameters
 mu = 500; sig = 50
-
 # a sequence of possible random variables (fish lengths)
 lengths = seq(200, 700, length = 100)
-
 # a sequence of possible cumulative probabilities
 cprobs = seq(0, 1, length = 100)
-
+# use the four functions
 densty = dnorm(x = lengths, mean = mu, sd = sig)  # takes specific lengths
 cuprob = pnorm(q = lengths, mean = mu, sd = sig)  # takes specific lengths
 quants = qnorm(p = cprobs, mean = mu, sd = sig)   # takes specific probabilities
@@ -505,7 +569,6 @@ par(
   mgp = c(2,0.4,0),  # bring in axis titles ([1]) and tick labels ([2])
   tcl = -0.25        # shorten tick marks
 )
-
 plot(densty ~ lengths, type = "l", lwd = 3, main = "dnorm()",
      xlab = "Fish Length (mm)", ylab = "Density", las = 1,
      yaxt = "n") # turns off y-axis
@@ -525,7 +588,7 @@ Notice that `pnorm()` and `qnorm()` are inverses of one another: if you put the 
 qnorm(pnorm(0))
 ```
 
-`pnorm(0)` asks R to find the probability that $x$ is less than zero for the standard normal distribution ($N(0,1)$ - this is the default if you don't specify `mean` and `sig`). `qnorm(pnorm(0))` asks R to find the value of $x$ that `pnorm(0)` * 100% of the possible values fall below. If the nesting is confusing, this line is the same as:
+`pnorm(0)` asks R to find the probability that $x$ is less than zero for the standard normal distribution ($N(0,1)$ - this is the default if you don't specify `mean` and `sd`). `qnorm(pnorm(0))` asks R to find the value of $x$ that `pnorm(0)` * 100% of the possible values fall below. If the nesting is confusing, this line is the same as:
 
 ```{r, eval = F}
 p = pnorm(0)
@@ -551,7 +614,12 @@ These are hypothetical data from an experiment in which you were interested in q
 
 Plot the data:
 
-```{r}
+```{r, eval = F}
+plot(cons ~ prey, data = dat, cex = 1.5, pch = 16, col = "grey")
+```
+
+```{r, echo = F}
+par(sp)
 plot(cons ~ prey, data = dat, cex = 1.5, pch = 16, col = "grey")
 ```
 
@@ -577,15 +645,26 @@ In general, it behaves very similarly to the `lm()` function, however there are 
 *  You may need to provide starting values for the parameters (coefficients) you are estimating. This is because `nls()` will use a search algorithm to find the parameters of the best fit line, and it may need to have a reasonable idea of where to start looking for it to work properly.
 *  You cannot plot the fit using `abline()` anymore, because you have more parameters than just a slope and intercept, and the relationship between $x$ and $y$ is no longer linear.
 
-Despite these differences, you can obtain similar output as from `lm()` by using the `summary()`, `coef()`, and `predict()` functions. Draw the fitted line over top of the data:
+Despite these differences, you can obtain similar output as from `lm()` by using the `summary()`, `coef()`, and `predict()` functions. 
 
 ```{r}
 prey_seq = seq(min(dat$prey), max(dat$prey), length = 100)
 cons_seq = predict(fit, newdata = data.frame(prey = prey_seq))
+```
 
+Draw the fitted line over top of the data:
+
+```{r, eval = F}
 plot(cons ~ prey, data = dat, cex = 1.5, pch = 16, col = "grey")
 lines(cons_seq ~ prey_seq, lwd = 3)
 ```
+
+```{r, echo = F}
+par(sp)
+plot(cons ~ prey, data = dat, cex = 1.5, pch = 16, col = "grey")
+lines(cons_seq ~ prey_seq, lwd = 3)
+```
+
 
 ---
 
@@ -598,6 +677,7 @@ _The solutions to this exercise are found at the end of this book ([here](#ex3-a
 1.  Perform the same analyses as conducted in Section \@ref(lm) (simple linear regression, ANOVA, ANCOVA, ANCOVA with interaction), using `egg_size` as the response variable. The predictor variables you should use are `type` (categorical) and `year`. You should plot the fit for each model separately and perform an AIC analysis. Practice interpreting the coefficient estimates.
 2.  Perform the same analyses as conducted in Section \@ref(glms), this time using a success threshold of 80% survival to the eyed-egg stage (instead of 70%). Use `egg_size` and `type` as the predictor variables. You should plot the fitted lines for each model separately and perform an AIC analysis. Practice interpreting the coefficient estimates.
 3.  Make the same graphic as in Figure \@ref(fig:norm-plots) with at least one of the other distributions listed in Table `r if(is_html_output()) "\\@ref(tab:dist-table-html)" else "\\@ref(tab:dist-table-pdf)"` (other than the multinomial - being a multivariate distribution, it wouldn't work well with this code). Try thinking of a variable from your work that meets the uses of each distribution in Table `r if(is_html_output()) "\\@ref(tab:dist-table-html)" else "\\@ref(tab:dist-table-pdf)"` (or one that's not listed). If you run into trouble, check out the help file for that distribution^[Executing `?rnorm` or any other of the `-norm()` functions will take you to a page with info on all four function types for that distribution]. 
+
 ### Exercise 3 Bonus {-}
 
 1.  Fit a von Bertalanffy growth model to the data found in the `growth.csv` data file. Visit Section \@ref(boot-test-ex) (particularly Equation \@ref(eq:vonB)) for details on this model. Use the initial values: `linf = 600`, `k = 0.3`, `t0 = -0.2`. Plot the fitted line over top of the data. 
