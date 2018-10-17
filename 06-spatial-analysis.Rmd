@@ -52,7 +52,7 @@ Rather than load all the packages at the top of the script (as is typically cust
 
 ## Geospatial Data {#intro}
 
-There are two types of geospatial data: **vector**^[this term should not be confused with the `vector` class of R object] and **raster** data. R is able to handle both, but for the sake of simplicity, this chapter will mostly deal with vector data. There are three types of vector data that you should be familiar with (Figure \@ref(fig:vector-types)): 
+There are two types of geospatial data: **vector**^[this term should not be confused with the vector data type in R] and **raster** data. R is able to handle both, but for the sake of simplicity, this chapter will mostly deal with vector data. There are three types of vector data that you should be familiar with (Figure \@ref(fig:vector-types)): 
 
 *  A **point** is a pair of coordinates (`x` = longitude, `y` = latitude) that represent the location of some observed object or event
 *  A **line** is a path between two or more ordered points. The endpoints of a line are called **vertices**.
