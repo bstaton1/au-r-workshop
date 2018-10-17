@@ -16,14 +16,17 @@ library(knitr)
 In this chapter, you will get familiar with the basics of using R for making plots and figures. You will learn:
 
 *  how to make various plots including:
-    - scatterplots
-    - line plots
-    - bar plots
-    - box-and-whisker plots
-    - histograms
-*  the basics of how to change plot features like the text displayed, the size of points, and the type of points
+    *  scatterplots
+    *  line plots
+    *  bar plots
+    *  box-and-whisker plots
+    *  histograms
+*  the basics of how to change plot features like:
+    *  the text displayed on axes labels
+    *  the size and type of point symbols,
+    *  the color of features
 *  the basics of multi-panel plotting
-*  the basics of the `par` function
+*  the basics of the `par()` function
 *  how to save your plot to an external file
 
 R's base `{graphics}` plotting package is incredibly versatile, and as you will see, it doesn't take much to get started making professional-looking graphs. It is worth mentioning that there are other R packages^[An **R package** is a bunch of code that somebody has written and placed on the web for you to install, their use is first introduced in Chapter \@ref(ch5)] for plotting that have nice features. The R packages `{ggplot2}` [@R-ggplot2] and `{lattice}` [@R-lattice] are good examples. However, they can be more complex to learn at first than the base R plotting capabilities and look a bit different.

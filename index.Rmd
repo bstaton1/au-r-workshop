@@ -110,7 +110,7 @@ Some exercises have bonus questions. These are intended to challenge you with so
 *  **Bold** is intended to provide more emphasis to a word or topic. In general, new topics are introduced this way.
 *  [Links](#notation): this is a link to some other location in this book. External links are provided with a full URL.
 *  $Equations$: it is sometimes useful to describe concepts mathematically before showing how to do it in R.
-*  ^[This is a footnote. If your viewing this on GitHub Pages, click the arrow to the right to return to the text]: a footnote containing more information.
+*  ^[This is a footnote. If you're viewing this on GitHub Pages, click the arrow to the right to return to the text]: a footnote containing more information.
 
 ## Keyboard Shortcuts {-}
 
