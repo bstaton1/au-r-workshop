@@ -47,6 +47,21 @@
 
 
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.2/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.1.17/leaflet-providers.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.2/leaflet-providers-plugin.js"></script>
+<link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.css" rel="stylesheet" />
+<link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.Default.css" rel="stylesheet" />
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.js"></script>
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.freezable.js"></script>
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.layersupport.js"></script>
 
 
 <style type="text/css">
@@ -156,7 +171,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="ch2.html"><a href="ch2.html#box-whisker"><i class="fa fa-check"></i><b>2.4</b> Box-and-Whisker Plots</a></li>
 <li class="chapter" data-level="2.5" data-path="ch2.html"><a href="ch2.html#histograms"><i class="fa fa-check"></i><b>2.5</b> Histograms</a></li>
-<li class="chapter" data-level="2.6" data-path="ch2.html"><a href="ch2.html#the-par-function"><i class="fa fa-check"></i><b>2.6</b> The <code>par</code> Function</a></li>
+<li class="chapter" data-level="2.6" data-path="ch2.html"><a href="ch2.html#the-par-function"><i class="fa fa-check"></i><b>2.6</b> The <code>par()</code> Function</a></li>
 <li class="chapter" data-level="2.7" data-path="ch2.html"><a href="ch2.html#new-temporary-devices"><i class="fa fa-check"></i><b>2.7</b> New Temporary Devices</a></li>
 <li class="chapter" data-level="2.8" data-path="ch2.html"><a href="ch2.html#multi-panel-plots"><i class="fa fa-check"></i><b>2.8</b> Multi-panel Plots</a></li>
 <li class="chapter" data-level="2.9" data-path="ch2.html"><a href="ch2.html#legends"><i class="fa fa-check"></i><b>2.9</b> Legends</a></li>
@@ -335,7 +350,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>When you open up RStudio for the first time, you will see three panes: the left-hand side is the <strong>console</strong> where results from executed commands are printed, and the two panes on the right are for additional information to help you code more efficiently - don’t worry too much about what these are at the moment. For now, focus your attention on the console.</p>
 <div id="write-some-simple-code" class="section level3">
 <h3><span class="header-section-number">1.1.1</span> Write Some Simple Code</h3>
-<p>To start off, you will use R as a simple calculator. Type these commands (not the lines with <code>##</code>, those are output<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>) one at a time and hit <strong>CTRL + ENTER</strong> to run it. The spaces don’t matter at all, they are used here for clarity and for styling. To learn more about standard R code styling, check out the section in <span class="citation">Wickham (<a href="#ref-adv-r-cite">2015</a>)</span> on it<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>.</p>
+<p>To start off, you will use R as a simple calculator. Type these commands (not the lines with <code>##</code>, those are output<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a>) one at a time and hit <strong>CTRL + ENTER</strong> to run it. The spaces don’t matter at all, they are used here for clarity and for styling. To learn more about standard R code styling, check out the section in <span class="citation">Wickham (<a href="#ref-adv-r-cite">2015</a>)</span> on it<a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span></code></pre></div>
 <pre><code>## [1] 6</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">12</span><span class="op">/</span><span class="dv">4</span></code></pre></div>
@@ -423,7 +438,7 @@ year =<span class="st"> </span><span class="kw">rep</span>(<span class="dv">2018
 <p>The <code>[1]</code> that shows up is an element position, more on this later (see Section <a href="ch1.html#sub">1.7</a>). If you wish to know how many elements are in a vector, use <code>length()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(year)</code></pre></div>
 <pre><code>## [1] 5</code></pre>
-<p>You can also create a vector “by-hand” using the <code>c()</code> function<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a>:</p>
+<p>You can also create a vector “by-hand” using the <code>c()</code> function<a href="#fn7" class="footnoteRef" id="fnref7"><sup>7</sup></a>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># a numeric vector</span>
 number =<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">10</span>, <span class="dv">15</span>); number</code></pre></div>
 <pre><code>## [1]  4  7  8 10 15</code></pre>
@@ -433,12 +448,12 @@ pond =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;
 <p>Note the difference between the numeric and character vectors. The terms “numeric” and “character”&quot; represent <strong>data classes</strong>, which specify the type of data the vector is holding:</p>
 <ul>
 <li>A <strong>numeric vector</strong> stores numbers. You can do math with numeric vectors</li>
-<li>A <strong>character vector</strong> stores what are essentially letters. You can’t do math with letters. A character vector is easy to spot because the elements will be wrapped with quotes<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>.</li>
+<li>A <strong>character vector</strong> stores what are essentially letters. You can’t do math with letters. A character vector is easy to spot because the elements will be wrapped with quotes<a href="#fn8" class="footnoteRef" id="fnref8"><sup>8</sup></a>.</li>
 </ul>
 <p>A vector can only hold one data class at a time:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="st">&quot;a&quot;</span>); v</code></pre></div>
 <pre><code>## [1] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;a&quot;</code></pre>
-<p>Notice how all the elements now have quotes around them. The numbers have been <strong>coerced</strong> to characters<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a>. If you attempt to calculate the sum of your vector:</p>
+<p>Notice how all the elements now have quotes around them. The numbers have been <strong>coerced</strong> to characters<a href="#fn9" class="footnoteRef" id="fnref9"><sup>9</sup></a>. If you attempt to calculate the sum of your vector:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(v)</code></pre></div>
 <pre><code>## Error in sum(v): invalid &#39;type&#39; (character) of argument</code></pre>
 <p>you would find that it is impossible in its current form.</p>
@@ -686,7 +701,7 @@ Circle
 </div>
 <div id="read" class="section level2">
 <h2><span class="header-section-number">1.8</span> Read External Data Files</h2>
-<p>It is rare that you will enter data by hand as you did in Exercise 1A. Often, you have a data set that you wish to analyze or manipulate that is stored in a spreadsheet. R has several ways to read information from data files and in this book, you will be using a common and simple method: reading in <code>.csv</code> files. <code>.csv</code> files are data files that separate columns with commas<a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a>. If your data are in a Microsoft Excel spreadsheet, you can save your spreadsheet file as a <code>.csv</code> file (<em>File &gt; Save As &gt; Save as Type&gt; CSV (Comma Delimited)</em>). Several dialog boxes will open asking if you are sure you want to save it as a <code>.csv</code> file.</p>
+<p>It is rare that you will enter data by hand as you did in Exercise 1A. Often, you have a data set that you wish to analyze or manipulate that is stored in a spreadsheet. R has several ways to read information from data files and in this book, you will be using a common and simple method: reading in <code>.csv</code> files. <code>.csv</code> files are data files that separate columns with commas<a href="#fn10" class="footnoteRef" id="fnref10"><sup>10</sup></a>. If your data are in a Microsoft Excel spreadsheet, you can save your spreadsheet file as a <code>.csv</code> file (<em>File &gt; Save As &gt; Save as Type&gt; CSV (Comma Delimited)</em>). Several dialog boxes will open asking if you are sure you want to save it as a <code>.csv</code> file.</p>
 <p>The syntax for reading in a <code>.csv</code> file is:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;Path/To/FileName.csv&quot;</span>)</code></pre></div>
 <p>Make sure your working directory is set to the location of your current file, which should be in the location <code>C:/Users/YOU/Documents/R-Book/Chapter 1</code>. According to the <a href="index.html#data-sets">instructions</a> on acquiring the data, you should have placed all of the data files for this book (downloaded from the <a href="">GitHub repository</a>) in the location <code>C:/Users/YOU/Documents/R-Book/Data</code>. If you have done this already and your working directory is set to the location of the <code>Ch1.R</code> script, you can simply run:</p>
@@ -919,7 +934,7 @@ xs =<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span>
 ## 5 Alabama        48.93  80.91    small
 ## 6 Georgia        39.42  57.63    small</code></pre>
 <p>This says “make a new variable in the data frame <code>dat</code> called <code>size_cat</code> and assign each row a ‘big’ if <code>stream_width</code> is greater than 50 and a ‘small’ if less than 50”.</p>
-<p>One neat thing about <code>ifelse()</code> is that you can nest multiple statements inside another<a href="#fn7" class="footnoteRef" id="fnref7"><sup>7</sup></a>. What if you wanted three categories: ‘small’, ‘medium’, and ‘large’?</p>
+<p>One neat thing about <code>ifelse()</code> is that you can nest multiple statements inside another<a href="#fn11" class="footnoteRef" id="fnref11"><sup>11</sup></a>. What if you wanted three categories: ‘small’, ‘medium’, and ‘large’?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat<span class="op">$</span>size_cat_fine =<span class="st"> </span><span class="kw">ifelse</span>(dat<span class="op">$</span>stream_width <span class="op">&lt;=</span><span class="st"> </span><span class="dv">40</span>, <span class="st">&quot;small&quot;</span>,
                            <span class="kw">ifelse</span>(dat<span class="op">$</span>stream_width <span class="op">&gt;</span><span class="st"> </span><span class="dv">40</span> <span class="op">&amp;</span><span class="st"> </span>dat<span class="op">$</span>stream_width <span class="op">&lt;=</span><span class="st"> </span><span class="dv">70</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;big&quot;</span>)); <span class="kw">head</span>(dat)</code></pre></div>
 <pre><code>##     state stream_width   flow size_cat size_cat_fine
@@ -1006,14 +1021,14 @@ xs =<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="1">
-<li id="fn1"><p>The formatting used here includes <code>##</code> on output to denote code and output separately. You won’t see the <code>##</code> show up in your console.<a href="ch1.html#fnref1">↩</a></p></li>
-<li id="fn2"><p>Hadley Wickham’s R code style guide: <a href="http://adv-r.had.co.nz/Style.html" class="uri">http://adv-r.had.co.nz/Style.html</a><a href="ch1.html#fnref2">↩</a></p></li>
-<li id="fn3"><p>The <code>c</code> stands for <strong>concatenate</strong>, which basically means combine many smaller objects into one larger object<a href="ch1.html#fnref3">↩</a></p></li>
-<li id="fn4"><p><code>&quot; &quot;</code> or <code>' '</code> both work as long as you use the same on the front and end of the element<a href="ch1.html#fnref4">↩</a></p></li>
-<li id="fn5"><p>The coercion works this way because numbers can be expressed as characters, but a letter cannot be unambiguously expressed as a number.<a href="ch1.html#fnref5">↩</a></p></li>
-<li id="fn6"><p>Note that if your computer is configured for a Spanish-speaking country, Microsoft Excel might convert decimals to commas. This can really mess with reading in data - I would suggest changing the language of Excel if you find this to be the case.<a href="ch1.html#fnref6">↩</a></p></li>
-<li id="fn7"><p>You can nest <strong>ALL</strong> R functions, by the way.<a href="ch1.html#fnref7">↩</a></p></li>
+<ol start="5">
+<li id="fn5"><p>The formatting used here includes <code>##</code> on output to denote code and output separately. You won’t see the <code>##</code> show up in your console.<a href="ch1.html#fnref5">↩</a></p></li>
+<li id="fn6"><p>Hadley Wickham’s R code style guide: <a href="http://adv-r.had.co.nz/Style.html" class="uri">http://adv-r.had.co.nz/Style.html</a><a href="ch1.html#fnref6">↩</a></p></li>
+<li id="fn7"><p>The <code>c</code> stands for <strong>concatenate</strong>, which basically means combine many smaller objects into one larger object<a href="ch1.html#fnref7">↩</a></p></li>
+<li id="fn8"><p><code>&quot; &quot;</code> or <code>' '</code> both work as long as you use the same on the front and end of the element<a href="ch1.html#fnref8">↩</a></p></li>
+<li id="fn9"><p>The coercion works this way because numbers can be expressed as characters, but a letter cannot be unambiguously expressed as a number.<a href="ch1.html#fnref9">↩</a></p></li>
+<li id="fn10"><p>Note that if your computer is configured for a Spanish-speaking country, Microsoft Excel might convert decimals to commas. This can really mess with reading in data - I would suggest changing the language of Excel if you find this to be the case.<a href="ch1.html#fnref10">↩</a></p></li>
+<li id="fn11"><p>You can nest <strong>ALL</strong> R functions, by the way.<a href="ch1.html#fnref11">↩</a></p></li>
 </ol>
 </div>
             </section>
