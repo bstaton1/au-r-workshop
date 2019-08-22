@@ -21,7 +21,7 @@ In this chapter, you will get familiar with the basics of using R for the purpos
 
 *  fit and interpret the output from various general linear models:
     - simple linear regression models
-    - ANOVA (same as $t$-test but with only two groups)
+    - ANOVA (same as $t$-test but with more than two groups)
     - ANCOVA models
     - Interactions
 *  conduct basic model selection
