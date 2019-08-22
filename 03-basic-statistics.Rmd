@@ -1,3 +1,8 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
 # Basic Statistics {#ch3}
 
 ```{r, include = F}
@@ -440,7 +445,7 @@ legend("topright", legend = c("Hatchery", "Wild"),
 Look for an interaction (all the code is the same except use `glm(binary ~ type * weight)` instead of `glm(binary ~ type + weight)` and change everything to `fit4` instead of `fit3`). 
 
 ```{r, echo = F}
-fit4 = glm(binary ~ type + weight, data = dat, family = binomial)
+fit4 = glm(binary ~ type * weight, data = dat, family = binomial)
 p_hatch = predict(
   fit4, newdata = data.frame(type = "hatch", weight = wt_seq),
   type = "response"
@@ -481,7 +486,7 @@ tab = AIC(fit1, fit2, fit3, fit4)
 tab[order(tab$AIC),]
 ```
 
-Oddly enough, the two best models are the simplest one and the most complex one, with `fit1` being the best, but not by a large margin.
+The best model includes `weight` only, although there is not much confidence in this conclusion (based on how similar the AIC values are).  
 
 ## Probability Distributions {#dists}
 
