@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Introduction to R for Natural Resource Scientists</title>
-  <meta name="description" content="This is a first course in R programming for natural resource scientists. It was developed and has been primarily instructed at Auburn University.">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Exercise Solutions | Introduction to R for Natural Resource Scientists</title>
+  <meta name="description" content="This is a first course in R programming for natural resource scientists. It was developed and has been primarily instructed at Auburn University." />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Introduction to R for Natural Resource Scientists" />
+  <meta property="og:title" content="Exercise Solutions | Introduction to R for Natural Resource Scientists" />
   <meta property="og:type" content="book" />
   
   
@@ -17,24 +16,25 @@
   <meta name="github-repo" content="bstaton1/au-r-workshop" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Introduction to R for Natural Resource Scientists" />
+  <meta name="twitter:title" content="Exercise Solutions | Introduction to R for Natural Resource Scientists" />
   
   <meta name="twitter:description" content="This is a first course in R programming for natural resource scientists. It was developed and has been primarily instructed at Auburn University." />
   
 
-<meta name="author" content="Ben Staton">
+<meta name="author" content="Ben Staton" />
 
 
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 <link rel="prev" href="ch6.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
@@ -47,7 +47,7 @@
 
 
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
 <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
@@ -65,41 +65,67 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -336,39 +362,39 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>You can create a new script using <strong>CTRL + SHIFT + N</strong> as well.</p>
 <p><strong>2. Enter these data (found in Table <a href="ch1.html#tab:ex-1-table-html">1.1</a>) into vectors. Call the vectors whatever you would like. Should you enter the data as vectors by rows, or by columns? (Hint: remember the properties of vectors).</strong></p>
 <p>Because you have both numeric and character data classes for a single row, you should enter them by columns:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Lake =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Big&quot;</span>, <span class="st">&quot;Small&quot;</span>, <span class="st">&quot;Square&quot;</span>, <span class="st">&quot;Circle&quot;</span>)
+<pre class="sourceCode r"><code class="sourceCode r">Lake =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Big&quot;</span>, <span class="st">&quot;Small&quot;</span>, <span class="st">&quot;Square&quot;</span>, <span class="st">&quot;Circle&quot;</span>)
 Area =<span class="st"> </span><span class="kw">c</span>(<span class="dv">100</span>, <span class="dv">25</span>, <span class="dv">45</span>, <span class="dv">30</span>)
 Time =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1000</span>, <span class="dv">1200</span>, <span class="dv">1400</span>, <span class="dv">1600</span>)
-Fish =<span class="st"> </span><span class="kw">c</span>(<span class="dv">643</span>, <span class="dv">203</span>, <span class="dv">109</span>, <span class="dv">15</span>)</code></pre></div>
+Fish =<span class="st"> </span><span class="kw">c</span>(<span class="dv">643</span>, <span class="dv">203</span>, <span class="dv">109</span>, <span class="dv">15</span>)</code></pre>
 <p><strong>3. Combine your vectors into a data frame. Why should you use a data frame instead of a matrix?</strong></p>
 <p>You should use a data frame because, unlike matrices, they can store multiple data classes in the different columns. Refer back the sections on matrices (Section <a href="ch1.html#matrices">1.4.3</a>) and data frames (Section <a href="ch1.html#data-frames">1.4.4</a>) for more details.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df =<span class="st"> </span><span class="kw">data.frame</span>(Lake, Area, Time, Fish)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">df =<span class="st"> </span><span class="kw">data.frame</span>(Lake, Area, Time, Fish)</code></pre>
 <p><strong>4. Subset all of the data from Small Lake.</strong></p>
 <p>Refer back to Section <a href="ch1.html#sub">1.7</a> for details on subsetting using indices and by column names, see Section <a href="ch1.html#logsub">1.11</a> for details on logical subsetting.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df[df<span class="op">$</span>Lake <span class="op">==</span><span class="st"> &quot;Small&quot;</span>,]
+<pre class="sourceCode r"><code class="sourceCode r">df[df<span class="op">$</span>Lake <span class="op">==</span><span class="st"> &quot;Small&quot;</span>,]
 <span class="co"># or</span>
-df[<span class="dv">3</span>,]</code></pre></div>
+df[<span class="dv">3</span>,]</code></pre>
 <p><strong>5. Subset the area for all of the lakes.</strong></p>
 <p>Refer to the suggestions for question 4 for more details.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>Area
+<pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>Area
 <span class="co"># or</span>
-df[,<span class="dv">2</span>]</code></pre></div>
+df[,<span class="dv">2</span>]</code></pre>
 <p><strong>6. Subset the number of fish for Big and Square Lakes only.</strong></p>
 <p>Refer to the suggestions for question 4 for more details.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df[df<span class="op">$</span>Lake <span class="op">==</span><span class="st"> &quot;Big&quot;</span> <span class="op">|</span><span class="st"> </span>df<span class="op">$</span>Lake <span class="op">==</span><span class="st"> &quot;Square&quot;</span>,<span class="st">&quot;Fish&quot;</span>]
+<pre class="sourceCode r"><code class="sourceCode r">df[df<span class="op">$</span>Lake <span class="op">==</span><span class="st"> &quot;Big&quot;</span> <span class="op">|</span><span class="st"> </span>df<span class="op">$</span>Lake <span class="op">==</span><span class="st"> &quot;Square&quot;</span>,<span class="st">&quot;Fish&quot;</span>]
 <span class="co"># or</span>
-df<span class="op">$</span>Fish[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)]</code></pre></div>
+df<span class="op">$</span>Fish[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)]</code></pre>
 <p><strong>7. You realize that you sampled 209 fish at Square Lake, not 109. Fix the mistake. There are two ways to do this, can you think of them both? Which do you think is better?</strong></p>
 <p>The two methods are:</p>
 <ul>
 <li>Fix the mistake in the first place it appears: when you made the <code>Fish</code> vector. If you change it there, all other instances in your code where you use the <code>Fish</code> object will be fixed after you re-run everything.</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Fish =<span class="st"> </span><span class="kw">c</span>(<span class="dv">643</span>, <span class="dv">203</span>, <span class="dv">209</span>, <span class="dv">15</span>)
-<span class="co"># re-run the rest of your code and see the error was fixed</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">Fish =<span class="st"> </span><span class="kw">c</span>(<span class="dv">643</span>, <span class="dv">203</span>, <span class="dv">209</span>, <span class="dv">15</span>)
+<span class="co"># re-run the rest of your code and see the error was fixed</span></code></pre>
 <ul>
 <li>Fix the cell in the data frame only:</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df[df<span class="op">$</span>Lake <span class="op">==</span><span class="st"> &quot;Square&quot;</span>,<span class="st">&quot;Fish&quot;</span>] =<span class="st"> </span><span class="dv">209</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">df[df<span class="op">$</span>Lake <span class="op">==</span><span class="st"> &quot;Square&quot;</span>,<span class="st">&quot;Fish&quot;</span>] =<span class="st"> </span><span class="dv">209</span></code></pre>
 <p>The second method would only fix the data frame, so if you wanted to use the vector <code>Fish</code> outside of the data frame, the error would still be present. For this reason, the first method is likely better.</p>
 <p><strong>8. Save your script. Close RStudio and re-open your script to see that it was saved</strong>.</p>
 <p><em>File &gt; Save</em> or <strong>CTRL + S</strong></p>
@@ -378,28 +404,28 @@ df<span class="op">$</span>Fish[<span class="kw">c</span>(<span class="dv">1</sp
 <p>First, did you find the error? It is the <code>#VALUE!</code> entry in the <code>chao</code> column. You should have R treat this as an <code>NA</code>. The two easiest ways to do this are to either enter <code>NA</code> in that cell or delete its contents. You can do this easily by opening <code>ponds.csv</code> in Microsoft Excel or some other spreadsheet editor.</p>
 <p><strong>1. Read in the data to R and assign it to an object.</strong></p>
 <p>After placing <code>ponds.csv</code> (and all of the other data files) in the location <code>C:/Users/YOU/Documents/R-Book/Data</code> and creating <code>Ex1B.R</code> in your working directory:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../Data/ponds.csv&quot;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">dat =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../Data/ponds.csv&quot;</span>)</code></pre>
 <p><strong>2. Calculate some basic summary statistics of your data using the <code>summary()</code> function.</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(dat)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(dat)</code></pre>
 <p><strong>3. Calculate the mean chlorophyll <em>a</em> for each pond (<em>Hint: pond is a grouping variable</em>).</strong></p>
 <p>Remember the <code>tapply()</code> function. The first argument is the variable you wish to calculate a statistic for (chlorophyll), the second argument is the grouping variable (pond), and the third argument is the function you wish to apply.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tapply</span>(dat<span class="op">$</span>chl.a, dat<span class="op">$</span>pond, mean)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tapply</span>(dat<span class="op">$</span>chl.a, dat<span class="op">$</span>pond, mean)</code></pre>
 <p><strong>4. Calculate the mean number of <em>Chaoborus</em> for each treatment in each pond using <code>tapply()</code>. (<em>Hint: You can group by two variables with:</em> <code>tapply(dat$var, list(dat$grp1, dat$grp2), fun)</code>.</strong></p>
 <p>The hint pretty much gives this one away:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tapply</span>(dat<span class="op">$</span>chao, <span class="kw">list</span>(dat<span class="op">$</span>pond, dat<span class="op">$</span>treatment), mean)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tapply</span>(dat<span class="op">$</span>chao, <span class="kw">list</span>(dat<span class="op">$</span>pond, dat<span class="op">$</span>treatment), mean)</code></pre>
 <p><strong>5. Use the more general <code>apply()</code> function to calculate the variance for each zooplankton taxa found only in pond S-28.</strong></p>
 <p>First, subset only the correct pond and the zooplankton counts. Then, specify you want the <code>var()</code> function applied to the second dimension (columns). Finally, because <code>chao</code> has an <code>NA</code>, you’ll need to include the <code>na.rm = T</code> argument.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(dat[dat<span class="op">$</span>pond <span class="op">==</span><span class="st"> &quot;S.28&quot;</span>,<span class="kw">c</span>(<span class="st">&quot;daph&quot;</span>, <span class="st">&quot;bosm&quot;</span>, <span class="st">&quot;cope&quot;</span>, <span class="st">&quot;chao&quot;</span>)], <span class="dv">2</span>, var, <span class="dt">na.rm =</span> T)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(dat[dat<span class="op">$</span>pond <span class="op">==</span><span class="st"> &quot;S.28&quot;</span>,<span class="kw">c</span>(<span class="st">&quot;daph&quot;</span>, <span class="st">&quot;bosm&quot;</span>, <span class="st">&quot;cope&quot;</span>, <span class="st">&quot;chao&quot;</span>)], <span class="dv">2</span>, var, <span class="dt">na.rm =</span> T)</code></pre>
 <p><strong>6. Create a new variable called <code>prod</code> in the data frame that represents the quantity of chlorophyll <em>a</em> in each replicate. If the chlorophyll <em>a</em> in the replicate is greater than 30 give it a “high”, otherwise give it a “low”. (<em>Hint: are you asking R to respond to one question or multiple questions? How should this change the strategy you use?</em>)</strong></p>
 <p>Remember, you can add a new column to a data set using the <code>df$new_column = something()</code>. If the column <code>new_column</code> doesn’t exist, it will be added. If it exists already, it will be written over. You can use <code>ifelse()</code> (not <code>if()</code>!) to ask if each chlorophyll measurement was greater or less than 30, and to do something differently based on the result:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat<span class="op">$</span>prod =<span class="st"> </span><span class="kw">ifelse</span>(dat<span class="op">$</span>chl.a <span class="op">&gt;</span><span class="st"> </span><span class="dv">30</span>, <span class="st">&quot;high&quot;</span>, <span class="st">&quot;low&quot;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">dat<span class="op">$</span>prod =<span class="st"> </span><span class="kw">ifelse</span>(dat<span class="op">$</span>chl.a <span class="op">&gt;</span><span class="st"> </span><span class="dv">30</span>, <span class="st">&quot;high&quot;</span>, <span class="st">&quot;low&quot;</span>)</code></pre>
 <p><strong>Bonus 1. Use <code>?table</code> to figure out how you can use <code>table()</code> to count how many observations of high and low there were in each treatment (<em>Hint: <code>table()</code> will have only two arguments.</em>).</strong></p>
 <p>After looking through the help file, you should have seen that <code>table()</code> has a <code>...</code> as its first argument. After reading about what it takes there, you would see it is expecting:</p>
 <blockquote>
 <p>one or more objects which can be interpretted as factors (including character strings)…</p>
 </blockquote>
 <p>So if you ran:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(dat<span class="op">$</span>prod, dat<span class="op">$</span>treatment)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(dat<span class="op">$</span>prod, dat<span class="op">$</span>treatment)</code></pre>
 <pre><code>##       
 ##        Add Control
 ##   high   8       0
@@ -407,13 +433,13 @@ df<span class="op">$</span>Fish[<span class="kw">c</span>(<span class="dv">1</sp
 <p>You would get a table showing how many high and low chlorophyll observations were made for each treatment.</p>
 <p><strong>Bonus 2. Create a new function called <code>product()</code> that multiplies any two numbers you specify.</strong></p>
 <p>See Section <a href="ch1.html#user-funcs">1.14</a> for more details on user-defined functions. Your function might look like this:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">product =<span class="st"> </span><span class="cf">function</span>(a,b) {
+<pre class="sourceCode r"><code class="sourceCode r">product =<span class="st"> </span><span class="cf">function</span>(a,b) {
   a <span class="op">*</span><span class="st"> </span>b
 }
-<span class="kw">product</span>(<span class="dv">4</span>,<span class="dv">5</span>)</code></pre></div>
+<span class="kw">product</span>(<span class="dv">4</span>,<span class="dv">5</span>)</code></pre>
 <pre><code>## [1] 20</code></pre>
 <p><strong>Bonus 3. Modify your function to print a message to the console and return the value <code>if()</code> it meets a condition and to print another message and not return the value if it doesn’t.</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">product =<span class="st"> </span><span class="cf">function</span>(a,b,z) {
+<pre class="sourceCode r"><code class="sourceCode r">product =<span class="st"> </span><span class="cf">function</span>(a,b,z) {
   result =<span class="st"> </span>a <span class="op">*</span><span class="st"> </span>b
   
   <span class="cf">if</span> (result <span class="op">&lt;=</span><span class="st"> </span>z) {
@@ -424,10 +450,10 @@ df<span class="op">$</span>Fish[<span class="kw">c</span>(<span class="dv">1</sp
   }
 }
 
-<span class="kw">product</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">19</span>)</code></pre></div>
+<span class="kw">product</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">19</span>)</code></pre>
 <pre><code>## The result of a * b is 20</code></pre>
 <pre><code>## [1] 20</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">product</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">30</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">product</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">30</span>)</code></pre>
 <pre><code>## The result of a * b is less than 30 so you don&#39;t care what it is</code></pre>
 <p>The use of <code>cat()</code> here is similar to <code>print()</code>, but it is better for printing messages to the console.</p>
 </div>
@@ -436,94 +462,94 @@ df<span class="op">$</span>Fish[<span class="kw">c</span>(<span class="dv">1</sp
 <h2>Exercise 2 Solutions</h2>
 <p><strong>1. Create a new R script called <code>Ex2.R</code> and save it in the <code>Chapter2</code> directory. Read in the data set <code>sockeye.csv</code>. Produce a basic summary of the data and take note of the data classes, missing values (<code>NA</code>), and the relative ranges for each variable.</strong></p>
 <p><em>File &gt; New File &gt; R Script</em>, then <em>File &gt; Save &gt; call it Ex2.R &gt; Save</em>. Then:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../Data/sockeye.csv&quot;</span>)
-<span class="kw">summary</span>(dat)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">dat =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../Data/sockeye.csv&quot;</span>)
+<span class="kw">summary</span>(dat)</code></pre>
 <p><strong>2. Make a histogram of fish weights for only hatchery-origin fish. Set <code>breaks = 10</code> so you can see the distribution more clearly.</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(dat[dat<span class="op">$</span>type <span class="op">==</span><span class="st"> &quot;hatch&quot;</span>,<span class="st">&quot;weight&quot;</span>], <span class="dt">breaks =</span> <span class="dv">10</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(dat[dat<span class="op">$</span>type <span class="op">==</span><span class="st"> &quot;hatch&quot;</span>,<span class="st">&quot;weight&quot;</span>], <span class="dt">breaks =</span> <span class="dv">10</span>)</code></pre>
 <p><strong>3. Make a scatter plot of the fecundity of females as a function of their body weight for wild fish only. Use whichever plotting character (<code>pch</code>) and color (<code>col</code>) you wish. Change the main title and axes labels to reflect what they mean. Change the x-axis limits to be 600 to 3000 and the y-axis limits to be 0 to 3500. (<em>Hint: The <code>NAs</code> will not cause a problem. R will only use points where there are paired records for both <code>x</code> and <code>y</code> and ignore otherwise</em>).</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(fecund <span class="op">~</span><span class="st"> </span>weight, <span class="dt">data =</span> dat[dat<span class="op">$</span>type <span class="op">==</span><span class="st"> &quot;wild&quot;</span>,],
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(fecund <span class="op">~</span><span class="st"> </span>weight, <span class="dt">data =</span> dat[dat<span class="op">$</span>type <span class="op">==</span><span class="st"> &quot;wild&quot;</span>,],
      <span class="dt">main =</span> <span class="st">&quot;Fecundity vs. Weight&quot;</span>,
      <span class="dt">pch =</span> <span class="dv">17</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">cex =</span> <span class="fl">1.5</span>,
      <span class="dt">xlab =</span> <span class="st">&quot;Weight (g)&quot;</span>, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">600</span>, <span class="dv">3000</span>),
-     <span class="dt">ylab =</span> <span class="st">&quot;Fecundity (#eggs)&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">3500</span>))</code></pre></div>
+     <span class="dt">ylab =</span> <span class="st">&quot;Fecundity (#eggs)&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">3500</span>))</code></pre>
 <p>All of these arguments are found in Table <a href="ch2.html#tab:plot-arg-table-html">2.1</a>.</p>
 <p><strong>4. Add points that do the same thing but for hatchery fish. Use a different plotting character and a different color.</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">points</span>(fecund <span class="op">~</span><span class="st"> </span>weight, <span class="dt">data =</span> dat[dat<span class="op">$</span>type <span class="op">==</span><span class="st"> &quot;wild&quot;</span>,],
-       <span class="dt">pch =</span> <span class="dv">15</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">cex =</span> <span class="fl">1.5</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">points</span>(fecund <span class="op">~</span><span class="st"> </span>weight, <span class="dt">data =</span> dat[dat<span class="op">$</span>type <span class="op">==</span><span class="st"> &quot;wild&quot;</span>,],
+       <span class="dt">pch =</span> <span class="dv">15</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">cex =</span> <span class="fl">1.5</span>)</code></pre>
 <p><strong>5. Add a legend to the plot to differentiate between the two types of fish.</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">legend</span>(<span class="st">&quot;bottomright&quot;</span>,
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">legend</span>(<span class="st">&quot;bottomright&quot;</span>,
        <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;Wild&quot;</span>, <span class="st">&quot;Hatchery&quot;</span>),
        <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>),
        <span class="dt">pch =</span> <span class="kw">c</span>(<span class="dv">15</span>, <span class="dv">17</span>),
        <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>,
        <span class="dt">pt.cex =</span> <span class="fl">1.5</span>
-)</code></pre></div>
+)</code></pre>
 <p>Make sure the correct elements of the <code>legend</code>, <code>col</code>, and <code>pch</code> arguments match the way they were specified in the <code>plot()</code> and <code>lines()</code> calls!</p>
 <p><strong>6. Make a multi-panel plot in a new window with box-and-whisker plots that compare (1) spawner weight, (2) fecundity, and (3) egg size between hatchery and wild fish. (<em>Hint: each comparison will be on its own panel</em>). Change the titles of each plot to reflect what you are comparing.</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vars =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;weight&quot;</span>, <span class="st">&quot;fecund&quot;</span>, <span class="st">&quot;egg_size&quot;</span>)
+<pre class="sourceCode r"><code class="sourceCode r">vars =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;weight&quot;</span>, <span class="st">&quot;fecund&quot;</span>, <span class="st">&quot;egg_size&quot;</span>)
 <span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))
 <span class="kw">sapply</span>(vars, <span class="cf">function</span>(v) {
   <span class="kw">plot</span>(dat[,v] <span class="op">~</span><span class="st"> </span>dat[,<span class="st">&quot;type&quot;</span>], <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">ylab =</span> v)
-})</code></pre></div>
+})</code></pre>
 <p><strong>7. Save the plot as a .png file in your working directory with a file name of your choosing.</strong></p>
 <p>One way to do this:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ppi =<span class="st"> </span><span class="dv">600</span>
+<pre class="sourceCode r"><code class="sourceCode r">ppi =<span class="st"> </span><span class="dv">600</span>
 <span class="kw">png</span>(<span class="st">&quot;SockeyeComparisons.png&quot;</span>, <span class="dt">h =</span> <span class="dv">5</span> <span class="op">*</span><span class="st"> </span>ppi, <span class="dt">w =</span> <span class="dv">7</span> <span class="op">*</span><span class="st"> </span>ppi, <span class="dt">res =</span> ppi)
 <span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))
 <span class="kw">sapply</span>(vars, <span class="cf">function</span>(v) {
   <span class="kw">plot</span>(dat[,v] <span class="op">~</span><span class="st"> </span>dat[,<span class="st">&quot;type&quot;</span>], <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">ylab =</span> v)
 })
-<span class="kw">dev.off</span>()</code></pre></div>
+<span class="kw">dev.off</span>()</code></pre>
 <p><strong>Bonus 1. Make a bar plot comparing the mean survival to eyed-egg stage for each type of fish (hatchery and wild). Add error bars that represent 95% confidence intervals.</strong></p>
 <p>First, adapt the <code>calc_se()</code> function to be able to cope with <code>NAs</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">calc_se =<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">na.rm =</span> F) {
+<pre class="sourceCode r"><code class="sourceCode r">calc_se =<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">na.rm =</span> F) {
   <span class="co"># include a option to remove NAs before calculating SE</span>
   <span class="cf">if</span> (na.rm) x =<span class="st"> </span>x[<span class="op">!</span><span class="kw">is.na</span>(x)]
   
   <span class="kw">sqrt</span>(<span class="kw">sum</span>((x <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(x))<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span>(<span class="kw">length</span>(x)<span class="op">-</span><span class="dv">1</span>))<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">length</span>(x))
-}</code></pre></div>
+}</code></pre>
 <p>Then, calculate the mean and standard error for the % survival to the eyed-egg stage:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mean_surv =<span class="st"> </span><span class="kw">tapply</span>(dat<span class="op">$</span>survival, dat<span class="op">$</span>type, mean, <span class="dt">na.rm =</span> T)
-se_surv =<span class="st"> </span><span class="kw">tapply</span>(dat<span class="op">$</span>survival, dat<span class="op">$</span>type, calc_se, <span class="dt">na.rm =</span> T)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">mean_surv =<span class="st"> </span><span class="kw">tapply</span>(dat<span class="op">$</span>survival, dat<span class="op">$</span>type, mean, <span class="dt">na.rm =</span> T)
+se_surv =<span class="st"> </span><span class="kw">tapply</span>(dat<span class="op">$</span>survival, dat<span class="op">$</span>type, calc_se, <span class="dt">na.rm =</span> T)</code></pre>
 <p>Then, get the 95% confidence interval:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lwr_ci_surv =<span class="st"> </span>mean_surv <span class="op">-</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>se_surv
-upr_ci_surv =<span class="st"> </span>mean_surv <span class="op">+</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>se_surv</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">lwr_ci_surv =<span class="st"> </span>mean_surv <span class="op">-</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>se_surv
+upr_ci_surv =<span class="st"> </span>mean_surv <span class="op">+</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>se_surv</code></pre>
 <p>Finally, plot the means and intervals:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mp =<span class="st"> </span><span class="kw">barplot</span>(mean_surv, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">max</span>(upr_ci_surv)))
-<span class="kw">arrows</span>(mp, lwr_ci_surv, mp, upr_ci_surv, <span class="dt">length =</span> <span class="fl">0.1</span>, <span class="dt">code =</span> <span class="dv">3</span>, <span class="dt">angle =</span> <span class="dv">90</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">mp =<span class="st"> </span><span class="kw">barplot</span>(mean_surv, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">max</span>(upr_ci_surv)))
+<span class="kw">arrows</span>(mp, lwr_ci_surv, mp, upr_ci_surv, <span class="dt">length =</span> <span class="fl">0.1</span>, <span class="dt">code =</span> <span class="dv">3</span>, <span class="dt">angle =</span> <span class="dv">90</span>)</code></pre>
 <p><strong>Bonus 2. Change the names of each bar, the main plot title, and the y-axis title. </strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mp =<span class="st"> </span><span class="kw">barplot</span>(mean_surv, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">max</span>(upr_ci_surv)),
+<pre class="sourceCode r"><code class="sourceCode r">mp =<span class="st"> </span><span class="kw">barplot</span>(mean_surv, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">max</span>(upr_ci_surv)),
              <span class="dt">main =</span> <span class="st">&quot;% Survival to Eyed-Egg Stage by Origin&quot;</span>,
              <span class="dt">ylab =</span> <span class="st">&quot;% Survival to Eyed-Egg Stage&quot;</span>,
              <span class="dt">names.arg =</span> <span class="kw">c</span>(<span class="st">&quot;Hatchery&quot;</span>, <span class="st">&quot;Wild&quot;</span>))
-<span class="kw">arrows</span>(mp, lwr_ci_surv, mp, upr_ci_surv, <span class="dt">length =</span> <span class="fl">0.1</span>, <span class="dt">code =</span> <span class="dv">3</span>, <span class="dt">angle =</span> <span class="dv">90</span>)</code></pre></div>
+<span class="kw">arrows</span>(mp, lwr_ci_surv, mp, upr_ci_surv, <span class="dt">length =</span> <span class="fl">0.1</span>, <span class="dt">code =</span> <span class="dv">3</span>, <span class="dt">angle =</span> <span class="dv">90</span>)</code></pre>
 <p><strong>Bonus 3. Adjust the margins so there are 2 lines on the bottom, 5 on the left, 2 on the top, and 1 on the right.</strong></p>
 <p>Place this line above your <code>barplot(...)</code> code:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">1</span>))</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">1</span>))</code></pre>
 </div>
 <div id="ex3-answers" class="section level2 unnumbered">
 <h2>Exercise 3 Solutions</h2>
 <p><strong>1. Perform the same analyses as conducted in Section <a href="ch3.html#lm">3.1</a> (simple linear regression, ANOVA, ANCOVA, ANCOVA with interaction), using <code>egg_size</code> as the response variable. The predictor variables you should use are <code>type</code> (categorical) and <code>year</code>. You should plot the fit for each model separately and perform an AIC analysis. Practice interpretting the coefficient estimates.</strong></p>
 <p>First, read in the data:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../Data/sockeye.csv&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># regression</span>
+<pre class="sourceCode r"><code class="sourceCode r">dat =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../Data/sockeye.csv&quot;</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># regression</span>
 fit1 =<span class="st"> </span><span class="kw">lm</span>(egg_size <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> dat)
 <span class="co"># anova</span>
 fit2 =<span class="st"> </span><span class="kw">lm</span>(egg_size <span class="op">~</span><span class="st"> </span>type, <span class="dt">data =</span> dat)
 <span class="co"># ancova</span>
 fit3 =<span class="st"> </span><span class="kw">lm</span>(egg_size <span class="op">~</span><span class="st"> </span>year <span class="op">+</span><span class="st"> </span>type, <span class="dt">data =</span> dat)
 <span class="co"># ancova with interaction</span>
-fit4 =<span class="st"> </span><span class="kw">lm</span>(egg_size <span class="op">~</span><span class="st"> </span>year <span class="op">*</span><span class="st"> </span>type, <span class="dt">data =</span> dat)</code></pre></div>
+fit4 =<span class="st"> </span><span class="kw">lm</span>(egg_size <span class="op">~</span><span class="st"> </span>year <span class="op">*</span><span class="st"> </span>type, <span class="dt">data =</span> dat)</code></pre>
 <p><strong>2. Perform the same analyses as conducted in Section <a href="ch3.html#glms">3.2</a>, this time using a success being having greater than 80% survival to the eyed-egg stage. Use <code>egg_size</code> and <code>type</code> as the predictor variables. You should plot the fitted lines for each model separately and perform an AIC analysis. Practice interpretting the coefficient estimates.</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat<span class="op">$</span>binary =<span class="st"> </span><span class="kw">ifelse</span>(dat<span class="op">$</span>survival <span class="op">&lt;</span><span class="st"> </span><span class="dv">80</span>, <span class="dv">0</span>, <span class="dv">1</span>)
+<pre class="sourceCode r"><code class="sourceCode r">dat<span class="op">$</span>binary =<span class="st"> </span><span class="kw">ifelse</span>(dat<span class="op">$</span>survival <span class="op">&lt;</span><span class="st"> </span><span class="dv">80</span>, <span class="dv">0</span>, <span class="dv">1</span>)
 
 fit1 =<span class="st"> </span><span class="kw">glm</span>(binary <span class="op">~</span><span class="st"> </span>egg_size, <span class="dt">data =</span> dat, <span class="dt">family =</span> binomial)
 fit2 =<span class="st"> </span><span class="kw">glm</span>(binary <span class="op">~</span><span class="st"> </span>type, <span class="dt">data =</span> dat, <span class="dt">family =</span> binomial)
 fit3 =<span class="st"> </span><span class="kw">glm</span>(binary <span class="op">~</span><span class="st"> </span>egg_size <span class="op">+</span><span class="st"> </span>type, <span class="dt">data =</span> dat, <span class="dt">family =</span> binomial)
-fit4 =<span class="st"> </span><span class="kw">glm</span>(binary <span class="op">~</span><span class="st"> </span>egg_size <span class="op">*</span><span class="st"> </span>type, <span class="dt">data =</span> dat, <span class="dt">family =</span> binomial)</code></pre></div>
+fit4 =<span class="st"> </span><span class="kw">glm</span>(binary <span class="op">~</span><span class="st"> </span>egg_size <span class="op">*</span><span class="st"> </span>type, <span class="dt">data =</span> dat, <span class="dt">family =</span> binomial)</code></pre>
 <p><strong>3. Make the same graphic as in Figure <a href="ch3.html#fig:norm-plots">3.1</a> with at least one of the other distributions listed in Table <a href="ch3.html#tab:dist-table-html">3.1</a> (other than the multinomial - being a multivariate distribution, it wouldn’t work well with this code). Try thinking of a variable from your work that meets the uses of each distribution in Table <a href="ch3.html#tab:dist-table-html">3.1</a> (or one that’s not listed). If you run into trouble, check out the help file for that distribution.</strong></p>
 <p>This example uses the lognormal distribution, with <code>meanlog = 10</code> and <code>sdlog = 0.25</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># parameters</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># parameters</span>
 meanlog =<span class="st"> </span><span class="dv">10</span>; sdlog =<span class="st"> </span><span class="fl">0.25</span>
 
 <span class="co"># a sequence of possible random variables (fish lengths)</span>
@@ -545,7 +571,7 @@ random =<span class="st"> </span><span class="kw">rlnorm</span>(<span class="dt"
   <span class="dt">xaxs =</span> <span class="st">&quot;i&quot;</span>,        <span class="co"># remove &quot;x-buffer&quot;</span>
   <span class="dt">yaxs =</span> <span class="st">&quot;i&quot;</span>,        <span class="co"># remove &quot;y-buffer&quot;</span>
   <span class="dt">mgp =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="fl">0.4</span>,<span class="dv">0</span>),  <span class="co"># bring in axis titles ([1]) and tick labels ([2])</span>
-  <span class="dt">tcl =</span> <span class="op">-</span><span class="fl">0.25</span>        <span class="co"># shorten tick marks</span>
+  <span class="dt">tcl =</span> <span class="fl">-0.25</span>        <span class="co"># shorten tick marks</span>
 )
 
 <span class="kw">plot</span>(densty <span class="op">~</span><span class="st"> </span>lengths, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">main =</span> <span class="st">&quot;dlnorm()&quot;</span>,
@@ -556,20 +582,20 @@ random =<span class="st"> </span><span class="kw">rlnorm</span>(<span class="dt"
      <span class="dt">xlab =</span> <span class="st">&quot;P&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;P Quantile Random Variable&quot;</span>, <span class="dt">las =</span> <span class="dv">1</span>)
 <span class="kw">hist</span>(random, <span class="dt">breaks =</span> <span class="dv">50</span>, <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;rlnorm()&quot;</span>,
      <span class="dt">xlab =</span> <span class="st">&quot;Fish Length (mm)&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Frequency&quot;</span>, <span class="dt">las =</span> <span class="dv">1</span>)
-<span class="kw">box</span>() <span class="co"># add borders to the histogram</span></code></pre></div>
+<span class="kw">box</span>() <span class="co"># add borders to the histogram</span></code></pre>
 <p><img src="au-r-workshop_files/figure-html/unnamed-chunk-368-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p><strong>Bonus 1. Fit a von Bertalannfy growth model to the data found in the <code>growth.csv</code> data file. Visit Section <a href="ch4.html#boot-test-ex">4.7.1</a> (particularly Equation <a href="ch4.html#eq:vonB">(4.2)</a>) for details on this model. Use the initial values: <code>linf = 600</code>, <code>k = 0.3</code>, <code>t0 = -0.2</code>. Plot the fitted line over top of the data.</strong></p>
 <p>Read in the data:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../Data/growth.csv&quot;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">dat =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../Data/growth.csv&quot;</span>)</code></pre>
 <p>Fit the model:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit =<span class="st"> </span><span class="kw">nls</span>(length <span class="op">~</span><span class="st"> </span>linf <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">exp</span>(<span class="op">-</span>k <span class="op">*</span><span class="st"> </span>(age <span class="op">-</span><span class="st"> </span>t0))),
-          <span class="dt">data =</span> dat, <span class="dt">start =</span> <span class="kw">c</span>(<span class="dt">linf =</span> <span class="dv">600</span>, <span class="dt">k =</span> <span class="fl">0.3</span>, <span class="dt">t0 =</span> <span class="op">-</span><span class="fl">0.2</span>))</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">fit =<span class="st"> </span><span class="kw">nls</span>(length <span class="op">~</span><span class="st"> </span>linf <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">exp</span>(<span class="op">-</span>k <span class="op">*</span><span class="st"> </span>(age <span class="op">-</span><span class="st"> </span>t0))),
+          <span class="dt">data =</span> dat, <span class="dt">start =</span> <span class="kw">c</span>(<span class="dt">linf =</span> <span class="dv">600</span>, <span class="dt">k =</span> <span class="fl">0.3</span>, <span class="dt">t0 =</span> <span class="fl">-0.2</span>))</code></pre>
 <p>Plot the fit:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ages =<span class="st"> </span><span class="kw">seq</span>(<span class="kw">min</span>(dat<span class="op">$</span>age), <span class="kw">max</span>(dat<span class="op">$</span>age), <span class="dt">length =</span> <span class="dv">100</span>)
+<pre class="sourceCode r"><code class="sourceCode r">ages =<span class="st"> </span><span class="kw">seq</span>(<span class="kw">min</span>(dat<span class="op">$</span>age), <span class="kw">max</span>(dat<span class="op">$</span>age), <span class="dt">length =</span> <span class="dv">100</span>)
 pred_length =<span class="st"> </span><span class="kw">predict</span>(fit, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">age =</span> ages))
 
 <span class="kw">plot</span>(length <span class="op">~</span><span class="st"> </span>age, <span class="dt">data =</span> dat)
-<span class="kw">lines</span>(pred_length <span class="op">~</span><span class="st"> </span>ages, <span class="dt">lwd =</span> <span class="dv">3</span>)</code></pre></div>
+<span class="kw">lines</span>(pred_length <span class="op">~</span><span class="st"> </span>ages, <span class="dt">lwd =</span> <span class="dv">3</span>)</code></pre>
 <p><img src="au-r-workshop_files/figure-html/unnamed-chunk-372-1.png" width="480" style="display: block; margin: auto;" /></p>
 </div>
 <div id="ex4-answers" class="section level2 unnumbered">
@@ -577,77 +603,77 @@ pred_length =<span class="st"> </span><span class="kw">predict</span>(fit, <span
 <div id="ex4a-answers" class="section level3 unnumbered">
 <h3>Exercise 4A Solutions</h3>
 <p><strong>1. Simulate flipping an unfair coin (probability of heads = 0.6) 100 times using <code>rbinom()</code>. Count the number of heads and tails.</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flips =<span class="st"> </span><span class="kw">rbinom</span>(<span class="dt">n =</span> <span class="dv">100</span>, <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">prob =</span> <span class="fl">0.6</span>)
+<pre class="sourceCode r"><code class="sourceCode r">flips =<span class="st"> </span><span class="kw">rbinom</span>(<span class="dt">n =</span> <span class="dv">100</span>, <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">prob =</span> <span class="fl">0.6</span>)
 flips =<span class="st"> </span><span class="kw">ifelse</span>(flips <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, <span class="st">&quot;heads&quot;</span>, <span class="st">&quot;tails&quot;</span>)
-<span class="kw">table</span>(flips)</code></pre></div>
+<span class="kw">table</span>(flips)</code></pre>
 <p><strong>2. Simulate flipping the same unfair coin 100 times, but using <code>sample()</code> instead. Determine what fraction of the flips resulted in heads.</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flips =<span class="st"> </span><span class="kw">sample</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;heads&quot;</span>, <span class="st">&quot;tails&quot;</span>), <span class="dt">size =</span> <span class="dv">100</span>, <span class="dt">replace =</span> T, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.6</span>, <span class="fl">0.4</span>))
-<span class="kw">table</span>(flips)[<span class="st">&quot;heads&quot;</span>]<span class="op">/</span><span class="kw">length</span>(flips)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">flips =<span class="st"> </span><span class="kw">sample</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;heads&quot;</span>, <span class="st">&quot;tails&quot;</span>), <span class="dt">size =</span> <span class="dv">100</span>, <span class="dt">replace =</span> T, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.6</span>, <span class="fl">0.4</span>))
+<span class="kw">table</span>(flips)[<span class="st">&quot;heads&quot;</span>]<span class="op">/</span><span class="kw">length</span>(flips)</code></pre>
 <p><strong>3. Simulate rolling a fair 6-sided die 100 times using <code>sample()</code>. Determine what fraction of the rolls resulted in an even number.</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rolls =<span class="st"> </span><span class="kw">sample</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">size =</span> <span class="dv">100</span>, <span class="dt">replace =</span> T)
-<span class="kw">mean</span>(rolls <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>))</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">rolls =<span class="st"> </span><span class="kw">sample</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">size =</span> <span class="dv">100</span>, <span class="dt">replace =</span> T)
+<span class="kw">mean</span>(rolls <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>))</code></pre>
 <p><strong>4. Simulate rolling the same die 100 times, but use the function <code>rmultinom()</code> instead. Look at the help file for details on how to use this function. Determine what fraction of the rolls resulted in an odd number.</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rolls =<span class="st"> </span><span class="kw">rmultinom</span>(<span class="dt">n =</span> <span class="dv">100</span>, <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">prob =</span> <span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">6</span>))
+<pre class="sourceCode r"><code class="sourceCode r">rolls =<span class="st"> </span><span class="kw">rmultinom</span>(<span class="dt">n =</span> <span class="dv">100</span>, <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">prob =</span> <span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">6</span>))
 <span class="kw">dim</span>(rolls) <span class="co">#  rows are different outcomes, columns are iterations</span>
 
 <span class="co"># get the fraction of odd numbered outcomes</span>
-<span class="kw">sum</span>(rolls[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>),])<span class="op">/</span><span class="kw">sum</span>(rolls)</code></pre></div>
+<span class="kw">sum</span>(rolls[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>),])<span class="op">/</span><span class="kw">sum</span>(rolls)</code></pre>
 </div>
 <div id="ex4b-answers" class="section level3 unnumbered">
 <h3>Exercise 4B Solutions</h3>
 <p><strong>1. Adapt this example to investigate another univariate probability distribution, like <code>-lnorm()</code>, <code>-pois()</code>, or <code>-beta()</code>. See the help files (e.g., <code>?rpois</code>) for details on how to use each function.</strong></p>
 <p>This solution uses the <code>rbeta()</code>, <code>qbeta()</code>, and <code>pbeta()</code> functions. These are for the beta distribution, which has random variables that are between zero and one.</p>
 <p>First, create the parameters of the distribution of interest:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mean_p =<span class="st"> </span><span class="fl">0.6</span>  <span class="co"># the mean of the random variable</span>
+<pre class="sourceCode r"><code class="sourceCode r">mean_p =<span class="st"> </span><span class="fl">0.6</span>  <span class="co"># the mean of the random variable</span>
 B_sum =<span class="st"> </span><span class="dv">100</span>   <span class="co"># controls the variance: bigger values are lower variance</span>
 
 <span class="co"># get the shape parameters of the beta dist</span>
-beta_shape =<span class="st"> </span><span class="kw">c</span>(mean_p <span class="op">*</span><span class="st"> </span>B_sum, (<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>mean_p) <span class="op">*</span><span class="st"> </span>B_sum)</code></pre></div>
+beta_shape =<span class="st"> </span><span class="kw">c</span>(mean_p <span class="op">*</span><span class="st"> </span>B_sum, (<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>mean_p) <span class="op">*</span><span class="st"> </span>B_sum)</code></pre>
 <p>Then, generate random samples from this distribution:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">random =<span class="st"> </span><span class="kw">rbeta</span>(<span class="dv">100</span>, beta_shape[<span class="dv">1</span>], beta_shape[<span class="dv">2</span>])</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">random =<span class="st"> </span><span class="kw">rbeta</span>(<span class="dv">100</span>, beta_shape[<span class="dv">1</span>], beta_shape[<span class="dv">2</span>])</code></pre>
 <p>Then, test the <code>qbeta()</code> function:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p =<span class="st"> </span><span class="kw">seq</span>(<span class="fl">0.01</span>, <span class="fl">0.99</span>, <span class="fl">0.01</span>)
+<pre class="sourceCode r"><code class="sourceCode r">p =<span class="st"> </span><span class="kw">seq</span>(<span class="fl">0.01</span>, <span class="fl">0.99</span>, <span class="fl">0.01</span>)
 random_q =<span class="st"> </span><span class="kw">quantile</span>(random, p)
 beta_q =<span class="st"> </span><span class="kw">qbeta</span>(p, beta_shape[<span class="dv">1</span>], beta_shape[<span class="dv">2</span>])
-<span class="kw">plot</span>(beta_q <span class="op">~</span><span class="st"> </span>random_q); <span class="kw">abline</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</code></pre></div>
+<span class="kw">plot</span>(beta_q <span class="op">~</span><span class="st"> </span>random_q); <span class="kw">abline</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</code></pre>
 <p><img src="au-r-workshop_files/figure-html/unnamed-chunk-381-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Then, test the `pbeta() function:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">q =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.05</span>)
+<pre class="sourceCode r"><code class="sourceCode r">q =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.05</span>)
 random_cdf =<span class="st"> </span><span class="kw">ecdf</span>(random)
 random_p =<span class="st"> </span><span class="kw">random_cdf</span>(q)
 beta_p =<span class="st"> </span><span class="kw">pbeta</span>(q, beta_shape[<span class="dv">1</span>], beta_shape[<span class="dv">2</span>])
 <span class="kw">plot</span>(beta_p <span class="op">~</span><span class="st"> </span>q, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)
-<span class="kw">points</span>(random_p <span class="op">~</span><span class="st"> </span>q, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</code></pre></div>
+<span class="kw">points</span>(random_p <span class="op">~</span><span class="st"> </span>q, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</code></pre>
 <p><img src="au-r-workshop_files/figure-html/unnamed-chunk-382-1.png" width="480" style="display: block; margin: auto;" /></p>
 </div>
 <div id="ex4c-answers" class="section level3 unnumbered">
 <h3>Exercise 4C Solutions</h3>
 <p><strong>1. What sample size <code>n</code> do you need to have a power of 0.8 of detecting a significant difference between the two tagging methods?</strong></p>
 <p>Simply increase the maximum sample size considered and re-run the whole analysis:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n_try =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">20</span>, <span class="dv">200</span>, <span class="dv">20</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">n_try =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">20</span>, <span class="dv">200</span>, <span class="dv">20</span>)</code></pre>
 <p><img src="au-r-workshop_files/figure-html/unnamed-chunk-385-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>It appears you need about 100 fish per treatment to be able to detect an effect of this size.</p>
 <p><strong>2. How do the inferences from the power analysis change if you are interested in <code>p_new = 0.4</code> instead of <code>p_new = 0.25</code>? Do you need to tag more or fewer fish in this case?</strong></p>
 <p>This is a argument to your function, so simply change its setting when you execute the analysis:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#...more code above this</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#...more code above this</span>
 tmp =<span class="st"> </span><span class="kw">sim_fit</span>(<span class="dt">n =</span> n_try[n], <span class="dt">p_new =</span> <span class="fl">0.4</span>)
-<span class="co">#more code after this...</span></code></pre></div>
+<span class="co">#more code after this...</span></code></pre>
 <p><img src="au-r-workshop_files/figure-html/unnamed-chunk-387-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Because the effect is larger, it is easier to detect with fewer observations.</p>
 <p><strong>3. Your analysis takes a bit of time to run so you are interested in tracking its progress. Add a progress message to your nested <code>for()</code> loop that will print the sample size currently being analyzed.</strong></p>
 <p>Simply insert the <code>cat()</code> line in the appropriate place in your loop. This is a handy trick for long-running simulations.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (n <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>N) {
+<pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (n <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>N) {
   <span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\r</span><span class="st">&quot;</span>, <span class="st">&quot;Sample Size = &quot;</span>, n_try[n])
   <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>I) {
     ...
   }
-}</code></pre></div>
+}</code></pre>
 </div>
 <div id="ex4d-answers" class="section level3 unnumbered">
 <h3>Exercise 4D Solutions</h3>
 <p><strong>1. Add an argument to <code>ricker_sim()</code> that will give the user an option to create a plot that shows the time series of recruitment, harvest, and escapement all on the same plot. Set the default to be to not plot the result, in case you forget to turn it off before performing the Monte Carlo analysis.</strong></p>
 <p>Change your function to look something like this:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ricker_sim =<span class="st"> </span><span class="cf">function</span>(ny, params, U, <span class="dt">plot =</span> F) {
+<pre class="sourceCode r"><code class="sourceCode r">ricker_sim =<span class="st"> </span><span class="cf">function</span>(ny, params, U, <span class="dt">plot =</span> F) {
   <span class="co"># extract the parameters out by name:</span>
   alpha =<span class="st"> </span>params[<span class="st">&quot;alpha&quot;</span>]
   beta =<span class="st"> </span>params[<span class="st">&quot;beta&quot;</span>]
@@ -665,7 +691,7 @@ tmp =<span class="st"> </span><span class="kw">sim_fit</span>(<span class="dt">n
   <span class="co"># carry simulation forward through time</span>
   <span class="cf">for</span> (y <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span>ny) {
     <span class="co"># use the ricker function with random lognormal white noise</span>
-    R[y] =<span class="st"> </span>S[y<span class="op">-</span><span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>alpha <span class="op">*</span><span class="st"> </span><span class="kw">exp</span>(<span class="op">-</span>beta <span class="op">*</span><span class="st"> </span>S[y<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1</span>, <span class="dv">0</span>, sigma))
+    R[y] =<span class="st"> </span>S[y<span class="dv">-1</span>] <span class="op">*</span><span class="st"> </span>alpha <span class="op">*</span><span class="st"> </span><span class="kw">exp</span>(<span class="op">-</span>beta <span class="op">*</span><span class="st"> </span>S[y<span class="dv">-1</span>] <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1</span>, <span class="dv">0</span>, sigma))
     <span class="co">#harvest and spawners are the same as before</span>
     S[y] =<span class="st"> </span>R[y] <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>U)
     H[y] =<span class="st"> </span>R[y] <span class="op">*</span><span class="st"> </span>U
@@ -687,13 +713,13 @@ tmp =<span class="st"> </span><span class="kw">sim_fit</span>(<span class="dt">n
     <span class="dt">mean_H =</span> <span class="kw">mean</span>(H),
     <span class="dt">mean_S =</span> <span class="kw">mean</span>(S)
     )
-}</code></pre></div>
+}</code></pre>
 <p>Then use the function:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ricker_sim</span>(<span class="dt">ny =</span> <span class="dv">20</span>, 
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ricker_sim</span>(<span class="dt">ny =</span> <span class="dv">20</span>, 
            <span class="dt">params =</span> <span class="kw">c</span>(<span class="dt">alpha =</span> <span class="dv">6</span>,
                       <span class="dt">beta =</span> <span class="fl">1e-7</span>,
                       <span class="dt">sigma =</span> <span class="fl">0.4</span>),
-           <span class="dt">U =</span> <span class="fl">0.4</span>, <span class="dt">plot =</span> T)</code></pre></div>
+           <span class="dt">U =</span> <span class="fl">0.4</span>, <span class="dt">plot =</span> T)</code></pre>
 <p><img src="au-r-workshop_files/figure-html/unnamed-chunk-391-1.png" width="480" style="display: block; margin: auto;" /></p>
 <pre><code>## $mean_H
 ## [1] 8145890
@@ -702,10 +728,10 @@ tmp =<span class="st"> </span><span class="kw">sim_fit</span>(<span class="dt">n
 ## [1] 12218835</code></pre>
 <p><strong>2. Add an <em>error handler</em> to <code>ricker_sim()</code> that will cause the function to return an error <code>if()</code> the names of the vector passed to the <code>param</code> argument aren’t what the function is expecting. You can use stop(“Error Message Goes Here”) to have your function stop and return an error.</strong></p>
 <p>Error handlers are useful: they catch common errors that someone might make when using your function and return and informative error. Insert this at the top of your function:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="op">!</span><span class="kw">all</span>(<span class="kw">names</span>(params) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;alpha&quot;</span>, <span class="st">&quot;beta&quot;</span>, <span class="st">&quot;sigma&quot;</span>))) {
+<pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="op">!</span><span class="kw">all</span>(<span class="kw">names</span>(params) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;alpha&quot;</span>, <span class="st">&quot;beta&quot;</span>, <span class="st">&quot;sigma&quot;</span>))) {
   <span class="kw">stop</span>(<span class="st">&quot;the `params` argument must take a named vector</span>
 <span class="st">       with three elements: &#39;alpha&#39;, &#39;beta&#39;, and &#39;sigma&#39;&quot;</span>)
-}</code></pre></div>
+}</code></pre>
 <p>This says, if not all of the names of the <code>params</code> argument are in the specified vector, then stop the execution of the function and return the error message.</p>
 <p><strong>3. How do the results of the trade-off analysis differ if the process error was larger (a larger value of <span class="math inline">\(\sigma\)</span>)?</strong></p>
 <p>Simply increase the process error variance term (the <code>sigma</code> element of <code>params</code>) to be 0.6 and re-run the analysis:</p>
@@ -713,40 +739,40 @@ tmp =<span class="st"> </span><span class="kw">sim_fit</span>(<span class="dt">n
 <p>The blue line is the higher process error scenario. It seems that if the process error was higher, you would need to sacrifice more in the escapement objective to obtain the same level of the harvest objective than in the case with lower process error. This makes sense: more variability means more iterations will have escapement less than the criterion.</p>
 <p><strong>4. Add implementation error to the harvest policy. That is, if the target exploitation rate is <span class="math inline">\(U\)</span>, make the real exploitation rate in year <span class="math inline">\(y\)</span> be: <span class="math inline">\(U_y \sim Beta(a,b)\)</span>, where <span class="math inline">\(a = 50U\)</span> and <span class="math inline">\(b = 50(1-U)\)</span>. You can make there be more implementation error by inserting a smaller number other than 50 here. How does this affect the trade-off analysis?</strong></p>
 <p>For this, add a <code>B_sum</code> argument to your function (this represents the 50 value in the question) and use a different randomly generated exploitation rate each year according to the directions:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ... more code above</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ... more code above</span>
 U_real =<span class="st"> </span><span class="kw">rbeta</span>(ny, Bsum <span class="op">*</span><span class="st"> </span>U, Bsum <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>U))
-<span class="co"># more code below...</span></code></pre></div>
+<span class="co"># more code below...</span></code></pre>
 <p>You can use this instead of a fixed exploitation rate each year, for example:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ...inside a loop</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ...inside a loop</span>
 S[y] =<span class="st"> </span>R[y] <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>U_real[y])
 H[y] =<span class="st"> </span>R[y] <span class="op">*</span><span class="st"> </span>U_real[y]
-<span class="co"># end of a loop...</span></code></pre></div>
+<span class="co"># end of a loop...</span></code></pre>
 <p><img src="au-r-workshop_files/figure-html/unnamed-chunk-397-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>The red line has <code>B_sum = 50</code> and the black line has <code>B_sum = 1e6</code> (really large <code>B_sum</code> reduces the variance of <code>U_real</code> around <code>U</code>). It appears that introducing random implementation errors has a similar effect as increasing the process variance. To acheive the same harvest utility as the case with no implementation error, you need to be willing to sacrifice more in terms of escapement utility.</p>
 <p>See what happens if you increase or decrease the amount of implementation error the management system has in acheiving a target exploitation rate.</p>
 <p><strong>5. Visually show how variable beta random variable is with <code>B_sum = 50</code>.</strong></p>
 <p>Here are two ways that come to mind:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># boxplots at various levels of U target</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># boxplots at various levels of U target</span>
 B_sum =<span class="st"> </span><span class="dv">50</span>
 out =<span class="st"> </span><span class="kw">sapply</span>(U_try, <span class="cf">function</span>(x) {
   <span class="kw">rbeta</span>(<span class="dt">n =</span> <span class="dv">1000</span>, x <span class="op">*</span><span class="st"> </span>B_sum, B_sum <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>x))
 })
 <span class="kw">colnames</span>(out) =<span class="st"> </span>U_try
-<span class="kw">boxplot</span>(out, <span class="dt">outline =</span> F, <span class="dt">col =</span> <span class="st">&quot;goldenrod1&quot;</span>)</code></pre></div>
+<span class="kw">boxplot</span>(out, <span class="dt">outline =</span> F, <span class="dt">col =</span> <span class="st">&quot;goldenrod1&quot;</span>)</code></pre>
 <p><img src="au-r-workshop_files/figure-html/unnamed-chunk-398-1.png" width="480" style="display: block; margin: auto;" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># a time series at one level of U target</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># a time series at one level of U target</span>
 U =<span class="st"> </span><span class="fl">0.50</span>
 <span class="kw">plot</span>(<span class="kw">rbeta</span>(<span class="dv">20</span>, U <span class="op">*</span><span class="st"> </span>B_sum, B_sum <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>U)), <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">pch =</span> <span class="dv">15</span>)
-<span class="kw">abline</span>(<span class="dt">h =</span> U, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">lty =</span> <span class="dv">2</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)</code></pre></div>
+<span class="kw">abline</span>(<span class="dt">h =</span> U, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">lty =</span> <span class="dv">2</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)</code></pre>
 <p><img src="au-r-workshop_files/figure-html/unnamed-chunk-398-2.png" width="480" style="display: block; margin: auto;" /></p>
 </div>
 <div id="ex4e-answers" class="section level3 unnumbered">
 <h3>Exercise 4E Solutions</h3>
 <p><strong>1. Replicate the bootstrap analysis but adapted for the linear regression example in Section <a href="ch3.html#regression">3.1.1</a>. Stop at the step where you summarize the 95% interval range.</strong></p>
 <p>First, read in the <code>sockeye.csv</code> data set:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../Data/sockeye.csv&quot;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">dat =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../Data/sockeye.csv&quot;</span>)</code></pre>
 <p>Then, copy the three functions and change the model to be a linear regression for these data:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">randomize =<span class="st"> </span><span class="cf">function</span>(dat) {
+<pre class="sourceCode r"><code class="sourceCode r">randomize =<span class="st"> </span><span class="cf">function</span>(dat) {
   <span class="co"># number of observed pairs</span>
   n =<span class="st"> </span><span class="kw">nrow</span>(dat)
   <span class="co"># sample the rows to determine which will be kept</span>
@@ -768,22 +794,22 @@ pred_lm =<span class="st"> </span><span class="cf">function</span>(fit) {
   ests =<span class="st"> </span><span class="kw">coef</span>(fit)
   <span class="co"># predict length-at-age</span>
   ests[<span class="st">&quot;(Intercept)&quot;</span>] <span class="op">+</span><span class="st"> </span>ests[<span class="st">&quot;weight&quot;</span>] <span class="op">*</span><span class="st"> </span>weights
-}</code></pre></div>
+}</code></pre>
 <p>Then perform the bootstrap by replicating these functions many times:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">out =<span class="st"> </span><span class="kw">replicate</span>(<span class="dt">n =</span> <span class="dv">5000</span>, <span class="dt">expr =</span> {
+<pre class="sourceCode r"><code class="sourceCode r">out =<span class="st"> </span><span class="kw">replicate</span>(<span class="dt">n =</span> <span class="dv">5000</span>, <span class="dt">expr =</span> {
   <span class="kw">pred_lm</span>(<span class="dt">fit =</span> <span class="kw">fit_lm</span>(<span class="dt">dat =</span> <span class="kw">randomize</span>(<span class="dt">dat =</span> dat)))
-})</code></pre></div>
+})</code></pre>
 <p>Finally, summarize and plot them:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">summ =<span class="st"> </span><span class="kw">apply</span>(out, <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="kw">c</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(x), <span class="kw">quantile</span>(x, <span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))))
+<pre class="sourceCode r"><code class="sourceCode r">summ =<span class="st"> </span><span class="kw">apply</span>(out, <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="kw">c</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(x), <span class="kw">quantile</span>(x, <span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))))
 
 <span class="kw">plot</span>(summ[<span class="st">&quot;mean&quot;</span>,] <span class="op">~</span><span class="st"> </span>weights, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">ylim =</span> <span class="kw">range</span>(summ))
 <span class="kw">lines</span>(summ[<span class="st">&quot;2.5%&quot;</span>,] <span class="op">~</span><span class="st"> </span>weights, <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>)
-<span class="kw">lines</span>(summ[<span class="st">&quot;97.5%&quot;</span>,] <span class="op">~</span><span class="st"> </span>weights, <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>)</code></pre></div>
-<p><strong>2. Compare the 95% bootstrap confidence intervals to the intervals you get by running the <code>predict</code> function on the original data set with the argument <code>interval = &quot;confidence&quot;</code> set.</strong></p>
+<span class="kw">lines</span>(summ[<span class="st">&quot;97.5%&quot;</span>,] <span class="op">~</span><span class="st"> </span>weights, <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>)</code></pre>
+<p><strong>2. Compare the 95% bootstrap confidence intervals to the intervals you get by running the <code>predict</code> function on the original data set with the argument <code>interval = "confidence"</code> set.</strong></p>
 <p>You can obtain these same intervals using the <code>predict()</code> function:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pred =<span class="st"> </span><span class="kw">predict</span>(<span class="kw">lm</span>(fecund <span class="op">~</span><span class="st"> </span>weight, <span class="dt">data =</span> dat),
+<pre class="sourceCode r"><code class="sourceCode r">pred =<span class="st"> </span><span class="kw">predict</span>(<span class="kw">lm</span>(fecund <span class="op">~</span><span class="st"> </span>weight, <span class="dt">data =</span> dat),
                <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">weight =</span> weights),
-               <span class="dt">interval =</span> <span class="st">&quot;confidence&quot;</span>)</code></pre></div>
+               <span class="dt">interval =</span> <span class="st">&quot;confidence&quot;</span>)</code></pre>
 <p>Plot them over top of the bootstrap intervals to verify the bootstrap worked right:</p>
 <p>The intervals should look approximately correct.</p>
 </div>
@@ -791,18 +817,18 @@ pred_lm =<span class="st"> </span><span class="cf">function</span>(fit) {
 <h3>Exercise 4F Solutions</h3>
 <p><strong>1. Adapt the code to perform a permutation test for the difference in each of the zooplankton densities between treatments. Don’t forget to fix the missing value in the <code>chao</code> variable. See <a href="ch1.html#ex1b">Exercise 2</a> for more details on this.</strong></p>
 <p>Read in the data:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../Data/ponds.csv&quot;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">dat =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../Data/ponds.csv&quot;</span>)</code></pre>
 <p>Calculate the difference in means between the treatments for each zooplankton taxon:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Dobs_daph =<span class="st"> </span><span class="kw">mean</span>(dat<span class="op">$</span>daph[dat<span class="op">$</span>treatment <span class="op">==</span><span class="st"> &quot;Add&quot;</span>]) <span class="op">-</span><span class="st"> </span>
+<pre class="sourceCode r"><code class="sourceCode r">Dobs_daph =<span class="st"> </span><span class="kw">mean</span>(dat<span class="op">$</span>daph[dat<span class="op">$</span>treatment <span class="op">==</span><span class="st"> &quot;Add&quot;</span>]) <span class="op">-</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">mean</span>(dat<span class="op">$</span>daph[dat<span class="op">$</span>treatment <span class="op">==</span><span class="st"> &quot;Control&quot;</span>])
 Dobs_bosm =<span class="st"> </span><span class="kw">mean</span>(dat<span class="op">$</span>bosm[dat<span class="op">$</span>treatment <span class="op">==</span><span class="st"> &quot;Add&quot;</span>]) <span class="op">-</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">mean</span>(dat<span class="op">$</span>bosm[dat<span class="op">$</span>treatment <span class="op">==</span><span class="st"> &quot;Control&quot;</span>])
 Dobs_cope =<span class="st"> </span><span class="kw">mean</span>(dat<span class="op">$</span>cope[dat<span class="op">$</span>treatment <span class="op">==</span><span class="st"> &quot;Add&quot;</span>]) <span class="op">-</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">mean</span>(dat<span class="op">$</span>cope[dat<span class="op">$</span>treatment <span class="op">==</span><span class="st"> &quot;Control&quot;</span>])
 Dobs_chao =<span class="st"> </span><span class="kw">mean</span>(dat<span class="op">$</span>chao[dat<span class="op">$</span>treatment <span class="op">==</span><span class="st"> &quot;Add&quot;</span>], <span class="dt">na.rm =</span> T) <span class="op">-</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mean</span>(dat<span class="op">$</span>chao[dat<span class="op">$</span>treatment <span class="op">==</span><span class="st"> &quot;Control&quot;</span>], <span class="dt">na.rm =</span> T)</code></pre></div>
+<span class="st">  </span><span class="kw">mean</span>(dat<span class="op">$</span>chao[dat<span class="op">$</span>treatment <span class="op">==</span><span class="st"> &quot;Control&quot;</span>], <span class="dt">na.rm =</span> T)</code></pre>
 <p>You can use the same <code>perm()</code> function from the chapter to perform this analysis, except you should add an <code>na.rm</code> argument. All you need to change is the variables you pass to <code>y</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">perm =<span class="st"> </span><span class="cf">function</span>(x, y, <span class="dt">na.rm =</span> T) {
+<pre class="sourceCode r"><code class="sourceCode r">perm =<span class="st"> </span><span class="cf">function</span>(x, y, <span class="dt">na.rm =</span> T) {
   <span class="co"># turn x to a character, easier to deal with</span>
   x =<span class="st"> </span><span class="kw">as.character</span>(x)
   <span class="co"># shuffle the x values:</span>
@@ -812,14 +838,14 @@ Dobs_chao =<span class="st"> </span><span class="kw">mean</span>(dat<span class=
   x_bar_ctl =<span class="st"> </span><span class="kw">mean</span>(y[x_shuff <span class="op">==</span><span class="st"> &quot;Control&quot;</span>], <span class="dt">na.rm =</span> na.rm)
   <span class="co"># calculate the difference:</span>
   x_bar_add <span class="op">-</span><span class="st"> </span>x_bar_ctl
-}</code></pre></div>
+}</code></pre>
 <p>Then, run the permutation test on each taxon separately:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Dnull_daph =<span class="st"> </span><span class="kw">replicate</span>(<span class="dt">n =</span> <span class="dv">5000</span>, <span class="dt">expr =</span> <span class="kw">perm</span>(<span class="dt">x =</span> dat<span class="op">$</span>treatment, <span class="dt">y =</span> dat<span class="op">$</span>daph))
+<pre class="sourceCode r"><code class="sourceCode r">Dnull_daph =<span class="st"> </span><span class="kw">replicate</span>(<span class="dt">n =</span> <span class="dv">5000</span>, <span class="dt">expr =</span> <span class="kw">perm</span>(<span class="dt">x =</span> dat<span class="op">$</span>treatment, <span class="dt">y =</span> dat<span class="op">$</span>daph))
 Dnull_bosm =<span class="st"> </span><span class="kw">replicate</span>(<span class="dt">n =</span> <span class="dv">5000</span>, <span class="dt">expr =</span> <span class="kw">perm</span>(<span class="dt">x =</span> dat<span class="op">$</span>treatment, <span class="dt">y =</span> dat<span class="op">$</span>bosm))
 Dnull_cope =<span class="st"> </span><span class="kw">replicate</span>(<span class="dt">n =</span> <span class="dv">5000</span>, <span class="dt">expr =</span> <span class="kw">perm</span>(<span class="dt">x =</span> dat<span class="op">$</span>treatment, <span class="dt">y =</span> dat<span class="op">$</span>cope))
-Dnull_chao =<span class="st"> </span><span class="kw">replicate</span>(<span class="dt">n =</span> <span class="dv">5000</span>, <span class="dt">expr =</span> <span class="kw">perm</span>(<span class="dt">x =</span> dat<span class="op">$</span>treatment, <span class="dt">y =</span> dat<span class="op">$</span>chao, <span class="dt">na.rm =</span> T))</code></pre></div>
+Dnull_chao =<span class="st"> </span><span class="kw">replicate</span>(<span class="dt">n =</span> <span class="dv">5000</span>, <span class="dt">expr =</span> <span class="kw">perm</span>(<span class="dt">x =</span> dat<span class="op">$</span>treatment, <span class="dt">y =</span> dat<span class="op">$</span>chao, <span class="dt">na.rm =</span> T))</code></pre>
 <p>Then, create the histograms for each species showing the null distribution and the observed difference:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>), <span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>), <span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))
 <span class="kw">hist</span>(Dnull_daph, <span class="dt">col =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;DAPH&quot;</span>, <span class="dt">yaxt =</span> <span class="st">&quot;n&quot;</span>)
 <span class="kw">abline</span>(<span class="dt">v =</span> Dobs_daph, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">lwd =</span> <span class="dv">3</span>)
 
@@ -830,27 +856,27 @@ Dnull_chao =<span class="st"> </span><span class="kw">replicate</span>(<span cla
 <span class="kw">abline</span>(<span class="dt">v =</span> Dobs_cope, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">lwd =</span> <span class="dv">3</span>)
 
 <span class="kw">hist</span>(Dnull_chao, <span class="dt">col =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;CHAO&quot;</span>, <span class="dt">yaxt =</span> <span class="st">&quot;n&quot;</span>)
-<span class="kw">abline</span>(<span class="dt">v =</span> Dobs_chao, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">lwd =</span> <span class="dv">3</span>)</code></pre></div>
+<span class="kw">abline</span>(<span class="dt">v =</span> Dobs_chao, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">lwd =</span> <span class="dv">3</span>)</code></pre>
 <p><img src="au-r-workshop_files/figure-html/unnamed-chunk-413-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Finally, calculate the two-tailed hypothesis tests:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(<span class="kw">abs</span>(Dnull_daph) <span class="op">&gt;=</span><span class="st"> </span>Dobs_daph)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(<span class="kw">abs</span>(Dnull_daph) <span class="op">&gt;=</span><span class="st"> </span>Dobs_daph)</code></pre>
 <pre><code>## [1] 0</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(<span class="kw">abs</span>(Dnull_bosm) <span class="op">&gt;=</span><span class="st"> </span>Dobs_bosm)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(<span class="kw">abs</span>(Dnull_bosm) <span class="op">&gt;=</span><span class="st"> </span>Dobs_bosm)</code></pre>
+<pre><code>## [1] 2e-04</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(<span class="kw">abs</span>(Dnull_cope) <span class="op">&gt;=</span><span class="st"> </span>Dobs_cope)</code></pre>
 <pre><code>## [1] 0</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(<span class="kw">abs</span>(Dnull_cope) <span class="op">&gt;=</span><span class="st"> </span>Dobs_cope)</code></pre></div>
-<pre><code>## [1] 0</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(<span class="kw">abs</span>(Dnull_chao) <span class="op">&gt;=</span><span class="st"> </span>Dobs_chao)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(<span class="kw">abs</span>(Dnull_chao) <span class="op">&gt;=</span><span class="st"> </span>Dobs_chao)</code></pre>
 <pre><code>## [1] 0</code></pre>
 <p>It appears that the zooplankton densities differed significantly between treatments for each taxon.</p>
 <p><strong>2. Adapt the code to perform a permutation test for another data set used in this book where there are observations of both a categorical variable and a continuous variable. The data sets <code>sockeye.csv</code>, <code>growth.csv</code>, or <code>creel.csv</code> should be good starting points.</strong></p>
 <p>This example will test the difference in mean length between age 3 and 4 fish in the <code>growth.csv</code> data set.</p>
 <p>Read in the data and extract only age 3 and 4 fish:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../Data/growth.csv&quot;</span>)
-dat =<span class="st"> </span>dat[dat<span class="op">$</span>age <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">4</span>),]</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">dat =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../Data/growth.csv&quot;</span>)
+dat =<span class="st"> </span>dat[dat<span class="op">$</span>age <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">4</span>),]</code></pre>
 <p>Calculate the observed difference in means (age 4 - age 3):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Dobs =<span class="st"> </span><span class="kw">mean</span>(dat<span class="op">$</span>length[dat<span class="op">$</span>age <span class="op">==</span><span class="st"> </span><span class="dv">4</span>]) <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(dat<span class="op">$</span>length[dat<span class="op">$</span>age <span class="op">==</span><span class="st"> </span><span class="dv">3</span>])</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">Dobs =<span class="st"> </span><span class="kw">mean</span>(dat<span class="op">$</span>length[dat<span class="op">$</span>age <span class="op">==</span><span class="st"> </span><span class="dv">4</span>]) <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(dat<span class="op">$</span>length[dat<span class="op">$</span>age <span class="op">==</span><span class="st"> </span><span class="dv">3</span>])</code></pre>
 <p>Adapt the <code>perm()</code> function for this example (no <code>na.rm</code> argument is needed):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">perm =<span class="st"> </span><span class="cf">function</span>(x, y) {
+<pre class="sourceCode r"><code class="sourceCode r">perm =<span class="st"> </span><span class="cf">function</span>(x, y) {
   <span class="co"># shuffle the x values:</span>
   x_shuff =<span class="st"> </span><span class="kw">sample</span>(x)
   <span class="co"># calculate the mean of each group:</span>
@@ -858,32 +884,32 @@ dat =<span class="st"> </span>dat[dat<span class="op">$</span>age <span class="o
   x_bar_<span class="dv">4</span> =<span class="st"> </span><span class="kw">mean</span>(y[x_shuff <span class="op">==</span><span class="st"> </span><span class="dv">4</span>])
   <span class="co"># calculate the difference:</span>
   x_bar_<span class="dv">4</span> <span class="op">-</span><span class="st"> </span>x_bar_<span class="dv">3</span>
-}</code></pre></div>
+}</code></pre>
 <p>Then, use the function:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Dnull =<span class="st"> </span><span class="kw">replicate</span>(<span class="dt">n =</span> <span class="dv">5000</span>, <span class="dt">expr =</span> <span class="kw">perm</span>(<span class="dt">x =</span> dat<span class="op">$</span>age, <span class="dt">y =</span> dat<span class="op">$</span>length))</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">Dnull =<span class="st"> </span><span class="kw">replicate</span>(<span class="dt">n =</span> <span class="dv">5000</span>, <span class="dt">expr =</span> <span class="kw">perm</span>(<span class="dt">x =</span> dat<span class="op">$</span>age, <span class="dt">y =</span> dat<span class="op">$</span>length))</code></pre>
 <p>Plot the null distribution:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(Dnull, <span class="dt">col =</span> <span class="st">&quot;skyblue&quot;</span>)
-<span class="kw">abline</span>(<span class="dt">v =</span> Dobs, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">lwd =</span> <span class="dv">3</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(Dnull, <span class="dt">col =</span> <span class="st">&quot;skyblue&quot;</span>)
+<span class="kw">abline</span>(<span class="dt">v =</span> Dobs, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">lwd =</span> <span class="dv">3</span>)</code></pre>
 <p><img src="au-r-workshop_files/figure-html/unnamed-chunk-420-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Obtain the two-tailed p-value:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(<span class="kw">abs</span>(Dnull) <span class="op">&gt;=</span><span class="st"> </span>Dobs)</code></pre></div>
-<pre><code>## [1] 0.5374</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(<span class="kw">abs</span>(Dnull) <span class="op">&gt;=</span><span class="st"> </span>Dobs)</code></pre>
+<pre><code>## [1] 0.538</code></pre>
 <p>Based on this, it appears there is no significant difference between the mean length of age 3 and 4 fish in this example.</p>
 <p><strong>3. Add a calculation of the p-value for a one-tailed test (i.e., that the difference in means is greater or less than zero). Steps 1 - 4 are the same: all you need is <code>Dnull</code> and <code>Dobs</code>. Don’t be afraid to Google this if you are confused.</strong></p>
 <p>To calculate the p-value for a one-tailed test (null hypothesis is that the mean length of age 4 is less than or equal to the mean length of age 3 fish):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(Dnull <span class="op">&gt;=</span><span class="st"> </span>Dobs)</code></pre></div>
-<pre><code>## [1] 0.2654</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(Dnull <span class="op">&gt;=</span><span class="st"> </span>Dobs)</code></pre>
+<pre><code>## [1] 0.2634</code></pre>
 <p>To test the opposite hypothesis (null hypothesis is that the mean length of age 4 fish is greater than or equal to the mean length of age 3 fish):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(Dnull <span class="op">&lt;=</span><span class="st"> </span>Dobs)</code></pre></div>
-<pre><code>## [1] 0.7362</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(Dnull <span class="op">&lt;=</span><span class="st"> </span>Dobs)</code></pre>
+<pre><code>## [1] 0.7372</code></pre>
 </div>
 </div>
 <div id="ex5-answers" class="section level2 unnumbered">
 <h2>Exercise 5 Solutions</h2>
 <p>First, load <code>{dplyr}</code> and read in the data:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
 dat =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../Data/asl.csv&quot;</span>)
-<span class="kw">head</span>(dat)</code></pre></div>
+<span class="kw">head</span>(dat)</code></pre>
 <pre><code>##   year    sex age length
 ## 1 1966   Male   4    570
 ## 2 1966   Male   4    519
@@ -893,31 +919,31 @@ dat =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">
 ## 6 1966 Female   4    560</code></pre>
 <p><strong>1. Count the number of females that were sampled each year using the <code>{dplyr}</code> function <code>n()</code> within a <code>summarize()</code> call (<em>Hint: <code>n()</code> works just like length - it counts the number of records</em>).</strong></p>
 <p>Pipe <code>dat</code> to a <code>filter()</code> call to extract only females, then <code>group_by()</code> year, then count the number of records:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n_female =<span class="st"> </span>dat <span class="op">%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r">n_female =<span class="st"> </span>dat <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(sex <span class="op">==</span><span class="st"> &quot;Female&quot;</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">n_female =</span> <span class="kw">n</span>())</code></pre></div>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">n_female =</span> <span class="kw">n</span>())</code></pre>
 <p><strong>2. Calculate the proportion of females by year.</strong></p>
 <p>Do a similar task as in the previous question, but count all individuals each year, regardless of sex:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n_tot =<span class="st"> </span>dat <span class="op">%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r">n_tot =<span class="st"> </span>dat <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">n_tot =</span> <span class="kw">n</span>())</code></pre></div>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">n_tot =</span> <span class="kw">n</span>())</code></pre>
 <p>Then merge these two data sets:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">samp_size =<span class="st"> </span><span class="kw">merge</span>(n_tot, n_female, <span class="dt">by =</span> <span class="st">&quot;year&quot;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">samp_size =<span class="st"> </span><span class="kw">merge</span>(n_tot, n_female, <span class="dt">by =</span> <span class="st">&quot;year&quot;</span>)</code></pre>
 <p>Finally, calculate the fraction that were females:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">samp_size =<span class="st"> </span>samp_size <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">p_female =</span> n_female<span class="op">/</span>n_tot)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">samp_size =<span class="st"> </span>samp_size <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">p_female =</span> n_female<span class="op">/</span>n_tot)</code></pre>
 <p><strong>3. Plot percent females over time. Does it look like the sex composition has changed over time?</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(p_female <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> samp_size, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(p_female <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> samp_size, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>)</code></pre>
 <p><img src="au-r-workshop_files/figure-html/unnamed-chunk-431-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>It seems that the proportion of females has varied randomly over time but has not systematically changed since the beginning of the data time series. Note that some of this variability is introduced by sampling.</p>
 <p><strong>4. Calculate mean length by age, sex, and year.</strong></p>
 <p><code>{dplyr}</code> makes this relatively complex calculation easy and returns an intuitive data frame as output:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mean_length =<span class="st"> </span>dat <span class="op">%&gt;%</span><span class="st"> </span>
+<pre class="sourceCode r"><code class="sourceCode r">mean_length =<span class="st"> </span>dat <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">group_by</span>(year, age, sex) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_length =</span> <span class="kw">mean</span>(length))</code></pre></div>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_length =</span> <span class="kw">mean</span>(length))</code></pre>
 <p><strong>5. Come up with a way to plot a time series of mean length-at-age for both sexes. Does it look like mean length-at-age has changed over time for either sex?</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># set up a 2x2 plotting device with specialized margins</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># set up a 2x2 plotting device with specialized margins</span>
 <span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">oma =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">0</span>))
 
 <span class="co"># extract the unique ages</span>
@@ -947,11 +973,11 @@ ages =<span class="st"> </span><span class="kw">unique</span>(mean_length<span c
 
 <span class="co"># add on margin text for the shared axes</span>
 <span class="kw">mtext</span>(<span class="dt">side =</span> <span class="dv">1</span>, <span class="dt">outer =</span> T, <span class="st">&quot;Year&quot;</span>)
-<span class="kw">mtext</span>(<span class="dt">side =</span> <span class="dv">2</span>, <span class="dt">outer =</span> T, <span class="st">&quot;Mean Length (mm)&quot;</span>)</code></pre></div>
+<span class="kw">mtext</span>(<span class="dt">side =</span> <span class="dv">2</span>, <span class="dt">outer =</span> T, <span class="st">&quot;Mean Length (mm)&quot;</span>)</code></pre>
 <p><img src="au-r-workshop_files/figure-html/unnamed-chunk-433-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p><strong>Bonus 1. Calculate the age composition by sex and year (what proportion of all the males in a year were age 4, age 5, age 6, age 7, and same for females).</strong></p>
 <p>This follows a similar workflow as in the calculation of the proportion of females:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># get the number by age and sex each year</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># get the number by age and sex each year</span>
 n_age_samps =<span class="st"> </span>dat <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">group_by</span>(year, age, sex) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">age_samps =</span> <span class="kw">n</span>())
@@ -967,10 +993,10 @@ n_samps =<span class="st"> </span><span class="kw">merge</span>(n_age_samps, n_t
 <span class="co"># calculate the proportion at each age and sex:</span>
 n_samps =<span class="st"> </span>n_samps <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">age_comp =</span> age_samps<span class="op">/</span>tot_samps)</code></pre></div>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">age_comp =</span> age_samps<span class="op">/</span>tot_samps)</code></pre>
 <p><strong>Bonus 2. Plot the time series of age composition by sex and year. Does it look like age composition has changed over time?</strong></p>
 <p>Create the same plots as for Question 5, but with age composition instead of sex composition:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># set up a 2x2 plotting device with specialized margins</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># set up a 2x2 plotting device with specialized margins</span>
 <span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">oma =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">0</span>))
 
 <span class="co"># extract the unique ages</span>
@@ -1000,29 +1026,29 @@ ages =<span class="st"> </span><span class="kw">unique</span>(n_samps<span class
 
 <span class="co"># add on margin text for the shared axes</span>
 <span class="kw">mtext</span>(<span class="dt">side =</span> <span class="dv">1</span>, <span class="dt">outer =</span> T, <span class="st">&quot;Year&quot;</span>)
-<span class="kw">mtext</span>(<span class="dt">side =</span> <span class="dv">2</span>, <span class="dt">outer =</span> T, <span class="st">&quot;Age Composition by Sex&quot;</span>)</code></pre></div>
+<span class="kw">mtext</span>(<span class="dt">side =</span> <span class="dv">2</span>, <span class="dt">outer =</span> T, <span class="st">&quot;Age Composition by Sex&quot;</span>)</code></pre>
 <p><img src="au-r-workshop_files/figure-html/unnamed-chunk-435-1.png" width="480" style="display: block; margin: auto;" /></p>
 </div>
 <div id="ex6-answers" class="section level2 unnumbered">
 <h2>Exercise 6 Solutions</h2>
 <p><strong>Note</strong>: these solutions assume you have the layers <code>bear</code>, <code>stat</code>, <code>slovenia</code>, <code>railways</code>, and <code>cp</code> as well as all of the packages used in Chapter <a href="ch6.html#ch6">6</a> already loaded into your workspace.</p>
 <pre><code>## OGR data source with driver: ESRI Shapefile 
-## Source: &quot;C:\Users\bas0041\Dropbox\au-r-workshop\Data\Ch6\SVN_adm&quot;, layer: &quot;SVN_adm0&quot;
+## Source: &quot;C:\Users\bstaton\Desktop\Staton\3_general\au-r-workshop\Data\Ch6\SVN_adm&quot;, layer: &quot;SVN_adm0&quot;
 ## with 1 features
 ## It has 70 fields
 ## Integer64 fields read as strings:  ID_0 OBJECTID_1</code></pre>
 <pre><code>## OGR data source with driver: ESRI Shapefile 
-## Source: &quot;C:\Users\bas0041\Dropbox\au-r-workshop\Data\Ch6\railways&quot;, layer: &quot;railways&quot;
+## Source: &quot;C:\Users\bstaton\Desktop\Staton\3_general\au-r-workshop\Data\Ch6\railways&quot;, layer: &quot;railways&quot;
 ## with 214 features
 ## It has 3 fields
 ## Integer64 fields read as strings:  osm_id</code></pre>
 <pre><code>## OGR data source with driver: ESRI Shapefile 
-## Source: &quot;C:\Users\bas0041\Dropbox\au-r-workshop\Data\Ch6\SVN_adm&quot;, layer: &quot;SVN_adm1&quot;
+## Source: &quot;C:\Users\bstaton\Desktop\Staton\3_general\au-r-workshop\Data\Ch6\SVN_adm&quot;, layer: &quot;SVN_adm1&quot;
 ## with 12 features
 ## It has 9 fields
 ## Integer64 fields read as strings:  ID_0 ID_1</code></pre>
 <p><strong>1. Load the <code>caves.shp</code> shapefile <span class="citation">(Republic of Slovenia <a href="#ref-caves-cite">2018</a>)</span> from your working directory. Add the data to one of the maps of Slovenia you created in this chapter.</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load the caves file</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load the caves file</span>
 caves =<span class="st"> </span><span class="kw">readOGR</span>(<span class="dt">dsn=</span><span class="st">&quot;./caves&quot;</span>,<span class="dt">layer=</span><span class="st">&quot;EPO_JAMEPoint&quot;</span>)
 <span class="co"># put all layers the same projection as bear data</span>
 caves =<span class="st"> </span><span class="kw">spTransform</span>(caves, <span class="kw">CRS</span>(<span class="kw">proj4string</span>(bear)))
@@ -1038,22 +1064,22 @@ railways =<span class="st"> </span><span class="kw">spTransform</span>(railways,
 <span class="kw">points</span>(bear, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">cex =</span> <span class="fl">0.5</span>, <span class="dt">col =</span> <span class="kw">alpha</span>(<span class="st">&quot;blue&quot;</span>, <span class="fl">0.5</span>))
 <span class="kw">plot</span>(railways, <span class="dt">add =</span> T, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">lwd =</span> <span class="dv">3</span>)
 <span class="co"># add the caves layer</span>
-<span class="kw">plot</span>(caves, <span class="dt">add=</span>T)</code></pre></div>
+<span class="kw">plot</span>(caves, <span class="dt">add=</span>T)</code></pre>
 <pre><code>## OGR data source with driver: ESRI Shapefile 
-## Source: &quot;C:\Users\bas0041\Dropbox\au-r-workshop\Data\Ch6\caves&quot;, layer: &quot;EPO_JAMEPoint&quot;
+## Source: &quot;C:\Users\bstaton\Desktop\Staton\3_general\au-r-workshop\Data\Ch6\caves&quot;, layer: &quot;EPO_JAMEPoint&quot;
 ## with 32 features
 ## It has 2 fields</code></pre>
 <p><img src="au-r-workshop_files/figure-html/unnamed-chunk-439-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p><strong>2. How many caves are there?</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nrow</span>(caves)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nrow</span>(caves)</code></pre>
 <pre><code>## [1] 32</code></pre>
 <p><strong>3. How many caves are in each statistical area?</strong></p>
 <p>For this, you will need to add a field to your attribute table. Look back to Section <a href="ch6.html#add-attr">6.6.3</a> for details on how to do this.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(maptools)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(maptools)
 caves =<span class="st"> </span><span class="kw">spTransform</span>(caves, <span class="kw">proj4string</span>(stats))
 cavestats =<span class="st"> </span><span class="kw">over</span>(caves, stats)
 caves =<span class="st"> </span><span class="kw">spCbind</span>(caves,cavestats<span class="op">$</span>NAME_<span class="dv">1</span>)
-<span class="kw">table</span>(caves<span class="op">$</span>cavestats.NAME_<span class="dv">1</span>)</code></pre></div>
+<span class="kw">table</span>(caves<span class="op">$</span>cavestats.NAME_<span class="dv">1</span>)</code></pre>
 <pre><code>## 
 ##              GoriÅ¡ka Jugovzhodna Slovenija    Notranjsko-kraÅ¡ka 
 ##                     1                     5                    12 
@@ -1061,107 +1087,107 @@ caves =<span class="st"> </span><span class="kw">spCbind</span>(caves,cavestats<
 ##                     2                    11</code></pre>
 <p><strong>4. Which bear has the most caves in its homerange?</strong></p>
 <p>First, use the <code>over()</code> function to determine which homeranges have which caves (the <code>returnList = T</code> argument will show all of the polygons each point falls in).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cp =<span class="st"> </span><span class="kw">spTransform</span>(cp, <span class="kw">CRS</span>(<span class="kw">proj4string</span>(caves)))
-homecaves =<span class="st"> </span><span class="kw">over</span>(caves, cp, <span class="dt">returnList =</span> T)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">cp =<span class="st"> </span><span class="kw">spTransform</span>(cp, <span class="kw">CRS</span>(<span class="kw">proj4string</span>(caves)))
+homecaves =<span class="st"> </span><span class="kw">over</span>(caves, cp, <span class="dt">returnList =</span> T)</code></pre>
 <p>Now just count how many caves were in each bear’s homerange (the bear names are the rownames of <code>homecaves</code>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(<span class="kw">unlist</span>(<span class="kw">sapply</span>(homecaves,rownames)))</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(<span class="kw">unlist</span>(<span class="kw">sapply</span>(homecaves,rownames)))</code></pre>
 <pre><code>## 
 ##   jana   nejc srecko 
 ##      5      2      7</code></pre>
 
 <div id="refs" class="references">
 <div>
-<p>Allaire, JJ, Yihui Xie, Jonathan McPherson, Javier Luraschi, Kevin Ushey, Aron Atkins, Hadley Wickham, Joe Cheng, and Winston Chang. 2018. <em>Rmarkdown: Dynamic Documents for R</em>. <a href="https://CRAN.R-project.org/package=rmarkdown" class="uri">https://CRAN.R-project.org/package=rmarkdown</a>.</p>
+<p>Allaire, JJ, Yihui Xie, Jonathan McPherson, Javier Luraschi, Kevin Ushey, Aron Atkins, Hadley Wickham, Joe Cheng, and Winston Chang. 2018. <em>Rmarkdown: Dynamic Documents for R</em>. <a href="https://CRAN.R-project.org/package=rmarkdown">https://CRAN.R-project.org/package=rmarkdown</a>.</p>
 </div>
 <div>
-<p>Anderson, David R., Kenneth P. Burnham, and William L. Thompson. 2000. “Null Hypothesis Testing: Problems, Prevalence, and an Alternative.” <em>The Journal of Wildlife Management</em> 64 (4): 912–23. <a href="http://www.jstor.org/stable/3803199" class="uri">http://www.jstor.org/stable/3803199</a>.</p>
+<p>Anderson, David R., Kenneth P. Burnham, and William L. Thompson. 2000. “Null Hypothesis Testing: Problems, Prevalence, and an Alternative.” <em>The Journal of Wildlife Management</em> 64 (4): 912–23. <a href="http://www.jstor.org/stable/3803199">http://www.jstor.org/stable/3803199</a>.</p>
 </div>
 <div>
-<p>Bååth, Rasmus. 2018. <em>Beepr: Easily Play Notification Sounds on Any Platform</em>. <a href="https://CRAN.R-project.org/package=beepr" class="uri">https://CRAN.R-project.org/package=beepr</a>.</p>
+<p>Bååth, Rasmus. 2018. <em>Beepr: Easily Play Notification Sounds on Any Platform</em>. <a href="https://CRAN.R-project.org/package=beepr">https://CRAN.R-project.org/package=beepr</a>.</p>
 </div>
 <div>
-<p>Bivand, Roger, and Nicholas Lewin-Koh. 2018. <em>Maptools: Tools for Handling Spatial Objects</em>. <a href="https://CRAN.R-project.org/package=maptools" class="uri">https://CRAN.R-project.org/package=maptools</a>.</p>
+<p>Bivand, Roger, Tim Keitt, and Barry Rowlingson. 2018. <em>Rgdal: Bindings for the ’Geospatial’ Data Abstraction Library</em>. <a href="https://CRAN.R-project.org/package=rgdal">https://CRAN.R-project.org/package=rgdal</a>.</p>
 </div>
 <div>
-<p>Bivand, Roger, and Colin Rundel. 2018. <em>Rgeos: Interface to Geometry Engine - Open Source (’Geos’)</em>. <a href="https://CRAN.R-project.org/package=rgeos" class="uri">https://CRAN.R-project.org/package=rgeos</a>.</p>
+<p>Bivand, Roger, and Nicholas Lewin-Koh. 2018. <em>Maptools: Tools for Handling Spatial Objects</em>. <a href="https://CRAN.R-project.org/package=maptools">https://CRAN.R-project.org/package=maptools</a>.</p>
 </div>
 <div>
-<p>Bivand, Roger, Tim Keitt, and Barry Rowlingson. 2018. <em>Rgdal: Bindings for the ’Geospatial’ Data Abstraction Library</em>. <a href="https://CRAN.R-project.org/package=rgdal" class="uri">https://CRAN.R-project.org/package=rgdal</a>.</p>
+<p>Bivand, Roger, and Colin Rundel. 2018. <em>Rgeos: Interface to Geometry Engine - Open Source (’Geos’)</em>. <a href="https://CRAN.R-project.org/package=rgeos">https://CRAN.R-project.org/package=rgeos</a>.</p>
 </div>
 <div>
-<p>Bolker, B.M. 2008. <em>Ecological Models and Data in R</em>. Princeton University Press. <a href="https://ms.mcmaster.ca/~bolker/emdbook/" class="uri">https://ms.mcmaster.ca/~bolker/emdbook/</a>.</p>
+<p>Bolker, B.M. 2008. <em>Ecological Models and Data in R</em>. Princeton University Press. <a href="https://ms.mcmaster.ca/~bolker/emdbook/">https://ms.mcmaster.ca/~bolker/emdbook/</a>.</p>
 </div>
 <div>
-<p>Boundaries, Global Administrative. 2018. “Slovenia Geopackage.” <a href="https://biogeo.ucdavis.edu/data/gadm3.6/gpkg/gadm36_SVN_gpkg.zip" class="uri">https://biogeo.ucdavis.edu/data/gadm3.6/gpkg/gadm36_SVN_gpkg.zip</a>.</p>
+<p>Boundaries, Global Administrative. 2018. “Slovenia Geopackage.” <a href="https://biogeo.ucdavis.edu/data/gadm3.6/gpkg/gadm36_SVN_gpkg.zip">https://biogeo.ucdavis.edu/data/gadm3.6/gpkg/gadm36_SVN_gpkg.zip</a>.</p>
 </div>
 <div>
 <p>Calenge, C. 2006. “The Package Adehabitat for the R Software: Tool for the Analysis of Space and Habitat Use by Animals.” <em>Ecological Modelling</em> 197: 1035.</p>
 </div>
 <div>
-<p>Cheng, Joe, Bhaskar Karambelkar, and Yihui Xie. 2018. <em>Leaflet: Create Interactive Web Maps with the Javascript ’Leaflet’ Library</em>. <a href="https://CRAN.R-project.org/package=leaflet" class="uri">https://CRAN.R-project.org/package=leaflet</a>.</p>
+<p>Cheng, Joe, Bhaskar Karambelkar, and Yihui Xie. 2018. <em>Leaflet: Create Interactive Web Maps with the Javascript ’Leaflet’ Library</em>. <a href="https://CRAN.R-project.org/package=leaflet">https://CRAN.R-project.org/package=leaflet</a>.</p>
 </div>
 <div>
-<p>Dunnington, Dewey. 2017. <em>Prettymapr: Scale Bar, North Arrow, and Pretty Margins in R</em>. <a href="https://CRAN.R-project.org/package=prettymapr" class="uri">https://CRAN.R-project.org/package=prettymapr</a>.</p>
+<p>Dunnington, Dewey. 2017. <em>Prettymapr: Scale Bar, North Arrow, and Pretty Margins in R</em>. <a href="https://CRAN.R-project.org/package=prettymapr">https://CRAN.R-project.org/package=prettymapr</a>.</p>
 </div>
 <div>
-<p>Hijmans, Robert J. 2017. <em>Raster: Geographic Data Analysis and Modeling</em>. <a href="https://CRAN.R-project.org/package=raster" class="uri">https://CRAN.R-project.org/package=raster</a>.</p>
+<p>Hijmans, Robert J. 2017. <em>Raster: Geographic Data Analysis and Modeling</em>. <a href="https://CRAN.R-project.org/package=raster">https://CRAN.R-project.org/package=raster</a>.</p>
 </div>
 <div>
-<p>Hijmans, Robert J., Steven Phillips, John Leathwick, and Jane Elith. 2017. <em>Dismo: Species Distribution Modeling</em>. <a href="https://CRAN.R-project.org/package=dismo" class="uri">https://CRAN.R-project.org/package=dismo</a>.</p>
+<p>Hijmans, Robert J., Steven Phillips, John Leathwick, and Jane Elith. 2017. <em>Dismo: Species Distribution Modeling</em>. <a href="https://CRAN.R-project.org/package=dismo">https://CRAN.R-project.org/package=dismo</a>.</p>
 </div>
 <div>
-<p>Kaczensky, P., F. Knauer, M. Jonozovic, and M. Blazic. 1999. “Slovenian Brown Bear 1993-1999 Telemetry Data Set.” <a href="https://www.movebank.org/panel_embedded_movebank_webapp?destination=panel_embedded_movebank_webapp" class="uri">https://www.movebank.org/panel_embedded_movebank_webapp?destination=panel_embedded_movebank_webapp</a>.</p>
+<p>Kaczensky, P., F. Knauer, M. Jonozovic, and M. Blazic. 1999. “Slovenian Brown Bear 1993-1999 Telemetry Data Set.” <a href="https://www.movebank.org/panel_embedded_movebank_webapp?destination=panel_embedded_movebank_webapp">https://www.movebank.org/panel_embedded_movebank_webapp?destination=panel_embedded_movebank_webapp</a>.</p>
 </div>
 <div>
-<p>Kahle, David, and Hadley Wickham. 2016. <em>Ggmap: Spatial Visualization with Ggplot2</em>. <a href="https://CRAN.R-project.org/package=ggmap" class="uri">https://CRAN.R-project.org/package=ggmap</a>.</p>
+<p>Kahle, David, and Hadley Wickham. 2016. <em>Ggmap: Spatial Visualization with Ggplot2</em>. <a href="https://CRAN.R-project.org/package=ggmap">https://CRAN.R-project.org/package=ggmap</a>.</p>
 </div>
 <div>
-<p>Kline, Paul A., and Thomas A. Flagg. 2014. “Putting the Red Back in Redfish Lake, 20 Years of Progress Toward Saving the Pacific Northwest’s Most Endangered Salmon Population.” <em>Fisheries</em> 39 (11): 488–500. doi:<a href="https://doi.org/10.1080/03632415.2014.966087">10.1080/03632415.2014.966087</a>.</p>
+<p>Kline, Paul A., and Thomas A. Flagg. 2014. “Putting the Red Back in Redfish Lake, 20 Years of Progress Toward Saving the Pacific Northwest’s Most Endangered Salmon Population.” <em>Fisheries</em> 39 (11): 488–500. <a href="https://doi.org/10.1080/03632415.2014.966087">https://doi.org/10.1080/03632415.2014.966087</a>.</p>
 </div>
 <div>
-<p>Lovelace, R., J. Nowosad, and J. Muenchow. 2018. <em>Geocomputation with R</em>. 1st ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://geocompr.robinlovelace.net/" class="uri">https://geocompr.robinlovelace.net/</a>.</p>
+<p>Lovelace, R., J. Nowosad, and J. Muenchow. 2018. <em>Geocomputation with R</em>. 1st ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://geocompr.robinlovelace.net/">https://geocompr.robinlovelace.net/</a>.</p>
 </div>
 <div>
-<p>MapCruzin. 2018. “Slovenia Railways.” <a href="http://www.mapcruzin.com/download-shapefile/slovenia-railways-shape.zip" class="uri">http://www.mapcruzin.com/download-shapefile/slovenia-railways-shape.zip</a>.</p>
+<p>MapCruzin. 2018. “Slovenia Railways.” <a href="http://www.mapcruzin.com/download-shapefile/slovenia-railways-shape.zip">http://www.mapcruzin.com/download-shapefile/slovenia-railways-shape.zip</a>.</p>
 </div>
 <div>
-<p>Pebesma, Edzer, and Roger Bivand. 2018. <em>Sp: Classes and Methods for Spatial Data</em>. <a href="https://CRAN.R-project.org/package=sp" class="uri">https://CRAN.R-project.org/package=sp</a>.</p>
+<p>Pebesma, Edzer, and Roger Bivand. 2018. <em>Sp: Classes and Methods for Spatial Data</em>. <a href="https://CRAN.R-project.org/package=sp">https://CRAN.R-project.org/package=sp</a>.</p>
 </div>
 <div>
-<p>R Core Team. 2018. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a>.</p>
+<p>R Core Team. 2018. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.</p>
 </div>
 <div>
-<p>Republic of Slovenia, Environmental Agency of the. 2018. “Ecologically Important Areas (Caves).” <a href="http://gis.arso.gov.si/geoserver/ows?SERVICE=WFS&amp;REQUEST=GetFeature&amp;VERSION=1.1.0&amp;TYPENAME=arso:EPO_JAME&amp;PROPERTYNAME=SHAPE,ID_STEV,IME&amp;OUTPUTFORMAT=SHAPE-ZIP&amp;format_options=charset:UTF-8" class="uri">http://gis.arso.gov.si/geoserver/ows?SERVICE=WFS&amp;REQUEST=GetFeature&amp;VERSION=1.1.0&amp;TYPENAME=arso:EPO_JAME&amp;PROPERTYNAME=SHAPE,ID_STEV,IME&amp;OUTPUTFORMAT=SHAPE-ZIP&amp;format_options=charset:UTF-8</a>.</p>
+<p>Republic of Slovenia, Environmental Agency of the. 2018. “Ecologically Important Areas (Caves).” <a href="http://gis.arso.gov.si/geoserver/ows?SERVICE=WFS&amp;REQUEST=GetFeature&amp;VERSION=1.1.0&amp;TYPENAME=arso:EPO_JAME&amp;PROPERTYNAME=SHAPE,ID_STEV,IME&amp;OUTPUTFORMAT=SHAPE-ZIP&amp;format_options=charset:UTF-8">http://gis.arso.gov.si/geoserver/ows?SERVICE=WFS&amp;REQUEST=GetFeature&amp;VERSION=1.1.0&amp;TYPENAME=arso:EPO_JAME&amp;PROPERTYNAME=SHAPE,ID_STEV,IME&amp;OUTPUTFORMAT=SHAPE-ZIP&amp;format_options=charset:UTF-8</a>.</p>
 </div>
 <div>
-<p>Sarkar, Deepayan. 2017. <em>Lattice: Trellis Graphics for R</em>. <a href="https://CRAN.R-project.org/package=lattice" class="uri">https://CRAN.R-project.org/package=lattice</a>.</p>
+<p>Sarkar, Deepayan. 2017. <em>Lattice: Trellis Graphics for R</em>. <a href="https://CRAN.R-project.org/package=lattice">https://CRAN.R-project.org/package=lattice</a>.</p>
 </div>
 <div>
-<p>Walker, Kyle. 2015. “Convert Xy Coordinates to Lines in R.” <em>Rpubs</em>. <a href="https://rpubs.com/walkerke/points_to_line" class="uri">https://rpubs.com/walkerke/points_to_line</a>.</p>
+<p>Walker, Kyle. 2015. “Convert Xy Coordinates to Lines in R.” <em>Rpubs</em>. <a href="https://rpubs.com/walkerke/points_to_line">https://rpubs.com/walkerke/points_to_line</a>.</p>
 </div>
 <div>
-<p>Wickham, Hadley. 2007. “Reshaping Data with the reshape Package.” <em>Journal of Statistical Software</em> 21 (12): 1–20. <a href="http://www.jstatsoft.org/v21/i12/" class="uri">http://www.jstatsoft.org/v21/i12/</a>.</p>
+<p>Wickham, Hadley. 2007. “Reshaping Data with the reshape Package.” <em>Journal of Statistical Software</em> 21 (12): 1–20. <a href="http://www.jstatsoft.org/v21/i12/">http://www.jstatsoft.org/v21/i12/</a>.</p>
 </div>
 <div>
-<p>———. 2015. <em>Advanced R</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://adv-r.hadley.nz/" class="uri">https://adv-r.hadley.nz/</a>.</p>
+<p>———. 2015. <em>Advanced R</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://adv-r.hadley.nz/">https://adv-r.hadley.nz/</a>.</p>
 </div>
 <div>
-<p>———. 2018. <em>Scales: Scale Functions for Visualization</em>. <a href="https://CRAN.R-project.org/package=scales" class="uri">https://CRAN.R-project.org/package=scales</a>.</p>
+<p>———. 2018. <em>Scales: Scale Functions for Visualization</em>. <a href="https://CRAN.R-project.org/package=scales">https://CRAN.R-project.org/package=scales</a>.</p>
 </div>
 <div>
-<p>Wickham, Hadley, and Winston Chang. 2016. <em>Ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics</em>. <a href="https://CRAN.R-project.org/package=ggplot2" class="uri">https://CRAN.R-project.org/package=ggplot2</a>.</p>
+<p>Wickham, Hadley, and Winston Chang. 2016. <em>Ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics</em>. <a href="https://CRAN.R-project.org/package=ggplot2">https://CRAN.R-project.org/package=ggplot2</a>.</p>
 </div>
 <div>
-<p>Wickham, Hadley, Romain Francois, Lionel Henry, and Kirill Müller. 2017. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr" class="uri">https://CRAN.R-project.org/package=dplyr</a>.</p>
+<p>Wickham, Hadley, Romain Francois, Lionel Henry, and Kirill Müller. 2017. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>.</p>
 </div>
 <div>
-<p>Xie, Yihui. 2015. <em>Dynamic Documents with R and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.name/knitr/" class="uri">http://yihui.name/knitr/</a>.</p>
+<p>Xie, Yihui. 2015. <em>Dynamic Documents with R and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.name/knitr/">http://yihui.name/knitr/</a>.</p>
 </div>
 <div>
-<p>———. 2018a. <em>Bookdown: Authoring Books and Technical Documents with R Markdown</em>. <a href="https://CRAN.R-project.org/package=bookdown" class="uri">https://CRAN.R-project.org/package=bookdown</a>.</p>
+<p>———. 2018a. <em>Bookdown: Authoring Books and Technical Documents with R Markdown</em>. <a href="https://CRAN.R-project.org/package=bookdown">https://CRAN.R-project.org/package=bookdown</a>.</p>
 </div>
 <div>
-<p>———. 2018b. <em>Knitr: A General-Purpose Package for Dynamic Report Generation in R</em>. <a href="https://CRAN.R-project.org/package=knitr" class="uri">https://CRAN.R-project.org/package=knitr</a>.</p>
+<p>———. 2018b. <em>Knitr: A General-Purpose Package for Dynamic Report Generation in R</em>. <a href="https://CRAN.R-project.org/package=knitr">https://CRAN.R-project.org/package=knitr</a>.</p>
 </div>
 </div>
 </div>
@@ -1222,7 +1248,7 @@ homecaves =<span class="st"> </span><span class="kw">over</span>(caves, cp, <spa
 <h3>References</h3>
 <div id="refs" class="references">
 <div id="ref-caves-cite">
-<p>Republic of Slovenia, Environmental Agency of the. 2018. “Ecologically Important Areas (Caves).” <a href="http://gis.arso.gov.si/geoserver/ows?SERVICE=WFS&amp;REQUEST=GetFeature&amp;VERSION=1.1.0&amp;TYPENAME=arso:EPO_JAME&amp;PROPERTYNAME=SHAPE,ID_STEV,IME&amp;OUTPUTFORMAT=SHAPE-ZIP&amp;format_options=charset:UTF-8" class="uri">http://gis.arso.gov.si/geoserver/ows?SERVICE=WFS&amp;REQUEST=GetFeature&amp;VERSION=1.1.0&amp;TYPENAME=arso:EPO_JAME&amp;PROPERTYNAME=SHAPE,ID_STEV,IME&amp;OUTPUTFORMAT=SHAPE-ZIP&amp;format_options=charset:UTF-8</a>.</p>
+<p>Republic of Slovenia, Environmental Agency of the. 2018. “Ecologically Important Areas (Caves).” <a href="http://gis.arso.gov.si/geoserver/ows?SERVICE=WFS&amp;REQUEST=GetFeature&amp;VERSION=1.1.0&amp;TYPENAME=arso:EPO_JAME&amp;PROPERTYNAME=SHAPE,ID_STEV,IME&amp;OUTPUTFORMAT=SHAPE-ZIP&amp;format_options=charset:UTF-8">http://gis.arso.gov.si/geoserver/ows?SERVICE=WFS&amp;REQUEST=GetFeature&amp;VERSION=1.1.0&amp;TYPENAME=arso:EPO_JAME&amp;PROPERTYNAME=SHAPE,ID_STEV,IME&amp;OUTPUTFORMAT=SHAPE-ZIP&amp;format_options=charset:UTF-8</a>.</p>
 </div>
 </div>
             </section>
@@ -1254,6 +1280,10 @@ gitbook.start({
 "link": null,
 "text": null
 },
+"history": {
+"link": null,
+"text": null
+},
 "download": ["au-r-workshop.pdf"],
 "toc": {
 "collapse": "section"
@@ -1267,8 +1297,8 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');
     script.src = src;

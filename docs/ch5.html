@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Introduction to R for Natural Resource Scientists</title>
-  <meta name="description" content="This is a first course in R programming for natural resource scientists. It was developed and has been primarily instructed at Auburn University.">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Large Data Manipulation | Introduction to R for Natural Resource Scientists</title>
+  <meta name="description" content="This is a first course in R programming for natural resource scientists. It was developed and has been primarily instructed at Auburn University." />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Introduction to R for Natural Resource Scientists" />
+  <meta property="og:title" content="Chapter 5 Large Data Manipulation | Introduction to R for Natural Resource Scientists" />
   <meta property="og:type" content="book" />
   
   
@@ -17,24 +16,25 @@
   <meta name="github-repo" content="bstaton1/au-r-workshop" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Introduction to R for Natural Resource Scientists" />
+  <meta name="twitter:title" content="Chapter 5 Large Data Manipulation | Introduction to R for Natural Resource Scientists" />
   
   <meta name="twitter:description" content="This is a first course in R programming for natural resource scientists. It was developed and has been primarily instructed at Auburn University." />
   
 
-<meta name="author" content="Ben Staton">
+<meta name="author" content="Ben Staton" />
 
 
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 <link rel="prev" href="ch4.html">
 <link rel="next" href="ch6.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
@@ -47,7 +47,7 @@
 
 
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
 <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
@@ -65,41 +65,67 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -329,7 +355,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1><span class="header-section-number">Chapter 5</span> Large Data Manipulation</h1>
 <div id="chapter-overview-4" class="section level2 unnumbered">
 <h2>Chapter Overview</h2>
-<p>Any data analyst will tell you that oftentimes the most difficult part of an analysis is simply getting the data in the proper format. Real data sets are messy: they have missing values, variables are often stored in multiple columns that would be better stored as rows, the same factor level may be coded as two or more different types<a href="#fn39" class="footnoteRef" id="fnref39"><sup>39</sup></a>, or the required data are in several separate files. You get the point: sometimes significant data-wrangling may be required before you perform an analysis.</p>
+<p>Any data analyst will tell you that oftentimes the most difficult part of an analysis is simply getting the data in the proper format. Real data sets are messy: they have missing values, variables are often stored in multiple columns that would be better stored as rows, the same factor level may be coded as two or more different types<a href="#fn39" class="footnote-ref" id="fnref39"><sup>39</sup></a>, or the required data are in several separate files. You get the point: sometimes significant data-wrangling may be required before you perform an analysis.</p>
 <p>In this chapter, you will learn tricks to do more advanced data manipulation in R using two <strong>R packages</strong>:</p>
 <ul>
 <li><code>{reshape2}</code> <span class="citation">(Wickham <a href="#ref-R-reshape2">2007</a>)</span>: used for changing data between formats (wide and long)</li>
@@ -346,22 +372,22 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">5.1</span> Aquiring and Loading Packages</h2>
 <p>An <strong>R package</strong> is a bunch of code, documentation, and data that someone has written and bundled into a consistent format for other R users to install and use in their R sessions. Packages make R incredibly flexible and extensible. If you are trying to do a specialized analysis that is not included in the base R distribution, it is likely that someone has already written a package that will allow you to do it!</p>
 <p>In this chapter, you will be using some new packages that you likely don’t already have on your computer, so you will need to install them first:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>)
-<span class="kw">install.packages</span>(<span class="st">&quot;reshape2&quot;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>)
+<span class="kw">install.packages</span>(<span class="st">&quot;reshape2&quot;</span>)</code></pre>
 <p>This requires an internet connection. You will see some text display in the console telling you the packages are being installed. Once the packages are installed, you need not re-install them in future sessions. However, if you install a new version of R, you will likely need to update your packages (i.e., re-install them).</p>
 <p>Now that the packages are on your computer, you will need to load them into the current session:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
-<span class="kw">library</span>(reshape2)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(reshape2)</code></pre>
 <p>These messages are telling you that there are functions in the <code>{dplyr}</code> package that have the same names as those already being used in the <code>{stats}</code> and <code>{base}</code> R packages. This is fine so long as you don’t want to use the original functions. If you wish to use the <code>{base}</code> version of the <code>filter()</code> function rather than the <code>{dplyr}</code> version, use it like this: <code>base::filter()</code>. Each time you close and reopen R, you will need to load any packages you want to use using <code>library()</code> again.</p>
 </div>
 <div id="the-data" class="section level2">
 <h2><span class="header-section-number">5.2</span> The Data</h2>
 <p>You have daily observations of catch and escapement for every other year between 1917 and 2015. Pink salmon have a simple life history where fish that spawned in an odd year return as adults to spawn in the next odd year. There is a commercial fishery in this system located at the river mouth which harvests fish as they enter the river. A counting tower is located upstream of the fishing grounds that counts the number of fish that escaped the fishery and will have a chance to spawn (this number is termed “escapement”). The ultimate goal is to obtain annual totals of spawners and total run (catch + escapement) for the purpose of fitting a spawner recruit analysis. You will perform some other analyses along the way directed at quantifying patterns in run timing.</p>
 <p>Read in the two data sets for this chapter (see the <a href="index.html#data-sets">instructions</a> for details on acquiring data files):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">catch =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../Data/daily_catch.csv&quot;</span>)
-esc =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../Data/daily_escape.csv&quot;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">catch =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../Data/daily_catch.csv&quot;</span>)
+esc =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../Data/daily_escape.csv&quot;</span>)</code></pre>
 <p>Look at the first 6 rows and columns of the <code>catch</code> data:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">catch[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>]</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">catch[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>]</code></pre>
 <pre><code>##   doy y_1917 y_1919 y_1921 y_1923 y_1925
 ## 1 160    175    229    245    135   2685
 ## 2 161    221    501   1379   1504   2361
@@ -370,7 +396,7 @@ esc =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">
 ## 5 164    134    428    674    747   1209
 ## 6 165     76    224   1211   1231    772</code></pre>
 <p>The column <code>doy</code> is the day of the year that each record corresponds to, and each column represents a different year. Notice the format of the <code>esc</code> data is the same:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">esc[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>]</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">esc[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>]</code></pre>
 <pre><code>##   doy y_1917 y_1919 y_1921 y_1923 y_1925
 ## 1 161     90    189    161     73   1700
 ## 2 162    113    412    907    819   1495
@@ -383,10 +409,10 @@ esc =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">
 <div id="change-format-using-melt" class="section level2">
 <h2><span class="header-section-number">5.3</span> Change format using <code>melt()</code></h2>
 <p>These data are in what is called <strong>wide</strong> format: different levels of the <code>year</code> variable are stored as columns. A <strong>long</strong> format would have three columns: one for <code>doy</code>, <code>year</code>, and <code>catch</code> or <code>esc</code>. Turn the <code>catch</code> data frame into long format using the <code>melt()</code> function from <code>{reshape2}</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">long.catch =<span class="st"> </span><span class="kw">melt</span>(catch, <span class="dt">id.var =</span> <span class="st">&quot;doy&quot;</span>,
+<pre class="sourceCode r"><code class="sourceCode r">long.catch =<span class="st"> </span><span class="kw">melt</span>(catch, <span class="dt">id.var =</span> <span class="st">&quot;doy&quot;</span>,
                   <span class="dt">variable.name =</span> <span class="st">&quot;year&quot;</span>,
                   <span class="dt">value.name =</span> <span class="st">&quot;catch&quot;</span>)
-<span class="kw">head</span>(long.catch)</code></pre></div>
+<span class="kw">head</span>(long.catch)</code></pre>
 <pre><code>##   doy   year catch
 ## 1 160 y_1917   175
 ## 2 161 y_1917   221
@@ -395,10 +421,10 @@ esc =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">
 ## 5 164 y_1917   134
 ## 6 165 y_1917    76</code></pre>
 <p>The first argument is the data frame to reformat, the second argument (<code>id.var</code>) is the variable that identifies one observation from another, here it is the <code>doy</code> that the count occurred on. In this case, it is actually all we need to run <code>melt</code> properly. The optional <code>variable.name</code> and <code>value.name</code> arguments specify the names of the other two columns. These default to “variable” and “value” if not specified. Do the same thing for escapement:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">long.esc =<span class="st"> </span><span class="kw">melt</span>(esc, <span class="dt">id.var =</span> <span class="st">&quot;doy&quot;</span>,
+<pre class="sourceCode r"><code class="sourceCode r">long.esc =<span class="st"> </span><span class="kw">melt</span>(esc, <span class="dt">id.var =</span> <span class="st">&quot;doy&quot;</span>,
                 <span class="dt">variable.name =</span> <span class="st">&quot;year&quot;</span>,
                 <span class="dt">value.name =</span> <span class="st">&quot;esc&quot;</span>)
-<span class="kw">head</span>(long.esc)</code></pre></div>
+<span class="kw">head</span>(long.esc)</code></pre>
 <pre><code>##   doy   year esc
 ## 1 161 y_1917  90
 ## 2 162 y_1917 113
@@ -407,19 +433,19 @@ esc =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">
 ## 5 165 y_1917  69
 ## 6 166 y_1917  39</code></pre>
 <p>Anytime you do a large data manipulation like this, you should compare the new data set with the original to verify that it worked properly. Ask if <code>all</code> of the daily catches for a given year in the original data set match up to the new data set:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">all</span>(catch<span class="op">$</span>y_<span class="dv">2015</span> <span class="op">==</span><span class="st"> </span>long.catch[long.catch<span class="op">$</span>year <span class="op">==</span><span class="st"> &quot;y_2015&quot;</span>, <span class="st">&quot;catch&quot;</span>])</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">all</span>(catch<span class="op">$</span>y_<span class="dv">2015</span> <span class="op">==</span><span class="st"> </span>long.catch[long.catch<span class="op">$</span>year <span class="op">==</span><span class="st"> &quot;y_2015&quot;</span>, <span class="st">&quot;catch&quot;</span>])</code></pre>
 <pre><code>## [1] TRUE</code></pre>
 <p>The single <code>TRUE</code> indicates that every element matches up for 2015 in the catch data, just like they should.</p>
 <p>To reverse this action (i.e., to go from long format to wide format), you would use the <code>dcast()</code> function from <code>{reshape2}</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dcast</span>(long.catch, doy <span class="op">~</span><span class="st"> </span>year, <span class="dt">value.var =</span> <span class="st">&quot;catch&quot;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dcast</span>(long.catch, doy <span class="op">~</span><span class="st"> </span>year, <span class="dt">value.var =</span> <span class="st">&quot;catch&quot;</span>)</code></pre>
 <p>The formula specifies which variables are ID variables on the left-hand side, and which variable should get expanded to multiple columns. The <code>value.var</code> argument indicates which variable will be placed into the columns.</p>
 </div>
 <div id="join-data-sets-with-merge" class="section level2">
 <h2><span class="header-section-number">5.4</span> Join Data Sets with <code>merge()</code></h2>
 <p>You now have two long format data sets. You can turn them into one data set with the <code>merge()</code> function (which is actually in the <code>{base}</code> package). <code>merge()</code> takes two data frames and joins them based on certain grouping variables. Here, you want to combine the data frames <code>long.catch</code> and <code>long.esc</code> into one data frame, and match the rows by the <code>doy</code> and <code>year</code> for each unique pair:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat =<span class="st"> </span><span class="kw">merge</span>(<span class="dt">x =</span> long.esc, <span class="dt">y =</span> long.catch,
+<pre class="sourceCode r"><code class="sourceCode r">dat =<span class="st"> </span><span class="kw">merge</span>(<span class="dt">x =</span> long.esc, <span class="dt">y =</span> long.catch,
             <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;doy&quot;</span>, <span class="st">&quot;year&quot;</span>), <span class="dt">all =</span> T)
-<span class="kw">head</span>(dat)</code></pre></div>
+<span class="kw">head</span>(dat)</code></pre>
 <pre><code>##   doy   year esc catch
 ## 1 160 y_1917  NA   175
 ## 2 160 y_1919  NA   229
@@ -429,7 +455,7 @@ esc =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">
 ## 6 160 y_1927  NA   163</code></pre>
 <p>The <code>all = T</code> argument is important to specify here. It says that you wish to keep <strong>all</strong> of the unique records in the columns passed to <code>by</code> from both data frames. The <code>doy</code> in the catch data ranges from day 160 to day 209, whereas for escapement it ranges from day 161 to day 210. In this system, the fishery opens on the 160<sup>th</sup> day of every year, and the counting tower starts the 161<sup>st</sup> day. If you didn’t use <code>all = T</code>, you would drop all the rows in each data set that do not have a match in the other data set (you would lose day 160 and day 210 from every year). Notice that because no escapement observations were ever made on <code>doy</code> 160, the <code>esc</code> value on this day is <code>NA</code>.</p>
 <p>Notice how the data set is now ordered by <code>doy</code> instead of <code>year</code>. This is not a problem, but if you want to reorder the data frame by <code>year</code>, you can use the <code>arrange()</code> function from <code>{dplyr}</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(<span class="kw">arrange</span>(dat, year))</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(<span class="kw">arrange</span>(dat, year))</code></pre>
 <pre><code>##   doy   year esc catch
 ## 1 160 y_1917  NA   175
 ## 2 161 y_1917  90   221
@@ -440,10 +466,10 @@ esc =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">
 </div>
 <div id="lagged-vectors" class="section level2">
 <h2><span class="header-section-number">5.5</span> Lagged vectors</h2>
-<p>The present task is to the calculate daily cumulative run proportion<a href="#fn40" class="footnoteRef" id="fnref40"><sup>40</sup></a> in 2015 for comparison to the other years. Given the information you have, this task would be very cumbersome if not for the flexibility allowed by <code>{dplyr}</code>.</p>
+<p>The present task is to the calculate daily cumulative run proportion<a href="#fn40" class="footnote-ref" id="fnref40"><sup>40</sup></a> in 2015 for comparison to the other years. Given the information you have, this task would be very cumbersome if not for the flexibility allowed by <code>{dplyr}</code>.</p>
 <p>Remember the counting tower is an average one day swim for the salmon from the fishing grounds. This means that the escapement counts are <strong>lagged</strong> relative to the catch counts. If you want the daily run (defined as the number of fish in the fishing grounds each day), you need to account for this lag. An easy way to think about the lag is to show it graphically. First, pull out one year of data using the <code>filter()</code> function in <code>{dplyr}</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y15 =<span class="st"> </span><span class="kw">filter</span>(dat, year <span class="op">==</span><span class="st"> &quot;y_2015&quot;</span>)
-<span class="kw">head</span>(y15)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">y15 =<span class="st"> </span><span class="kw">filter</span>(dat, year <span class="op">==</span><span class="st"> &quot;y_2015&quot;</span>)
+<span class="kw">head</span>(y15)</code></pre>
 <pre><code>##   doy   year  esc catch
 ## 1 160 y_2015   NA  3342
 ## 2 161 y_2015 2293  2352
@@ -452,81 +478,81 @@ esc =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">
 ## 5 164 y_2015 2244  5080
 ## 6 165 y_2015 3486   379</code></pre>
 <p>The <code>{base}</code> analog to the <code>filter()</code> function is:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y15 =<span class="st"> </span>dat[dat<span class="op">$</span>year <span class="op">==</span><span class="st"> &quot;y_2015&quot;</span>, ]
+<pre class="sourceCode r"><code class="sourceCode r">y15 =<span class="st"> </span>dat[dat<span class="op">$</span>year <span class="op">==</span><span class="st"> &quot;y_2015&quot;</span>, ]
 <span class="co"># or</span>
-y15 =<span class="st"> </span><span class="kw">subset</span>(dat, year <span class="op">==</span><span class="st"> &quot;y_2015&quot;</span>)</code></pre></div>
+y15 =<span class="st"> </span><span class="kw">subset</span>(dat, year <span class="op">==</span><span class="st"> &quot;y_2015&quot;</span>)</code></pre>
 <p>They take about the same amount of code to write, but <code>filter()</code> has some advantages when used with other <code>{dplyr}</code> functions that will be discussed later. Now plot the daily catch and escapement (not cumulative yet) for 2015:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(catch <span class="op">~</span><span class="st"> </span>doy, <span class="dt">data =</span> y15, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>,
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(catch <span class="op">~</span><span class="st"> </span>doy, <span class="dt">data =</span> y15, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>,
      <span class="dt">xlab =</span> <span class="st">&quot;DOY&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Count&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Raw Data&quot;</span>)
 <span class="kw">lines</span>(esc <span class="op">~</span><span class="st"> </span>doy, <span class="dt">data =</span> y15, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)
 <span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;Catch&quot;</span>, <span class="st">&quot;Escapement&quot;</span>), 
-       <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>), <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">lty =</span> <span class="dv">1</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">cex =</span> <span class="fl">0.8</span>)</code></pre></div>
+       <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>), <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">lty =</span> <span class="dv">1</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">cex =</span> <span class="fl">0.8</span>)</code></pre>
 <p><img src="au-r-workshop_files/figure-html/unnamed-chunk-254-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Notice how the escapement counts are shifted to the right by one day. This is the lag. To account for it, you can use the <code>lag()</code> function from <code>{dplyr}</code>. <code>lag()</code> works by lagging some vector by <code>n</code> elements (it shifts every element in the vector <code>n</code> places to the right by putting <code>n</code> <code>NAs</code> at the front and removing the last <code>n</code> elements from the original vector). One way to fix the lag problem would be to use <code>lag()</code> on <code>catch</code> to make the days match up with <code>esc</code> (don’t lag <code>esc</code> because that would just lag it by <code>n</code> additional days):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">lag</span>(catch, <span class="dt">n =</span> <span class="dv">1</span>) <span class="op">~</span><span class="st"> </span>doy, <span class="dt">data =</span> y15, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>,
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">lag</span>(catch, <span class="dt">n =</span> <span class="dv">1</span>) <span class="op">~</span><span class="st"> </span>doy, <span class="dt">data =</span> y15, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>,
      <span class="dt">xlab =</span> <span class="st">&quot;DOY&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Count&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;With lag(catch)&quot;</span>)
 <span class="kw">lines</span>(esc <span class="op">~</span><span class="st"> </span>doy, <span class="dt">data =</span> y15, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)
 <span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;Catch&quot;</span>, <span class="st">&quot;Escapement&quot;</span>),
-       <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>), <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">lty =</span> <span class="dv">1</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">cex =</span> <span class="fl">0.8</span>)</code></pre></div>
+       <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>), <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">lty =</span> <span class="dv">1</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">cex =</span> <span class="fl">0.8</span>)</code></pre>
 <p><img src="au-r-workshop_files/figure-html/unnamed-chunk-256-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Notice how the two curves line up better now.</p>
 </div>
 <div id="adding-columns-with-mutate" class="section level2">
 <h2><span class="header-section-number">5.6</span> Adding columns with <code>mutate()</code></h2>
 <p>Apply this same idea to get the total daily run (what was harvested plus what was not). Make a function to take the two vectors (catch and escapement), lag one, and then sum them. Howevery, you don’t want to move catch forward a day; you need to move escapement back a day. The opposite of <code>lag()</code> is <code>lead()</code>. The way to think of this is that <code>lag()</code> lags a vector, and <code>lead()</code> unlags a vector. <code>lead()</code> shifts every element to the left by <code>n</code> elements by removing the first <code>n</code> elements of the original vector and adding <code>n</code> <code>NAs</code> to the end. This is what your function should look like:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lag_sum =<span class="st"> </span><span class="cf">function</span>(x, y, <span class="dt">n =</span> <span class="dv">1</span>){
+<pre class="sourceCode r"><code class="sourceCode r">lag_sum =<span class="st"> </span><span class="cf">function</span>(x, y, <span class="dt">n =</span> <span class="dv">1</span>){
   <span class="co"># x is lagged from y by n days</span>
   <span class="kw">rowSums</span>(<span class="kw">cbind</span>(<span class="kw">lead</span>(x, n), y), <span class="dt">na.rm =</span> T)
-}</code></pre></div>
+}</code></pre>
 <p>Note the use of <code>na.rm = T</code> to specify that summing a number with an <code>NA</code> should still return a number. If two <code>NAs</code> are summed, the result will be a zero.</p>
 <p>Try out the <code>lag_sum()</code> function:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lag_sum</span>(y15<span class="op">$</span>esc, y15<span class="op">$</span>catch)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lag_sum</span>(y15<span class="op">$</span>esc, y15<span class="op">$</span>catch)</code></pre>
 <p>Add this column to your data set. You add columns in <code>{dplyr}</code> using <code>mutate()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y15 =<span class="st"> </span><span class="kw">mutate</span>(y15, <span class="dt">run =</span> <span class="kw">lag_sum</span>(esc, catch))</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">y15 =<span class="st"> </span><span class="kw">mutate</span>(y15, <span class="dt">run =</span> <span class="kw">lag_sum</span>(esc, catch))</code></pre>
 <p>The <code>{base}</code> equivalent to <code>mutate()</code> is:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y15<span class="op">$</span>run =<span class="st"> </span><span class="kw">lag_sum</span>(y15<span class="op">$</span>esc, y15<span class="op">$</span>catch)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">y15<span class="op">$</span>run =<span class="st"> </span><span class="kw">lag_sum</span>(y15<span class="op">$</span>esc, y15<span class="op">$</span>catch)</code></pre>
 <p><code>mutate()</code> has advantages when used with other <code>{dplyr}</code> functions that will be shown soon. Use the new variable <code>run</code> to calculate two new variables: the cumulative run by day (<code>crun</code>) and cumulative run proportion by day (<code>cprun</code>). Cumulative means that each new element is the value that occurred on that day plus all of the values that happened on days before it. You can use R’s <code>cumsum()</code> for this:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y15 =<span class="st"> </span><span class="kw">mutate</span>(y15, <span class="dt">crun =</span> <span class="kw">cumsum</span>(run), <span class="dt">cprun =</span> crun<span class="op">/</span><span class="kw">sum</span>(run, <span class="dt">na.rm =</span> T))</code></pre></div>
-<p>Here is one advantage of <code>mutate()</code>: you can refer to a variable you just created to make a new variable within the same function. You would have to split this into two lines to do it in <code>{base}</code>. Indeed, you could have made <code>run</code>, <code>crun</code>, and <code>cprun</code> all in the same <code>mutate()</code> call. Plot <code>cprun</code><a href="#fn41" class="footnoteRef" id="fnref41"><sup>41</sup></a>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(cprun <span class="op">~</span><span class="st"> </span>doy, <span class="dt">data =</span> y15, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),
-     <span class="dt">xlab =</span> <span class="st">&quot;DOY&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Cumulative Run Proportion&quot;</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">y15 =<span class="st"> </span><span class="kw">mutate</span>(y15, <span class="dt">crun =</span> <span class="kw">cumsum</span>(run), <span class="dt">cprun =</span> crun<span class="op">/</span><span class="kw">sum</span>(run, <span class="dt">na.rm =</span> T))</code></pre>
+<p>Here is one advantage of <code>mutate()</code>: you can refer to a variable you just created to make a new variable within the same function. You would have to split this into two lines to do it in <code>{base}</code>. Indeed, you could have made <code>run</code>, <code>crun</code>, and <code>cprun</code> all in the same <code>mutate()</code> call. Plot <code>cprun</code><a href="#fn41" class="footnote-ref" id="fnref41"><sup>41</sup></a>:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(cprun <span class="op">~</span><span class="st"> </span>doy, <span class="dt">data =</span> y15, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),
+     <span class="dt">xlab =</span> <span class="st">&quot;DOY&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Cumulative Run Proportion&quot;</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)</code></pre>
 <p><img src="au-r-workshop_files/figure-html/unnamed-chunk-263-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="apply-to-all-years" class="section level2">
 <h2><span class="header-section-number">5.7</span> Apply to all years</h2>
 <p>You have just obtained the daily and cumulative run for one year (2015), but <code>{dplyr}</code> makes it easy to apply these same manipulations to all years. To really see the advantage of <code>{dplyr}</code>, you’ll need to learn to use piping. A code <strong>pipe</strong> is one that takes the result of one function and inserts it into the input of another function. Here is a basic example of a pipe:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>) <span class="op">%&gt;%</span><span class="st"> </span>length</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>) <span class="op">%&gt;%</span><span class="st"> </span>length</code></pre>
 <pre><code>## [1] 10</code></pre>
 <p>The pipe took the result of <code>rnorm(10)</code> and passed it as the first argument to the <code>length</code> function. This allows you to string together commands so you aren’t continuously making intermediate objects or nesting a ton of functions together. The pipe essentially does this:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x =<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>); <span class="kw">length</span>(x); <span class="kw">rm</span>(x)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">x =<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>); <span class="kw">length</span>(x); <span class="kw">rm</span>(x)</code></pre>
 <pre><code>## [1] 10</code></pre>
 <p>The reason piping works so well with <code>{dplyr}</code> is because its functions are designed to take a data frame as input as the first argument and return another data frame as output. This allows you to string them together with pipes. Do a more complex pipe: take your main data frame (<code>dat</code>), group it by <code>year</code>, and pass it to a <code>mutate()</code> call that will add the new three columns to the entire data set:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat =<span class="st"> </span>dat <span class="op">%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r">dat =<span class="st"> </span>dat <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">run =</span> <span class="kw">lag_sum</span>(esc, catch), 
          <span class="dt">crun =</span> <span class="kw">cumsum</span>(run), 
          <span class="dt">cprun =</span> crun<span class="op">/</span><span class="kw">sum</span>(run, <span class="dt">na.rm =</span> T))
 
-<span class="kw">arrange</span>(dat, year)</code></pre></div>
+<span class="kw">arrange</span>(dat, year)</code></pre>
 <pre><code>## # A tibble: 2,550 x 7
 ## # Groups:   year [50]
 ##      doy year     esc catch   run  crun  cprun
 ##    &lt;int&gt; &lt;fct&gt;  &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
-##  1   160 y_1917    NA   175  265.  265. 0.0127
-##  2   161 y_1917    90   221  334.  599. 0.0288
-##  3   162 y_1917   113   242  366.  965. 0.0464
-##  4   163 y_1917   124    90  136. 1101. 0.0530
-##  5   164 y_1917    46   134  203. 1304. 0.0627
-##  6   165 y_1917    69    76  115. 1419. 0.0683
-##  7   166 y_1917    39    89  134. 1553. 0.0747
-##  8   167 y_1917    45   139  210. 1763. 0.0848
-##  9   168 y_1917    71   127  192. 1955. 0.0941
-## 10   169 y_1917    65    61   92. 2047. 0.0985
+##  1   160 y_1917    NA   175   265   265 0.0127
+##  2   161 y_1917    90   221   334   599 0.0288
+##  3   162 y_1917   113   242   366   965 0.0464
+##  4   163 y_1917   124    90   136  1101 0.0530
+##  5   164 y_1917    46   134   203  1304 0.0627
+##  6   165 y_1917    69    76   115  1419 0.0683
+##  7   166 y_1917    39    89   134  1553 0.0747
+##  8   167 y_1917    45   139   210  1763 0.0848
+##  9   168 y_1917    71   127   192  1955 0.0941
+## 10   169 y_1917    65    61    92  2047 0.0985
 ## # ... with 2,540 more rows</code></pre>
 <p>The <code>group_by()</code> function is spectacular: you grouped the data frame by <code>year</code>, which tells the rest of the functions in the pipe to apply its commands to each year independently. With this function, you can group your data in any way you please and calculate statistics on a group-by-group basis. Note that in this example, it doesn’t do much for you, because the data are so neat (all years have the same number of days, and <code>NAs</code> in all of the same places, etc.), but for data that are messier, this trick is very handy. Also note that the <code>dat</code> object looks a little different. When you print it, it only shows the first 10 rows. This is a <code>{dplyr}</code> feature that prevents you from printing a huge data set to the console.</p>
 <p>Now plot the cumulative run proportion by day for each year, highlighting 2015:</p>
 <p><img src="au-r-workshop_files/figure-html/unnamed-chunk-267-1.png" width="672" style="display: block; margin: auto;" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(sp)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(sp)
 <span class="co"># make an empty plot</span>
 <span class="kw">plot</span>(<span class="dt">x =</span> <span class="dv">0</span>, <span class="dt">y =</span> <span class="dv">0</span>, <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">xlim =</span> <span class="kw">range</span>(dat<span class="op">$</span>doy), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),
      <span class="dt">xlab =</span> <span class="st">&quot;DOY&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Cumulative Run Proportion&quot;</span>)
@@ -537,16 +563,16 @@ years =<span class="st"> </span><span class="kw">levels</span>(dat<span class="o
 tmp =<span class="st"> </span><span class="kw">sapply</span>(years, <span class="cf">function</span>(x) {
   <span class="kw">lines</span>(cprun <span class="op">~</span><span class="st"> </span>doy, <span class="dt">data =</span> <span class="kw">filter</span>(dat, year <span class="op">==</span><span class="st"> </span>x),
         <span class="dt">col =</span> <span class="kw">ifelse</span>(x <span class="op">==</span><span class="st"> &quot;y_2015&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;grey&quot;</span>))
-})</code></pre></div>
+})</code></pre>
 </div>
 <div id="calculate-daily-means-with-summarize" class="section level2">
 <h2><span class="header-section-number">5.8</span> Calculate Daily Means with <code>summarize()</code></h2>
 <p>Oftentimes, you want to calculate a statistic for a value across grouping variables, like year or site or day. Remember the <code>tapply()</code> function does this in <code>{base}</code>. Here you want to calculate the mean cumulative run proportion for each day averaged across years. For this, you can make use of the <code>summarize()</code> function in <code>{dplyr}</code>. Begin by ungrouping the data to remove the <code>year</code> groups and grouping the data by <code>doy</code>. This will allow you to calculate the mean proportion by day. You then pass this grouped data frame to <code>summarize()</code> which will apply the <code>mean()</code> function to the cumulative run proportions across all years on a particular day. It will do this for all days:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mean_cprun =<span class="st"> </span>dat <span class="op">%&gt;%</span><span class="st"> </span>
+<pre class="sourceCode r"><code class="sourceCode r">mean_cprun =<span class="st"> </span>dat <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span>ungroup <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">group_by</span>(doy) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">cprun =</span> <span class="kw">mean</span>(cprun))
-<span class="kw">head</span>(mean_cprun)</code></pre></div>
+<span class="kw">head</span>(mean_cprun)</code></pre>
 <pre><code>## # A tibble: 6 x 2
 ##     doy   cprun
 ##   &lt;int&gt;   &lt;dbl&gt;
@@ -557,19 +583,19 @@ tmp =<span class="st"> </span><span class="kw">sapply</span>(years, <span class=
 ## 5   164 0.0491 
 ## 6   165 0.0579</code></pre>
 <p>The way to do this in <code>{base}</code> is with <code>tapply()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tapply</span>(dat<span class="op">$</span>cprun, dat<span class="op">$</span>doy, mean)[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>]</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tapply</span>(dat<span class="op">$</span>cprun, dat<span class="op">$</span>doy, mean)[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>]</code></pre>
 <pre><code>##         160         161         162         163         164         165 
 ## 0.009699779 0.019400196 0.029111609 0.038735562 0.049130566 0.057901058</code></pre>
 <p>Note that you get the same result, only the output from <code>tapply()</code> is a vector, and the output of <code>summarize()</code> is a data frame.</p>
 <p>One disadvantage of the <code>summarize()</code> function, however, is that it can only be used to apply functions that give one number as output (e.g., <code>mean()</code>, <code>max()</code>, <code>sd()</code>, <code>length()</code>, etc.). These are called <strong>aggregate</strong> functions: they take a bunch of numbers and aggregate them into one number. <code>tapply()</code> does not have this constraint. Illustrate this by trying to use the <code>range()</code> function (which combines the minimum and maximum values of some vector into another vector of length 2).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># with summarise</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># with summarise</span>
 dat <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span>ungroup <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(doy) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">range =</span> <span class="kw">range</span>(cprun))</code></pre></div>
-<pre><code>## Error in summarise_impl(.data, dots): Column `range` must be length 1 (a summary value), not 2</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># with tapply</span>
-<span class="kw">tapply</span>(dat<span class="op">$</span>cprun, dat<span class="op">$</span>doy, range)[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</code></pre></div>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">range =</span> <span class="kw">range</span>(cprun))</code></pre>
+<pre><code>## Error: Column `range` must be length 1 (a summary value), not 2</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># with tapply</span>
+<span class="kw">tapply</span>(dat<span class="op">$</span>cprun, dat<span class="op">$</span>doy, range)[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</code></pre>
 <pre><code>## $`160`
 ## [1] 0.0002721184 0.0256423751
 ## 
@@ -585,39 +611,39 @@ dat <span class="op">%&gt;%</span><span class="st"> </span>
 ## $`164`
 ## [1] 0.01797648 0.08253284</code></pre>
 <p>You can see that <code>tapply()</code> allows you to do this (but gives a list), whereas <code>summarize()</code> returns a short and informative error. You could very easily fix the problem by making minimum and maximum columns in the same <code>summarize()</code> call:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat <span class="op">%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r">dat <span class="op">%&gt;%</span>
 <span class="st">  </span>ungroup <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(jday) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">min =</span> <span class="kw">min</span>(cprun), <span class="dt">max =</span> <span class="kw">max</span>(cprun))</code></pre></div>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">min =</span> <span class="kw">min</span>(cprun), <span class="dt">max =</span> <span class="kw">max</span>(cprun))</code></pre>
 <p>Add the mean cumulative run proportion to our plot (use <code>lines()</code> just like before, add it after the <code>sapply()</code> call):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lines</span>(cprun <span class="op">~</span><span class="st"> </span>doy, <span class="dt">data =</span> mean_cprun, <span class="dt">lwd =</span> <span class="dv">3</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lines</span>(cprun <span class="op">~</span><span class="st"> </span>doy, <span class="dt">data =</span> mean_cprun, <span class="dt">lwd =</span> <span class="dv">3</span>)</code></pre>
 <p><img src="au-r-workshop_files/figure-html/unnamed-chunk-274-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>It looks like 2015 started like an average year but the peak of the run happened a couple days earlier than average.</p>
 </div>
 <div id="more-summarize" class="section level2">
 <h2><span class="header-section-number">5.9</span> More <code>summarize()</code></h2>
 <p>Your colleagues have been talking lately about how the run has been getting earlier and earlier in recent years. To determine if their claims are correct, you decide to develop a method to find the day on which 50% of the run has passed (the median run date) and plot it over time. If there is a downward trend, then the run has been getting earlier. First, you need to define another function to find the day that corresponds to 50% of the run. If there were days when the cumulative run on that day equaled exactly 0.5, we could simply use <code>which()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ind =<span class="st"> </span><span class="kw">which</span>(dat<span class="op">$</span>cprun <span class="op">==</span><span class="st"> </span><span class="fl">0.5</span>)
-dat<span class="op">$</span>jday[ind]</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">ind =<span class="st"> </span><span class="kw">which</span>(dat<span class="op">$</span>cprun <span class="op">==</span><span class="st"> </span><span class="fl">0.5</span>)
+dat<span class="op">$</span>jday[ind]</code></pre>
 <p>The <code>which()</code> function is useful: it returns the indices (element places) <em>for which</em> the condition is <code>TRUE</code>. However, you need to do a workaround here, since the median day is likely not exactly 0.5, and it must be .5 in order for <code>==</code> to return a <code>TRUE</code>). You will give the function two vectors and it will look for a value that is closest to 0.5 in one vector and pull out the corresponding value in the second vector:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">find_median_doy =<span class="st"> </span><span class="cf">function</span>(p,doy) {
+<pre class="sourceCode r"><code class="sourceCode r">find_median_doy =<span class="st"> </span><span class="cf">function</span>(p,doy) {
   ind =<span class="st"> </span><span class="kw">which.min</span>(<span class="kw">abs</span>(p <span class="op">-</span><span class="st"> </span><span class="fl">0.5</span>))
   doy[ind]
-}</code></pre></div>
-<p>This function will take every element of <code>p</code>, subtract 0.5, take the absolute value of the results (make it positive, even if it is negative), and find the element number that is smallest. This will be the element with the value closest to 0.5. Note that you could find the first quartile (0.25) or third quartile (0.75) of the run by inserting these in for 0.5 above<a href="#fn42" class="footnoteRef" id="fnref42"><sup>42</sup></a>. Try your function on the 2015 data only:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># use function</span>
+}</code></pre>
+<p>This function will take every element of <code>p</code>, subtract 0.5, take the absolute value of the results (make it positive, even if it is negative), and find the element number that is smallest. This will be the element with the value closest to 0.5. Note that you could find the first quartile (0.25) or third quartile (0.75) of the run by inserting these in for 0.5 above<a href="#fn42" class="footnote-ref" id="fnref42"><sup>42</sup></a>. Try your function on the 2015 data only:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># use function</span>
 med_doy15 =<span class="st"> </span><span class="kw">find_median_doy</span>(<span class="dt">p =</span> y15<span class="op">$</span>cprun, <span class="dt">doy =</span> y15<span class="op">$</span>doy)
 
 <span class="co"># pull out the day it called the median to verify it works</span>
-<span class="kw">filter</span>(y15, doy <span class="op">==</span><span class="st"> </span>med_doy15) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(cprun)</code></pre></div>
+<span class="kw">filter</span>(y15, doy <span class="op">==</span><span class="st"> </span>med_doy15) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(cprun)</code></pre>
 <pre><code>##       cprun
 ## 1 0.5023032</code></pre>
 <p>The <code>select()</code> function in <code>{dplyr}</code> extracts the variables requested from the data frame. If there is a grouping variable set using <code>group_by()</code>, it will be returned as well. It looks like the function works. Now combine it with <code>summarize()</code> to calculate the median day for every year:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">med_doy =<span class="st"> </span>
+<pre class="sourceCode r"><code class="sourceCode r">med_doy =<span class="st"> </span>
 <span class="st">  </span>dat <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">doy =</span> <span class="kw">find_median_doy</span>(cprun, doy))
-<span class="kw">head</span>(med_doy)</code></pre></div>
+<span class="kw">head</span>(med_doy)</code></pre>
 <pre><code>## # A tibble: 6 x 2
 ##   year     doy
 ##   &lt;fct&gt;  &lt;int&gt;
@@ -628,7 +654,7 @@ med_doy15 =<span class="st"> </span><span class="kw">find_median_doy</span>(<spa
 ## 5 y_1925   182
 ## 6 y_1927   188</code></pre>
 <p>Now, use your <code>{dplyr}</code> skills to turn the year column into a numeric variable:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># get years as a number</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># get years as a number</span>
 med_doy<span class="op">$</span>year =<span class="st"> </span>
 <span class="st">  </span><span class="kw">ungroup</span>(med_doy) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="co"># extract only the year column</span>
@@ -638,16 +664,16 @@ med_doy<span class="op">$</span>year =<span class="st"> </span>
 <span class="st">  </span><span class="co"># replace &quot;y_&quot; with nothing</span>
 <span class="st">  </span><span class="kw">gsub</span>(<span class="dt">pattern =</span> <span class="st">&quot;y_&quot;</span>, <span class="dt">replacement =</span> <span class="st">&quot;&quot;</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="co"># turn to a integer vector</span>
-<span class="st">  </span>as.integer</code></pre></div>
+<span class="st">  </span>as.integer</code></pre>
 <p>Now plot the median run dates as a time series:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(doy <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> med_doy, <span class="dt">pch =</span> <span class="dv">16</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(doy <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> med_doy, <span class="dt">pch =</span> <span class="dv">16</span>)</code></pre>
 <p><img src="au-r-workshop_files/figure-html/unnamed-chunk-281-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>It doesn’t appear that there is a trend in either direction, but fit a regression line because you can (Section <a href="ch3.html#regression">3.1.1</a>):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit =<span class="st"> </span><span class="kw">lm</span>(doy <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> med_doy)
+<pre class="sourceCode r"><code class="sourceCode r">fit =<span class="st"> </span><span class="kw">lm</span>(doy <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> med_doy)
 <span class="kw">summary</span>(fit)<span class="op">$</span>coef
 
 <span class="kw">plot</span>(doy <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> med_doy, <span class="dt">pch =</span> <span class="dv">16</span>)
-<span class="kw">abline</span>(fit, <span class="dt">lty =</span> <span class="dv">2</span>)</code></pre></div>
+<span class="kw">abline</span>(fit, <span class="dt">lty =</span> <span class="dv">2</span>)</code></pre>
 <pre><code>##                  Estimate  Std. Error    t value     Pr(&gt;|t|)
 ## (Intercept) 193.781416567 27.80436398  6.9694605 8.190067e-09
 ## year         -0.005138055  0.01414108 -0.3633424 7.179445e-01</code></pre>
@@ -657,48 +683,48 @@ med_doy<span class="op">$</span>year =<span class="st"> </span>
 <div id="fit-the-model" class="section level2">
 <h2><span class="header-section-number">5.10</span> Fit the Model</h2>
 <p>You have done some neat data exploration exercises (and hopefully learned <code>{dplyr}</code> and piping along the way!), but your ultimate task with this data set is to run a spawner-recruit analysis on all the data. A <strong>spawner-recruit analysis</strong> is one that links the number of total fish produced in a year (the recruits) to the total number of fish that produced them (the spawners). This is done in an attempt to describe the productivity and carrying capacity of the population and to obtain <strong>biological reference points</strong> off of which harvest policies can be set. You will need to summarize the daily data into annual totals of escapement and total run:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sr_dat =<span class="st"> </span>
+<pre class="sourceCode r"><code class="sourceCode r">sr_dat =<span class="st"> </span>
 <span class="st">  </span>dat <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">S =</span> <span class="kw">sum</span>(esc, <span class="dt">na.rm =</span> T),
             <span class="dt">R =</span> <span class="kw">sum</span>(run, <span class="dt">na.rm =</span> T))
 
-<span class="kw">head</span>(sr_dat)</code></pre></div>
+<span class="kw">head</span>(sr_dat)</code></pre>
 <pre><code>## # A tibble: 6 x 3
-##   year       S       R
-##   &lt;fct&gt;  &lt;int&gt;   &lt;dbl&gt;
-## 1 y_1917  7031  20785.
-## 2 y_1919 19647  43553.
-## 3 y_1921 45106 113682.
-## 4 y_1923 69160 196212.
-## 5 y_1925 66306 171006.
-## 6 y_1927 96622 243212.</code></pre>
+##   year       S      R
+##   &lt;fct&gt;  &lt;int&gt;  &lt;dbl&gt;
+## 1 y_1917  7031  20785
+## 2 y_1919 19647  43553
+## 3 y_1921 45106 113682
+## 4 y_1923 69160 196212
+## 5 y_1925 66306 171006
+## 6 y_1927 96622 243212</code></pre>
 <p>You didn’t need to use <code>group_by()</code> here because the data were still grouped from an earlier task. But, there is no harm in putting it in, and it would help make your code more readable if you were to include it.</p>
 <p>That is the main data manipulation you need to do in order to run the spawner-recruit analysis. You can fit the model using <code>nls()</code> (Section <a href="ch3.html#nls">3.4</a>). The model you will fit is called a <strong>Ricker spawner-recruit model</strong> and has the form:</p>
-<span class="math display" id="eq:ricker-ch5">\[\begin{equation}
+<p><span class="math display" id="eq:ricker-ch5">\[\begin{equation}
   R_t = \alpha S_{t-1} e^{-\beta S_{t-1} + \varepsilon_t} ,\varepsilon_t \sim N(0,\sigma)
 \tag{5.1}
-\end{equation}\]</span>
+\end{equation}\]</span></p>
 <p>where <span class="math inline">\(\alpha\)</span> is a parameter representing the maximum recruits per spawner (obtained at very low spawner abundances) and <span class="math inline">\(\beta\)</span> is a measure of the strength of <strong>density-dependent mortality</strong>. Notice that the error term is in the exponent, which makes <span class="math inline">\(e^{\varepsilon_t}\)</span> lognormal. To get <code>nls()</code> to fit this properly, we will need to fit to <span class="math inline">\(log(R_t)\)</span> as the response variable. Write a function that will predict log recruitment from spawners given the two parameters (ignore the error term):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ricker =<span class="st"> </span><span class="cf">function</span>(S, alpha, beta) {
+<pre class="sourceCode r"><code class="sourceCode r">ricker =<span class="st"> </span><span class="cf">function</span>(S, alpha, beta) {
   <span class="kw">log</span>(alpha <span class="op">*</span><span class="st"> </span>S <span class="op">*</span><span class="st"> </span><span class="kw">exp</span>(<span class="op">-</span>beta <span class="op">*</span><span class="st"> </span>S))
-}</code></pre></div>
+}</code></pre>
 <p>Fit the model to the data using <code>nls()</code>. Before you fit it, however, you’ll need to do another lag. This is because the run that comes back in one year was spawned by the escapement the previous odd year (you only have odd years in the data). This time extract the appropriate years “by-hand” rather than using the <code>lag()</code> or <code>lead()</code> functions as before:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># the number of years</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># the number of years</span>
 nyrs =<span class="st"> </span><span class="kw">nrow</span>(sr_dat)
 <span class="co"># the spawners to fit to:</span>
 S_fit =<span class="st"> </span>sr_dat<span class="op">$</span>S[<span class="dv">1</span><span class="op">:</span>(nyrs <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)]
 <span class="co"># the recruits to fit to:</span>
-R_fit =<span class="st"> </span>sr_dat<span class="op">$</span>R[<span class="dv">2</span><span class="op">:</span>nyrs]</code></pre></div>
+R_fit =<span class="st"> </span>sr_dat<span class="op">$</span>R[<span class="dv">2</span><span class="op">:</span>nyrs]</code></pre>
 <p>Fit the model:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit =<span class="st"> </span><span class="kw">nls</span>(<span class="kw">log</span>(R_fit) <span class="op">~</span><span class="st"> </span><span class="kw">ricker</span>(S_fit, alpha, beta),
+<pre class="sourceCode r"><code class="sourceCode r">fit =<span class="st"> </span><span class="kw">nls</span>(<span class="kw">log</span>(R_fit) <span class="op">~</span><span class="st"> </span><span class="kw">ricker</span>(S_fit, alpha, beta),
           <span class="dt">start =</span> <span class="kw">c</span>(<span class="dt">alpha =</span> <span class="dv">6</span>, <span class="dt">beta =</span> <span class="dv">0</span>))
-<span class="kw">coef</span>(fit); <span class="kw">summary</span>(fit)<span class="op">$</span>sigma</code></pre></div>
+<span class="kw">coef</span>(fit); <span class="kw">summary</span>(fit)<span class="op">$</span>sigma</code></pre>
 <pre><code>##        alpha         beta 
 ## 5.341553e+00 6.896867e-06</code></pre>
 <pre><code>## [1] 0.4047541</code></pre>
 <p>Given that the true values for these data were: <span class="math inline">\(\alpha = 6\)</span>, <span class="math inline">\(\beta = 8\times10^{-6}\)</span>, and <span class="math inline">\(\sigma = 0.4\)</span>, these estimates look pretty good.</p>
 <p>Plot the recruits versus spawners and the fitted line:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot the S-R pairs</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot the S-R pairs</span>
 <span class="kw">plot</span>(R_fit <span class="op">~</span><span class="st"> </span>S_fit, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>, <span class="dt">cex =</span> <span class="fl">1.5</span>,
      <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">max</span>(S_fit)), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">max</span>(R_fit)))
 <span class="co"># extract the estimates</span>
@@ -710,26 +736,26 @@ R_line =<span class="st"> </span><span class="kw">exp</span>(<span class="kw">ri
                 <span class="dt">beta =</span> ests[<span class="st">&quot;beta&quot;</span>]))
 <span class="kw">lines</span>(R_line <span class="op">~</span><span class="st"> </span>S_line, <span class="dt">lwd =</span><span class="dv">3</span>)
 <span class="co"># draw the 1:1 line</span>
-<span class="kw">abline</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dt">lty =</span> <span class="dv">2</span>)</code></pre></div>
+<span class="kw">abline</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dt">lty =</span> <span class="dv">2</span>)</code></pre>
 <p><img src="au-r-workshop_files/figure-html/unnamed-chunk-289-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The diagonal line is the <strong>1:1 replacement line</strong>: where 1 spawner would produce 1 recruit. The distance between this line and the curve is the theoretical <strong>harvestable surplus</strong> available at each spawner abundance that would keep the stock at a fixed abundance. The biological reference points that might be used in harvest management are:</p>
-<span class="math display" id="eq:ricker-brps">\[\begin{eqnarray*}
+<p><span class="math display" id="eq:ricker-brps">\[\begin{eqnarray*}
 &amp;&amp; S_{MAX}=\frac{1}{\beta},\\
 &amp;&amp; S_{eq}=log(\alpha) S_{MAX},\\
 &amp;&amp; S_{MSY}=S_{eq} \left(0.5-0.07*log(\alpha)\right)
 \tag{5.2}
-\end{eqnarray*}\]</span>
+\end{eqnarray*}\]</span></p>
 <p>Where <span class="math inline">\(S_{MAX}\)</span> is the spawner abundance expected to produce the maximum recruits, <span class="math inline">\(S_{eq}\)</span> is the spawner abundance that should produce exactly replacement recruits, and <span class="math inline">\(S_{MSY}\)</span> is the spawner abundance that is expected to produce the maximum surplus (all under the assumption of no environmental variability). You can calculate the reference points given in Equation <a href="ch5.html#eq:ricker-brps">(5.2)</a> from your parameter estimates:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Smax =<span class="st"> </span><span class="dv">1</span><span class="op">/</span>ests[<span class="st">&quot;beta&quot;</span>]
+<pre class="sourceCode r"><code class="sourceCode r">Smax =<span class="st"> </span><span class="dv">1</span><span class="op">/</span>ests[<span class="st">&quot;beta&quot;</span>]
 Seq =<span class="st"> </span><span class="kw">log</span>(ests[<span class="st">&quot;alpha&quot;</span>]) <span class="op">*</span><span class="st"> </span>Smax
 Smsy =<span class="st"> </span>Seq <span class="op">*</span><span class="st"> </span>(<span class="fl">0.5</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.07</span> <span class="op">*</span><span class="st"> </span><span class="kw">log</span>(ests[<span class="st">&quot;alpha&quot;</span>]))
 brps =<span class="st"> </span><span class="kw">round</span>(<span class="kw">c</span>(<span class="dt">Smax =</span> <span class="kw">unname</span>(Smax),
                <span class="dt">Seq =</span> <span class="kw">unname</span>(Seq),
-               <span class="dt">Smsy =</span> <span class="kw">unname</span>(Smsy)), <span class="op">-</span><span class="dv">3</span>)</code></pre></div>
+               <span class="dt">Smsy =</span> <span class="kw">unname</span>(Smsy)), <span class="dv">-3</span>)</code></pre>
 <p>Draw these reference points onto your plot and label them:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">abline</span>(<span class="dt">v =</span> brps, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">abline</span>(<span class="dt">v =</span> brps, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)
 <span class="kw">text</span>(<span class="dt">x =</span> brps, <span class="dt">y =</span> <span class="kw">max</span>(R_fit) <span class="op">*</span><span class="st"> </span><span class="fl">1.08</span>, 
-     <span class="dt">labels =</span> <span class="kw">names</span>(brps), <span class="dt">xpd =</span> T, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)</code></pre></div>
+     <span class="dt">labels =</span> <span class="kw">names</span>(brps), <span class="dt">xpd =</span> T, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)</code></pre>
 <p><img src="au-r-workshop_files/figure-html/unnamed-chunk-292-1.png" width="672" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
@@ -759,19 +785,19 @@ brps =<span class="st"> </span><span class="kw">round</span>(<span class="kw">c<
 <h3>References</h3>
 <div id="refs" class="references">
 <div id="ref-R-reshape2">
-<p>Wickham, Hadley. 2007. “Reshaping Data with the reshape Package.” <em>Journal of Statistical Software</em> 21 (12): 1–20. <a href="http://www.jstatsoft.org/v21/i12/" class="uri">http://www.jstatsoft.org/v21/i12/</a>.</p>
+<p>Wickham, Hadley. 2007. “Reshaping Data with the reshape Package.” <em>Journal of Statistical Software</em> 21 (12): 1–20. <a href="http://www.jstatsoft.org/v21/i12/">http://www.jstatsoft.org/v21/i12/</a>.</p>
 </div>
 <div id="ref-R-dplyr">
-<p>Wickham, Hadley, Romain Francois, Lionel Henry, and Kirill Müller. 2017. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr" class="uri">https://CRAN.R-project.org/package=dplyr</a>.</p>
+<p>Wickham, Hadley, Romain Francois, Lionel Henry, and Kirill Müller. 2017. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>.</p>
 </div>
 </div>
 <div class="footnotes">
 <hr />
 <ol start="39">
-<li id="fn39"><p>E.g., <code>&quot;hatch&quot;</code>, “<code>Hatch</code>”, and <code>&quot;HATCH&quot;</code> are all treated as different factor levels in R<a href="ch5.html#fnref39">↩</a></p></li>
-<li id="fn40"><p>This is the fraction of all fish that came back each year that did so on or before a given day<a href="ch5.html#fnref40">↩</a></p></li>
-<li id="fn41"><p>It doesn’t look like much, but this information is incredibly important for fishery managers. It provides information on how much of the annual run has passed on each day. You can see that the rate of change is the fastest in the middle of the run, this corresponds to the major hump in the plots you made earlier (which were raw numbers by day). Of course during the run, the managers don’t know what proportion of the total run has passed because they don’t know the total number of fish that will come that season, but by characterizing the mean and variability of the different run completion proportions on each day in the past, they can have some idea of how much of the run to expect yet to come on any given day.<a href="ch5.html#fnref41">↩</a></p></li>
-<li id="fn42"><p>This is the perfect kind of thing to make an argument for in your function!<a href="ch5.html#fnref42">↩</a></p></li>
+<li id="fn39"><p>E.g., <code>"hatch"</code>, “<code>Hatch</code>”, and <code>"HATCH"</code> are all treated as different factor levels in R<a href="ch5.html#fnref39" class="footnote-back">↩</a></p></li>
+<li id="fn40"><p>This is the fraction of all fish that came back each year that did so on or before a given day<a href="ch5.html#fnref40" class="footnote-back">↩</a></p></li>
+<li id="fn41"><p>It doesn’t look like much, but this information is incredibly important for fishery managers. It provides information on how much of the annual run has passed on each day. You can see that the rate of change is the fastest in the middle of the run, this corresponds to the major hump in the plots you made earlier (which were raw numbers by day). Of course during the run, the managers don’t know what proportion of the total run has passed because they don’t know the total number of fish that will come that season, but by characterizing the mean and variability of the different run completion proportions on each day in the past, they can have some idea of how much of the run to expect yet to come on any given day.<a href="ch5.html#fnref41" class="footnote-back">↩</a></p></li>
+<li id="fn42"><p>This is the perfect kind of thing to make an argument for in your function!<a href="ch5.html#fnref42" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>
@@ -803,6 +829,10 @@ gitbook.start({
 "link": null,
 "text": null
 },
+"history": {
+"link": null,
+"text": null
+},
 "download": ["au-r-workshop.pdf"],
 "toc": {
 "collapse": "section"
@@ -816,8 +846,8 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');
     script.src = src;
