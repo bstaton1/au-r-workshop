@@ -398,7 +398,7 @@ This plugs in the two possible values of the predictor variable and asks for the
 Incorporate the origin type into your original model:
 
 ```{r}
-fit3 = glm(binary ~ type + weight, data = dat)
+fit3 = glm(binary ~ type + weight, data = dat, family = binomial)
 ```
 
 and obtain the fitted probabilities for each group at each weight:
