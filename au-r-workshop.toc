@@ -1,163 +1,163 @@
-\contentsline {chapter}{Overview}{7}{chapter*.2}
-\contentsline {section}{What is Covered?}{7}{section*.3}
-\contentsline {section}{Prerequisites}{7}{section*.4}
-\contentsline {subsection}{Prepare Your Computer}{8}{section*.5}
-\contentsline {subsubsection}{Installation}{8}{section*.6}
-\contentsline {subsubsection}{Optional Configuration}{8}{section*.7}
-\contentsline {subsubsection}{Create a Book Directory}{8}{section*.8}
-\contentsline {subsubsection}{Data Sets}{8}{section*.9}
-\contentsline {section}{Exercises}{9}{section*.10}
-\contentsline {section}{Text Conventions}{9}{section*.11}
-\contentsline {section}{Keyboard Shortcuts}{10}{section*.12}
-\contentsline {section}{Development of this Book}{10}{section*.13}
-\contentsline {section}{About the Author}{10}{section*.14}
-\contentsline {chapter}{\numberline {1}Introduction to the R Environment}{11}{chapter.1}
-\contentsline {section}{Chapter Overview}{11}{section*.15}
-\contentsline {section}{Before You Begin}{11}{section*.16}
-\contentsline {section}{\numberline {1.1}The R Studio Interface}{11}{section.1.1}
-\contentsline {subsection}{\numberline {1.1.1}Write Some Simple Code}{11}{subsection.1.1.1}
-\contentsline {section}{\numberline {1.2}Saving Your Code: Scripts}{12}{section.1.2}
-\contentsline {section}{\numberline {1.3}The Working Directory}{13}{section.1.3}
-\contentsline {section}{\numberline {1.4}R Object Types}{13}{section.1.4}
-\contentsline {subsection}{\numberline {1.4.1}Functions}{13}{subsection.1.4.1}
-\contentsline {subsection}{\numberline {1.4.2}Vectors}{14}{subsection.1.4.2}
-\contentsline {subsection}{\numberline {1.4.3}Matrices}{15}{subsection.1.4.3}
-\contentsline {subsection}{\numberline {1.4.4}Data Frames}{16}{subsection.1.4.4}
-\contentsline {section}{\numberline {1.5}Factors}{16}{section.1.5}
-\contentsline {section}{\numberline {1.6}Vector Math}{17}{section.1.6}
-\contentsline {section}{\numberline {1.7}Data Subsets/Queries}{17}{section.1.7}
-\contentsline {section}{Exercise 1A}{19}{section*.17}
-\contentsline {section}{\numberline {1.8}Read External Data Files}{20}{section.1.8}
-\contentsline {section}{\numberline {1.9}Explore the Data Set}{21}{section.1.9}
-\contentsline {section}{\numberline {1.10}Logical/Boolean Operators}{23}{section.1.10}
-\contentsline {subsubsection}{Equality}{23}{section*.18}
-\contentsline {subsubsection}{Inequalities}{23}{section*.19}
-\contentsline {subsubsection}{In}{24}{section*.20}
-\contentsline {subsubsection}{And}{24}{section*.21}
-\contentsline {subsubsection}{Or}{24}{section*.22}
-\contentsline {section}{\numberline {1.11}Logical Subsetting}{24}{section.1.11}
-\contentsline {section}{\numberline {1.12}\texttt {if()}, \texttt {else}, and \texttt {ifelse()}}{25}{section.1.12}
-\contentsline {section}{\numberline {1.13}Writing Output Files}{27}{section.1.13}
-\contentsline {subsection}{\numberline {1.13.1}\texttt {.csv} Files}{27}{subsection.1.13.1}
-\contentsline {subsection}{\numberline {1.13.2}Saving R Objects}{27}{subsection.1.13.2}
-\contentsline {section}{\numberline {1.14}User-Defined Functions}{28}{section.1.14}
-\contentsline {section}{Exercise 1B}{28}{section*.23}
-\contentsline {subsection}{Exercise 1B Bonus}{29}{section*.24}
-\contentsline {chapter}{\numberline {2}Base R Plotting Basics}{31}{chapter.2}
-\contentsline {section}{Chapter Overview}{31}{section*.25}
-\contentsline {section}{Before You Begin}{31}{section*.26}
-\contentsline {section}{\numberline {2.1}R Plotting Lingo}{32}{section.2.1}
-\contentsline {section}{\numberline {2.2}Lower Level Plotting Functions}{34}{section.2.2}
-\contentsline {section}{\numberline {2.3}Other High-Level Plotting Functions}{37}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}The Bar Graph}{37}{subsection.2.3.1}
-\contentsline {section}{\numberline {2.4}Box-and-Whisker Plots}{39}{section.2.4}
-\contentsline {section}{\numberline {2.5}Histograms}{41}{section.2.5}
-\contentsline {section}{\numberline {2.6}The \texttt {par()} Function}{42}{section.2.6}
-\contentsline {section}{\numberline {2.7}New Temporary Devices}{43}{section.2.7}
-\contentsline {section}{\numberline {2.8}Multi-panel Plots}{44}{section.2.8}
-\contentsline {section}{\numberline {2.9}Legends}{44}{section.2.9}
-\contentsline {section}{\numberline {2.10}Exporting Plots}{46}{section.2.10}
-\contentsline {subsection}{\numberline {2.10.1}Click Save}{46}{subsection.2.10.1}
-\contentsline {subsection}{\numberline {2.10.2}Use a function to place plot in a new file}{47}{subsection.2.10.2}
-\contentsline {section}{\numberline {2.11}Bonus Topic: Error Bars}{47}{section.2.11}
-\contentsline {section}{Exercise 2}{50}{section*.27}
-\contentsline {subsection}{EXERCISE 2 BONUS}{50}{section*.28}
-\contentsline {chapter}{\numberline {3}Basic Statistics}{51}{chapter.3}
-\contentsline {section}{Chapter Overview}{51}{section*.29}
-\contentsline {section}{Before You Begin}{51}{section*.30}
-\contentsline {section}{\numberline {3.1}The General Linear Model}{51}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}Simple Linear Regression}{52}{subsection.3.1.1}
-\contentsline {subsection}{\numberline {3.1.2}ANOVA: Categorical predictors}{54}{subsection.3.1.2}
-\contentsline {subsection}{\numberline {3.1.3}ANCOVA: Continuous and categorical predictors}{56}{subsection.3.1.3}
-\contentsline {subsection}{\numberline {3.1.4}Interactions}{57}{subsection.3.1.4}
-\contentsline {subsection}{\numberline {3.1.5}AIC Model Selection}{59}{subsection.3.1.5}
-\contentsline {section}{\numberline {3.2}The Generalized Linear Model}{59}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Logistic Regression}{59}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}AIC Model Selection}{64}{subsection.3.2.2}
-\contentsline {section}{\numberline {3.3}Probability Distributions}{64}{section.3.3}
-\contentsline {section}{\numberline {3.4}Bonus Topic: Non-linear Regression}{66}{section.3.4}
-\contentsline {section}{Exercise 3}{69}{section*.31}
-\contentsline {subsection}{Exercise 3 Bonus}{70}{section*.32}
-\contentsline {chapter}{\numberline {4}Monte Carlo Methods}{71}{chapter.4}
-\contentsline {section}{Chapter Overview}{71}{section*.33}
-\contentsline {section}{Before You Begin}{71}{section*.34}
-\contentsline {section}{Layout of This Chapter}{71}{section*.35}
-\contentsline {section}{\numberline {4.1}Introducing Randomness}{72}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}Random deviates}{72}{subsection.4.1.1}
-\contentsline {subsection}{\numberline {4.1.2}Resampling}{74}{subsection.4.1.2}
-\contentsline {section}{\numberline {4.2}Reproducing Randomness}{75}{section.4.2}
-\contentsline {section}{\numberline {4.3}Replication}{75}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}\texttt {replicate()}}{75}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}The \texttt {for()} loop}{75}{subsection.4.3.2}
-\contentsline {section}{\numberline {4.4}Function Writing}{77}{section.4.4}
-\contentsline {section}{\numberline {4.5}Summarization}{79}{section.4.5}
-\contentsline {subsection}{\numberline {4.5.1}Central Tendency}{79}{subsection.4.5.1}
-\contentsline {subsection}{\numberline {4.5.2}Variability}{79}{subsection.4.5.2}
-\contentsline {subsection}{\numberline {4.5.3}Frequencies}{80}{subsection.4.5.3}
-\contentsline {section}{\numberline {4.6}Simulation-Based Examples}{81}{section.4.6}
-\contentsline {subsection}{\numberline {4.6.1}Test \texttt {rnorm}}{81}{subsection.4.6.1}
-\contentsline {subsection}{\numberline {4.6.2}Stochastic Power Analysis}{83}{subsection.4.6.2}
-\contentsline {subsection}{\numberline {4.6.3}Harvest Policy Analysis}{87}{subsection.4.6.3}
-\contentsline {section}{\numberline {4.7}Resampling-Based Examples}{92}{section.4.7}
-\contentsline {subsection}{\numberline {4.7.1}The Bootstrap}{92}{subsection.4.7.1}
-\contentsline {subsection}{\numberline {4.7.2}Permutation Test}{96}{subsection.4.7.2}
-\contentsline {section}{\numberline {4.8}Exercise 4}{99}{section.4.8}
-\contentsline {subsection}{Exercise 4A: Required Material Only}{99}{section*.36}
-\contentsline {subsection}{Exercise 4B: Test \texttt {rnorm}}{99}{section*.37}
-\contentsline {subsection}{Exercise 4C: Stochastic Power Analysis}{99}{section*.38}
-\contentsline {subsection}{Exercise 4D: Harvest Policy Analysis}{100}{section*.39}
-\contentsline {subsection}{Exercise 4E: The Bootstrap}{100}{section*.40}
-\contentsline {subsection}{Exercise 4F: Permutation Tests}{100}{section*.41}
-\contentsline {chapter}{\numberline {5}Large Data Manipulation}{101}{chapter.5}
-\contentsline {section}{Chapter Overview}{101}{section*.42}
-\contentsline {section}{Before You Begin}{101}{section*.43}
-\contentsline {section}{\numberline {5.1}Aquiring and Loading Packages}{101}{section.5.1}
-\contentsline {section}{\numberline {5.2}The Data}{102}{section.5.2}
-\contentsline {section}{\numberline {5.3}Change format using \texttt {melt()}}{103}{section.5.3}
-\contentsline {section}{\numberline {5.4}Join Data Sets with \texttt {merge()}}{104}{section.5.4}
-\contentsline {section}{\numberline {5.5}Lagged vectors}{105}{section.5.5}
-\contentsline {section}{\numberline {5.6}Adding columns with \texttt {mutate()}}{107}{section.5.6}
-\contentsline {section}{\numberline {5.7}Apply to all years}{109}{section.5.7}
-\contentsline {section}{\numberline {5.8}Calculate Daily Means with \texttt {summarize()}}{110}{section.5.8}
-\contentsline {section}{\numberline {5.9}More \texttt {summarize()}}{112}{section.5.9}
-\contentsline {section}{\numberline {5.10}Fit the Model}{115}{section.5.10}
-\contentsline {section}{Exercise 5}{118}{section*.44}
-\contentsline {subsection}{Exercise 5 Bonus}{119}{section*.45}
-\contentsline {chapter}{\numberline {6}Mapping and Spatial Analysis}{121}{chapter.6}
-\contentsline {section}{\numberline {6.1}Chapter Overview}{121}{section.6.1}
-\contentsline {section}{\numberline {6.2}Before You Begin}{121}{section.6.2}
-\contentsline {section}{\numberline {6.3}Geospatial Data}{122}{section.6.3}
-\contentsline {section}{\numberline {6.4}Importing Geospatial Data}{123}{section.6.4}
-\contentsline {subsection}{\numberline {6.4.1}\texttt {.csv} files}{123}{subsection.6.4.1}
-\contentsline {subsection}{\numberline {6.4.2}\texttt {.shp} files}{124}{subsection.6.4.2}
-\contentsline {section}{\numberline {6.5}Plotting}{125}{section.6.5}
-\contentsline {subsection}{\numberline {6.5.1}Zooming}{127}{subsection.6.5.1}
-\contentsline {subsection}{\numberline {6.5.2}Plotting Selections}{128}{subsection.6.5.2}
-\contentsline {section}{\numberline {6.6}Manipulating Spatial Data}{129}{section.6.6}
-\contentsline {subsection}{\numberline {6.6.1}Changing the CRS}{129}{subsection.6.6.1}
-\contentsline {subsection}{\numberline {6.6.2}Clipping}{129}{subsection.6.6.2}
-\contentsline {subsection}{\numberline {6.6.3}Adding Attributes}{130}{subsection.6.6.3}
-\contentsline {section}{\numberline {6.7}Analysis}{131}{section.6.7}
-\contentsline {subsection}{\numberline {6.7.1}Home Range Analysis}{131}{subsection.6.7.1}
-\contentsline {subsection}{\numberline {6.7.2}Finding Intersections Between Two Layers}{133}{subsection.6.7.2}
-\contentsline {section}{\numberline {6.8}Creating a Presentable Map}{134}{section.6.8}
-\contentsline {section}{\numberline {6.9}Other R Mapping Packages}{137}{section.6.9}
-\contentsline {subsection}{\numberline {6.9.1}\texttt {\{ggmap\}}}{137}{subsection.6.9.1}
-\contentsline {subsection}{\numberline {6.9.2}\texttt {\{leaflet\}}}{137}{subsection.6.9.2}
-\contentsline {section}{Exercise 6}{137}{section*.46}
-\contentsline {section}{Exercise 6 Bonus}{138}{section*.47}
-\contentsline {chapter}{Exercise Solutions}{139}{chapter*.48}
-\contentsline {section}{Exercise 1 Solutions}{139}{section*.49}
-\contentsline {subsection}{Exercise 1A Solutions}{139}{section*.50}
-\contentsline {subsection}{Exercise 1B Solutions}{140}{section*.51}
-\contentsline {section}{Exercise 2 Solutions}{142}{section*.52}
-\contentsline {section}{Exercise 3 Solutions}{144}{section*.53}
-\contentsline {section}{Exercise 4 Solutions}{147}{section*.54}
-\contentsline {subsection}{Exercise 4A Solutions}{147}{section*.55}
-\contentsline {subsection}{Exercise 4B Solutions}{148}{section*.56}
-\contentsline {subsection}{Exercise 4C Solutions}{150}{section*.57}
-\contentsline {subsection}{Exercise 4D Solutions}{152}{section*.58}
-\contentsline {subsection}{Exercise 4E Solutions}{158}{section*.59}
-\contentsline {subsection}{Exercise 4F Solutions}{159}{section*.60}
-\contentsline {section}{Exercise 5 Solutions}{164}{section*.61}
-\contentsline {section}{Exercise 6 Solutions}{168}{section*.62}
+\contentsline {chapter}{Overview}{7}{chapter*.2}% 
+\contentsline {section}{What is Covered?}{7}{section*.3}% 
+\contentsline {section}{Prerequisites}{8}{section*.4}% 
+\contentsline {subsection}{Prepare Your Computer}{8}{section*.5}% 
+\contentsline {subsubsection}{Installation}{8}{section*.6}% 
+\contentsline {subsubsection}{Optional Configuration}{8}{section*.7}% 
+\contentsline {subsubsection}{Create a Book Directory}{9}{section*.8}% 
+\contentsline {subsubsection}{Data Sets}{9}{section*.9}% 
+\contentsline {section}{Exercises}{10}{section*.10}% 
+\contentsline {section}{Text Conventions}{10}{section*.11}% 
+\contentsline {section}{Keyboard Shortcuts}{11}{section*.12}% 
+\contentsline {section}{Development of this Book}{11}{section*.13}% 
+\contentsline {section}{About the Author}{11}{section*.14}% 
+\contentsline {chapter}{\numberline {1}Introduction to the R Environment}{13}{chapter.1}% 
+\contentsline {section}{Chapter Overview}{13}{section*.15}% 
+\contentsline {section}{Before You Begin}{13}{section*.16}% 
+\contentsline {section}{\numberline {1.1}The R Studio Interface}{13}{section.1.1}% 
+\contentsline {subsection}{\numberline {1.1.1}Write Some Simple Code}{14}{subsection.1.1.1}% 
+\contentsline {section}{\numberline {1.2}Saving Your Code: Scripts}{15}{section.1.2}% 
+\contentsline {section}{\numberline {1.3}The Working Directory}{15}{section.1.3}% 
+\contentsline {section}{\numberline {1.4}R Object Types}{16}{section.1.4}% 
+\contentsline {subsection}{\numberline {1.4.1}Functions}{17}{subsection.1.4.1}% 
+\contentsline {subsection}{\numberline {1.4.2}Vectors}{17}{subsection.1.4.2}% 
+\contentsline {subsection}{\numberline {1.4.3}Matrices}{19}{subsection.1.4.3}% 
+\contentsline {subsection}{\numberline {1.4.4}Data Frames}{20}{subsection.1.4.4}% 
+\contentsline {section}{\numberline {1.5}Factors}{21}{section.1.5}% 
+\contentsline {section}{\numberline {1.6}Vector Math}{22}{section.1.6}% 
+\contentsline {section}{\numberline {1.7}Data Subsets/Queries}{22}{section.1.7}% 
+\contentsline {section}{Exercise 1A}{25}{section*.17}% 
+\contentsline {section}{\numberline {1.8}Read External Data Files}{26}{section.1.8}% 
+\contentsline {section}{\numberline {1.9}Explore the Data Set}{28}{section.1.9}% 
+\contentsline {section}{\numberline {1.10}Logical/Boolean Operators}{31}{section.1.10}% 
+\contentsline {subsubsection}{Equality}{31}{section*.18}% 
+\contentsline {subsubsection}{Inequalities}{32}{section*.19}% 
+\contentsline {subsubsection}{In}{32}{section*.20}% 
+\contentsline {subsubsection}{And}{33}{section*.21}% 
+\contentsline {subsubsection}{Or}{33}{section*.22}% 
+\contentsline {section}{\numberline {1.11}Logical Subsetting}{33}{section.1.11}% 
+\contentsline {section}{\numberline {1.12}\texttt {if()}, \texttt {else}, and \texttt {ifelse()}}{34}{section.1.12}% 
+\contentsline {section}{\numberline {1.13}Writing Output Files}{37}{section.1.13}% 
+\contentsline {subsection}{\numberline {1.13.1}\texttt {.csv} Files}{37}{subsection.1.13.1}% 
+\contentsline {subsection}{\numberline {1.13.2}Saving R Objects}{38}{subsection.1.13.2}% 
+\contentsline {section}{\numberline {1.14}User-Defined Functions}{38}{section.1.14}% 
+\contentsline {section}{Exercise 1B}{39}{section*.23}% 
+\contentsline {subsection}{Exercise 1B Bonus}{40}{section*.24}% 
+\contentsline {chapter}{\numberline {2}Base R Plotting Basics}{41}{chapter.2}% 
+\contentsline {section}{Chapter Overview}{41}{section*.25}% 
+\contentsline {section}{Before You Begin}{42}{section*.26}% 
+\contentsline {section}{\numberline {2.1}R Plotting Lingo}{42}{section.2.1}% 
+\contentsline {section}{\numberline {2.2}Lower Level Plotting Functions}{44}{section.2.2}% 
+\contentsline {section}{\numberline {2.3}Other High-Level Plotting Functions}{47}{section.2.3}% 
+\contentsline {subsection}{\numberline {2.3.1}The Bar Graph}{48}{subsection.2.3.1}% 
+\contentsline {section}{\numberline {2.4}Box-and-Whisker Plots}{49}{section.2.4}% 
+\contentsline {section}{\numberline {2.5}Histograms}{51}{section.2.5}% 
+\contentsline {section}{\numberline {2.6}The \texttt {par()} Function}{52}{section.2.6}% 
+\contentsline {section}{\numberline {2.7}New Temporary Devices}{53}{section.2.7}% 
+\contentsline {section}{\numberline {2.8}Multi-panel Plots}{54}{section.2.8}% 
+\contentsline {section}{\numberline {2.9}Legends}{55}{section.2.9}% 
+\contentsline {section}{\numberline {2.10}Exporting Plots}{57}{section.2.10}% 
+\contentsline {subsection}{\numberline {2.10.1}Click Save}{57}{subsection.2.10.1}% 
+\contentsline {subsection}{\numberline {2.10.2}Use a function to place plot in a new file}{58}{subsection.2.10.2}% 
+\contentsline {section}{\numberline {2.11}Bonus Topic: Error Bars}{58}{section.2.11}% 
+\contentsline {section}{Exercise 2}{61}{section*.27}% 
+\contentsline {subsection}{EXERCISE 2 BONUS}{62}{section*.28}% 
+\contentsline {chapter}{\numberline {3}Basic Statistics}{65}{chapter.3}% 
+\contentsline {section}{Chapter Overview}{65}{section*.29}% 
+\contentsline {section}{Before You Begin}{66}{section*.30}% 
+\contentsline {section}{\numberline {3.1}The General Linear Model}{66}{section.3.1}% 
+\contentsline {subsection}{\numberline {3.1.1}Simple Linear Regression}{66}{subsection.3.1.1}% 
+\contentsline {subsection}{\numberline {3.1.2}ANOVA: Categorical predictors}{69}{subsection.3.1.2}% 
+\contentsline {subsection}{\numberline {3.1.3}ANCOVA: Continuous and categorical predictors}{71}{subsection.3.1.3}% 
+\contentsline {subsection}{\numberline {3.1.4}Interactions}{73}{subsection.3.1.4}% 
+\contentsline {subsection}{\numberline {3.1.5}AIC Model Selection}{74}{subsection.3.1.5}% 
+\contentsline {section}{\numberline {3.2}The Generalized Linear Model}{75}{section.3.2}% 
+\contentsline {subsection}{\numberline {3.2.1}Logistic Regression}{75}{subsection.3.2.1}% 
+\contentsline {subsection}{\numberline {3.2.2}AIC Model Selection}{81}{subsection.3.2.2}% 
+\contentsline {section}{\numberline {3.3}Probability Distributions}{81}{section.3.3}% 
+\contentsline {section}{\numberline {3.4}Bonus Topic: Non-linear Regression}{85}{section.3.4}% 
+\contentsline {section}{Exercise 3}{87}{section*.31}% 
+\contentsline {subsection}{Exercise 3 Bonus}{88}{section*.32}% 
+\contentsline {chapter}{\numberline {4}Monte Carlo Methods}{89}{chapter.4}% 
+\contentsline {section}{Chapter Overview}{89}{section*.33}% 
+\contentsline {section}{Before You Begin}{90}{section*.34}% 
+\contentsline {section}{Layout of This Chapter}{90}{section*.35}% 
+\contentsline {section}{\numberline {4.1}Introducing Randomness}{90}{section.4.1}% 
+\contentsline {subsection}{\numberline {4.1.1}Random deviates}{90}{subsection.4.1.1}% 
+\contentsline {subsection}{\numberline {4.1.2}Resampling}{92}{subsection.4.1.2}% 
+\contentsline {section}{\numberline {4.2}Reproducing Randomness}{93}{section.4.2}% 
+\contentsline {section}{\numberline {4.3}Replication}{93}{section.4.3}% 
+\contentsline {subsection}{\numberline {4.3.1}\texttt {replicate()}}{93}{subsection.4.3.1}% 
+\contentsline {subsection}{\numberline {4.3.2}The \texttt {for()} loop}{94}{subsection.4.3.2}% 
+\contentsline {section}{\numberline {4.4}Function Writing}{97}{section.4.4}% 
+\contentsline {section}{\numberline {4.5}Summarization}{99}{section.4.5}% 
+\contentsline {subsection}{\numberline {4.5.1}Central Tendency}{99}{subsection.4.5.1}% 
+\contentsline {subsection}{\numberline {4.5.2}Variability}{99}{subsection.4.5.2}% 
+\contentsline {subsection}{\numberline {4.5.3}Frequencies}{100}{subsection.4.5.3}% 
+\contentsline {section}{\numberline {4.6}Simulation-Based Examples}{101}{section.4.6}% 
+\contentsline {subsection}{\numberline {4.6.1}Test \texttt {rnorm}}{101}{subsection.4.6.1}% 
+\contentsline {subsection}{\numberline {4.6.2}Stochastic Power Analysis}{103}{subsection.4.6.2}% 
+\contentsline {subsection}{\numberline {4.6.3}Harvest Policy Analysis}{108}{subsection.4.6.3}% 
+\contentsline {section}{\numberline {4.7}Resampling-Based Examples}{114}{section.4.7}% 
+\contentsline {subsection}{\numberline {4.7.1}The Bootstrap}{114}{subsection.4.7.1}% 
+\contentsline {subsection}{\numberline {4.7.2}Permutation Test}{119}{subsection.4.7.2}% 
+\contentsline {section}{\numberline {4.8}Exercise 4}{122}{section.4.8}% 
+\contentsline {subsection}{Exercise 4A: Required Material Only}{123}{section*.36}% 
+\contentsline {subsection}{Exercise 4B: Test \texttt {rnorm}}{123}{section*.37}% 
+\contentsline {subsection}{Exercise 4C: Stochastic Power Analysis}{123}{section*.38}% 
+\contentsline {subsection}{Exercise 4D: Harvest Policy Analysis}{124}{section*.39}% 
+\contentsline {subsection}{Exercise 4E: The Bootstrap}{124}{section*.40}% 
+\contentsline {subsection}{Exercise 4F: Permutation Tests}{125}{section*.41}% 
+\contentsline {chapter}{\numberline {5}Large Data Manipulation}{127}{chapter.5}% 
+\contentsline {section}{Chapter Overview}{127}{section*.42}% 
+\contentsline {section}{Before You Begin}{128}{section*.43}% 
+\contentsline {section}{\numberline {5.1}Aquiring and Loading Packages}{128}{section.5.1}% 
+\contentsline {section}{\numberline {5.2}The Data}{129}{section.5.2}% 
+\contentsline {section}{\numberline {5.3}Change format using \texttt {melt()}}{130}{section.5.3}% 
+\contentsline {section}{\numberline {5.4}Join Data Sets with \texttt {merge()}}{131}{section.5.4}% 
+\contentsline {section}{\numberline {5.5}Lagged vectors}{132}{section.5.5}% 
+\contentsline {section}{\numberline {5.6}Adding columns with \texttt {mutate()}}{134}{section.5.6}% 
+\contentsline {section}{\numberline {5.7}Apply to all years}{136}{section.5.7}% 
+\contentsline {section}{\numberline {5.8}Calculate Daily Means with \texttt {summarize()}}{138}{section.5.8}% 
+\contentsline {section}{\numberline {5.9}More \texttt {summarize()}}{141}{section.5.9}% 
+\contentsline {section}{\numberline {5.10}Fit the Model}{144}{section.5.10}% 
+\contentsline {section}{Exercise 5}{148}{section*.44}% 
+\contentsline {subsection}{Exercise 5 Bonus}{149}{section*.45}% 
+\contentsline {chapter}{\numberline {6}Mapping and Spatial Analysis}{151}{chapter.6}% 
+\contentsline {section}{\numberline {6.1}Chapter Overview}{151}{section.6.1}% 
+\contentsline {section}{\numberline {6.2}Before You Begin}{152}{section.6.2}% 
+\contentsline {section}{\numberline {6.3}Geospatial Data}{152}{section.6.3}% 
+\contentsline {section}{\numberline {6.4}Importing Geospatial Data}{153}{section.6.4}% 
+\contentsline {subsection}{\numberline {6.4.1}\texttt {.csv} files}{153}{subsection.6.4.1}% 
+\contentsline {subsection}{\numberline {6.4.2}\texttt {.shp} files}{155}{subsection.6.4.2}% 
+\contentsline {section}{\numberline {6.5}Plotting}{156}{section.6.5}% 
+\contentsline {subsection}{\numberline {6.5.1}Zooming}{159}{subsection.6.5.1}% 
+\contentsline {subsection}{\numberline {6.5.2}Plotting Selections}{160}{subsection.6.5.2}% 
+\contentsline {section}{\numberline {6.6}Manipulating Spatial Data}{160}{section.6.6}% 
+\contentsline {subsection}{\numberline {6.6.1}Changing the CRS}{160}{subsection.6.6.1}% 
+\contentsline {subsection}{\numberline {6.6.2}Clipping}{161}{subsection.6.6.2}% 
+\contentsline {subsection}{\numberline {6.6.3}Adding Attributes}{162}{subsection.6.6.3}% 
+\contentsline {section}{\numberline {6.7}Analysis}{163}{section.6.7}% 
+\contentsline {subsection}{\numberline {6.7.1}Home Range Analysis}{163}{subsection.6.7.1}% 
+\contentsline {subsection}{\numberline {6.7.2}Finding Intersections Between Two Layers}{165}{subsection.6.7.2}% 
+\contentsline {section}{\numberline {6.8}Creating a Presentable Map}{166}{section.6.8}% 
+\contentsline {section}{\numberline {6.9}Other R Mapping Packages}{169}{section.6.9}% 
+\contentsline {subsection}{\numberline {6.9.1}\texttt {\{ggmap\}}}{169}{subsection.6.9.1}% 
+\contentsline {subsection}{\numberline {6.9.2}\texttt {\{leaflet\}}}{169}{subsection.6.9.2}% 
+\contentsline {section}{Exercise 6}{170}{section*.46}% 
+\contentsline {section}{Exercise 6 Bonus}{170}{section*.47}% 
+\contentsline {chapter}{Exercise Solutions}{171}{chapter*.48}% 
+\contentsline {section}{Exercise 1 Solutions}{171}{section*.49}% 
+\contentsline {subsection}{Exercise 1A Solutions}{171}{section*.50}% 
+\contentsline {subsection}{Exercise 1B Solutions}{173}{section*.51}% 
+\contentsline {section}{Exercise 2 Solutions}{175}{section*.52}% 
+\contentsline {section}{Exercise 3 Solutions}{178}{section*.53}% 
+\contentsline {section}{Exercise 4 Solutions}{182}{section*.54}% 
+\contentsline {subsection}{Exercise 4A Solutions}{182}{section*.55}% 
+\contentsline {subsection}{Exercise 4B Solutions}{183}{section*.56}% 
+\contentsline {subsection}{Exercise 4C Solutions}{185}{section*.57}% 
+\contentsline {subsection}{Exercise 4D Solutions}{188}{section*.58}% 
+\contentsline {subsection}{Exercise 4E Solutions}{195}{section*.59}% 
+\contentsline {subsection}{Exercise 4F Solutions}{197}{section*.60}% 
+\contentsline {section}{Exercise 5 Solutions}{202}{section*.61}% 
+\contentsline {section}{Exercise 6 Solutions}{208}{section*.62}% 

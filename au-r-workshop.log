@@ -1,0 +1,6021 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.7.13)  22 AUG 2019 08:15
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**au-r-workshop.tex
+(./au-r-workshop.tex
+LaTeX2e <2018-12-01>
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2018/09/03 v1.4i Standard LaTeX document class
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/bk10.clo
+File: bk10.clo 2018/09/03 v1.4i Standard LaTeX file (size option)
+)
+\c@part=\count80
+\c@chapter=\count81
+\c@section=\count82
+\c@subsection=\count83
+\c@subsubsection=\count84
+\c@paragraph=\count85
+\c@subparagraph=\count86
+\c@figure=\count87
+\c@table=\count88
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+) (c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/lmodern.sty
+Package: lmodern 2009/10/30 v1.6 Latin Modern Fonts
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/lmm/m/it on input line 23.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> OMS/lmsy/m/n on input line 24.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 25.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 26.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/b/it --> OML/lmm/b/it on input line 27.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> OMS/lmsy/b/n on input line 28.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 29.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 31.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> OT1/lmss/m/n on input line 32.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> OT1/lmr/m/it on input line 33.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 34.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 35.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> OT1/lmss/bx/n on input line 36.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> OT1/lmr/bx/it on input line 37.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
+)
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/amssymb
+.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/amsfont
+s.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\@emptytoks=\toks14
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.
+sty
+Package: amsmath 2018/12/01 v2.17b AMS math features
+\@mathmargin=\skip43
+For additional information on amsmath, use the `?' option.
+
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amstext.
+sty
+Package: amstext 2000/06/29 v2.01 AMS text
+
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amsgen.s
+ty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks15
+\ex@=\dimen103
+))
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amsbsy.s
+ty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen104
+)
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.s
+ty
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count89
+LaTeX Info: Redefining \frac on input line 223.
+\uproot@=\count90
+\leftroot@=\count91
+LaTeX Info: Redefining \overline on input line 385.
+\classnum@=\count92
+\DOTSCASE@=\count93
+LaTeX Info: Redefining \ldots on input line 482.
+LaTeX Info: Redefining \dots on input line 485.
+LaTeX Info: Redefining \cdots on input line 606.
+\Mathstrutbox@=\box27
+\strutbox@=\box28
+\big@size=\dimen105
+LaTeX Font Info:    Redeclaring font encoding OML on input line 729.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 730.
+\macc@depth=\count94
+\c@MaxMatrixCols=\count95
+\dotsspace@=\muskip10
+\c@parentequation=\count96
+\dspbrk@lvl=\count97
+\tag@help=\toks16
+\row@=\count98
+\column@=\count99
+\maxfields@=\count100
+\andhelp@=\toks17
+\eqnshift@=\dimen106
+\alignsep@=\dimen107
+\tagshift@=\dimen108
+\tagwidth@=\dimen109
+\totwidth@=\dimen110
+\lineht@=\dimen111
+\@envbody=\toks18
+\multlinegap=\skip44
+\multlinetaggap=\skip45
+\mathdisplay@stack=\toks19
+LaTeX Info: Redefining \[ on input line 2844.
+LaTeX Info: Redefining \] on input line 2845.
+)
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/ifxetex/ifxete
+x.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/oberdiek/iflua
+tex.sty
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/fixltx2e.st
+y
+Package: fixltx2e 2016/12/29 v2.1a fixes to LaTeX (obsolete)
+Applying: [2015/01/01] Old fixltx2e package on input line 46.
+
+Package fixltx2e Warning: fixltx2e is not required with releases after 2015
+(fixltx2e)                All fixes are now in the LaTeX kernel.
+(fixltx2e)                See the latexrelease package for details.
+
+Already applied: [0000/00/00] Old fixltx2e package on input line 53.
+)
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2018/08/11 v2.0j Standard LaTeX package
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/t1enc.def
+File: t1enc.def 2018/08/11 v2.0j Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
+))
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/inputenc.st
+y
+Package: inputenc 2018/08/11 v1.3c Input encoding file
+\inpenc@prehook=\toks20
+\inpenc@posthook=\toks21
+)
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/upquote/upquote.
+sty
+Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
+tim
+
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/textcomp.st
+y
+Package: textcomp 2018/08/11 v2.0j Standard LaTeX package
+Package textcomp Info: Sub-encoding information:
+(textcomp)               5 = only ISO-Adobe without \textcurrency
+(textcomp)               4 = 5 + \texteuro
+(textcomp)               3 = 4 + \textohm
+(textcomp)               2 = 3 + \textestimated + \textcurrency
+(textcomp)               1 = TS1 - \textcircled - \t
+(textcomp)               0 = TS1 (full)
+(textcomp)             Font families with sub-encoding setting implement
+(textcomp)             only a restricted character set as indicated.
+(textcomp)             Family '?' is the default used for unknown fonts.
+(textcomp)             See the documentation for details.
+Package textcomp Info: Setting ? sub-encoding to TS1/1 on input line 79.
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/ts1enc.def
+File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
+Now handling font encoding TS1 ...
+... processing UTF-8 mapping file for font encoding TS1
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/ts1enc.dfu
+File: ts1enc.dfu 2018/10/05 v1.2f UTF-8 support for inputenc
+   defining Unicode char U+00A2 (decimal 162)
+   defining Unicode char U+00A3 (decimal 163)
+   defining Unicode char U+00A4 (decimal 164)
+   defining Unicode char U+00A5 (decimal 165)
+   defining Unicode char U+00A6 (decimal 166)
+   defining Unicode char U+00A7 (decimal 167)
+   defining Unicode char U+00A8 (decimal 168)
+   defining Unicode char U+00A9 (decimal 169)
+   defining Unicode char U+00AA (decimal 170)
+   defining Unicode char U+00AC (decimal 172)
+   defining Unicode char U+00AE (decimal 174)
+   defining Unicode char U+00AF (decimal 175)
+   defining Unicode char U+00B0 (decimal 176)
+   defining Unicode char U+00B1 (decimal 177)
+   defining Unicode char U+00B2 (decimal 178)
+   defining Unicode char U+00B3 (decimal 179)
+   defining Unicode char U+00B4 (decimal 180)
+   defining Unicode char U+00B5 (decimal 181)
+   defining Unicode char U+00B6 (decimal 182)
+   defining Unicode char U+00B7 (decimal 183)
+   defining Unicode char U+00B9 (decimal 185)
+   defining Unicode char U+00BA (decimal 186)
+   defining Unicode char U+00BC (decimal 188)
+   defining Unicode char U+00BD (decimal 189)
+   defining Unicode char U+00BE (decimal 190)
+   defining Unicode char U+00D7 (decimal 215)
+   defining Unicode char U+00F7 (decimal 247)
+   defining Unicode char U+0192 (decimal 402)
+   defining Unicode char U+02C7 (decimal 711)
+   defining Unicode char U+02D8 (decimal 728)
+   defining Unicode char U+02DD (decimal 733)
+   defining Unicode char U+0E3F (decimal 3647)
+   defining Unicode char U+2016 (decimal 8214)
+   defining Unicode char U+2020 (decimal 8224)
+   defining Unicode char U+2021 (decimal 8225)
+   defining Unicode char U+2022 (decimal 8226)
+   defining Unicode char U+2030 (decimal 8240)
+   defining Unicode char U+2031 (decimal 8241)
+   defining Unicode char U+203B (decimal 8251)
+   defining Unicode char U+203D (decimal 8253)
+   defining Unicode char U+2044 (decimal 8260)
+   defining Unicode char U+204E (decimal 8270)
+   defining Unicode char U+2052 (decimal 8274)
+   defining Unicode char U+20A1 (decimal 8353)
+   defining Unicode char U+20A4 (decimal 8356)
+   defining Unicode char U+20A6 (decimal 8358)
+   defining Unicode char U+20A9 (decimal 8361)
+   defining Unicode char U+20AB (decimal 8363)
+   defining Unicode char U+20AC (decimal 8364)
+   defining Unicode char U+20B1 (decimal 8369)
+   defining Unicode char U+2103 (decimal 8451)
+   defining Unicode char U+2116 (decimal 8470)
+   defining Unicode char U+2117 (decimal 8471)
+   defining Unicode char U+211E (decimal 8478)
+   defining Unicode char U+2120 (decimal 8480)
+   defining Unicode char U+2122 (decimal 8482)
+   defining Unicode char U+2126 (decimal 8486)
+   defining Unicode char U+2127 (decimal 8487)
+   defining Unicode char U+212E (decimal 8494)
+   defining Unicode char U+2190 (decimal 8592)
+   defining Unicode char U+2191 (decimal 8593)
+   defining Unicode char U+2192 (decimal 8594)
+   defining Unicode char U+2193 (decimal 8595)
+   defining Unicode char U+2329 (decimal 9001)
+   defining Unicode char U+232A (decimal 9002)
+   defining Unicode char U+2422 (decimal 9250)
+   defining Unicode char U+25E6 (decimal 9702)
+   defining Unicode char U+25EF (decimal 9711)
+   defining Unicode char U+266A (decimal 9834)
+   defining Unicode char U+FEFF (decimal 65279)
+))
+LaTeX Info: Redefining \oldstylenums on input line 334.
+Package textcomp Info: Setting cmr sub-encoding to TS1/0 on input line 349.
+Package textcomp Info: Setting cmss sub-encoding to TS1/0 on input line 350.
+Package textcomp Info: Setting cmtt sub-encoding to TS1/0 on input line 351.
+Package textcomp Info: Setting cmvtt sub-encoding to TS1/0 on input line 352.
+Package textcomp Info: Setting cmbr sub-encoding to TS1/0 on input line 353.
+Package textcomp Info: Setting cmtl sub-encoding to TS1/0 on input line 354.
+Package textcomp Info: Setting ccr sub-encoding to TS1/0 on input line 355.
+Package textcomp Info: Setting ptm sub-encoding to TS1/4 on input line 356.
+Package textcomp Info: Setting pcr sub-encoding to TS1/4 on input line 357.
+Package textcomp Info: Setting phv sub-encoding to TS1/4 on input line 358.
+Package textcomp Info: Setting ppl sub-encoding to TS1/3 on input line 359.
+Package textcomp Info: Setting pag sub-encoding to TS1/4 on input line 360.
+Package textcomp Info: Setting pbk sub-encoding to TS1/4 on input line 361.
+Package textcomp Info: Setting pnc sub-encoding to TS1/4 on input line 362.
+Package textcomp Info: Setting pzc sub-encoding to TS1/4 on input line 363.
+Package textcomp Info: Setting bch sub-encoding to TS1/4 on input line 364.
+Package textcomp Info: Setting put sub-encoding to TS1/5 on input line 365.
+Package textcomp Info: Setting uag sub-encoding to TS1/5 on input line 366.
+Package textcomp Info: Setting ugq sub-encoding to TS1/5 on input line 367.
+Package textcomp Info: Setting ul8 sub-encoding to TS1/4 on input line 368.
+Package textcomp Info: Setting ul9 sub-encoding to TS1/4 on input line 369.
+Package textcomp Info: Setting augie sub-encoding to TS1/5 on input line 370.
+Package textcomp Info: Setting dayrom sub-encoding to TS1/3 on input line 371.
+Package textcomp Info: Setting dayroms sub-encoding to TS1/3 on input line 372.
+
+Package textcomp Info: Setting pxr sub-encoding to TS1/0 on input line 373.
+Package textcomp Info: Setting pxss sub-encoding to TS1/0 on input line 374.
+Package textcomp Info: Setting pxtt sub-encoding to TS1/0 on input line 375.
+Package textcomp Info: Setting txr sub-encoding to TS1/0 on input line 376.
+Package textcomp Info: Setting txss sub-encoding to TS1/0 on input line 377.
+Package textcomp Info: Setting txtt sub-encoding to TS1/0 on input line 378.
+Package textcomp Info: Setting lmr sub-encoding to TS1/0 on input line 379.
+Package textcomp Info: Setting lmdh sub-encoding to TS1/0 on input line 380.
+Package textcomp Info: Setting lmss sub-encoding to TS1/0 on input line 381.
+Package textcomp Info: Setting lmssq sub-encoding to TS1/0 on input line 382.
+Package textcomp Info: Setting lmvtt sub-encoding to TS1/0 on input line 383.
+Package textcomp Info: Setting lmtt sub-encoding to TS1/0 on input line 384.
+Package textcomp Info: Setting qhv sub-encoding to TS1/0 on input line 385.
+Package textcomp Info: Setting qag sub-encoding to TS1/0 on input line 386.
+Package textcomp Info: Setting qbk sub-encoding to TS1/0 on input line 387.
+Package textcomp Info: Setting qcr sub-encoding to TS1/0 on input line 388.
+Package textcomp Info: Setting qcs sub-encoding to TS1/0 on input line 389.
+Package textcomp Info: Setting qpl sub-encoding to TS1/0 on input line 390.
+Package textcomp Info: Setting qtm sub-encoding to TS1/0 on input line 391.
+Package textcomp Info: Setting qzc sub-encoding to TS1/0 on input line 392.
+Package textcomp Info: Setting qhvc sub-encoding to TS1/0 on input line 393.
+Package textcomp Info: Setting futs sub-encoding to TS1/4 on input line 394.
+Package textcomp Info: Setting futx sub-encoding to TS1/4 on input line 395.
+Package textcomp Info: Setting futj sub-encoding to TS1/4 on input line 396.
+Package textcomp Info: Setting hlh sub-encoding to TS1/3 on input line 397.
+Package textcomp Info: Setting hls sub-encoding to TS1/3 on input line 398.
+Package textcomp Info: Setting hlst sub-encoding to TS1/3 on input line 399.
+Package textcomp Info: Setting hlct sub-encoding to TS1/5 on input line 400.
+Package textcomp Info: Setting hlx sub-encoding to TS1/5 on input line 401.
+Package textcomp Info: Setting hlce sub-encoding to TS1/5 on input line 402.
+Package textcomp Info: Setting hlcn sub-encoding to TS1/5 on input line 403.
+Package textcomp Info: Setting hlcw sub-encoding to TS1/5 on input line 404.
+Package textcomp Info: Setting hlcf sub-encoding to TS1/5 on input line 405.
+Package textcomp Info: Setting pplx sub-encoding to TS1/3 on input line 406.
+Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 407.
+Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 408.
+Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 409.
+))
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/microt
+ype.sty
+Package: microtype 2019/02/28 v2.7b Micro-typographical refinements (RS)
+
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/keyval.
+sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks22
+)
+\MT@toks=\toks23
+\MT@count=\count101
+LaTeX Info: Redefining \textls on input line 790.
+\MT@outer@kern=\dimen112
+LaTeX Info: Redefining \textmicrotypecontext on input line 1336.
+\MT@listname@count=\count102
+
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/microt
+ype-pdftex.def
+File: microtype-pdftex.def 2019/02/28 v2.7b Definitions specific to pdftex (RS)
+
+LaTeX Info: Redefining \lsstyle on input line 914.
+LaTeX Info: Redefining \lslig on input line 914.
+\MT@outer@space=\skip46
+)
+Package microtype Info: Loading configuration file microtype.cfg.
+
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/microt
+ype.cfg
+File: microtype.cfg 2019/02/28 v2.7b microtype main configuration file (RS)
+))
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/hyperre
+f.sty
+Package: hyperref 2018/11/30 v6.88e Hypertext links for LaTeX
+
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/oberdiek/hobsu
+b-hyperref.sty
+Package: hobsub-hyperref 2016/05/16 v1.14 Bundle oberdiek, subset hyperref (HO)
+
+
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/oberdiek/hobsu
+b-generic.sty
+Package: hobsub-generic 2016/05/16 v1.14 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2016/05/16 v1.14 Construct package bundles (HO)
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+Package hobsub Info: Skipping package `ifluatex' (already loaded).
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+Package: intcalc 2016/05/16 v1.2 Expandable calculations with integers (HO)
+Package: ifpdf 2018/09/07 v3.3 Provides the ifpdf switch
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+Package: pdftexcmds 2018/09/10 v0.29 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+Package: pdfescape 2016/05/16 v1.14 Implements pdfTeX's escape features (HO)
+Package: bigintcalc 2016/05/16 v1.4 Expandable calculations on big integers (HO
+)
+Package: bitset 2016/05/16 v1.2 Handle bit-vector datatype (HO)
+Package: uniquecounter 2016/05/16 v1.3 Provide unlimited unique counter (HO)
+)
+Package hobsub Info: Skipping package `hobsub' (already loaded).
+Package: letltxmacro 2016/05/16 v1.5 Let assignment for LaTeX macros (HO)
+Package: hopatch 2016/05/16 v1.3 Wrapper for package hooks (HO)
+Package: xcolor-patch 2016/05/16 xcolor patch
+Package: atveryend 2016/05/16 v1.9 Hooks at the very end of document (HO)
+Package atveryend Info: \enddocument detected (standard20110627).
+Package: atbegshi 2016/06/09 v1.18 At begin shipout hook (HO)
+Package: refcount 2016/05/16 v3.5 Data extraction from label references (HO)
+Package: hycolor 2016/05/16 v1.8 Color options for hyperref/bookmark (HO)
+)
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/oberdiek/auxhook
+.sty
+Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
+)
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/oberdiek/kvoptio
+ns.sty
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+)
+\@linkdim=\dimen113
+\Hy@linkcounter=\count103
+\Hy@pagecounter=\count104
+
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.
+def
+File: pd1enc.def 2018/11/30 v6.88e Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+)
+\Hy@SavedSpaceFactor=\count105
+
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/latexconfig/hype
+rref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Hyper figures OFF on input line 4519.
+Package hyperref Info: Link nesting OFF on input line 4524.
+Package hyperref Info: Hyper index ON on input line 4527.
+Package hyperref Info: Plain pages OFF on input line 4534.
+Package hyperref Info: Backreferencing OFF on input line 4539.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4772.
+\c@Hy@tempcnt=\count106
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip11
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 5125.
+\XeTeXLinkMargin=\dimen114
+\Fld@menulength=\count107
+\Field@Width=\dimen115
+\Fld@charsize=\dimen116
+Package hyperref Info: Hyper figures OFF on input line 6380.
+Package hyperref Info: Link nesting OFF on input line 6385.
+Package hyperref Info: Hyper index ON on input line 6388.
+Package hyperref Info: backreferencing OFF on input line 6395.
+Package hyperref Info: Link coloring OFF on input line 6400.
+Package hyperref Info: Link coloring with OCG OFF on input line 6405.
+Package hyperref Info: PDF/A mode OFF on input line 6410.
+LaTeX Info: Redefining \ref on input line 6450.
+LaTeX Info: Redefining \pageref on input line 6454.
+\Hy@abspage=\count108
+\c@Item=\count109
+\c@Hfootnote=\count110
+)
+Package hyperref Info: Driver (autodetected): hpdftex.
+
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex
+.def
+File: hpdftex.def 2018/11/30 v6.88e Hyperref driver for pdfTeX
+\Fld@listcount=\count111
+\c@bookmark@seq@number=\count112
+
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/oberdiek/rerunfi
+lecheck.sty
+Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+82.
+)
+\Hy@SectionHShift=\skip47
+)
+Package hyperref Info: Option `unicode' set `true' on input line 33.
+
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.d
+ef
+File: puenc.def 2018/11/30 v6.88e Hyperref: PDF Unicode definition (HO)
+Now handling font encoding PU ...
+... no UTF-8 mapping file for font encoding PU
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 33.
+Package hyperref Info: Option `breaklinks' set `true' on input line 33.
+
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/natbib/natbib.st
+y
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip48
+\bibsep=\skip49
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count113
+)
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/color.s
+ty
+Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
+
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics-cfg/col
+or.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: pdftex.def on input line 147.
+
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics-def/pdf
+tex.def
+File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
+)
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/dvipsna
+m.def
+File: dvipsnam.def 2016/06/17 v3.0m Driver-dependent file (DPC,SPQR)
+))
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/fancyvrb/fancyvr
+b.sty
+Package: fancyvrb 2019/01/15
+Style option: `fancyvrb' v3.2a <2019/01/15> (tvz)
+\FV@CodeLineNo=\count114
+\FV@InFile=\read1
+\FV@TabBox=\box29
+\c@FancyVerbLine=\count115
+\FV@StepNumber=\count116
+\FV@OutFile=\write3
+)
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/framed/framed.st
+y
+Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
+\OuterFrameSep=\skip50
+\fb@frw=\dimen117
+\fb@frh=\dimen118
+\FrameRule=\dimen119
+\FrameSep=\dimen120
+)
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/longtable.
+sty
+Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)+ FMi change
+\LTleft=\skip51
+\LTright=\skip52
+\LTpre=\skip53
+\LTpost=\skip54
+\LTchunksize=\count117
+\LTcapwidth=\dimen121
+\LT@head=\box30
+\LT@firsthead=\box31
+\LT@foot=\box32
+\LT@lastfoot=\box33
+\LT@cols=\count118
+\LT@rows=\count119
+\c@LT@tables=\count120
+\c@LT@chunks=\count121
+\LT@p@ftn=\toks24
+)
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/booktabs/booktab
+s.sty
+Package: booktabs 2016/04/27 v1.618033 publication quality tables
+\heavyrulewidth=\dimen122
+\lightrulewidth=\dimen123
+\cmidrulewidth=\dimen124
+\belowrulesep=\dimen125
+\belowbottomsep=\dimen126
+\aboverulesep=\dimen127
+\abovetopsep=\dimen128
+\cmidrulesep=\dimen129
+\cmidrulekern=\dimen130
+\defaultaddspace=\dimen131
+\@cmidla=\count122
+\@cmidlb=\count123
+\@aboverulesep=\dimen132
+\@belowrulesep=\dimen133
+\@thisruleclass=\count124
+\@lastruleclass=\count125
+\@thisrulewidth=\dimen134
+)
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/graphic
+x.sty
+Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
+
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/graphic
+s.sty
+Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
+
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/trig.st
+y
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics-cfg/gra
+phics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 99.
+)
+\Gin@req@height=\dimen135
+\Gin@req@width=\dimen136
+)
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/oberdiek/grffile
+.sty
+Package: grffile 2017/06/30 v1.18 Extended file name support for graphics (HO)
+Package grffile Info: Option `multidot' is set to `true'.
+Package grffile Info: Option `extendedchars' is set to `false'.
+Package grffile Info: Option `space' is set to `true'.
+Package grffile Info: \Gin@ii of package `graphicx' fixed on input line 494.
+)
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/titling/titling.
+sty
+Package: titling 2009/09/04 v2.1d maketitle typesetting
+\thanksmarkwidth=\skip55
+\thanksmargin=\skip56
+\droptitle=\skip57
+)
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pdfpages/pdfpage
+s.sty
+Package: pdfpages 2017/10/31 v0.5l Insert pages of external PDF documents (AM)
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+) (c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count126
+\calc@Bcount=\count127
+\calc@Adimen=\dimen137
+\calc@Bdimen=\dimen138
+\calc@Askip=\skip58
+\calc@Bskip=\skip59
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count128
+\calc@Cskip=\skip60
+)
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/eso-pic/eso-pic.
+sty
+Package: eso-pic 2018/04/12 v2.0h eso-pic (RN)
+)
+\AM@pagewidth=\dimen139
+\AM@pageheight=\dimen140
+
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pdfpages/pppdfte
+x.def
+File: pppdftex.def 2017/10/31 v0.5l Pdfpages driver for pdfTeX (AM)
+)
+\AM@pagebox=\box34
+\AM@global@opts=\toks25
+\AM@toc@title=\toks26
+\c@AM@survey=\count129
+\AM@templatesizebox=\box35
+)
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amscls/amsthm.st
+y
+Package: amsthm 2017/10/31 v2.20.4
+\thm@style=\toks27
+\thm@bodyfont=\toks28
+\thm@headfont=\toks29
+\thm@notefont=\toks30
+\thm@headpunct=\toks31
+\thm@preskip=\skip61
+\thm@postskip=\skip62
+\thm@headsep=\skip63
+\dth@everypar=\toks32
+) (c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/array.st
+y
+Package: array 2018/12/30 v2.4k Tabular extension package (FMi)
+\col@sep=\dimen141
+\ar@mcellbox=\box36
+\extrarowheight=\dimen142
+\NC@list=\toks33
+\extratabsurround=\skip64
+\backup@length=\skip65
+\ar@cellbox=\box37
+)
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/multirow/multiro
+w.sty
+Package: multirow 2019/05/31 v2.5 Span multiple rows of a table
+\multirow@colwidth=\skip66
+\multirow@cntb=\count130
+\multirow@dima=\skip67
+\bigstrutjot=\dimen143
+)
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/wrapfig/wrapfig.
+sty
+\wrapoverhang=\dimen144
+\WF@size=\dimen145
+\c@WF@wrappedlines=\count131
+\WF@box=\box38
+\WF@everypar=\toks34
+Package: wrapfig 2003/01/31  v 3.6
+) (c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/float/float.st
+y
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count132
+\float@exts=\toks35
+\float@box=\box39
+\@float@everytoks=\toks36
+\@floatcapt=\box40
+)
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/colortbl/colortb
+l.sty
+Package: colortbl 2018/12/12 v1.0d Color table columns (DPC)
+\everycr=\toks37
+\minrowclearance=\skip68
+)
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/oberdiek/pdflsca
+pe.sty
+Package: pdflscape 2016/05/14 v0.11 Display of landscape pages in PDF (HO)
+
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/lscape.
+sty
+Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
+)
+Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
+) (c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tabu/tabu.sty
+Package: tabu 2019/01/11 v2.9 - flexible LaTeX tabulars (FC+tabu-fixed)
+
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/varwidth/varwidt
+h.sty
+Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
+\@vwid@box=\box41
+\sift@deathcycles=\count133
+\@vwid@loff=\dimen146
+\@vwid@roff=\dimen147
+)
+\c@taburow=\count134
+\tabu@nbcols=\count135
+\tabu@cnt=\count136
+\tabu@Xcol=\count137
+\tabu@alloc=\count138
+\tabu@nested=\count139
+\tabu@target=\dimen148
+\tabu@spreadtarget=\dimen149
+\tabu@naturalX=\dimen150
+\tabucolX=\dimen151
+\tabu@Xsum=\dimen152
+\extrarowdepth=\dimen153
+\abovetabulinesep=\dimen154
+\belowtabulinesep=\dimen155
+\tabustrutrule=\dimen156
+\tabu@thebody=\toks38
+\tabu@footnotes=\toks39
+\tabu@box=\box42
+\tabu@arstrutbox=\box43
+\tabu@hleads=\box44
+\tabu@vleads=\box45
+\tabu@cellskip=\skip69
+)
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/threeparttable/t
+hreeparttable.sty
+Package: threeparttable 2003/06/13  v 3.0
+\@tempboxb=\box46
+)
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/threeparttablex/
+threeparttablex.sty
+Package: threeparttablex 2013/07/23 v0.3 by daleif
+
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/environ/environ.
+sty
+Package: environ 2014/05/04 v0.3 A new way to define environments
+
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/trimspaces/trims
+paces.sty
+Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
+))
+\TPTL@width=\skip70
+) (c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/ulem/ulem.st
+y
+\UL@box=\box47
+\UL@hyphenbox=\box48
+\UL@skip=\skip71
+\UL@hook=\toks40
+\UL@height=\dimen157
+\UL@pe=\count140
+\UL@pixel=\dimen158
+\ULC@box=\box49
+Package: ulem 2012/05/18
+\ULdepth=\dimen159
+)
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/makecell/makecel
+l.sty
+Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
+\rotheadsize=\dimen160
+\c@nlinenum=\count141
+\TeXr@lab=\toks41
+)
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/xcolor/xcolor.st
+y
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics-cfg/col
+or.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+LaTeX Info: Redefining \color on input line 709.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+) (./au-r-workshop.aux
+
+LaTeX Warning: Label `ex2-answers' multiply defined.
+
+)
+\openout1 = `au-r-workshop.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 159.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 159.
+
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/ts1cmr.fd
+File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 159.
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmr.fd
+File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Info: Redefining \microtypecontext on input line 159.
+Package microtype Info: Generating PDF output.
+Package microtype Info: Character protrusion enabled (level 2).
+Package microtype Info: Using protrusion set `basicmath'.
+Package microtype Info: Automatic font expansion enabled (level 2),
+(microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
+Package microtype Info: Using default expansion set `basictext'.
+Package microtype Info: No adjustment of tracking.
+Package microtype Info: No adjustment of interword spacing.
+Package microtype Info: No adjustment of character kerning.
+
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/mt-cmr
+.cfg
+File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
+(RS)
+)
+\AtBeginShipoutBox=\box50
+Package hyperref Info: Link coloring ON on input line 159.
+
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/nameref
+.sty
+Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
+
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/oberdiek/getti
+tlestring.sty
+Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
+)
+\c@section@level=\count142
+)
+LaTeX Info: Redefining \ref on input line 159.
+LaTeX Info: Redefining \pageref on input line 159.
+LaTeX Info: Redefining \nameref on input line 159.
+(./au-r-workshop.out) (./au-r-workshop.out)
+\@outlinefile=\write4
+\openout4 = `au-r-workshop.out'.
+
+
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/oberdiek/epstopd
+f-base.sty
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/oberdiek/grfext.
+sty
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+38.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/latexconfig/epst
+opdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+<img/cover_image.pdf, id=385, 597.50786pt x 845.04686pt>
+File: img/cover_image.pdf Graphic file (type pdf)
+<use img/cover_image.pdf>
+Package pdftex.def Info: img/cover_image.pdf  used on input line 184.
+(pdftex.def)             Requested size: 344.99574pt x 487.92259pt.
+File: img/cover_image.pdf Graphic file (type pdf)
+<use img/cover_image.pdf>
+Package pdftex.def Info: img/cover_image.pdf  used on input line 184.
+(pdftex.def)             Requested size: 344.99574pt x 487.92259pt.
+<img/cover_image.pdf, id=388, page=1, 597.50786pt x 845.04686pt>
+File: img/cover_image.pdf Graphic file (type pdf)
+<use img/cover_image.pdf, page 1>
+Package pdftex.def Info: img/cover_image.pdf , page1 used on input line 184.
+(pdftex.def)             Requested size: 597.5064pt x 845.0448pt.
+File: img/cover_image.pdf Graphic file (type pdf)
+<use img/cover_image.pdf, page 1>
+Package pdftex.def Info: img/cover_image.pdf , page1 used on input line 184.
+(pdftex.def)             Requested size: 562.12244pt x 795.00179pt.
+File: img/cover_image.pdf Graphic file (type pdf)
+<use img/cover_image.pdf, page 1>
+Package pdftex.def Info: img/cover_image.pdf , page1 used on input line 184.
+(pdftex.def)             Requested size: 562.12244pt x 795.00179pt.
+File: img/cover_image.pdf Graphic file (type pdf)
+<use img/cover_image.pdf, page 1>
+Package pdftex.def Info: img/cover_image.pdf , page1 used on input line 184.
+(pdftex.def)             Requested size: 562.12244pt x 795.00179pt.
+File: img/cover_image.pdf Graphic file (type pdf)
+<use img/cover_image.pdf, page 1>
+Package pdftex.def Info: img/cover_image.pdf , page1 used on input line 184.
+(pdftex.def)             Requested size: 562.12244pt x 795.00179pt.
+[1
+
+ <./img/cover_image.pdf>] [2
+
+]pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
+ been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.187 \maketitle
+                 [1{c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-var/fonts/ma
+p/pdftex/updmap/pdftex.map}]pdfTeX warning (ext4): destination with the same id
+entifier (name{page.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.193 \tableofcontents
+                       [2
+
+] (./au-r-workshop.toc
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 2.
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
+File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 2.
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
+File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 2.
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omslmsy.fd
+File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 2.
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd
+File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 2.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 2.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 2.
+LaTeX Font Info:    Try loading font information for U+msa on input line 2.
+
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/mt-msa
+.cfg
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 2.
+
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/mt-msb
+.cfg
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+)
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 39.
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+) [3] [4] [5])
+\tf@toc=\write5
+\openout5 = `au-r-workshop.toc'.
+
+[6]
+LaTeX Font Info:    Try loading font information for TS1+lmr on input line 210.
+
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
+File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+Underfull \hbox (badness 10000) in paragraph at lines 214--216
+
+ []
+
+
+Underfull \vbox (badness 1960) has occurred while \output is active []
+
+[7
+
+]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 239.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 239.
+[8]
+Overfull \hbox (67.58037pt too wide) in paragraph at lines 294--295
+[]\T1/lmr/m/n/10 (-20) unzip the con-tents of this folder into the lo-ca-tion: 
+\T1/lmtt/m/n/10 C:/Users/YOU/Documents/R-Book/Data 
+ []
+
+LaTeX Font Info:    Try loading font information for TS1+lmtt on input line 317
+.
+(c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ts1lmtt.fd
+File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+) [9] [10]
+
+Package xcolor Warning: Incompatible color definition on input line 371.
+
+
+Package xcolor Warning: Incompatible color definition on input line 371.
+
+
+Package xcolor Warning: Incompatible color definition on input line 371.
+
+
+Package xcolor Warning: Incompatible color definition on input line 371.
+
+
+Package xcolor Warning: Incompatible color definition on input line 371.
+
+
+Package xcolor Warning: Incompatible color definition on input line 371.
+
+
+Package xcolor Warning: Incompatible color definition on input line 371.
+
+
+Package xcolor Warning: Incompatible color definition on input line 373.
+
+
+Package xcolor Warning: Incompatible color definition on input line 373.
+
+[11] [12]
+Chapter 1.
+[13
+
+]
+
+Package xcolor Warning: Incompatible color definition on input line 426.
+
+
+Package xcolor Warning: Incompatible color definition on input line 426.
+
+
+Package xcolor Warning: Incompatible color definition on input line 428.
+
+LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 430.
+
+Package xcolor Warning: Incompatible color definition on input line 432.
+
+
+Package xcolor Warning: Incompatible color definition on input line 432.
+
+
+Package xcolor Warning: Incompatible color definition on input line 438.
+
+
+Package xcolor Warning: Incompatible color definition on input line 442.
+
+
+Package xcolor Warning: Incompatible color definition on input line 442.
+
+
+Package xcolor Warning: Incompatible color definition on input line 452.
+
+
+Package xcolor Warning: Incompatible color definition on input line 456.
+
+
+Package xcolor Warning: Incompatible color definition on input line 456.
+
+
+Package xcolor Warning: Incompatible color definition on input line 460.
+
+
+Package xcolor Warning: Incompatible color definition on input line 464.
+
+
+Package xcolor Warning: Incompatible color definition on input line 464.
+
+
+Package xcolor Warning: Incompatible color definition on input line 472.
+
+[14]
+
+Package xcolor Warning: Incompatible color definition on input line 476.
+
+
+Package xcolor Warning: Incompatible color definition on input line 476.
+
+
+Package xcolor Warning: Incompatible color definition on input line 482.
+
+
+Package xcolor Warning: Incompatible color definition on input line 486.
+
+
+Package xcolor Warning: Incompatible color definition on input line 486.
+
+[15]
+Overfull \hbox (96.51591pt too wide) in paragraph at lines 535--536
+[]\T1/lmr/bx/n/10 Use code\T1/lmr/m/n/10 (-20) . In the con-sole, you can type 
+\T1/lmtt/m/n/10 setwd("C:/Users/YOU/Documents/R-Book/Chapter1")\T1/lmr/m/n/10 (
+-20) .
+ []
+
+
+Underfull \hbox (badness 2635) in paragraph at lines 547--548
+\T1/lmtt/m/n/10 file.txt \T1/lmr/m/n/10 (+20) is a file in your cur-rent work-i
+ng di-rec-tory, you can
+ []
+
+
+Underfull \hbox (badness 2318) in paragraph at lines 547--548
+\T1/lmr/m/n/10 (+20) ref-er-ence it your R ses-sion us-ing \T1/lmtt/m/n/10 "fil
+e.txt" \T1/lmr/m/n/10 (+20) rather than with
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 562.
+
+[16]
+
+Package xcolor Warning: Incompatible color definition on input line 566.
+
+
+Package xcolor Warning: Incompatible color definition on input line 566.
+
+
+Package xcolor Warning: Incompatible color definition on input line 572.
+
+
+Package xcolor Warning: Incompatible color definition on input line 576.
+
+
+Package xcolor Warning: Incompatible color definition on input line 576.
+
+
+Package xcolor Warning: Incompatible color definition on input line 582.
+
+
+Package xcolor Warning: Incompatible color definition on input line 586.
+
+
+Package xcolor Warning: Incompatible color definition on input line 586.
+
+
+Package xcolor Warning: Incompatible color definition on input line 601.
+
+[17]
+
+Package xcolor Warning: Incompatible color definition on input line 609.
+
+
+Package xcolor Warning: Incompatible color definition on input line 609.
+
+
+Package xcolor Warning: Incompatible color definition on input line 615.
+
+
+Package xcolor Warning: Incompatible color definition on input line 620.
+
+
+Package xcolor Warning: Incompatible color definition on input line 620.
+
+
+Package xcolor Warning: Incompatible color definition on input line 626.
+
+
+Package xcolor Warning: Incompatible color definition on input line 631.
+
+
+Package xcolor Warning: Incompatible color definition on input line 631.
+
+
+Package xcolor Warning: Incompatible color definition on input line 639.
+
+
+Package xcolor Warning: Incompatible color definition on input line 643.
+
+
+Package xcolor Warning: Incompatible color definition on input line 643.
+
+
+Package xcolor Warning: Incompatible color definition on input line 651.
+
+
+Package xcolor Warning: Incompatible color definition on input line 656.
+
+
+Package xcolor Warning: Incompatible color definition on input line 656.
+
+
+Package xcolor Warning: Incompatible color definition on input line 662.
+
+
+Package xcolor Warning: Incompatible color definition on input line 667.
+
+
+Package xcolor Warning: Incompatible color definition on input line 667.
+
+[18]
+
+Package xcolor Warning: Incompatible color definition on input line 685.
+
+
+Package xcolor Warning: Incompatible color definition on input line 689.
+
+
+Package xcolor Warning: Incompatible color definition on input line 689.
+
+
+Package xcolor Warning: Incompatible color definition on input line 697.
+
+
+Package xcolor Warning: Incompatible color definition on input line 701.
+
+
+Package xcolor Warning: Incompatible color definition on input line 701.
+
+
+Package xcolor Warning: Incompatible color definition on input line 714.
+
+
+Package xcolor Warning: Incompatible color definition on input line 719.
+
+
+Package xcolor Warning: Incompatible color definition on input line 719.
+
+
+Package xcolor Warning: Incompatible color definition on input line 730.
+
+
+Package xcolor Warning: Incompatible color definition on input line 735.
+
+
+Package xcolor Warning: Incompatible color definition on input line 735.
+
+[19]
+
+Package xcolor Warning: Incompatible color definition on input line 747.
+
+
+Package xcolor Warning: Incompatible color definition on input line 751.
+
+
+Package xcolor Warning: Incompatible color definition on input line 751.
+
+
+Package xcolor Warning: Incompatible color definition on input line 769.
+
+
+Package xcolor Warning: Incompatible color definition on input line 773.
+
+
+Package xcolor Warning: Incompatible color definition on input line 773.
+
+
+Package xcolor Warning: Incompatible color definition on input line 788.
+
+[20]
+
+Package xcolor Warning: Incompatible color definition on input line 792.
+
+
+Package xcolor Warning: Incompatible color definition on input line 792.
+
+
+Package xcolor Warning: Incompatible color definition on input line 815.
+
+
+Package xcolor Warning: Incompatible color definition on input line 819.
+
+
+Package xcolor Warning: Incompatible color definition on input line 819.
+
+
+Package xcolor Warning: Incompatible color definition on input line 827.
+
+
+Package xcolor Warning: Incompatible color definition on input line 831.
+
+
+Package xcolor Warning: Incompatible color definition on input line 831.
+
+
+Package xcolor Warning: Incompatible color definition on input line 840.
+
+
+Package xcolor Warning: Incompatible color definition on input line 844.
+
+
+Package xcolor Warning: Incompatible color definition on input line 844.
+
+
+Package xcolor Warning: Incompatible color definition on input line 854.
+
+[21]
+
+Package xcolor Warning: Incompatible color definition on input line 859.
+
+
+Package xcolor Warning: Incompatible color definition on input line 859.
+
+
+Package xcolor Warning: Incompatible color definition on input line 868.
+
+
+Package xcolor Warning: Incompatible color definition on input line 872.
+
+
+Package xcolor Warning: Incompatible color definition on input line 872.
+
+
+Package xcolor Warning: Incompatible color definition on input line 882.
+
+
+Package xcolor Warning: Incompatible color definition on input line 886.
+
+
+Package xcolor Warning: Incompatible color definition on input line 886.
+
+[22]
+
+Package xcolor Warning: Incompatible color definition on input line 904.
+
+
+Package xcolor Warning: Incompatible color definition on input line 909.
+
+
+Package xcolor Warning: Incompatible color definition on input line 909.
+
+
+Package xcolor Warning: Incompatible color definition on input line 919.
+
+
+Package xcolor Warning: Incompatible color definition on input line 924.
+
+
+Package xcolor Warning: Incompatible color definition on input line 924.
+
+
+Package xcolor Warning: Incompatible color definition on input line 940.
+
+
+Package xcolor Warning: Incompatible color definition on input line 945.
+
+
+Package xcolor Warning: Incompatible color definition on input line 945.
+
+
+Package xcolor Warning: Incompatible color definition on input line 964.
+
+[23]
+
+Package xcolor Warning: Incompatible color definition on input line 969.
+
+
+Package xcolor Warning: Incompatible color definition on input line 969.
+
+
+Package xcolor Warning: Incompatible color definition on input line 991.
+
+
+Package xcolor Warning: Incompatible color definition on input line 995.
+
+
+Package xcolor Warning: Incompatible color definition on input line 995.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1003.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1007.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1007.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1013.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1018.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1018.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1031.
+
+[24]
+
+Package xcolor Warning: Incompatible color definition on input line 1035.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1035.
+
+[25pdfTeX warning (ext4): destination with the same identifier (name{table.1.1}
+) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.1102 \end{enumerate}
+                      ]
+
+Package xcolor Warning: Incompatible color definition on input line 1113.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1117.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1117.
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 1119
+.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1121.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1125.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1125.
+
+
+Overfull \hbox (53.99884pt too wide) in paragraph at lines 1134--1134
+[]\T1/lmtt/m/n/10 ## Warning in file(file, "rt"): cannot open file \TS1/lmtt/m/
+n/10 '\T1/lmtt/m/n/10 streams.csv\TS1/lmtt/m/n/10 '\T1/lmtt/m/n/10 : No such fi
+le[] 
+ []
+
+[26] [27]
+
+Package xcolor Warning: Incompatible color definition on input line 1190.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1194.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1194.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1211.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1215.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1215.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1223.
+
+[28]
+
+Package xcolor Warning: Incompatible color definition on input line 1227.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1227.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1235.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1239.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1239.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1255.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1259.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1259.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1267.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1271.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1271.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1279.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1283.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1283.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1291.
+
+[29]
+
+Package xcolor Warning: Incompatible color definition on input line 1295.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1295.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1303.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1307.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1307.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1315.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1319.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1319.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1330.
+
+[30]
+
+Package xcolor Warning: Incompatible color definition on input line 1334.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1334.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1345.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1349.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1349.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1372.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1376.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1376.
+
+[31]
+
+Package xcolor Warning: Incompatible color definition on input line 1390.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1394.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1394.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1404.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1408.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1408.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1416.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1420.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1420.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1434.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1439.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1439.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1445.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1451.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1451.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1457.
+
+[32]
+
+Package xcolor Warning: Incompatible color definition on input line 1462.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1462.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1476.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1480.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1480.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1494.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1498.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1498.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1511.
+
+[33]
+
+Package xcolor Warning: Incompatible color definition on input line 1516.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1516.
+
+
+Overfull \hbox (38.24889pt too wide) in paragraph at lines 1521--1521
+[]\T1/lmtt/m/n/10 ##  [1]  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE
+  TRUE FALSE[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 1523.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1528.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1528.
+
+
+Overfull \hbox (59.24883pt too wide) in paragraph at lines 1532--1532
+[]\T1/lmtt/m/n/10 ##  [1] 120.48 123.78  95.64  95.82 120.06 135.63 120.61 111.
+34 149.54 131.22[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 1538.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1542.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1542.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1555.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1559.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1559.
+
+LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <14.4> not available
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1564.
+
+Package xcolor Warning: Incompatible color definition on input line 1568.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1572.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1572.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1580.
+
+[34]
+
+Package xcolor Warning: Incompatible color definition on input line 1584.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1584.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1590.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1597.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1597.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1608.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1612.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1612.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1620.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1628.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1628.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1632.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1640.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1640.
+
+
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1645--1645
+[]\T1/lmtt/m/n/10 ## Warning in if (xs < 0) print("negative") else print("posit
+ive"): the[] 
+ []
+
+
+Overfull \hbox (6.74898pt too wide) in paragraph at lines 1645--1645
+[]\T1/lmtt/m/n/10 ## condition has length > 1 and only the first element will b
+e used[] 
+ []
+
+[35]
+
+Package xcolor Warning: Incompatible color definition on input line 1655.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1659.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1659.
+
+
+Overfull \hbox (38.24889pt too wide) in paragraph at lines 1664--1664
+[]\T1/lmtt/m/n/10 ##  [1] "negative" "negative" "negative" "negative" "negative
+" "positive"[] 
+ []
+
+
+Underfull \hbox (badness 1147) in paragraph at lines 1666--1667
+[]\T1/lmr/m/n/10 (+20) The syn-tax is \T1/lmtt/m/n/10 ifelse(condition, do_if_T
+RUE, do_if_FALSE)\T1/lmr/m/n/10 (+20) . You can
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 1668.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1675.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1675.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1693.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1697.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1697.
+
+[36]
+
+Package xcolor Warning: Incompatible color definition on input line 1713.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1718.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1718.
+
+LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1736.
+
+Package xcolor Warning: Incompatible color definition on input line 1740.
+
+[37]
+
+Package xcolor Warning: Incompatible color definition on input line 1744.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1744.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1753.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1757.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1757.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1761.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1767.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1767.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1778.
+
+[38]
+
+Package xcolor Warning: Incompatible color definition on input line 1787.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1787.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1791.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1797.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1797.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1801.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1805.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1805.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1813.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1817.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1817.
+
+[39] [40]
+Chapter 2.
+
+Package xcolor Warning: Incompatible color definition on input line 1918.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1918.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1918.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1918.
+
+[41
+
+]
+<au-r-workshop_files/figure-latex/unnamed-chunk-76-1.pdf, id=922, 469.755pt x 3
+25.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-76-1.pdf Graphic file (typ
+e pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-76-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-76-1.pd
+f  used on input line 1945.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Underfull \vbox (badness 1127) has occurred while \output is active []
+
+[42]
+
+Package xcolor Warning: Incompatible color definition on input line 1961.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1971.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1971.
+
+[43 <./au-r-workshop_files/figure-latex/unnamed-chunk-76-1.pdf>]
+Overfull \hbox (61.74965pt too wide) in paragraph at lines 1982--2011
+ [] 
+ []
+
+[44pdfTeX warning (ext4): destination with the same identifier (name{table.2.1}
+) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.2019 
+       ]
+
+Package xcolor Warning: Incompatible color definition on input line 2020.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2025.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2025.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-79-1.pdf, id=947, 469.755pt x 3
+25.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-79-1.pdf Graphic file (typ
+e pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-79-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-79-1.pd
+f  used on input line 2027.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Package xcolor Warning: Incompatible color definition on input line 2031.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2035.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2035.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-81-1.pdf, id=949, 469.755pt x 3
+25.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-81-1.pdf Graphic file (typ
+e pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-81-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-81-1.pd
+f  used on input line 2037.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[45 <./au-r-workshop_files/figure-latex/unnamed-chunk-79-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 2041.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2045.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2045.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-83-1.pdf, id=960, 469.755pt x 3
+25.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-83-1.pdf Graphic file (typ
+e pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-83-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-83-1.pd
+f  used on input line 2047.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+[46 <./au-r-workshop_files/figure-latex/unnamed-chunk-81-1.pdf> <./au-r-worksho
+p_files/figure-latex/unnamed-chunk-83-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 2055.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2060.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2060.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-85-1.pdf, id=978, 469.755pt x 3
+25.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-85-1.pdf Graphic file (typ
+e pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-85-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-85-1.pd
+f  used on input line 2062.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+[47 <./au-r-workshop_files/figure-latex/unnamed-chunk-85-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 2076.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2081.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2081.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-87-1.pdf, id=994, 469.755pt x 3
+25.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-87-1.pdf Graphic file (typ
+e pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-87-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-87-1.pd
+f  used on input line 2083.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Package xcolor Warning: Incompatible color definition on input line 2087.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2091.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2091.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2095.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2101.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2101.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-90-1.pdf, id=995, 469.755pt x 3
+25.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-90-1.pdf Graphic file (typ
+e pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-90-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-90-1.pd
+f  used on input line 2103.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+[48 <./au-r-workshop_files/figure-latex/unnamed-chunk-87-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 2116.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2121.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2121.
+
+[49 <./au-r-workshop_files/figure-latex/unnamed-chunk-90-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 2135.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2139.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2139.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-94-1.pdf, id=1020, 469.755pt x 
+325.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-94-1.pdf Graphic file (typ
+e pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-94-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-94-1.pd
+f  used on input line 2141.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Package xcolor Warning: Incompatible color definition on input line 2147.
+
+[50 <./au-r-workshop_files/figure-latex/unnamed-chunk-94-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 2151.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2151.
+
+
+Underfull \hbox (badness 4242) in paragraph at lines 2153--2154
+[]\T1/lmr/m/n/10 (+20) Instead of say-ing \T1/lmtt/m/n/10 plot(x = x.var, y = y
+.var)\T1/lmr/m/n/10 (+20) , this ex-pres-sion says
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 2160.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2164.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2164.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-97-1.pdf, id=1035, 469.755pt x 
+325.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-97-1.pdf Graphic file (typ
+e pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-97-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-97-1.pd
+f  used on input line 2166.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+[51 <./au-r-workshop_files/figure-latex/unnamed-chunk-97-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 2172.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2182.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2182.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-99-1.pdf, id=1048, 469.755pt x 
+325.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-99-1.pdf Graphic file (typ
+e pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-99-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-99-1.pd
+f  used on input line 2184.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Package xcolor Warning: Incompatible color definition on input line 2191.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2196.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2196.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-100-1.pdf, id=1049, 469.755pt x
+ 325.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-100-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-100-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-100-1.p
+df  used on input line 2198.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Underfull \vbox (badness 4328) has occurred while \output is active []
+
+[52 <./au-r-workshop_files/figure-latex/unnamed-chunk-99-1.pdf>] [53 <./au-r-wo
+rkshop_files/figure-latex/unnamed-chunk-100-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 2228.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2236.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2236.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-101-1.pdf, id=1074, 469.755pt x
+ 216.81pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-101-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-101-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-101-1.p
+df  used on input line 2238.
+(pdftex.def)             Requested size: 344.997pt x 159.22937pt.
+[54 <./au-r-workshop_files/figure-latex/unnamed-chunk-101-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 2249.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2258.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2258.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-102-1.pdf, id=1087, 469.755pt x
+ 325.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-102-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-102-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-102-1.p
+df  used on input line 2260.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[55]
+
+Package xcolor Warning: Incompatible color definition on input line 2266.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2287.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2287.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-103-1.pdf, id=1094, 469.755pt x
+ 325.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-103-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-103-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-103-1.p
+df  used on input line 2289.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+[56 <./au-r-workshop_files/figure-latex/unnamed-chunk-102-1.pdf>] [57 <./au-r-w
+orkshop_files/figure-latex/unnamed-chunk-103-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 2316.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2330.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2330.
+
+[58]
+
+Package xcolor Warning: Incompatible color definition on input line 2349.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2355.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2355.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-105-1.pdf, id=1125, 469.755pt x
+ 325.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-105-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-105-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-105-1.p
+df  used on input line 2357.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+[59 <./au-r-workshop_files/figure-latex/unnamed-chunk-105-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 2382.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2388.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2388.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2392.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2396.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2396.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2400.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2405.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2405.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2409.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2415.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2415.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-109-1.pdf, id=1141, 469.755pt x
+ 325.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-109-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-109-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-109-1.p
+df  used on input line 2417.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[60]
+
+Package xcolor Warning: Incompatible color definition on input line 2450.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2450.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2450.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2450.
+
+[61 <./au-r-workshop_files/figure-latex/unnamed-chunk-109-1.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 2466--2468
+
+ []
+
+[62]
+Underfull \hbox (badness 10000) in paragraph at lines 2483--2485
+
+ []
+
+[63] [64
+
+]
+Chapter 3.
+[65]
+
+Package xcolor Warning: Incompatible color definition on input line 2560.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2560.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2562.
+
+[66]
+
+Package xcolor Warning: Incompatible color definition on input line 2567.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2567.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2581.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2585.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2585.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2589.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2593.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2593.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2624.
+
+[67]
+
+Package xcolor Warning: Incompatible color definition on input line 2628.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2628.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2656.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2661.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2661.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-118-1.pdf, id=1236, 469.755pt x
+ 325.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-118-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-118-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-118-1.p
+df  used on input line 2663.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[68]
+
+Package xcolor Warning: Incompatible color definition on input line 2672.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2676.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2676.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2688.
+
+[69 <./au-r-workshop_files/figure-latex/unnamed-chunk-118-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 2697.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2697.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2723.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2727.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2727.
+
+[70]
+
+Package xcolor Warning: Incompatible color definition on input line 2757.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2764.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2764.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2771.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2776.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2776.
+
+[71]
+
+Package xcolor Warning: Incompatible color definition on input line 2807.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2812.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2812.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2823.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2832.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2832.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-126-1.pdf, id=1268, 469.755pt x
+ 325.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-126-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-126-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-126-1.p
+df  used on input line 2834.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+[72 <./au-r-workshop_files/figure-latex/unnamed-chunk-126-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 2864.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2871.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2871.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2877.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2886.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2886.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2886.
+
+[73]
+
+Package xcolor Warning: Incompatible color definition on input line 2886.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2886.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-129-1.pdf, id=1286, 469.755pt x
+ 325.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-129-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-129-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-129-1.p
+df  used on input line 2888.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Package xcolor Warning: Incompatible color definition on input line 2892.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2896.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2896.
+
+
+Overfull \hbox (1.499pt too wide) in paragraph at lines 2904--2904
+[]\T1/lmtt/m/n/10 ##                     Estimate Std. Error    t value     Pr(
+>|t|)[] 
+ []
+
+
+Overfull \hbox (1.499pt too wide) in paragraph at lines 2904--2904
+[]\T1/lmtt/m/n/10 ## (Intercept)     1175.7190847 174.545223  6.7358995 1.12525
+5e-07[] 
+ []
+
+
+Overfull \hbox (1.499pt too wide) in paragraph at lines 2904--2904
+[]\T1/lmtt/m/n/10 ## typewild         -42.8721082 398.980751 -0.1074541 9.15079
+4e-01[] 
+ []
+
+
+Overfull \hbox (1.499pt too wide) in paragraph at lines 2904--2904
+[]\T1/lmtt/m/n/10 ## weight             0.4300894   0.105592  4.0731253 2.73258
+0e-04[] 
+ []
+
+
+Overfull \hbox (1.499pt too wide) in paragraph at lines 2904--2904
+[]\T1/lmtt/m/n/10 ## typewild:weight    0.7003389   0.299104  2.3414560 2.53968
+1e-02[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 2911.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2911.
+
+[74 <./au-r-workshop_files/figure-latex/unnamed-chunk-129-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 2913.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2918.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2918.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2928.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2928.
+
+[75]
+
+Package xcolor Warning: Incompatible color definition on input line 2954.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2960.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2960.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2971.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2977.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2977.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2983.
+
+[76]
+
+Package xcolor Warning: Incompatible color definition on input line 2987.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2987.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2993.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2998.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2998.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3032.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3042.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3042.
+
+[77]
+
+Package xcolor Warning: Incompatible color definition on input line 3042.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3042.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3046.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3050.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3050.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-138-1.pdf, id=1328, 469.755pt x
+ 325.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-138-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-138-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-138-1.p
+df  used on input line 3052.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Package xcolor Warning: Incompatible color definition on input line 3056.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3061.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3061.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3071.
+
+[78 <./au-r-workshop_files/figure-latex/unnamed-chunk-138-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 3077.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3077.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3088.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3092.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3092.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3096.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3107.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3107.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3111.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3121.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3121.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-144-1.pdf, id=1339, 469.755pt x
+ 325.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-144-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-144-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-144-1.p
+df  used on input line 3123.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Underfull \vbox (badness 2573) has occurred while \output is active []
+
+[79]
+
+Package xcolor Warning: Incompatible color definition on input line 3127.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3137.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3137.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-147-1.pdf, id=1344, 469.755pt x
+ 325.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-147-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-147-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-147-1.p
+df  used on input line 3139.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[80 <./au-r-workshop_files/figure-latex/unnamed-chunk-144-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 3146.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3151.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3151.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3166.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3166.
+
+[81 <./au-r-workshop_files/figure-latex/unnamed-chunk-147-1.pdf>]
+Overfull \hbox (12.36084pt too wide) in paragraph at lines 3172--3191
+ [][] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 3209.
+
+[82pdfTeX warning (ext4): destination with the same identifier (name{table.3.1}
+) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.3209 \begin{Shaded}
+                     ]
+
+Package xcolor Warning: Incompatible color definition on input line 3245.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3245.
+
+<au-r-workshop_files/figure-latex/norm-plots-1.pdf, id=1380, 469.755pt x 469.75
+5pt>
+File: au-r-workshop_files/figure-latex/norm-plots-1.pdf Graphic file (type pdf)
+
+<use au-r-workshop_files/figure-latex/norm-plots-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/norm-plots-1.pdf  use
+d on input line 3249.
+(pdftex.def)             Requested size: 344.997pt x 344.997pt.
+
+Package xcolor Warning: Incompatible color definition on input line 3258.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3262.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3262.
+
+[83] [84pdfTeX warning (ext4): destination with the same identifier (name{figur
+e.3.1}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.3269 
+        <./au-r-workshop_files/figure-latex/norm-plots-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 3270.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3275.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3275.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3284.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3288.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3288.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3304.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3308.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3308.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-154-1.pdf, id=1401, 469.755pt x
+ 325.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-154-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-154-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-154-1.p
+df  used on input line 3310.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Underfull \vbox (badness 2762) has occurred while \output is active []
+
+[85]
+
+Package xcolor Warning: Incompatible color definition on input line 3323.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3328.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3328.
+
+[86 <./au-r-workshop_files/figure-latex/unnamed-chunk-154-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 3344.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3349.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3349.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3353.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3358.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3358.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-158-1.pdf, id=1420, 469.755pt x
+ 325.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-158-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-158-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-158-1.p
+df  used on input line 3360.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Package xcolor Warning: Incompatible color definition on input line 3368.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3368.
+
+[87 <./au-r-workshop_files/figure-latex/unnamed-chunk-158-1.pdf>] [88]
+Chapter 4.
+
+Underfull \vbox (badness 1009) has occurred while \output is active []
+
+[89
+
+]
+
+Package xcolor Warning: Incompatible color definition on input line 3450.
+
+[90]
+
+Package xcolor Warning: Incompatible color definition on input line 3454.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3454.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3464.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3469.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3469.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-163-1.pdf, id=1484, 469.755pt x
+ 325.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-163-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-163-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-163-1.p
+df  used on input line 3471.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Package xcolor Warning: Incompatible color definition on input line 3475.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3479.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3479.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-165-1.pdf, id=1485, 469.755pt x
+ 325.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-165-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-165-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-165-1.p
+df  used on input line 3481.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+[91 <./au-r-workshop_files/figure-latex/unnamed-chunk-163-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 3490.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3494.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3494.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3502.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3506.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3506.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3514.
+
+[92 <./au-r-workshop_files/figure-latex/unnamed-chunk-165-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 3519.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3519.
+
+
+Overfull \hbox (59.24883pt too wide) in paragraph at lines 3523--3523
+[]\T1/lmtt/m/n/10 ##  [1] "live" "live" "live" "live" "live" "live" "live" "liv
+e" "live" "live"[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 3532.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3537.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3537.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3553.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3557.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3557.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3561.
+
+[93]
+
+Package xcolor Warning: Incompatible color definition on input line 3568.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3568.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3572.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3577.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3577.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3587.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3591.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3591.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3606.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3612.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3612.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3616.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3622.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3622.
+
+[94]
+
+Package xcolor Warning: Incompatible color definition on input line 3634.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3638.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3638.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3642.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3648.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3648.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3652.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3656.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3656.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3660.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3667.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3667.
+
+[95]
+
+Package xcolor Warning: Incompatible color definition on input line 3692.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3704.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3704.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3708.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3712.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3712.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-181-1.pdf, id=1534, 469.755pt x
+ 325.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-181-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-181-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-181-1.p
+df  used on input line 3714.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+[96 <./au-r-workshop_files/figure-latex/unnamed-chunk-181-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 3723.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3739.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3739.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3761.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3765.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3765.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-183-1.pdf, id=1546, 469.755pt x
+ 325.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-183-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-183-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-183-1.p
+df  used on input line 3767.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+[97]
+
+Package xcolor Warning: Incompatible color definition on input line 3771.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3775.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3775.
+
+[98 <./au-r-workshop_files/figure-latex/unnamed-chunk-183-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 3805.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3810.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3810.
+
+
+Overfull \hbox (22.49893pt too wide) in paragraph at lines 3815--3815
+[]\T1/lmtt/m/n/10 ##  [1] 1000.000 1017.150 1034.970 1052.022 1068.358 1086.700
+ 1102.685[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 3824.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3829.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3829.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3833.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3839.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3839.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-188-1.pdf, id=1565, 469.755pt x
+ 325.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-188-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-188-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-188-1.p
+df  used on input line 3841.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+[99]
+
+Package xcolor Warning: Incompatible color definition on input line 3852.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3857.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3857.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3867.
+
+[100 <./au-r-workshop_files/figure-latex/unnamed-chunk-188-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 3872.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3872.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3882.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3886.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3886.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3899.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3903.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3903.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3922.
+
+[101]
+
+Package xcolor Warning: Incompatible color definition on input line 3926.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3926.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3930.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3934.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3934.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3938.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3945.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3945.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-196-1.pdf, id=1595, 469.755pt x
+ 325.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-196-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-196-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-196-1.p
+df  used on input line 3947.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Package xcolor Warning: Incompatible color definition on input line 3953.
+
+[102 <./au-r-workshop_files/figure-latex/unnamed-chunk-196-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 3962.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3962.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-198-1.pdf, id=1605, 469.755pt x
+ 325.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-198-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-198-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-198-1.p
+df  used on input line 3964.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+[103 <./au-r-workshop_files/figure-latex/unnamed-chunk-198-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 4000.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4025.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4025.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4025.
+
+[104]
+
+Package xcolor Warning: Incompatible color definition on input line 4025.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4025.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4029.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4037.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4037.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4041.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4049.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4049.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4053.
+
+[105]
+
+Package xcolor Warning: Incompatible color definition on input line 4059.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4059.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-204-1.pdf, id=1635, 469.755pt x
+ 325.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-204-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-204-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-204-1.p
+df  used on input line 4061.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Package xcolor Warning: Incompatible color definition on input line 4067.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4114.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4114.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4114.
+
+[106 <./au-r-workshop_files/figure-latex/unnamed-chunk-204-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 4114.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4114.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-205-1.pdf, id=1645, 469.755pt x
+ 289.08pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-205-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-205-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-205-1.p
+df  used on input line 4116.
+(pdftex.def)             Requested size: 344.997pt x 212.30583pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[107] [108 <./au-r-workshop_files/figure-latex/unnamed-chunk-205-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 4165.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4198.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4198.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4198.
+
+[109]
+
+Package xcolor Warning: Incompatible color definition on input line 4198.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4198.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4202.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4209.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4209.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4217.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4227.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4227.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4233.
+
+[110]
+
+Package xcolor Warning: Incompatible color definition on input line 4240.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4240.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-211-1.pdf, id=1680, 469.755pt x
+ 325.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-211-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-211-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-211-1.p
+df  used on input line 4242.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+<au-r-workshop_files/figure-latex/unnamed-chunk-212-1.pdf, id=1681, 469.755pt x
+ 325.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-212-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-212-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-212-1.p
+df  used on input line 4246.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[111 <./au-r-workshop_files/figure-latex/unnamed-chunk-211-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 4250.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4261.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4261.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4265.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4285.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4285.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4285.
+
+[112 <./au-r-workshop_files/figure-latex/unnamed-chunk-212-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 4285.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4285.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-214-1.pdf, id=1700, 361.35pt x 
+289.08pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-214-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-214-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-214-1.p
+df  used on input line 4287.
+(pdftex.def)             Requested size: 345.00084pt x 276.00066pt.
+[113 <./au-r-workshop_files/figure-latex/unnamed-chunk-214-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 4320.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4325.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4325.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-216-1.pdf, id=1713, 469.755pt x
+ 325.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-216-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-216-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-216-1.p
+df  used on input line 4327.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+[114] [115 <./au-r-workshop_files/figure-latex/unnamed-chunk-216-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 4354.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4365.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4365.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4369.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4378.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4378.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4382.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4393.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4393.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4395.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4395.
+
+[116]
+
+Package xcolor Warning: Incompatible color definition on input line 4399.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4403.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4403.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4407.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4416.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4416.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4424.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4428.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4428.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4432.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4442.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4442.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-224-1.pdf, id=1746, 469.755pt x
+ 325.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-224-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-224-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-224-1.p
+df  used on input line 4444.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Underfull \vbox (badness 7796) has occurred while \output is active []
+
+[117]
+
+Package xcolor Warning: Incompatible color definition on input line 4448.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4454.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4454.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-226-1.pdf, id=1751, 469.755pt x
+ 325.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-226-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-226-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-226-1.p
+df  used on input line 4456.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[118 <./au-r-workshop_files/figure-latex/unnamed-chunk-224-1.pdf>] [119 <./au-r
+-workshop_files/figure-latex/unnamed-chunk-226-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 4484.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4489.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4489.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-228-1.pdf, id=1782, 469.755pt x
+ 325.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-228-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-228-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-228-1.p
+df  used on input line 4491.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Package xcolor Warning: Incompatible color definition on input line 4495.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4500.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4500.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4508.
+
+[120 <./au-r-workshop_files/figure-latex/unnamed-chunk-228-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 4524.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4524.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4528.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4532.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4532.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4540.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4544.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4544.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4548.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4553.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4553.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-234-1.pdf, id=1793, 469.755pt x
+ 325.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-234-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-234-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-234-1.p
+df  used on input line 4555.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[121]
+
+Package xcolor Warning: Incompatible color definition on input line 4559.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4563.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4563.
+
+[122 <./au-r-workshop_files/figure-latex/unnamed-chunk-234-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 4633.
+
+[123]
+
+Package xcolor Warning: Incompatible color definition on input line 4642.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4642.
+
+[124] [125] [126
+
+]
+Chapter 5.
+
+Package xcolor Warning: Incompatible color definition on input line 4717.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4717.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4719.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4719.
+
+[127]
+
+Package xcolor Warning: Incompatible color definition on input line 4739.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4744.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4744.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4750.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4755.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4755.
+
+[128]
+
+Package xcolor Warning: Incompatible color definition on input line 4766.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4771.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4771.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4775.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4779.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4779.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4793.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4797.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4797.
+
+[129]
+
+Package xcolor Warning: Incompatible color definition on input line 4816.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4823.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4823.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4837.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4844.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4844.
+
+[130]
+
+Package xcolor Warning: Incompatible color definition on input line 4858.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4862.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4862.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4872.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4876.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4876.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4885.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4891.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4891.
+
+[131]
+
+Package xcolor Warning: Incompatible color definition on input line 4907.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4911.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4911.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4930.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4935.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4935.
+
+[132]
+
+Package xcolor Warning: Incompatible color definition on input line 4949.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4955.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4955.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4959.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4967.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4967.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-254-1.pdf, id=1927, 469.755pt x
+ 325.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-254-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-254-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-254-1.p
+df  used on input line 4969.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+[133 <./au-r-workshop_files/figure-latex/unnamed-chunk-254-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 4973.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4981.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4981.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-256-1.pdf, id=1938, 469.755pt x
+ 325.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-256-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-256-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-256-1.p
+df  used on input line 4983.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Package xcolor Warning: Incompatible color definition on input line 4992.
+
+[134 <./au-r-workshop_files/figure-latex/unnamed-chunk-256-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 4999.
+
+
+Package xcolor Warning: Incompatible color definition on input line 4999.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5005.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5009.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5009.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5013.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5017.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5017.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5021.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5025.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5025.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5029.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5033.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5033.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5037.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5042.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5042.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-263-1.pdf, id=1951, 469.755pt x
+ 325.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-263-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-263-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-263-1.p
+df  used on input line 5044.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+[135]
+
+Package xcolor Warning: Incompatible color definition on input line 5051.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5055.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5055.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5063.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5067.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5067.
+
+[136 <./au-r-workshop_files/figure-latex/unnamed-chunk-263-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 5075.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5085.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5085.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-267-1.pdf, id=1968, 469.755pt x
+ 325.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-267-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-267-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-267-1.p
+df  used on input line 5109.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Underfull \vbox (badness 2495) has occurred while \output is active []
+
+[137]
+
+Package xcolor Warning: Incompatible color definition on input line 5111.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5126.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5126.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5133.
+
+[138 <./au-r-workshop_files/figure-latex/unnamed-chunk-267-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 5141.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5141.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5157.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5161.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5161.
+
+
+Overfull \hbox (43.49887pt too wide) in paragraph at lines 5166--5166
+[]\T1/lmtt/m/n/10 ##         160         161         162         163         16
+4         165[] 
+ []
+
+
+Overfull \hbox (43.49887pt too wide) in paragraph at lines 5166--5166
+[]\T1/lmtt/m/n/10 ## 0.009699779 0.019400196 0.029111609 0.038735562 0.04913056
+6 0.057901058[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 5172.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5180.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5180.
+
+
+Overfull \hbox (1.499pt too wide) in paragraph at lines 5184--5184
+[]\T1/lmtt/m/n/10 ## Error: Column \TS1/lmtt/m/n/10 `\T1/lmtt/m/n/10 range\TS1/
+lmtt/m/n/10 ` \T1/lmtt/m/n/10 must be length 1 (a summary value), not 2[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 5186.
+
+[139]
+
+Package xcolor Warning: Incompatible color definition on input line 5191.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5191.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5212.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5219.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5219.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5223.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5227.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5227.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-274-1.pdf, id=1988, 469.755pt x
+ 325.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-274-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-274-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-274-1.p
+df  used on input line 5229.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[140]
+
+Package xcolor Warning: Incompatible color definition on input line 5238.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5243.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5243.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5247.
+
+[141 <./au-r-workshop_files/figure-latex/unnamed-chunk-274-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 5254.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5254.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5258.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5266.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5266.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5275.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5283.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5283.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5299.
+
+[142]
+
+Package xcolor Warning: Incompatible color definition on input line 5313.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5313.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5317.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5321.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5321.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-281-1.pdf, id=2009, 469.755pt x
+ 325.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-281-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-281-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-281-1.p
+df  used on input line 5323.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Package xcolor Warning: Incompatible color definition on input line 5327.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5335.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5335.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5335.
+
+[143 <./au-r-workshop_files/figure-latex/unnamed-chunk-281-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 5335.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5335.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-283-1.pdf, id=2021, 469.755pt x
+ 325.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-283-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-283-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-283-1.p
+df  used on input line 5343.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Package xcolor Warning: Incompatible color definition on input line 5352.
+
+[144 <./au-r-workshop_files/figure-latex/unnamed-chunk-283-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 5361.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5361.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5386.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5392.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5392.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5396.
+
+[145]
+
+Package xcolor Warning: Incompatible color definition on input line 5405.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5405.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5409.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5415.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5415.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5430.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5446.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5446.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-289-1.pdf, id=2038, 469.755pt x
+ 325.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-289-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-289-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-289-1.p
+df  used on input line 5448.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Underfull \vbox (badness 5374) has occurred while \output is active []
+
+[146]
+
+Package hyperref Warning: Suppressing link with empty target on input line 5459
+.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5461.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5470.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5470.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5470.
+
+[147 <./au-r-workshop_files/figure-latex/unnamed-chunk-289-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 5470.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5470.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5474.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5480.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5480.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-292-1.pdf, id=2052, 469.755pt x
+ 325.215pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-292-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-292-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-292-1.p
+df  used on input line 5482.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+[148 <./au-r-workshop_files/figure-latex/unnamed-chunk-292-1.pdf>] [149] [150
+
+]
+Chapter 6.
+
+Package xcolor Warning: Incompatible color definition on input line 5550.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5550.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5552.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5552.
+
+[151]
+
+Package xcolor Warning: Incompatible color definition on input line 5569.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5569.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5576.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5584.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5584.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5586.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5586.
+
+[152]
+<au-r-workshop_files/figure-latex/vector-types-1.pdf, id=2119, 650.43pt x 216.8
+1pt>
+File: au-r-workshop_files/figure-latex/vector-types-1.pdf Graphic file (type pd
+f)
+<use au-r-workshop_files/figure-latex/vector-types-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/vector-types-1.pdf  u
+sed on input line 5609.
+(pdftex.def)             Requested size: 345.00415pt x 115.00137pt.
+
+Package xcolor Warning: Incompatible color definition on input line 5622.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5622.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5624.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5629.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5629.
+
+
+Overfull \hbox (22.49893pt too wide) in paragraph at lines 5640--5640
+[]\T1/lmtt/m/n/10 ##  [5] "location.lat"                    "behavioural.classi
+fication"[] 
+ []
+
+
+Overfull \hbox (48.74886pt too wide) in paragraph at lines 5640--5640
+[]\T1/lmtt/m/n/10 ##  [9] "sensor.type"                     "individual.taxon.c
+anonical.name"[] 
+ []
+
+
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 5640--5640
+[]\T1/lmtt/m/n/10 ## [11] "tag.local.identifier"            "individual.local.i
+dentifier"[] 
+ []
+
+[153pdfTeX warning (ext4): destination with the same identifier (name{figure.6.
+1}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.5640 \end{verbatim}
+                      <./au-r-workshop_files/figure-latex/vector-types-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 5644.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5651.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5651.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5665.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5670.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5670.
+
+
+Overfull \hbox (32.9989pt too wide) in paragraph at lines 5680--5680
+[]\T1/lmtt/m/n/10 ##  ancka   clio  dinko  dusan   ivan   jana  janko   joze   
+jure klemen[] 
+ []
+
+
+Overfull \hbox (32.9989pt too wide) in paragraph at lines 5680--5680
+[]\T1/lmtt/m/n/10 ##    351     20     11     43      7    111      7     24   
+  17     19[] 
+ []
+
+
+Overfull \hbox (32.9989pt too wide) in paragraph at lines 5680--5680
+[]\T1/lmtt/m/n/10 ##  lucia   maja  metka  milan mishko   nejc polona srecko  u
+rosh  vanja[] 
+ []
+
+
+Overfull \hbox (32.9989pt too wide) in paragraph at lines 5680--5680
+[]\T1/lmtt/m/n/10 ##    169    247     66      3    129    117    208    138   
+  21     65[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 5682.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5694.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5694.
+
+
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 5700--5700
+[]\T1/lmtt/m/n/10 ##  [1] "ancka"  "clio"   "dinko"  "dusan"  "ivan"   "jana"  
+ "janko"[] 
+ []
+
+[154]
+Overfull \hbox (22.49893pt too wide) in paragraph at lines 5700--5700
+[]\T1/lmtt/m/n/10 ##  [8] "joze"   "jure"   "klemen" "lucia"  "maja"   "metka" 
+ "mishko"[] 
+ []
+
+
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 5700--5700
+[]\T1/lmtt/m/n/10 ## [15] "nejc"   "polona" "srecko" "urosh"  "vanja"  "vera"  
+ "vinko"[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 5702.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5702.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 5715--5715
+[][][]\T1/lmr/m/n/8 (+20) For more in-for-ma-tion on pro-jected co-or-di-nate s
+ys-tems, fol-low this
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 5715--5715
+\T1/lmr/m/n/8 (+20) link: [][]$http : / / desktop . arcgis . com / en / arcmap 
+/ 10 . 3 / guide-[]books / map-[]projections /
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 5718.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5728.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5728.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5735.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5735.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5735.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5735.
+
+[155]
+
+Package xcolor Warning: Incompatible color definition on input line 5737.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5745.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5745.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5760.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5764.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5764.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5777.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5777.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5779.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5779.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5782.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5791.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5791.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5798.
+
+[156]
+
+Package xcolor Warning: Incompatible color definition on input line 5802.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5802.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5806.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5812.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5812.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-306-1.pdf, id=2174, 361.35pt x 
+361.35pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-306-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-306-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-306-1.p
+df  used on input line 5814.
+(pdftex.def)             Requested size: 345.00084pt x 345.00084pt.
+
+Package xcolor Warning: Incompatible color definition on input line 5816.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5816.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5818.
+
+[157 <./au-r-workshop_files/figure-latex/unnamed-chunk-306-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 5828.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5828.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-307-1.pdf, id=2189, 361.35pt x 
+361.35pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-307-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-307-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-307-1.p
+df  used on input line 5830.
+(pdftex.def)             Requested size: 345.00084pt x 345.00084pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[158 <./au-r-workshop_files/figure-latex/unnamed-chunk-307-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 5837.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5846.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5846.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-309-1.pdf, id=2206, 361.35pt x 
+361.35pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-309-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-309-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-309-1.p
+df  used on input line 5848.
+(pdftex.def)             Requested size: 345.00084pt x 345.00084pt.
+[159 <./au-r-workshop_files/figure-latex/unnamed-chunk-309-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 5855.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5869.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5869.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5883.
+
+[160]
+
+Package xcolor Warning: Incompatible color definition on input line 5887.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5887.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5894.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5898.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5898.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-313-1.pdf, id=2234, 361.35pt x 
+361.35pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-313-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-313-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-313-1.p
+df  used on input line 5902.
+(pdftex.def)             Requested size: 345.00084pt x 345.00084pt.
+[161 <./au-r-workshop_files/figure-latex/unnamed-chunk-313-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 5909.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5917.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5917.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5938.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5943.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5943.
+
+
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 5951--5951
+[]\T1/lmtt/m/n/10 ##              GoriŽka Jugovzhodna Slovenija    Notranjsko-
+kraŽka[] 
+ []
+
+
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 5951--5951
+[]\T1/lmtt/m/n/10 ##                    65                     2               
+    823[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 5953.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5953.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5955.
+
+[162]
+
+Package xcolor Warning: Incompatible color definition on input line 5961.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5961.
+
+
+Overfull \hbox (6.74898pt too wide) in paragraph at lines 5971--5971
+[]\T1/lmtt/m/n/10 ##             timestamp    ID        x        y     bearstat
+s.stat[] 
+ []
+
+
+Overfull \hbox (6.74898pt too wide) in paragraph at lines 5971--5971
+[]\T1/lmtt/m/n/10 ## 1 1994-04-23 22-00-00 ancka 14.32837 45.88914  Osrednjeslo
+venska[] 
+ []
+
+
+Overfull \hbox (6.74898pt too wide) in paragraph at lines 5971--5971
+[]\T1/lmtt/m/n/10 ## 2 1994-04-24 16-40-00 ancka 14.37175 45.87072  Osrednjeslo
+venska[] 
+ []
+
+
+Overfull \hbox (6.74898pt too wide) in paragraph at lines 5971--5971
+[]\T1/lmtt/m/n/10 ## 3 1994-04-25 14-45-00 ancka 14.39852 45.86659 Notranjsko-k
+raŽka[] 
+ []
+
+
+Overfull \hbox (6.74898pt too wide) in paragraph at lines 5971--5971
+[]\T1/lmtt/m/n/10 ## 4 1994-04-26 12-30-00 ancka 14.41215 45.88695  Osrednjeslo
+venska[] 
+ []
+
+
+Overfull \hbox (6.74898pt too wide) in paragraph at lines 5971--5971
+[]\T1/lmtt/m/n/10 ## 5 1994-04-28 12-00-00 ancka 14.41260 45.87476  Osrednjeslo
+venska[] 
+ []
+
+
+Overfull \hbox (6.74898pt too wide) in paragraph at lines 5971--5971
+[]\T1/lmtt/m/n/10 ## 6 1994-04-29 09-30-00 ancka 14.40471 45.88957  Osrednjeslo
+venska[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 5975.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5979.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5979.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5984.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5984.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5999.
+
+
+Package xcolor Warning: Incompatible color definition on input line 5999.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6001.
+
+[163]
+
+Package xcolor Warning: Incompatible color definition on input line 6010.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6010.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6028.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6045.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6045.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-319-1.pdf, id=2274, 361.35pt x 
+361.35pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-319-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-319-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-319-1.p
+df  used on input line 6047.
+(pdftex.def)             Requested size: 345.00084pt x 345.00084pt.
+
+Underfull \vbox (badness 1924) has occurred while \output is active []
+
+[164]
+
+Package xcolor Warning: Incompatible color definition on input line 6052.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6052.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6054.
+
+[165 <./au-r-workshop_files/figure-latex/unnamed-chunk-319-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 6058.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6058.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6060.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6064.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6064.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6068.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6080.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6080.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6082.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6082.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6084.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6091.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6091.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6098.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6098.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6098.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6098.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6100.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6106.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6106.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6110.
+
+[166]
+
+Package xcolor Warning: Incompatible color definition on input line 6118.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6118.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6120.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6120.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6122.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6142.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6142.
+
+<img/FinalMap.png, id=2314, 3011.25pt x 3011.25pt>
+File: img/FinalMap.png Graphic file (type png)
+<use img/FinalMap.png>
+Package pdftex.def Info: img/FinalMap.png  used on input line 6144.
+(pdftex.def)             Requested size: 549.99657pt x 549.99657pt.
+
+Overfull \hbox (204.99657pt too wide) in paragraph at lines 6144--6144
+ [] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[167]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[168 <./img/FinalMap.png (PNG copy)>]
+
+Package xcolor Warning: Incompatible color definition on input line 6156.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6156.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6156.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6156.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6161.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6161.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6163.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6181.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6181.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6191.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6191.
+
+[169] [170]
+
+Package xcolor Warning: Incompatible color definition on input line 6243.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6250.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6250.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6256.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6260.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6260.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6266.
+
+[171
+
+]
+
+Package xcolor Warning: Incompatible color definition on input line 6272.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6272.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6278.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6284.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6284.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6290.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6296.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6296.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6308.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6313.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6313.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6321.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6325.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6325.
+
+[172]
+
+Package xcolor Warning: Incompatible color definition on input line 6343.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6347.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6347.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6351.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6355.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6355.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6361.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6365.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6365.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6371.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6375.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6375.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6381.
+
+[173]
+
+Package xcolor Warning: Incompatible color definition on input line 6385.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6385.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6391.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6395.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6395.
+
+
+LaTeX Font Warning: Font shape `T1/lmtt/bx/it' in size <10> not available
+(Font)              Font shape `T1/lmtt/b/sl' tried instead on input line 6397.
+
+
+
+Package xcolor Warning: Incompatible color definition on input line 6407.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6411.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6411.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6426.
+
+[174]
+
+Package xcolor Warning: Incompatible color definition on input line 6433.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6433.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6441.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6456.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6456.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6466.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6470.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6470.
+
+
+Overfull \hbox (6.74898pt too wide) in paragraph at lines 6474--6474
+[]\T1/lmtt/m/n/10 ## The result of a * b is less than 30 so you don\TS1/lmtt/m/
+n/10 '\T1/lmtt/m/n/10 t care what it is[] 
+ []
+
+pdfTeX warning (ext4): destination with the same identifier (name{ex2-answers})
+ has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6479 ...xercise 2 Solutions}\label{ex2-answers}}
+                                                  
+
+Package xcolor Warning: Incompatible color definition on input line 6486.
+
+[175]
+
+Package xcolor Warning: Incompatible color definition on input line 6491.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6491.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6495.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6499.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6499.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6503.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6511.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6511.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6517.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6522.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6522.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6526.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6536.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6536.
+
+[176]
+
+Package xcolor Warning: Incompatible color definition on input line 6542.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6550.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6550.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6556.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6566.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6566.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6572.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6581.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6581.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6585.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6590.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6590.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6594.
+
+[177]
+
+Package xcolor Warning: Incompatible color definition on input line 6599.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6599.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6603.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6608.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6608.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6612.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6620.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6620.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6626.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6630.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6630.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6640.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6644.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6644.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6646.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6657.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6657.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6657.
+
+[178]
+
+Package xcolor Warning: Incompatible color definition on input line 6657.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6657.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6661.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6670.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6670.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6676.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6713.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6713.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6713.
+
+[179]
+
+Package xcolor Warning: Incompatible color definition on input line 6713.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6713.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-368-1.pdf, id=2418, 361.35pt x 
+361.35pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-368-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-368-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-368-1.p
+df  used on input line 6715.
+(pdftex.def)             Requested size: 345.00084pt x 345.00084pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[180]
+
+Package xcolor Warning: Incompatible color definition on input line 6721.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6725.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6725.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6729.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6734.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6734.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6738.
+
+[181 <./au-r-workshop_files/figure-latex/unnamed-chunk-368-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 6746.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6746.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-372-1.pdf, id=2435, 361.35pt x 
+361.35pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-372-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-372-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-372-1.p
+df  used on input line 6748.
+(pdftex.def)             Requested size: 345.00084pt x 345.00084pt.
+
+Package xcolor Warning: Incompatible color definition on input line 6760.
+
+[182 <./au-r-workshop_files/figure-latex/unnamed-chunk-372-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 6766.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6766.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6770.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6775.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6775.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6779.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6784.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6784.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6788.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6796.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6796.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6808.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6816.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6816.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6820.
+
+[183]
+
+Package xcolor Warning: Incompatible color definition on input line 6824.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6824.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6828.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6835.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6835.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-381-1.pdf, id=2453, 361.35pt x 
+361.35pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-381-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-381-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-381-1.p
+df  used on input line 6837.
+(pdftex.def)             Requested size: 345.00084pt x 345.00084pt.
+
+Package xcolor Warning: Incompatible color definition on input line 6841.
+
+[184 <./au-r-workshop_files/figure-latex/unnamed-chunk-381-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 6850.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6850.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-382-1.pdf, id=2463, 361.35pt x 
+361.35pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-382-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-382-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-382-1.p
+df  used on input line 6852.
+(pdftex.def)             Requested size: 345.00084pt x 345.00084pt.
+
+Package xcolor Warning: Incompatible color definition on input line 6862.
+
+[185 <./au-r-workshop_files/figure-latex/unnamed-chunk-382-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 6866.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6866.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-385-1.pdf, id=2475, 361.35pt x 
+361.35pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-385-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-385-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-385-1.p
+df  used on input line 6868.
+(pdftex.def)             Requested size: 345.00084pt x 345.00084pt.
+
+Package xcolor Warning: Incompatible color definition on input line 6876.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6882.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6882.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-387-1.pdf, id=2476, 361.35pt x 
+361.35pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-387-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-387-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-387-1.p
+df  used on input line 6884.
+(pdftex.def)             Requested size: 345.00084pt x 345.00084pt.
+[186 <./au-r-workshop_files/figure-latex/unnamed-chunk-385-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 6892.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6901.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6901.
+
+[187 <./au-r-workshop_files/figure-latex/unnamed-chunk-387-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 6911.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6955.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6955.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6955.
+
+[188]
+
+Package xcolor Warning: Incompatible color definition on input line 6955.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6955.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6959.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6967.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6967.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-391-1.pdf, id=2500, 361.35pt x 
+361.35pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-391-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-391-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-391-1.p
+df  used on input line 6969.
+(pdftex.def)             Requested size: 345.00084pt x 345.00084pt.
+[189 <./au-r-workshop_files/figure-latex/unnamed-chunk-391-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 6983.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6990.
+
+
+Package xcolor Warning: Incompatible color definition on input line 6990.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-393-1.pdf, id=2510, 361.35pt x 
+361.35pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-393-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-393-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-393-1.p
+df  used on input line 6998.
+(pdftex.def)             Requested size: 345.00084pt x 345.00084pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[190]
+
+Package xcolor Warning: Incompatible color definition on input line 7006.
+
+
+Underfull \vbox (badness 1264) has occurred while \output is active []
+
+[191 <./au-r-workshop_files/figure-latex/unnamed-chunk-393-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 7012.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7012.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7016.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7023.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7023.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-397-1.pdf, id=2525, 361.35pt x 
+361.35pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-397-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-397-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-397-1.p
+df  used on input line 7025.
+(pdftex.def)             Requested size: 345.00084pt x 345.00084pt.
+[192 <./au-r-workshop_files/figure-latex/unnamed-chunk-397-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 7035.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7045.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7045.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-398-1.pdf, id=2535, 361.35pt x 
+361.35pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-398-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-398-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-398-1.p
+df  used on input line 7047.
+(pdftex.def)             Requested size: 345.00084pt x 345.00084pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[193]
+
+Package xcolor Warning: Incompatible color definition on input line 7049.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7056.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7056.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-398-2.pdf, id=2540, 361.35pt x 
+361.35pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-398-2.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-398-2.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-398-2.p
+df  used on input line 7058.
+(pdftex.def)             Requested size: 345.00084pt x 345.00084pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[194 <./au-r-workshop_files/figure-latex/unnamed-chunk-398-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 7068.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7072.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7072.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7076.
+
+[195 <./au-r-workshop_files/figure-latex/unnamed-chunk-398-2.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 7102.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7102.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7106.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7112.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7112.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7116.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7124.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7124.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7130.
+
+[196]
+
+Package xcolor Warning: Incompatible color definition on input line 7136.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7136.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7150.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7154.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7154.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7158.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7169.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7169.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7173.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7187.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7187.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7187.
+
+[197]
+
+Package xcolor Warning: Incompatible color definition on input line 7187.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7187.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7191.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7198.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7198.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7202.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7217.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7217.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-413-1.pdf, id=2573, 361.35pt x 
+361.35pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-413-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-413-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-413-1.p
+df  used on input line 7219.
+(pdftex.def)             Requested size: 345.00084pt x 345.00084pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[198]
+
+Package xcolor Warning: Incompatible color definition on input line 7223.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7227.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7227.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7233.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7237.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7237.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7243.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7247.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7247.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7253.
+
+[199 <./au-r-workshop_files/figure-latex/unnamed-chunk-413-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 7257.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7257.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7271.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7276.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7276.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7280.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7284.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7284.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7288.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7300.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7300.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7304.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7308.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7308.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7312.
+
+[200]
+
+Package xcolor Warning: Incompatible color definition on input line 7317.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7317.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-420-1.pdf, id=2592, 361.35pt x 
+361.35pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-420-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-420-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-420-1.p
+df  used on input line 7319.
+(pdftex.def)             Requested size: 345.00084pt x 345.00084pt.
+
+Package xcolor Warning: Incompatible color definition on input line 7323.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7327.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7327.
+
+[201 <./au-r-workshop_files/figure-latex/unnamed-chunk-420-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 7339.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7343.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7343.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7351.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7355.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7355.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7367.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7373.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7373.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7389.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7396.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7396.
+
+[202]
+
+Package xcolor Warning: Incompatible color definition on input line 7402.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7408.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7408.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7412.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7416.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7416.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7420.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7425.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7425.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7429.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7433.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7433.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-431-1.pdf, id=2607, 361.35pt x 
+361.35pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-431-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-431-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-431-1.p
+df  used on input line 7435.
+(pdftex.def)             Requested size: 345.00084pt x 345.00084pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[203]
+
+Package xcolor Warning: Incompatible color definition on input line 7443.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7449.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7449.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7453.
+
+[204 <./au-r-workshop_files/figure-latex/unnamed-chunk-431-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 7487.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7487.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-433-1.pdf, id=2622, 361.35pt x 
+361.35pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-433-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-433-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-433-1.p
+df  used on input line 7489.
+(pdftex.def)             Requested size: 345.00084pt x 345.00084pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[205]
+
+Package xcolor Warning: Incompatible color definition on input line 7495.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7515.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7515.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7515.
+
+[206 <./au-r-workshop_files/figure-latex/unnamed-chunk-433-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 7515.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7515.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7521.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7555.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7555.
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-435-1.pdf, id=2637, 361.35pt x 
+361.35pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-435-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-435-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-435-1.p
+df  used on input line 7557.
+(pdftex.def)             Requested size: 345.00084pt x 345.00084pt.
+[207]
+Overfull \hbox (200.99841pt too wide) in paragraph at lines 7571--7571
+[]\T1/lmtt/m/n/10 ## Source: "C:\Users\bstaton\Desktop\Staton\3_general\au-r-wo
+rkshop\Data\Ch6\SVN_adm", layer: "SVN_adm0"[] 
+ []
+
+
+Overfull \hbox (206.2484pt too wide) in paragraph at lines 7579--7579
+[]\T1/lmtt/m/n/10 ## Source: "C:\Users\bstaton\Desktop\Staton\3_general\au-r-wo
+rkshop\Data\Ch6\railways", layer: "railways"[] 
+ []
+
+[208 <./au-r-workshop_files/figure-latex/unnamed-chunk-435-1.pdf>]
+Overfull \hbox (200.99841pt too wide) in paragraph at lines 7587--7587
+[]\T1/lmtt/m/n/10 ## Source: "C:\Users\bstaton\Desktop\Staton\3_general\au-r-wo
+rkshop\Data\Ch6\SVN_adm", layer: "SVN_adm1"[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 7589.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7589.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7591.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7611.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7611.
+
+
+Overfull \hbox (216.74837pt too wide) in paragraph at lines 7618--7618
+[]\T1/lmtt/m/n/10 ## Source: "C:\Users\bstaton\Desktop\Staton\3_general\au-r-wo
+rkshop\Data\Ch6\caves", layer: "EPO_JAMEPoint"[] 
+ []
+
+<au-r-workshop_files/figure-latex/unnamed-chunk-439-1.pdf, id=2656, 361.35pt x 
+361.35pt>
+File: au-r-workshop_files/figure-latex/unnamed-chunk-439-1.pdf Graphic file (ty
+pe pdf)
+<use au-r-workshop_files/figure-latex/unnamed-chunk-439-1.pdf>
+Package pdftex.def Info: au-r-workshop_files/figure-latex/unnamed-chunk-439-1.p
+df  used on input line 7620.
+(pdftex.def)             Requested size: 345.00084pt x 345.00084pt.
+
+Underfull \vbox (badness 2435) has occurred while \output is active []
+
+[209]
+
+Package xcolor Warning: Incompatible color definition on input line 7624.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7628.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7628.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7638.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7646.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7646.
+
+[210 <./au-r-workshop_files/figure-latex/unnamed-chunk-439-1.pdf>]
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 7654--7654
+[]\T1/lmtt/m/n/10 ##              GoriŽka Jugovzhodna Slovenija    Notranjsko-
+kraŽka[] 
+ []
+
+
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 7654--7654
+[]\T1/lmtt/m/n/10 ##                     1                     5               
+     12[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 7660.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7665.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7665.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7669.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7673.
+
+
+Package xcolor Warning: Incompatible color definition on input line 7673.
+
+(./au-r-workshop.bbl [211] [212
+
+] [213])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 7684.
+[214]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 7684.
+(./au-r-workshop.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 7684.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 7684.
+
+Package rerunfilecheck Info: File `au-r-workshop.out' has not changed.
+(rerunfilecheck)             Checksum: DA6F35662EE559A32BA5FBC30C562A7A;14590.
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 7684.
+ ) 
+Here is how much of TeX's memory you used:
+ 16562 strings out of 494553
+ 257152 string characters out of 6175837
+ 350267 words of memory out of 5000000
+ 19025 multiletter control sequences out of 15000+600000
+ 95478 words of font info for 167 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 38i,18n,44p,1408b,467s stack positions out of 5000i,500n,10000p,200000b,80000s
+{c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec
+.enc}{c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm
+-mathsy.enc}{c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvip
+s/lm/lm-rm.enc}{c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/d
+vips/lm/lm-mathit.enc}{c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/font
+s/enc/dvips/lm/lm-mathex.enc}{c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-di
+st/fonts/enc/dvips/lm/lm-ts1.enc}<c:/Users/bstaton/AppData/Roaming/TinyTeX/texm
+f-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/bstaton/AppData/Roaming/TinyT
+eX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/bstaton/AppData/Roamin
+g/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx8.pfb><c:/Users/bstaton/AppData/
+Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb><c:/Users/bstaton/
+AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/Users/b
+staton/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/
+Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi5.pf
+b><c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lm
+mi6.pfb><c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public
+/lm/lmmi7.pfb><c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/
+public/lm/lmmi8.pfb><c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/fonts/
+type1/public/lm/lmr10.pfb><c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/
+fonts/type1/public/lm/lmr17.pfb><c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf
+-dist/fonts/type1/public/lm/lmr5.pfb><c:/Users/bstaton/AppData/Roaming/TinyTeX/
+texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/Users/bstaton/AppData/Roaming/Tin
+yTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/bstaton/AppData/Roamin
+g/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/Users/bstaton/AppData/R
+oaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Users/bstaton/Ap
+pData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/Users/bst
+aton/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmro10.pfb><c:/Us
+ers/bstaton/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb
+><c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lms
+y5.pfb><c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/
+lm/lmsy7.pfb><c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/p
+ublic/lm/lmsy8.pfb><c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/fonts/t
+ype1/public/lm/lmtk10.pfb><c:/Users/bstaton/AppData/Roaming/TinyTeX/texmf-dist/
+fonts/type1/public/lm/lmtko10.pfb><c:/Users/bstaton/AppData/Roaming/TinyTeX/tex
+mf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/Users/bstaton/AppData/Roaming/Tiny
+TeX/texmf-dist/fonts/type1/public/lm/lmtt8.pfb><c:/Users/bstaton/AppData/Roamin
+g/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtti10.pfb><c:/Users/bstaton/AppDat
+a/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtto10.pfb>
+Output written on au-r-workshop.pdf (216 pages, 2739984 bytes).
+PDF statistics:
+ 2957 PDF objects out of 2984 (max. 8388607)
+ 2522 compressed objects within 26 object streams
+ 737 named destinations out of 1000 (max. 500000)
+ 17540 words of extra memory for PDF output out of 20736 (max. 10000000)
+
