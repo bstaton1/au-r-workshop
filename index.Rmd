@@ -16,9 +16,9 @@ description: "This is a first course in R programming for natural resource scien
 
 # Overview{-#overview}
 
-`r if(knitr::is_html_output()) '<a href="https://github.com/bstaton1/au-r-workshop/"><img src="img/cover_image.png" width="250" height="375" alt="Cover image" align="right" style="margin: 0 1em 0 1em" /></a>' `This book is intended to be a first course in R programming for natural resource professionals. It is by no means comprehensive (no book about R ever could be), but instead attempts to introduce the main topics needed to get a beginner up and running with applying R to their own work. It is intended to be a companion to in-person workshop sessions, in which each chapter is covered in a 2 hour session, however it can be used as "self-teach" manual as well. Although the examples shown have a natural resource/ecological theme, the general skills presented are general to R users across all scientific disciplines. 
+`r if(knitr::is_html_output()) '<a href="https://github.com/bstaton1/au-r-workshop/"><img src="img/cover_image.png" width="250" height="375" alt="Cover image" align="right" style="margin: 0 1em 0 1em" /></a>' `This book is intended to be a first course in R programming for natural resource professionals. It is by no means comprehensive (no book about R ever could be), but instead attempts to introduce the main topics needed to get a beginner up and running with applying R to their own work. It is intended to be a companion to in-person workshop sessions, in which each chapter is covered in a 2 hour session, however it can be used as a "self-teach" manual as well. Although the examples shown have a natural resource/ecological theme, the general skills presented are general to R users across all scientific disciplines. 
 
-## What is Covered? {-}
+## What Is Covered? {-}
 
 The book is composed of six chapters intended to cover a suite of topics in introductory R programming. In general, the material builds in complexity from chapter to chapter and earlier chapters can be seen as prerequisites for later chapters. 
 
